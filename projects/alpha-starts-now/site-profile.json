@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "project_name": "Alpha Starts Now",
+  "version": "1.0.0",
+  "mode": "ORIGINAL_MODE",
+  "business_type": "Content-Led Men's Self-Improvement & Editorial Publication",
+  "business_model": "Hybrid Founder-Led Editorial, Newsletter Audience, Curated Affiliate Recommendations",
+  "author_model": "hybrid_founder_editorial",
+  "publication_name": "The ASN Dispatch",
+  "newsletter_framing": "Weekly Field Notes on Physical Capability, Daily Discipline, and Deliberate Living for Adult Men",
+  "audience": {
+    "primary_decision_maker": "Adult men aged 35–50 seeking practical reinvention, discipline, physical standards, and deliberate life direction",
+    "market_segment": "Mature Men / Grounded Personal Mastery"
+  },
+  "primary_conversion": {
+    "goal": "Subscribe to The ASN Dispatch Email Publication",
+    "cta_label": "Join the ASN Dispatch →",
+    "target_metric": "Qualified Email Subscriber Conversion Rate"
+  },
+  "brand_attributes": [
+    "Mature",
+    "Disciplined",
+    "Deliberate",
+    "Precise",
+    "Grounded",
+    "Self-Respecting",
+    "Direct"
+  ],
+  "editorial_pillars": [
+    "01 / Body & Health",
+    "02 / Style & Presentation",
+    "03 / Discipline & Habits",
+    "04 / Work & Technology",
+    "05 / Life & Environment"
+  ],
+  "recommendation_categories": [
+    "Training & Health",
+    "Grooming & Personal Care",
+    "Apparel & Footwear",
+    "Technology & Productivity",
+    "Home, Workspace & Everyday Gear",
+    "Books & Essential Reading"
+  ],
+  "emotional_posture": {
+    "primary_vibe": "Modernist Heritage Journal",
+    "secondary_influence": "Architectural / Precision Workshop",
+    "target_reaction": "Made for a grown man (35-50) who is serious about getting his life moving in the right direction",
+    "masculinity_source": "Restraint, craftsmanship, spatial discipline, typography, and authentic standards"
+  },
+  "anti_brand": [
+    "Generic men's blog / affiliate scraper",
+    "Bodybuilding / shirtless gym-bro clichés",
+    "Testosterone / supplement hype",
+    "Manosphere / grievance / rage culture",
+    "Crypto-bro / fast-money lifestyle",
+    "Motivational speaker platitudes",
+    "SaaS startup aesthetics / purple gradients",
+    "AI template slop / generic card grids",
+    "Wolves / flames / tactical / gladiator tropes"
+  ],
+  "truthfulness_constraints": {
+    "manufactured_proof_permitted": false,
+    "fake_testimonials_permitted": false,
+    "fake_client_logos_permitted": false,
+    "fake_statistics_permitted": false,
+    "fake_scarcity_permitted": false
+  },
+  "site_scope": "multi_page_editorial",
+  "routes": [
+    "/",
+    "/start-here",
+    "/guides",
+    "/recommended",
+    "/about",
+    "/privacy",
+    "/terms",
+    "/affiliate-disclosure"
+  ],
+  "design_archetypes": {
+    "primary": "Modernist",
+    "primary_weight": 0.6,
+    "secondary": "Architectural",
+    "secondary_weight": 0.3,
+    "accent": "Editorial",
+    "accent_weight": 0.1
+  },
+  "density": "medium-high",
+  "layout_style": "asymmetric_12_column_swiss_grid",
+  "geometry": "refined_architectural",
+  "corner_style": "2px_to_4px",
+  "typography_direction": {
+    "display_family": "Cabinet Grotesk / General Sans",
+    "body_family": "Inter / Geist Sans",
+    "editorial_family": "Newsreader / Fraunces",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.25_major_third_clamp",
+    "heading_tracking": "-0.03em"
+  },
+  "color_tokens": {
+    "bg_primary": "#0C0E12",
+    "bg_secondary": "#12161E",
+    "bg_surface": "#181D26",
+    "bg_paper": "#F4F1EA",
+    "text_primary": "#F9FAFB",
+    "text_secondary": "#94A3B8",
+    "border_hairline": "rgba(255, 255, 255, 0.08)",
+    "accent_primary": "#D96B27"
+  },
+  "imagery_direction": {
+    "style": "cinematic_documentary_real_life_craft",
+    "aspect_ratios": ["16/9", "4/3", "3/2", "1/1"],
+    "treatment": "natural_light_sculptural_shadows_tactile_textures",
+    "explicit_bans": [
+      "shirtless_flexing",
+      "wolves",
+      "fire",
+      "gladiators",
+      "tactical_motifs",
+      "fake_boardrooms",
+      "crypto_beach",
+      "ai_fantasy_art"
+    ]
+  },
+  "motion_direction": {
+    "physics": "measured_restrained_instant",
+    "default_duration_ms": 200,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true
+  },
+  "qa_status": {
+    "status": "WEBSITE_DIRECTOR_V1_PILOT_VALIDATED",
+    "independent_qa_score": 95,
+    "visual_qa_verdict": "ASN_VISUAL_QA_PASS",
+    "technical_qa_verdict": "ASN_TECHNICAL_QA_PASS",
+    "commercial_production_verdict": "ASN_COMMERCIAL_PRODUCTION_BLOCKED",
+    "blocker": "window.ASN_SITE.config.leadEndpoint is empty (requires live serverless proxy / webhook URL)"
+  }
+}

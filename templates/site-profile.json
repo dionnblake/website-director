@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.6.0",
+  "project_name": "Project Name",
+  "version": "1.0.0",
+  "business_type": "B2B SaaS / Fintech / Architecture / Luxury",
+  "audience": {
+    "primary_decision_maker": "Enterprise CTO / VP Engineering / Boutique Client",
+    "market_segment": "Enterprise / Mid-Market / High-Net-Worth",
+    "target_visitor": "Enterprise decision maker evaluating modernization or premium engagement",
+    "visitor_state": "High skepticism, scanning for proof, assessing execution quality"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Book Product Demonstration",
+      "cta_label": "Schedule Technical Deep Dive",
+      "target_metric": "Qualified Demo Bookings"
+    },
+    "secondary_conversion": {
+      "goal": "Download Technical Specification / Whitepaper",
+      "cta_label": "Read Architecture Whitepaper",
+      "target_metric": "Specification Downloads"
+    },
+    "primary_objection": "Implementation risk and differentiation credibility",
+    "primary_trust_requirement": "Verifiable performance evidence and architectural proof"
+  },
+  "brand_attributes": [
+    "Surgical",
+    "Authoritative",
+    "Infallible",
+    "High-Contrast",
+    "Restrained"
+  ],
+  "design_archetypes": {
+    "primary": "Modernist",
+    "primary_weight": 0.6,
+    "secondary": "Technical",
+    "secondary_weight": 0.3,
+    "accent": "Editorial",
+    "accent_weight": 0.1
+  },
+  "density": "medium-high",
+  "layout_style": "asymmetric_12_column_grid",
+  "geometry": "sharp_modernist",
+  "corner_style": "4px",
+  "typography_direction": {
+    "display_family": "Syne",
+    "body_family": "Inter",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.333_perfect_fourth",
+    "heading_tracking": "-0.025em"
+  },
+  "imagery_direction": {
+    "style": "high_contrast_monochrome_macro_render",
+    "aspect_ratios": ["16/9", "4/3", "1/1"],
+    "treatment": "subtle_vignette_darkened_borders"
+  },
+  "motion_direction": {
+    "physics": "snappy_responsive",
+    "default_duration_ms": 200,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": false,
+    "mode": null,
+    "sources": [],
+    "deep_recon_targets": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": null,
+    "gsap_required": false,
+    "implementation_engine": null,
+    "skills_used": [],
+    "plugins_used": [],
+    "reduced_motion_verified": false,
+    "cleanup_verified": false,
+    "performance_verified": false,
+    "cinematic_specialist_required": false,
+    "cinematic_brief_complete": false
+  },
+  "seo": {
+    "complete": false,
+    "mode": null,
+    "blocked_reason": null,
+    "research_date": null,
+    "data_sources": [],
+    "target_market": null,
+    "gsc_connected": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "design_intelligence": {
+    "complete": false,
+    "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
+    "product_type_matched": null,
+    "candidate_styles": [],
+    "selected_style": null,
+    "candidate_palette_matched": null,
+    "candidate_typography_matched": null,
+    "stack_guidance_applied": null,
+    "distinctiveness_check_complete": false,
+    "hero_thesis_declared": false,
+    "signature_element_declared": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "qa_status": {
+    "design_qa_score": null,
+    "design_qa_verdict": "PENDING",
+    "production_preflight_passed": false
+  },
+  "gauntlet": {
+    "status": "NOT_RUN",
+    "iteration_count": 0,
+    "max_iterations": 3,
+    "verdict": "PENDING",
+    "largest_remaining_gap": null,
+    "residual_defects": [],
+    "reference_bars": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KREISLER &amp; VOSS Motorenwerke — Bespoke Coachbuilt Restomods</title>
+  <meta name="description" content="Atelier for bespoke automotive coachbuilding, re-engineered air-cooled powertrains, and analog grand tourers. Founded by Markus Kreisler &amp; Dominic Voss.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Floating Atelier Bar -->
+  <header class="atelier-header" id="atelier-header">
+    <div class="header-inner container-wide">
+      <a href="#hero" class="brand-wordmark" id="brand-logo" aria-label="KREISLER &amp; VOSS Motorenwerke Home">
+        <span class="brand-title">KREISLER &amp; VOSS</span>
+        <span class="brand-subtitle">MOTORENWERKE • COLOGNE / MODENA</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#philosophy" class="nav-link" id="nav-philosophy">01. Philosophy</a></li>
+          <li><a href="#commissions" class="nav-link" id="nav-commissions">02. Commissions</a></li>
+          <li><a href="#atelier-lab" class="nav-link" id="nav-lab">03. Mechanical Lab</a></li>
+          <li><a href="#process" class="nav-link" id="nav-process">04. Process</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-primary btn-inquire-trigger" id="header-inquire-btn" aria-haspopup="dialog" aria-controls="inquiry-modal">
+          Initiate Commission
+        </button>
+        <button class="mobile-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle Navigation Menu">
+          <span class="toggle-line"></span>
+          <span class="toggle-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile Navigation">
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <span class="mobile-brand">KREISLER &amp; VOSS</span>
+        <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#philosophy" class="mobile-link">01. Engineering Philosophy</a></li>
+        <li><a href="#commissions" class="mobile-link">02. Active Commissions</a></li>
+        <li><a href="#atelier-lab" class="mobile-link">03. Mechanical Laboratory</a></li>
+        <li><a href="#process" class="mobile-link">04. Commissioning Process</a></li>
+        <li><a href="#commission-inquiry" class="mobile-link highlight">05. Private Consultation</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-coords">Hansaring 48, 50670 Köln • Hansaring / Modena</p>
+        <p class="mobile-contact">commissions@kreisler-voss.de</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- SECTION 1: Scroll-Driven Cinematic Hero (Motion Level 3) -->
+    <section class="section-hero" id="hero" aria-label="Cinematic Vehicle Staging">
+      <div class="hero-pinned-wrapper" id="hero-pinned-wrapper">
+        <div class="hero-container container-wide">
+          <div class="hero-eyebrow-wrapper">
+            <span class="hero-eyebrow-tag">BESPOKE COACHBUILDING &amp; RE-ENGINEERED ANALOG PERFORMANCE • EST. 2016</span>
+            <span class="hero-allocation-badge">● 2026 ALLOCATIONS: 2 OF 8 REMAINING</span>
+          </div>
+
+          <div class="hero-main-layout">
+            <div class="hero-manifesto-column">
+              <h1 class="hero-headline" id="main-heading">
+                The Architecture of Pure Mechanical Speed
+              </h1>
+              <p class="hero-lead">
+                We re-engineer iconic European grand tourers from the chassis up. Hand-wheeled aluminum coachwork, naturally aspirated high-revving powertrains, and analog mechanical feedback. Conceived in Cologne, crafted in Modena, tested across the Black Forest.
+              </p>
+              
+              <div class="hero-cta-group">
+                <a href="#commissions" class="btn btn-primary" id="hero-explore-btn">Explore Active Commissions &darr;</a>
+                <button class="btn btn-secondary btn-inquire-trigger" id="hero-inquire-btn">Request Build Consultation &rarr;</button>
+              </div>
+
+              <!-- Interactive Cinematic Stage Controller -->
+              <div class="hero-cinematic-control" aria-label="Cinematic Assembly Progress">
+                <div class="cinematic-step-indicators">
+                  <button class="cinematic-step-btn active" data-stage="0" aria-label="Stage 1: Machined Velocity Stacks">
+                    <span class="step-num">01</span>
+                    <span class="step-label">CNC BILLET</span>
+                  </button>
+                  <button class="cinematic-step-btn" data-stage="1" aria-label="Stage 2: Coachbuilt Aluminum Flank">
+                    <span class="step-num">02</span>
+                    <span class="step-label">FLANK FORM</span>
+                  </button>
+                  <button class="cinematic-step-btn" data-stage="2" aria-label="Stage 3: Cockpit Architecture">
+                    <span class="step-num">03</span>
+                    <span class="step-label">COCKPIT</span>
+                  </button>
+                  <button class="cinematic-step-btn" data-stage="3" aria-label="Stage 4: Complete Vehicle">
+                    <span class="step-num">04</span>
+                    <span class="step-label">MONOLITH GT</span>
+                  </button>
+                </div>
+                <div class="cinematic-scrub-bar" id="cinematic-scrub-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Scrub assembly timeline">
+                  <div class="scrub-progress-fill" id="scrub-progress-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cinematic Stage Visual Frame -->
+            <div class="hero-visual-column">
+              <div class="hero-visual-frame" id="hero-stage-frame">
+                <div class="stage-canvas-container" id="stage-canvas-container" aria-label="Interactive Vehicle Reveal Frame">
+                  
+                  <!-- Procedural SVG Multi-Layer Cinematic Render -->
+                  <svg class="hero-cinematic-svg" id="hero-cinematic-svg" viewBox="0 0 960 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KV-01 Monolith GT Coachbuilt Grand Tourer">
+                    <rect width="960" height="620" fill="#0E0F12"/>
+                    
+                    <!-- Atmospheric Workshop Lighting Background -->
+                    <defs>
+                      <radialGradient id="workshop-light" cx="50%" cy="35%" r="60%" fx="50%" fy="35%">
+                        <stop offset="0%" stop-color="#2D323E" stop-opacity="0.85"/>
+                        <stop offset="60%" stop-color="#17191E" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#0E0F12" stop-opacity="1"/>
+                      </radialGradient>
+                      <linearGradient id="billet-specular" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                        <stop offset="45%" stop-color="#D1D5DB" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#4B5563" stop-opacity="0.3"/>
+                      </linearGradient>
+                      <linearGradient id="body-flank-metal" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#717786"/>
+                        <stop offset="25%" stop-color="#4B5160"/>
+                        <stop offset="70%" stop-color="#22262E"/>
+                        <stop offset="100%" stop-color="#121418"/>
+                      </linearGradient>
+                      <linearGradient id="saddle-leather" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#C88242"/>
+                        <stop offset="100%" stop-color="#8C5222"/>
+                      </linearGradient>
+                    </defs>
+
+                    <rect width="960" height="620" fill="url(#workshop-light)"/>
+                    <line x1="0" y1="490" x2="960" y2="490" stroke="rgba(242,241,237,0.06)" stroke-dasharray="8 8"/>
+                    
+                    <!-- Dynamic Layer 1: CNC Billet Intake Trumpets & Mechanical Engine Assembly -->
+                    <g class="cinematic-layer layer-intake" id="layer-intake">
+                      <rect x="360" y="240" width="240" height="180" rx="2" fill="#17191E" stroke="rgba(242,241,237,0.15)"/>
+                      <!-- 6 Individual Milled Velocity Stacks -->
+                      <path d="M400,240 L395,200 L415,190 L425,240 Z" fill="url(#billet-specular)"/>
+                      <path d="M440,240 L435,200 L455,190 L465,240 Z" fill="url(#billet-specular)"/>
+                      <path d="M480,240 L475,200 L495,190 L505,240 Z" fill="url(#billet-specular)"/>
+                      <path d="M520,240 L515,200 L535,190 L545,240 Z" fill="url(#billet-specular)"/>
+                      <circle cx="405" cy="195" r="10" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                      <circle cx="445" cy="195" r="10" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                      <circle cx="485" cy="195" r="10" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                      <circle cx="525" cy="195" r="10" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                      <text x="380" y="320" font-family="'JetBrains Mono', monospace" font-size="11" fill="#34D399">4.0L FLAT-SIX • 8,400 RPM</text>
+                      <text x="380" y="340" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A2A6B0">BILLET 6061-T6 • ±0.005mm</text>
+                    </g>
+
+                    <!-- Dynamic Layer 2: Hand-Wheeled Aluminum Chassis & Flank Profile -->
+                    <g class="cinematic-layer layer-body" id="layer-body">
+                      <!-- Low-Slung Grand Tourer Coachbuilt Silhouette -->
+                      <path d="M120,430 C150,430 180,350 260,350 C320,350 360,260 480,250 C620,240 740,290 820,380 C860,420 890,440 910,440 L880,480 L80,480 Z" fill="url(#body-flank-metal)" stroke="rgba(242,241,237,0.25)"/>
+                      <!-- Muscular Rear Wheel Flare -->
+                      <path d="M680,470 C680,380 790,380 810,470 Z" fill="#17191E" stroke="#717786"/>
+                      <!-- Front Flare -->
+                      <path d="M180,470 C180,390 280,390 290,470 Z" fill="#17191E" stroke="#717786"/>
+                      <!-- Wheels: Milled Centerlock Billet Alloys -->
+                      <circle cx="235" cy="470" r="55" fill="#121418" stroke="#D1D5DB" stroke-width="3"/>
+                      <circle cx="235" cy="470" r="22" fill="#0E0F12" stroke="#C88242" stroke-width="3"/>
+                      <circle cx="745" cy="470" r="58" fill="#121418" stroke="#D1D5DB" stroke-width="3"/>
+                      <circle cx="745" cy="470" r="24" fill="#0E0F12" stroke="#C88242" stroke-width="3"/>
+                      <!-- Greenhouse Glass with Reflection -->
+                      <path d="M380,265 C450,255 580,255 670,330 L380,330 Z" fill="#17191E" opacity="0.9" stroke="rgba(242,241,237,0.4)"/>
+                      <!-- Interior Saddle Leather Glimpse -->
+                      <rect x="440" y="280" width="38" height="42" rx="4" fill="url(#saddle-leather)"/>
+                      <rect x="500" y="280" width="38" height="42" rx="4" fill="url(#saddle-leather)"/>
+                      <!-- Anamorphic Lens Flare Light Sweep -->
+                      <line class="light-sweep-line" id="light-sweep-line" x1="100" y1="360" x2="880" y2="360" stroke="#C88242" stroke-width="1.5" opacity="0.6"/>
+                    </g>
+
+                    <!-- Technical Telemetry Overlay Watermark -->
+                    <text x="40" y="580" font-family="'JetBrains Mono', monospace" font-size="11" fill="#6C707A" letter-spacing="0.1em">
+                      CHASSIS KV-01/08 • MONOLITH GT • 415 BHP / 1,040 KG • 0-100: 3.4S
+                    </text>
+                  </svg>
+
+                </div>
+
+                <!-- Stage Status Caption -->
+                <div class="hero-visual-caption">
+                  <span class="caption-indicator-dot"></span>
+                  <span class="caption-text" id="stage-caption-text">
+                    Featured Masterwork: <strong>KV-01 "Monolith GT"</strong> — Air-Cooled 4.0L Flat-Six (415 BHP • 1,040 KG)
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Atelier Coordinates Strip -->
+          <div class="hero-footer-strip">
+            <div class="coord-item">
+              <span class="coord-city">COLOGNE FACILITY</span>
+              <span class="coord-detail">Hansaring 48, 50670 Köln (Powertrain &amp; Dyno)</span>
+            </div>
+            <div class="coord-item">
+              <span class="coord-city">BLACK FOREST DYNAMICS</span>
+              <span class="coord-detail">B500 Alpine Elevation Testing Track</span>
+            </div>
+            <div class="coord-item">
+              <span class="coord-city">MODENA ATELIER</span>
+              <span class="coord-detail">Via Emilia Est 114, 41121 Modena (Coachbuilding)</span>
+            </div>
+            <div class="coord-item coord-status">
+              <span class="coord-city">ALLOCATION STATUS</span>
+              <span class="coord-detail"><span class="status-indicator"></span> 2026 Build Slots: 2 Allocated / 6 Open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: The Analog Manifesto -->
+    <section class="section-philosophy" id="philosophy" aria-label="Engineering Philosophy">
+      <div class="container-standard">
+        <div class="section-header-block">
+          <span class="section-eyebrow">ENGINEERING PHILOSOPHY</span>
+          <h2 class="section-title">In Defense of the Tactile Machine</h2>
+        </div>
+
+        <div class="philosophy-grid">
+          <div class="philosophy-lead-column">
+            <p class="philosophy-manifesto-text">
+              In an era where modern performance cars have become digital computers muted by synthetic sound generators, artificial steering weight, and intrusive electronic intervention, KREISLER &amp; VOSS preserves the visceral joy of analog speed.
+            </p>
+            <p class="philosophy-sub-text">
+              Every commission is a masterwork of dry-sumped mechanical induction, direct rack-and-pinion steering feedback, and hand-stitched leather intimacy. We do not build digital illusions; we build permanent, tactile machines.
+            </p>
+          </div>
+
+          <div class="philosophy-pillars-column">
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-num">01</span>
+                <h3 class="pillar-title">Naturally Aspirated Induction</h3>
+              </div>
+              <p class="pillar-desc">
+                Independent throttle bodies, custom-tuned velocity stacks, and 8,500 RPM harmonic air-cooled induction. Zero turbo lag, instant throttle modulation, and mechanical acoustic purity.
+              </p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-num">02</span>
+                <h3 class="pillar-title">Hand-Formed Coachbuilding</h3>
+              </div>
+              <p class="pillar-desc">
+                Body panels shaped by master artisans over timber bucks in Modena using traditional English wheeling machines and 1.2mm aerospace aluminum alloy.
+              </p>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-num">03</span>
+                <h3 class="pillar-title">Analog Cockpit Ergonomics</h3>
+              </div>
+              <p class="pillar-desc">
+                CNC-machined aluminum switchgear with mechanical click detents, analog chronometer gauges, exposed gearshift linkages, and zero digital touchscreen distractions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Commission Portfolio (Selected Works) -->
+    <section class="section-commissions" id="commissions" aria-label="Commission Portfolio">
+      <div class="container-wide">
+        <div class="commissions-header-flex">
+          <div>
+            <span class="section-eyebrow">COMMISSION ARCHIVE</span>
+            <h2 class="section-title">Bespoke Builds &amp; Masterworks</h2>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="filter-tabs" role="tablist" aria-label="Commission Categories">
+            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+              ALL COMMISSIONS (05)
+            </button>
+            <button class="filter-tab" data-filter="gt" role="tab" aria-selected="false">
+              GRAND TOURERS (02)
+            </button>
+            <button class="filter-tab" data-filter="sport" role="tab" aria-selected="false">
+              ANALOG SPORT (02)
+            </button>
+            <button class="filter-tab" data-filter="coachbuilt" role="tab" aria-selected="false">
+              SPECIAL COACHBUILT (01)
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="commissions-grid">
+          
+          <!-- PROJECT 1 (Featured Hero Card) -->
+          <article class="commission-card commission-card-large" data-category="gt" data-project-id="kv-01" tabindex="0" aria-label="Commission KV-01 Monolith GT">
+            <div class="card-visual-wrapper">
+              <div class="card-image-box">
+                <svg class="project-svg-art" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="800" height="500" fill="#17191E"/>
+                  <path d="M80,360 C120,360 160,280 240,280 C300,280 340,190 460,180 C600,170 700,220 740,300 L760,380 L60,380 Z" fill="#2D323E" stroke="#717786"/>
+                  <circle cx="210" cy="380" r="50" fill="#121418" stroke="#D1D5DB" stroke-width="2"/>
+                  <circle cx="210" cy="380" r="20" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                  <circle cx="640" cy="380" r="52" fill="#121418" stroke="#D1D5DB" stroke-width="2"/>
+                  <circle cx="640" cy="380" r="22" fill="#0E0F12" stroke="#C88242" stroke-width="2"/>
+                  <text x="40" y="60" font-family="'JetBrains Mono', monospace" font-size="12" fill="#C88242">COMMISSION 01 • MONOLITH GT</text>
+                  <text x="40" y="440" font-family="'JetBrains Mono', monospace" font-size="11" fill="#A2A6B0">4.0L FLAT-SIX • 415 BHP • 1,040 KG • SADDLE OCHRE</text>
+                </svg>
+              </div>
+              <span class="card-badge">ACTIVE COMMISSION 01</span>
+            </div>
+
+            <div class="card-meta-panel">
+              <div class="card-header-meta">
+                <span class="card-chassis-tag">CHASSIS KV-01/08</span>
+                <span class="card-year">2024 BUILD</span>
+              </div>
+              <h3 class="card-title">KV-01 "Monolith GT"</h3>
+              <p class="card-description">
+                Bespoke widebody grand tourer re-engineered on a 1989 G-Series monocoque. 4.0L naturally aspirated flat-six producing 415 BHP, paired with a custom close-ratio 6-speed transaxle and Bridge of Weir saddle leather cabin.
+              </p>
+              <div class="card-telemetry-grid">
+                <div class="telemetry-item">
+                  <span class="t-label">DISPLACEMENT</span>
+                  <span class="t-val">4.0L Air-Cooled</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="t-label">POWER</span>
+                  <span class="t-val">415 BHP @ 8,400 RPM</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="t-label">DRY WEIGHT</span>
+                  <span class="t-val">1,040 kg</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="t-label">0-100 KM/H</span>
+                  <span class="t-val">3.4 Seconds</span>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-card-open" aria-label="Open Case Study for KV-01 Monolith GT">
+                Inspect Build &amp; Blueprints &rarr;
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="commission-card" data-category="sport" data-project-id="kv-02" tabindex="0" aria-label="Commission KV-02 Nero Superleggera">
+            <div class="card-visual-wrapper">
+              <div class="card-image-box">
+                <svg class="project-svg-art" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="400" fill="#17191E"/>
+                  <path d="M60,290 C100,290 140,220 220,220 C280,220 320,150 420,140 C520,140 560,200 580,290 L60,290 Z" fill="#22262E" stroke="#9CA3AF"/>
+                  <circle cx="160" cy="290" r="42" fill="#121418" stroke="#D1D5DB"/>
+                  <circle cx="480" cy="290" r="44" fill="#121418" stroke="#D1D5DB"/>
+                  <text x="30" y="40" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">COMMISSION 02 • NERO SUPERLEGGERA</text>
+                  <text x="30" y="350" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A2A6B0">3.8L TWIN-SPARK • 385 BHP • 960 KG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-meta-panel">
+              <div class="card-header-meta">
+                <span class="card-chassis-tag">CHASSIS KV-02/08</span>
+                <span class="card-year">2024 BUILD</span>
+              </div>
+              <h3 class="card-title">KV-02 "Nero Superleggera"</h3>
+              <p class="card-description">
+                Purist lightweight analog sport targa with carbon-kevlar composite skin, 3.8L twin-spark engine, and brushed titanium brightwork.
+              </p>
+              <div class="card-telemetry-grid">
+                <div class="telemetry-item"><span class="t-label">POWER</span><span class="t-val">385 BHP</span></div>
+                <div class="telemetry-item"><span class="t-label">WEIGHT</span><span class="t-val">960 kg</span></div>
+              </div>
+              <button class="btn btn-secondary btn-card-open">Inspect Build &amp; Blueprints &rarr;</button>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="commission-card" data-category="gt" data-project-id="kv-03" tabindex="0" aria-label="Commission KV-03 Modena Gran Turismo">
+            <div class="card-visual-wrapper">
+              <div class="card-image-box">
+                <svg class="project-svg-art" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="400" fill="#17191E"/>
+                  <path d="M50,290 C90,290 150,200 240,190 C360,180 460,190 560,260 L580,290 L50,290 Z" fill="#2B303A" stroke="#E5C388"/>
+                  <circle cx="150" cy="290" r="42" fill="#121418" stroke="#D1D5DB"/>
+                  <circle cx="490" cy="290" r="44" fill="#121418" stroke="#D1D5DB"/>
+                  <text x="30" y="40" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">COMMISSION 03 • MODENA GT</text>
+                  <text x="30" y="350" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A2A6B0">5.5L QUAD-CAM V12 • 510 BHP • 1,220 KG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-meta-panel">
+              <div class="card-header-meta">
+                <span class="card-chassis-tag">CHASSIS KV-03/08</span>
+                <span class="card-year">2025 ALLOCATED</span>
+              </div>
+              <h3 class="card-title">KV-03 "Modena Gran Turismo"</h3>
+              <p class="card-description">
+                1968 Fastback re-engineered with a 5.5L 60° Quad-Cam naturally aspirated V12 and hand-beaten aluminum coachwork crafted in Modena.
+              </p>
+              <div class="card-telemetry-grid">
+                <div class="telemetry-item"><span class="t-label">POWER</span><span class="t-val">510 BHP</span></div>
+                <div class="telemetry-item"><span class="t-label">WEIGHT</span><span class="t-val">1,220 kg</span></div>
+              </div>
+              <button class="btn btn-secondary btn-card-open">Inspect Build &amp; Blueprints &rarr;</button>
+            </div>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article class="commission-card" data-category="sport" data-project-id="kv-04" tabindex="0" aria-label="Commission KV-04 Alpenjager Rallye">
+            <div class="card-visual-wrapper">
+              <div class="card-image-box">
+                <svg class="project-svg-art" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="400" fill="#17191E"/>
+                  <path d="M70,270 C100,270 140,210 220,210 C300,200 420,210 520,260 L550,270 L70,270 Z" fill="#242830" stroke="#34D399"/>
+                  <circle cx="160" cy="270" r="48" fill="#121418" stroke="#D1D5DB"/>
+                  <circle cx="460" cy="270" r="48" fill="#121418" stroke="#D1D5DB"/>
+                  <text x="30" y="40" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">COMMISSION 04 • ALPENJÄGER</text>
+                  <text x="30" y="350" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A2A6B0">3.6L TWIN-TURBO AWD • 450 BHP</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-meta-panel">
+              <div class="card-header-meta">
+                <span class="card-chassis-tag">CHASSIS KV-04/08</span>
+                <span class="card-year">2025 ALLOCATED</span>
+              </div>
+              <h3 class="card-title">KV-04 "Alpenjäger Rallye"</h3>
+              <p class="card-description">
+                All-terrain high-elevation alpine exploration machine with long-travel Bilstein motorsport suspension, manual 6-speed AWD, and reinforced underbody armor.
+              </p>
+              <div class="card-telemetry-grid">
+                <div class="telemetry-item"><span class="t-label">POWER</span><span class="t-val">450 BHP</span></div>
+                <div class="telemetry-item"><span class="t-label">CHASSIS</span><span class="t-val">All-Wheel Drive</span></div>
+              </div>
+              <button class="btn btn-secondary btn-card-open">Inspect Build &amp; Blueprints &rarr;</button>
+            </div>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article class="commission-card" data-category="coachbuilt" data-project-id="kv-05" tabindex="0" aria-label="Commission KV-05 Atelier Spyder">
+            <div class="card-visual-wrapper">
+              <div class="card-image-box">
+                <svg class="project-svg-art" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="400" fill="#17191E"/>
+                  <path d="M50,300 C90,300 160,230 250,220 C380,210 480,240 550,300 L50,300 Z" fill="#20232A" stroke="#C88242"/>
+                  <circle cx="150" cy="300" r="40" fill="#121418" stroke="#D1D5DB"/>
+                  <circle cx="470" cy="300" r="42" fill="#121418" stroke="#D1D5DB"/>
+                  <text x="30" y="40" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">COMMISSION 05 • ATELIER SPYDER</text>
+                  <text x="30" y="350" font-family="'JetBrains Mono', monospace" font-size="10" fill="#A2A6B0">4.2L HIGH-REV V8 • 460 BHP • 910 KG</text>
+                </svg>
+              </div>
+            </div>
+            <div class="card-meta-panel">
+              <div class="card-header-meta">
+                <span class="card-chassis-tag">CHASSIS KV-05/08</span>
+                <span class="card-year">1-OF-1 SPECIAL</span>
+              </div>
+              <h3 class="card-title">KV-05 "Atelier Spyder"</h3>
+              <p class="card-description">
+                1-of-1 open-cockpit barchetta on bespoke tubular spaceframe. 4.2L high-revving naturally aspirated V8 (460 BHP) in a featherweight 910 kg aluminum coachwork.
+              </p>
+              <div class="card-telemetry-grid">
+                <div class="telemetry-item"><span class="t-label">POWER</span><span class="t-val">460 BHP</span></div>
+                <div class="telemetry-item"><span class="t-label">WEIGHT</span><span class="t-val">910 kg</span></div>
+              </div>
+              <button class="btn btn-secondary btn-card-open">Inspect Build &amp; Blueprints &rarr;</button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Mechanical & Material Atelier -->
+    <section class="section-lab" id="atelier-lab" aria-label="Mechanical and Material Laboratory">
+      <div class="container-standard">
+        <div class="section-header-block">
+          <span class="section-eyebrow">HARDWARE &amp; METALLURGICAL RIGOR</span>
+          <h2 class="section-title">The Mechanical &amp; Material Atelier</h2>
+          <p class="section-subtitle">
+            Every component specified in our Cologne and Modena workshops is manufactured to aerospace tolerances. Select an engineered specimen to inspect its metallurgy, machining tolerances, and raking light response:
+          </p>
+        </div>
+
+        <div class="lab-console-layout">
+          <!-- Specimen Selection Tabs -->
+          <div class="lab-specimens-list" role="tablist" aria-label="Engineered Specimens">
+            
+            <button class="specimen-card active" data-specimen="intake" role="tab" aria-selected="true">
+              <span class="specimen-swatch billet-swatch"></span>
+              <div class="specimen-info">
+                <h4 class="specimen-name">CNC Billet 6061-T6 Velocity Stacks</h4>
+                <span class="specimen-provenance">5-Axis Milled • Cologne Facility</span>
+              </div>
+            </button>
+
+            <button class="specimen-card" data-specimen="leather" role="tab" aria-selected="false">
+              <span class="specimen-swatch leather-swatch"></span>
+              <div class="specimen-info">
+                <h4 class="specimen-name">Saddle Ochre Bridge of Weir Leather</h4>
+                <span class="specimen-provenance">Vegetable-Tanned • Scottish Lowlands</span>
+              </div>
+            </button>
+
+            <button class="specimen-card" data-specimen="exhaust" role="tab" aria-selected="false">
+              <span class="specimen-swatch inconel-swatch"></span>
+              <div class="specimen-info">
+                <h4 class="specimen-name">Inconel 625 Equal-Length Manifold</h4>
+                <span class="specimen-provenance">0.9mm Superalloy • TIG Welded</span>
+              </div>
+            </button>
+
+            <button class="specimen-card" data-specimen="suspension" role="tab" aria-selected="false">
+              <span class="specimen-swatch titanium-swatch"></span>
+              <div class="specimen-info">
+                <h4 class="specimen-name">Titanium Double-Wishbone Links</h4>
+                <span class="specimen-provenance">Grade 5 Ti-6Al-4V • Teflon Uniballs</span>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Specimen Interactive Inspector Display -->
+          <div class="lab-display-card">
+            <div class="lab-display-header">
+              <div>
+                <h3 class="lab-active-title" id="lab-active-title">CNC Billet 6061-T6 Velocity Stacks</h3>
+                <span class="lab-active-subtitle" id="lab-active-subtitle">Aerospace-Grade Billet Aluminum • ±0.005mm Machining Tolerance</span>
+              </div>
+
+              <!-- Raking Light Controls -->
+              <div class="lab-lighting-controls" aria-label="Lighting Simulation">
+                <span class="lighting-label">RAKING LIGHT:</span>
+                <button class="lighting-btn active" data-light="dusk">DUSK (19:00)</button>
+                <button class="lighting-btn" data-light="tungsten">TUNGSTEN (WORKSHOP)</button>
+                <button class="lighting-btn" data-light="noon">ALPINE NOON (12:00)</button>
+              </div>
+            </div>
+
+            <!-- Dynamic Interactive Visual Specimen Canvas -->
+            <div class="lab-preview-canvas" id="lab-preview-canvas">
+              <svg class="specimen-svg-render" id="specimen-svg-render" viewBox="0 0 720 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="720" height="380" fill="#121418"/>
+                <defs>
+                  <linearGradient id="specimen-light-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#C88242" stop-opacity="0.8"/>
+                    <stop offset="50%" stop-color="#717786" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#17191E" stop-opacity="0.9"/>
+                  </linearGradient>
+                </defs>
+                <rect x="60" y="40" width="600" height="300" rx="2" fill="url(#specimen-light-grad)" stroke="rgba(242,241,237,0.15)"/>
+                <!-- Macro Machining Toolpaths -->
+                <path d="M120,80 L600,80 M120,120 L600,120 M120,160 L600,160 M120,200 L600,200 M120,240 L600,240 M120,280 L600,280" stroke="rgba(242,241,237,0.12)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <circle cx="360" cy="190" r="85" fill="#0E0F12" stroke="#C88242" stroke-width="3"/>
+                <circle cx="360" cy="190" r="45" fill="#17191E" stroke="#D1D5DB" stroke-width="2"/>
+                <text x="80" y="320" font-family="'JetBrains Mono', monospace" font-size="12" fill="#34D399">TOLERANCE VERIFIED: ±0.005mm • 5-AXIS CNC</text>
+              </svg>
+              <div class="specimen-scale-tag">MACRO RESOLUTION • 1:1 SCALE BENCHMARK</div>
+            </div>
+
+            <!-- Technical Specification Table -->
+            <div class="lab-specs-matrix">
+              <div class="lab-spec-cell">
+                <span class="spec-k">ALLOY / SPECIFICATION</span>
+                <span class="spec-v" id="spec-alloy">6061-T6 Temper Aerospace Aluminum</span>
+              </div>
+              <div class="lab-spec-cell">
+                <span class="spec-k">SURFACE FINISH</span>
+                <span class="spec-v" id="spec-finish">0.4 Ra Waterjet Chamfer &amp; Clear Hard-Anodize</span>
+              </div>
+              <div class="lab-spec-cell">
+                <span class="spec-k">TENSILE STRENGTH</span>
+                <span class="spec-v" id="spec-strength">310 MPa Yield / 276 MPa Ultimate</span>
+              </div>
+              <div class="lab-spec-cell">
+                <span class="spec-k">ACOUSTIC FREQUENCY</span>
+                <span class="spec-v" id="spec-acoustic">420 Hz Secondary Harmonic Resonance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: The Commissioning Methodology -->
+    <section class="section-process" id="process" aria-label="Commissioning Process">
+      <div class="container-standard">
+        <div class="section-header-block">
+          <span class="section-eyebrow">BESPOKE LIFECYCLE</span>
+          <h2 class="section-title">The Four-Stage Commission</h2>
+          <p class="section-subtitle">
+            An unhurried collaboration between patron, engineer, and coachbuilder taking between 14 to 22 months from donor acquisition to the inaugural alpine shakedown.
+          </p>
+        </div>
+
+        <div class="process-steps-grid">
+          <div class="process-card">
+            <span class="process-phase">PHASE 01</span>
+            <h3 class="process-title">Donor Sourcing &amp; 3D Scanning</h3>
+            <p class="process-desc">
+              We source an authentic, matching-numbers donor monocoque or accept a patron's heirloom vehicle. The entire chassis is laser-scanned to 0.02mm accuracy to map geometric baseline alignment.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <span class="process-phase">PHASE 02</span>
+            <h3 class="process-title">Powertrain &amp; Dynamic Blueprinting</h3>
+            <p class="process-desc">
+              The engine is blueprinted by hand in Cologne with custom forged pistons, balanced titanium valvetrain, individual throttle bodies, and custom dyno mapping.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <span class="process-phase">PHASE 03</span>
+            <h3 class="process-title">Coachbuilding &amp; Cockpit Tailoring</h3>
+            <p class="process-desc">
+              In Modena, aluminum widebody panels are hand-wheeled and metal-finished. The interior is tailored in vegetable-tanned Bridge of Weir leather with bespoke CNC switchgear.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <span class="process-phase">PHASE 04</span>
+            <h3 class="process-title">2,000 km Black Forest Shakedown</h3>
+            <p class="process-desc">
+              Each completed machine undergoes 2,000 kilometers of high-elevation dynamic calibration along the B500 route before private handover at our Cologne facility.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Private Commission Consultation Suite -->
+    <section class="section-inquiry" id="commission-inquiry" aria-label="Private Commission Consultation">
+      <div class="container-narrow">
+        <div class="inquiry-header-box">
+          <span class="section-eyebrow">CONFIDENTIAL CONSULTATION</span>
+          <h2 class="section-title">Initiate a Commission Dialogue</h2>
+          <p class="inquiry-lead">
+            We accept exactly eight bespoke commissions per calendar year. Complete the briefing below to begin a confidential consultation with master builders Markus Kreisler and Dominic Voss.
+          </p>
+        </div>
+
+        <form class="commission-form" id="commission-form">
+          <!-- Step 1: Vehicle Typology -->
+          <div class="form-group">
+            <label class="form-label">01. PREFERRED VEHICLE TYPOLOGY</label>
+            <div class="radio-pill-group">
+              <label class="radio-pill">
+                <input type="radio" name="typology" value="Grand Tourer" checked>
+                <span>Grand Tourer (Coupe)</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="typology" value="Analog Sport">
+                <span>Analog Sport (Targa)</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="typology" value="V12 Grand Tourer">
+                <span>V12 Fastback</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="typology" value="All-Terrain Rallye">
+                <span>Alpine Rallye AWD</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="typology" value="Bespoke 1-of-1">
+                <span>1-of-1 Coachbuilt Barchetta</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 2: Powertrain & Displacement -->
+          <div class="form-group">
+            <label class="form-label" for="engine-select">02. POWERTRAIN SPECIFICATION</label>
+            <select class="form-select" id="engine-select" name="engine_spec" required>
+              <option value="">Select Drivetrain Architecture...</option>
+              <option value="4.0L Naturally Aspirated Flat-Six (415 BHP)">4.0L Naturally Aspirated Flat-Six (415 BHP • 8,400 RPM)</option>
+              <option value="3.8L Twin-Spark Lightweight (385 BHP)">3.8L Twin-Spark Lightweight (385 BHP • 8,200 RPM)</option>
+              <option value="5.5L Quad-Cam Naturally Aspirated V12 (510 BHP)">5.5L Quad-Cam Naturally Aspirated V12 (510 BHP • 7,800 RPM)</option>
+              <option value="3.6L Twin-Turbocharged Flat-Six AWD (450 BHP)">3.6L Twin-Turbocharged Flat-Six AWD (450 BHP • 7,200 RPM)</option>
+            </select>
+          </div>
+
+          <!-- Step 3: Interior Leather & Trim -->
+          <div class="form-group">
+            <label class="form-label">03. INTERIOR LEATHER &amp; TRIM DIRECTION</label>
+            <div class="radio-pill-group">
+              <label class="radio-pill">
+                <input type="radio" name="leather" value="Saddle Ochre" checked>
+                <span>Saddle Ochre (Cognac)</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="leather" value="Espresso Umber">
+                <span>Espresso Umber</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="leather" value="Tartan & Leather">
+                <span>Heritage Tartan Weave</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="leather" value="Full Billet & Alcantara">
+                <span>Billet Titanium &amp; Charcoal</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 4: Contact & Allocation Coordinates -->
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label" for="client-name">PATRON NAME</label>
+              <input type="text" class="form-input" id="client-name" name="name" placeholder="e.g. Maximilian von Reichenbach" required>
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label" for="client-email">DIRECT EMAIL</label>
+              <input type="email" class="form-input" id="client-email" name="email" placeholder="e.g. m.reichenbach@holdings.de" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label" for="client-phone">TELEPHONE / WHATSAPP</label>
+              <input type="tel" class="form-input" id="client-phone" name="phone" placeholder="+49 170 000 0000">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label" for="client-region">DELIVERY REGION</label>
+              <select class="form-select" id="client-region" name="region" required>
+                <option value="">Select Delivery Territory...</option>
+                <option value="Germany / Austria / Switzerland">Germany / Austria / Switzerland</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="European Union">European Union</option>
+                <option value="North America (USA / Canada)">North America (USA / Canada)</option>
+                <option value="Middle East (UAE / Saudi Arabia)">Middle East (UAE / Saudi Arabia)</option>
+                <option value="Asia Pacific (Japan / Singapore)">Asia Pacific (Japan / Singapore)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 5: Commission Notes -->
+          <div class="form-group">
+            <label class="form-label" for="client-notes">COMMISSION NOTES &amp; SPECIFIC DESIRES</label>
+            <textarea class="form-textarea" id="client-notes" name="notes" rows="4" placeholder="Mention whether you have an existing donor chassis, specific track or touring requirements, custom paint-to-sample wishes, or preferred delivery timeline..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit-full" id="submit-inquiry-btn">
+            Submit Private Commission Briefing &rarr;
+          </button>
+        </form>
+
+        <div class="form-success-message" id="form-success-message" aria-live="polite" style="display: none;">
+          <h3 class="success-title">Commission Briefing Received</h3>
+          <p class="success-desc">
+            Thank you for initiating a commission dialogue with KREISLER &amp; VOSS. Master builders Markus Kreisler and Dominic Voss will review your chassis specifications and contact you directly within two business days.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Atelier Colophon & Footer -->
+    <footer class="atelier-footer" id="colophon" aria-label="Atelier Colophon">
+      <div class="container-wide">
+        <div class="footer-top-grid">
+          <div class="footer-brand-col">
+            <span class="footer-brand-title">KREISLER &amp; VOSS</span>
+            <p class="footer-mission">
+              Motorenwerke &amp; Coachbuilding Atelier crafting exactly eight bespoke analog performance commissions annually.
+            </p>
+            <p class="footer-memberships">
+              ENGINEERING RIGOR • HAND-WHEELED COACHWORK • BLACK FOREST CALIBRATED
+            </p>
+          </div>
+
+          <div class="footer-contact-col">
+            <h4 class="footer-col-heading">COLOGNE ENGINEERING</h4>
+            <address class="footer-address">
+              Hansaring 48<br>
+              50670 Köln, Germany<br>
+              <a href="mailto:cologne@kreisler-voss.de">cologne@kreisler-voss.de</a>
+            </address>
+          </div>
+
+          <div class="footer-contact-col">
+            <h4 class="footer-col-heading">MODENA COACHBUILDING</h4>
+            <address class="footer-address">
+              Via Emilia Est 114<br>
+              41121 Modena, Italy<br>
+              <a href="mailto:modena@kreisler-voss.de">modena@kreisler-voss.de</a>
+            </address>
+          </div>
+
+          <div class="footer-contact-col">
+            <h4 class="footer-col-heading">DIRECT COMMISSIONING</h4>
+            <p class="footer-address">
+              Allocation Desk (2026/2027)<br>
+              +49 (0) 221 9840 2100<br>
+              <a href="mailto:commissions@kreisler-voss.de">commissions@kreisler-voss.de</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <p class="footer-copyright">
+            &copy; 2026 KREISLER &amp; VOSS Motorenwerke GmbH. All rights reserved. Fictional Design Pilot under Website Director V1.1.
+          </p>
+          <div class="footer-legal-links">
+            <a href="#hero">Privacy Governance</a>
+            <a href="#hero">Commission Terms</a>
+            <a href="#hero">Metallurgical Provenance</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- CASE STUDY DRAWER MODAL (Dual-Perspective: Photo ↔ CAD Blueprint) -->
+  <div class="case-study-drawer" id="case-study-drawer" aria-hidden="true" role="dialog" aria-label="Commission Technical Case Study">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel" id="drawer-panel">
+      
+      <div class="drawer-header">
+        <div>
+          <span class="drawer-eyebrow" id="drawer-eyebrow">ACTIVE COMMISSION 01 • CHASSIS KV-01/08</span>
+          <h2 class="drawer-title" id="drawer-title">KV-01 "Monolith GT"</h2>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Case Study">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        
+        <!-- Dual Perspective Mode Toggle Switch -->
+        <div class="view-mode-bar">
+          <span class="view-mode-label">INSPECTION PERSPECTIVE:</span>
+          <div class="view-mode-toggle" role="group" aria-label="Perspective Mode">
+            <button class="toggle-mode-btn active" id="btn-mode-photo" data-mode="photo">
+              SPATIAL WORKSHOP PHOTOGRAPHY
+            </button>
+            <button class="toggle-mode-btn" id="btn-mode-cad" data-mode="cad">
+              TECHNICAL BLUEPRINT &amp; DYNO SCHEMATICS
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Visual Viewer (Photo vs Blueprint) -->
+        <div class="drawer-visual-frame" id="drawer-visual-frame">
+          
+          <!-- Mode 1: Workshop Photography View -->
+          <div class="visual-layer layer-photo active" id="drawer-photo-layer">
+            <svg class="drawer-svg-photo" viewBox="0 0 800 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="480" fill="#17191E"/>
+              <path d="M80,360 C120,360 160,260 260,260 C320,260 360,170 480,160 C620,150 720,200 750,300 L760,380 L60,380 Z" fill="#2D323E" stroke="#8C5222"/>
+              <circle cx="220" cy="380" r="52" fill="#121418" stroke="#D1D5DB" stroke-width="2"/>
+              <circle cx="650" cy="380" r="54" fill="#121418" stroke="#D1D5DB" stroke-width="2"/>
+              <text x="40" y="440" font-family="'JetBrains Mono', monospace" font-size="11" fill="#A2A6B0">
+                FINISHED PHOTOGRAPHY: KV-01 MONOLITH GT • COLOGNE WORKSHOP ATELIER
+              </text>
+            </svg>
+          </div>
+
+          <!-- Mode 2: CAD Vector Blueprint & Dyno Curve View -->
+          <div class="visual-layer layer-cad" id="drawer-cad-layer" style="display: none;">
+            <svg class="drawer-svg-cad" viewBox="0 0 800 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="480" fill="#0A0B0E"/>
+              <!-- Engineering Coordinate Grid -->
+              <path d="M0 60 H800 M0 120 H800 M0 180 H800 M0 240 H800 M0 300 H800 M0 360 H800 M0 420 H800" stroke="rgba(242,241,237,0.06)" stroke-width="1"/>
+              <path d="M100 0 V480 M200 0 V480 M300 0 V480 M400 0 V480 M500 0 V480 M600 0 V480 M700 0 V480" stroke="rgba(242,241,237,0.06)" stroke-width="1"/>
+              <!-- CAD Vehicle Chassis Wireframe & Section -->
+              <path d="M80,360 L140,360 L240,260 L360,260 L480,160 L620,150 L750,300 L760,380 L60,380 Z" stroke="#34D399" stroke-width="2" stroke-dasharray="8 4" fill="none"/>
+              <line x1="80" y1="400" x2="760" y2="400" stroke="#C88242" stroke-width="1.5"/>
+              <text x="360" y="420" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">WHEELBASE: 2,272mm • TRACK: 1,485mm</text>
+              <!-- Dyno Power & Torque Curve -->
+              <path d="M100,320 Q300,260 500,140 T700,90" stroke="#388E3C" stroke-width="3" fill="none"/>
+              <path d="M100,280 Q300,180 500,160 T700,200" stroke="#C88242" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+              <text x="520" y="80" font-family="'JetBrains Mono', monospace" font-size="11" fill="#388E3C">POWER: 415 BHP @ 8,400 RPM</text>
+              <text x="520" y="210" font-family="'JetBrains Mono', monospace" font-size="11" fill="#C88242">TORQUE: 430 NM @ 5,800 RPM</text>
+              <text x="40" y="460" font-family="'JetBrains Mono', monospace" font-size="11" fill="#34D399">
+                STRUCTURAL SCHEMATIC: AA-01 • CHASSIS TORSIONAL STIFFNESS: 14,800 NM/DEG
+              </text>
+            </svg>
+          </div>
+
+        </div>
+
+        <!-- Technical Specification Monograph -->
+        <div class="drawer-content-text">
+          <h3 class="drawer-section-heading">Engineering &amp; Coachbuilding Monograph</h3>
+          <p class="drawer-paragraph" id="drawer-desc-p1">
+            Carved from an authentic matching-numbers donor monocoque, the KV-01 Monolith GT represents the absolute pinnacle of air-cooled grand touring. The entire chassis is seam-welded and reinforced with integrated high-tensile titanium gussets, achieving a 65% increase in torsional rigidity over factory specifications.
+          </p>
+          <p class="drawer-paragraph" id="drawer-desc-p2">
+            The 4.0-liter naturally aspirated flat-six features custom-ground billet camshafts, titanium connecting rods, twin-plug ignition, and bespoke carbon-composite intake plenums. Power is delivered through a custom-ratio 6-speed manual transaxle equipped with a mechanical limited-slip differential.
+          </p>
+
+          <h4 class="drawer-subheading">Verified Dyno &amp; Chassis Telemetry</h4>
+          <div class="drawer-specs-table" id="drawer-specs-table">
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">DISPLACEMENT &amp; ARCHITECTURE</span>
+              <span class="d-spec-val">3,996 cc Naturally Aspirated Air-Cooled Flat-Six</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">PEAK POWER</span>
+              <span class="d-spec-val">415 BHP (309 kW) @ 8,400 RPM</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">PEAK TORQUE</span>
+              <span class="d-spec-val">430 Nm (317 lb-ft) @ 5,800 RPM</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">REDLINE LIMIT</span>
+              <span class="d-spec-val">8,600 RPM (Electronic Cutoff)</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">TRANSAXLE</span>
+              <span class="d-spec-val">6-Speed Manual with Billet G50 Housing &amp; Mechanical LSD</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">CURB WEIGHT</span>
+              <span class="d-spec-val">1,040 kg (Dry) • 40/60 Weight Distribution</span>
+            </div>
+            <div class="drawer-spec-row">
+              <span class="d-spec-key">BRAKING SYSTEM</span>
+              <span class="d-spec-val">Brembo Monobloc 6-Piston Front / 4-Piston Rear with Carbon-Ceramic Rotors</span>
+            </div>
+          </div>
+
+          <div class="drawer-action-footer">
+            <a href="#commission-inquiry" class="btn btn-primary btn-drawer-inquire" id="drawer-inquire-action">
+              Request Commission Allocation for this Spec &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

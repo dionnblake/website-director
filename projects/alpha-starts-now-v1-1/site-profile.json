@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.1.0",
+  "project_name": "Alpha Starts Now (Production Redesign)",
+  "version": "2.0.0",
+  "mode": "ORIGINAL_MODE",
+  "business_type": "Content-Led Men's Self-Improvement & Editorial Publication",
+  "business_model": "Hybrid Founder-Led Editorial, Newsletter Audience, Curated Affiliate Recommendations",
+  "author_model": "hybrid_founder_editorial",
+  "publication_name": "The ASN Dispatch",
+  "newsletter_framing": "Weekly Field Notes on Physical Standards, Daily Discipline, and Deliberate Living for Adult Men",
+  "audience": {
+    "primary_decision_maker": "Adult men aged 35–55+ seeking practical reinvention, discipline, physical standards, and deliberate life direction",
+    "market_segment": "Mature Men / Grounded Personal Mastery"
+  },
+  "primary_conversion": {
+    "goal": "Subscribe to The ASN Dispatch Email Publication",
+    "cta_label": "Join The ASN Dispatch →",
+    "target_metric": "Qualified Email Subscriber Conversion Rate on High-Utility Guides"
+  },
+  "brand_attributes": [
+    "Mature",
+    "Disciplined",
+    "Deliberate",
+    "Precise",
+    "Grounded",
+    "Self-Respecting",
+    "Direct"
+  ],
+  "editorial_pillars": [
+    "01 / Health, Strength & Longevity",
+    "02 / Style, Grooming & Presentation",
+    "03 / Discipline, Mindset & Daily Systems",
+    "04 / Work, Money & Modern Technology",
+    "05 / Life, Environment & Experiences"
+  ],
+  "recommendation_categories": [
+    "Training & Physical Capability",
+    "Grooming & Presentation",
+    "Everyday Apparel & Footwear",
+    "Technology, Workspace & AI",
+    "Books & Essential Reading"
+  ],
+  "emotional_posture": {
+    "primary_vibe": "The Atlantic Field Dispatch",
+    "target_reaction": "Made for an adult man (35-55+) who is serious about getting his standards and life moving forward",
+    "masculinity_source": "Restraint, quiet competence, spatial discipline, typography, and authentic standards"
+  },
+  "anti_brand": [
+    "Generic men's blog / affiliate scraper",
+    "Bodybuilding / shirtless gym-bro clichés",
+    "Testosterone / supplement hype",
+    "Manosphere / grievance / rage culture",
+    "Crypto-bro / fast-money lifestyle",
+    "Motivational speaker platitudes",
+    "SaaS startup aesthetics / purple gradients",
+    "AI template slop / generic card grids",
+    "Wolves / flames / tactical / gladiator tropes",
+    "Coffee lifestyle clichés"
+  ],
+  "truthfulness_constraints": {
+    "manufactured_proof_permitted": false,
+    "fake_testimonials_permitted": false,
+    "fake_client_logos_permitted": false,
+    "fake_statistics_permitted": false,
+    "fake_scarcity_permitted": false
+  },
+  "site_scope": "multi_page_editorial",
+  "routes": [
+    "/",
+    "/start-here",
+    "/guides",
+    "/pillar/health-strength",
+    "/pillar/style-presentation",
+    "/pillar/discipline-systems",
+    "/pillar/work-technology",
+    "/pillar/life-environment",
+    "/recommended",
+    "/dispatch",
+    "/about",
+    "/privacy",
+    "/terms",
+    "/affiliate-disclosure"
+  ],
+  "design_archetypes": {
+    "primary": "Editorial",
+    "primary_weight": 0.6,
+    "secondary": "Cinematic",
+    "secondary_weight": 0.25,
+    "accent": "Architectural",
+    "accent_weight": 0.15
+  },
+  "density": "medium",
+  "layout_style": "asymmetric_12_column_swiss_editorial_grid",
+  "geometry": "refined_editorial",
+  "corner_style": "2px_to_4px",
+  "typography_direction": {
+    "display_family": "Newsreader",
+    "body_family": "Plus Jakarta Sans",
+    "ui_family": "Plus Jakarta Sans",
+    "scale_ratio": "1.25_major_third_clamp",
+    "heading_tracking": "-0.02em"
+  },
+  "color_tokens": {
+    "bg_paper": "#F9F7F2",
+    "bg_dark_hero": "#0E1217",
+    "bg_dark_feature": "#13171D",
+    "text_dark_primary": "#16181B",
+    "text_dark_muted": "#4A5260",
+    "text_light_primary": "#F3F4F6",
+    "text_light_muted": "#94A3B8",
+    "border_light": "rgba(22, 24, 27, 0.08)",
+    "border_dark": "rgba(243, 244, 246, 0.09)",
+    "accent_primary": "#9E4624",
+    "accent_secondary": "#1B382B"
+  },
+  "imagery_direction": {
+    "style": "cinematic_documentary_real_life_craft",
+    "aspect_ratios": ["16/9", "4/3", "3/2", "1/1"],
+    "treatment": "natural_light_sculptural_shadows_authentic_daylight",
+    "narrative_arc": "quiet_resolve_5_beats",
+    "explicit_bans": [
+      "coffee_lifestyle_clichés",
+      "architecture_penthouse_sets",
+      "shirtless_flexing",
+      "wolves",
+      "fire",
+      "gladiators",
+      "tactical_motifs",
+      "fake_boardrooms",
+      "crypto_beach",
+      "ai_fantasy_art"
+    ]
+  },
+  "motion_direction": {
+    "tier": "hybrid_level_3_hero_level_1_2_body",
+    "hero_motion": "level_3_cinematic_parallax_fade",
+    "body_motion": "level_1_2_measured_restraint",
+    "reading_motion": "static",
+    "default_duration_ms": 150,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "https://www.gearpatrol.com",
+      "https://resend.com",
+      "https://linear.app",
+      "https://huckberry.com",
+      "https://valetmag.com",
+      "https://peterattiamd.com",
+      "https://hubermanlab.com"
+    ],
+    "deep_recon_targets": [
+      "gearpatrol_com",
+      "resend_com",
+      "linear_app"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_3",
+    "tier": "hybrid_level_3_hero_level_1_2_body",
+    "cinematic_specialist_required": true,
+    "cinematic_brief_complete": true
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "qa_status": {
+    "design_qa_score": null,
+    "design_qa_verdict": "PENDING_INDEPENDENT_QA",
+    "production_preflight_passed": true
+  }
+}

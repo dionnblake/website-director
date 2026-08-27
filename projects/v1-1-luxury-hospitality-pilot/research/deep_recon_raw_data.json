@@ -1,0 +1,164 @@
+[
+  {
+    "targetName": "linear_app",
+    "url": "https://linear.app",
+    "timestamp": "2026-08-23T21:50:33.584Z",
+    "desktop": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_linear_app_desktop_1440.png",
+      "metrics": {
+        "title": "Linear – The system for product development",
+        "bodyBg": "rgb(8, 9, 10)",
+        "bodyColor": "rgb(247, 248, 248)",
+        "h1": {
+          "text": "The product development\nsystem for teams and agents\nThe product development syst",
+          "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+          "fontSize": "64px",
+          "fontWeight": "510",
+          "lineHeight": "64px",
+          "letterSpacing": "-1.408px",
+          "color": "rgb(247, 248, 248)"
+        },
+        "heroLayout": {
+          "tagName": "SECTION",
+          "width": "1425px",
+          "maxWidth": "none",
+          "padding": "0px 0px 0px 0px",
+          "display": "block",
+          "flexDirection": "row",
+          "gap": "normal"
+        },
+        "button": {
+          "text": "Product",
+          "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+          "fontSize": "13px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(138, 143, 152)",
+          "borderRadius": "9999px",
+          "padding": "0px 12px 0px 12px"
+        }
+      }
+    },
+    "mobile": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_linear_app_mobile_390.png",
+      "metrics": {
+        "h1": {
+          "fontSize": "38px",
+          "lineHeight": "41.8px"
+        },
+        "heroLayout": {
+          "width": "390px",
+          "padding": "0px 0px 0px 0px"
+        },
+        "mobileMenuDetected": true
+      }
+    }
+  },
+  {
+    "targetName": "resend_com",
+    "url": "https://resend.com",
+    "timestamp": "2026-08-23T21:50:50.307Z",
+    "desktop": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_resend_com_desktop_1440.png",
+      "metrics": {
+        "title": "Resend · Email for developers",
+        "bodyBg": "rgb(0, 0, 0)",
+        "bodyColor": "rgb(240, 240, 240)",
+        "h1": {
+          "text": "Email for\ndevelopers",
+          "fontFamily": "domaine, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "96px",
+          "fontWeight": "400",
+          "lineHeight": "96px",
+          "letterSpacing": "-0.96px",
+          "color": "rgb(240, 240, 240)"
+        },
+        "heroLayout": {
+          "tagName": "HEADER",
+          "width": "1430px",
+          "maxWidth": "none",
+          "padding": "0px 0px 0px 0px",
+          "display": "block",
+          "flexDirection": "row",
+          "gap": "normal"
+        },
+        "button": {
+          "text": "Open main menu",
+          "fontFamily": "inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "fontSize": "16px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(161, 164, 165)",
+          "borderRadius": "6px",
+          "padding": "4px 4px 4px 4px"
+        }
+      }
+    },
+    "mobile": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_resend_com_mobile_390.png",
+      "metrics": {
+        "h1": {
+          "fontSize": "64px",
+          "lineHeight": "64px"
+        },
+        "heroLayout": {
+          "width": "390px",
+          "padding": "0px 0px 0px 0px"
+        },
+        "mobileMenuDetected": true
+      }
+    }
+  },
+  {
+    "targetName": "stripe_com",
+    "url": "https://stripe.com",
+    "timestamp": "2026-08-23T21:51:02.605Z",
+    "desktop": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_stripe_com_desktop_1440.png",
+      "metrics": {
+        "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+        "bodyBg": "rgba(0, 0, 0, 0)",
+        "bodyColor": "rgb(0, 0, 0)",
+        "h1": {
+          "text": "Financial infrastructure to grow your revenue. Accept payments, offer financial ",
+          "fontFamily": "sohne-var, \"SF Pro Display\", sans-serif",
+          "fontSize": "48px",
+          "fontWeight": "300",
+          "lineHeight": "55.2px",
+          "letterSpacing": "-0.96px",
+          "color": "rgb(129, 184, 26)"
+        },
+        "heroLayout": {
+          "tagName": "HEADER",
+          "width": "1425px",
+          "maxWidth": "none",
+          "padding": "0px 0px 0px 0px",
+          "display": "block",
+          "flexDirection": "row",
+          "gap": "normal"
+        },
+        "button": {
+          "text": "Products",
+          "fontFamily": "sohne-var, \"SF Pro Display\", sans-serif",
+          "fontSize": "14px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgb(6, 27, 49)",
+          "borderRadius": "4px",
+          "padding": "12px 0px 12px 0px"
+        }
+      }
+    },
+    "mobile": {
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\research\\recon_stripe_com_mobile_390.png",
+      "metrics": {
+        "h1": {
+          "fontSize": "34px",
+          "lineHeight": "35.02px"
+        },
+        "heroLayout": {
+          "width": "390px",
+          "padding": "0px 0px 0px 0px"
+        },
+        "mobileMenuDetected": true
+      }
+    }
+  }
+]

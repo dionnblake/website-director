@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.1.0",
+  "project_name": "VALENTIN & HESSE Architects",
+  "version": "1.0.0",
+  "business_type": "Premium Architecture & Spatial Design Atelier",
+  "audience": {
+    "primary_decision_maker": "Private High-Net-Worth Residential Client / Art Patron / Boutique Developer",
+    "market_segment": "Ultra-Prime Residential & Cultural Architecture"
+  },
+  "primary_conversion": {
+    "goal": "Request Private Project Consultation",
+    "cta_label": "Initiate a Spatial Commission",
+    "target_metric": "Qualified Commission Inquiries"
+  },
+  "brand_attributes": [
+    "Monolithic",
+    "Tactile",
+    "Atmospheric",
+    "Restrained",
+    "Bespoke"
+  ],
+  "design_archetypes": {
+    "primary": "Architectural",
+    "primary_weight": 0.6,
+    "secondary": "Editorial",
+    "secondary_weight": 0.3,
+    "accent": "Tactile Material Modernist",
+    "accent_weight": 0.1
+  },
+  "density": "medium-spacious",
+  "layout_style": "asymmetric_editorial_spatial_grid",
+  "geometry": "monolithic_clean",
+  "corner_style": "2px",
+  "typography_direction": {
+    "display_family": "Cormorant Garamond, serif",
+    "body_family": "Plus Jakarta Sans, sans-serif",
+    "meta_family": "Plus Jakarta Sans, sans-serif",
+    "scale_ratio": "1.250_major_third",
+    "heading_tracking": "-0.015em"
+  },
+  "imagery_direction": {
+    "style": "warm_natural_daylight_tactile_mineral_architectural",
+    "aspect_ratios": ["16/9", "4/3", "3/2", "1/1"],
+    "treatment": "warm_limestone_cast_soft_shadows_no_artificial_gloss"
+  },
+  "motion_direction": {
+    "physics": "serene_architectural_spatial",
+    "default_duration_ms": 320,
+    "easing": "cubic-bezier(0.25, 1, 0.5, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "https://vincentvanduysen.com",
+      "https://www.johnpawson.com",
+      "https://normcph.com",
+      "https://www.studioko.fr",
+      "https://olsonkundig.com",
+      "https://studiolotus.in",
+      "https://divisare.com",
+      "https://readcereal.com",
+      "https://viabizzuno.com",
+      "https://aman.com",
+      "https://minimal.gallery/tag/architecture/"
+    ],
+    "deep_recon_targets": [
+      "Vincent Van Duysen Architects",
+      "Norm Architects",
+      "Studio KO"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_2",
+    "cinematic_specialist_required": false,
+    "cinematic_brief_complete": true
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "qa_status": {
+    "design_qa_score": 94,
+    "design_qa_verdict": "V1_1_ARCHITECTURE_PILOT_VALIDATED",
+    "production_preflight_passed": true
+  }
+}

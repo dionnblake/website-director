@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guides & Articles Archive — Alpha Starts Now</title>
+  <meta name="description" content="In-depth, practical guides across health, style, daily discipline, technology, and life standards for adult men.">
+  <link rel="canonical" href="https://alphastartsnow.com/guides">
+  
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/sections.css">
+  <link rel="stylesheet" href="styles/motion.css">
+  <style>
+    .filter-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-7);
+      border-bottom: 1px solid var(--color-border-light);
+      padding-bottom: var(--space-3);
+    }
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--type-ui-nav);
+      font-weight: 600;
+      color: var(--color-text-charcoal);
+      border-radius: var(--radius-subtle);
+      cursor: pointer;
+      transition: all var(--motion-micro-ui) ease;
+    }
+    .filter-btn:hover {
+      color: var(--color-text-ink);
+      background-color: rgba(22, 24, 27, 0.05);
+    }
+    .filter-btn.is-active {
+      color: #FFFFFF;
+      background-color: var(--color-accent-russet);
+    }
+    .guide-article-card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-border-light);
+      padding: var(--space-6);
+      border-radius: var(--radius-subtle);
+      margin-bottom: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .guide-article-card.is-hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="theme-paper">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Alpha Starts Now Home">
+        <span class="brand-title">ALPHA STARTS NOW</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="start-here.html" class="nav-link">Start Here</a>
+        <a href="guides.html" class="nav-link active">Guides</a>
+        <a href="recommended.html" class="nav-link">Recommended</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="dispatch.html" class="btn-header-dispatch">The Dispatch →</a>
+        <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" aria-label="Mobile Navigation Drawer">
+    <ul class="mobile-nav-list">
+      <li><a href="start-here.html" class="mobile-nav-link">Start Here</a></li>
+      <li><a href="guides.html" class="mobile-nav-link" style="color: var(--color-accent-russet);">Guides Archive</a></li>
+      <li><a href="recommended.html" class="mobile-nav-link">Recommended Tools</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Manifesto</a></li>
+      <li><a href="dispatch.html" class="mobile-nav-link">The ASN Dispatch →</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" style="padding: var(--space-section-standard) 0;">
+    <div class="container-editorial">
+      
+      <span class="section-kicker accent">KNOWLEDGE LIBRARY // PRACTICAL ESSAYS</span>
+      <h1 style="margin-bottom: var(--space-3);">Editorial Guides & Frameworks</h1>
+      <p style="font-size: var(--type-dek); color: var(--color-text-charcoal); line-height: 1.6; max-width: 720px; margin-bottom: var(--space-7);">
+        Thoroughly researched editorial guides covering physical durability, personal presentation, habit mechanics, career tools, and daily environments.
+      </p>
+
+      <!-- Filter Bar -->
+      <div class="filter-tab-bar" role="tablist" aria-label="Filter Guides by Pillar">
+        <button type="button" class="filter-btn is-active" data-pillar="all" role="tab" aria-selected="true">All Pillars</button>
+        <button type="button" class="filter-btn" data-pillar="health" role="tab" aria-selected="false">01 Health & Strength</button>
+        <button type="button" class="filter-btn" data-pillar="style" role="tab" aria-selected="false">02 Style & Grooming</button>
+        <button type="button" class="filter-btn" data-pillar="discipline" role="tab" aria-selected="false">03 Discipline & Systems</button>
+        <button type="button" class="filter-btn" data-pillar="tech" role="tab" aria-selected="false">04 Work & Technology</button>
+        <button type="button" class="filter-btn" data-pillar="life" role="tab" aria-selected="false">05 Life & Environment</button>
+      </div>
+
+      <!-- Articles List -->
+      <div id="guides-container">
+
+        <!-- Guide 1 -->
+        <article class="guide-article-card" data-category="health">
+          <div>
+            <span class="section-kicker accent">01 HEALTH & STRENGTH // 12 MIN READ // EDITORIAL FRAMEWORK</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: var(--space-3); line-height: 1.25;">Building Strength, Mobility & Energy After 35: A Practical Starting Point for Adult Men</h2>
+            <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7; margin-bottom: var(--space-4);">
+              Most fitness advice aimed at men is written for college athletes with limitless recovery or sold through extreme workout challenges. For men over 35, sustainable fitness requires protecting joints, building functional strength, and avoiding the injury cycles that derail progress.
+            </p>
+            <div class="callout-box">
+              <div class="callout-title">Core Principles Covered:</div>
+              <div class="callout-content">
+                • Why joint longevity and mobility must precede heavy progressive overload.<br>
+                • The 3-day full-body template that fits into a demanding work schedule.<br>
+                • Simple nutrition and sleep standards that restore daily cognitive energy.
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: var(--space-4);">
+            <a href="start-here.html" class="btn btn-primary">Start Health Protocol →</a>
+          </div>
+        </article>
+
+        <!-- Guide 2 -->
+        <article class="guide-article-card" data-category="style">
+          <div>
+            <span class="section-kicker accent">02 STYLE & GROOMING // 8 MIN READ // EDITORIAL FRAMEWORK</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: var(--space-3); line-height: 1.25;">The High-Standard Wardrobe Reset: How to Dress Well Without Overthinking Trends</h2>
+            <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7; margin-bottom: var(--space-4);">
+              Dressing well is not about vanity or chasing runway fashion. It is about understanding fit, selecting durable natural fabrics, and creating a cohesive capsule wardrobe that makes getting dressed effortless.
+            </p>
+            <div class="callout-box">
+              <div class="callout-title">Core Principles Covered:</div>
+              <div class="callout-content">
+                • The 80/20 of menswear fit: shoulder lines, trouser break, and sleeve length.<br>
+                • Building a capsule rotation: quality overshirts, dark selvedge, and tailored knits.<br>
+                • Proper footwear care and why clean shoes change the entire look.
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: var(--space-4);">
+            <a href="start-here.html" class="btn btn-primary">Start Style Protocol →</a>
+          </div>
+        </article>
+
+        <!-- Guide 3 -->
+        <article class="guide-article-card" data-category="discipline">
+          <div>
+            <span class="section-kicker accent">03 DISCIPLINE & SYSTEMS // 6 MIN READ // EDITORIAL FRAMEWORK</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: var(--space-3); line-height: 1.25;">Starting the Day With Direction: A Realistic Routine That Survives Real Life</h2>
+            <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7; margin-bottom: var(--space-4);">
+              Extreme 4:00 AM wake-up rituals collapse the moment travel or family demands intervene. A resilient morning routine focuses on removing friction, hydrating, reviewing top priorities, and protecting the first hour from reactive noise.
+            </p>
+            <div class="callout-box">
+              <div class="callout-title">Core Principles Covered:</div>
+              <div class="callout-content">
+                • The evening setup: deciding tomorrow's single priority before going to sleep.<br>
+                • Eliminating the digital shock: delaying inbox and news checks until after morning grounding.<br>
+                • Micro-routines that keep momentum alive even on chaotic travel days.
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: var(--space-4);">
+            <a href="start-here.html" class="btn btn-primary">Start Systems Protocol →</a>
+          </div>
+        </article>
+
+        <!-- Guide 4 -->
+        <article class="guide-article-card" data-category="tech">
+          <div>
+            <span class="section-kicker accent">04 WORK & TECHNOLOGY // 10 MIN READ // EDITORIAL FRAMEWORK</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: var(--space-3); line-height: 1.25;">The Modern AI & Technology Literacy Guide for Mid-Career Professionals</h2>
+            <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7; margin-bottom: var(--space-4);">
+              Artificial intelligence is transforming business workflows, but staying relevant does not require writing code. It requires learning how to direct LLMs, automate repetitive analytical tasks, and leverage modern digital tools to multiply your professional output.
+            </p>
+            <div class="callout-box">
+              <div class="callout-title">Core Principles Covered:</div>
+              <div class="callout-content">
+                • Practical prompt architecture for synthesis, analysis, and draft preparation.<br>
+                • Separating genuine workplace utility from speculative tech hype.<br>
+                • Protecting proprietary data and confidential business information when using AI tools.
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: var(--space-4);">
+            <a href="start-here.html" class="btn btn-primary">Start Tech Protocol →</a>
+          </div>
+        </article>
+
+        <!-- Guide 5 -->
+        <article class="guide-article-card" data-category="life">
+          <div>
+            <span class="section-kicker accent">05 LIFE & ENVIRONMENT // 7 MIN READ // EDITORIAL FRAMEWORK</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: var(--space-3); line-height: 1.25;">The Low-Friction Living Environment: How Orderly Spaces Foster Daily Clarity</h2>
+            <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7; margin-bottom: var(--space-4);">
+              A cluttered desk and disorganized home drain cognitive energy throughout the day. Designing an environment with clean surfaces, dedicated zones, and deliberate lighting creates the calm backdrop necessary for sustained focus.
+            </p>
+            <div class="callout-box">
+              <div class="callout-title">Core Principles Covered:</div>
+              <div class="callout-content">
+                • The clean workspace reset: cable management, monitor ergonomics, and desk hygiene.<br>
+                • Creating a calm evening environment with warm, low-intensity indirect lighting.<br>
+                • Intentional experiences over mindless accumulation of physical clutter.
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: var(--space-4);">
+            <a href="start-here.html" class="btn btn-primary">Start Environment Protocol →</a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-text-chalk); font-weight: 600; margin-bottom: var(--space-3);">ALPHA STARTS NOW</div>
+          <p style="font-size: var(--type-body-sm); color: var(--color-text-slate); line-height: 1.6; max-width: 320px;">An independent publication dedicated to physical standards, daily discipline, and deliberate life direction for adult men.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-link-list">
+            <li><a href="start-here.html" class="footer-link">Start Here</a></li>
+            <li><a href="guides.html" class="footer-link">Guides Archive</a></li>
+            <li><a href="recommended.html" class="footer-link">Recommended Desk</a></li>
+            <li><a href="about.html" class="footer-link">About & Manifesto</a></li>
+            <li><a href="dispatch.html" class="footer-link">The ASN Dispatch</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Five Pillars</div>
+          <ul class="footer-link-list">
+            <li><a href="guides.html" class="footer-link">01 Health & Strength</a></li>
+            <li><a href="guides.html" class="footer-link">02 Style & Grooming</a></li>
+            <li><a href="guides.html" class="footer-link">03 Discipline & Systems</a></li>
+            <li><a href="guides.html" class="footer-link">04 Work & Technology</a></li>
+            <li><a href="guides.html" class="footer-link">05 Life & Environment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Transparency</div>
+          <ul class="footer-link-list">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© 2026 Alpha Starts Now. All rights reserved.</div>
+        <div style="max-width: 600px; text-align: right;">Commercial Notice: Alpha Starts Now participates in curated affiliate programs. When you purchase through our links, we may earn an editorial commission at zero additional cost to you.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+  <script>
+    // Pillar filtering logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.guide-article-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pillar = btn.getAttribute('data-pillar');
+
+          filterBtns.forEach(b => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+
+          cards.forEach(card => {
+            if (pillar === 'all' || card.getAttribute('data-category') === pillar) {
+              card.classList.remove('is-hidden');
+            } else {
+              card.classList.add('is-hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

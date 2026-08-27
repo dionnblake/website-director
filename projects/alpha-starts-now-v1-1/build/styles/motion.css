@@ -1,0 +1,73 @@
+/* ==========================================================================
+   ALPHA STARTS NOW (V1.1) — MOTION & TRANSITION SPECIFICATION
+   Authority: Level 3 Hybrid Motion Direction
+   ========================================================================== */
+
+/* Cinematic Hero Atmosphere Transitions */
+.hero-media-backdrop {
+  transition: opacity var(--motion-cinematic) var(--ease-in-out-cinematic),
+              transform 10s ease-out;
+}
+
+.hero-content {
+  animation: heroFadeIn 800ms var(--ease-out-editorial) both;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Micro-Interaction Transitions */
+.pillar-card, .btn, .spec-card, .nav-link, .btn-text-link {
+  transition: all var(--motion-micro-ui) var(--ease-out-editorial);
+}
+
+/* Pause Control Button for Accessibility */
+.btn-hero-pause {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  z-index: 10;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-muted-dark);
+  background: rgba(14, 18, 23, 0.7);
+  border: 1px solid var(--color-border-dark);
+  padding: 4px 8px;
+  border-radius: var(--radius-subtle);
+  cursor: pointer;
+  transition: all var(--motion-micro-ui) ease;
+}
+
+.btn-hero-pause:hover {
+  color: var(--color-text-chalk);
+  border-color: var(--color-text-slate);
+}
+
+/* Accessibility: prefers-reduced-motion strict compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-media-backdrop {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-content {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

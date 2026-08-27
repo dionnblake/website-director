@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 5 Pillars & Editorial Library | Alpha Starts Now</title>
+  <meta name="description" content="Searchable repository of foundational guides across Body, Style, Discipline, Work, and Life for adult men.">
+  <link rel="canonical" href="https://alphastartsnow.com/guides">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-12);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: var(--space-4);
+    }
+    .filter-btn {
+      font-size: var(--text-caption);
+      font-family: var(--font-mono);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border-color: var(--accent-primary);
+    }
+    .guide-entry {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+      transition: border-color var(--transition-fast);
+    }
+    .guide-entry:hover {
+      border-color: var(--border-strong);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">ALPHA STARTS NOW <span class="brand-badge">01 // MONOGRAPH</span></a>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="start-here.html" class="nav-link">Start Here</a></li>
+          <li><a href="guides.html" class="nav-link active">The 5 Pillars</a></li>
+          <li><a href="recommended.html" class="nav-link">Recommended</a></li>
+          <li><a href="about.html" class="nav-link">Manifesto</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="index.html#dispatch-engine" class="btn btn-primary">Join Dispatch →</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-divider">
+      <div class="container">
+        <span class="text-mono-tag">THE REPOSITORY</span>
+        <h1 class="text-h1" style="margin-top: var(--space-2); margin-bottom: var(--space-4);">Editorial Guides & Protocols</h1>
+        <p class="text-lead" style="max-width: 800px;">
+          Practical, long-form protocols structured across the 5 pillars. Built strictly on actionable utility, tested standards, and zero generic marketing filler.
+        </p>
+
+        <!-- Category Filter -->
+        <div class="filter-bar" style="margin-top: var(--space-8);">
+          <button class="filter-btn active" data-filter="all">ALL PILLARS</button>
+          <button class="filter-btn" data-filter="health">01 / BODY & HEALTH</button>
+          <button class="filter-btn" data-filter="style">02 / STYLE & PRESENTATION</button>
+          <button class="filter-btn" data-filter="discipline">03 / DISCIPLINE & HABITS</button>
+          <button class="filter-btn" data-filter="work">04 / WORK & TECHNOLOGY</button>
+          <button class="filter-btn" data-filter="life">05 / LIFE & ENVIRONMENT</button>
+        </div>
+
+        <!-- Guide Articles -->
+        <div class="guides-list">
+          <article class="guide-entry filterable-item" data-category="health">
+            <span class="text-mono-tag">01 / BODY & HEALTH • 9 MIN READ</span>
+            <h2 class="text-h2" style="font-size: 1.5rem;">The 35+ Physical Baseline: Joint Mobility, Strength, and Daily Energy</h2>
+            <p class="text-body">A sustainable physical protocol designed for adult men balancing demanding careers and family responsibilities without joint degradation.</p>
+            <a href="#" class="link-arrow">Read Protocol →</a>
+          </article>
+
+          <article class="guide-entry filterable-item" data-category="style">
+            <span class="text-mono-tag">02 / STYLE & PRESENTATION • 7 MIN READ</span>
+            <h2 class="text-h2" style="font-size: 1.5rem;">The Adult Wardrobe Standard: Eliminating Sloppy Fit & Chasing Youth</h2>
+            <p class="text-body">How to build a clean, versatile capsule wardrobe based on proper tailoring, timeless outerwear, and quality footwear.</p>
+            <a href="#" class="link-arrow">Read Protocol →</a>
+          </article>
+
+          <article class="guide-entry filterable-item" data-category="discipline">
+            <span class="text-mono-tag">03 / DISCIPLINE & HABITS • 8 MIN READ</span>
+            <h2 class="text-h2" style="font-size: 1.5rem;">The Daily Operating Standard: Ruthless Prioritization for Men</h2>
+            <p class="text-body">How to eliminate digital distraction, structure focused work blocks, and maintain consistency when motivation fades.</p>
+            <a href="#" class="link-arrow">Read Protocol →</a>
+          </article>
+
+          <article class="guide-entry filterable-item" data-category="work">
+            <span class="text-mono-tag">04 / WORK & TECHNOLOGY • 6 MIN READ</span>
+            <h2 class="text-h2" style="font-size: 1.5rem;">AI Tools for Experienced Professionals: Practical Leverage in 2026</h2>
+            <p class="text-body">Cutting through the noise to identify the four AI productivity tools that actually save 10+ hours of executive workload weekly.</p>
+            <a href="#" class="link-arrow">Read Protocol →</a>
+          </article>
+
+          <article class="guide-entry filterable-item" data-category="life">
+            <span class="text-mono-tag">05 / LIFE & ENVIRONMENT • 5 MIN READ</span>
+            <h2 class="text-h2" style="font-size: 1.5rem;">The Workspace Reset: Physical Environment as a Lever for Mental Clarity</h2>
+            <p class="text-body">Eliminating desk friction, optimizing lighting, and organizing home workspaces for deep cognitive focus.</p>
+            <a href="#" class="link-arrow">Read Protocol →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>© 2026 Alpha Starts Now. All rights reserved.</span>
+      <a href="index.html" class="link-arrow">Back to Home →</a>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Here — Editorial Orientation | Alpha Starts Now</title>
+  <meta name="description" content="Find your highest-leverage starting point across health, daily habits, presentation, career, or life systems.">
+  <link rel="canonical" href="https://alphastartsnow.com/start-here">
+  
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/sections.css">
+  <link rel="stylesheet" href="styles/motion.css">
+  <style>
+    .pathway-button-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin: var(--space-7) 0;
+    }
+    @media (min-width: 640px) {
+      .pathway-button-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+    }
+    .btn-pathway {
+      padding: var(--space-5);
+      border: 1px solid var(--color-border-strong);
+      background-color: #FFFFFF;
+      border-radius: var(--radius-subtle);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--motion-micro-ui) ease;
+    }
+    .btn-pathway:hover {
+      border-color: var(--color-accent-russet);
+      background-color: var(--color-bg-paper);
+    }
+    .btn-pathway.is-active {
+      border-color: var(--color-accent-russet);
+      background-color: var(--color-bg-paper);
+      box-shadow: 0 0 0 2px var(--color-accent-russet);
+    }
+    .pathway-result-panel {
+      display: none;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-border-light);
+      padding: var(--space-7);
+      border-radius: var(--radius-subtle);
+      margin-top: var(--space-6);
+      animation: heroFadeIn 400ms var(--ease-out-editorial) both;
+    }
+    .action-step-list {
+      list-style: none;
+      margin: var(--space-5) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .action-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--type-article-body);
+      color: var(--color-text-charcoal);
+    }
+    .action-step-num {
+      background-color: var(--color-bg-sand);
+      color: var(--color-accent-russet);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body class="theme-paper">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wordmark" aria-label="Alpha Starts Now Home">
+        <span class="brand-title">ALPHA STARTS NOW</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="start-here.html" class="nav-link active">Start Here</a>
+        <a href="guides.html" class="nav-link">Guides</a>
+        <a href="recommended.html" class="nav-link">Recommended</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="dispatch.html" class="btn-header-dispatch">The Dispatch →</a>
+        <button type="button" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" aria-label="Mobile Navigation Drawer">
+    <ul class="mobile-nav-list">
+      <li><a href="start-here.html" class="mobile-nav-link" style="color: var(--color-accent-russet);">Start Here</a></li>
+      <li><a href="guides.html" class="mobile-nav-link">Guides Archive</a></li>
+      <li><a href="recommended.html" class="mobile-nav-link">Recommended Tools</a></li>
+      <li><a href="about.html" class="mobile-nav-link">About & Manifesto</a></li>
+      <li><a href="dispatch.html" class="mobile-nav-link">The ASN Dispatch →</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" style="padding: var(--space-section-standard) 0;">
+    <div class="container-editorial">
+      
+      <span class="section-kicker accent">ORIENTATION // PRACTICAL STARTING POINT</span>
+      <h1 style="margin-bottom: var(--space-4);">Where Should You Start Today?</h1>
+      <p style="font-size: var(--type-dek); color: var(--color-text-charcoal); line-height: 1.6; max-width: 680px; margin-bottom: var(--space-7);">
+        Sustainable personal standards are built one domain at a time. Trying to overhaul your fitness, wardrobe, career, morning routine, and finances all in one weekend creates exhaustion. Select where your life feels most bottlenecked right now:
+      </p>
+
+      <div class="pathway-button-grid" role="tablist" aria-label="Friction Pathways">
+        <button type="button" class="btn-pathway is-active" data-pathway-target="pathway-health" role="tab" aria-selected="true">
+          <span style="font-size: 0.75rem; color: var(--color-accent-russet); font-weight: 700; text-transform: uppercase;">01 // Physical Capability</span>
+          <strong style="font-family: var(--font-display); font-size: 1.15rem; margin-top: var(--space-2); color: var(--color-text-ink);">Health & Strength</strong>
+          <span style="font-size: 0.8125rem; color: var(--color-text-charcoal); margin-top: var(--space-1);">Low daily energy, joint aches, declining fitness.</span>
+        </button>
+
+        <button type="button" class="btn-pathway" data-pathway-target="pathway-style" role="tab" aria-selected="false">
+          <span style="font-size: 0.75rem; color: var(--color-accent-russet); font-weight: 700; text-transform: uppercase;">02 // Visual Presentation</span>
+          <strong style="font-family: var(--font-display); font-size: 1.15rem; margin-top: var(--space-2); color: var(--color-text-ink);">Style & Grooming</strong>
+          <span style="font-size: 0.8125rem; color: var(--color-text-charcoal); margin-top: var(--space-1);">Outdated wardrobe, poor fit, neglected self-care.</span>
+        </button>
+
+        <button type="button" class="btn-pathway" data-pathway-target="pathway-systems" role="tab" aria-selected="false">
+          <span style="font-size: 0.75rem; color: var(--color-accent-russet); font-weight: 700; text-transform: uppercase;">03 // Habits & Time</span>
+          <strong style="font-family: var(--font-display); font-size: 1.15rem; margin-top: var(--space-2); color: var(--color-text-ink);">Discipline & Systems</strong>
+          <span style="font-size: 0.8125rem; color: var(--color-text-charcoal); margin-top: var(--space-1);">Chaotic mornings, procrastination, lack of daily focus.</span>
+        </button>
+
+        <button type="button" class="btn-pathway" data-pathway-target="pathway-tech" role="tab" aria-selected="false">
+          <span style="font-size: 0.75rem; color: var(--color-accent-russet); font-weight: 700; text-transform: uppercase;">04 // Career & Tools</span>
+          <strong style="font-family: var(--font-display); font-size: 1.15rem; margin-top: var(--space-2); color: var(--color-text-ink);">Work & Technology</strong>
+          <span style="font-size: 0.8125rem; color: var(--color-text-charcoal); margin-top: var(--space-1);">Falling behind on AI tools, career stagnation.</span>
+        </button>
+
+        <button type="button" class="btn-pathway" data-pathway-target="pathway-env" role="tab" aria-selected="false">
+          <span style="font-size: 0.75rem; color: var(--color-accent-russet); font-weight: 700; text-transform: uppercase;">05 // Environment</span>
+          <strong style="font-family: var(--font-display); font-size: 1.15rem; margin-top: var(--space-2); color: var(--color-text-ink);">Life & Environment</strong>
+          <span style="font-size: 0.8125rem; color: var(--color-text-charcoal); margin-top: var(--space-1);">Cluttered desk, noisy home, unnecessary daily drag.</span>
+        </button>
+      </div>
+
+      <!-- RESULTS PANELS -->
+
+      <!-- Panel 1: Health & Strength -->
+      <div id="pathway-health" class="pathway-result-panel" style="display: block;" role="tabpanel">
+        <span class="section-kicker accent">STARTING ROADMAP // HEALTH & STRENGTH</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--space-3);">Your Focus: Rebuilding Physical Durability & Energy</h2>
+        <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7;">
+          When physical energy drops, every other responsibility in adult life feels twice as heavy. The biggest mistake men 35+ make is jumping straight into a brutal 6-day workout split that blows out their shoulders or lower back within three weeks.
+        </p>
+
+        <div class="callout-box">
+          <div class="callout-title">Three Actions for the Next 24 Hours:</div>
+          <ul class="action-step-list">
+            <li class="action-step-item">
+              <span class="action-step-num">1</span>
+              <div><strong>Establish an unbreakable bedtime:</strong> Turn off bright screens 45 minutes before sleep tonight and prioritize 7.5 hours in bed.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">2</span>
+              <div><strong>Take a 20-minute brisk morning walk:</strong> Get natural outdoor daylight in your eyes before looking at work emails.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">3</span>
+              <div><strong>Schedule three non-negotiable strength sessions:</strong> Put 45-minute calendar blocks for Monday, Wednesday, and Friday.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+          <a href="guides.html" class="btn btn-primary">Read: Building Strength & Energy After 35 →</a>
+          <a href="dispatch.html" class="btn btn-secondary">Get The Weekly Dispatch</a>
+        </div>
+      </div>
+
+      <!-- Panel 2: Style & Grooming -->
+      <div id="pathway-style" class="pathway-result-panel" role="tabpanel">
+        <span class="section-kicker accent">STARTING ROADMAP // STYLE & PRESENTATION</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--space-3);">Your Focus: The High-Standard Wardrobe Reset</h2>
+        <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7;">
+          Dressing well is not about vanity or chasing runway fashion. It is about self-respect and presenting yourself with quiet confidence. A few well-fitted, timeless pieces will do more for your presence than twenty cheap trendy shirts.
+        </p>
+
+        <div class="callout-box">
+          <div class="callout-title">Three Actions for the Next 24 Hours:</div>
+          <ul class="action-step-list">
+            <li class="action-step-item">
+              <span class="action-step-num">1</span>
+              <div><strong>Purge the worn-out items:</strong> Toss or donate stretched collars, faded gym tees worn as casual shirts, and scuffed shoes.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">2</span>
+              <div><strong>Find a reputable local tailor:</strong> Take one pair of trousers and one jacket in for proper hem and sleeve adjustments.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">3</span>
+              <div><strong>Audit your morning grooming:</strong> Invest in a clean haircut and an unhurried, quality shaving routine.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+          <a href="guides.html" class="btn btn-primary">Read: The High-Standard Wardrobe Reset →</a>
+          <a href="dispatch.html" class="btn btn-secondary">Get The Weekly Dispatch</a>
+        </div>
+      </div>
+
+      <!-- Panel 3: Discipline & Systems -->
+      <div id="pathway-systems" class="pathway-result-panel" role="tabpanel">
+        <span class="section-kicker accent">STARTING ROADMAP // DISCIPLINE & SYSTEMS</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--space-3);">Your Focus: Building Systems That Survive Friction</h2>
+        <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7;">
+          Discipline is not about raw willpower; it is about building an environment and schedule that makes doing the right thing frictionless and falling off track difficult.
+        </p>
+
+        <div class="callout-box">
+          <div class="callout-title">Three Actions for the Next 24 Hours:</div>
+          <ul class="action-step-list">
+            <li class="action-step-item">
+              <span class="action-step-num">1</span>
+              <div><strong>Write down your single priority tonight:</strong> Do not start tomorrow without knowing the one task that must get done.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">2</span>
+              <div><strong>Remove your phone from your bedside:</strong> Charge it in another room to eliminate reactive late-night and early-morning scrolling.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">3</span>
+              <div><strong>Protect the first 60 minutes:</strong> Keep your morning routine quiet, deliberate, and free of reactive news.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+          <a href="guides.html" class="btn btn-primary">Read: Starting the Day With Direction →</a>
+          <a href="dispatch.html" class="btn btn-secondary">Get The Weekly Dispatch</a>
+        </div>
+      </div>
+
+      <!-- Panel 4: Work & Tech -->
+      <div id="pathway-tech" class="pathway-result-panel" role="tabpanel">
+        <span class="section-kicker accent">STARTING ROADMAP // WORK & TECHNOLOGY</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--space-3);">Your Focus: Modern Tools & Analytical Leverage</h2>
+        <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7;">
+          Technology is moving rapidly, but staying effective does not require becoming a software engineer. It requires understanding how modern AI models, automation tools, and workflow systems multiply your existing career strengths.
+        </p>
+
+        <div class="callout-box">
+          <div class="callout-title">Three Actions for the Next 24 Hours:</div>
+          <ul class="action-step-list">
+            <li class="action-step-item">
+              <span class="action-step-num">1</span>
+              <div><strong>Test one practical AI workflow:</strong> Use an advanced LLM to synthesize a lengthy report or draft an outline for a project you are stalling on.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">2</span>
+              <div><strong>Clear digital clutter:</strong> Unsubscribe from five useless newsletters and archive old desktop clutter.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">3</span>
+              <div><strong>Block two 90-minute deep work windows:</strong> Turn off chat notifications and focus completely on high-value output.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+          <a href="guides.html" class="btn btn-primary">Read: Modern AI Literacy for Professionals →</a>
+          <a href="dispatch.html" class="btn btn-secondary">Get The Weekly Dispatch</a>
+        </div>
+      </div>
+
+      <!-- Panel 5: Life & Environment -->
+      <div id="pathway-env" class="pathway-result-panel" role="tabpanel">
+        <span class="section-kicker accent">STARTING ROADMAP // LIFE & ENVIRONMENT</span>
+        <h2 style="font-size: 1.8rem; margin-bottom: var(--space-3);">Your Focus: Eliminating Physical & Environmental Drag</h2>
+        <p style="font-size: var(--type-article-body); color: var(--color-text-charcoal); line-height: 1.7;">
+          Your physical environment reflects and influences your mental clarity. When your desk, workspace, and living environment are chaotic, mental friction multiplies.
+        </p>
+
+        <div class="callout-box">
+          <div class="callout-title">Three Actions for the Next 24 Hours:</div>
+          <ul class="action-step-list">
+            <li class="action-step-item">
+              <span class="action-step-num">1</span>
+              <div><strong>Reset your primary workspace:</strong> Clear everything off your desk except what is necessary for today's work.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">2</span>
+              <div><strong>Fix one nagging physical annoyance:</strong> Repair or replace the squeaky chair, tangled cables, or dim lighting.</div>
+            </li>
+            <li class="action-step-item">
+              <span class="action-step-num">3</span>
+              <div><strong>Plan one meaningful experience this weekend:</strong> An outdoor trail hike, a visit to a good bookstore, or an undistracted dinner.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center;">
+          <a href="guides.html" class="btn btn-primary">Explore Environmental Guides →</a>
+          <a href="dispatch.html" class="btn btn-secondary">Get The Weekly Dispatch</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-text-chalk); font-weight: 600; margin-bottom: var(--space-3);">ALPHA STARTS NOW</div>
+          <p style="font-size: var(--type-body-sm); color: var(--color-text-slate); line-height: 1.6; max-width: 320px;">An independent publication dedicated to physical standards, daily discipline, and deliberate life direction for adult men.</p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-link-list">
+            <li><a href="start-here.html" class="footer-link">Start Here</a></li>
+            <li><a href="guides.html" class="footer-link">Guides Archive</a></li>
+            <li><a href="recommended.html" class="footer-link">Recommended Desk</a></li>
+            <li><a href="about.html" class="footer-link">About & Manifesto</a></li>
+            <li><a href="dispatch.html" class="footer-link">The ASN Dispatch</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Five Pillars</div>
+          <ul class="footer-link-list">
+            <li><a href="guides.html" class="footer-link">01 Health & Strength</a></li>
+            <li><a href="guides.html" class="footer-link">02 Style & Grooming</a></li>
+            <li><a href="guides.html" class="footer-link">03 Discipline & Systems</a></li>
+            <li><a href="guides.html" class="footer-link">04 Work & Technology</a></li>
+            <li><a href="guides.html" class="footer-link">05 Life & Environment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Transparency</div>
+          <ul class="footer-link-list">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href="affiliate-disclosure.html" class="footer-link">Affiliate Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© 2026 Alpha Starts Now. All rights reserved.</div>
+        <div style="max-width: 600px; text-align: right;">Commercial Notice: Alpha Starts Now participates in curated affiliate programs. When you purchase through our links, we may earn an editorial commission at zero additional cost to you.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+  <script src="scripts/start-here.js"></script>
+</body>
+</html>

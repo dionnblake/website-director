@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.1.0",
+  "project_name": "KREISLER & VOSS Motorenwerke",
+  "version": "1.0.0",
+  "business_type": "Bespoke Automotive Restomod & Coachbuilding Atelier",
+  "audience": {
+    "primary_decision_maker": "Private Ultra-HNW Automotive Connoisseur / Collector / Design-Literate Driver",
+    "market_segment": "Bespoke Coachbuilt Restomods ($240K–$650K+)"
+  },
+  "primary_conversion": {
+    "goal": "Initiate a Private Commission Consultation",
+    "cta_label": "Initiate Commission Dialogue",
+    "target_metric": "Qualified Commission Inquiries"
+  },
+  "brand_attributes": [
+    "Mechanical",
+    "Cinematic",
+    "Precise",
+    "Tactile",
+    "Restrained",
+    "Analog",
+    "Coachbuilt"
+  ],
+  "design_archetypes": {
+    "primary": "Industrial Mechanical Modernist",
+    "primary_weight": 0.5,
+    "secondary": "Editorial Monograph",
+    "secondary_weight": 0.3,
+    "accent": "Precision Technical Drafting",
+    "accent_weight": 0.2
+  },
+  "density": "balanced-spacious",
+  "layout_style": "asymmetric_mechanical_editorial_grid",
+  "geometry": "precision_milled_sharp",
+  "corner_style": "1px",
+  "typography_direction": {
+    "display_family": "Syne, Cabinet Grotesk, sans-serif",
+    "body_family": "Plus Jakarta Sans, -apple-system, sans-serif",
+    "meta_family": "JetBrains Mono, monospace",
+    "scale_ratio": "1.250_major_third",
+    "heading_tracking": "-0.025em"
+  },
+  "imagery_direction": {
+    "style": "cinematic_workshop_raking_light_milled_metal_tactile_leather",
+    "aspect_ratios": [
+      "21/9",
+      "16/9",
+      "4/3",
+      "1/1"
+    ],
+    "treatment": "deep_gunmetal_atmosphere_natural_tungsten_highlights_no_artificial_hyper_saturation"
+  },
+  "motion_direction": {
+    "physics": "weighted_mechanical_precision",
+    "default_duration_ms": 350,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "https://singervehicledesign.com",
+      "https://www.alfaholics.com",
+      "https://www.eaglegb.com",
+      "https://www.touringsuperleggera.eu",
+      "https://www.pagani.com",
+      "https://www.ruf-automobile.de",
+      "https://www.alange-soehne.com",
+      "https://leica-camera.com",
+      "https://theroadrat.com",
+      "https://petrolicious.com",
+      "https://land-book.com/websites/68412-analog-instruments",
+      "https://minimal.gallery/tag/craft/"
+    ],
+    "deep_recon_targets": [
+      "Singer Vehicle Design",
+      "Alfaholics",
+      "A. Lange & Söhne"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_3",
+    "cinematic_specialist_required": true,
+    "cinematic_brief_complete": true
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "qa_status": {
+    "design_qa_score": 96,
+    "design_qa_verdict": "V1_1_AUTOMOTIVE_PILOT_VALIDATED",
+    "production_preflight_passed": true
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "timestamp": "2026-08-24T00:48:47.461Z",
+  "hero_kicker_rendered": "A PRACTICAL EDITORIAL FOR ADULT MEN",
+  "hero_media_rendered": "linear-gradient(to right, rgba(14, 18, 23, 0.94) 0%, rgba(14, 18, 23, 0.82) 45%, rgba(14, 18, 23, 0.45) 100%), linear-gradient(rgba(14, 18, 23, 0.5) 0%, rgba(14, 18, 23, 0.95) 100%), url(\"http://localhost:8089/assets/hero-documentary-dawn.jpg\")",
+  "section_05_images_rendered": [
+    {
+      "src": "assets/doc-morning-grounding.jpg",
+      "alt": "Clothbound journal and glass of water on wooden table in soft dawn light",
+      "complete": true,
+      "naturalWidth": 1200,
+      "naturalHeight": 896
+    },
+    {
+      "src": "assets/doc-focused-craft.jpg",
+      "alt": "Adult professional man working with deep focus on data and technology at clean wooden desk in natural light",
+      "complete": true,
+      "naturalWidth": 1200,
+      "naturalHeight": 896
+    },
+    {
+      "src": "assets/doc-physical-standards.jpg",
+      "alt": "Adult man on purposeful morning run along tree-lined road at sunrise",
+      "complete": true,
+      "naturalWidth": 1200,
+      "naturalHeight": 896
+    }
+  ],
+  "recommended_page_state": {
+    "title": "The Recommended Resource Desk — Alpha Starts Now",
+    "h1": "Recommended Tools & Equipment",
+    "calloutTitle": "BUILDING WITH DELIBERATE STANDARDS",
+    "hasFakeAmazonLinks": false,
+    "totalSpecCards": 0
+  },
+  "overflow_check": {
+    "360x800": {
+      "index.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      }
+    },
+    "390x844": {
+      "index.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      }
+    },
+    "768x1024": {
+      "index.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      }
+    },
+    "1024x768": {
+      "index.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1009,
+        "clientWidth": 1009,
+        "hasOverflow": false
+      }
+    },
+    "1280x800": {
+      "index.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      }
+    },
+    "1440x900": {
+      "index.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      }
+    }
+  },
+  "console_logs": [],
+  "page_errors": [],
+  "screenshots": [
+    "recheck_01_home_hero_desktop.png",
+    "recheck_02_home_documentary_desktop.png",
+    "recheck_03_home_recommended_desktop.png",
+    "recheck_04_recommended_page_desktop.png",
+    "recheck_05_home_hero_mobile.png",
+    "recheck_06_home_documentary_mobile.png",
+    "recheck_07_recommended_mobile.png",
+    "recheck_08_reduced_motion_hero.png"
+  ]
+}

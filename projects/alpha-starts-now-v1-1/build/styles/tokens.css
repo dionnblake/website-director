@@ -1,0 +1,94 @@
+/* ==========================================================================
+   ALPHA STARTS NOW (V1.1) — DESIGN SYSTEM TOKENS
+   Authority: Website Director V1.1 | The Atlantic Field Dispatch
+   ========================================================================== */
+
+:root {
+  /* --- Colors: Light Editorial Paper Surfaces (60% Base) --- */
+  --color-bg-paper:          #F9F7F2; /* Warm Editorial Alabaster / Newsprint */
+  --color-bg-sand:           #F3EFE6; /* Tonal Variation (Pillars Index) */
+  --color-bg-pure-white:     #FFFFFF; /* Clean Reading & Guide Cards */
+
+  --color-text-ink:          #16181B; /* Primary Headlines & Article Copy (16.8:1 contrast on paper) */
+  --color-text-charcoal:     #4A5260; /* Secondary Body & Explanatory Text (6.5:1 contrast on paper) */
+  --color-text-muted-light:  #717A8A; /* Captions, Reading Times & Footnotes (4.6:1 contrast on paper) */
+
+  --color-border-light:      rgba(22, 24, 27, 0.09);  /* Subtle 1px Hairlines on light */
+  --color-border-strong:     rgba(22, 24, 27, 0.18);  /* Active/Divider Hairlines on light */
+
+  /* --- Colors: Dark Cinematic Surfaces --- */
+  --color-bg-dark-primary:   #0E1217; /* Deep Oceanic Slate (Hero, Visual Break, Finale, Footer) */
+  --color-bg-dark-elevated:  #151A21; /* Slightly Lifted Surface for Dark Input/Container Framing */
+
+  --color-text-chalk:        #F3F4F6; /* Primary Light Headlines & Inverted Text (16.5:1 on dark) */
+  --color-text-slate:        #94A3B8; /* Secondary Light Text & Descriptors (7.8:1 on dark) */
+  --color-text-muted-dark:   #64748B; /* Dark Section Metadata & Kicker Tags (4.7:1 on dark) */
+
+  --color-border-dark:       rgba(243, 244, 246, 0.08); /* Subtle 1px Hairlines on dark */
+  --color-border-dark-strong: rgba(243, 244, 246, 0.16);
+
+  /* --- Colors: Brand Accent System --- */
+  --color-accent-russet:        #9E4624; /* Deep Tobacco Russet (Primary Brand Accent) */
+  --color-accent-russet-hover:  #84371B; /* Deepened Russet (Hover State) */
+  --color-accent-forest:        #1E382B; /* Deep Evergreen Slate (Secondary Pillar Tag Accent) */
+
+  /* --- Colors: Surface-Aware Focus Indicators & States --- */
+  --focus-ring-light:        #9E4624; /* 2px Solid Outline on Light Surfaces */
+  --focus-ring-dark:         #F3F4F6; /* 2px Solid Outline on Dark Surfaces */
+  --focus-ring-cta:          #FFFFFF; /* 2px Solid Outline with 2px offset on Russet Buttons */
+
+  --color-state-error:       #A93226; /* Error Validation (Deep Crimson) */
+  --color-state-success:     #237844; /* Success Confirmation (Deep Forest) */
+
+  /* --- Typography: Font Families --- */
+  --font-display: 'Newsreader', 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --font-body:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- Typography: Fluid Mathematical Scale --- */
+  --type-hero-display:  clamp(2.25rem, 5.0vw, 4.25rem); /* 36px - 68px | line-height: 1.12 | -0.025em */
+  --type-h1:            clamp(1.85rem, 3.8vw, 3.0rem);  /* 30px - 48px | line-height: 1.18 | -0.02em */
+  --type-h2:            clamp(1.45rem, 2.6vw, 2.125rem);/* 23px - 34px | line-height: 1.25 | -0.015em */
+  --type-h3:            clamp(1.2rem, 1.8vw, 1.5rem);   /* 19px - 24px | line-height: 1.35 | -0.01em */
+  --type-pullquote:     clamp(1.35rem, 2.2vw, 2.0rem);  /* 22px - 32px | line-height: 1.45 | Italic */
+  --type-dek:           clamp(1.125rem, 1.4vw, 1.25rem);/* 18px - 20px | line-height: 1.6 */
+  --type-article-body:  clamp(1.0625rem, 0.5vw + 0.95rem, 1.125rem); /* 17px - 18px | line-height: 1.7 */
+  --type-body-ui:       1.0rem;                         /* 16px | line-height: 1.6 */
+  --type-body-sm:       0.875rem;                       /* 14px | line-height: 1.6 */
+  --type-ui-nav:        0.875rem;                       /* 14px | line-height: 1.2 | tracking: 0.04em */
+  --type-ui-kicker:     0.75rem;                        /* 12px | line-height: 1.2 | tracking: 0.08em */
+
+  /* --- Spacing: Restrained Semantic Scale --- */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1.0rem;   /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2.0rem;   /* 32px */
+  --space-7: 2.5rem;   /* 40px */
+  --space-8: 3.0rem;   /* 48px */
+
+  --space-section-compact:   clamp(2.5rem, 5vw, 4.0rem);   /* 40px - 64px */
+  --space-section-standard:  clamp(4.0rem, 8vw, 6.0rem);   /* 64px - 96px */
+  --space-section-cinematic: clamp(5.5rem, 11vw, 8.5rem);  /* 88px - 136px */
+
+  /* --- Layout & Container Widths --- */
+  --width-site-max:        1280px;
+  --width-editorial-grid:  1120px;
+  --width-article-measure: 680px;
+  --width-narrow-form:     480px;
+
+  /* --- Corner Radii (Refined 2px–4px; Zero Pill Gimmicks) --- */
+  --radius-sharp:  0px;
+  --radius-subtle: 2px;
+  --radius-medium: 4px;
+
+  /* --- Borders & Rules --- */
+  --border-hairline: 1px;
+
+  /* --- Motion Timing Ranges & Easings --- */
+  --motion-micro-ui:      150ms;
+  --motion-editorial:     250ms;
+  --motion-cinematic:     500ms;
+  --ease-out-editorial:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cinematic: cubic-bezier(0.45, 0, 0.55, 1);
+}

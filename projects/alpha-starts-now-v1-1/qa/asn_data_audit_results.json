@@ -1,0 +1,426 @@
+{
+  "pages_tested": {
+    "index.html": {
+      "title": "Alpha Starts Now — Practical Field Notes & Guidance for Adult Men",
+      "h1": "Where You Are Is Not Where You Have To Stay. Start Now.",
+      "kicker": "01 // THE DISPATCH",
+      "heroBackdropStyle": "radial-gradient(circle at 70% 30%, rgba(27, 56, 43, 0.25), rgba(0, 0, 0, 0) 60%), linear-gradient(rgba(14, 18, 23, 0.4) 0%, rgba(14, 18, 23, 0.92) 100%), url(\"data:image/svg+xml;utf8,<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"100%\\\" height=\\\"100%\\\" viewBox=\\\"0 0 1200 800\\\"><rect width=\\\"100%\\\" height=\\\"100%\\\" fill=\\\"%230E1217\\\"/><path d=\\\"M0,600 Q300,520 600,580 T1200,540 L1200,800 L0,800 Z\\\" fill=\\\"%2313171D\\\" opacity=\\\"0.6\\\"/><circle cx=\\\"850\\\" cy=\\\"280\\\" r=\\\"180\\\" fill=\\\"%231E382B\\\" opacity=\\\"0.15\\\"/></svg>\")"
+    }
+  },
+  "start_here_tabs": [
+    {
+      "key": "pathway-health",
+      "buttonFound": true,
+      "panelFound": true,
+      "panelVisible": true,
+      "heading": "Your Focus: Rebuilding Physical Durability & Energy"
+    },
+    {
+      "key": "pathway-style",
+      "buttonFound": true,
+      "panelFound": true,
+      "panelVisible": true,
+      "heading": "Your Focus: The High-Standard Wardrobe Reset"
+    },
+    {
+      "key": "pathway-systems",
+      "buttonFound": true,
+      "panelFound": true,
+      "panelVisible": true,
+      "heading": "Your Focus: Building Systems That Survive Friction"
+    },
+    {
+      "key": "pathway-tech",
+      "buttonFound": true,
+      "panelFound": true,
+      "panelVisible": true,
+      "heading": "Your Focus: Modern Tools & Analytical Leverage"
+    },
+    {
+      "key": "pathway-env",
+      "buttonFound": true,
+      "panelFound": true,
+      "panelVisible": true,
+      "heading": "Your Focus: Eliminating Physical & Environmental Drag"
+    }
+  ],
+  "guides_filter_results": [
+    {
+      "filter": "all",
+      "totalCards": 5,
+      "visibleCards": 5
+    },
+    {
+      "filter": "health",
+      "totalCards": 5,
+      "visibleCards": 1
+    },
+    {
+      "filter": "style",
+      "totalCards": 5,
+      "visibleCards": 1
+    },
+    {
+      "filter": "discipline",
+      "totalCards": 5,
+      "visibleCards": 1
+    },
+    {
+      "filter": "tech",
+      "totalCards": 5,
+      "visibleCards": 1
+    },
+    {
+      "filter": "life",
+      "totalCards": 5,
+      "visibleCards": 1
+    }
+  ],
+  "dispatch_form_results": {
+    "empty": "Please enter a valid email address.",
+    "invalid": "Please enter a valid email address.",
+    "valid": "Please enter a valid email address."
+  },
+  "recommended_inventory": [
+    {
+      "tag": "01 WORKSPACE & PRODUCTIVITY",
+      "title": "Tactile Mechanical Desk Keyboard",
+      "details": "Built with a solid aluminum frame, hot-swappable tactile switches, and reliable multi-device Bluetooth and USB-C connectivity. Provides high typing feedback and reduces fatigue during long writing sessions.",
+      "tradeoff": "Documented Trade-off: Louder typing acoustics than membrane keys; not suitable for quiet shared library environments without silent switch dampeners.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    },
+    {
+      "tag": "02 HEALTH & TRAINING",
+      "title": "Machined Steel Adjustable Dumbbells",
+      "details": "Commercial-grade welded steel design with rapid weight adjustments from 5 to 50 lbs per hand. Replaces a full rack of weights while occupying less than 2 square feet of floor space.",
+      "tradeoff": "Documented Trade-off: High initial capital investment compared to basic resistance bands; fixed maximum weight ceiling for advanced powerlifters.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    },
+    {
+      "tag": "03 STYLE & GROOMING",
+      "title": "Precision Double-Edge Safety Razor",
+      "details": "Machined stainless steel razor engineered with a mild blade gap. Delivers a clean, irritation-free shave, eliminates plastic cartridge waste, and reduces razor burn on sensitive neck skin.",
+      "tradeoff": "Documented Trade-off: Requires a learning curve of 4–5 shaves to master the 30-degree shaving angle without applying downward pressure.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    },
+    {
+      "tag": "04 TIME & HABITS",
+      "title": "Hardcover Clothbound Daily Journal",
+      "details": "100gsm acid-free bleed-resistant paper bound in durable water-resistant buckram cloth. Engineered for daily priority tracking, morning grounding, and evening review.",
+      "tradeoff": "Documented Trade-off: Analog format requires physical portability and disciplined daily writing habits.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    },
+    {
+      "tag": "05 WORK & TECH",
+      "title": "Hardware Two-Factor Security Key",
+      "details": "FIDO2/WebAuthn certified hardware security key with NFC and USB-C. Provides near-impenetrable defense against phishing and account takeovers for primary business and personal logins.",
+      "tradeoff": "Documented Trade-off: Requires purchasing a backup key to store safely in case the primary hardware key is misplaced.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    },
+    {
+      "tag": "06 ENVIRONMENT",
+      "title": "True HEPA Air Purification System",
+      "details": "Three-stage filtration system with active carbon and true H13 HEPA filter. Operates near-silently on sleep mode, removing particulate dust and allergens from home workspace.",
+      "tradeoff": "Documented Trade-off: Requires filter replacements every 6–8 months depending on local air quality.",
+      "linkHref": "https://amazon.com",
+      "linkText": "View Resource Link ↗"
+    }
+  ],
+  "font_status": {
+    "newsreaderLoaded": true,
+    "plusJakartaLoaded": true,
+    "h1FontFamily": "Newsreader, Fraunces, Georgia, \"Times New Roman\", serif",
+    "bodyFontFamily": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"
+  },
+  "overflow_results": {
+    "360x800": {
+      "index.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 360,
+        "clientWidth": 360,
+        "hasOverflow": false
+      }
+    },
+    "390x844": {
+      "index.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "hasOverflow": false
+      }
+    },
+    "768x1024": {
+      "index.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "hasOverflow": false
+      }
+    },
+    "1024x768": {
+      "index.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1009,
+        "clientWidth": 1009,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 1009,
+        "clientWidth": 1009,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 1009,
+        "clientWidth": 1009,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 1009,
+        "clientWidth": 1009,
+        "hasOverflow": false
+      }
+    },
+    "1280x800": {
+      "index.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 1265,
+        "clientWidth": 1265,
+        "hasOverflow": false
+      }
+    },
+    "1440x900": {
+      "index.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "start-here.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "guides.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "recommended.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "about.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "dispatch.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "privacy.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "terms.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      },
+      "affiliate-disclosure.html": {
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "hasOverflow": false
+      }
+    }
+  },
+  "console_logs": [],
+  "page_errors": []
+}

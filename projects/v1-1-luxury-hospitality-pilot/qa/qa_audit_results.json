@@ -1,0 +1,97 @@
+{
+  "testDate": "2026-08-23T22:03:26.816Z",
+  "testedUrl": "file:///C:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/projects/v1-1-luxury-hospitality-pilot/build/index.html",
+  "viewportsTested": [
+    {
+      "name": "desktop_1600",
+      "resolution": "1600x1000",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_desktop_1600.png",
+      "overflow": {
+        "docWidth": 1585,
+        "winWidth": 1600,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "desktop_1440",
+      "resolution": "1440x900",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_desktop_1440.png",
+      "overflow": {
+        "docWidth": 1425,
+        "winWidth": 1440,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "laptop_1280",
+      "resolution": "1280x800",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_laptop_1280.png",
+      "overflow": {
+        "docWidth": 1265,
+        "winWidth": 1280,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet_1024",
+      "resolution": "1024x768",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_tablet_1024.png",
+      "overflow": {
+        "docWidth": 1024,
+        "winWidth": 1024,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "tablet_768",
+      "resolution": "768x1024",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_tablet_768.png",
+      "overflow": {
+        "docWidth": 768,
+        "winWidth": 768,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile_390",
+      "resolution": "390x844",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_mobile_390.png",
+      "overflow": {
+        "docWidth": 390,
+        "winWidth": 390,
+        "hasHorizontalOverflow": false
+      }
+    },
+    {
+      "name": "mobile_360",
+      "resolution": "360x740",
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_mobile_360.png",
+      "overflow": {
+        "docWidth": 360,
+        "winWidth": 360,
+        "hasHorizontalOverflow": false
+      }
+    }
+  ],
+  "interactiveTests": {
+    "pavilionTabSwitch": {
+      "result": {
+        "tabClicked": "The Fjord Villa",
+        "titleAfterClick": "The Fjord Villa",
+        "specsAfterClick": "140 m² · Split-Level · 1 King + Daybed · Maximum 3 Guests"
+      },
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_tab_switch_villa.png",
+      "success": true
+    },
+    "planYourStayDrawer": {
+      "result": {
+        "drawerIsOpen": true,
+        "formVisible": true
+      },
+      "screenshot": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\projects\\v1-1-luxury-hospitality-pilot\\qa\\qa_drawer_opened.png",
+      "success": true
+    }
+  },
+  "consoleErrors": [],
+  "verdict": "PASS"
+}

@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.6.0",
+  "project_name": "KESTREL & ROWE Chronom\u00e9trie Navale",
+  "version": "1.0.0",
+  "business_type": "Bespoke Marine Chronometry & Navigational Observational Horology",
+  "audience": {
+    "primary_decision_maker": "Superyacht Navigator / Master Mariner / High-Horology Connoisseur / Maritime Collector",
+    "market_segment": "Ultra-High-Net-Worth Maritime & Haute Horlogerie",
+    "target_visitor": "Maritime expedition leader or horological patron seeking astronomical escapement timepieces",
+    "visitor_state": "Extreme skepticism toward decorative luxury, assessing astronomical drift rate and sea-motion stability"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Commission Bespoke Navigational Calibre",
+      "cta_label": "Commission Navigational Calibre",
+      "target_metric": "Qualified Atelier Commission Inquiries"
+    },
+    "secondary_conversion": {
+      "goal": "Request Astronomical Escapement Whitepaper & Telemetry",
+      "cta_label": "Examine Escapement Telemetry",
+      "target_metric": "Technical Dossier Requests"
+    },
+    "primary_objection": "Is this a decorative luxury object or a certified astronomical instrument capable of open-ocean chronometry?",
+    "primary_trust_requirement": "Observed drift rate telemetry (<0.08s/decade), gimbal stabilization physics, and ISO 3159 marine chronometer certification."
+  },
+  "brand_attributes": [
+    "Astronomical",
+    "Naval",
+    "Surgical",
+    "Monolithic",
+    "Restrained"
+  ],
+  "design_archetypes": {
+    "primary": "Technical",
+    "primary_weight": 0.5,
+    "secondary": "Luxury",
+    "secondary_weight": 0.3,
+    "accent": "Modernist",
+    "accent_weight": 0.2
+  },
+  "density": "high-precision",
+  "layout_style": "asymmetric_nautical_chart_grid",
+  "geometry": "sharp_nautical",
+  "corner_style": "2px",
+  "typography_direction": {
+    "display_family": "Cinzel",
+    "body_family": "Source Serif 4",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.25_major_third",
+    "heading_tracking": "0.04em"
+  },
+  "imagery_direction": {
+    "style": "high_contrast_abyss_macro_escapement",
+    "aspect_ratios": [
+      "16/9",
+      "4/3",
+      "1/1"
+    ],
+    "treatment": "deep_navy_abyss_monochrome_with_brass_highlights"
+  },
+  "motion_direction": {
+    "physics": "escapement_tick_precise",
+    "default_duration_ms": 220,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "VISUAL_RESEARCH_DIRECTOR",
+    "sources": [
+      "Landbook High-Horology Curated Showcase",
+      "Breguet Marine Observatory Digital Archive",
+      "Royal Observatory Greenwich Marine Chronometer Collection",
+      "Urwerk Chronometry Forensic Recon"
+    ],
+    "deep_recon_targets": [
+      "breguet.com/en/marine",
+      "urwerk.com/collection/chronometry",
+      "mbandf.com/en/machines/astronomical"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_2",
+    "gsap_required": true,
+    "implementation_engine": "GSAP_3",
+    "skills_used": [
+      "gsap-core",
+      "gsap-timeline",
+      "gsap-scrolltrigger",
+      "gsap-performance"
+    ],
+    "plugins_used": [
+      "ScrollTrigger"
+    ],
+    "reduced_motion_verified": true,
+    "cleanup_verified": true,
+    "performance_verified": true,
+    "cinematic_specialist_required": false,
+    "cinematic_brief_complete": false
+  },
+  "seo": {
+    "complete": true,
+    "mode": "SEO_INTELLIGENCE_DIRECTOR",
+    "blocked_reason": null,
+    "research_date": "2026-08-26",
+    "data_sources": [
+      "Search Intent Analysis",
+      "Ahrefs/SEMrush Industry Index",
+      "Bespoke Horology Search Clusters"
+    ],
+    "target_market": "Global Maritime & Haute Horlogerie (US/UK/CH/Monaco/SG)",
+    "gsc_connected": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "design_intelligence": {
+    "complete": true,
+    "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
+    "product_type_matched": "Luxury/Premium Brand (High Horology & Marine Instruments)",
+    "candidate_styles": [
+      "liquid-glass",
+      "modern-dark-cinema-mobile",
+      "glassmorphism"
+    ],
+    "selected_style": "Bespoke Abyss Nautical Monograph (Dark Modernist Technical Luxury)",
+    "candidate_palette_matched": "Deep Abyss Navy (#050C1A), Naval Brass (#C5A059), Phosphor Mint (#38E5A1)",
+    "candidate_typography_matched": "Cinzel / Source Serif 4 / JetBrains Mono",
+    "stack_guidance_applied": "HTML5 / Modern CSS Grid / Vanilla ES Modules / GSAP 3.12+",
+    "distinctiveness_check_complete": true,
+    "hero_thesis_declared": true,
+    "signature_element_declared": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "qa_status": {
+    "design_qa_score": 96,
+    "design_qa_verdict": "PASS",
+    "production_preflight_passed": true
+  },
+  "gauntlet": {
+    "status": "GAUNTLET_PASS",
+    "iteration_count": 1,
+    "max_iterations": 3,
+    "verdict": "PASS",
+    "largest_remaining_gap": "NONE",
+    "residual_defects": [],
+    "reference_bars": [
+      "Breguet Marine Observatory Reference Bar",
+      "Urwerk Chronometry Spatial Reference Bar",
+      "Harrison Greenwich H4 Archive Reference Bar"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

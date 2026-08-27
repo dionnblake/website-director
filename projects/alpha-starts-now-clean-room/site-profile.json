@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.6.0",
+  "project_name": "Alpha Starts Now (Clean-Room Candidate)",
+  "project_id": "alpha-starts-now-clean-room",
+  "mode": "ORIGINAL_MODE",
+  "art_direction": "The Raw Atelier / Obsidian Manifesto",
+  "historical_quarantine": {
+    "status": "QUARANTINED",
+    "quarantined_paths": [
+      "projects/alpha-starts-now/",
+      "projects/alpha-starts-now-v1-1/",
+      "projects/alpha-starts-now-v1-6-flagship/"
+    ],
+    "old_visual_direction_used": false
+  },
+  "brand_source_of_truth": {
+    "name": "Alpha Starts Now",
+    "target_audience": "Men primarily 35+",
+    "traits": [
+      "masculine",
+      "disciplined",
+      "strong",
+      "mature",
+      "intelligent",
+      "direct",
+      "grounded",
+      "confident",
+      "premium",
+      "useful"
+    ],
+    "business_model": "Editorial / Content Authority / Curated Gear & Recommendations / Self-Improvement Codex",
+    "canonical_colors": {
+      "obsidian_ink": "#111215",
+      "paper_white": "#FFFFFF",
+      "titanium_gray": "#8E929A",
+      "amber_flame": "#D97706"
+    }
+  },
+  "research": {
+    "complete": true,
+    "exception": null,
+    "reference_bars": [
+      "Outlier (Industrial Minimalist Utility)",
+      "Ten Thousand (Atelier Performance Rigor)",
+      "Leica LFI (Monochrome Precision & Documentary Gravitas)"
+    ]
+  },
+  "seo": {
+    "complete": true,
+    "exception": null,
+    "mode": "active"
+  },
+  "design_intelligence": {
+    "complete": true,
+    "candidate_styles": [
+      "exaggerated-minimalism",
+      "minimalist-monochrome",
+      "editorial-grid-magazine"
+    ],
+    "candidate_palette_matched": "Obsidian Titanium Amber",
+    "candidate_typography_matched": "Clash Display + General Sans + IBM Plex Mono",
+    "distinctiveness_check_complete": true
+  },
+  "candidate_status": "UNAPPROVED_CREATIVE_EXPERIMENT",
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "motion": {
+    "level": 2,
+    "gsap_required": true,
+    "physics": "Heavyweight mechanical snapping & magnetic dial calibration"
+  },
+  "experimental_evidence": {
+    "qa_score": 97,
+    "gauntlet_verdict": "GAUNTLET_PASS",
+    "gauntlet_score": 97,
+    "owner_approved": false
+  }
+}

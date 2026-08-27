@@ -1,0 +1,76 @@
+/* ==========================================================================
+   ALPHA STARTS NOW — LUXURY EDITORIAL MOTION & KINETIC PERFORMANCE (V1.7)
+   GSAP 3 + Lenis Momentum Engine
+   ========================================================================== */
+
+/* Split-Mask Typography Reveal Essentials */
+.split-mask-heading .mask-line {
+  display: block;
+  overflow: hidden;
+}
+
+.split-mask-heading .mask-inner {
+  display: block;
+  transform: translateY(115%);
+  will-change: transform;
+}
+
+/* Luxury Nav Active Tracking Indicator */
+.tactical-nav.scrolled {
+  background: rgba(7, 7, 9, 0.95);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.nav-link.active-section {
+  color: var(--accent-gold);
+}
+
+.nav-link.active-section::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+/* Subtle Shimmer Sweep on Primary Buttons */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.75s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(100%);
+}
+
+/* Spec Card 3D Perspective Setup */
+.spec-luxury-card {
+  transform-style: preserve-3d;
+  will-change: transform, border-color, box-shadow;
+}
+
+/* Reduced Motion Mandatory Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+  }
+  .split-mask-heading .mask-inner {
+    transform: none !important;
+  }
+}
+

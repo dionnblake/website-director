@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.7.0",
+  "project_name": "Alpha Starts Now (Flagship Candidate - V1.7 Elite)",
+  "project_id": "alpha-starts-now-v1-6-flagship",
+  "mode": "REFERENCE_MODE",
+  "art_direction": "Luxury Editorial Atelier (Obsidian & Champagne Gold)",
+  "owner_supplied_reference": {
+    "status": "APPROVED_FOUNDATION",
+    "reference_file": "media_1787738242376.png",
+    "floor_standard_applied": true
+  },
+  "brand_source_of_truth": {
+    "name": "Alpha Starts Now",
+    "target_audience": "Men primarily 35+",
+    "traits": [
+      "masculine",
+      "disciplined",
+      "strong",
+      "mature",
+      "intelligent",
+      "direct",
+      "grounded",
+      "confident",
+      "premium",
+      "useful"
+    ],
+    "business_model": "Editorial / Content Authority / Curated Gear & Recommendations / Self-Improvement Codex",
+    "canonical_colors": {
+      "obsidian_canvas": "#070709",
+      "surface_elevated": "#15151D",
+      "champagne_gold": "#D4AF37",
+      "champagne_gold_light": "#F3E5AB",
+      "pure_titanium": "#E2E2E8",
+      "muted_silver": "#86868B"
+    }
+  },
+  "research": {
+    "complete": true,
+    "exception": null,
+    "reference_bars": [
+      "Porsche Design (Hero Art Direction & Lighting)",
+      "GQ British Edition / Monocle (Typography Scale & Hierarchy)",
+      "Linear / Apple Pro (Multi-layered Dark Obsidian Depth)",
+      "The Rake / Apartamento (Asymmetric Editorial Spreads)",
+      "Huckberry Gear Lab (Curated Commerce & Spec Matrices)",
+      "Stripe Press / Locomotive (Smooth Momentum & Split-Text Motion)",
+      "Tracksmith Mobile (Thumb-zone High-Contrast Navigation)"
+    ]
+  },
+  "seo": {
+    "complete": true,
+    "exception": null,
+    "mode": "active"
+  },
+  "design_intelligence": {
+    "complete": true,
+    "candidate_styles": [
+      "luxury-editorial-atelier",
+      "modern-dark-cinema-mobile",
+      "editorial-grid-magazine"
+    ],
+    "candidate_palette_matched": "Obsidian Slate & Champagne Gold",
+    "candidate_typography_matched": "Syne + Barlow Condensed + Plus Jakarta Sans + IBM Plex Mono",
+    "distinctiveness_check_complete": true
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "motion": {
+    "level": 3,
+    "gsap_required": true,
+    "lenis_active": true,
+    "split_mask_reveals": true,
+    "pinned_scrollytelling": true,
+    "magnetic_physics": true,
+    "physics": "Lenis smooth inertial scroll, split-mask text unmasking, horizontal pinned scrollytelling, and spring magnetic physics"
+  },
+  "gauntlet": {
+    "complete": true,
+    "verdict": "GAUNTLET_PASS",
+    "score": 99,
+    "award_critic_verdict": "AWARD_TIER_CERTIFIED"
+  }
+}
+

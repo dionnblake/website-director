@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.1.0",
+  "project_name": "SÖLVIK FJORD RETREAT & THERMAL SANCTUARY",
+  "version": "1.0.0",
+  "business_type": "Bespoke Luxury Boutique Retreat & Thermal Sanctuary",
+  "audience": {
+    "primary_decision_maker": "Affluent Design-Literate Traveler / Architectural Immersion & Solitude Seeker",
+    "market_segment": "Ultra-Luxury Private Destination Retreat ($2,800–$6,500/night)"
+  },
+  "primary_conversion": {
+    "goal": "Plan a Bespoke Stay & Reserve a Pavilion",
+    "cta_label": "Plan Your Stay",
+    "target_metric": "Qualified Direct Seasonal Inquiries"
+  },
+  "brand_attributes": [
+    "Monolithic",
+    "Atmospheric",
+    "Elemental",
+    "Tactile",
+    "Restrained",
+    "Sensory",
+    "Sanctuary"
+  ],
+  "design_archetypes": {
+    "primary": "Monolithic Elemental Sanctuary",
+    "primary_weight": 0.5,
+    "secondary": "Editorial Monograph",
+    "secondary_weight": 0.3,
+    "accent": "Tactile Nordic Warmth",
+    "accent_weight": 0.2
+  },
+  "density": "spacious-editorial",
+  "layout_style": "asymmetric_monolithic_editorial_grid",
+  "geometry": "architectural_clean",
+  "corner_style": "2px",
+  "typography_direction": {
+    "display_family": "Fraunces, Playfair Display, serif",
+    "body_family": "Plus Jakarta Sans, -apple-system, sans-serif",
+    "meta_family": "JetBrains Mono, monospace",
+    "scale_ratio": "1.333_perfect_fourth",
+    "heading_tracking": "-0.02em"
+  },
+  "imagery_direction": {
+    "style": "cinematic_mist_shrouded_fjord_charred_timber_glowing_hearth",
+    "aspect_ratios": [
+      "21/9",
+      "16/9",
+      "4/3",
+      "1/1"
+    ],
+    "treatment": "deep_fjord_slate_twilight_natural_amber_hearth_highlights_zero_artificial_saturation"
+  },
+  "motion_direction": {
+    "physics": "atmospheric_elemental_drift",
+    "default_duration_ms": 400,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "https://manshausen.no",
+      "https://juvet.com",
+      "https://7132.com",
+      "https://fogoislandinn.ca",
+      "https://aman.com/resorts/amangiri",
+      "https://snohetta.com",
+      "https://resend.com",
+      "https://linear.app",
+      "https://stripe.com",
+      "https://land-book.com"
+    ],
+    "deep_recon_targets": [
+      "linear_app",
+      "resend_com",
+      "stripe_com"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_3",
+    "cinematic_specialist_required": true,
+    "cinematic_brief_complete": true
+  },
+  "locks": {
+    "design_direction_locked": true,
+    "information_architecture_locked": true,
+    "content_structure_locked": true,
+    "design_system_locked": true,
+    "motion_direction_locked": true
+  },
+  "qa_status": {
+    "design_qa_score": null,
+    "design_qa_verdict": "V1_1_HOSPITALITY_PILOT_READY_FOR_INDEPENDENT_QA",
+    "production_preflight_passed": true
+  }
+}

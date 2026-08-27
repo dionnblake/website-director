@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALENTIN &amp; HESSE Architects — Zurich • Engadin • Milan</title>
+  <meta name="description" content="Atelier for high-end residential architecture, alpine sanctuaries, adaptive historic reuse, and tactile interior architecture. Founded by Adrian Valentin &amp; Elena Hesse.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Floating Atelier Bar -->
+  <header class="atelier-header" id="atelier-header">
+    <div class="header-inner container-wide">
+      <a href="#hero" class="brand-wordmark" id="brand-logo" aria-label="VALENTIN &amp; HESSE Architects Home">
+        <span class="brand-title">VALENTIN &amp; HESSE</span>
+        <span class="brand-subtitle">ARCHITECTS • ZURICH / MILAN</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-navigation" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#works" class="nav-link" id="nav-works">Selected Works</a></li>
+          <li><a href="#materials" class="nav-link" id="nav-materials">Material Laboratory</a></li>
+          <li><a href="#studio" class="nav-link" id="nav-studio">The Atelier</a></li>
+          <li><a href="#archive" class="nav-link" id="nav-archive">Archive</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-primary btn-inquire-trigger" id="header-inquire-btn" aria-haspopup="dialog" aria-controls="inquiry-modal">
+          Initiate Commission
+        </button>
+        <button class="mobile-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle Navigation Menu">
+          <span class="toggle-line"></span>
+          <span class="toggle-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <span class="mobile-brand">VALENTIN &amp; HESSE</span>
+        <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close menu">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#works" class="mobile-link">Selected Works</a></li>
+        <li><a href="#materials" class="mobile-link">Material Laboratory</a></li>
+        <li><a href="#studio" class="mobile-link">The Atelier</a></li>
+        <li><a href="#archive" class="mobile-link">Commission Archive</a></li>
+        <li><a href="#inquiry" class="mobile-link">Private Consultation</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p class="mobile-coords">Zurich • Engadin • Milan</p>
+        <p class="mobile-contact">atelier@valentinhesse.ch</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- SECTION 1: Monolithic Spatial Hero -->
+    <section class="section-hero" id="hero" aria-label="Introduction &amp; Manifesto">
+      <div class="hero-container container-wide">
+        <div class="hero-eyebrow-wrapper">
+          <span class="hero-eyebrow-tag">ATELIER FOR ARCHITECTURE &amp; SPATIAL FORM • SWITZERLAND &amp; ITALY</span>
+          <span class="hero-established">EST. 2014</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-manifesto-col">
+            <h1 class="hero-headline" id="main-heading">Architecture of Mass, Light &amp; Material Silence</h1>
+            <p class="hero-lead">
+              We conceive bespoke residential architecture, alpine sanctuaries, and cultural spaces carved from permanent stone, considered volumetric proportions, and raking natural daylight. Crafted between Zurich, the Engadin Valley, and Milan.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#works" class="btn btn-primary" id="hero-explore-btn">Explore Selected Works &darr;</a>
+              <button class="btn btn-secondary btn-inquire-trigger" id="hero-inquire-btn">Initiate a Spatial Commission &rarr;</button>
+            </div>
+          </div>
+
+          <div class="hero-visual-col">
+            <div class="hero-visual-frame">
+              <div class="hero-canvas-art" id="hero-canvas-container" aria-label="Architectural Monolith Representation">
+                <svg class="hero-svg-monolith" viewBox="0 0 800 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="House of Three Monoliths Alpine Volume">
+                  <rect width="800" height="560" fill="#ECE7DE"/>
+                  <!-- Sky Gradient & Alpine Terrain -->
+                  <path d="M0 0H800V360L650 320L480 340L320 300L160 330L0 310V0Z" fill="#E2DDD3"/>
+                  <!-- Distant Alpine Ridges -->
+                  <path d="M0 290L140 210L280 260L420 180L580 240L720 190L800 230V380H0V290Z" fill="#D3CCC0" opacity="0.6"/>
+                  <path d="M100 240L260 160L390 220L530 140L680 210L800 170V380H100V240Z" fill="#C5BDAC" opacity="0.4"/>
+                  <!-- Monolithic Stone Volumes -->
+                  <!-- Volume 1 (Left Massing) -->
+                  <polygon points="120,440 280,380 280,220 120,270" fill="#757065"/>
+                  <polygon points="280,380 410,420 410,250 280,220" fill="#524E45"/>
+                  <!-- Volume 2 (Central Main Cantilever) -->
+                  <polygon points="290,460 520,380 520,190 290,260" fill="#8C8476"/>
+                  <polygon points="520,380 660,420 660,230 520,190" fill="#5F5A51"/>
+                  <!-- Volume 3 (Right Hearth Tower) -->
+                  <polygon points="580,480 710,430 710,240 580,280" fill="#7E776B"/>
+                  <polygon points="710,430 760,450 760,260 710,240" fill="#4B473F"/>
+                  <!-- Deep Recessed Glazing & Bronze Frames -->
+                  <polygon points="340,370 480,320 480,250 340,290" fill="#191816" opacity="0.85"/>
+                  <line x1="410" y1="345" x2="410" y2="270" stroke="#8C7355" stroke-width="2"/>
+                  <!-- Foreland Topography & Shadows -->
+                  <path d="M0 430L180 400L350 470L540 430L720 490L800 460V560H0V430Z" fill="#DDD7CB"/>
+                  <path d="M0 480L220 460L460 520L680 480L800 510V560H0V480Z" fill="#CDC6B8"/>
+                  <!-- Subtle Coordinate Watermark -->
+                  <text x="32" y="524" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#757065" letter-spacing="0.1em">VALS MONOLITH 46.6192° N, 9.1811° E • ELEVATION 1,280M</text>
+                </svg>
+              </div>
+              <div class="hero-visual-caption">
+                <span class="caption-dot"></span>
+                <span class="caption-text">Featured Study: <strong>House of Three Monoliths</strong> — Vals, Switzerland (2024)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-footer-strip">
+          <div class="coord-item">
+            <span class="coord-city">ZURICH ATELIER</span>
+            <span class="coord-addr">Rämistrasse 34, 8001 Zürich</span>
+          </div>
+          <div class="coord-item">
+            <span class="coord-city">ENGADIN STUDIO</span>
+            <span class="coord-addr">Via Maistra 12, 7514 Sils Maria</span>
+          </div>
+          <div class="coord-item">
+            <span class="coord-city">MILAN ATELIER</span>
+            <span class="coord-addr">Via Solferino 19, 20121 Milano</span>
+          </div>
+          <div class="coord-item coord-status">
+            <span class="coord-city">COMMISSION STATUS</span>
+            <span class="coord-addr"><span class="status-indicator"></span> 2026/2027 Inquiries Open</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Curated Selected Works Matrix -->
+    <section class="section-works" id="works" aria-label="Selected Works Portfolio">
+      <div class="container-wide">
+        <div class="section-header-row">
+          <div class="header-text-block">
+            <span class="section-eyebrow">SELECTED WORKS</span>
+            <h2 class="section-title">Built Spaces &amp; Sanctuaries</h2>
+          </div>
+          
+          <!-- Category Filter Tabs -->
+          <div class="filter-tabs" role="tablist" aria-label="Project Typology Filters">
+            <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all" id="tab-all">All Works (06)</button>
+            <button class="filter-tab" role="tab" aria-selected="false" data-filter="alpine" id="tab-alpine">Alpine Sanctuaries (02)</button>
+            <button class="filter-tab" role="tab" aria-selected="false" data-filter="lakeside" id="tab-lakeside">Lakeside Villas (02)</button>
+            <button class="filter-tab" role="tab" aria-selected="false" data-filter="urban" id="tab-urban">Urban Ateliers (01)</button>
+            <button class="filter-tab" role="tab" aria-selected="false" data-filter="heritage" id="tab-heritage">Adaptive Heritage (01)</button>
+          </div>
+        </div>
+
+        <!-- Project Grid Matrix -->
+        <div class="project-matrix" id="project-matrix-grid">
+          
+          <!-- Project 1: House of Three Monoliths (Hero Card) -->
+          <article class="project-card project-card-large" data-category="alpine" data-id="p1" id="project-monoliths">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 900 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="900" height="580" fill="#E8E3DA"/>
+                  <path d="M0 0H900V420L750 360L550 400L350 340L150 380L0 350V0Z" fill="#DDD8CE"/>
+                  <polygon points="140,490 320,410 320,210 140,280" fill="#6B665C"/>
+                  <polygon points="320,410 470,460 470,250 320,210" fill="#4B473F"/>
+                  <polygon points="340,510 610,410 610,180 340,260" fill="#80786C"/>
+                  <polygon points="610,410 760,460 760,220 610,180" fill="#59544A"/>
+                  <polygon points="400,400 550,340 550,260 400,310" fill="#191816" opacity="0.9"/>
+                  <path d="M0 480L240 440L500 520L740 470L900 510V580H0V480Z" fill="#C8C0B2"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Dual-Mode Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">01 / 06</span>
+                <span class="project-typology-badge">Alpine Primary Residence</span>
+              </div>
+              <h3 class="project-title">House of Three Monoliths</h3>
+              <p class="project-location-specs">Vals, Grisons, Switzerland • 780 m² • 2024</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Quarried Valser Quartzite, Solid Alpine Larch, Hand-Troweled Lime Plaster</p>
+              <button class="btn-text-link open-case-study" data-project="p1" aria-haspopup="dialog">View Case Study &amp; Structural Plans &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Project 2: Villa Travertine & Shadow -->
+          <article class="project-card" data-category="lakeside" data-id="p2" id="project-travertine">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="450" fill="#EFECE6"/>
+                  <rect x="0" y="320" width="600" height="130" fill="#C7D0D2"/>
+                  <!-- Travertine Colonnade -->
+                  <polygon points="60,340 540,340 540,160 60,160" fill="#D6CDBE"/>
+                  <rect x="100" y="180" width="40" height="160" fill="#A89F90"/>
+                  <rect x="180" y="180" width="40" height="160" fill="#A89F90"/>
+                  <rect x="260" y="180" width="40" height="160" fill="#A89F90"/>
+                  <rect x="340" y="180" width="40" height="160" fill="#A89F90"/>
+                  <rect x="420" y="180" width="40" height="160" fill="#A89F90"/>
+                  <polygon points="60,160 540,160 520,130 80,130" fill="#BDB4A4"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">02 / 06</span>
+                <span class="project-typology-badge">Lakeside Residence</span>
+              </div>
+              <h3 class="project-title">Villa Travertine &amp; Shadow</h3>
+              <p class="project-location-specs">Lake Lugano, Ticino, Switzerland • 620 m² • 2023</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Roman Travertine Navona, Fluted Cast Glass, Brushed Gunmetal Bronze</p>
+              <button class="btn-text-link open-case-study" data-project="p2">View Case Study &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Project 3: The Engadin Barn Transformation -->
+          <article class="project-card" data-category="heritage" data-id="p3" id="project-barn">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="450" fill="#E5DFD4"/>
+                  <!-- Historical Engadiner Sgraffito House Mass -->
+                  <polygon points="100,380 480,380 480,190 290,110 100,190" fill="#999182"/>
+                  <!-- Deep Splayed Funnel Windows -->
+                  <polygon points="180,240 220,230 220,280 180,290" fill="#3D3933"/>
+                  <polygon points="340,220 400,210 400,290 340,300" fill="#3D3933"/>
+                  <polygon points="260,330 320,330 320,380 260,380" fill="#4B3A2C"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">03 / 06</span>
+                <span class="project-typology-badge">Adaptive Historic Heritage</span>
+              </div>
+              <h3 class="project-title">The Engadin Barn</h3>
+              <p class="project-location-specs">Zuoz, Upper Engadin, Switzerland • 490 m² • 2024</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Restored 17th-c Stone Masonry, Charred Alpine Fir, Polished Screed</p>
+              <button class="btn-text-link open-case-study" data-project="p3">View Case Study &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Project 4: Brera Atelier & Penthouse -->
+          <article class="project-card" data-category="urban" data-id="p4" id="project-brera">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="450" fill="#EAE5DC"/>
+                  <!-- Double-Height Interior Volumes -->
+                  <rect x="80" y="80" width="440" height="300" fill="#D5CEC2"/>
+                  <!-- Ceppo di Gre Stone Hearth -->
+                  <rect x="220" y="200" width="160" height="180" fill="#787C79"/>
+                  <!-- Walnut Joinery Wall -->
+                  <rect x="80" y="80" width="100" height="300" fill="#5E4331"/>
+                  <line x1="80" y1="140" x2="180" y2="140" stroke="#3F2D21" stroke-width="2"/>
+                  <line x1="80" y1="200" x2="180" y2="200" stroke="#3F2D21" stroke-width="2"/>
+                  <line x1="80" y1="260" x2="180" y2="260" stroke="#3F2D21" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">04 / 06</span>
+                <span class="project-typology-badge">Urban Interior Architecture</span>
+              </div>
+              <h3 class="project-title">Brera Atelier &amp; Penthouse</h3>
+              <p class="project-location-specs">Milan, Italy • 340 m² • 2025</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Ceppo di Gré Stone, Natural Walnut Joinery, Waxed Darkened Steel</p>
+              <button class="btn-text-link open-case-study" data-project="p4">View Case Study &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Project 5: Alpine Pavilion St. Moritz -->
+          <article class="project-card" data-category="alpine" data-id="p5" id="project-stmoritz">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="450" fill="#E6E0D6"/>
+                  <!-- Cantilevered Stone & Larch Box -->
+                  <polygon points="120,380 480,330 480,180 120,220" fill="#756F64"/>
+                  <polygon points="160,340 440,300 440,210 160,240" fill="#24211D"/>
+                  <line x1="230" y1="330" x2="230" y2="230" stroke="#8C7355" stroke-width="2"/>
+                  <line x1="330" y1="315" x2="330" y2="220" stroke="#8C7355" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">05 / 06</span>
+                <span class="project-typology-badge">Alpine Residential Retreat</span>
+              </div>
+              <h3 class="project-title">Alpine Pavilion St. Moritz</h3>
+              <p class="project-location-specs">St. Moritz, Engadin, Switzerland • 850 m² • 2026</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Engadin Granite, Rough-Sawn Larch, Triple Low-Iron Glazing</p>
+              <button class="btn-text-link open-case-study" data-project="p5">View Case Study &rarr;</button>
+            </div>
+          </article>
+
+          <!-- Project 6: Lake Como Boat House -->
+          <article class="project-card" data-category="lakeside" data-id="p6" id="project-como">
+            <div class="card-visual-wrapper">
+              <div class="card-image-canvas">
+                <svg class="project-svg-canvas" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="600" height="450" fill="#E2DDD4"/>
+                  <rect x="0" y="300" width="600" height="150" fill="#B9C7C8"/>
+                  <polygon points="100,340 500,340 500,180 100,180" fill="#888174"/>
+                  <polygon points="140,340 280,340 280,210 140,210" fill="#1C2123"/>
+                  <polygon points="320,340 460,340 460,210 320,210" fill="#1C2123"/>
+                </svg>
+              </div>
+              <div class="card-overlay-action">
+                <span class="action-pill">Inspect Case Study &rarr;</span>
+              </div>
+            </div>
+            <div class="card-metadata">
+              <div class="meta-primary">
+                <span class="project-number">06 / 06</span>
+                <span class="project-typology-badge">Waterfront Pavilion</span>
+              </div>
+              <h3 class="project-title">Lake Como Boat House</h3>
+              <p class="project-location-specs">Bellagio, Lake Como, Italy • 280 m² • 2022</p>
+              <p class="project-materials-list"><em>Primary Materials:</em> Moltrasio Limestone, Marine Gunmetal, Teak Decking</p>
+              <button class="btn-text-link open-case-study" data-project="p6">View Case Study &rarr;</button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Material & Light Laboratory -->
+    <section class="section-materials" id="materials" aria-label="Material &amp; Light Laboratory">
+      <div class="container-wide">
+        <div class="materials-intro-block">
+          <span class="section-eyebrow">PHYSICAL CRAFT &amp; MINERAL PROVENANCE</span>
+          <h2 class="section-title">The Truth of Raw Materials</h2>
+          <p class="materials-lead-text">
+            We reject veneer and synthetic finishes. Every surface specified in our studio possesses tangible weight, natural aging beauty, and acoustic composure. Select a mineral specimen below to examine its provenance and light response:
+          </p>
+        </div>
+
+        <div class="material-lab-console">
+          <!-- Left: Specimen Selectors -->
+          <div class="specimen-selector-list" role="tablist" aria-label="Mineral Specimen Swatches">
+            
+            <button class="specimen-button active" role="tab" aria-selected="true" data-specimen="quartzite" id="spec-quartzite">
+              <div class="swatch-preview swatch-quartzite"></div>
+              <div class="specimen-btn-info">
+                <span class="specimen-name">Valser Quartzite</span>
+                <span class="specimen-origin">Vals Valley, Grisons (1,250m)</span>
+              </div>
+              <span class="specimen-arrow">&rarr;</span>
+            </button>
+
+            <button class="specimen-button" role="tab" aria-selected="false" data-specimen="travertine" id="spec-travertine">
+              <div class="swatch-preview swatch-travertine"></div>
+              <div class="specimen-btn-info">
+                <span class="specimen-name">Travertine Navona</span>
+                <span class="specimen-origin">Tivoli Quarries, Italy</span>
+              </div>
+              <span class="specimen-arrow">&rarr;</span>
+            </button>
+
+            <button class="specimen-button" role="tab" aria-selected="false" data-specimen="larch" id="spec-larch">
+              <div class="swatch-preview swatch-larch"></div>
+              <div class="specimen-btn-info">
+                <span class="specimen-name">End-Grain Alpine Larch</span>
+                <span class="specimen-origin">Upper Engadin Forests</span>
+              </div>
+              <span class="specimen-arrow">&rarr;</span>
+            </button>
+
+            <button class="specimen-button" role="tab" aria-selected="false" data-specimen="bronze" id="spec-bronze">
+              <div class="swatch-preview swatch-bronze"></div>
+              <div class="specimen-btn-info">
+                <span class="specimen-name">Hand-Brushed Bronze</span>
+                <span class="specimen-origin">Brianza Foundry, Italy</span>
+              </div>
+              <span class="specimen-arrow">&rarr;</span>
+            </button>
+
+          </div>
+
+          <!-- Right: Live Specimen Viewer -->
+          <div class="specimen-display-panel" id="specimen-display-panel">
+            <div class="specimen-viewer-header">
+              <div class="specimen-title-wrap">
+                <h3 class="specimen-display-title" id="display-spec-title">Valser Quartzite</h3>
+                <span class="specimen-display-subtitle" id="display-spec-subtitle">Metamorphic Mica-Schist Quartzite • Waterjet Honed</span>
+              </div>
+              
+              <!-- Daylight Simulation Controls -->
+              <div class="daylight-control-group" aria-label="Simulate Daylight Condition">
+                <span class="control-label">Light Simulation:</span>
+                <div class="daylight-buttons">
+                  <button class="btn-daylight active" data-light="morning" title="Morning Raking Light (3400K)">Morning</button>
+                  <button class="btn-daylight" data-light="noon" title="Solar Zenith (5200K)">Noon</button>
+                  <button class="btn-daylight" data-light="sunset" title="Alpine Sunset (2800K)">Sunset</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specimen Visual Field -->
+            <div class="specimen-visual-field daylight-morning" id="specimen-visual-box">
+              <div class="texture-render" id="texture-render-view">
+                <!-- Procedural SVG Texture Rendering -->
+                <svg class="specimen-texture-svg" viewBox="0 0 700 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="700" height="360" fill="#6E7574" id="spec-base-fill"/>
+                  <g id="spec-texture-layers" opacity="0.65">
+                    <line x1="0" y1="40" x2="700" y2="45" stroke="#505655" stroke-width="3"/>
+                    <line x1="0" y1="90" x2="700" y2="92" stroke="#8A9291" stroke-width="2"/>
+                    <line x1="0" y1="140" x2="700" y2="135" stroke="#484E4D" stroke-width="4"/>
+                    <line x1="0" y1="190" x2="700" y2="195" stroke="#838B8A" stroke-width="2"/>
+                    <line x1="0" y1="240" x2="700" y2="238" stroke="#555B5A" stroke-width="3"/>
+                    <line x1="0" y1="290" x2="700" y2="295" stroke="#909998" stroke-width="2"/>
+                    <line x1="0" y1="330" x2="700" y2="328" stroke="#424746" stroke-width="3"/>
+                  </g>
+                  <rect width="700" height="360" fill="url(#light-gradient)" id="spec-light-overlay"/>
+                  <defs>
+                    <linearGradient id="light-gradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#FFF5E5" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#000000" stop-opacity="0.25"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="specimen-macro-tag" id="spec-macro-tag">MACRO RESOLUTION • 1:1 SCALE SPECIMEN</div>
+            </div>
+
+            <!-- Specimen Properties Table -->
+            <div class="specimen-specs-grid">
+              <div class="spec-prop-col">
+                <span class="spec-prop-label">Tactile Texture</span>
+                <span class="spec-prop-value" id="spec-val-texture">Dense, mica-flecked metamorphic slate with cool thermal inertia and subtle grey-green veining.</span>
+              </div>
+              <div class="spec-prop-col">
+                <span class="spec-prop-label">Architectural Role</span>
+                <span class="spec-prop-value" id="spec-val-role">Foundation massing walls, monolithic thermal hearths, integrated wet-room basins.</span>
+              </div>
+              <div class="spec-prop-col">
+                <span class="spec-prop-label">Sensory Character</span>
+                <span class="spec-prop-value" id="spec-val-sensory">Acoustic absorption, high thermal storage, velvety honed mineral finish.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Studio, Founders & Pedigree -->
+    <section class="section-studio" id="studio" aria-label="The Atelier &amp; Founders">
+      <div class="container-wide">
+        <div class="studio-layout-grid">
+          
+          <!-- Column 1: Studio Manifesto -->
+          <div class="studio-manifesto-col">
+            <span class="section-eyebrow">THE ATELIER</span>
+            <h2 class="section-title">Conceived in Zurich. Crafted across the Alps.</h2>
+            <p class="studio-body-p">
+              Founded in 2014 by Adrian Valentin and Elena Hesse, the atelier operates at the intersection of Swiss structural discipline and Italian spatial sensitivity.
+            </p>
+            <p class="studio-body-p">
+              We deliberately limit our practice to four simultaneous residential commissions annually. This boundary ensures uncompromising personal attention from initial site topography sketches to the final placement of quarried stone.
+            </p>
+
+            <div class="studio-core-pillars">
+              <div class="pillar-item">
+                <span class="pillar-num">01</span>
+                <div class="pillar-text">
+                  <h4>Permanence Over Novelty</h4>
+                  <p>Structures designed to endure centuries, weathering gracefully without dependence on fleeting trends.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <span class="pillar-num">02</span>
+                <div class="pillar-text">
+                  <h4>Site-Specific Topography</h4>
+                  <p>Every floorplan is directly generated from solar angles, mountain wind corridors, and local geology.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <span class="pillar-num">03</span>
+                <div class="pillar-text">
+                  <h4>Master Builder Accountability</h4>
+                  <p>Direct onsite craftsmanship supervision with multi-generational regional stonemasons and joiners.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Partner Profiles -->
+          <div class="studio-partners-col">
+            <div class="partner-card">
+              <div class="partner-header">
+                <div class="partner-avatar-frame">
+                  <div class="avatar-placeholder avatar-adrian">AV</div>
+                </div>
+                <div class="partner-meta">
+                  <h3 class="partner-name">Adrian Valentin</h3>
+                  <span class="partner-title">Dipl. Arch. ETH SIA • Design Principal &amp; Structural Lead</span>
+                </div>
+              </div>
+              <p class="partner-bio">
+                Educated at ETH Zurich under the chair of structural morphology. Former senior project architect for major cultural pavilions in Basel and Kyoto before founding V&amp;H in 2014. Specializes in heavy stone massing, seismic structural integration, and alpine thermodynamics.
+              </p>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-header">
+                <div class="partner-avatar-frame">
+                  <div class="avatar-placeholder avatar-elena">EH</div>
+                </div>
+                <div class="partner-meta">
+                  <h3 class="partner-name">Elena Hesse</h3>
+                  <span class="partner-title">M.Arch Politecnico di Milano • Interior Architecture Director</span>
+                </div>
+              </div>
+              <p class="partner-bio">
+                Trained in architectural restoration and bespoke spatial joinery in Milan. Leads material procurement, acoustic design, lighting choreography, and custom architectural metalwork across all Swiss and Italian residential commissions.
+              </p>
+            </div>
+
+            <div class="studio-accreditation-box">
+              <span class="accred-label">INSTITUTIONAL MEMBERSHIPS</span>
+              <p class="accred-text">
+                Swiss Society of Engineers and Architects (SIA) • Ordine degli Architetti di Milano • Bund Schweizer Architekten (BSA Affiliate)
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Commission Archive -->
+    <section class="section-archive" id="archive" aria-label="Commission Archive">
+      <div class="container-wide">
+        <div class="archive-header-row">
+          <div class="archive-title-wrap">
+            <span class="section-eyebrow">DOCUMENTED WORKS</span>
+            <h2 class="section-title">Commission Index (2018 – 2026)</h2>
+          </div>
+          <span class="archive-count">08 Documented Commissions</span>
+        </div>
+
+        <div class="archive-table-container">
+          <table class="archive-table" id="commission-archive-table">
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col">Project Title</th>
+                <th scope="col">Typology</th>
+                <th scope="col">Location</th>
+                <th scope="col">Scale</th>
+                <th scope="col">Primary Stone / Timber</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-year">2026</td>
+                <td class="cell-title">Alpine Pavilion St. Moritz</td>
+                <td class="cell-type">Residential Retreat</td>
+                <td class="cell-loc">St. Moritz, Switzerland</td>
+                <td class="cell-scale">850 m²</td>
+                <td class="cell-mat">Engadin Granite &amp; Larch</td>
+                <td><span class="tag-status tag-construction">In Progress</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2025</td>
+                <td class="cell-title">Brera Atelier &amp; Penthouse</td>
+                <td class="cell-type">Urban Interior</td>
+                <td class="cell-loc">Milan, Italy</td>
+                <td class="cell-scale">340 m²</td>
+                <td class="cell-mat">Ceppo di Gré &amp; Walnut</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2024</td>
+                <td class="cell-title">House of Three Monoliths</td>
+                <td class="cell-type">Alpine Residence</td>
+                <td class="cell-loc">Vals, Grisons, Switzerland</td>
+                <td class="cell-scale">780 m²</td>
+                <td class="cell-mat">Valser Quartzite &amp; Larch</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2024</td>
+                <td class="cell-title">The Engadin Barn</td>
+                <td class="cell-type">Adaptive Historic Heritage</td>
+                <td class="cell-loc">Zuoz, Engadin, Switzerland</td>
+                <td class="cell-scale">490 m²</td>
+                <td class="cell-mat">17th-c Stone &amp; Charred Fir</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2023</td>
+                <td class="cell-title">Villa Travertine &amp; Shadow</td>
+                <td class="cell-type">Lakeside Residence</td>
+                <td class="cell-loc">Lugano, Ticino, Switzerland</td>
+                <td class="cell-scale">620 m²</td>
+                <td class="cell-mat">Travertine Navona &amp; Bronze</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2022</td>
+                <td class="cell-title">Lake Como Boat House</td>
+                <td class="cell-type">Waterfront Pavilion</td>
+                <td class="cell-loc">Bellagio, Lake Como, Italy</td>
+                <td class="cell-scale">280 m²</td>
+                <td class="cell-mat">Moltrasio Stone &amp; Teak</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2021</td>
+                <td class="cell-title">Zurichberg Concrete House</td>
+                <td class="cell-type">Custom Home</td>
+                <td class="cell-loc">Zurich, Switzerland</td>
+                <td class="cell-scale">510 m²</td>
+                <td class="cell-mat">Board-Marked Concrete &amp; Oak</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+              <tr>
+                <td class="cell-year">2019</td>
+                <td class="cell-title">Engadin Studio Loft</td>
+                <td class="cell-type">Interior Architecture</td>
+                <td class="cell-loc">Pontresina, Switzerland</td>
+                <td class="cell-scale">210 m²</td>
+                <td class="cell-mat">Swiss Pine &amp; Blackened Iron</td>
+                <td><span class="tag-status tag-complete">Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Private Consultation Suite (Conversion Finale) -->
+    <section class="section-inquiry" id="inquiry" aria-label="Initiate a Spatial Commission">
+      <div class="container-narrow">
+        <div class="inquiry-card-container">
+          <div class="inquiry-header">
+            <span class="section-eyebrow">COMMISSION INQUIRY</span>
+            <h2 class="inquiry-title">Initiate a Spatial Briefing</h2>
+            <p class="inquiry-lead">
+              We welcome private conversations regarding bespoke residential commissions, alpine retreats, and historic restorations. Please outline your project parameters below to schedule a confidential discussion with Adrian Valentin or Elena Hesse.
+            </p>
+          </div>
+
+          <form class="inquiry-form" id="consultation-form" novalidate>
+            <!-- Step 1: Typology Selection -->
+            <div class="form-group">
+              <label class="form-label" for="inquiry-typology">Project Typology <span class="req">*</span></label>
+              <div class="typology-chips-grid" id="typology-chips">
+                <label class="chip-option">
+                  <input type="radio" name="typology" value="Custom Residence" checked>
+                  <span class="chip-label">Custom Residence</span>
+                </label>
+                <label class="chip-option">
+                  <input type="radio" name="typology" value="Alpine Sanctuary">
+                  <span class="chip-label">Alpine Sanctuary</span>
+                </label>
+                <label class="chip-option">
+                  <input type="radio" name="typology" value="Lakeside Villa">
+                  <span class="chip-label">Lakeside Villa</span>
+                </label>
+                <label class="chip-option">
+                  <input type="radio" name="typology" value="Adaptive Heritage">
+                  <span class="chip-label">Adaptive Heritage</span>
+                </label>
+                <label class="chip-option">
+                  <input type="radio" name="typology" value="Interior Architecture">
+                  <span class="chip-label">Interior Architecture</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Two-Column Fields -->
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label class="form-label" for="inquiry-location">Site Location / Region <span class="req">*</span></label>
+                <input type="text" id="inquiry-location" name="location" class="form-input" placeholder="e.g. St. Moritz, Zurich, Lake Geneva, Milan" required>
+                <span class="form-error-msg" id="err-location">Please specify the project location.</span>
+              </div>
+              <div class="form-group col-half">
+                <label class="form-label" for="inquiry-timeline">Anticipated Construction Timeline <span class="req">*</span></label>
+                <select id="inquiry-timeline" name="timeline" class="form-select" required>
+                  <option value="" disabled selected>Select Timeline Range</option>
+                  <option value="Within 6 Months">Within 6 Months</option>
+                  <option value="6–12 Months">6–12 Months</option>
+                  <option value="1–2 Years">1–2 Years</option>
+                  <option value="Planning & Land Acquisition Stage">Planning &amp; Land Acquisition Stage</option>
+                </select>
+                <span class="form-error-msg" id="err-timeline">Please select an anticipated timeline.</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label class="form-label" for="inquiry-name">Full Name &amp; Title <span class="req">*</span></label>
+                <input type="text" id="inquiry-name" name="name" class="form-input" placeholder="e.g. Dr. Lukas von Berg" required>
+                <span class="form-error-msg" id="err-name">Please provide your name.</span>
+              </div>
+              <div class="form-group col-half">
+                <label class="form-label" for="inquiry-email">Confidential Email <span class="req">*</span></label>
+                <input type="email" id="inquiry-email" name="email" class="form-input" placeholder="e.g. l.vonberg@holding.ch" required>
+                <span class="form-error-msg" id="err-email">Please provide a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="inquiry-phone">Direct Telephone / WhatsApp (Optional)</label>
+              <input type="tel" id="inquiry-phone" name="phone" class="form-input" placeholder="+41 79 000 00 00">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="inquiry-notes">Spatial Brief / Site Notes</label>
+              <textarea id="inquiry-notes" name="notes" class="form-textarea" rows="4" placeholder="Briefly describe the site topography, volume requirements, or specific material desires (e.g. limestone, alpine wood, art collection lighting)..."></textarea>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary btn-submit" id="submit-inquiry-btn">
+                Submit Spatial Brief for Review &rarr;
+              </button>
+              <p class="form-privacy-note">
+                Strict confidentiality assured. Direct consultation within 48 business hours.
+              </p>
+            </div>
+
+            <div class="form-success-banner" id="form-success-banner" aria-live="polite" style="display: none;">
+              <div class="success-icon">&check;</div>
+              <div class="success-text">
+                <h4>Spatial Brief Received</h4>
+                <p>Thank you. Your project brief has been securely transmitted to Adrian Valentin and Elena Hesse. We will contact you confidentially within 48 hours to schedule your preliminary atelier consultation.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dual-Mode Project Case Study Modal Drawer -->
+  <div class="case-study-drawer" id="case-study-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawer-project-title">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <span class="drawer-typology-tag" id="drawer-typology">Alpine Primary Residence</span>
+          <h2 class="drawer-title" id="drawer-project-title">House of Three Monoliths</h2>
+          <span class="drawer-location" id="drawer-location">Vals, Grisons, Switzerland • 2024</span>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Case Study">&times;</button>
+      </div>
+
+      <!-- Dual-Mode View Switcher -->
+      <div class="dual-mode-toggle-bar">
+        <span class="toggle-bar-label">Perspective Mode:</span>
+        <div class="toggle-buttons">
+          <button class="btn-mode-switch active" id="btn-view-photo" data-view="photo">Spatial Photography</button>
+          <button class="btn-mode-switch" id="btn-view-cad" data-view="cad">Architectural Plans (CAD / Section)</button>
+        </div>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Visual Viewport -->
+        <div class="drawer-visual-viewport">
+          <div class="view-layer view-photo active" id="layer-photo">
+            <svg class="drawer-svg-art" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="500" fill="#E8E3DA"/>
+              <path d="M0 0H800V360L650 320L450 350L250 310L0 340V0Z" fill="#DDD8CE"/>
+              <polygon points="120,440 300,360 300,190 120,250" fill="#6E6960"/>
+              <polygon points="300,360 450,400 450,220 300,190" fill="#4E4A42"/>
+              <polygon points="320,460 580,370 580,160 320,230" fill="#847C70"/>
+              <polygon points="580,370 720,410 720,200 580,160" fill="#5B564C"/>
+              <polygon points="370,360 520,310 520,240 370,280" fill="#191816" opacity="0.9"/>
+              <path d="M0 430L220 400L480 470L700 420L800 450V500H0V430Z" fill="#C9C2B5"/>
+            </svg>
+            <div class="view-caption" id="photo-caption">Exterior South-Facing Elevation: Monolithic Valser Quartzite Massing</div>
+          </div>
+
+          <div class="view-layer view-cad" id="layer-cad" style="display: none;">
+            <svg class="drawer-svg-art cad-blueprint" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="500" fill="#191816"/>
+              <!-- Grid Lines -->
+              <line x1="0" y1="100" x2="800" y2="100" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="0" y1="200" x2="800" y2="200" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="0" y1="300" x2="800" y2="300" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="0" y1="400" x2="800" y2="400" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="200" y1="0" x2="200" y2="500" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="400" y1="0" x2="400" y2="500" stroke="#2B2A27" stroke-width="1"/>
+              <line x1="600" y1="0" x2="600" y2="500" stroke="#2B2A27" stroke-width="1"/>
+              <!-- Section Cut Drawings in High-Contrast Architectural Line -->
+              <path d="M80 420 L260 420 L260 260 L480 260 L480 180 L720 180 L720 420" stroke="#F8F6F0" stroke-width="3" fill="none"/>
+              <path d="M120 420 L120 300 L240 300 L240 420" stroke="#8C7355" stroke-width="1.5" fill="none"/>
+              <path d="M280 420 L280 280 L460 280 L460 420" stroke="#8C7355" stroke-width="1.5" fill="none"/>
+              <path d="M500 420 L500 200 L700 200 L700 420" stroke="#8C7355" stroke-width="1.5" fill="none"/>
+              <!-- Dimension Callouts -->
+              <line x1="80" y1="440" x2="720" y2="440" stroke="#8C7355" stroke-width="1" stroke-dasharray="4 4"/>
+              <text x="370" y="460" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#8C7355">DIM: 36.40m</text>
+              <text x="90" y="240" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#DCD6C9">SECTION AA-1 • THERMAL MASSING CORE</text>
+            </svg>
+            <div class="view-caption" id="cad-caption">Structural Section Drawing AA-1: Subterranean Geothermal &amp; Thermal Core</div>
+          </div>
+        </div>
+
+        <!-- Case Study Narrative -->
+        <div class="drawer-narrative-content">
+          <h3 class="narrative-heading">Spatial &amp; Structural Philosophy</h3>
+          <p class="narrative-p" id="drawer-narrative-p">
+            Carved directly into a steep glacial slope, House of Three Monoliths is composed of three interlocking stone volumes that shield interior living quarters from alpine winter winds while opening completely to southern valley panoramas through deep recessed bronze glazing.
+          </p>
+
+          <div class="drawer-specs-table">
+            <div class="spec-row">
+              <span class="spec-label">Gross Floor Area:</span>
+              <span class="spec-value" id="drawer-spec-scale">780 m²</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Primary Structural Core:</span>
+              <span class="spec-value" id="drawer-spec-struct">Reinforced Monolithic Concrete with 180mm Cavity Insulation &amp; Valser Quartzite Masonry</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Energy &amp; Climate System:</span>
+              <span class="spec-value" id="drawer-spec-energy">Ground-Coupled Geothermal Probes, Controlled Heat Recovery Ventilation</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Interior Joinery:</span>
+              <span class="spec-value" id="drawer-spec-joinery">Custom Alpine Larch, Ceppo di Gré Stone, Acid-Etched Bronze</span>
+            </div>
+          </div>
+
+          <div class="drawer-cta-wrap">
+            <a href="#inquiry" class="btn btn-primary drawer-inquire-link" id="drawer-inquire-link">Discuss a Similar Commission &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Atelier Colophon & Footer -->
+  <footer class="atelier-footer" id="colophon" aria-label="Atelier Colophon and Imprint">
+    <div class="container-wide">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <span class="footer-brand-title">VALENTIN &amp; HESSE</span>
+          <p class="footer-mission">
+            Atelier for architecture, monolithic form, and material silence. Designing custom residences, alpine sanctuaries, and historic transformations across Switzerland and Northern Italy.
+          </p>
+          <div class="footer-memberships">
+            <span>SIA Member No. 41890</span> • <span>Ordine Architetti Milano</span>
+          </div>
+        </div>
+
+        <div class="footer-location-col">
+          <h4 class="footer-col-heading">Zurich Atelier</h4>
+          <address class="footer-address">
+            Rämistrasse 34<br>
+            8001 Zürich, Switzerland<br>
+            <a href="tel:+41442881900">+41 44 288 19 00</a>
+          </address>
+        </div>
+
+        <div class="footer-location-col">
+          <h4 class="footer-col-heading">Engadin Studio</h4>
+          <address class="footer-address">
+            Via Maistra 12<br>
+            7514 Sils Maria, Switzerland<br>
+            <a href="tel:+41818324010">+41 81 832 40 10</a>
+          </address>
+        </div>
+
+        <div class="footer-location-col">
+          <h4 class="footer-col-heading">Milan Studio</h4>
+          <address class="footer-address">
+            Via Solferino 19<br>
+            20121 Milano, Italy<br>
+            <a href="tel:+390287395200">+39 02 8739 52 00</a>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">
+          &copy; 2026 VALENTIN &amp; HESSE Architects AG. All rights reserved. Built as a Controlled Pilot for Website Director V1.1.
+        </p>
+        <div class="footer-legal-links">
+          <a href="#hero">Back to Top &uarr;</a>
+          <a href="#inquiry">Confidential Consultation</a>
+          <a href="#archive">Monograph Archive</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
