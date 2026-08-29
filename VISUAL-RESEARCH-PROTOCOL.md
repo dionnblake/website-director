@@ -22,6 +22,9 @@ SEE ──► INVESTIGATE ──► COMPARE ──► DECONSTRUCT ──► SYNT
 
 Visual Research Director is a **bounded role and protocol**, not a separate persistent agent. Website Director remains the sole orchestration authority end to end; the same session executes this phase (optionally as one isolated subagent call for context hygiene when the harness supports it — never as a standing swarm member). This mirrors how "Independent QA" in V1 is a role, not new infrastructure.
 
+**Precondition for Any Visual Research (V1.8):**
+Under Website Director V1.8, Phase 3 Visual Research must NEVER execute before `site-profile.json` $\rightarrow$ `creative_intent.confirmed = true` (or an explicit grandfathered legacy baseline). Visual Research cannot independently bypass `[CREATIVE_INTENT_CONFIRMED]`.
+
 **Its job ends before final design direction is created.**
 
 | It DOES | It DOES NOT |
@@ -42,17 +45,19 @@ Website Director reads the synthesis, weighs it against `DESIGN-ARCHETYPES.md` a
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ STEP 1: RESEARCH BRIEF                                    │
-│   Derived from DISCOVERY-PROTOCOL.md Stages 1–2            │
+│   Derived from creative-intent-contract.md & positioning  │
 │   → templates/research-brief.md                            │
 ├──────────────────────────────────────────────────────────┤
 │ STEP 2: INDUSTRY LANDSCAPE RECONNAISSANCE                  │
 │   10–15 real competitors/peers, per RESEARCH-SOURCES.md §2 │
 │   → templates/competitor-landscape.md                      │
 ├──────────────────────────────────────────────────────────┤
-│ STEP 3: LANDBOOK + CROSS-INDUSTRY DISCOVERY                │
-│   Candidate references organized by design purpose         │
-│   → templates/inspiration-board.md                         │
+│ STEP 3: LANDBOOK + AWWWARDS SHOWCASE + CROSS-INDUSTRY   │
+│   Candidate references organized by design purpose       │
+│   (Awwwards required for SHOWCASE per AWWWARDS protocol) │
+│   → templates/inspiration-board.md                       │
 ├──────────────────────────────────────────────────────────┤
+
 │ STEP 4: PROGRESSIVE FILTERING                               │
 │   10–15 candidates → 5 strong references → 2–3 deep targets│
 │   Per RESEARCH-SOURCES.md §6                                │

@@ -1,0 +1,16 @@
+[
+  {
+    "source_path": "/project/aethel-atelier-old",
+    "destination_path": "/project/aethel-atelier",
+    "status_code": 301,
+    "created_at": "2026-08-27T00:00:00Z",
+    "reason": "Legacy slug normalization"
+  },
+  {
+    "source_path": "/project/aethel-atelier",
+    "destination_path": "/project/aethel-atelier-workshop",
+    "status_code": 301,
+    "created_at": "2026-08-27T11:20:59.143226Z",
+    "reason": "Slug updated on published item"
+  }
+]

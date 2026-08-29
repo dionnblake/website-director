@@ -37,7 +37,7 @@
 | Critic | Verdict | Defects & Quality Gaps Identified |
 | :--- | :---: | :--- |
 | **1. Craft Critic** | `[PASS / FAIL]` | [Typography, spatial cadence, grid integrity findings] |
-| **2. Brand Critic** | `[PASS / FAIL]` | [Brand distinctiveness, tone, anti-brand boundary checks] |
+| **2. Brand Critic** | `[PASS / FAIL]` | [Brand distinctiveness, tone, anti-brand boundaries, & Intent Fidelity vs creative-intent-contract.md] |
 | **3. Conversion Critic** | `[PASS / FAIL]` | [CTA clarity, friction points, cognitive path progression] |
 | **4. Trust Critic** | `[PASS / FAIL]` | [Evidence placement, verification, proof density] |
 | **5. Motion Critic** | `[PASS / FAIL]` | [Six Justifications adherence, timing, reduced-motion] |

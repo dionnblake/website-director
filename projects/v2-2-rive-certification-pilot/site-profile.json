@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "2.2.0",
+  "project_name": "KINETIX Biometric Endurance & Recovery",
+  "version": "1.0.0",
+  "creative_intent": {
+    "status": "confirmed",
+    "creative_ambition": "SHOWCASE",
+    "visual_intensity": "HIGH",
+    "motion_appetite": "CINEMATIC",
+    "experimentation_tolerance": "CALCULATED_RISK",
+    "understanding_confidence": "HIGH",
+    "confirmed_at": "2026-08-27T00:00:00Z"
+  },
+  "positioning": {
+    "archetype_primary": "HIGH_PERFORMANCE_TECHNICAL",
+    "archetype_secondary": "PRECISION_BIOMETRIC",
+    "industry": "Elite Endurance Athletic Systems",
+    "target_audience": "Professional endurance athletes, performance directors, sports scientists"
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_2",
+    "gsap_required": true,
+    "lenis_required": true
+  },
+  "assets": {
+    "status": "prototype_ready",
+    "visual_language_ready": true,
+    "hero_asset_status": "prototype_ready",
+    "signature_asset_status": "prototype_ready",
+    "provenance_status": "schema_validated_synthetic",
+    "responsive_crop_status": "prototype_ready",
+    "optimization_status": "prototype_ready",
+    "shot_list_required": false
+  },
+  "immersive": {
+    "status": "not_required",
+    "level": 0,
+    "justification": "Spatial 3D mesh is unneeded for flat vector biometric telemetry dashboard.",
+    "engine": null,
+    "mobile_policy": null,
+    "reduced_motion_policy": null,
+    "webgl_fallback_ready": false,
+    "performance_budget_ready": false,
+    "accessibility_alternative_ready": false,
+    "cleanup_plan_ready": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "rive": {
+    "status": "implementation_ready",
+    "level": "2_COMPONENT",
+    "justification": "Interactive vector readiness gauge requires multi-state transitions (RESTED, OPTIMAL, STRAINED, CRITICAL) driven by interactive biometric inputs with crisp resolution-independent vector rendering.",
+    "runtime": "RIVE_WEB",
+    "asset_status": "prototype_ready",
+    "state_machine_ready": true,
+    "reduced_motion_ready": true,
+    "fallback_ready": true,
+    "responsive_ready": true,
+    "performance_ready": true,
+    "cleanup_ready": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "2.4.0",
+  "project_name": "Northstar Performance Lab",
+  "version": "1.0.0",
+  "creative_intent": {
+    "status": "confirmed",
+    "understanding_confidence": "high",
+    "creative_ambition": "premium",
+    "visual_intensity": "restrained",
+    "motion_appetite": "subtle",
+    "experimentation_tolerance": "disciplined",
+    "confirmed": true,
+    "confirmation_timestamp": "2026-08-27T04:15:00Z",
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "business_type": "Executive Performance Consulting / Assessment",
+  "audience": {
+    "primary_decision_maker": "Chief Executive Officer / Managing Partner / Family Office Principal",
+    "market_segment": "Executive Leadership & Enterprise Boards",
+    "target_visitor": "C-suite leader seeking objective cognitive & biological resilience architecture",
+    "visitor_state": "High discernment, skeptical of pseudo-science, seeking empirical performance rigor"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Request Qualified Executive Strategy Session",
+      "cta_label": "Request Strategy Session",
+      "target_metric": "consultation_submit_success"
+    },
+    "secondary_conversion": {
+      "goal": "Review Case Evidence & Diagnostic Protocol",
+      "cta_label": "Explore Clinical Methodology",
+      "target_metric": "case_study_view"
+    },
+    "primary_objection": "Time commitment and proprietary methodology credibility",
+    "primary_trust_requirement": "Empirical diagnostic frameworks and confidential advisory track record"
+  },
+  "brand_attributes": [
+    "Surgical",
+    "Scientific",
+    "Discreet",
+    "Authoritative",
+    "Monochrome"
+  ],
+  "design_archetypes": {
+    "primary": "Technical",
+    "primary_weight": 0.6,
+    "secondary": "Modernist",
+    "secondary_weight": 0.3,
+    "accent": "Editorial",
+    "accent_weight": 0.1
+  },
+  "density": "medium",
+  "layout_style": "12_column_precision_grid",
+  "geometry": "sharp_technical",
+  "corner_style": "2px",
+  "typography_direction": {
+    "display_family": "Plus Jakarta Sans",
+    "body_family": "Inter",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.25_major_third",
+    "heading_tracking": "-0.02em"
+  },
+  "imagery_direction": {
+    "style": "high_contrast_scientific_monochrome",
+    "aspect_ratios": [
+      "16/9",
+      "4/3"
+    ],
+    "treatment": "precision_technical_borders"
+  },
+  "motion_direction": {
+    "physics": "crisp_mechanical",
+    "default_duration_ms": 220,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": ["Peer reviewed human performance literature", "Executive wellness benchmarks"],
+    "deep_recon_targets": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    },
+    "showcase_research_status": "NOT_REQUIRED"
+  },
+  "motion": {
+    "level": "LEVEL_1",
+    "gsap_required": false,
+    "implementation_engine": "CSS_TRANSITIONS",
+    "skills_used": [],
+    "plugins_used": [],
+    "reduced_motion_verified": true,
+    "cleanup_verified": true,
+    "performance_verified": true,
+    "cinematic_specialist_required": false,
+    "cinematic_brief_complete": false
+  },
+  "seo": {
+    "complete": true,
+    "mode": "STANDARD",
+    "blocked_reason": null,
+    "research_date": "2026-08-27",
+    "data_sources": ["Search intent model"],
+    "target_market": "Executive Performance Consulting",
+    "gsc_connected": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "design_intelligence": {
+    "complete": true,
+    "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
+    "product_type_matched": "Executive Performance Consulting",
+    "candidate_styles": ["Technical Precision", "Editorial Modernist"],
+    "selected_style": "Technical Precision",
+    "candidate_palette_matched": "Monochrome Carbon & Clinical Silver",
+    "candidate_typography_matched": "Plus Jakarta Sans / Inter / JetBrains Mono",
+    "stack_guidance_applied": "MPA / Native JS / CSS",
+    "distinctiveness_check_complete": true,
+    "hero_thesis_declared": true,
+    "signature_element_declared": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "qa_status": {
+    "design_qa_score": 98,
+    "design_qa_verdict": "PASS",
+    "production_preflight_passed": true
+  },
+  "gauntlet": {
+    "status": "GAUNTLET_PASS",
+    "iteration_count": 1,
+    "max_iterations": 3,
+    "verdict": "PASS",
+    "largest_remaining_gap": "NONE",
+    "residual_defects": [],
+    "reference_bars": ["Scientific Clarity Benchmark"],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "visual_prototypes": {
+    "status": "not_required",
+    "required": false,
+    "direction_count": 1,
+    "showcase_research": null,
+    "portfolio_art_director_review": true,
+    "divergence_verified": true,
+    "asset_limitation_noted": true,
+    "owner_selected_direction": "direction-01",
+    "owner_selection_confirmed": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "assets": {
+    "status": "production_ready",
+    "visual_language_ready": true,
+    "hero_asset_status": "verified",
+    "signature_asset_status": "not_required",
+    "provenance_status": "verified",
+    "responsive_crop_status": "verified",
+    "optimization_status": "verified",
+    "shot_list_required": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "immersive": {
+    "status": "not_required",
+    "level": 0,
+    "justification": null,
+    "engine": null,
+    "mobile_policy": null,
+    "reduced_motion_policy": null,
+    "webgl_fallback_ready": false,
+    "performance_budget_ready": false,
+    "accessibility_alternative_ready": false,
+    "cleanup_plan_ready": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "rive": {
+    "status": "not_required",
+    "level": "0_NONE",
+    "justification": null,
+    "runtime": null,
+    "asset_status": "not_evaluated",
+    "state_machine_ready": false,
+    "reduced_motion_ready": false,
+    "fallback_ready": false,
+    "responsive_ready": false,
+    "performance_ready": false,
+    "cleanup_ready": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "page_experience": {
+    "status": "implementation_ready",
+    "transition_level": "1_SUBTLE",
+    "justification": "Restrained executive route continuity",
+    "navigation_model": "MPA",
+    "engine": "NATIVE_VIEW_TRANSITIONS",
+    "history_policy_ready": true,
+    "scroll_policy_ready": true,
+    "focus_policy_ready": true,
+    "reduced_motion_ready": true,
+    "mobile_policy_ready": true,
+    "fallback_ready": true,
+    "cleanup_ready": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "cro": {
+    "status": "instrumentation_ready",
+    "primary_business_outcome": "Qualified Strategy Session Requests",
+    "primary_conversion": "consultation_submit_success",
+    "funnel_model": "LEAD_GENERATION",
+    "measurement_plan_ready": true,
+    "event_taxonomy_ready": true,
+    "privacy_strategy_ready": true,
+    "pii_check": "PASS",
+    "dark_pattern_check": "PASS",
+    "experimentation_required": true,
+    "experiment_plan_ready": true,
+    "analytics_provider": "CUSTOM_EVENT_PIPELINE",
+    "session_replay": "DISABLED",
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

@@ -7,11 +7,14 @@
 
 ---
 
-## 1. Selected Archetype & Blending Formula
+## 1. Selected Prototype Provenance & Blending Formula
+- **Selected Prototype Direction:** `[projects/[project]/prototypes/direction-XX/]` (`visual_prototypes.owner_selected_direction`)
+- **Owner Visual Selection Confirmed:** `YES` (`visual_prototypes.owner_selection_confirmed: true`)
 - **Primary Archetype (60%):** [e.g., Modernist / Technical / Editorial / Luxury]
 - **Secondary Modifier (30%):** [e.g., Industrial / Architectural / Boutique]
 - **Kinetic / Accent Flavor (10%):** [e.g., Cinematic / Playful / Experimental]
 - **Design Intelligence Source Prior:** [UI/UX Pro Max Matched Product Profile & Style Candidates]
+- **Awwwards Reference Bars Benchmarked:** [Specific Awwwards dimensional bars used, e.g., AWWWARDS_TYPOGRAPHY_BAR, AWWWARDS_HERO_BAR]
 
 ---
 
@@ -27,7 +30,7 @@
 
 ## 3. Hero Thesis & Signature Composition
 - **Hero Thesis (`HERO_THESIS`):** [What is the single most characteristic thing this visitor should encounter first? Explain how the opening viewport presents the central thesis rather than generic headline+buttons+stats tropes]
-- **Signature Element (`SIGNATURE_ELEMENT`):** [The one distinct visual, structural, or interactive device the visitor will remember 24 hours later]
+- **Signature Element (`SIGNATURE_ELEMENT`):** [The memorable physical, structural, or interactive device the visitor will remember 24 hours later]
 - **Boldness Budget Allocation (`BOLDNESS_BUDGET`):** [Where boldness is concentrated (the signature), and how surrounding sections remain quiet, disciplined, and supporting]
 - **Aesthetic Risk Justification (`AESTHETIC_RISK`):** [Deliberate, explainable, and accessible aesthetic risk taken to prevent generic homogeneity]
 
@@ -44,20 +47,24 @@
 
 ---
 
-## 5. Two-Pass Distinctiveness Pre-Check (Pass 2 Critique)
+## 5. Two-Pass Distinctiveness Pre-Check & Trend Filter (Pass 2 Critique)
 
 | Evaluation Question | Assessment & Evidence | Status |
 | :--- | :--- | :---: |
 | **5-Competitor Interchangeability Test** | *Could this design plan fit 5 competitors with only logo and copy swapped?* | `PASS (Bespoke to subject)` |
 | **Structural Meaning Test** | *Does every structural device (dividers, eyebrows, numbers) encode true hierarchy/sequence?* | `PASS (Zero decorative numbering)` |
 | **Default Awareness Test** | *Has the design avoided falling lazily into known AI clusters without brief justification?* | `PASS (Intentional choice)` |
+| **Trend Contamination Test** | *Are all visual and interaction techniques justified by subject truth rather than award gallery fashion?* | `PASS (Zero unmotivated tropes)` |
+| **Portfolio Art Director Audit** | *Does the composition possess authored studio-grade craft with a memorable signature?* | `PASS (Portfolio caliber)` |
 | **Typography Personality Test** | *Does typography embody the subject's voice rather than generic neutral Inter?* | `PASS (Pairing fits subject)` |
 | **Factual Integrity Test** | *Are all proof points, metrics, and case artifacts drawn from real project evidence?* | `PASS (Zero fictional proof)` |
 
 ---
 
 ## 6. Design Lock Declaration
-- [ ] User has reviewed plain-English visual direction summary and approved.
+- [ ] Visual prototype slice generated and rendered in browser (`projects/[project]/prototypes/`).
+- [ ] Owner has visually reviewed rendered desktop & mobile prototypes and explicitly selected this direction (`visual_prototypes.owner_selection_confirmed = true`).
 - [ ] Archetype blend aligns with market positioning and audience expectations.
-- [ ] Two-pass distinctiveness critique completed and signed off.
-- [ ] Ready to lock `DESIGN_DIRECTION_LOCKED` in `site-profile.json`.
+- [ ] Two-pass distinctiveness and trend contamination critiques completed and signed off.
+- [ ] Ready to lock `DESIGN_DIRECTION_LOCKED` (`locks.design_direction_locked = true`) in `site-profile.json`.
+

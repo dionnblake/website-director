@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Starts Now — Dawn Vanguard [Cinematic Scrollytelling]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --space-dark: #040914;
+      --navy-deep: #0A1528;
+      --navy-light: #12223D;
+      --gold-solar: #F59E0B;
+      --gold-light: #FDE047;
+      --gold-glow: rgba(245, 158, 11, 0.3);
+      --white-pure: #FFFFFF;
+      --white-slate: #CBD5E1;
+      --font-cinematic: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--space-dark);
+      color: var(--white-pure);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+    .cinema-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(4, 9, 20, 0.95), transparent);
+    }
+    .cinema-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .cinema-logo-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-solar);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+    .cinema-brand-title {
+      font-family: var(--font-cinematic);
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-light);
+    }
+    .cinema-cta {
+      background: linear-gradient(135deg, var(--gold-solar), #D97706);
+      color: #040914;
+      padding: 0.75rem 1.75rem;
+      font-family: var(--font-cinematic);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-radius: 2px;
+      box-shadow: 0 0 25px var(--gold-glow);
+      transition: all 0.3s;
+    }
+    .cinema-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.6);
+    }
+    .hero-cinematic {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(circle at 50% 30%, #152B4D 0%, #040914 70%);
+      position: relative;
+    }
+    .hero-crest-ambient {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid var(--gold-solar);
+      box-shadow: 0 0 50px var(--gold-glow);
+      margin-bottom: 2.5rem;
+      object-fit: cover;
+      animation: pulseGlow 4s infinite alternate ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.2); }
+      100% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.5); }
+    }
+    .hero-cinematic h1 {
+      font-family: var(--font-cinematic);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #FFFFFF, #CBD5E1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-cinematic h1 span {
+      background: linear-gradient(180deg, #FDE047, #F59E0B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+    .hero-cinematic p {
+      max-width: 700px;
+      font-size: 1.25rem;
+      color: var(--white-slate);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    .scroll-down-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: var(--font-cinematic);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-solar);
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .scroll-arrow {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(8px); }
+      60% { transform: translateY(4px); }
+    }
+
+    /* Pinned Scrollytelling Container */
+    .scrolly-section {
+      position: relative;
+      background: var(--space-dark);
+      padding: 6rem 2rem;
+    }
+    .scrolly-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+    .scrolly-header h2 {
+      font-family: var(--font-cinematic);
+      font-size: 2.8rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .scrolly-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .timeline-track {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-solar), rgba(245, 158, 11, 0.1));
+      transform: translateX(-50%);
+    }
+    .timeline-node {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .node-content-left {
+      text-align: right;
+    }
+    .node-content-right {
+      text-align: left;
+    }
+    .node-card {
+      background: var(--navy-deep);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transition: all 0.3s;
+    }
+    .node-card:hover {
+      border-color: var(--gold-solar);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2);
+    }
+    .node-badge {
+      font-family: var(--font-cinematic);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-solar);
+      margin-bottom: 0.5rem;
+    }
+    .node-card h3 {
+      font-family: var(--font-cinematic);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #FFF;
+    }
+    .node-card p {
+      color: var(--white-slate);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .node-icon-center {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--navy-light);
+      border: 2px solid var(--gold-solar);
+      color: var(--gold-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-cinematic);
+      font-weight: 700;
+      margin: 0 auto;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .closing-vault {
+      padding: 8rem 2rem;
+      background: radial-gradient(circle at 50% 50%, #10213B 0%, #040914 80%);
+      text-align: center;
+    }
+    .closing-vault h2 {
+      font-family: var(--font-cinematic);
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .vault-form {
+      display: flex;
+      max-width: 560px;
+      margin: 3rem auto 1rem;
+      gap: 1rem;
+    }
+    .vault-input {
+      flex: 1;
+      background: rgba(4, 9, 20, 0.8);
+      border: 1px solid var(--gold-solar);
+      padding: 1rem 1.5rem;
+      color: #FFF;
+      font-family: inherit;
+      border-radius: 4px;
+    }
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--white-slate);
+    }
+    @media (max-width: 768px) {
+      .timeline-track { left: 25px; }
+      .timeline-node { grid-template-columns: 50px 1fr; gap: 1.5rem; }
+      .node-content-left { text-align: left; grid-column: 2; }
+      .node-icon-center { grid-column: 1; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="cinema-header">
+    <a href="#" class="cinema-brand">
+      <img src="../assets/asn-logo.jpg" alt="Alpha Starts Now Wolf Crest" class="cinema-logo-img">
+      <span class="cinema-brand-title">ALPHA STARTS NOW</span>
+    </a>
+    <a href="#vault" class="cinema-cta">Claim The Protocol</a>
+  </header>
+
+  <main>
+    <section class="hero-cinematic">
+      <img src="../assets/asn-logo.jpg" alt="Alpha Starts Now Crest" class="hero-crest-ambient">
+      <h1>THE DAWN VANGUARD.<span>THE 5 MORNING RITUALS.</span></h1>
+      <p>
+        The morning is the crucible of character. Enter the sequence that turns waking hours into an engine of relentless focus and physical mastery.
+      </p>
+      <a href="#rituals" class="scroll-down-indicator">
+        <span>DESCEND INTO THE SEQUENCE</span>
+        <span class="scroll-arrow">▼</span>
+      </a>
+    </section>
+
+    <section class="scrolly-section" id="rituals">
+      <div class="scrolly-header">
+        <div style="font-family:var(--font-cinematic); color:var(--gold-solar); font-size:0.85rem; letter-spacing:0.2em; margin-bottom:0.5rem;">CHOREOGRAPHY OF MASTERY</div>
+        <h2>The Fivefold Morning Arc</h2>
+      </div>
+
+      <div class="scrolly-timeline">
+        <div class="timeline-track"></div>
+
+        <div class="timeline-node">
+          <div class="node-content-left">
+            <div class="node-card">
+              <div class="node-badge">05:00 // RITUAL I</div>
+              <h3>Cold Immersion & Mineral Surge</h3>
+              <p>24oz electrolyte-charged hydration combined with immediate cold thermal shock to initiate instant norepinephrine secretion and alert cognitive awakening.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">I</div>
+          <div class="node-empty"></div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-empty"></div>
+          <div class="node-icon-center">II</div>
+          <div class="node-content-right">
+            <div class="node-card">
+              <div class="node-badge">05:10 // RITUAL II</div>
+              <h3>Kinetic Articulation</h3>
+              <p>Dynamic spinal flow, deep hip hinges, and postural realignment to prime full-body athletic capability and release nighttime muscular compression.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-content-left">
+            <div class="node-card">
+              <div class="node-badge">05:25 // RITUAL III</div>
+              <h3>Solar Photon Calibration</h3>
+              <p>Direct unfiltered outdoor light exposure to anchor the master suprachiasmatic nucleus clock and trigger the natural morning cortisol peak.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">III</div>
+          <div class="node-empty"></div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-empty"></div>
+          <div class="node-icon-center">IV</div>
+          <div class="node-content-right">
+            <div class="node-card">
+              <div class="node-badge">05:45 // RITUAL IV</div>
+              <h3>Analogue Focus Blueprint</h3>
+              <p>Zero screen exposure. Strict pen-on-paper isolation to articulate the day’s decisive operational priority before external noise intrudes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="node-content-left">
+            <div class="node-card">
+              <div class="node-badge">06:00 // RITUAL V</div>
+              <h3>The 90-Minute Focus Chamber</h3>
+              <p>Pure unbroken execution on your highest-leverage task. Complete the work that defines your day before the world demands your attention.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">V</div>
+          <div class="node-empty"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-vault" id="vault">
+      <img src="../assets/asn-logo.jpg" alt="ASN Emblem" style="width:80px; height:80px; border-radius:50%; border:2px solid var(--gold-solar); margin-bottom:1.5rem;">
+      <h2>COMMAND YOUR DAWN.</h2>
+      <p style="color:var(--white-slate); max-width:600px; margin:0 auto; font-size:1.15rem;">Receive the complete 5 Morning Rituals Blueprint and daily operating protocol.</p>
+      <form class="vault-form" onsubmit="event.preventDefault(); alert('The Dawn Protocol has been dispatched to your email.');">
+        <input type="email" class="vault-input" placeholder="ENTER YOUR EMAIL FOR DISPATCH" required>
+        <button type="submit" class="cinema-cta">RECEIVE PROTOCOL</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Alpha Starts Now. The Crucible of Daily Standards.</p>
+  </footer>
+</body>
+</html>

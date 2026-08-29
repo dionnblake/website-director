@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.5.1",
+  "project_name": "ARC//FORGE Advanced Fabrication & Engineering Studio",
+  "domain": "arcforge.engineering",
+  "creative_ambition": "SHOWCASE",
+  "visual_intensity": "HIGH",
+  "motion_appetite": "CINEMATIC",
+  "signature_choreography": {
+    "status": "selected_direction_ready",
+    "mold_breaking_opportunity": "HIGH",
+    "interaction_level": "2_FEATURE",
+    "primary_pattern": "PINNED_HORIZONTAL_SCROLLYTELLING",
+    "supporting_pattern": "SCROLL_DRIVEN_ASSEMBLY",
+    "interaction_budget": "MODERATE",
+    "novelty_budget": "MODERATE",
+    "mobile_strategy": "REFLOWED",
+    "reduced_motion_strategy": "STATIC_VERTICAL_EXPANDED",
+    "creative_justification": "Translates the 5-stage precision fabrication journey into a tangible lateral atelier walkthrough."
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "handoff": {
+    "status": "ready_for_review",
+    "acceptance_status": "READY_FOR_REVIEW"
+  }
+}

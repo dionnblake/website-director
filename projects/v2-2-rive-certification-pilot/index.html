@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KINETIX — Biometric Endurance & Readiness Telemetry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #07090e;
+      --bg-surface: #0f131c;
+      --bg-elevated: #161c29;
+      --text-primary: #f0f4f8;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(6, 182, 212, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--text-primary);
+    }
+
+    .nav-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(6, 182, 212, 0.05);
+    }
+
+    .hero-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 48px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .telemetry-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .telemetry-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--accent-cyan);
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero-summary {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .spec-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 20px;
+      border-radius: 6px;
+    }
+
+    .spec-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .spec-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: #041017;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 14px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Rive Viewport Column */
+    .viewport-column {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      height: 560px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rive-stage-wrapper {
+      flex: 1;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #rive-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .telemetry-hud {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(7, 9, 14, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .state-controls-bar {
+      padding: 16px 20px;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .controls-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-state {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-state:hover, .btn-state.active {
+      background: rgba(6, 182, 212, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* Zero-CLS Fallback Box */
+    #fallback-rive {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 32px;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.8), var(--bg-surface));
+    }
+
+    .fallback-svg {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 20px;
+    }
+
+    .fallback-notice {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-amber);
+      margin-bottom: 8px;
+    }
+
+    .fallback-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .fallback-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      max-width: 380px;
+      line-height: 1.5;
+    }
+
+    /* Responsive Reflow */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 32px;
+      }
+      .viewport-column {
+        height: 480px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 20px;
+      }
+      .brand-logo {
+        font-size: 1.15rem;
+      }
+      .nav-tag {
+        font-size: 0.65rem;
+      }
+      .hero-container {
+        padding: 20px 16px;
+        gap: 20px;
+      }
+      .viewport-column {
+        height: 380px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .hero-summary {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+      .specs-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .cta-row {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+      .state-controls-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px;
+      }
+      .btn-group {
+        width: 100%;
+      }
+      .btn-state {
+        flex: 1;
+        text-align: center;
+        padding: 6px 8px;
+        font-size: 0.7rem;
+      }
+      .telemetry-hud {
+        top: 10px;
+        right: 10px;
+        font-size: 0.62rem;
+        padding: 4px 8px;
+      }
+    }
+  </style>
+  <script src="./vendor/rive.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="brand-logo">KINETIX</div>
+    <div class="nav-tag">Endurance & Recovery Telemetry</div>
+  </header>
+
+  <main class="hero-container">
+    
+    <!-- Semantic Content & Accessible Hierarchy -->
+    <section class="hero-content">
+      <div class="telemetry-kicker">Autonomous Biometric Telemetry</div>
+      <h1>Neuromuscular Readiness Engine</h1>
+      <p class="hero-summary">
+        Calibrated for grand-tour cyclists, ultra-marathon runners, and Olympic rowers. Multi-channel physiological vector telemetry computing instantaneous recovery potential and mechanical fatigue.
+      </p>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Readiness Index</span>
+          <span class="spec-value" id="dom-readiness-val">78 / 100</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">HRV Autonomic Index</span>
+          <span class="spec-value">112 ms</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Neuromuscular Strain</span>
+          <span class="spec-value" id="dom-strain-val">4.2 / 5.0</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Recovery Zone</span>
+          <span class="spec-value" id="dom-zone-val" style="color: var(--accent-emerald);">OPTIMAL</span>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#reserve" class="btn-primary">Request Team Access</a>
+        <button class="btn-secondary" id="btn-trigger-bump">Trigger Kinetic Strain</button>
+      </div>
+    </section>
+
+    <!-- Rive Interactive Vector Viewport Column -->
+    <div class="viewport-column" id="stage-wrapper">
+      
+      <div class="telemetry-hud" id="telemetry-hud">
+        RIVE RUNTIME: v2.40.1 (MIT)<br>
+        STATE MACHINE: bumpy<br>
+        RIVE EVENT: <span id="hud-state-val">idle</span><br>
+        ASSET: vehicles.riv (58.8 KB)
+      </div>
+
+      <div class="rive-stage-wrapper">
+        <canvas id="rive-canvas" aria-label="Interactive Vector Biometric Readiness Gauge"></canvas>
+        
+        <!-- Zero-CLS Fallback -->
+        <div id="fallback-rive" role="region" aria-label="Technical Telemetry Fallback">
+          <svg class="fallback-svg" viewBox="0 0 200 200" fill="none" stroke="#06b6d4" stroke-width="1.5">
+            <circle cx="100" cy="100" r="85" stroke-dasharray="4 4" stroke-opacity="0.3"/>
+            <circle cx="100" cy="100" r="70" stroke="#f0f4f8"/>
+            <circle cx="100" cy="100" r="45" stroke="#10b981"/>
+            <path d="M100 30 L100 100 L145 100" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="100" cy="100" r="6" fill="#06b6d4"/>
+          </svg>
+          <div class="fallback-notice">2D Vector Fallback Mode</div>
+          <div class="fallback-title">Static Telemetry Active</div>
+          <div class="fallback-desc">Rendering high-contrast static telemetry schematic. All physiological specs and acquisition buttons remain active above.</div>
+        </div>
+      </div>
+
+      <!-- State Machine Interactive Control Bar -->
+      <div class="state-controls-bar" id="controls-bar">
+        <div class="controls-label">App State (Biometric):</div>
+        <div class="btn-group">
+          <button class="btn-state active" id="btn-state-idle">RESTED (78)</button>
+          <button class="btn-state" id="btn-state-strained">STRAINED (45)</button>
+          <button class="btn-state" id="btn-state-bump">TRIGGER BUMP</button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Rive Interactive Motion Engine Implementation -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. Fallback & Query Override Detection
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceFallback = urlParams.get('forceRiveFallback') === '1';
+
+      const canvas = document.getElementById('rive-canvas');
+      const fallback = document.getElementById('fallback-rive');
+      const telemetryHud = document.getElementById('telemetry-hud');
+      const controlsBar = document.getElementById('controls-bar');
+
+      function activateFallback(reason) {
+        console.warn('Rive Fallback Activated:', reason);
+        if (canvas) canvas.style.display = 'none';
+        if (telemetryHud) telemetryHud.style.display = 'none';
+        if (controlsBar) controlsBar.style.display = 'none';
+        if (fallback) fallback.style.display = 'flex';
+      }
+
+      if (forceFallback) {
+        activateFallback('Forced via ?forceRiveFallback=1');
+        return;
+      }
+
+      if (!window.rive || !window.rive.Rive) {
+        activateFallback('Rive runtime unavailable');
+        return;
+      }
+
+      // 2. Reduced Motion Configuration
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        document.documentElement.setAttribute('data-reduced-motion', 'true');
+      }
+
+      // 3. Initialize Rive Instance with State Machine
+      let rInstance = null;
+      let bumpTrigger = null;
+
+      try {
+        canvas.width = canvas.parentElement.clientWidth || 500;
+        canvas.height = canvas.parentElement.clientHeight || 450;
+
+        rInstance = new window.rive.Rive({
+          src: './assets/vehicles.riv',
+          canvas: canvas,
+          autoplay: !prefersReducedMotion,
+          stateMachines: 'bumpy',
+          onLoad: () => {
+            rInstance.resizeDrawingSurfaceToCanvas();
+            console.log('Rive Asset vehicles.riv Loaded Successfully.');
+
+            const inputs = rInstance.stateMachineInputs('bumpy');
+            if (inputs && inputs.length > 0) {
+              bumpTrigger = inputs.find(i => i.name === 'bump');
+              console.log('State Machine Inputs Found:', inputs.map(i => i.name));
+            }
+          },
+          onStateChange: (event) => {
+            const stateNames = event.data || ['active'];
+            const hudState = document.getElementById('hud-state-val');
+            if (hudState) hudState.textContent = Array.isArray(stateNames) ? stateNames.join(', ') : stateNames;
+          },
+          onError: (err) => {
+            activateFallback('Rive runtime error: ' + err);
+          }
+        });
+      } catch (err) {
+        activateFallback('Rive init failed: ' + err.message);
+        return;
+      }
+
+      // 4. Interactive State Handlers (Application State -> Rive Mapping)
+      function setRestedState() {
+        document.getElementById('btn-state-idle').classList.add('active');
+        document.getElementById('btn-state-strained').classList.remove('active');
+        document.getElementById('dom-readiness-val').textContent = '78 / 100';
+        document.getElementById('dom-strain-val').textContent = '4.2 / 5.0';
+        const zone = document.getElementById('dom-zone-val');
+        zone.textContent = 'OPTIMAL';
+        zone.style.color = 'var(--accent-emerald)';
+      }
+
+      function setStrainedState() {
+        document.getElementById('btn-state-idle').classList.remove('active');
+        document.getElementById('btn-state-strained').classList.add('active');
+        document.getElementById('dom-readiness-val').textContent = '45 / 100';
+        document.getElementById('dom-strain-val').textContent = '8.9 / 10.0';
+        const zone = document.getElementById('dom-zone-val');
+        zone.textContent = 'STRAINED';
+        zone.style.color = 'var(--accent-amber)';
+        if (bumpTrigger) bumpTrigger.fire();
+      }
+
+      function triggerBump() {
+        if (bumpTrigger) {
+          bumpTrigger.fire();
+          console.log('Triggered bump input on Rive state machine');
+        }
+      }
+
+      document.getElementById('btn-state-idle').addEventListener('click', setRestedState);
+      document.getElementById('btn-state-strained').addEventListener('click', setStrainedState);
+      document.getElementById('btn-state-bump').addEventListener('click', triggerBump);
+      document.getElementById('btn-trigger-bump').addEventListener('click', triggerBump);
+
+      // 5. Visibility Throttling
+      document.addEventListener('visibilitychange', () => {
+        if (!rInstance) return;
+        if (document.hidden) {
+          rInstance.pause();
+        } else if (!prefersReducedMotion) {
+          rInstance.play();
+        }
+      });
+
+      // 6. Explicit Lifecycle Teardown Hook
+      window.disposeKinetixRive = function() {
+        if (rInstance) {
+          rInstance.cleanup();
+          rInstance = null;
+          console.log('KINETIX Rive instance cleaned up cleanly.');
+        }
+      };
+
+    })();
+  </script>
+
+</body>
+</html>

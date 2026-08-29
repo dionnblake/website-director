@@ -1,0 +1,36 @@
+[
+  {
+    "id": "team-01",
+    "name": "Elena Morrow",
+    "slug": "elena-morrow",
+    "role": "Principal Architect & Co-Founder",
+    "bio": "Over twenty years specializing in contextual civic architecture and monolithic stone structures.",
+    "status": "PUBLISHED",
+    "portrait": {
+      "src": "/assets/team/elena-morrow.webp",
+      "aspect_ratio": "4:3",
+      "alt_text": "Elena Morrow in the Zurich design studio"
+    },
+    "seo": {
+      "seo_title": "Elena Morrow, Principal | Morrow & Vale",
+      "seo_description": "Biography and architectural portfolio of Elena Morrow, co-founder of Morrow & Vale."
+    }
+  },
+  {
+    "id": "team-02",
+    "name": "Julian Vale",
+    "slug": "julian-vale",
+    "role": "Director of Industrial Design & Co-Founder",
+    "bio": "Pioneering tactile acoustic environments and chronometric workspace architectures.",
+    "status": "PUBLISHED",
+    "portrait": {
+      "src": "/assets/team/julian-vale.webp",
+      "aspect_ratio": "4:3",
+      "alt_text": "Julian Vale examining titanium structural joinery prototypes"
+    },
+    "seo": {
+      "seo_title": "Julian Vale, Director of Industrial Design | Morrow & Vale",
+      "seo_description": "Biography and design leadership profile of Julian Vale, co-founder of Morrow & Vale."
+    }
+  }
+]

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THALASSA  | Direction 03: The Acoustic Vector Radar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #020b0a;
+      color: #d1fae5;
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.5;
+      padding-bottom: 5rem;
+      overflow-x: hidden;
+    }
+    .fixture-banner {
+      background: #eab308;
+      color: #000;
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 0.4rem 0.5rem;
+      word-break: break-word;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    header {
+      border-bottom: 1px solid #064e3b;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #020b0a;
+    }
+    .radar-tag {
+      color: #10b981;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    nav a {
+      color: #047857;
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-right: 1.5rem;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: #10b981; }
+    .hero-split {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .radar-circle {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1;
+      border: 1px solid #10b981;
+      border-radius: 50%;
+      margin: 0 auto;
+      position: relative;
+      background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, rgba(2,11,10,0.8) 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .radar-sweep-beam {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 0;
+      right: 0;
+      background: linear-gradient(45deg, rgba(16,185,129,0.4) 0%, transparent 60%);
+      transform-origin: 0% 100%;
+      animation: radarRotate 4s infinite linear;
+    }
+    @keyframes radarRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .crosshair-h { position: absolute; width: 100%; height: 1px; background: #064e3b; }
+    .crosshair-v { position: absolute; height: 100%; width: 1px; background: #064e3b; }
+    .inner-circle { width: 60%; height: 60%; border: 1px dashed #047857; border-radius: 50%; }
+    .pulse-target {
+      width: 12px;
+      height: 12px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #10b981;
+      position: absolute;
+      top: 35%;
+      left: 60%;
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+    .radar-data {
+      position: absolute;
+      bottom: 1.5rem;
+      font-size: 0.75rem;
+      color: #10b981;
+      text-align: center;
+      z-index: 2;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      word-break: break-word;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .desc {
+      font-size: 1rem;
+      color: #6ee7b7;
+      margin-bottom: 2rem;
+    }
+    .vector-btn {
+      background: #10b981;
+      color: #020b0a;
+      border: none;
+      padding: 1rem 2rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .matrix-section {
+      max-width: 1300px;
+      margin: 3rem auto;
+      border-top: 1px solid #064e3b;
+      padding: 4rem 2rem;
+    }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .matrix-box {
+      border: 1px solid #064e3b;
+      background: #031713;
+      padding: 1.5rem;
+    }
+    .matrix-box h4 {
+      font-size: 0.75rem;
+      color: #047857;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .matrix-box .val {
+      font-size: 1.3rem;
+      color: #10b981;
+      font-weight: bold;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .radar-sweep-beam {
+        animation: none;
+        display: none;
+      }
+      .pulse-target {
+        animation: none;
+        transform: none;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    @media (max-width: 900px) {
+      .hero-split { grid-template-columns: 1fr; }
+      .matrix-grid { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fixture-banner">SYNTHETIC CERTIFICATION FIXTURE — NOT A REAL COMPANY</div>
+  <header>
+    <div class="radar-tag">[THALASSA AKOUSTIC RADAR]</div>
+    <nav>
+      <a href="#vector">Pulse Vector</a>
+      <a href="#matrix">Telemetry Matrix</a>
+      <a href="#transponder">Transponders</a>
+      </upper>
+  </header>
+  <main>
+    <section class="hero-split">
+      <div>
+        <p style="color: #10b981; font-size: 0.75rem; margin-bottom: 1rem;">SYS.INIT // ACOUSTIC BEAM AZIMUTH 284.5</p>
+        <h1>Autonomous Sub-Surface Acoustic Positioning at Hadal Extremes.</h1>
+        <p class="desc">Multi-channel synthetic aperture acoustics providing sub-meter spatial positioning through dense simulated deep-sea thermoclines up to 11,000 meters.</p>
+        <button class="vector-btn">Initialize Sensor Uplink</button>
+      </div>
+      <div class="radar-circle">
+        <div class="radar-sweep-beam"></div>
+        <div class="crosshair-h"></div>
+        <div class="crosshair-v"></div>
+        <div class="inner-circle"></div>
+        <div class="pulse-target"></div>
+        <div class="radar-data">RANGE: 18.42 KM // SNR: +24.8 dB</div>
+      </div>
+    </section>
+    <section class="matrix-section" id="matrix">
+      <h2 style="font-size: 1.5rem; color: #ffffff; text-transform: uppercase;">Vector Telemetry Status Matrix (Synthetic Fixture)</h2>
+      <div class="matrix-grid">
+        <div class="matrix-box"><h4>Carrier Wave</h4><div class="val">14.24 kHz</div></div>
+        <div class="matrix-box"><h4>Doppler Offset</h4><div class="val">-0.082 zz</div></div>
+        <div class="matrix-box"><h4>Depth Sensor</h4><div class="val">10.918 m</div></div>
+        <div class="matrix-box"><h4>Acoustic Slant</h4><div class="val">18.42 km</div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

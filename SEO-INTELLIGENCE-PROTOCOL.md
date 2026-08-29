@@ -53,7 +53,10 @@ Website Director interprets the evidence returned by whichever capability answer
 
 ---
 
-## 4. Required Business Context (Precondition for Any Research)
+## 4. Required Business Context & Gate Precondition (V1.8)
+
+**Precondition for Any Research:**
+Under Website Director V1.8, Phase 2.5 SEO Intelligence must NEVER execute before `site-profile.json` $\rightarrow$ `creative_intent.confirmed = true` (or an explicit grandfathered legacy baseline). SEO Intelligence cannot independently bypass `[CREATIVE_INTENT_CONFIRMED]`.
 
 Before any keyword research, establish and record in `templates/seo-business-context.md`:
 
@@ -66,7 +69,7 @@ TARGET LOCATION / COUNTRY = LANGUAGE =
 KNOWN COMPETITORS =         EXISTING WEBSITE =
 ```
 
-Most of this is already captured in `templates/project-brief.md` (Discovery Stage 1) and `templates/positioning.md` (Discovery Stage 2) — do not re-interview the owner for information already on file; carry it forward into `seo-business-context.md`. **Do not run generic keyword research without this context.** Search volume without business relevance is not useful evidence.
+Most of this is derived directly from `templates/creative-intent-contract.md`, `templates/project-brief.md`, and `templates/positioning.md` — do not re-interview the owner for information already on file; carry it forward into `seo-business-context.md`. **Do not run generic keyword research without confirmed creative intent and business context.** Search volume without business relevance is not useful evidence.
 
 ---
 

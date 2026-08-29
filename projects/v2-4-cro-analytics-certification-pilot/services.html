@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisory Protocols | Northstar Performance Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-mark" data-nav-track="header_logo">
+        <span></span> NORTHSTAR LAB
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" data-nav-track="header_nav">Overview</a></li>
+          <li><a href="services.html" class="active" data-nav-track="header_nav">Protocols</a></li>
+          <li><a href="case-study.html" data-nav-track="header_nav">Case Evidence</a></li>
+          <li><a href="consultation.html" class="nav-cta" data-nav-track="header_cta">Assessment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="badge">Clinical Frameworks</div>
+      <h1>Tailored performance advisory for managing partners & executives.</h1>
+      <p class="lead">Select the diagnostic depth calibrated to your executive cadence and strategic mandate.</p>
+    </section>
+
+    <section class="grid-3" id="pricing-tiers">
+      <div class="card">
+        <div class="card-meta">TIER 1 &bull; 60-DAY ENGAGEMENT</div>
+        <h3>Executive Diagnostic Baseline</h3>
+        <p>Comprehensive biological telemetry, sleep mapping, and acute cognitive stress benchmarking with actionable protocol blueprint.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TIER 2 &bull; ANNUAL MANDATE</div>
+        <h3>Continuous Resilience Retainer</h3>
+        <p>Year-round closed-loop biometric tracking, quarterly intervention calibration, and 24/7 dedicated medical performance advisory.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TIER 3 &bull; ENTERPRISE BOARD</div>
+        <h3>Executive Committee Cadre</h3>
+        <p>Synchronized resilience architecture for leadership teams executing critical M&A, restructuring, or global IPO events.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Northstar Performance Lab. Confidential & Proprietary Advisory Architecture.</p>
+  </footer>
+
+  <script>
+    // Track pricing_view micro-conversion when tiers enter viewport
+    document.addEventListener('DOMContentLoaded', function() {
+      const pricingSection = document.getElementById('pricing-tiers');
+      if (pricingSection && window.trackEvent) {
+        window.trackEvent('pricing_view', {
+          component_id: 'pricing_tiers',
+          viewport_ratio: 1.0
+        });
+      }
+    });
+  </script>
+</body>
+</html>

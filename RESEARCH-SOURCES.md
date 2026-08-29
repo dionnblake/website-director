@@ -6,7 +6,7 @@
 
 ---
 
-## 1. The Four Channels
+## 1. The Visual Intelligence Acquisition Channels
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
@@ -14,13 +14,15 @@
 ├────────────────────────────────────────────────────────────────┤
 │ CHANNEL 2: LANDBOOK             — what should we study?         │
 ├────────────────────────────────────────────────────────────────┤
+│ CHANNEL 2.5: AWWWARDS SHOWCASE  — what is the world-class bar?  │
+├────────────────────────────────────────────────────────────────┤
 │ CHANNEL 3: CROSS-INDUSTRY       — who expresses this better?    │
 ├────────────────────────────────────────────────────────────────┤
 │ CHANNEL 4: JCODESMORE RECON     — how exactly does it work?     │
 └────────────────────────────────────────────────────────────────┘
 ```
 
-No channel is optional by default. A channel may be skipped only under the bounded exception defined in `VISUAL-RESEARCH-PROTOCOL.md` §5, and the skip must be recorded in `site-profile.json` → `research.exception`, never applied silently.
+No channel is optional by default for ambitious projects. Awwwards research is mandatory for `CREATIVE_AMBITION = SHOWCASE` per `AWWWARDS-SHOWCASE-INTELLIGENCE.md`. A channel may be skipped only under the bounded exception defined in `VISUAL-RESEARCH-PROTOCOL.md` §5, and the skip must be recorded in `site-profile.json` → `research.exception`, never applied silently.
 
 ---
 
@@ -53,7 +55,20 @@ No channel is optional by default. A channel may be skipped only under the bound
 
 ---
 
+## 3.5. Channel 2.5: Awwwards Showcase Intelligence
+
+**What it is:** Formal external inspiration, craft benchmarking, and dimensional reference extraction from [Awwwards](https://www.awwwards.com/) for appropriately ambitious projects (`PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`).
+
+**Role in the pipeline:** Awwwards answers `WHAT IS THE WORLD-CLASS BENCHMARK?` — it provides dimensional reference bars across typography, layout, interaction, motion, and mobile execution.
+
+**Hard rule:** Awwwards is a quality bar, not a template source or permission to copy. It activates as `REQUIRED` for `CREATIVE_AMBITION = SHOWCASE` per `AWWWARDS-SHOWCASE-INTELLIGENCE.md`.
+
+**Output:** Feeds `templates/inspiration-board.md` and dimensional reference bars in `templates/visual-prototype-review.md`.
+
+---
+
 ## 4. Channel 3: Cross-Industry Discovery
+
 
 **Purpose:** Prevent Website Director from being trapped inside the visual conventions of the client's own industry when an adjacent or aspirational sector expresses the desired brand quality better.
 
