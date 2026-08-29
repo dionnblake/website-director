@@ -1,0 +1,10 @@
+{
+  "route": "/l-pii",
+  "title": "Scenario L",
+  "analytics_events": [
+    { "name": "page_view", "params": { "page_path": "/l-pii" }, "count": 1 },
+    { "name": "newsletter_signup", "params": { "email": "visitor@example.com", "list": "weekly" }, "count": 1 }
+  ],
+  "layout": { "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 } },
+  "render_signature": { "1440": "l-1440" }
+}

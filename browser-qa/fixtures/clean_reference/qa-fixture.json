@@ -1,0 +1,37 @@
+{
+  "route": "/clean",
+  "title": "Clean reference",
+  "https": true,
+  "network": [
+    { "url": "/assets/web/hero.avif", "status": 200, "resource_type": "image", "ok": true }
+  ],
+  "nav": { "open_after_toggle": true, "closed_after_route_change": true },
+  "keyboard": { "primary_nav_reachable": true, "visible_focus_ring": true, "menu_toggle_operable": true,
+                "no_keyboard_trap": true, "primary_cta_reachable": true, "dialog_escape_closes": true },
+  "forms": [
+    { "form_ref": "contact", "fields_have_labels": true, "invalid_shows_error": true,
+      "duplicate_submit_prevented": true, "keyboard_submittable": true,
+      "server_reject": { "success_state": false, "success_event": false, "error_visible": true } }
+  ],
+  "analytics_events": [
+    { "name": "page_view", "params": { "page_path": "/clean" }, "count": 1 }
+  ],
+  "security": { "third_party_scripts": [], "analytics_active_before_consent": false,
+                "consent_reject_reachable": true, "disclosure_routes_resolve": true,
+                "response_headers": { "Content-Security-Policy": "default-src 'self'",
+                                      "X-Content-Type-Options": "nosniff" } },
+  "perf": { "lcp_ms": 1700, "cls": 0.02, "inp_ms": 90, "measurement_kind": "SYNTHETIC" },
+  "reduced_motion": { "hidden_content": [], "render_signature": { "1440": "clean-1440-rm", "390": "clean-390-rm", "768": "clean-768-rm" } },
+  "layout": {
+    "360": { "client_width": 360, "document_scroll_width": 360, "body_width": 360 },
+    "390": { "client_width": 390, "document_scroll_width": 390, "body_width": 390 },
+    "768": { "client_width": 768, "document_scroll_width": 768, "body_width": 768 },
+    "1024": { "client_width": 1024, "document_scroll_width": 1024, "body_width": 1024 },
+    "1280": { "client_width": 1280, "document_scroll_width": 1280, "body_width": 1280 },
+    "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 }
+  },
+  "render_signature": {
+    "360": "clean-360", "390": "clean-390", "768": "clean-768",
+    "1024": "clean-1024", "1280": "clean-1280", "1440": "clean-1440"
+  }
+}

@@ -1,6 +1,6 @@
 # IMPLEMENTATION CONTRACT: THE DESIGN-TO-CODE GOVERNANCE PROTOCOL
 
-> **Version:** 1.4.0
+> **Version:** 1.5.0
 > **Status:** Legally Binding Execution Standard for Coding Agents
 > **Rule:** Separation of Design Authority from Implementation Execution.
 
@@ -270,6 +270,27 @@ If the implementation conflicts with the approved security/privacy specification
 
 ---
 
+## 2.7 Builder Testability & Browser QA Requirements (V2.8)
+
+The build is verified in Phase 10.5 by machine-executed browser tests (`BROWSER-REGRESSION-QA-PROTOCOL.md`). The coding agent must keep the build testable and must never defeat that verification.
+
+### 2.7.1 Testable Surface
+- **Expose stable selectors where they are needed for verification** — a stable `id`, a semantic role, or a `data-qa="…"` hook on: the primary CTA, each form and its success/error regions, the mobile nav toggle and panel, dialogs, and any route-transition container. Prefer semantics and roles; use `data-qa-*` only where semantics are insufficient.
+- **Test-only semantics must not leak into user-facing UI** — no `data-qa-*` attribute changes layout, style, or copy; no visible "test mode" affordance ships.
+- Where the plan requires a deterministic mode for dynamic content (frozen clock, pinned rotation), gate it behind a build/query flag that is inert in production.
+
+### 2.7.2 Do Not Defeat QA
+- **Do not disable, skip, or comment out a browser QA check to ship.**
+- **Do not delete a failing test** or narrow its assertions to pass.
+- **Do not silently update a visual baseline.** A diff is reported; a baseline change requires the owner authorisation recorded in `browser-qa-manifest.json`.
+- **Do not add a broad console/network ignore.** Every ignore is a justified, owned, expiring entry in the manifest. An empty ignore list is the default.
+- **Do not mask a broken region** (page-wide masks, `overflow-x: hidden` over real overflow, hiding a failing element). Fix the implementation or escalate the specification conflict.
+
+### 2.7.3 Conflict Escalation
+If a browser QA failure can only be resolved by changing locked IA, copy, design system, or motion direction, the coding agent **HALTS and escalates** with an Owner Change Request. Browser QA authorises only implementation repairs that leave locked design intent intact.
+
+---
+
 ---
 
 ## 3. Strict Prohibitions During Implementation
@@ -305,6 +326,11 @@ Once all locks are engaged and readiness gates are achieved, the coding agent is
 27. **Suppressed Disclosure:** No hiding, shrinking, or styling-away of a required affiliate, sponsorship, or privacy disclosure to protect visual composition.
 28. **Fabricated Compliance Claims:** No `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED` in code, comments, documentation, commit messages, or UI; no unevidenced compliance badge, seal, or certification mark.
 29. **Development Artifacts in Production:** No debug endpoints, verbose logging, seeded test data, mock services, or development credentials shipped to production.
+30. **Disabled or Deleted QA:** No disabling, skipping, or removing a Phase 10.5 browser QA check, and no narrowing an assertion, to make a build pass.
+31. **Silent Baseline Updates:** No overwriting a locked visual-regression baseline because a diff appeared. A baseline change requires the owner authorisation recorded in `browser-qa-manifest.json`.
+32. **Broad QA Ignores:** No blanket console or network ignore. Every ignore is a justified, owned, expiring entry in the manifest.
+33. **Masked Defects:** No page-wide screenshot masks, no `overflow-x: hidden` over genuine overflow, no hiding a failing element to green a check.
+34. **Missing Test Hooks:** No shipping a primary CTA, form, mobile-nav control, dialog, or route-transition container with no stable selector or semantic role for verification — and no test-only attribute that alters user-facing layout, style, or copy.
 
 ---
 
@@ -356,4 +382,6 @@ Before submitting code for review, the coding agent must verify:
 - [ ] Phase 11.5 Website Gauntlet pass achieved `GAUNTLET_PASS` (or owner-accepted `GAUNTLET_CAP_REACHED` / exception).
 - [ ] Every security/privacy requirement in `templates/security-privacy-review.md` §21 is implemented, or an escalation was raised. Full verification detail: `PRODUCTION-CHECKLIST.md` §5.3.
 - [ ] Zero secrets in the client bundle or source control; zero undeclared third-party scripts, cookies, or storage keys in the build.
+- [ ] Phase 10.5 Browser & Regression QA passed (`browser_qa.complete = true`), or a recorded `blocked_reason` / `exception`. Full detail: `PRODUCTION-CHECKLIST.md` §5.4 and `BROWSER-REGRESSION-QA-PROTOCOL.md`.
+- [ ] Every primary CTA, form, mobile-nav control, dialog, and route-transition container carries a stable selector or semantic role for verification; no test-only attribute alters user-facing UI.
 

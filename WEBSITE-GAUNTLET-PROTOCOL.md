@@ -304,6 +304,20 @@ Security, privacy, consent, and disclosure quality is evaluated by **enriching t
 
 ---
 
+### 4.16 Deterministic Browser QA Entry Precondition (V2.8 — No New Critic)
+
+Website Director V2.8 adds **Phase 10.5 Automated Browser & Regression QA** (`BROWSER-REGRESSION-QA-PROTOCOL.md`), a machine-executed verification phase that runs *before* the Gauntlet.
+
+```
+PHASE 10.5  DETERMINISTIC BROWSER QA  →  [BROWSER_QA_PASS]  →  PHASE 11.5  QUALITATIVE GAUNTLET
+```
+
+- **Entry precondition:** Gauntlet STEP 1 (Capture Artifact State) does not begin until `site-profile.json` → `browser_qa.complete` is `true` (or a recorded `browser_qa.blocked_reason` / `browser_qa.exception`). The Gauntlet does not spend adversarial-critic cycles on a build with broken navigation, JavaScript exceptions, missing assets, failed forms, or obvious responsive overflow — those are deterministic and are Phase 10.5's job.
+- **No new critic, no new state machine.** Browser QA is an upstream phase, not a Gauntlet lens. No critic reads or writes `browser_qa{}`; findings from Phase 10.5 flow through `browser_qa{}`, findings from Phase 11.5 flow through `gauntlet{}`. The distinction is permanent: **Browser QA answers "did it behave as specified?"; the Gauntlet answers "is it good enough?"**
+- The Craft, Motion, and Accessibility critics may *reference* the Phase 10.5 evidence manifest (screenshots, reduced-motion captures) as inputs, but they never re-run browser assertions or re-derive their own pass/fail on responsive overflow, console errors, broken assets, or form integrity — those verdicts are owned by Phase 10.5.
+
+---
+
 ## 5. Conversion Context & Visitor Psychology
 
 The Website Gauntlet grounds its conversion and trust evaluations in the project's commercial objectives. These fields are captured during Discovery / Positioning and recorded in `site-profile.json`:

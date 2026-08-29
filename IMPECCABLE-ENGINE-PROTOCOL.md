@@ -70,15 +70,38 @@ To preserve analytical honesty, findings produced by Website Director must expli
 ├───────────────────────────┼────────────────────────────────────────────────────────┤
 │ 4. `VISUAL_COMPARISON`    │ Side-by-side rendering comparison against an approved  │
 │                           │ Reference Bar on an assigned dimension.                │
+├───────────────────────────┼────────────────────────────────────────────────────────┤
+│ 5. `BROWSER_EXECUTED`     │ Machine-run assertion against a live page in a real    │
+│    (V2.8)                 │ browser: actual horizontal overflow at a viewport,     │
+│                           │ runtime console/network errors, an event that fired,   │
+│                           │ a form's real success/failure state, reduced-motion    │
+│                           │ behaviour as rendered. Owned by Phase 10.5             │
+│                           │ (`BROWSER-REGRESSION-QA-PROTOCOL.md`).                 │
 └───────────────────────────┴────────────────────────────────────────────────────────┘
 ```
+
+### 2.1 Static vs. Runtime Rule Ownership (V2.8)
+
+Website Director keeps **one owner for each rule**. Impeccable owns the *static* half; Browser QA owns the *runtime-observable* half of the same concern. Neither re-implements the other.
+
+| Concern | Static owner (Impeccable, `DETERMINISTIC`/`HEURISTIC`) | Runtime owner (Browser QA, `BROWSER_EXECUTED`) |
+| :--- | :--- | :--- |
+| Layout-triggering transition | `transition: all` / `width` / `top` in a stylesheet | — (compositor perf is static-detectable) |
+| Horizontal overflow | — | `documentElement.scrollWidth > clientWidth` at a live viewport |
+| Bounce easing | banned `cubic-bezier` string in CSS | — |
+| Reduced motion | `@media (prefers-reduced-motion)` block present | content still meaningful *as rendered* under `reduce` |
+| Console errors | — | uncaught errors at runtime |
+| AI-slop structural patterns | markup/CSS heuristics | — |
+| Touch target size | declared box `< 44px` in CSS | computed box `< 44px` at a mobile viewport |
+
+Browser QA consumes Impeccable's static findings via the shared `FINDING` schema below; it adds no duplicate static detector.
 
 ### Standardized Finding Schema:
 Every finding recorded in QA reviews and Gauntlet reports uses this structure:
 ```text
 FINDING_ID:    [UNIQUE-ID, e.g., DET-001, HEUR-002, CRIT-003]
 SOURCE:        [IMPECCABLE_DETECTOR | GAUNTLET_CRITIC | QA_RUBRIC]
-METHOD:        [DETERMINISTIC | HEURISTIC | LLM_CRITIQUE | VISUAL_COMPARISON]
+METHOD:        [DETERMINISTIC | HEURISTIC | LLM_CRITIQUE | VISUAL_COMPARISON | BROWSER_EXECUTED]
 RULE:          [e.g., skill-color-verify-contrast / skill-ban-layout-transition]
 LOCATION:      [File path, selector, line numbers]
 SEVERITY:      [CRITICAL | MAJOR | MINOR]
@@ -203,4 +226,5 @@ Impeccable's context artifacts map seamlessly into Website Director's single sou
 
 Impeccable supports live browser overlay and CDP inspection tools. For Website Director:
 - **Headless & Static Inspection:** Fully integrated via deterministic AST/regex scans and screenshot artifact review.
+- **Ephemeral Browser Automation (V2.8):** Phase 10.5 Browser & Regression QA (`BROWSER-REGRESSION-QA-PROTOCOL.md`) launches a real browser via a replaceable `BROWSER_QA_ENGINE`, runs the plan, and tears down every context, child process, server, and profile in `stop()`. This is a per-run tool, not a daemon.
 - **Persistent Live Browser Daemons:** **`REJECTED_FOR_NOW`**. Website Director does not launch background browser servers or persistent daemons, preserving runtime portability and resource governance across all agent environments.

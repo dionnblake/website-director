@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario E — server-rejected form</title>
+<main>
+  <h1>Failed form submission scenario</h1>
+  <form id="contact" method="post" action="/api/contact">
+    <label for="name">Name</label><input id="name" name="name" required>
+    <label for="email">Email</label><input id="email" name="email" type="email" required>
+    <button type="submit">Send enquiry</button>
+    <p role="alert" data-qa="form-error" hidden>Something went wrong. Please try again.</p>
+    <p data-qa="form-success" hidden>Thanks — we'll be in touch.</p>
+  </form>
+  <a class="primary-cta" data-qa="primary-cta" href="#body">Learn more</a>
+</main>

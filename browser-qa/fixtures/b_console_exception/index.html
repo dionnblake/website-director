@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario B — console exception</title>
+<main>
+  <h1>Console exception scenario</h1>
+  <a class="primary-cta" data-qa="primary-cta" href="/contact">Start a project</a>
+</main>
+<script>
+  // Deliberate uncaught error for the negative control.
+  throw new Error("scenario B: uncaught application error");
+</script>

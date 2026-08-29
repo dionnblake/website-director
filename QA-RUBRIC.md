@@ -6,6 +6,7 @@
 > **Rule:** Every review must identify specific areas for refinement, even on scores $\ge 95$.  
 > **V1.1 Note:** The 100-point matrix below and its scoring remain exactly as validated in V1, so scores stay comparable across V1 and V1.1 projects. §5 adds V1.1-specific qualitative dimensions reported *alongside* the 100-point score — they are never folded into it.  
 > **V1.3 Note:** Phase 11 Design QA outputs feed directly into Phase 11.5 (Website Gauntlet Subsystem), which subjects candidate builds to independent, fresh-context adversarial critics and dimensional Reference Bars.
+> **V2.8 Note:** Phase 10.5 (Automated Browser & Regression QA, `BROWSER-REGRESSION-QA-PROTOCOL.md`) runs *before* this audit. Machine-verified defects — horizontal overflow, console/network errors, broken assets, form failure/success behaviour, measurement events, reduced motion, route integrity — are caught and evidenced there. This audit references the Phase 10.5 evidence manifest and does not re-derive those verdicts.
 
 ---
 
@@ -29,7 +30,7 @@
 
 ## 1.1 Deterministic Pre-Scan Protocol (Impeccable Quality Engine)
 
-Before scoring the 100-point matrix or conducting qualitative critique, execute the deterministic scan suite from `IMPECCABLE-ENGINE-PROTOCOL.md` §3. Record findings using the strict 4-method taxonomy (`DETERMINISTIC`, `HEURISTIC`, `LLM_CRITIQUE`, `VISUAL_COMPARISON`):
+Before scoring the 100-point matrix or conducting qualitative critique, execute the deterministic scan suite from `IMPECCABLE-ENGINE-PROTOCOL.md` §3, and confirm Phase 10.5 Browser & Regression QA has passed. Record findings using the method taxonomy (`DETERMINISTIC`, `HEURISTIC`, `LLM_CRITIQUE`, `VISUAL_COMPARISON`, `BROWSER_EXECUTED`):
 
 - **Deterministic Contrast Audit:** Mathematically verify that all text tokens satisfy WCAG AA ($\ge 4.5:1$ body, $\ge 3:1$ large). Flag any `gray-on-color` muddy contrast failures.
 - **Transition Performance Audit:** Scan stylesheets for illegal layout-triggering properties (`transition: all`, `transition: width`, `transition: height`, `transition: margin`, `transition: top`).

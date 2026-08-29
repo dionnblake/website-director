@@ -79,7 +79,13 @@ check('not an owner lock' in protocol, 'Protocol states [SECURITY_PRIVACY_READY]
 # ---------------------------------------------------------------------------
 profile = json.loads(read('templates', 'site-profile.json'))
 
-check(profile.get('schema_version') == '2.7.0', 'site-profile.json schema_version is 2.7.0')
+def _ver_at_least(s, lo=(2, 7, 0)):
+    m = re.search(r'(\d+)\.(\d+)\.(\d+)', s or '')
+    return bool(m) and tuple(int(x) for x in m.groups()) >= lo
+
+
+check(_ver_at_least(profile.get('schema_version')),
+      'site-profile.json schema_version is >= 2.7.0 (V2.7 is additive to later versions)')
 check('security_privacy' in profile, 'site-profile.json contains security_privacy{}')
 
 sp = profile.get('security_privacy', {})
@@ -243,7 +249,10 @@ check('5.14 Single-Source-of-Truth Rule for `security_privacy` State' in skill,
       'SKILL.md documents the security_privacy source-of-truth rule')
 check('security-privacy-review.md' in skill, 'SKILL.md references the working template')
 check('Exactly 5 owner locks remain' in skill, 'SKILL.md restates the five-lock invariant')
-check('> **Version:** 2.7.0' in skill, 'SKILL.md version is 2.7.0')
+_sm = re.search(r'^> \*\*Version:\*\* (\d+\.\d+\.\d+)', skill, re.M)
+check(_sm and _ver_at_least(_sm.group(1)), 'SKILL.md version is >= 2.7.0')
+check('PHASE 6.75' in skill and '[SECURITY_PRIVACY_READY]' in skill,
+      'SKILL.md still declares the V2.7 phase and gate')
 
 contract = read('IMPLEMENTATION-CONTRACT.md')
 check('## 2.6 Builder Security & Privacy Requirements (V2.7)' in contract,
@@ -297,9 +306,10 @@ check('security-privacy-review.md' in readme, 'README repository structure lists
 agents = read('AGENTS.md')
 check('Security, Privacy & Compliance Governance (V2.7 — Additive)' in agents,
       'AGENTS.md adds V2.7 governance rules')
-check('WEBSITE_DIRECTOR_V2_7_SECURITY_PRIVACY_COMPLIANCE_INTELLIGENCE_CERTIFIED' in agents,
-      'AGENTS.md records the V2.7 system status')
-check('**Version:** 2.7.0' in agents, 'AGENTS.md version is 2.7.0')
+check('V2.7 integrates the Security, Privacy & Compliance Intelligence Subsystem' in agents,
+      'AGENTS.md version history still records the V2.7 subsystem')
+check(_ver_at_least(re.search(r'\*\*Version:\*\* (\d+\.\d+\.\d+)', agents).group(1)),
+      'AGENTS.md version is >= 2.7.0')
 
 # ---------------------------------------------------------------------------
 # 10. No secrets introduced by this upgrade

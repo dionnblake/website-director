@@ -1,0 +1,21 @@
+{
+  "$comment": "Cross-browser policy (BROWSER-REGRESSION-QA-PROTOCOL.md sec 36). Do not claim 'cross-browser verified' after testing only Chromium.",
+  "primary_smoke": {
+    "browsers": ["chromium"],
+    "rationale": "Chromium alone is acceptable for the required smoke matrix on standard builds."
+  },
+  "release_critical_subset": {
+    "browsers": ["chromium", "firefox", "webkit"],
+    "applies_to": "The interaction subset (navigation, forms, consent UI, route transitions, reduced motion) before production pre-flight.",
+    "rationale": "WebKit and Gecko diverge on focus, form autofill, View Transitions, and prefers-reduced-motion behaviour."
+  },
+  "project_override": {
+    "browsers": [],
+    "rationale": "A project may require an explicit browser set (e.g. an internal tool that only ships to Chromium). Record the reason here."
+  },
+  "engine_selection": {
+    "default": "playwright",
+    "spec_repo_self_validation": "simulation",
+    "note": "The engine is BROWSER_QA_ENGINE and is replaceable. simulation is deterministic and dependency-free; playwright is the reference real-browser adapter. An unavailable engine yields BLOCKED with a reason, never a PASS."
+  }
+}

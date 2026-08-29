@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario F — reduced motion</title>
+<style>
+  .reveal { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(24px); animation: rise .6s forwards; }
+  }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+</style>
+<main>
+  <h1 class="reveal">Reduced motion keeps content visible</h1>
+  <p class="reveal">Scroll-driven copy that remains readable when motion is reduced.</p>
+  <a class="primary-cta reveal" data-qa="primary-cta" href="/contact">Start a project</a>
+</main>

@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.6.0  
+> **Version:** 2.8.0  
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -59,6 +59,20 @@ V2.7 closes the **production risk governance** gap. Website Director could alrea
 - **Privacy Beats Conversion:** Where they conflict, consent beats silent tracking, disclosure beats a cleaner layout, and data minimization beats speculative marketing fields. Approved locks still beat both and require an owner change request.
 - **Three Distinct Verification States:** `security_privacy.complete` (requirements specified) ≠ `implementation_verified` (controls proven in the build) ≠ `production_verified` (proven on the deployed surface). Planning is never reported as production safety.
 - **Reconciles, Does Not Duplicate:** `CONVERSION-ANALYTICS-PROTOCOL.md` §15 now delegates consent and privacy determination to this single authority. `measurement{}` stays canonical for measurement. No new Gauntlet critic and no second security state machine were created.
+
+### What V2.8 Adds (Browser & Regression QA)
+V2.8 closes the **verification** gap. Website Director could already design, measure, secure, and refine — but "the agent checked the browser" was still an assertion. V2.8 makes it evidence.
+
+- **Phase 10.5 (`BROWSER-REGRESSION-QA-PROTOCOL.md`):** Runs after the Phase 10 build and before the Phase 11 audit. `REQUIREMENT → MACHINE-EXECUTED BROWSER TEST → EVIDENCE ARTIFACT → PASS / FAIL / FLAKY / BLOCKED / NOT_APPLICABLE → REGRESSION BASELINE`.
+- **Replaceable engine, canonical policy:** the `browser-qa/` harness ships a `playwright` real-browser engine and a dependency-free deterministic `simulation` engine behind one `BrowserQAEngine.observe()` contract. Puppeteer/CDP or Selenium can be added without touching the policy.
+- **Canonical viewport matrix:** small mobile / standard mobile / tablet / laptop / desktop, with a required smoke matrix and an extended regression matrix.
+- **Requirement-traced assertions:** every check traces to `LOCKED_SPEC`, `PRODUCTION_CHECKLIST`, `MEASUREMENT_PLAN`, `SECURITY_PRIVACY_REVIEW`, `MOTION_SPEC`, `PAGE_EXPERIENCE_SPEC`, or `BROWSER_QA_PLAN`. Real overflow is detected, not masked by `overflow-x: hidden`. A server-rejected form renders no success state and fires no success conversion event.
+- **Frozen Project Integrity Guard:** every run snapshots `projects/`; `FROZEN_FIXTURE_MUTATION = FAIL`, and a later restore never launders it into a PASS.
+- **Bounded flake policy:** fail-then-pass on retry is `FLAKY`, never `PASS`. An unavailable engine is `BLOCKED` with a reason, never a PASS.
+- **Local vs. production:** `browser_qa.complete` ≠ `implementation_verified` (real browser, local build) ≠ `production_verified` (real production URL). Localhost never sets `production_verified`.
+- **Visual regression with governance:** explicit baselines, no silent overwrite, narrow masks, deterministic fixtures for dynamic content; a diff is evidence of change, not automatically a defect.
+- **Feeds the Gauntlet, doesn't merge with it:** the qualitative Website Gauntlet no longer spends cycles on a build with broken navigation, JS exceptions, missing assets, or failed forms. No new Gauntlet critic and no second state machine.
+- **Repairs two pre-existing validation defects:** `tests/test_v2_5_client_handoff.py` no longer mutates frozen pilots (all mutable work runs in a temp copy under the integrity guard); `examples/test_runner.py` asserts framework invariants and the canonical `measurement{}` architecture instead of a frozen `schema_version == "2.4.0"` / `cro{}` literal, while still verifying the grandfathered V2.4 pilot as-is.
 
 ---
 
@@ -170,6 +184,7 @@ Implementation is strictly blocked until all five gates in `locks{}` evaluate to
 - **`SEO_COMPLETE` (Gate SEO):** Certifies that business context, keyword discovery, competitive SERP analysis, and keyword mapping have completed before Lock 2 and Lock 3 engage.
 - **`CONVERSION_MEASUREMENT_COMPLETE` (Gate Measurement):** Certifies that the business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution strategy, and verification plan are defined before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means production analytics were observed.
 - **`SECURITY_PRIVACY_READY` (Gate Security):** Certifies that risk classification, data inventory, data minimization, applicable technical safeguards, consent/privacy dependencies, required disclosures, escalations, and implementation requirements are specified before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means legal compliance is certified, implementation is verified, or the site is vulnerability-free.
+- **`BROWSER_QA_PASS` (Gate Browser):** Certifies that machine-executed browser tests ran against the built artifact and passed — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy, reduced motion, keyboard smoke, and visual regression — with frozen-project integrity intact. A verification gate, **not** a sixth owner lock. `browser_qa.complete` never means production (DNS, CDN, real TLS, production headers) was verified.
 - **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
 
 ---
@@ -186,6 +201,7 @@ website-director/
 ├── WEBSITE-GAUNTLET-PROTOCOL.md      # Website Gauntlet subsystem, critics, Reference Bars, lock protection (V1.3)
 ├── CONVERSION-ANALYTICS-PROTOCOL.md  # Conversion measurement, KPI architecture, event contracts, attribution, affiliate integrity (V2.6)
 ├── SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md # Risk classification, data inventory/minimization, secrets, form/auth/payment safeguards, headers, consent, disclosure, SECURITY_PRIVACY_READY gate (V2.7)
+├── BROWSER-REGRESSION-QA-PROTOCOL.md # Phase 10.5 machine-executed browser verification, viewport matrix, assertion catalogue, flake policy, frozen-project guard, BROWSER_QA_PASS gate (V2.8)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -209,6 +225,8 @@ website-director/
 │   ├── analytics-event-manifest.json # Machine-readable event contract manifest (V2.6)
 │   ├── security-privacy-review.md    # 25-section security, privacy & compliance review (V2.7)
 │   ├── security-privacy-register.json # Machine-readable data / third-party / storage register (V2.7)
+│   ├── browser-qa-plan.md            # Phase 10.5 browser & regression QA plan (V2.8)
+│   ├── browser-qa-manifest.json      # Machine-readable browser QA manifest consumed by browser-qa/runner.py (V2.8)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -225,11 +243,25 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.7.0)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.8.0)
+├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8)
+│   ├── runner.py                     # Manifest-driven orchestrator + evidence manifest emitter
+│   ├── engine/                       # Replaceable BROWSER_QA_ENGINE: playwright (real) + simulation (deterministic)
+│   ├── assertions/                   # Requirement-traced assertion catalogue
+│   ├── guards/                       # frozen_integrity_guard.py — protected-path snapshot/verify
+│   ├── config/                       # viewports.json · browser-policy.json · ignore-justifications.example.json
+│   └── fixtures/                     # Synthetic scenario pages for the negative-control validation
+├── tests/
+│   ├── test_v2_5_client_handoff.py   # V2.5 CMS/handoff (repaired: temp-copy isolation + integrity guard)
+│   ├── test_v2_5_1_signature_choreography.py
+│   ├── test_v2_7_security_privacy.py
+│   └── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
+    ├── test_runner.py                # V2.0-V2.7 protocol/template/pilot invariant harness (repaired under V2.8)
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
-    └── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
+    ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
+    └── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
 ```
 
 ---

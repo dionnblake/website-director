@@ -1,0 +1,7 @@
+{
+  "route": "/h-dynamic",
+  "title": "Scenario H",
+  "$comment": "render_signature is identical across runs because the fixture pins the clock and testimonial. A naive screenshot hash would differ every run and raise a false regression.",
+  "layout": { "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 } },
+  "render_signature": { "1440": "h-render-frozen-clock" }
+}

@@ -1,0 +1,12 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario E' — false success on server rejection</title>
+<main>
+  <h1>Broken form scenario</h1>
+  <form id="contact" method="post" action="/api/contact">
+    <label for="name">Name</label><input id="name" name="name" required>
+    <button type="submit">Send enquiry</button>
+    <p data-qa="form-success">Thanks — we'll be in touch.</p>
+  </form>
+  <a class="primary-cta" data-qa="primary-cta" href="#body">Learn more</a>
+</main>

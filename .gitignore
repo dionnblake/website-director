@@ -26,5 +26,18 @@ desktop.ini
 *.log
 scratch/
 
+# Browser & Regression QA (V2.8) — runtime artifacts only; policy/harness is tracked
+node_modules/
+.playwright/
+playwright-report/
+test-results/
+**/.chrome_test_profile/
+**/.pw-profile/
+browser-qa/evidence/*
+!browser-qa/evidence/README.md
+**/evidence/browser-qa/
+*.pw-trace.zip
+
+
 # Browser automation throwaway profiles
 .chrome_test_profile/

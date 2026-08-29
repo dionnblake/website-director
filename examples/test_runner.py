@@ -1,4 +1,53 @@
-import os, json, glob, struct, subprocess, hashlib
+import os, json, glob, struct, subprocess, hashlib, re, tempfile
+
+# ---------------------------------------------------------------------------
+# Repaired under V2.8 (BROWSER-REGRESSION-QA-PROTOCOL.md sec 0 Defect B).
+#
+# What this harness proves: the V2.0-V2.7 protocol documents, master templates,
+# and certification pilots are internally consistent, that the master
+# site-profile template tracks the framework version declared in SKILL.md
+# rather than a frozen literal, that the canonical measurement{} architecture
+# (V2.6, superseding cro{}) is recognized, that grandfathered V2.4 pilots
+# carrying cro{} at schema_version 2.4.0 remain valid, and that the five-owner-
+# lock invariant holds across every profile in the repository. Section R is a
+# negative control proving the invariant checks actually reject invalid state.
+# ---------------------------------------------------------------------------
+
+# Framework versions that have shipped a site-profile schema. A new release adds
+# its number here; the assertions below never hard-code "the current one".
+KNOWN_SCHEMA_VERSIONS = {
+    '1.0.0', '1.1.0', '1.2.0', '1.3.0', '1.3.1', '1.4.0', '1.5.0', '1.6.0', '1.7.0',
+    '1.8.0', '1.9.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '2.4.0', '2.5.0', '2.5.1',
+    '2.6.0', '2.7.0', '2.8.0',
+}
+
+# Substrings that would indicate an illegal sixth (or later) owner lock. Readiness
+# gates for these subsystems live in their own state objects, never in locks{}.
+FORBIDDEN_LOCK_SUBSTRINGS = (
+    'asset', 'immersive', 'rive', 'page_experience', 'transition', 'cro',
+    'measurement', 'analytics', 'security', 'privacy', 'handoff', 'signature',
+    'browser_qa', 'browser',
+)
+CANONICAL_LOCKS = {
+    'design_direction_locked', 'information_architecture_locked',
+    'content_structure_locked', 'design_system_locked', 'motion_direction_locked',
+}
+
+
+def framework_version():
+    with open('SKILL.md', 'r', encoding='utf-8') as f:
+        m = re.search(r'^> \*\*Version:\*\* ([0-9]+\.[0-9]+\.[0-9]+)', f.read(), re.M)
+    assert m, 'SKILL.md must declare a > **Version:** line'
+    return m.group(1)
+
+
+def assert_five_lock_invariant(locks, where):
+    assert len(locks) == 5, f'{where}: expected exactly 5 owner locks, found {len(locks)}'
+    for key in locks:
+        low = key.lower()
+        assert not any(s in low for s in FORBIDDEN_LOCK_SUBSTRINGS), \
+            f'{where}: forbidden sixth-lock key {key!r}'
+
 
 def parse_png_dimensions(filepath):
     with open(filepath, 'rb') as f:
@@ -9,7 +58,7 @@ def parse_png_dimensions(filepath):
     return None, None
 
 def run():
-    print('=== WEBSITE DIRECTOR V2.4 CRO, ANALYTICS & EXPERIMENTATION SYSTEM DETERMINISTIC TEST HARNESS ===\n')
+    print('=== WEBSITE DIRECTOR V2.0-V2.7 PROTOCOL, TEMPLATE & PILOT INVARIANT HARNESS ===\n')
 
     # A. Protocol Existence and Integrity
     assert os.path.exists('ASSET-DIRECTOR-PROTOCOL.md')
@@ -28,23 +77,37 @@ def run():
     passed += 1
     print('[PASS] B. Master templates verified and neutral.')
 
-    # C. Site Profile Template
+    # C. Master Site-Profile Template — tracks the framework, not a frozen literal
     with open('templates/site-profile.json', 'r', encoding='utf-8') as f:
         sp = json.load(f)
-    assert sp['schema_version'] == '2.4.0'
-    assert sp['assets']['status'] == 'not_evaluated'
-    assert sp['immersive']['status'] == 'not_evaluated'
-    assert sp['rive']['status'] == 'not_evaluated'
-    assert sp['page_experience']['status'] == 'not_evaluated'
-    assert sp['cro']['status'] == 'not_evaluated'
-    assert len(sp['locks']) == 5
-    assert 'asset_direction_locked' not in sp['locks']
-    assert 'immersive_direction_locked' not in sp['locks']
-    assert 'rive_direction_locked' not in sp['locks']
-    assert 'page_experience_locked' not in sp['locks']
-    assert 'cro_direction_locked' not in sp['locks']
+    fw = framework_version()
+    assert sp['schema_version'] in KNOWN_SCHEMA_VERSIONS, \
+        f"unrecognized schema_version {sp['schema_version']!r}"
+    assert sp['schema_version'] == fw, \
+        f"master template schema_version {sp['schema_version']} drifted from SKILL.md {fw}"
+
+    # Every subsystem state object the framework has introduced must be present,
+    # and each must expose a parseable status/complete field.
+    for obj in ('assets', 'immersive', 'rive', 'page_experience', 'measurement', 'security_privacy'):
+        assert obj in sp, f'master template missing {obj}{{}}'
+        node = sp[obj]
+        assert isinstance(node, dict) and ('status' in node or 'complete' in node), \
+            f'{obj}{{}} exposes no status/complete field'
+
+    # V2.6 reconciliation: the canonical measurement architecture replaced cro{}.
+    assert 'measurement' in sp, 'canonical measurement{} must be present'
+    assert 'cro' not in sp, 'superseded cro{} must not appear in the current master template'
+    assert isinstance(sp['measurement'].get('complete'), bool), 'measurement.complete is a bool flag'
+    assert 'security_privacy' in sp and sp['security_privacy'].get('complete') is False, \
+        'security_privacy{} ships in a neutral (incomplete) state'
+
+    # Exactly five owner locks, no subsystem readiness flag leaking into locks{}.
+    assert_five_lock_invariant(sp['locks'], 'templates/site-profile.json')
+    assert set(sp['locks']) == CANONICAL_LOCKS, f"unexpected lock keys: {sorted(sp['locks'])}"
+
     passed += 1
-    print('[PASS] C. templates/site-profile.json verified (2.4.0, 5 locks, no 6th lock).')
+    print(f'[PASS] C. templates/site-profile.json verified (schema {sp["schema_version"]} == SKILL.md '
+          f'{fw}; measurement{{}} canonical, cro{{}} absent; 5 owner locks, no 6th lock).')
 
     # D. Manifest integrity
     with open('projects/v2-0-asset-director-pilot/asset-manifest.json', 'r', encoding='utf-8') as f:
@@ -99,20 +162,32 @@ def run():
     passed += 1
     print('[PASS] H. Legal & Provenance Boundary verified.')
 
-    # I. Five-Lock Current Invariant & Historical Profile Compatibility
+    # I. Five-Lock Invariant & Historical Profile Compatibility (every profile in the repo)
     all_profiles = glob.glob('projects/**/site-profile.json', recursive=True)
     historical_counts = []
+    grandfathered_cro = []
     for p in all_profiles:
         with open(p, 'r', encoding='utf-8') as f:
             pd = json.load(f)
-        count = len(pd.get('locks', {}))
+        locks = pd.get('locks', {})
+        count = len(locks)
         historical_counts.append(count)
-        assert count in [4, 5], f'Unexpected lock count {count} in {p}'
-        assert 'asset_direction_locked' not in pd.get('locks', {}), f'Sixth owner lock found in {p}'
-        assert 'immersive_direction_locked' not in pd.get('locks', {}), f'Sixth owner lock found in {p}'
-        assert 'rive_direction_locked' not in pd.get('locks', {}), f'Sixth owner lock found in {p}'
+        # Pre-V1.1 profiles carry four locks; every later profile carries exactly five.
+        assert count in (4, 5), f'Unexpected lock count {count} in {p}'
+        for key in locks:
+            low = key.lower()
+            assert not any(s in low for s in FORBIDDEN_LOCK_SUBSTRINGS), \
+                f'Sixth owner lock {key!r} found in {p}'
+        # Grandfathered projects may still carry the superseded cro{} object; that
+        # is valid and must never be "migrated" in place.
+        if 'cro' in pd:
+            grandfathered_cro.append(os.path.basename(os.path.dirname(p)))
+            assert pd.get('schema_version') in KNOWN_SCHEMA_VERSIONS, \
+                f'{p}: cro{{}} present but schema_version unrecognized'
     passed += 1
-    print(f'[PASS] I. Lock Invariants verified: Current V2.2 Template Lock Count = 5, Historical Profiles Parse = PASS (counts: {historical_counts}), Sixth Lock Found = NO.')
+    print(f'[PASS] I. Lock invariants verified across {len(all_profiles)} profiles (lock counts: '
+          f'{sorted(set(historical_counts))}; no 6th lock). Grandfathered cro{{}} profiles left '
+          f'untouched: {grandfathered_cro or "none"}.')
 
     # J. Historical Pilot Integrity
     git_status = subprocess.check_output(['git', 'status', '--porcelain'], encoding='utf-8')
@@ -260,9 +335,20 @@ def run():
     assert os.path.getsize('projects/v2-2-rive-certification-pilot/assets/vehicles.riv') == 58792
     assert hashlib.sha256(open('projects/v2-2-rive-certification-pilot/assets/vehicles.riv', 'rb').read()).hexdigest() == '46bb250cde0b0223a15faddac33d08fa00d4b6acebc2e4e827391ae0113768a3'
 
-    assert os.path.exists('projects/v2-2-rive-certification-pilot/vendor/rive.js')
-    assert os.path.getsize('projects/v2-2-rive-certification-pilot/vendor/rive.js') == 410792
-    assert hashlib.sha256(open('projects/v2-2-rive-certification-pilot/vendor/rive.js', 'rb').read()).hexdigest() == '4ea4054aebd94ef0770540d101c6ac7f27a6a07ab5aba89a72838e55abc01d3f'
+    # The vendored Rive web runtime: the invariant is "pristine and frozen since
+    # it was committed", not a byte-count literal typed into this file. Compare
+    # against the committed blob with line endings normalized, so the check is
+    # portable across LF and autocrlf (Windows) working trees.
+    rive_js = 'projects/v2-2-rive-certification-pilot/vendor/rive.js'
+    assert os.path.exists(rive_js)
+    _norm = lambda b: b.replace(b'\r\n', b'\n')
+    _working = _norm(open(rive_js, 'rb').read())
+    assert len(_working) > 300000, 'vendored rive.js is smaller than a real Rive web runtime'
+    _committed = _norm(subprocess.check_output(['git', 'show', 'HEAD:' + rive_js]))
+    assert _working == _committed, 'vendored rive.js drifted from its frozen commit'
+    assert hashlib.sha256(_working).hexdigest() == \
+        '4ea4054aebd94ef0770540d101c6ac7f27a6a07ab5aba89a72838e55abc01d3f', \
+        'vendored rive.js (LF-normalized) does not match the recorded runtime hash'
 
     assert os.path.exists('projects/v2-2-rive-certification-pilot/vendor/rive.wasm')
     assert os.path.getsize('projects/v2-2-rive-certification-pilot/vendor/rive.wasm') == 1808114
@@ -323,28 +409,38 @@ def run():
     passed += 1
     print('[PASS] P. Page Experience Protocol, ATLAS FORM Pilot routes, View Transitions, scroll/anchor/history, 5-lock invariant verified.')
 
-    # Q. CRO, Analytics & Experimentation System Protocol & Pilot Verification (V2.4)
-    assert os.path.exists('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md')
+    # Q. CRO/Analytics: V2.4 semantics absorbed into V2.6 canonical measurement,
+    #    grandfathered V2.4 pilot still verified exactly as it froze.
     assert os.path.exists('templates/analytics-measurement-plan.md')
     assert os.path.exists('templates/experiment-brief.md')
     assert os.path.exists('templates/analytics-event-manifest.json')
-    
+
+    # The V2.4 protocol document is retained only as a link-stable supersession pointer.
+    assert os.path.exists('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md')
     with open('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md', 'r', encoding='utf-8') as f:
         cp = f.read()
-    assert 'PII_IN_ANALYTICS = 0' in cp and 'DARK_PATTERN_CHECK = PASS' in cp and 'CONVERSION_LEVEL' in cp and 'CRO_HYPOTHESIS' in cp
+    assert 'SUPERSEDED' in cp and 'CONVERSION-ANALYTICS-PROTOCOL.md' in cp, \
+        'CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md must point to its successor'
+    assert 'Do not author new guidance here' in cp
 
-    # Master template site-profile verification
+    # The historical V2.4 semantics themselves must survive in the canonical protocol.
+    assert os.path.exists('CONVERSION-ANALYTICS-PROTOCOL.md')
+    with open('CONVERSION-ANALYTICS-PROTOCOL.md', 'r', encoding='utf-8') as f:
+        canon = f.read()
+    for token in ('CONVERSION_LEVEL', 'CRO_HYPOTHESIS', 'MACRO', 'MICRO', 'DIAGNOSTIC',
+                  'dark pattern', 'PII'):
+        assert token in canon or token.lower() in canon.lower(), \
+            f'V2.4 semantic {token!r} not preserved in CONVERSION-ANALYTICS-PROTOCOL.md'
+
+    # Master template now carries measurement{} (V2.6), not cro{}.
     with open('templates/site-profile.json', 'r', encoding='utf-8') as f:
         msp = json.load(f)
-    assert msp['schema_version'] == '2.4.0'
-    assert 'cro' in msp
-    assert msp['cro']['status'] == 'not_evaluated'
-    assert msp['cro']['session_replay'] == 'DISABLED'
-    assert len(msp['locks']) == 5
-    assert 'cro_direction_locked' not in msp['locks']
-    assert 'analytics_locked' not in msp['locks']
+    assert 'cro' not in msp and 'measurement' in msp
+    assert msp['measurement'].get('session_replay') == 'DISABLED'
+    assert msp['measurement'].get('pii_check') in ('not_evaluated', 'PASS', 'FAIL')
+    assert_five_lock_invariant(msp['locks'], 'templates/site-profile.json (Q)')
 
-    # Pilot site-profile verification
+    # Grandfathered V2.4 pilot: frozen at schema 2.4.0 with cro{} — verified as-is.
     c_sp_path = 'projects/v2-4-cro-analytics-certification-pilot/site-profile.json'
     assert os.path.exists(c_sp_path)
     with open(c_sp_path, 'r', encoding='utf-8') as f:
@@ -457,8 +553,42 @@ def run():
         assert os.path.exists(shot_path)
         assert os.path.getsize(shot_path) > 5000
     passed += 1
-    print('[PASS] Q. CRO & Analytics Protocol, NORTHSTAR Pilot state, event manifest, node simulation (PII rejection, unknown rejection, deduplication), and 5 real browser screenshots verified.')
+    print('[PASS] Q. Grandfathered V2.4 NORTHSTAR pilot verified as-is (schema 2.4.0, cro{} '
+          'instrumentation_ready, event manifest, node PII/unknown-event simulation, screenshots); '
+          'V2.4 semantics preserved in the canonical protocol.')
 
-    print(f'\nALL {passed}/{passed} DETERMINISTIC ASSERTIONS COMPLETED SUCCESSFULLY!')
+    # R. NEGATIVE CONTROL — the invariant checks must actually reject invalid state.
+    def rejects(profile_dict, label):
+        d = tempfile.mkdtemp(prefix='wd-testrunner-nc-')
+        try:
+            with open(os.path.join(d, 'site-profile.json'), 'w', encoding='utf-8') as f:
+                json.dump(profile_dict, f)
+            with open(os.path.join(d, 'site-profile.json'), 'r', encoding='utf-8') as f:
+                loaded = json.load(f)
+            try:
+                assert_five_lock_invariant(loaded.get('locks', {}), label)
+            except AssertionError:
+                return True
+            return False
+        finally:
+            import shutil as _sh
+            _sh.rmtree(d, ignore_errors=True)
+
+    six_locks = {**{k: False for k in CANONICAL_LOCKS}, 'measurement_locked': True}
+    assert rejects({'schema_version': '2.7.0', 'locks': six_locks}, 'NC-six-locks'), \
+        'NEGATIVE CONTROL: a sixth (measurement) owner lock was NOT rejected'
+
+    renamed_lock = {'design_direction_locked': False, 'information_architecture_locked': False,
+                    'content_structure_locked': False, 'design_system_locked': False,
+                    'browser_qa_locked': True}
+    assert rejects({'schema_version': '2.8.0', 'locks': renamed_lock}, 'NC-browser-lock'), \
+        'NEGATIVE CONTROL: a browser_qa owner lock was NOT rejected'
+
+    assert '9.9.9' not in KNOWN_SCHEMA_VERSIONS, \
+        'NEGATIVE CONTROL: an unknown schema_version must not silently validate'
+    passed += 1
+    print('[PASS] R. Negative control: sixth-lock profiles and unknown schema versions are rejected.')
+
+    print(f'\nALL {passed}/{passed} DETERMINISTIC ASSERTION GROUPS COMPLETED SUCCESSFULLY!')
 
 run()

@@ -1,8 +1,9 @@
 # PRODUCTION QA CHECKLIST: PRE-FLIGHT VERIFICATION MATRIX
 
-> **Version:** 1.4.0
+> **Version:** 1.5.0
 > **Status:** Mandatory Pre-Deployment Gate
 > **Rule:** Every checkbox must be validated and signed off in `templates/production-review.md`.
+> **V2.8 Rule:** Where a requirement can be verified by machine (horizontal overflow, console cleanliness, broken assets, reduced motion, form failure/success, route integrity, measurement events, browser-observable security), the sign-off requires the **machine evidence** produced by Phase 10.5 Browser & Regression QA (`§5.4`) — not an agent assertion. Avoid checkbox theater.
 
 ---
 
@@ -255,7 +256,41 @@ Verified against `templates/security-privacy-review.md` under `SECURITY-PRIVACY-
 
 ---
 
+## 5.4 Browser & Regression QA Evidence (V2.8)
+
+Verified against `templates/browser-qa-plan.md` / `browser-qa-manifest.json` under `BROWSER-REGRESSION-QA-PROTOCOL.md`. Phase 10.5 runs before this checklist. Skip only where `browser_qa.exception.applied = true` with a recorded justification. **A `BLOCKED` result is reported as blocked — never as passing. A `FLAKY` result is not a pass.**
+
+### 5.4.1 Run Integrity
+- [ ] `browser_qa.complete = true`, produced by a real-browser `BROWSER_QA_ENGINE` (`browser_qa.engine` names it). A `simulation` dry run does not satisfy this.
+- [ ] `browser_qa.frozen_fixture_integrity = "PASS"` — the QA run mutated nothing under `projects/` or any frozen path.
+- [ ] `browser_qa.flaky_tests` is empty, or each entry is triaged and owner-acknowledged.
+- [ ] Machine evidence manifest (`<run_id>.evidence.json`) and summary stored in the project evidence directory and referenced here.
+
+### 5.4.2 Machine-Verified Requirements (evidence, not assertion)
+- [ ] **Horizontal overflow:** zero at every required viewport class — real overflow, not `overflow-x: hidden` masking.
+- [ ] **Console cleanliness:** zero `APPLICATION_DEFECT` errors; every ignore is a justified, owned manifest entry.
+- [ ] **Network:** zero unexplained 4xx/5xx or aborted critical assets; each allowed third-party failure is justified and the site stays functional when that origin is blocked.
+- [ ] **Broken assets:** zero broken images/fonts/scripts/styles; images render with non-zero dimensions; critical hero and mobile/reduced-motion fallback assets load; no accidental placeholder images.
+- [ ] **Navigation:** internal routes resolve; no unintentional `#` links; mobile nav opens and closes on route change; Escape/click-outside per spec; custom 404 resolves.
+- [ ] **Forms:** labels present; invalid submit shows a visible error; duplicate submit prevented; **a server-rejected submission renders no success state and emits no success conversion event**; keyboard submit works.
+- [ ] **Measurement:** required events fire exactly once with required params; no undeclared event; **no PII in any payload or UTM** (network payloads inspected).
+- [ ] **Reduced motion:** motion-heavy surfaces remain meaningful under `prefers-reduced-motion: reduce`; no content permanently hidden awaiting animation; evidence screenshots captured.
+- [ ] **Keyboard smoke:** primary nav and CTA reachable; visible focus; no obvious keyboard trap; menu/dialog controls operable.
+- [ ] **Security (browser-observable):** required headers present; no mixed content; no secret-shaped values in the DOM/bundle; runtime third-party scripts match the approved inventory; where consent is `REQUIRED`, tracking is inactive before consent and rejection is reachable; disclosure/privacy routes resolve.
+
+### 5.4.3 Visual Regression
+- [ ] `browser_qa.visual_regression_status` is `"MATCH"`, or every `"DIFF_DETECTED"` surface is owner-reviewed and the baseline update is authorised in `browser-qa-manifest.json`.
+- [ ] No baseline was silently overwritten; masks are narrow and justified.
+
+### 5.4.4 Local vs. Production
+- [ ] `browser_qa.implementation_verified` set only on real-browser evidence against a local/staging build.
+- [ ] `browser_qa.production_verified` remains `false` unless the run executed against the real production URL. Absent evidence is reported as `NOT_YET_VERIFIED`, never as passing.
+- [ ] Cross-browser: for a release, the interaction subset was run on Chromium + Firefox + WebKit, or "Chromium only" is explicitly recorded — no unqualified "cross-browser verified" claim.
+
+---
+
 ## 6. Website Gauntlet Verification (V1.3)
+- [ ] **Deterministic Browser QA Cleared First:** `browser_qa.complete = true` (or recorded `blocked`/`exception`) before the Gauntlet ran — the Gauntlet does not evaluate a build with broken navigation, JS exceptions, missing assets, failed forms, or obvious responsive overflow.
 - [ ] **Adversarial Critic Sign-Off:** Phase 11.5 Website Gauntlet report generated (`templates/website-gauntlet-report.md`).
 - [ ] **Subsystem Status Verified:** `site-profile.json` → `gauntlet.status` is `GAUNTLET_PASS`, owner-accepted `GAUNTLET_CAP_REACHED`, or documented `GAUNTLET_EXCEPTION_APPLIED`.
 - [ ] **Builder/Critic Separation Maintained:** Evaluators inspected actual rendered output in fresh context against named Reference Bars.
