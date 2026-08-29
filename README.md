@@ -1,8 +1,8 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 1.6.0  
+> **Version:** 2.6.0  
 > **Status:** Production-Grade Skill & Specification System  
-> **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by real search demand, competitive intelligence, external visual research, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
+> **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
 ---
 
@@ -13,51 +13,35 @@
 ### The Problem It Solves
 AI coding agents are proficient at generating code, but when left without rigorous art direction, they default to generic, uncurated aesthetic tropes ("AI slop")—indiscriminate card grids, purple SaaS gradients, floating fake UI elements, and identical section layouts.
 
-Website Director solves this by establishing a **strict separation of Design Authority from Implementation Execution**. It guides non-designers through a 4-stage progressive discovery process, extracts business truth, runs bounded external visual research before committing to a direction, builds an uncompromising design system with exact mathematical tokens, makes a deliberate motion-level decision, locks the specification across 5 mandatory gates, and provides a binding implementation contract that prevents coding agents from improvising visual language during the build.
+Website Director solves this by establishing a **strict separation of Design Authority from Implementation Execution**. It guides non-designers through adaptive creative briefing, extracts business truth, runs bounded external visual research before committing to a direction, builds an uncompromising design system with exact mathematical tokens, makes a deliberate motion-level decision, locks the specification across 5 mandatory gates, and provides a binding implementation contract that prevents coding agents from improvising visual language during the build.
 
-### What V1.1 Adds Over V1
-V1 proved AI design improvisation could be controlled through discovery, archetypes, and locks alone. The Alpha Starts Now pilot exposed a gap: Website Director had never *looked* at the current visual landscape before choosing a direction. V1.1 adds a bounded Visual Research Director phase (industry landscape, Landbook discovery, cross-industry references, and JCodesMore-style reconnaissance in a research-only mode — see `VISUAL-RESEARCH-PROTOCOL.md`), and a deliberate Motion Direction phase (four motion levels, with the Robonuggets `cinematic-sites` skill invocable as an optional bounded specialist — see `MOTION-DIRECTION-PROTOCOL.md` and `CINEMATIC-INTEGRATION-PROTOCOL.md`). Both are additive: V1's 4-lock core, 14 archetypes, and 100-point rubric are unchanged and remain fully backward compatible — see `SKILL.md` §6.
+### What V1.8 Adds (Creative Briefing Room & Grilling System)
+V1.8 establishes the conversational **Creative Briefing Room** (Phase 1):
+- **Adaptive Grilling:** 2–5 targeted questions per turn with epistemic confidence tracking.
+- **The Four Anchor Questions:** Purpose, People, Feeling, and Action.
+- **Creative Intent Contract (`creative-intent-contract.md`):** Classifies `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`), visual intensity, and experimentation tolerance.
+- **Read-Back & Confirmation Gate:** Requires explicit owner confirmation (`creative_intent.confirmed = true`) before research or strategy begins.
 
-### What V1.2 Adds Over V1.1
-V1.1 closed the visual-research gap; it still let Website Director draw a sitemap and write content strategy purely from commercial psychology, with no evidence of what the target audience actually searches for or who already wins that search market. V1.2 adds a bounded SEO Intelligence Director phase — business/audience context, keyword discovery and search-intent classification, first-party Google Search Console evidence where available, a competitive landscape pass that explicitly separates business competitors from SEO competitors, opportunity-scored keyword clustering, and a page-level keyword map — that must complete (or be explicitly declared not applicable) before `INFORMATION_ARCHITECTURE_LOCKED` and `CONTENT_STRUCTURE_LOCKED` may engage. See `SEO-INTELLIGENCE-PROTOCOL.md`. It is additive and narrowly scoped: it does not gate `DESIGN_DIRECTION_LOCKED` (visual and search evidence are independent streams), does not become a sixth lock, and never authorizes keyword stuffing over the Design Constitution's human-clarity and brand-voice requirements — see `SKILL.md` §5.3.
+### What V1.9 Adds (Visual Prototype Gate & Awwwards Showcase Intelligence)
+V1.9 solves the core problem: **The owner should never again have to select a major visual direction from prose alone.**
+- **High-Fidelity Visual Prototypes (Phase 4.5):** Bounded, browser-rendered slices (`projects/[project]/prototypes/direction-XX/`) containing header, hero (`HERO_THESIS`), representative content section, signature element, CTA, and mobile (390px) evidence.
+- **True Divergence Mandate:** SHOWCASE ambition requires 3 genuinely distinct creative points of view evaluated across 10 Divergence Vectors.
+- **Visual Prototype Comparison Package (`templates/visual-prototype-review.md`):** Owner compares rendered desktop/mobile prototypes and selects visually before Design Direction Lock (Lock 1) is synthesized.
+- **Awwwards Showcase Intelligence (Phase 3.75):** Formal external benchmarking from [Awwwards](https://www.awwwards.com/) across 10 dimensional reference bars (`AWWWARDS_HERO_BAR`, `AWWWARDS_TYPOGRAPHY_BAR`, `AWWWARDS_LAYOUT_BAR`, `AWWWARDS_INTERACTION_BAR`, `AWWWARDS_MOTION_BAR`, `AWWWARDS_MOBILE_BAR`), with anti-copying rules, trend contamination filters, and the 11-question **Portfolio Art Director Critic**.
 
-### What V1.3 Adds Over V1.2 (The Website Gauntlet Subsystem)
-V1.2 established search-demand and visual intelligence; however, candidate builds could still suffer from builder self-evaluation bias. V1.3 integrates the **Website Gauntlet Subsystem** (Phase 11.5) based on the Gauntlet Loop methodology (credited to Matt Shumer, packaged under CC BY 4.0 by Jay E. / RoboNuggets). The Gauntlet introduces:
-- **Builder != Critic Separation:** Builders never grade their own work; fresh-context evaluators inspect rendered artifacts.
-- **Dimensional Reference Bars (`REFERENCE_BAR`):** Concrete benchmarks (Named, Fetchable, Comparable) across 8 explicit dimensions (Typography, Motion, Hero, Brand, Conversion, IA, Editorial, Mobile).
-- **8 Specialized Critics:** Craft, Brand, Conversion, Trust, Motion, AI-Slop, Accessibility, and Reference critics.
-- **Simulated Audience Panel:** 5-perspective visitor evaluation heuristic (`SIMULATED_AUDIENCE_EVALUATION`).
-- **Targeted Repair & Lock Protection:** Builder executes the smallest safe fix for the single largest remaining gap (`BIGGEST_REMAINING_GAP`); changes requiring token/spec mutations halt and generate a `LOCKED_CHANGE_REQUIRED` Change Request for Owner Review.
-- **Resource Governance:** Hard iteration caps (`max_iterations`, default 3) and diminishing-return circuit breakers return `GAUNTLET_CAP_REACHED` rather than faking a pass. See `WEBSITE-GAUNTLET-PROTOCOL.md`.
+### What V2.6 Adds (Conversion & Analytics Intelligence)
+V2.6 closes the gap between commercial intent and measurable outcome. Website Director could already say *"this CTA should convert."* It can now also define and verify: **this conversion is measurable, this is the event representing it, this is how it is triggered, this is the KPI it contributes to, this is how attribution is preserved, and this is how implementation is verified.**
 
-### What V1.3.1 Adds (Impeccable Quality Engine Integration)
-V1.3.1 integrates the frontend quality intelligence, deterministic anti-pattern detection, craft floor rules, and UI hardening knowledge from **Impeccable** (by Paul Bakaus and contributors, Apache-2.0). It establishes:
-- **Deterministic vs Heuristic vs Critique Taxonomy:** Explicitly distinguishes `DETERMINISTIC_FINDING`, `HEURISTIC`, `LLM_CRITIQUE`, and `VISUAL_COMPARISON` to eliminate epistemic conflation.
-- **18 Machine-Verifiable Detector Rules:** Static and DOM scanning for contrast math, layout transitions, bounce curves, gray-on-color contrast failures, and AI tropes.
-- **Enriched Gauntlet Critics:** Enriches AI-Slop, Craft, Accessibility, and Motion critics without adding duplicate critics or competing state machines.
-- **Craft Floor & Surface Polish:** Enforces browser surface theming (`::selection`, custom scrollbars, carets), tabular numerals on data, and reading measures. See `IMPECCABLE-ENGINE-PROTOCOL.md`.
-
-### What V1.4 Adds (UI/UX Pro Max Design Intelligence Engine)
-V1.4 integrates domain-specific design intelligence from **UI/UX Pro Max** (by Next Level Builder, MIT License) as a candidate generation engine in **Phase 3.5**:
-- **Design Intelligence vs. Design Authority:** UI/UX Pro Max provides candidate styles (79 styles, 50 active), color palettes (192 product types), font pairings (74 pairings), and 119 UX guidelines. It informs Website Director; Website Director governs UI/UX Pro Max.
-- **Zero Second Design System (No `MASTER.md`):** All token recommendations map directly to Website Director's canonical `design-system.md` (Lock 4). Competing `MASTER.md` files are strictly banned.
-- **Precedence & Existing Locks Win:** Approved brand requirements and existing locks override database candidates unconditionally.
-- **Deferred Motion Presets:** `UIUX_GSAP_MOTION_PRESETS = DEFERRED` to keep Website Director's dedicated motion direction architecture clean and unpolluted. See `DESIGN-INTELLIGENCE-PROTOCOL.md`.
-
-### What V1.5 Adds (Official GreenSock GSAP Implementation Engine)
-V1.5 integrates official GreenSock engineering skills from **GSAP Skills** (by Jack Doyle / GreenSock, MIT License) as the motion implementation authority:
-- **Strategy Authority vs. Implementation Authority:** Website Director Phase 8 (`motion-direction.md`, Lock 5) owns motion strategy and level decisions. Official GSAP skills (`gsap-core`, `timeline`, `scrolltrigger`, `react`, `frameworks`, `performance`, `plugins`, `utils`) own implementation engineering.
-- **GSAP is NOT Automatic:** Static or CSS-only projects evaluate to `GSAP_REQUIRED = FALSE` with zero added runtime overhead.
-- **React `useGSAP()` & Zero-Leak Guarantees:** Enforces `@gsap/react` scoped refs and automatic lifecycle cleanup (`ctx.revert()`).
-- **Compositor Performance & Accessibility:** Prohibits layout-property animation and mandates `(prefers-reduced-motion: reduce)` fallbacks via `gsap.matchMedia()`. See `GSAP-IMPLEMENTATION-PROTOCOL.md`.
-
-### What V1.6 Adds (Anthropic Frontend Design Distinctiveness Discipline)
-V1.6 integrates distinctiveness and intentional-design principles from **Anthropic Frontend Design** (Apache-2.0, unversioned) into Phase 4 and Phase 6:
-- **Two-Pass Design Synthesis:** Pass 1 derives visual language directly from the subject's world (materials, instruments, vernacular); Pass 2 runs an anti-interchangeability challenge (*"Could this fit 5 competitors with only logo/copy swapped?"*).
-- **Hero as Thesis (`HERO_THESIS`):** Replaces generic headline+buttons+stats template formulas with the single most characteristic encounter.
-- **Structure Must Encode Information (`STRUCTURE_MUST_ENCODE_INFORMATION`):** Eliminates decorative `01 / 02 / 03` numbering on unordered cards.
-- **Signature Element & Boldness Budget:** Identifies one memorable signature while keeping surrounding layout disciplined.
-- **Interface Copy Discipline:** Enforces user-perspective vocabulary and action-descriptive buttons without compromising factual integrity.
+- **Phase 6.5 (`CONVERSION-ANALYTICS-PROTOCOL.md`):** Runs after Lock 3 and before the design system, so measurement *informs* design instead of being retrofitted onto a frozen build.
+- **KPI Architecture:** Enforces `BUSINESS OUTCOME KPI ≠ FUNNEL KPI ≠ DIAGNOSTIC METRIC ≠ VANITY METRIC`. A site with 100,000 visits and zero conversions is not a success.
+- **Event Definition Contract:** Every event carries 13 mandatory fields — business purpose, trigger, parameters, deduplication rule, consent dependency, implementation method, and verification method. Events without a business or diagnostic purpose are prohibited.
+- **CTA Traceability:** Every primary and meaningful secondary CTA in locked copy is traced to an event, KPI relation, destination, and verification method.
+- **Attribution & UTM Governance:** Bounded naming conventions, preservation rules, landing-page attribution, cross-domain boundaries — and a hard prohibition on PII in campaign parameters.
+- **Affiliate Measurement Integrity:** Enforces `AFFILIATE CLICK ≠ AFFILIATE CONVERSION ≠ AFFILIATE COMMISSION`. An outbound click is never inferred to be a sale.
+- **Anti-Fabrication Governance:** `BASELINE = UNKNOWN` where no baseline exists. No invented industry benchmarks. Evidence taxonomy (`OBSERVED` → `EVIDENCE_SUPPORTED` → `HYPOTHESIS` → `EXPERIMENT_CANDIDATE` → `PROVEN`) prevents a hypothesis being presented as fact.
+- **Three Distinct Verification States:** `measurement.complete` (a plan exists) ≠ `measurement.implementation_verified` (instrumentation proven in the build) ≠ `measurement.production_verified` (observed in production). Planning is never reported as production success.
+- **Blocked & Exception Modes:** An unselected analytics provider is honestly `blocked`, not skipped and not faked. Bounded exceptions exist for non-commercial surfaces only.
+- **Supersedes V2.4:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` is absorbed and retained as a pointer. `site-profile.json` → `measurement{}` replaces `cro{}` as the single authoritative state; `cro{}` is grandfathered read-only.
 
 ---
 
@@ -67,7 +51,8 @@ V1.6 integrates distinctiveness and intentional-design principles from **Anthrop
 BUSINESS INPUT
       │
       ▼
-PHASE 1: PROGRESSIVE DISCOVERY (Stages 1-4)
+PHASE 1: CREATIVE BRIEFING ROOM (Stages A-G)
+      ├─► [GATE BRIEF: CREATIVE_INTENT_CONFIRMED] (readiness gate)
       │
       ▼
 PHASE 2: POSITIONING & ANTI-BRAND BOUNDARIES
@@ -85,7 +70,15 @@ PHASE 3.5: DESIGN INTELLIGENCE CANDIDATE SYNTHESIS (UI/UX Pro Max)
       ├─► [GATE INTEL: DESIGN_INTELLIGENCE_COMPLETE] (readiness gate)
       │
       ▼
-PHASE 4: TWO-PASS DESIGN SYNTHESIS & DISTINCTIVENESS PRE-CHECK (Pass 1 & Pass 2)
+PHASE 3.75: AWWWARDS SHOWCASE BENCHMARKING (SHOWCASE Tier Intelligence)
+      │
+      ▼
+PHASE 4: TWO-PASS DESIGN SYNTHESIS & DIRECTION FORMULATION (Pass 1 & Pass 2)
+      │
+      ▼
+PHASE 4.5: HIGH-FIDELITY VISUAL PROTOTYPES & OWNER COMPARISON GATE
+      ├─► [GATE PROTO: VISUAL_PROTOTYPES_OWNER_REVIEW_READY]
+      ├─► [OWNER VISUALLY SELECTS DIRECTION]
       ├─► [LOCK 1: DESIGN_DIRECTION_LOCKED]
       │
       ▼
@@ -95,6 +88,10 @@ PHASE 5: INFORMATION ARCHITECTURE & SECTION MORPHOLOGY
       ▼
 PHASE 6: CONTENT STRATEGY, UX WRITING & COPYWRITING
       ├─► [LOCK 3: CONTENT_STRUCTURE_LOCKED]
+      │
+      ▼
+PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE
+      ├─► [GATE MEASUREMENT: CONVERSION_MEASUREMENT_COMPLETE] (readiness gate)
       │
       ▼
 PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE
@@ -124,6 +121,7 @@ PHASE 12: PRODUCTION PRE-FLIGHT CHECKLIST
 PRODUCTION-READY CODEBASE (Zero AI Slop, Subject-Grounded, Distinctive & Verified)
 ```
 
+
 ---
 
 ## 3. Reference Mode vs. Original Mode
@@ -151,6 +149,7 @@ Implementation is strictly blocked until all five gates in `locks{}` evaluate to
 
 - **`RESEARCH_COMPLETE` (Gate 0):** Certifies that industry landscape, Landbook, cross-industry, and deep-recon research have completed before Lock 1 engages.
 - **`SEO_COMPLETE` (Gate SEO):** Certifies that business context, keyword discovery, competitive SERP analysis, and keyword mapping have completed before Lock 2 and Lock 3 engage.
+- **`CONVERSION_MEASUREMENT_COMPLETE` (Gate Measurement):** Certifies that the business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution strategy, and verification plan are defined before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means production analytics were observed.
 - **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
 
 ---
@@ -165,6 +164,7 @@ website-director/
 ├── DISCOVERY-PROTOCOL.md             # 4-stage progressive discovery framework
 ├── SEO-INTELLIGENCE-PROTOCOL.md      # SEO Intelligence Director role, pipeline, SEO_COMPLETE gate (V1.2)
 ├── WEBSITE-GAUNTLET-PROTOCOL.md      # Website Gauntlet subsystem, critics, Reference Bars, lock protection (V1.3)
+├── CONVERSION-ANALYTICS-PROTOCOL.md  # Conversion measurement, KPI architecture, event contracts, attribution, affiliate integrity (V2.6)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -184,6 +184,8 @@ website-director/
 │   ├── seo-competitive-landscape.md  # SEO competitor classification & page analysis (V1.2)
 │   ├── keyword-map.md                # Page-level keyword mapping, feeds IA & content locks (V1.2)
 │   ├── seo-content-briefs.md         # Per-page SEO content briefs for PRIMARY pages (V1.2)
+│   ├── measurement-plan.md           # 19-section conversion measurement plan (V2.6)
+│   ├── analytics-event-manifest.json # Machine-readable event contract manifest (V2.6)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -200,7 +202,7 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v1.3.0)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.6.0)
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test

@@ -1,96 +1,120 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "schema_version": "1.6.0",
-  "project_name": "Project Name",
+  "schema_version": "2.6.0",
+  "project_name": "Morrow & Vale Architecture and Industrial Design",
   "version": "1.0.0",
-  "business_type": "B2B SaaS / Fintech / Architecture / Luxury",
-  "audience": {
-    "primary_decision_maker": "Enterprise CTO / VP Engineering / Boutique Client",
-    "market_segment": "Enterprise / Mid-Market / High-Net-Worth",
-    "target_visitor": "Enterprise decision maker evaluating modernization or premium engagement",
-    "visitor_state": "High skepticism, scanning for proof, assessing execution quality"
-  },
-  "conversion_context": {
-    "primary_conversion": {
-      "goal": "Book Product Demonstration",
-      "cta_label": "Schedule Technical Deep Dive",
-      "target_metric": "Qualified Demo Bookings"
-    },
-    "secondary_conversion": {
-      "goal": "Download Technical Specification / Whitepaper",
-      "cta_label": "Read Architecture Whitepaper",
-      "target_metric": "Specification Downloads"
-    },
-    "primary_objection": "Implementation risk and differentiation credibility",
-    "primary_trust_requirement": "Verifiable performance evidence and architectural proof"
-  },
-  "brand_attributes": [
-    "Surgical",
-    "Authoritative",
-    "Infallible",
-    "High-Contrast",
-    "Restrained"
-  ],
-  "design_archetypes": {
-    "primary": "Modernist",
-    "primary_weight": 0.6,
-    "secondary": "Technical",
-    "secondary_weight": 0.3,
-    "accent": "Editorial",
-    "accent_weight": 0.1
-  },
-  "density": "medium-high",
-  "layout_style": "asymmetric_12_column_grid",
-  "geometry": "sharp_modernist",
-  "corner_style": "4px",
-  "typography_direction": {
-    "display_family": "Syne",
-    "body_family": "Inter",
-    "mono_family": "JetBrains Mono",
-    "scale_ratio": "1.333_perfect_fourth",
-    "heading_tracking": "-0.025em"
-  },
-  "imagery_direction": {
-    "style": "high_contrast_monochrome_macro_render",
-    "aspect_ratios": ["16/9", "4/3", "1/1"],
-    "treatment": "subtle_vignette_darkened_borders"
-  },
-  "motion_direction": {
-    "physics": "snappy_responsive",
-    "default_duration_ms": 200,
-    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
-    "prefers_reduced_motion_supported": true
-  },
-  "ai_slop_tolerance": 0.0,
-  "research": {
-    "complete": false,
-    "mode": null,
-    "sources": [],
-    "deep_recon_targets": [],
+  "creative_intent": {
+    "status": "confirmed",
+    "understanding_confidence": "high",
+    "creative_ambition": "premium",
+    "visual_intensity": "restrained",
+    "motion_appetite": "subtle",
+    "experimentation_tolerance": "disciplined",
+    "confirmed": true,
+    "confirmation_timestamp": "2026-08-27T04:45:00Z",
     "exception": {
       "applied": false,
       "reason": null
     }
   },
+  "business_type": "Architecture & Industrial Design Practice",
+  "audience": {
+    "primary_decision_maker": "Civic Commissioners / Cultural Institution Directors / Private Patrons",
+    "market_segment": "High-End Architectural & Industrial Design Commissions",
+    "target_visitor": "Institutional leader or discerning private client evaluating monumental architectural engagements",
+    "visitor_state": "High discernment, examining materiality, spatial restraint, and structural permanence"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Initiate Architectural Commission Inquiry",
+      "cta_label": "Inquire Regarding Commissions",
+      "target_metric": "commission_inquiry_success"
+    },
+    "secondary_conversion": {
+      "goal": "Review Selected Monograph & Case Studies",
+      "cta_label": "Examine Built Portfolio",
+      "target_metric": "project_monograph_view"
+    },
+    "primary_objection": "Spatial execution risk, timeline feasibility, and material authenticity",
+    "primary_trust_requirement": "Documented built portfolio and rigorous material craft"
+  },
+  "brand_attributes": [
+    "Monolithic",
+    "Contextual",
+    "Tactile",
+    "Restrained",
+    "Permanent"
+  ],
+  "design_archetypes": {
+    "primary": "Editorial Modernist",
+    "primary_weight": 0.6,
+    "secondary": "Technical",
+    "secondary_weight": 0.3,
+    "accent": "Minimalist",
+    "accent_weight": 0.1
+  },
+  "density": "medium",
+  "layout_style": "12_column_architectural_grid",
+  "geometry": "sharp_modernist",
+  "corner_style": "0px",
+  "typography_direction": {
+    "display_family": "Instrument Serif",
+    "body_family": "Plus Jakarta Sans",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.25_major_third",
+    "heading_tracking": "-0.02em"
+  },
+  "imagery_direction": {
+    "style": "monochrome_and_earthen_architectural_photography",
+    "aspect_ratios": [
+      "16/9",
+      "4/3",
+      "1/1"
+    ],
+    "treatment": "natural_daylight_unadorned"
+  },
+  "motion_direction": {
+    "physics": "stately_inertial",
+    "default_duration_ms": 240,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "European architectural monographs",
+      "Swiss minimalist design journals"
+    ],
+    "deep_recon_targets": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    },
+    "showcase_research_status": "NOT_REQUIRED"
+  },
   "motion": {
-    "level": null,
+    "level": "LEVEL_1",
     "gsap_required": false,
-    "implementation_engine": null,
+    "implementation_engine": "CSS_TRANSITIONS",
     "skills_used": [],
     "plugins_used": [],
-    "reduced_motion_verified": false,
-    "cleanup_verified": false,
-    "performance_verified": false,
+    "reduced_motion_verified": true,
+    "cleanup_verified": true,
+    "performance_verified": true,
     "cinematic_specialist_required": false,
     "cinematic_brief_complete": false
   },
   "seo": {
-    "complete": false,
-    "mode": null,
+    "complete": true,
+    "mode": "STANDARD",
     "blocked_reason": null,
-    "research_date": null,
-    "data_sources": [],
-    "target_market": null,
+    "research_date": "2026-08-27",
+    "data_sources": [
+      "Architectural search intent models"
+    ],
+    "target_market": "European Architecture & Design",
     "gsc_connected": false,
     "exception": {
       "applied": false,
@@ -98,17 +122,20 @@
     }
   },
   "design_intelligence": {
-    "complete": false,
+    "complete": true,
     "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
-    "product_type_matched": null,
-    "candidate_styles": [],
-    "selected_style": null,
-    "candidate_palette_matched": null,
-    "candidate_typography_matched": null,
-    "stack_guidance_applied": null,
-    "distinctiveness_check_complete": false,
-    "hero_thesis_declared": false,
-    "signature_element_declared": false,
+    "product_type_matched": "Architecture and Design Practice",
+    "candidate_styles": [
+      "Editorial Modernist",
+      "Technical Precision"
+    ],
+    "selected_style": "Editorial Modernist",
+    "candidate_palette_matched": "Rammed Earth & Limestone Monolith",
+    "candidate_typography_matched": "Instrument Serif / Plus Jakarta Sans",
+    "stack_guidance_applied": "MPA / Native JS / CSS",
+    "distinctiveness_check_complete": true,
+    "hero_thesis_declared": true,
+    "signature_element_declared": true,
     "exception": {
       "applied": false,
       "reason": null
@@ -122,18 +149,167 @@
     "motion_direction_locked": false
   },
   "qa_status": {
-    "design_qa_score": null,
-    "design_qa_verdict": "PENDING",
-    "production_preflight_passed": false
+    "design_qa_score": 98,
+    "design_qa_verdict": "PASS",
+    "production_preflight_passed": true
   },
   "gauntlet": {
-    "status": "NOT_RUN",
-    "iteration_count": 0,
+    "status": "GAUNTLET_PASS",
+    "iteration_count": 1,
     "max_iterations": 3,
-    "verdict": "PENDING",
-    "largest_remaining_gap": null,
+    "verdict": "PASS",
+    "largest_remaining_gap": "NONE",
     "residual_defects": [],
-    "reference_bars": [],
+    "reference_bars": [
+      "Swiss Architectural Monograph Standard"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "visual_prototypes": {
+    "status": "not_required",
+    "required": false,
+    "direction_count": 1,
+    "showcase_research": null,
+    "portfolio_art_director_review": true,
+    "divergence_verified": true,
+    "asset_limitation_noted": true,
+    "owner_selected_direction": "direction-01",
+    "owner_selection_confirmed": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "assets": {
+    "status": "production_ready",
+    "visual_language_ready": true,
+    "hero_asset_status": "verified",
+    "signature_asset_status": "not_required",
+    "provenance_status": "verified",
+    "responsive_crop_status": "verified",
+    "optimization_status": "verified",
+    "shot_list_required": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "immersive": {
+    "status": "not_required",
+    "level": 0,
+    "justification": null,
+    "engine": null,
+    "mobile_policy": null,
+    "reduced_motion_policy": null,
+    "webgl_fallback_ready": false,
+    "performance_budget_ready": false,
+    "accessibility_alternative_ready": false,
+    "cleanup_plan_ready": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "rive": {
+    "status": "not_required",
+    "level": "0_NONE",
+    "justification": null,
+    "runtime": null,
+    "asset_status": "not_evaluated",
+    "state_machine_ready": false,
+    "reduced_motion_ready": false,
+    "fallback_ready": false,
+    "responsive_ready": false,
+    "performance_ready": false,
+    "cleanup_ready": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "page_experience": {
+    "status": "implementation_ready",
+    "transition_level": "1_SUBTLE",
+    "justification": "Restrained architectural route transitions",
+    "navigation_model": "MOA",
+    "engine": "NATIVE_VIEW_TRANSITIONS",
+    "history_policy_ready": true,
+    "scroll_policy_ready": true,
+    "focus_policy_ready": true,
+    "reduced_motion_ready": true,
+    "mobile_policy_ready": true,
+    "fallback_ready": true,
+    "cleanup_ready": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "measurement": {
+    "complete": true,
+    "mode": "standard",
+    "business_objective": "CONSULTATION",
+    "provider": "CUSTOM_EVENT_PIPELINE",
+    "implementation_mode": "FIRST_PARTY_ENDPOINT",
+    "primary_kpi": "Qualified architectural commission inquiries per quarter",
+    "secondary_kpis": [
+      "project_monograph_view rate",
+      "commission_inquiry_start rate"
+    ],
+    "funnel_model": "LEAD_GENERATION",
+    "events_defined": [
+      "page_view",
+      "navigation_select",
+      "case_study_view",
+      "commission_inquiry_start",
+      "form_validation_error",
+      "commission_inquiry_success"
+    ],
+    "event_schema_version": "1.0.0",
+    "cta_traceability_complete": true,
+    "utm_strategy_defined": true,
+    "attribution_boundaries_defined": true,
+    "affiliate_model": "NOT_APPLICABLE",
+    "baseline_status": "UNKNOWN",
+    "consent_dependency": "UNASSESSED",
+    "pii_check": "PASS",
+    "dark_pattern_check": "PASS",
+    "experimentation_required": false,
+    "experiment_plan_ready": false,
+    "session_replay": "DISABLED",
+    "implementation_verified": false,
+    "production_verified": false,
+    "blocked_reason": null,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "handoff": {
+    "status": "reafy_for_review",
+    "cms_requirement": "STRUCTURED",
+    "cms_provider": "LOCAL_STRUCTURED_CONTENT",
+    "cms_architecture": "LOCAL_CONTENT_FILES",
+    "synthetic_cms": true,
+    "editable_surface_contract_ready": true,
+    "content_model_ready": true,
+    "ownership_register_ready": true,
+    "environment_inventory_ready": true,
+    "backup_strategy_ready": true,
+    "restore_procedure_tested": true,
+    "maintenance_matrix_ready": true,
+    "editor_guide_ready": true,
+    "technical_runbook_ready": true,
+    "recurring_cost_register_ready": true,
+    "third_party_register_ready": true,
+    "training_plan_ready": true,
+    "client_independence_test": "PASS",
+    "bus_factor_test": "PASS",
+    "acceptance_status": "READY_FOR_REVIEW",
+    "unresolved_blockers": 0,
     "exception": {
       "applied": false,
       "reason": null

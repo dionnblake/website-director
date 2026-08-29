@@ -103,7 +103,81 @@ These four dimensions exist because V1.1 introduces two new failure modes V1 cou
   - Would this site's Motion Level and archetype blend be *different* from what an unrelated client in a different industry, researched under the same protocol, would receive? (If every project converges on the same cinematic-dark-editorial-parallax answer, this dimension fails regardless of craft quality elsewhere.)
 - **Fail condition:** The design can be traced too directly to one reference, or the diversity check above fails. A site that looks impressive but generic fails this dimension even at a high 100-point score.
 
-**Scoring note:** A `Fail` on any one of §5.1–§5.4 does not automatically zero out the 100-point score, but it blocks the `PRODUCTION CANDIDATE` verdict regardless of the numeric score — remediate the failed dimension and re-review before authorizing production.
+### 5.5 Intent Fidelity (V1.8 Supplemental Dimension)
+- *Test Question:* Does the final design and copy execution faithfully satisfy the owner-confirmed Creative Intent Contract (`templates/creative-intent-contract.md`)?
+- **Explicit checks to run:**
+  - Does the build solve the confirmed primary conversion objective?
+  - Does the first-3-second emotional impression match the confirmed desired feeling?
+  - Are all anti-brand boundaries, banned clichés, and competitor negative constraints strictly respected?
+  - Does the visual craft and density match the confirmed `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`) and visual intensity?
+  - Are all `OWNER_NON_NEGOTIABLES` fully honored without exception?
+- **Fail condition:** The build violates confirmed anti-brand boundaries, ignores owner non-negotiables, misses the core commercial job, or fails to reach the declared creative ambition level.
+
+### 5.6 Asset Art Direction & Visual Authenticity (V2.0 Supplemental Dimension)
+- *Test Question:* Does the website visual asset ecosystem exhibit professional art direction, visual coherence, legal provenance, and factual authenticity per `ASSET-DIRECTOR-PROTOCOL.md`?
+- **Explicit checks to run:**
+  - Does the Hero Asset satisfy `HERO_ASSET_STRENGTH` (Instant focal anchor, cognitive thesis proof, clean text contrast, and crisp mobile crop)?
+  - Is there a dedicated, high-impact `SIGNATURE_ASSET` for `SHOWCASE` tier projects?
+  - Do all photographic, 3D, and graphic assets share a unified `PRIMARY_VISUAL_LANGUAGE` and color grade profile?
+  - Is all factual brand evidence (founders, facilities, products, clinical results) 100% authentic with zero fake AI-generated evidence?
+  - Are all generated images completely free of AI artifacts (`AI_ARTIFACT_CHECK = PASS`)?
+  - Is generic corporate stock photography completely absent?
+  - Do all assets have verified provenance and commercial web licensing in `asset-provenance.md`?
+  - Does the lower half of the page maintain the same high asset quality as the hero (`MEDIA_QUALITY_BELOW_HERO`)?
+- **Fail condition:** Generic stock imagery, AI artifacts, unauthenticated factual claims, missing mobile crops, or visual style incoherence between sections.
+
+### 5.7 Immersive 3D Craft & Spatial Restraint (V2.1 Supplemental Dimension)
+- *Test Question:* Does the WebGL / Three.js 3D implementation solve a genuine spatial communication problem without generic demo slop, unhandled fallbacks, or performance degradation per `IMMERSIVE-WEB-PROTOCOL.md`?
+- **Explicit checks to run:**
+  - Does the 3D scene satisfy the **10-Point Immersive Justification Matrix** (spatial necessity, not novelty)?
+  - Is the scene completely free of generic demo slop (floating glass blobs, unmotivated neon grids, random glowing toruses)?
+  - Are primary headlines, CTAs, navigation, and key specifications 100% accessible in semantic HTML DOM outside the canvas?
+  - Is there an operational, zero-CLS 2D fallback (`WEBGL_FALLBACK`) verified when WebGL fails or is disabled?
+  - Is the `prefers-reduced-motion` policy active and tested (camera/object motion frozen without informational loss)?
+  - Does mobile execution follow `MOBILE_3D_POLICY` with bounded DPR (`<= 1.5`) and touch-safe framing?
+  - Are Three.js resource disposal routines (`disposeScene()`) and visibility throttling (`document.hidden`) properly implemented?
+- **Fail condition:** Unjustified 3D, generic demo aesthetics, missing 2D fallback, inaccessible content trapped in WebGL, frame drops below 30 FPS, or memory leaks on unmount.
+
+### 5.8 Rive Interactive Motion & State Machine Integrity (V2.2 Supplemental Dimension)
+- *Test Question:* Does the Rive interactive vector motion communicate multi-state logic or UI feedback better than simpler CSS/GSAP alternatives without gratuitous mascot slop, hover traps, or unhandled WASM fallbacks per `RIVE-INTERACTIVE-MOTION-PROTOCOL.md`?
+- **Explicit checks to run:**
+  - Does the Rive component satisfy the **Technology Selection Matrix** (state machine necessity over simple CSS/GSAP)?
+  - Is the vector art completely free of generic mascot tropes, random bouncing blobs, or unmotivated eye-tracking?
+  - Are all essential interactive states accessible on touch/mobile and keyboard (no hover-only essential behavior)?
+  - Are numerical values, state labels, and instructions mirrored in accessible semantic HTML outside the canvas?
+  - Is `prefers-reduced-motion` verified (idle loops stopped, state transitions snap cleanly)?
+  - Is an operational zero-CLS fallback (`STATIC_SVG`, `STATIC_IMAGE`, or `HTML_COMPONENT`) verified when WASM fails or `?forceRiveFallback=1` is provided?
+  - Does the Rive instance implement explicit lifecycle cleanup (`rive.cleanup()`) on unmount?
+- **Fail condition:** Hover-only critical states, missing semantic DOM mirroring, unhandled runtime fallback, cartoon mascot slop, or memory leaks on navigation.
+
+### 5.9 Page Experience & Navigation Continuity (V2.3 Supplemental Dimension)
+- *Test Question:* Does the page transition and route continuity architecture preserve user orientation, reinforce information hierarchy, and support native browser behavior without gratuitous loading slop, history breakage, or accessibility failure per `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`?
+- **Explicit checks to run:**
+  - Does the transition satisfy the **Transition Justification Gate** (meaningful contextual continuity, not decoration for its own sake)?
+  - Is the build free of Anti-Transition Slop (no fullscreen black curtains, no 2-second loading spinners, no generic template wipes)?
+  - Are real URLs, browser Back/Forward (`popstate`), deep linking, and page refresh fully preserved?
+  - Does scroll restoration behave correctly (`TOP_ON_NEW_ROUTE` on forward navigation; reading context restored on Back)?
+  - Does `prefers-reduced-motion: reduce` bypass or simplify route animations without breaking navigation?
+  - Is failure recovery verified (`TRANSITION_FAILURE_POLICY = STANDARD_NAVIGATION` when scripts fail or `?forceTransitionFallback=1` is used)?
+  - Are Three.js render loops and Rive state machine instances cleanly torn down on route departures?
+- **Fail condition:** Broken browser history, blank loading screens, disorienting navigation wipes, inaccessible focus on route change, or failure to fall back gracefully.
+
+### 5.10 CRO & Analytics Architecture (V2.4 Supplemental Dimension)
+- *Test Question:* Does the website implement a disciplined, data-minimized conversion and analytics architecture that aligns business outcomes with visitor outcomes without dark patterns, surveillance bloat, or brittle runtime dependencies per `CONVERSION-ANALYTICS-PROTOCOL.md` — with every critical CTA traceable to an event, an observable funnel, no fabricated baselines, and planning state never reported as production success?
+- **Explicit checks to run:**
+  - Are `PRIMARY_BUSINESS_OUTCOME` and `PRIMARY_VISITOR_OUTCOME` clearly defined and mutually aligned?
+  - Does the implementation distinguish `MACRO`, `MICRO`, and `DIAGNOSTIC` interactions rather than treating every click as a conversion?
+  - Does the event manifest follow semantic naming (`object_action`) with zero forbidden PII fields (`PII_IN_ANALYTICS = 0`)?
+  - Is the website 100% functional when analytics is blocked, disabled, or encounters an exception (`ANALYTICS_FAILURE_POLICY = SITE_FUNCTIONAL`)?
+  - Are page views deduplicated across View Transitions and browser history navigation?
+  - Does conversion submission prevent duplicate firing on rapid clicks?
+  - Is the site 100% free of deceptive dark patterns (`DARK_PATTERN_CHECK = PASS` — zero fake scarcity, countdowns, confirmshaming, hidden opt-outs)?
+  - Are experiment hypotheses structured with clear guardrail metrics (lead quality, brand perception, accessibility, performance)?
+  - Are synthetic or inconclusive test samples properly recorded as `INSUFFICIENT_EVIDENCE` without declaring premature winners?
+  - Is high-sensitivity session replay disabled by default (`SESSION_REPLAY = DISABLED`)?
+- **Fail condition:** Capturing PII in analytics, deceptive dark patterns, duplicate conversion events, broken site functionality when analytics is blocked, fake experiment winner claims, or unmotivated surveillance tracking.
+
+**Scoring note:** A `Fail` on any one of §5.1–§5.10 does not automatically zero out the 100-point score, but it blocks the `PRODUCTION CANDIDATE` verdict regardless of the numeric score — remediate the failed dimension and re-review before authorizing production.
 
 ---
 

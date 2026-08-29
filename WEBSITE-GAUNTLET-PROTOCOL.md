@@ -111,13 +111,16 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - Browser surfaces theming: `::selection`, focus rings, scrollbars, and carets styled from design tokens. (`skill-craft-browser-surfaces`)
 - **Defects:** Loose padding, awkward line wraps, unmapped font sizes, misaligned baselines, unthemed browser defaults.
 
-### 4.2 Brand Critic
-- **Focus:** Brand distinctiveness, emotional posture, visual identity, and anti-brand compliance.
-- **Key Questions:**
-  - Does this design instantly project the brand attributes defined in `positioning.md`?
+### 4.2 Brand Critic (Enhanced with Intent Fidelity)
+- **Focus:** Brand distinctiveness, emotional posture, visual identity, anti-brand compliance, and **Intent Fidelity** (`creative-intent-contract.md`).
+- **Key Questions & Intent Fidelity Checks:**
+  - Does this finished design solve the declared business purpose and primary conversion goal?
+  - Does it feel the way the client requested in their desired first-3-second emotional posture?
+  - Does it strictly respect all anti-brand boundaries, banned clichés, and competitor negative constraints?
+  - Does it satisfy the project's selected `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`) and visual intensity?
+  - Does it satisfy all declared `OWNER_NON_NEGOTIABLES`?
   - Does it pass the **Swap Test** (would it fail if placed on a competitor)?
-  - Does it respect all anti-brand boundaries (what NOT to look like)?
-- **Defects:** Generic SaaS styling for an artisanal luxury brand, sterile corporate look for an energetic startup, identity drift.
+- **Defects:** Generic SaaS styling for an artisanal luxury brand, sterile corporate look for an energetic startup, violation of owner non-negotiables, failure to satisfy selected creative ambition, identity drift.
 
 ### 4.3 Conversion Critic
 - **Focus:** Primary/secondary conversion clarity, CTA dominance, visitor friction, and objection handling.
@@ -125,7 +128,10 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - Is the primary conversion goal obvious within 5 seconds of scanning?
   - Are CTAs placed at natural cognitive decision points (`Understand` $\rightarrow$ `Believe` $\rightarrow$ `Evaluate` $\rightarrow$ `Convert`)?
   - Are primary objections addressed before the main conversion commitment?
-- **Defects:** Competing CTAs, buried action buttons, unclear value exchange, premature asks before establishing value.
+  - *(V2.6)* Does the measurement architecture actually support the intended business outcome, or does it measure activity that no business decision depends on?
+  - *(V2.6)* Does any critical CTA lack a measurement definition in `measurement-plan.md`?
+  - *(V2.6)* Is the declared funnel genuinely observable end-to-end, or are stages asserted that nothing on the built site can evidence?
+- **Defects:** Competing CTAs, buried action buttons, unclear value exchange, premature asks before establishing value, critical CTAs with no measurement definition, funnel stages that cannot be observed.
 
 ### 4.4 Trust Critic
 - **Focus:** Evidence placement, claims verification, proof density, credentials, and risk reduction.
@@ -155,6 +161,26 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
 
 ### 4.7 Accessibility Critic (Enhanced by Impeccable)
 - **Focus:** WCAG AA compliance, color contrast, keyboard navigation, focus states, and readability.
+
+### 4.8 Reference Critic (Benchmarking Bar Fidelity)
+- **Focus:** Direct side-by-side comparison against named `REFERENCE_BAR` entries across assigned dimensions.
+
+### 4.9 Portfolio Art Director Critic (SHOWCASE Tier V1.9 Extension)
+- **Focus:** World-class digital studio portfolio standards, visual distinction, authored composition, and Awwwards-inspired craft rigor. Activated especially when `CREATIVE_AMBITION = SHOWCASE` or `EXPERIMENTAL`.
+- **The 11 Portfolio Director Scrutiny Questions:**
+  1. *Would a respected international digital design studio put this work in its public portfolio?*
+  2. *Is there an above-the-fold or signature screenshot immediately worth sharing publicly?*
+  3. *Does this design have a sharp, recognizable creative point of view rather than safe consensus?*
+  4. *Can the brand and subject world be recognized if the company logo and name are removed?*
+  5. *Is the composition authored and tailored rather than assembled from popular UI kits or theme templates?*
+  6. *Does the visual tension, typographic craft, and spatial discipline hold consistently below the hero?*
+  7. *Is there at least one memorable tactile, structural, or interactive moment?*
+  8. *Does the visual weight and art direction feel appropriate to the client's actual commercial positioning?*
+  9. *What specific detail still looks machine-generated, generic, or AI-templated?*
+  10. *What is the single weakest section on the page, and what specific change would elevate it?*
+  11. *What is preventing this build from feeling exceptional?*
+- **Defects:** Predictable layout rhythm, hero fatigue in lower sections, lack of identifiable creative point of view, generic gallery trend contamination, absence of a memorable signature moment.
+
 - **Key Checks & Deterministic Rules:**
   - Contrast math verification: $\ge 4.5:1$ normal text, $\ge 3:1$ large bold text. (`skill-color-verify-contrast`)
   - Surface tinting: Flags neutral gray secondary text on colored backgrounds (`gray-on-color`).
@@ -177,6 +203,71 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - Does the motion feel physical and weighted (Lenis smooth inertia, split-mask text unmasking, horizontal pinned scrollytelling, magnetic micro-physics) rather than basic fade-ups?
   - Are textures and materiality tangible (organic grain noise, ambient mesh lighting, brushed tactile metals) instead of flat dark-mode boxes?
 - **Defects:** Predictable box-stacking, flat dark-mode template vibes, uninspired fade-ins, lack of memorable visual anchor.
+
+### 4.10 Visual Asset & Art Direction Critic (V2.0 Asset Director Lens)
+- **Focus:** Evaluation of the website's complete visual asset ecosystem under `ASSET-DIRECTOR-PROTOCOL.md`.
+- **Key Questions:**
+  - *Are visual assets specific to this company and subject world, or could they belong to any competitor?*
+  - *Does the Hero Asset possess undeniable screenshot value and cognitive anchor power?*
+  - *Is the visual family coherent across the entire page (shared color grade LUT, lighting language, and material physics)?*
+  - *Does the lower half of the page maintain the same high asset craft as the hero (`MEDIA_QUALITY_BELOW_HERO`), or does asset quality degrade into generic icons and empty boxes?*
+  - *Are generated images 100% free of AI artifacts (`AI_ARTIFACT_CHECK = PASS`), and are factual claims authenticated?*
+  - *Are responsive crops (`picture` elements) deliberate on mobile viewports rather than relying solely on naive `object-fit: cover` center-cropping?*
+- **Defects:** Generic stock photos, unauthenticated AI customer/facility imagery, inconsistent visual styles, missing mobile crops, low-resolution below-fold media.
+
+### 4.11 Immersive Web & Spatial 3D Critic (V2.1 Immersive Specialist Lens)
+- **Focus:** Evaluation of Three.js / WebGL runtime execution under `IMMERSIVE-WEB-PROTOCOL.md`.
+- **Key Questions:**
+  - *Does the 3D scene solve a genuine spatial communication problem, or does it feel like an unmotivated Three.js template demo?*
+  - *Is the camera choreography disciplined (bounded angles, smooth easing) or does it wander uncontrollably?*
+  - *Are primary conversion CTAs, headlines, and specifications 100% accessible in semantic DOM outside the WebGL canvas?*
+  - *Does the zero-CLS 2D fallback work cleanly when WebGL fails or is disabled?*
+  - *Is mobile performance smooth (DPR bounded `<= 1.5`, touch interactions safe, no layout trapping)?*
+  - *Does `prefers-reduced-motion` cleanly freeze continuous spinning/flying without informational loss?*
+- **Defects:** Generic floating 3D demo tropes, trapped canvas text, broken WebGL fallbacks, jank below 30 FPS, missing mobile adaptations.
+
+### 4.12 Rive Interactive Motion Critic (V2.2 Rive Specialist Lens)
+- **Focus:** Evaluation of Rive state machines, interactive vector motion, and runtime fallbacks under `RIVE-INTERACTIVE-MOTION-PROTOCOL.md`.
+- **Key Questions:**
+  - *Does the Rive vector component convey multi-state logic better than simpler CSS or GSAP animations?*
+  - *Is the vector motion free of cartoon mascot clichés, unmotivated looping blobs, or fake liquid novelty effects?*
+  - *Are all critical interactive states accessible on touch and keyboard (zero hover-only essential behavior)?*
+  - *Are all data values and state descriptions mirrored in accessible semantic HTML outside the Rive canvas?*
+  - *Does the zero-CLS fallback display seamlessly if WASM or runtime initialization fails?*
+  - *Are Rive resources disposed cleanly without memory leaks on unmount?*
+- **Defects:** Gratuitous mascot slop, hover-only state traps, missing semantic DOM mirroring, unhandled runtime fallback, memory leaks.
+
+### 4.13 Page Experience & Navigation Continuity Critic (V2.3 Page Experience Specialist Lens)
+- **Focus:** Evaluation of route transitions, history parity, scroll restoration, and navigation continuity under `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`.
+- **Key Questions:**
+  - *Does the transition preserve spatial orientation and context between routes, or is it gratuitous animation slop?*
+  - *Are real URLs, native browser Back/Forward, deep linking, and hard refresh 100% operational?*
+  - *Does the transition avoid blocking user interaction or trapping users behind full-screen loading curtains?*
+  - *Does scroll restoration work predictably across route changes and history navigation?*
+  - *Are reduced-motion preferences respected with instant or minimal cross-fades?*
+  - *Are WebGL and Rive subsystem resources cleanly disposed during route transitions?*
+- **Defects:** Fullscreen loading curtains, broken browser history, blank screen on refresh, disorienting navigation wipes, memory leaks.
+
+### 4.14 Conversion Measurement & Analytics Architecture Critic (V2.6 Specialist Lens)
+- **Focus:** Evaluation of business outcome alignment, measurement architecture integrity, conversion flow, privacy-first telemetry, and experimentation integrity under `CONVERSION-ANALYTICS-PROTOCOL.md`.
+- **Key Questions:**
+  - *Is the primary outcome clear and friction-free without turning the page into an aggressive, low-trust hard sell?*
+  - *Does the page address visitor objections before demanding commitment?*
+  - *Are conversion CTAs descriptive, honest, and appropriately placed?*
+  - *Is the build 100% free of deceptive dark patterns (fake urgency, false social proof, manipulative dismissals)?*
+  - *Does analytics strictly adhere to data minimization without capturing PII or form field inputs?*
+  - *Does the website remain fully functional if analytics scripts are blocked or disabled?*
+  - *Are experiment hypotheses paired with firm guardrail metrics (lead quality, trust, brand perception, accessibility)?*
+  - *(V2.6) Does measurement support the intended business outcome — can someone name the decision each event informs?*
+  - *(V2.6) Are any events meaningless vanity instrumentation that no KPI consumes?*
+  - *(V2.6) Is every primary and meaningful secondary CTA traceable to an event, or is a critical CTA unmeasured?*
+  - *(V2.6) Is the funnel observable, or does the plan claim stages the build cannot evidence?*
+  - *(V2.6) Does a success conversion event fire where the server actually rejected the submission?*
+  - *(V2.6) Is an affiliate outbound click being treated as a conversion or commission?*
+  - *(V2.6) Are planning, implementation verification, and production verification reported as distinct states — or is a plan being presented as observed success?*
+  - *(V2.6) Are baselines and benchmarks fabricated rather than recorded as `UNKNOWN`?*
+- **Defects:** Dark patterns, PII in analytics payloads, broken forms when tracking is blocked, premature winner declarations on synthetic data, generic vanity metric tracking, unmeasured critical CTAs, unobservable funnel claims, false conversion signals on rejected submissions, affiliate click treated as commission, fabricated baselines, planning state reported as production success.
+- **Critic Boundary:** This critic evaluates. It never edits the measurement plan, locked copy, or instrumentation. `BUILDER != CRITIC`. Findings flow through the existing `gauntlet{}` object — no parallel measurement state is created.
 
 ---
 

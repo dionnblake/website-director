@@ -59,6 +59,28 @@ Applies only when `motion.level` is `MOTION_LEVEL_2` or `MOTION_LEVEL_3` per `MO
 - [ ] **`prefers-reduced-motion` Verified in Browser:** Toggling the OS/browser reduced-motion setting actually suppresses the scroll-driven/hero animation and reveals the static fallback with equivalent meaning — confirmed by testing, not just present in code.
 - [ ] **Core Web Vitals Hold Under Motion:** LCP/CLS/INP thresholds in §4 above are re-verified specifically on the motion-heavy pages, not only on motion-free pages of the same site.
 
+### 4.2 Immersive 3D & WebGL Production Verification (V2.1)
+Applies when `immersive.status = "implementation_ready"` per `IMMERSIVE-WEB-PROTOCOL.md`.
+- [ ] **Semantic DOM Parity:** 100% of primary headlines, copy, CTAs, and specifications exist in accessible semantic HTML outside the canvas.
+- [ ] **Zero-CLS 2D Fallback:** Verified that disabling WebGL or testing with `?forceWebGLFallback=1` displays an instantaneous 2D fallback graphic without layout shift.
+- [ ] **Bounded DPR Enforced:** Verified that renderer caps DPR to `<= 2.0` on desktop and `<= 1.5` on mobile devices.
+- [ ] **Mobile Policy Active:** Verified `MOBILE_3D_POLICY` (`FULL`, `SIMPLIFIED`, `STATIC_RENDER`, or `DISABLED`) functions correctly at 390px viewport with touch-safe scrolling.
+- [ ] **Reduced Motion Active:** Verified `(prefers-reduced-motion: reduce)` halts continuous scene rotation and camera sweeps.
+- [ ] **Lifecycle Cleanup Implemented:** Verified Three.js disposal routines (`disposeScene()`) release geometries, materials, textures, and event listeners on teardown.
+- [ ] **Visibility Throttling:** Verified rendering loop pauses when `document.hidden === true`.
+
+### 4.3 Asset Director Quality & Provenance Verification (V2.0)
+Applies to all visual media implemented per `ASSET-DIRECTOR-PROTOCOL.md`:
+- [ ] **Asset Manifest Integrity:** All production assets exist in `templates/asset-manifest.json` with valid paths, formats, dimensions, and file sizes.
+- [ ] **Master/Web Separation:** Source files in `assets/source/` remain uncompressed and untouched; web pages reference only optimized files in `assets/web/`.
+- [ ] **Hero Asset Strength:** Hero image satisfies `HERO_ASSET_STRENGTH` with verified text-safe contrast and crisp mobile reflow.
+- [ ] **Signature Asset Present:** For `SHOWCASE` projects, the dedicated signature asset is produced and integrated.
+- [ ] **AI Artifact Clearance:** All generated images verified 100% free of AI defects (`AI_ARTIFACT_CHECK = PASS`).
+- [ ] **Factual Authenticity:** Zero fake AI customers, facilities, staff, or clinical metrics presented as factual evidence (`FACTUAL_EVIDENCE_MEDIA` verified authentic).
+- [ ] **Stock Discipline:** Zero generic corporate stock photos present.
+- [ ] **Provenance & Licensing:** All external assets possess verified commercial licenses in `templates/asset-provenance.md`; zero stolen/copied reference gallery media.
+- [ ] **Responsive `<picture>` Verification:** Responsive crops physically verified on desktop (1440px), tablet (768px), and mobile (390px) viewports.
+
 ---
 
 ## 5. SEO, Metadata & Social Sharing
@@ -89,6 +111,61 @@ Verifies the build matches the locked SEO specification (`templates/keyword-map.
 
 ---
 
+## 5.2 Conversion & Analytics Verification (V2.6)
+
+Verified against `templates/measurement-plan.md` under `CONVERSION-ANALYTICS-PROTOCOL.md`. Skip only where `measurement.mode = "not_required"` or `"exception"` with a recorded justification. **A blocked integration is reported as blocked — never as passing.**
+
+### 5.2.1 Loading & Library Integrity
+- [ ] Analytics loads correctly in the built artifact (or is honestly recorded as deferred/blocked).
+- [ ] **No duplicate analytics libraries** are present. Exactly one instance of the provider runtime.
+- [ ] Site remains 100% functional — navigation, forms, CTAs, motion, styling — with analytics blocked or disabled.
+
+### 5.2.2 Event Firing Correctness
+- [ ] Every event required by the measurement plan **fires** on its specified trigger.
+- [ ] Every event fires **exactly once** per qualifying interaction (verified under rapid repeat interaction).
+- [ ] Event names match `measurement-plan.md` **exactly** — no drift, no vendor name leaking into application code.
+- [ ] All `required_parameters` are present on every emission.
+- [ ] No event exists in the build that is absent from the measurement plan.
+
+### 5.2.3 CTA Mapping
+- [ ] Every CTA event maps to the **correct control**. No event bound to the wrong button.
+- [ ] Every primary and meaningful secondary CTA in `content-plan.md` has working instrumentation or a recorded `MEASUREMENT: NOT_REQUIRED`.
+
+### 5.2.4 Form Integrity
+- [ ] **Form start is not confused with form success.** `lead_form_start` fires on first interaction; the success event does not.
+- [ ] **Failed forms do not generate successful conversion events.** Submit with a server-rejected payload and confirm no success conversion event is emitted.
+- [ ] Rejected submissions emit the specified failure/validation event instead.
+- [ ] Rapid repeat submit clicks do not emit multiple conversion events.
+
+### 5.2.5 Affiliate Integrity
+- [ ] Affiliate outbound events fire correctly on genuine external affiliate links.
+- [ ] **Internal navigation is not mislabelled as outbound affiliate activity** (hostname resolved, not substring matched).
+- [ ] No `affiliate_conversion` or `affiliate_commission` event is emitted from a click.
+
+### 5.2.6 Attribution
+- [ ] UTM handling matches the measurement plan's Attribution / UTM Strategy.
+- [ ] Required campaign parameters survive client-side route transitions.
+- [ ] No PII appears in any UTM parameter.
+
+### 5.2.7 Route Measurement
+- [ ] SPA route transitions are measured where required.
+- [ ] A single route transition emits **exactly one** `page_view` across document navigation, View Transitions callbacks, and `popstate`.
+
+### 5.2.8 Privacy & Secrets
+- [ ] **No analytics secrets are exposed** — no API keys, tokens, or service-account credentials in source control or the built bundle.
+- [ ] **No PII is present in any tracked payload** — inspect actual network payloads, not just source code.
+- [ ] Validation-error events carry field category only, never field values.
+- [ ] Consent dependency is respected as recorded (`REQUIRED` / `NOT_REQUIRED` / `UNASSESSED`).
+- [ ] Session replay remains `DISABLED` unless explicitly justified with a masking policy.
+
+### 5.2.9 Status Recording
+- [ ] `measurement.implementation_verified` set **only** on browser + network evidence, stored in the project evidence directory.
+- [ ] **Production verification status recorded honestly.** `measurement.production_verified` remains `false` unless owner-supplied production evidence exists. Absent evidence is reported as `NOT_YET_VERIFIED`, never as passing.
+- [ ] **Blocked integrations remain honestly blocked** — `measurement.blocked_reason` is present and surfaced in handoff, not quietly cleared.
+- [ ] No external side effects occurred: no analytics properties created, no tag manager or ad accounts modified, no pixels installed on live sites, no owner credentials used.
+
+---
+
 ## 6. Website Gauntlet Verification (V1.3)
 - [ ] **Adversarial Critic Sign-Off:** Phase 11.5 Website Gauntlet report generated (`templates/website-gauntlet-report.md`).
 - [ ] **Subsystem Status Verified:** `site-profile.json` → `gauntlet.status` is `GAUNTLET_PASS`, owner-accepted `GAUNTLET_CAP_REACHED`, or documented `GAUNTLET_EXCEPTION_APPLIED`.
@@ -108,7 +185,16 @@ Verifies the build matches the locked SEO specification (`templates/keyword-map.
 
 ---
 
-## 8. Final Sign-Off & Deployment Authorization
+## 8. Creative Intent Fidelity Verification (V1.8)
+- [ ] **Commercial Objective Met:** Finished site structure and primary CTA directly execute `templates/creative-intent-contract.md` §1 (`PROJECT_PURPOSE` & `PRIMARY_CONVERSION`).
+- [ ] **First-3-Second Impression Aligned:** Emotional posture matches confirmed `DESIRED_FIRST_3_SECOND_FEELING` in `creative-intent-contract.md` §3.
+- [ ] **Anti-Brand Boundaries Respected:** Zero elements present that violate confirmed negative boundaries (`creative-intent-contract.md` §5).
+- [ ] **Creative Ambition Satisfied:** Visual intensity and craft match confirmed `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`) in `creative-intent-contract.md` §4.
+- [ ] **Owner Non-Negotiables Honored:** All constraints in `creative-intent-contract.md` §7 verified in shipping codebase.
+
+---
+
+## 9. Final Sign-Off & Deployment Authorization
 - [ ] **Design Review Score:** $\ge 90$ points achieved in `templates/design-review.md`.
 - [ ] **Website Gauntlet Verdict:** `GAUNTLET_PASS` or authorized exception.
 - [ ] **Pre-Flight Review Documented:** All items above signed off in `templates/production-review.md`.
@@ -116,7 +202,7 @@ Verifies the build matches the locked SEO specification (`templates/keyword-map.
 
 ---
 
-## 8. Production Build & Deployment Integrity
+## 10. Production Build & Deployment Integrity
 - [ ] **Build Validation:** Production bundle compiles cleanly (`npm run build` or framework equivalent) without warnings or lint errors.
 - [ ] **Asset Minification:** CSS and JavaScript bundles are minified and tree-shaken.
 - [ ] **Environment Variables:** All development API keys and mock URLs replaced with production configurations.

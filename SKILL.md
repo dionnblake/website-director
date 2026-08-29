@@ -1,14 +1,14 @@
 ---
 name: website-director
-description: "Directs and governs end-to-end website design and implementation specifications. Turns vague business requirements into award-winning production-grade websites through progressive discovery, visual research, design intelligence synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), mandatory SEO intelligence, archetype synthesis, anti-AI-slop design systems, deliberate motion direction, official GSAP motion engineering (gsap-skills), Lenis smooth inertial scrolling, split-mask typography, pinned scrollytelling, magnetic micro-physics, strict implementation contracts, deterministic Impeccable quality scans, 100-point QA rubrics, and the adversarial Website Gauntlet refinement subsystem."
+description: "Directs and governs end-to-end website design and implementation specifications. Turns vague business requirements into award-winning production-grade websites through adaptive creative briefing (Creative Briefing Room V1.8), visual research, design intelligence synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), mandatory SEO intelligence, archetype synthesis, anti-AI-slop design systems, pre-lock high-fidelity visual prototypes (Visual Prototype Gate V1.9), Awwwards showcase benchmarking, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL & Three.js engineering (Immersive Web Specialist V2.1), interactive vector motion (Rive Specialist V2.2), page experience & route transitions (Page Experience Specialist V2.3), deterministic conversion measurement architecture, KPI hierarchy, CTA-to-event traceability, attribution & UTM governance, affiliate measurement integrity, data-minimized analytics & hypothesis-driven experimentation (Conversion & Analytics Intelligence V2.6), deliberate motion direction, official GSAP motion engineering (gsap-skills), Lenis smooth inertial scrolling, split-mask typography, pinned scrollytelling, magnetic micro-physics, strict implementation contracts, deterministic Impeccable quality scans, 100-point QA rubrics, and the adversarial Website Gauntlet refinement subsystem."
 ---
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 1.7.0  
+> **Version:** 2.6.0  
 > **Status:** Active Production Skill  
-> **Mission:** Prevent AI coding agents from improvising visual language — or an unresearched sitemap — during implementation by enforcing structured progressive discovery, external visual research, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, rigorous design tokenization, separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V1.7.0 is additive to V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
+> **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, or manipulative dark patterns by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
+> **Compatibility:** V2.6.0 is additive to V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
 
 ---
 
@@ -16,24 +16,25 @@ description: "Directs and governs end-to-end website design and implementation s
 
 Invoke this skill whenever:
 - A user wants to design, build, or rebuild a website, landing page, or web application interface from scratch or from commercial goals.
-- An AI coding agent needs to build a web experience without falling into generic, template-driven "AI slop."
+- An AI coding agent needs to build a web experience without falling into generic, template-driven "AI slop", unmotivated Three.js demo gimmicks, gratuitous Rive animations, or surveillance-heavy analytics bloat.
 - A non-designer needs guided design direction based on business fundamentals, external visual intelligence, and brand positioning.
 
 **Invocation stays simple.** The operator says, in plain English:
 ```text
 Activate Website Director for [Company Name].
 ```
-The operator is never expected to separately ask for research, request a Landbook pass, query UI/UX Pro Max, invoke reconnaissance, request the cinematic specialist, or manually coordinate Gauntlet critics. Website Director orchestrates all of that itself, and only pauses where owner-level judgment is genuinely required (approving a direction, confirming a cost, reviewing generated media, evaluating locked change requests). Website Director narrates what phase it is in and why, in business language — never "What GSAP effect do you want?", always "Research indicates X; I recommend Motion Level Y because Z. Approve?"
+The operator is never expected to separately ask for research, request a Landbook pass, query UI/UX Pro Max, search Awwwards, build prototypes, plan photographic assets, invoke WebGL specialists, configure Rive runtimes, or manually coordinate Gauntlet critics. Website Director orchestrates all of that itself, and only pauses where owner-level judgment is genuinely required (approving a creative intent read-back, visually comparing rendered prototypes to select a direction, reviewing critical hero/founder assets, confirming a lock, confirming a cost, evaluating locked change requests). Website Director narrates what phase it is in and why, in business language — never "What GSAP/Three.js effect do you want?", always "Research indicates X; I have generated 3 distinct visual prototypes because Creative Ambition is SHOWCASE. Review prototypes and select direction?"
 
 ---
 
 ## 2. The Operational Workflow
 
-An agent running Website Director must advance strictly through these phases. Do not skip phases or combine un-gated steps. The core numbered phases remain intact; V1.2 added **Phase 2.5** (SEO Intelligence), V1.4 adds **Phase 3.5** (Design Intelligence Synthesis), and V1.3 added **Phase 11.5** (Website Gauntlet Subsystem):
+An agent running Website Director must advance strictly through these phases. Do not skip phases or combine un-gated steps. V1.8 establishes the **Creative Briefing Room & Gate BRIEF (`[CREATIVE_INTENT_CONFIRMED]`)** prior to research; V1.2 added **Phase 2.5** (SEO Intelligence), V1.4 added **Phase 3.5** (Design Intelligence Synthesis), V1.9 added **Phase 3.75** (Awwwards Showcase Benchmarking) and **Phase 4.5** (Pre-Lock Visual Prototype Comparison Gate), V2.0 adds **Phase 8.5 (Asset Director Strategy & Production Gate `[ASSET_DIRECTION_READY]`)**, V2.1 adds **Phase 8.75 (Immersive Web Specialist & Readiness Gate `[IMMERSIVE_IMPLEMENTATION_READY]`)**, V2.2 adds **Phase 8.85 (Rive Interactive Motion Specialist & Readiness Gate `[RIVE_IMPLEMENTATION_READY]`)**, V2.3 adds **Phase 8.95 (Page Experience & Transition Specialist & Readiness Gate `[TRANSITION_READY]`)**, V2.4 adds **Phase 8.97 (CRO, Analytics Architecture & Experimentation Specialist & Readiness Gate `[CRO_MEASUREMENT_READY]`)**, V2.6 adds **Phase 6.5 (Conversion & Analytics Intelligence & Readiness Gate `[CONVERSION_MEASUREMENT_COMPLETE]`)**, and V1.3 added **Phase 11.5** (Website Gauntlet Subsystem):
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ PHASE 1: PROGRESSIVE DISCOVERY (Stages 1 - 4)                │
+│ PHASE 1: CREATIVE BRIEFING ROOM & PROGRESSIVE DISCOVERY      │
+│          ──► GATE BRIEF: [CREATIVE_INTENT_CONFIRMED]         │
 │ PHASE 2: POSITIONING & BOUNDARY MAPPING                      │
 │ PHASE 2.5: SEO INTELLIGENCE (SEO Intelligence Director)      │
 │          ──► GATE SEO: [SEO_COMPLETE] (readiness gate)       │
@@ -41,38 +42,60 @@ An agent running Website Director must advance strictly through these phases. Do
 │          ──► GATE 0: [RESEARCH_COMPLETE] (readiness gate)    │
 │ PHASE 3.5: DESIGN INTELLIGENCE (UI/UX Pro Max Engine)        │
 │          ──► GATE INTEL: [DESIGN_INTELLIGENCE_COMPLETE]      │
-│ PHASE 4: VISUAL DIRECTION (REFERENCE vs ORIGINAL MODE)       │
+│ PHASE 3.75: AWWWARDS SHOWCASE BENCHMARKING (SHOWCASE Tier)   │
+│ PHASE 4: VISUAL DIRECTION FORMULATION (Pass 1 & Pass 2)      │
+│ PHASE 4.5: HIGH-FIDELITY VISUAL PROTOTYPES & COMPARISON GATE │
+│          ──► GATE PROTO: [VISUAL_PROTOTYPES_OWNER_READY]     │
+│          ──► OWNER SELECTS VISUAL DIRECTION                  │
 │          ──► GATE 1: [DESIGN_DIRECTION_LOCKED]               │
 │ PHASE 5: INFORMATION ARCHITECTURE & SECTION MORPHOLOGY       │
 │          ──► GATE 2: [INFORMATION_ARCHITECTURE_LOCKED]       │
 │ PHASE 6: CONTENT STRUCTURE & EVIDENCE PLAN                   │
 │          ──► GATE 3: [CONTENT_STRUCTURE_LOCKED]              │
+│ PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE               │
+│          ──► GATE MEASUREMENT:                               │
+│              [CONVERSION_MEASUREMENT_COMPLETE]               │
 │ PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE                    │
 │          ──► GATE 4: [DESIGN_SYSTEM_LOCKED]                  │
 │ PHASE 8: MOTION / CINEMATIC DIRECTION                        │
 │          ──► GATE 5: [MOTION_DIRECTION_LOCKED]               │
+│ PHASE 8.5: ASSET DIRECTOR STRATEGY & PRODUCTION SYSTEM       │
+│          ──► GATE ASSET: [ASSET_DIRECTION_READY]             │
+│ PHASE 8.75: IMMERSIVE WEB & THREE.JS SPECIALIST ARCHITECTURE │
+│          ──► GATE IMMERSIVE: [IMMERSIVE_READY | NOT_REQ]     │
+│ PHASE 8.85: RIVE INTERACTIVE MOTION SPECIALIST ARCHITECTURE  │
+│          ──► GATE RIVE: [RIVE_READY | NOT_REQ]               │
+│ PHASE 8.95: PAGE EXPERIENCE & TRANSITION SPECIALIST          │
+│          ──► GATE TRANSITION: [TRANSITION_READY | NOT_REQ]   │
+│ PHASE 8.97: CRO, ANALYTICS & EXPERIMENTATION SPECIALIST      │
+│          ──► GATE CRO: [CRO_MEASUREMENT_READY | NOT_REQ]     │
 │ PHASE 9: IMPLEMENTATION CONTRACT ISSUANCE                    │
 │ PHASE 10: PIXEL-PERFECT IMPLEMENTATION BUILD                 │
 │ PHASE 11: 100-POINT DESIGN QA & REFINEMENT (+ V1.1 gates)    │
 │ PHASE 11.5: WEBSITE GAUNTLET & ADVERSARIAL REFINEMENT        │
 │          ──► GATE GAUNTLET: [GAUNTLET_PASS | CAP_REACHED]    │
 │ PHASE 12: PRODUCTION PRE-FLIGHT VERIFICATION (+ SEO QA)      │
+│ PHASE 12.5: CLIENT CMS, OPERATIONS & HANDOFF GOVERNANCE     │
+│          ──► GATE HANDOFF: [CLIENT_HANDOFF_READY | NOT_REQ]  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-`GATE 0`, `GATE SEO`, `GATE INTEL`, and `GATE GAUNTLET` are quality/readiness gates, not approval locks — see §6. Gates 1–5 are the five mandatory design/motion locks. Phase 2.5, Phase 3, and Phase 3.5 provide empirical research and design intelligence candidates that feed into Phase 4 synthesis. Phase 11.5 is the adversarial builder/critic refinement loop that evaluates against real dimensional reference bars before Phase 12 pre-flight sign-off.
+`GATE BRIEF`, `GATE 0`, `GATE SEO`, `GATE INTEL`, `GATE PROTO`, `GATE MEASUREMENT`, `GATE ASSET`, `GATE IMMERSIVE`, `GATE RIVE`, `GATE TRANSITION`, `GATE CRO`, and `GATE GAUNTLET` are quality/readiness gates, not approval locks — see §6. Gates 1–5 are the five mandatory design/motion locks. Phase 1 produces the authoritative `creative-intent-contract.md` and requires explicit owner confirmation before research begins. Phase 2.5, Phase 3, Phase 3.5, and Phase 3.75 provide empirical research, design intelligence, and Awwwards benchmark candidates. Phase 4.5 builds bounded, high-fidelity browser prototypes so the owner selects from what they SEE before Gate 1 (`DESIGN_DIRECTION_LOCKED`) engages. Phase 8.5 produces and validates the authoritative asset family via `ASSET-DIRECTOR-PROTOCOL.md`. Phase 8.75 governs Three.js/R3F scene graph architectures via `IMMERSIVE-WEB-PROTOCOL.md`. Phase 8.85 governs state-driven interactive vector animation and runtime data-binding via `RIVE-INTERACTIVE-MOTION-PROTOCOL.md`. Phase 8.95 governs route continuity, View Transitions, scroll restoration, and navigation lifecycle via `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`. Phase 6.5 converts locked commercial intent into a deterministic measurement architecture — business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, and attribution — via `CONVERSION-ANALYTICS-PROTOCOL.md`, so measurement informs the design system rather than being retrofitted. Phase 8.97 then governs experimentation design and instrumentation readiness against that same `measurement{}` state. Phase 11.5 is the adversarial builder/critic refinement loop that evaluates against real dimensional reference bars before Phase 12 pre-flight sign-off.
+
 
 ---
 
 ## 3. Step-by-Step Agent Execution Instructions
 
-### PHASE 1: Progressive Discovery Execution
+### PHASE 1: Creative Briefing Room & Adaptive Discovery Execution
 - Consult [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md).
-- **Rule:** Never ask more than 3-5 questions at a time. Progress stage-by-stage:
-  - **Stage 1 (Business):** What does the company do, who is the customer, what is the primary conversion?
-  - **Stage 2 (Brand):** Existing assets, emotional posture, anti-brand boundaries (what NOT to look like).
-  - **Stage 3 (Evidence):** Testimonials, metrics, case studies, certifications, visual assets.
-  - **Stage 4 (Visual Direction):** Present 3 plain-English visual choices (or ask for references).
+- **Rule 1 (Creative Director Persona):** Interview the client as an expert creative director. Never ask clients technical design questions (grid systems, border radiuses, GSAP plugins, typography scales, CSS frameworks).
+- **Rule 2 (No Interrogation Dump):** Ask 2 to 5 high-value questions per turn. Digest answers, update understanding confidence (`LOW` $\rightarrow$ `MEDIUM` $\rightarrow$ `HIGH`), and ask context-specific adaptive follow-ups.
+- **Rule 3 (The Four Anchor Questions):** Establish early: (1) What is this website for? (2) Who is it for? (3) What should it feel like? (4) What should the visitor do?
+- **Rule 4 (Ambition & Dimensions):** Calibrate `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`), `VISUAL_INTENSITY` (`RESTRAINED` to `EXTREME`), `MOTION_APPETITE`, and `EXPERIMENTATION_TOLERANCE`.
+- **Rule 5 (Assumption & Epistemic Tracking):** Categorize facts into `OWNER_STATED`, `WEBSITE_DIRECTOR_INFERRED`, `RESEARCH_TO_VALIDATE`, and `UNRESOLVED`.
+- **Rule 6 (The Read-Back & Confirmation Gate):** When confidence is `HIGH`, compile [templates/creative-intent-contract.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/creative-intent-contract.md) and present a 2-3 paragraph synthesis to the owner ending with: *"Did I understand the assignment correctly?"*
+- **ENGAGE GATE BRIEF:** Update `site-profile.json` $\rightarrow$ `creative_intent.confirmed = true` and `creative_intent.status = "confirmed"`. External visual research (Phase 3) and SEO (Phase 2.5) must NOT begin until this gate engages or explicit owner authorization is given.
 - Synthesize responses into [templates/project-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/project-brief.md) and [templates/positioning.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/positioning.md).
 
 ---
@@ -119,20 +142,52 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+### PHASE 3.75: Awwwards Showcase Benchmarking (SHOWCASE Tier Intelligence)
+- Consult [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md).
+- Activate dimensional reference extraction when `CREATIVE_AMBITION = SHOWCASE` (recommended for `PREMIUM` / `EXPERIMENTAL`).
+- Extract specific, verifiable dimensional bars (`AWWWARDS_HERO_BAR`, `AWWWARDS_TYPOGRAPHY_BAR`, `AWWWARDS_LAYOUT_BAR`, `AWWWARDS_INTERACTION_BAR`, `AWWWARDS_MOTION_BAR`, `AWWWARDS_MOBILE_BAR`).
+- For each reference, document: `REFERENCE_NAME`, `REFERENCE_URL`, `RELEVANT_DIMENSION`, `WHAT_IT_DOES_WELL`, `WHY_IT_IS_RELEVANT`, `WHAT_NOT_TO_COPY`, and `TRANSFERABLE_PRINCIPLE`.
+- Enforce the **Anti-Copying Rule** and **Trend Contamination Filter** (reject unmotivated all-black tropes, forced horizontal scroll, or meaningless WebGL blobs).
+- If Awwwards is unreachable, record `research.showcase_research_status = "PARTIAL"` or `"UNAVAILABLE"` and fall back gracefully to verified high-quality alternatives — never hallucinate.
+
+---
+
 ### PHASE 4: Visual Direction Formulation & Two-Pass Distinctiveness Synthesis
 - Consult [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) §7 and Anthropic Distinctiveness Discipline.
 - If user provides references → Activate **`REFERENCE_MODE`** via [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) and generate [templates/reference-analysis.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/reference-analysis.md).
-- If user provides no references → Activate **`ORIGINAL_MODE`** via [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md) to synthesize an optimal 60/30/10 blend.
-- **Two-Pass Design Synthesis Workflow:**
+- If user provides no references → Activate **`ORIGINAL_MODE`** via [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md) to synthesize optimal archetype blends.
+- **Direction Generation Policy:**
+  - `STANDARD`: 1 strong direction (or 2 lightweight).
+  - `PREMIUM`: 2–3 distinct directions.
+  - `SHOWCASE`: Exactly 3 GENUINELY DISTINCT directions evaluated across the 10 Divergence Vectors (`DIRECTION_DIVERGENCE`).
+  - `EXPERIMENTAL`: 2–3 avant-garde directions with documented risk boundaries.
+- **Two-Pass Design Synthesis Workflow (per direction):**
   - **Pass 1 (Subject-Grounded Synthesis):** Derive visual metaphors, palette, typography, and hierarchy directly from the subject's world (materials, instruments, vernacular, physical context). Declare `HERO_THESIS`, `SIGNATURE_ELEMENT`, and `BOLDNESS_BUDGET`.
-  - **Pass 2 (Distinctiveness Pre-Check):** Challenge the proposal: *"Could this same design plan have been generated for 5 similar businesses with only logo and copy swapped?"* If yes, revise generic elements before presenting for approval.
-- Synthesize the final direction into [templates/design-direction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-direction.md).
-- **Preconditions:** `research.complete` and `design_intelligence.complete` must be `true` (or recorded exceptions) before this gate may engage.
-- **ENGAGE LOCK 1:** Update `site-profile.json` → `locks.design_direction_locked = true` and `design_intelligence.distinctiveness_check_complete = true`.
+  - **Pass 2 (Distinctiveness Pre-Check):** Challenge the proposal: *"Could this same design plan have been generated for 5 similar businesses with only logo and copy swapped?"* If yes, revise generic elements before building prototypes.
+
+---
+
+### PHASE 4.5: High-Fidelity Visual Prototypes & Owner Selection Gate
+- Consult [VISUAL-PROTOTYPE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-PROTOTYPE-PROTOCOL.md).
+- **Rule (No Prose-Only Selection):** The owner must NEVER select a direction from prose alone. Build bounded, high-fidelity browser prototypes in `projects/[project]/prototypes/direction-XX/`.
+- **Required Prototype Anatomy:** Global Nav/Header, Complete Hero (`HERO_THESIS`), Representative Content Section, Signature Element (`SIGNATURE_ELEMENT`), Action CTA, and Responsive Mobile (390px) evidence.
+- **Motion Proof Policy:** Implement hero choreography, 1 scroll interaction, and CTA micro-physics to prove `MOTION_CHARACTER` without implementing the full production motion suite.
+- **Portfolio Art Director Critic:** Run the 11-question studio-grade craft critique for SHOWCASE projects.
+- Compile [templates/visual-prototype-review.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/visual-prototype-review.md).
+- **ENGAGE GATE PROTO (The Visual Selection Hard Stop):**
+  - Set `site-profile.json` → `visual_prototypes.status = "ready_for_owner_review"`.
+  - **STOP.** Present prototypes and comparison package to the owner.
+  - Await explicit owner choice (`DIRECTION_1`, `DIRECTION_2`, `DIRECTION_3`, revision, or hybridization).
+- **ENGAGE LOCK 1 (Design Direction Lock Sequence):**
+  - After owner selection, record `visual_prototypes.owner_selected_direction = "direction-XX"` and `visual_prototypes.owner_selection_confirmed = true`.
+  - Synthesize final [templates/design-direction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-direction.md) from the chosen prototype.
+  - Present Design Direction Lock package and obtain explicit lock approval.
+  - Update `site-profile.json` → `locks.design_direction_locked = true`.
 
 ---
 
 ### PHASE 5: Information Architecture & Section Morphology
+
 - **Precondition:** `seo.complete` must be `true` (or a recorded exception) before this gate may engage — see `SEO-INTELLIGENCE-PROTOCOL.md` §6. Do not finalize the sitemap or page architecture before SEO/competitor research has completed or been explicitly declared not applicable.
 - Review [templates/information-architecture.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/information-architecture.md) and [templates/keyword-map.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/keyword-map.md) together — search evidence informs which pages exist and what they target; commercial psychology decides the funnel and morphology. Record in `keyword-map.md` §4 how the map changed or confirmed the sitemap.
 - Structure the visitor cognitive journey: `Understand` → `Believe` → `Evaluate` → `Convert`.
@@ -156,6 +211,31 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+### PHASE 6.5: Conversion & Analytics Intelligence (Measurement Readiness Gate)
+- Consult [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md).
+- **Precondition:** `locks.content_structure_locked` must be `true`. Measurement is derived from locked copy and the approved CTA inventory — it never runs against draft content.
+- **Core Standard:** Website Director does not merely assert that a CTA *should* convert. It defines what the conversion is, which event represents it, how it is triggered, which KPI it serves, how attribution is preserved, and how implementation is verified.
+- **Derivation Rule (Do Not Re-Interview):** Derive requirements from `project-brief.md`, `positioning.md`, `information-architecture.md`, `content-plan.md`, `keyword-map.md`, `seo-content-briefs.md`, and `site-profile.json` → `conversion_context{}`. Re-engage the owner only for genuinely unresolved commercial facts (analytics provider, affiliate conversion feed availability).
+- **Execution Workflow:**
+  - Determine `BUSINESS_OBJECTIVE` (`LEAD`, `SALE`, `CONSULTATION`, `BOOKING`, `AFFILIATE_OUTBOUND`, `NEWSLETTER_SIGNUP`, `ACCOUNT_REGISTRATION`, `SOFTWARE_TRIAL`, `DOWNLOAD`, `APPLICATION`, `PHONE_CALL`, `STORE_VISIT`, `CONTENT_ENGAGEMENT`, `DONATION`, `MEMBERSHIP`). Do not assume every website has the same conversion model.
+  - Build the KPI hierarchy, explicitly separating `BUSINESS OUTCOME KPI ≠ FUNNEL KPI ≠ DIAGNOSTIC METRIC ≠ VANITY METRIC`. Pageviews are never automatically treated as success.
+  - Translate the cognitive journey (`Understand` → `Believe` → `Evaluate` → `Convert`) into **observable** funnel stages. Do not invent funnel steps that do not exist on the actual website; mark genuinely unobservable stages `OBSERVABLE = FALSE`.
+  - Define the event taxonomy in `lowercase_snake_case`. Every event carries the full 13-field **Event Definition Contract** (§8). Events without a business or diagnostic purpose are prohibited.
+  - Complete the **CTA Measurement Matrix** — every primary and meaningful secondary CTA in `content-plan.md` is traced to an event, KPI relation, destination, and verification method. CTA labels are copied verbatim; measurement never rewords locked copy.
+  - Define attribution / UTM governance where applicable (naming conventions, preservation, landing-page attribution, cross-domain boundaries). No PII in UTM parameters.
+  - Where affiliate links are part of the business model, enforce `AFFILIATE CLICK ≠ AFFILIATE CONVERSION ≠ AFFILIATE COMMISSION`. Never infer conversion or commission from a click.
+  - Record baseline governance honestly: `BASELINE = UNKNOWN` where no baseline exists. Never invent industry benchmarks.
+  - Record `consent_dependency` as `REQUIRED`, `NOT_REQUIRED`, or `UNASSESSED` — never guessed.
+  - Compile the authoritative [templates/measurement-plan.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/measurement-plan.md) and [templates/analytics-event-manifest.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/analytics-event-manifest.json).
+- **Locks Always Win:** If measurement reveals a structural problem requiring a locked change, **HALT** and generate a locked-change request. Never silently edit IA, copy, CTA wording, tokens, or motion to make analytics easier.
+- **ENGAGE GATE MEASUREMENT:** Update `site-profile.json` → `measurement.complete = true` and `measurement.mode = "standard"` (or `"blocked"` / `"exception"` / `"not_required"`).
+  - *Invariant:* `[CONVERSION_MEASUREMENT_COMPLETE]` is a **readiness gate**, NOT a sixth owner lock. Exactly 5 owner locks remain immutable.
+  - *Invariant:* `measurement.complete` certifies a plan exists. It NEVER means production analytics were observed. Use `measurement.implementation_verified` (post-build) and `measurement.production_verified` (post-deployment) — these three states are permanently distinct.
+  - *Blocked mode:* Where the provider is unselected or an integration is unavailable, set `measurement.mode = "blocked"` with a specific `blocked_reason`. The plan stays usable; success is never fabricated.
+  - *Exception mode:* Only for private prototypes, offline demos, disposable experiments, or explicitly non-commercial internal surfaces, recorded in `measurement.exception`. Never silently skip measurement for a commercial public-facing website.
+
+---
+
 ### PHASE 7: Design System Token Architecture
 - Consult [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md).
 - Fill out all 14 token sub-systems in [templates/design-system.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-system.md).
@@ -173,6 +253,84 @@ An agent running Website Director must advance strictly through these phases. Do
   - If `MOTION_LEVEL >= LEVEL_1` and JavaScript motion is required: set `site-profile.json` → `motion.gsap_required = true` and generate [templates/motion-implementation-spec.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/motion-implementation-spec.md) drawing canonical implementation patterns from the official GSAP Skills Engine (`intelligence/gsap-skills/engine/query.py`).
 - **If, and only if,** Level 2–3 genuinely calls for the Robonuggets `cinematic-sites` specialist's specific capabilities (AI-generated hero animation, scroll-driven canvas frames, Cinematic Modules), consult [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md), set `site-profile.json` → `motion.cinematic_specialist_required = true`, and generate [templates/cinematic-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/cinematic-brief.md) as the binding contract the specialist executes. Obtain explicit owner cost authorization before any paid generation call. On completion, set `motion.cinematic_brief_complete = true`.
 - **ENGAGE LOCK 5:** Update `site-profile.json` → `locks.motion_direction_locked = true`. If a cinematic specialist was required, `motion.cinematic_brief_complete` must already be `true`.
+
+---
+
+### PHASE 8.5: Asset Director Strategy & Production System (Asset Readiness Gate)
+- Consult [ASSET-DIRECTOR-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/ASSET-DIRECTOR-PROTOCOL.md).
+- **Core Standard:** Web visual assets must be intentionally art-directed, verified for authenticity, and legally licensed. Visual media is never treated as miscellaneous files gathered during coding.
+- **Stage B Selected-Direction Production:**
+  - Audit all owner-supplied assets (`KEEP`, `RETOUCH`, `CROP`, `REPLACE`, `UNUSABLE`). Authentic brand evidence takes precedence over generated media.
+  - Establish [templates/asset-intent-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/asset-intent-brief.md) for every major visual asset (Hero, Detail Macro, Signature, Editorial).
+  - Enforce `HERO_ASSET_STRENGTH` (Instant focal anchor, cognitive thesis support, text-safe zones, and mobile crop integrity).
+  - For `SHOWCASE` projects, produce and verify the `SIGNATURE_ASSET` embodying the locked `SIGNATURE_ELEMENT`.
+  - Maintain the **Authenticity Boundary**: synthetic/generated media must never be presented as factual documentary proof (fake staff, fake facilities, fake clinical data).
+  - Enforce **AI Failure Detection** (`AI_ARTIFACT_CHECK = PASS`) and strict stock photography anti-cliché discipline.
+  - Generate [templates/photography-shot-list.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/photography-shot-list.md) when bespoke client photography is required.
+  - Enforce Master vs Web asset directory separation (`assets/source/` vs `assets/web/`) and multi-ratio responsive `<picture>` plans.
+  - Compile the authoritative [templates/asset-manifest.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/asset-manifest.json) and [templates/asset-provenance.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/asset-provenance.md).
+- **ENGAGE GATE ASSET:** Update `site-profile.json` → `assets.status = "production_ready"`.
+  - *Invariant:* `[ASSET_DIRECTION_READY]` is a quality readiness gate, NOT a sixth owner lock.
+
+---
+
+### PHASE 8.75: Immersive Web & Three.js Specialist Architecture (Immersive Readiness Gate)
+- Consult [IMMERSIVE-WEB-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMMERSIVE-WEB-PROTOCOL.md).
+- **Core Standard:** 3D exists exclusively because it communicates the subject with superior spatial clarity, never because the toolchain knows Three.js.
+- **Evaluation & Specification Workflow:**
+  - Evaluate against the **10-Point Immersive Justification Matrix**. If unjustified, declare `IMMERSIVE_LEVEL = 0_NONE` and set `immersive.status = "not_required"`.
+  - If justified (`1_ENHANCEMENT`, `2_FEATURE`, `3_CENTERPIECE`):
+    - Select Technical Stack (`THREE_JS_VANILLA` vs `REACT_THREE_FIBER` / `DREI`).
+    - Define Scene Graph Architecture and Camera Direction (with strict orbital angle clamps).
+    - Establish Lighting Rig and Material Physics matching locked design system tokens.
+    - Synchronize transforms via official GSAP / ScrollTrigger timelines.
+    - Enforce Performance Budget, Bounded DPR (Desktop $\le 2.0$, Mobile $\le 1.5$), and `MOBILE_3D_POLICY`.
+    - Enforce **Universal 2D WebGL Fallback** (`WEBGL_FALLBACK = READY`) and reduced-motion handling.
+    - Guarantee **Semantic Content Primacy** (primary headlines, CTAs, and specifications remain in semantic DOM).
+    - Define explicit resource teardown via `disposeScene()` to eliminate WebGL memory leaks.
+    - Compile [templates/immersive-implementation-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/immersive-implementation-brief.md).
+- **ENGAGE GATE IMMERSIVE:** Update `site-profile.json` → `immersive.status = "implementation_ready"` (or `"not_required"`).
+  - *Invariant:* `[IMMERSIVE_IMPLEMENTATION_READY]` is a quality readiness check, NOT an owner lock.
+
+---
+
+### PHASE 8.85: Rive Interactive Motion Specialist Architecture (Rive Readiness Gate)
+- Consult [RIVE-INTERACTIVE-MOTION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RIVE-INTERACTIVE-MOTION-PROTOCOL.md).
+- **Core Standard:** Use Rive when state-driven interactive vector motion communicates brand, product, or UI states fundamentally better than CSS, GSAP, video, or Three.js.
+- **Evaluation & Specification Workflow:**
+  - Evaluate against the **Rive Technology Selection Matrix**. If unjustified, declare `RIVE_LEVEL = 0_NONE` and set `rive.status = "not_required"`.
+  - If justified (`1_MICRO`, `2_COMPONENT`, `3_SIGNATURE`):
+    - Select Runtime (`RIVE_WEB` vs `RIVE_REACT`) and pin compatible version.
+    - Map State Machines, Inputs (`BOOLEAN`, `NUMBER`, `TRIGGER`), and transitions.
+    - Govern Data Binding / ViewModels with semantic sources (synthetic data flagged explicitly).
+    - Enforce **No Hover-Only Rule** (touch and keyboard accessible).
+    - Guarantee **Semantic DOM Mirroring** (values and labels mirrored in accessible HTML).
+    - Configure `prefers-reduced-motion` (freeze idle loops, snap transitions).
+    - Configure **Zero-CLS 2D Fallback** (`STATIC_SVG`, `STATIC_IMAGE`, `HTML_COMPONENT`, or `CSS_STATE`).
+    - Define explicit lifecycle cleanup on teardown.
+    - Compile [templates/rive-implementation-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/rive-implementation-brief.md).
+- **ENGAGE GATE RIVE:** Update `site-profile.json` → `rive.status = "implementation_ready"` (or `"not_required"`).
+  - *Invariant:* `[RIVE_IMPLEMENTATION_READY]` is a quality readiness check, NOT an owner lock. Exactly 5 owner locks remain.
+
+---
+
+### PHASE 8.97: CRO, Analytics Architecture & Experimentation System (CRO Readiness Gate)
+- Consult [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md) §14 and §22. (`CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` is superseded and retained as a pointer only.)
+- **Precondition:** `measurement.complete` must already be `true` (or a recorded exception) from Phase 6.5. This phase designs experimentation and verifies instrumentation readiness against that existing plan — it does not re-author the measurement architecture.
+- **Core Standard:** Measure what matters, learn from real behavior, and improve deliberately. Never track everything blindly. Never manipulate visitors with dark patterns.
+- **Evaluation & Specification Workflow:**
+  - Define outcomes first: `PRIMARY_BUSINESS_OUTCOME`, `SECONDARY_BUSINESS_OUTCOME`, `PRIMARY_VISITOR_OUTCOME`, `PRIMARY_CONVERSION`, `SECONDARY_CONVERSIONS`.
+  - Establish `CONVERSION_LEVEL` hierarchy (`MACRO`, `MICRO`, `DIAGNOSTIC`).
+  - Model user journey using appropriate `FUNNEL_MODEL` (`LINEAR`, `BRANCHED`, `CONTENT_LED`, `COMMERCE`, `LEAD_GENERATION`, `SELF_SERVICE`, `NONLINEAR`).
+  - Structure every optimization using `CRO_HYPOTHESIS` (Observation, Problem, Hypothesis, Change, Expected Behavior, Primary Metric, Guardrail Metrics, Decision Rule).
+  - Consume the event taxonomy already defined in Phase 6.5 via [templates/measurement-plan.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/measurement-plan.md) and [templates/analytics-event-manifest.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/analytics-event-manifest.json). Do not redefine or rename events here.
+  - Enforce **Data Minimization & PII Prohibition** (`PII_IN_ANALYTICS = 0`, zero form input capture, `SESSION_REPLAY = DISABLED` by default).
+  - Guarantee **Analytics Failure Resilience** (site 100% functional when analytics is blocked or disabled).
+  - Integrate with View Transitions (V2.3) for single-event page view deduplication.
+  - Compile [templates/experiment-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/experiment-brief.md) if, and only if, experimentation is authorized. Website Director does not automatically launch A/B tests.
+- **ENGAGE GATE CRO:** Update `site-profile.json` → `measurement.experiment_plan_ready` and, post-build, `measurement.implementation_verified`.
+  - *Invariant:* `[CRO_MEASUREMENT_READY]` is a **downstream sub-gate** reading the same `measurement{}` state established at Phase 6.5. It writes no independent completion flag — `measurement.complete` remains the single authoritative readiness flag.
+  - *Invariant:* `[CRO_MEASUREMENT_READY]` is an engineering and strategy readiness gate, NOT a sixth owner lock. Exactly 5 owner locks remain immutable.
 
 ---
 
@@ -225,20 +383,33 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+### PHASE 12.5: Client CMS, Operations & Handoff Specialist (Handoff Readiness Gate)
+- Consult [CLIENT-CMS-HANDOFF-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CLIENT-CMS-HANDOFF-PROTOCOL.md).
+- The professional client website must remain understandable, maintainable, editable where appropriate, and recoverable after the builder leaves.
+- Evaluate CMS necessity via the 15-question justification gate.
+- Enforce least-privilege roles, editable surface contracts, 301 redirects, complete 9-document handoff package, and SHA-256 backup/restore proofs.
+- **ENGAGE GATE HANDOFF:** Update `site-profile.json`  `.handoff.status = "ready_for_review"` (or `not_required`). *Exactly 5 owner locks remain.*
+
+---
+
 ## 4. Summary of Operating Artifacts
 
 | Phase / Protocol | Primary Specification Document | Working Project Artifact Template |
 | :--- | :--- | :--- |
 | **Governance** | [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) | `site-profile.json` |
-| **Discovery** | [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md) | `project-brief.md`, `positioning.md` |
+| **Creative Briefing** | [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md) | `creative-intent-contract.md`, `project-brief.md`, `positioning.md` |
 | **SEO Intelligence** | [SEO-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SEO-INTELLIGENCE-PROTOCOL.md) | `seo-business-context.md`, `keyword-research.md`, `seo-competitive-landscape.md`, `keyword-map.md`, `seo-content-briefs.md` |
 | **Visual Research** | [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md), [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md), [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md) | `research-brief.md`, `competitor-landscape.md`, `inspiration-board.md`, `reference-deconstruction.md`, `research-synthesis.md` |
 | **Design Intelligence** | [DESIGN-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-INTELLIGENCE-PROTOCOL.md) | `design-intelligence.md` |
+| **Showcase Benchmarking** | [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md) | `inspiration-board.md`, `visual-prototype-review.md` |
 | **Visual Direction** | [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md), [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) | `reference-analysis.md`, `design-direction.md` |
+| **Visual Prototypes** | [VISUAL-PROTOTYPE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-PROTOTYPE-PROTOCOL.md) | `visual-prototype-review.md`, `prototypes/direction-XX/` |
 | **Architecture** | [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) | `information-architecture.md`, `content-plan.md` |
 | **Design System** | [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md) | `design-system.md` |
 | **Motion Direction** | [MOTION-DIRECTION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/MOTION-DIRECTION-PROTOCOL.md), [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md) | `motion-direction.md`, `cinematic-brief.md` |
 | **Motion Engineering** | [GSAP-IMPLEMENTATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/GSAP-IMPLEMENTATION-PROTOCOL.md) | `motion-implementation-spec.md` |
+| **Page Experience** | [PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md) | `page-experience-brief.md` |
+| **Conversion & Analytics Intelligence** | [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md) | `measurement-plan.md`, `analytics-event-manifest.json`, `experiment-brief.md` |
 | **Implementation** | [IMPLEMENTATION-CONTRACT.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMPLEMENTATION-CONTRACT.md) | `implementation-contract.md` |
 | **Quality Engine** | [IMPECCABLE-ENGINE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMPECCABLE-ENGINE-PROTOCOL.md) | `IMPECCABLE-ENGINE-PROTOCOL.md` |
 | **Design QA** | [QA-RUBRIC.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/QA-RUBRIC.md) | `design-review.md` |
@@ -247,12 +418,14 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+| **Signature Choreography** | [SIGNATURE-SCROLL-SPATIAL-CHOREOGRAPHY-LIBRARY.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SIGNATURE-SCROLL-SPATIAL-CHOREOGRAPHY-LIBRARY.md) | `signature-interaction-brief.md`, `signature-interaction-registry.json` |
+| **Client CMS & Handoff** | [CLIENT-CMS-HANDOFF-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CLIENT-CMS-HANDOFF-PROTOCOL.md) | CLIENT-HANDOFF.md, CONTENT-EDITOR-GUIDE.md, CMS-CONTENT-MODEL.md, DIGITAL-OWNERSHIP-REGISTER.md, MAINTENANCE-RESPONSIBILITY-MATRIX.md, ENVIRONMENT-INVENTORY.md, RELEASE-RUNBOOK.md, RECURRING-COST-REGISTER.md, CLIENT-TRAINING-PLAN.md |
 ## 5. State Machine & Source-of-Truth Hierarchy
 
 To prevent state contradictions between machine-readable JSON and human-readable Markdown:
 
 1. **Machine Gate Authority (`site-profile.json`):** `site-profile.json` is the single source of truth for runtime execution state, active phase, lock status, and gauntlet progress. Coding agents MUST read `site-profile.json` to verify that all five gates in `locks{}` evaluate to `true` before writing code.
-2. **Semantic & Token Authority (Markdown Artifacts):** The generated Markdown specifications (`design-direction.md`, `information-architecture.md`, `content-plan.md`, `design-system.md`, `motion-direction.md`, `motion-implementation-spec.md`, `research-synthesis.md`, `design-intelligence.md`, `website-gauntlet-report.md`) are the authoritative definitions of visual tokens, copy strings, layout structure, motion behavior, and Gauntlet defect traces.
+2. **Semantic & Token Authority (Markdown Artifacts):** The generated Markdown specifications (`creative-intent-contract.md`, `design-direction.md`, `visual-prototype-review.md`, `information-architecture.md`, `content-plan.md`, `design-system.md`, `motion-direction.md`, `motion-implementation-spec.md`, `measurement-plan.md`, `experiment-brief.md`, `research-synthesis.md`, `design-intelligence.md`, `website-gauntlet-report.md`) are the authoritative definitions of visual tokens, copy strings, layout structure, motion behavior, analytics taxonomy, and Gauntlet defect traces.
 3. **Lock Transition Invariant:** A boolean lock in `site-profile.json` CANNOT be set to `true` unless the corresponding Markdown specification is fully populated, anti-slop verified, and explicitly approved.
 4. **Resolution Rule:** If a discrepancy exists between `site-profile.json` and a Markdown artifact, the Markdown artifact is updated first, followed by updating `site-profile.json` to re-synchronize state.
 
@@ -293,22 +466,52 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - It challenges the proposal against subject grounding, hero thesis, structural meaning, signature element, and 5-competitor interchangeability.
 - It does NOT replace the post-build independent `BUILDER != CRITIC` Website Gauntlet refinement loop (Phase 11.5).
 
+### 5.8 Single-Source-of-Truth Rule for `creative_intent` State (V1.8)
+`creative_intent.confirmed` is authoritative **only** inside the `creative_intent{}` object in `site-profile.json`. It is a **readiness gate** certifying that the owner has explicitly confirmed the Creative Intent Contract (`creative-intent-contract.md`) and Read-Back before Phase 2, Phase 2.5 (SEO), and Phase 3 (Visual Research) may commence.
+- `creative_intent.status` values: `"not_started"`, `"interviewing"`, `"ready_for_confirmation"`, `"confirmed"`, `"blocked"`.
+- `creative_intent.understanding_confidence` values: `"low"`, `"medium"`, `"high"`.
+- `creative_intent.creative_ambition` values: `"standard"`, `"premium"`, `"showcase"`, `"experimental"`.
+- **Precedence Rule:** Owner confirmation is a mandatory gate. It is NOT a design lock; it gates research and strategy entry.
+
+### 5.9 Single-Source-of-Truth Rule for `visual_prototypes` State (V1.9)
+`visual_prototypes.owner_selection_confirmed` is authoritative **only** inside the `visual_prototypes{}` object in `site-profile.json`. It is a **readiness gate** certifying that the owner has visually inspected the rendered prototypes and explicitly selected a direction before Lock 1 (`locks.design_direction_locked`) may engage.
+- `visual_prototypes.status` values: `"not_required"`, `"pending"`, `"generating"`, `"ready_for_owner_review"`, `"selected"`, `"blocked"`.
+- `visual_prototypes.direction_count`: Integer (`1`, `2`, `3`). Exactly 3 required for `CREATIVE_AMBITION = SHOWCASE`.
+- `visual_prototypes.owner_selected_direction`: String naming chosen direction (e.g., `"direction-01"`).
+- **Strict Lock Separation:** `visual_prototypes{}` contains NO lock boolean. The sole authoritative Design Direction lock remains `locks.design_direction_locked`. Prototype selection is NOT an automatic lock.
+
+### 5.10 Single-Source-of-Truth Rule for `awwwards` Showcase Research (V1.9)
+`research.showcase_research_status` is authoritative inside `research{}` in `site-profile.json`. Valid values: `"NOT_REQUIRED"`, `"RECOMMENDED"`, `"REQUIRED"`, `"COMPLETE"`, `"PARTIAL"`, `"UNAVAILABLE"`.
+- Activated as `REQUIRED` by default for `CREATIVE_AMBITION = SHOWCASE`.
+- Awwwards scores and awards are never fabricated; only verified, fetchable evidence is recorded.
+
+### 5.11 Single-Source-of-Truth Rule for `measurement` State (V2.6, supersedes `cro` V2.4)
+`measurement.complete` is the **only** authoritative readiness flag for `[CONVERSION_MEASUREMENT_COMPLETE]`. No second, independently-writable completion flag may ever be created for measurement readiness.
+- `measurement.mode` values: `"not_evaluated"`, `"planning"`, `"standard"`, `"blocked"`, `"exception"`, `"not_required"`.
+- **Three permanently distinct verification states.** `measurement.complete` certifies a *plan* exists and is implementable. `measurement.implementation_verified` certifies instrumentation was verified in the built artifact. `measurement.production_verified` certifies events were observed in the real production environment. Setting a later flag never implies an earlier one; setting an earlier one never implies a later one. `measurement.complete = true` NEVER means production analytics were observed.
+- `measurement{}` contains NO lock boolean. Exactly 5 owner locks remain.
+- PII check status is authoritative at `measurement.pii_check` (`"not_evaluated"`, `"PASS"`, `"FAIL"`).
+- Dark pattern status is authoritative at `measurement.dark_pattern_check` (`"not_evaluated"`, `"PASS"`, `"FAIL"`).
+- `[CRO_MEASUREMENT_READY]` (Phase 8.97) is a **downstream sub-gate** reading this same object. It does not own a completion flag.
+- **Legacy `cro{}` (V2.4–V2.5):** grandfathered and read-only. Projects carrying it remain valid. It is not migrated automatically and frozen pilots are not retrofitted. New projects use `measurement{}`.
+
 ---
 
-## 6. Backward Compatibility (Pre-V1.1, Pre-V1.2, Pre-V1.3, Pre-V1.4, Pre-V1.5, & Pre-V1.6 Projects)
+### 5.12 Single-Source-of-Truth Rule for `handoff` in site-profile.json (V2.5)
+`handoff.status` is authoritative inside `handoff{}` (`not_evaluated`, `not_required`, `preparing`, `ready_for_review`, `accepted`, `blocked`). Exactly 5 owner locks remain immutable.
+
+### 5.13 Single-Source-of-Truth Rule for `signature_choreography` State (V2.5.1)
+`signature_choreography.status` is authoritative inside `signature_choreography{}` in `site-profile.json`. Valid values: `"not_evaluated"`, `"not_required"`, `"candidates_ready"`, `"prototype_ready"`, `"selected_direction_ready"`.
+- Signature spatial choreography is a post-roadmap creative enhancement governed exclusively under **Motion Direction Lock 5 (`locks.motion_direction_locked`)**.
+- `signature_choreography{}` contains NO lock boolean. Exactly 5 owner locks remain immutable.
+- Pattern candidates are selected from `templates/signature-interaction-registry.json` using the Originality Test (`COULD_20_OTHER_BRANDS_USE_THIS_UNCHANGED = NO`).
+
+## 6. Backward Compatibility (Pre-V1.1 through Pre-V2.6 Projects)
 
 Website Director operates under strict backward compatibility invariants:
-1. **Unmodified Legacy Pilots:** Projects created under V1 (e.g. `projects/alpha-starts-now/`), V1.1 (e.g. `projects/v1-1-architecture-pilot/`), V1.2, V1.3, V1.4, or V1.5 are frozen baselines. They are not modified, retrofitted, or invalidated by V1.6 tooling.
-2. **Missing State Objects:** If an older project's `site-profile.json` lacks `distinctiveness_check_complete`, `motion.gsap_required`, `design_intelligence{}`, `gauntlet{}`, or `seo{}`, tooling treats them as absent without raising schema validation exceptions.
+1. **Unmodified Legacy Pilots:** Projects created under V1 through V2.5.1 are frozen baselines. They are not modified, retrofitted, or invalidated by V2.6 tooling. Do not mutate frozen pilot state files merely to make them look current.
+2. **Missing State Objects:** If an older project's `site-profile.json` lacks `measurement{}`, `cro{}`, `page_experience{}`, `rive{}`, `immersive{}`, `assets{}`, `visual_prototypes{}`, `creative_intent{}`, `distinctiveness_check_complete`, `motion.gsap_required`, `design_intelligence{}`, `gauntlet{}`, or `seo{}`, tooling treats them as absent without raising schema validation exceptions.
 3. **Precedence Invariant:** For all projects, `OWNER REQUIREMENT > APPROVED BRAND / LOCK > A11Y / SAFETY > PROJECT RESEARCH > REFERENCE EVIDENCE > DESIGN CONSTITUTION > UI/UX PRO MAX / ANTHROPIC DISTINCTIVENESS RECOMMENDATION`.
 
-A project's `site-profile.json` predating V1.1 will have no `schema_version` field and no `research{}` or `motion{}` objects, and its `locks{}` will contain only the original four keys. Treat missing `schema_version` as `"1.0.0"`.
+A project's `site-profile.json` predating V2.6 will have no `measurement{}` object, and one predating V2.4 will have no `cro{}` object either. Both absences are valid. Treat measurement state as grandfathered for already-locked historical projects and do not overwrite or mutate historical project files. New Website Director projects use V2.6 `measurement{}` behavior. Major new work on an older project may enter V2.6 measurement planning only when that project is deliberately reopened by the owner.
 
-A project's `site-profile.json` predating V1.2 (has `schema_version 1.0.0` or `1.1.0`, no `seo{}` object) is likewise not corruption. Treat `seo.complete` as implicitly `true` under grandfathering for already-locked decisions.
-
-A project's `site-profile.json` predating V1.3 (has `schema_version 1.0.0`, `1.1.0`, or `1.2.0`, no `gauntlet{}` object) is not corruption:
-- Treat `gauntlet.status` as implicitly `"GAUNTLET_GRANDFATHERED"` under an inferred exception (`"Predates V1.3 Gauntlet subsystem — grandfathered."`) for builds that were already validated and approved prior to V1.3.
-- **Grandfathering is historical, not permanent.** If new implementation or major refinement is initiated on a pre-V1.3 build, that new work enters Phase 11.5 and must pass the Website Gauntlet or record a formal owner exception.
-- Do not overwrite, reformat, or "upgrade" a historical project's `site-profile.json` in place unless the owner explicitly requests migration.
-
-`projects/alpha-starts-now/` is the canonical pre-V1.1 instance and must never be modified under general maintenance.
