@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "schema_version": "2.9.0",
+  "schema_version": "2.10.0",
   "project_name": "Morrow & Vale Architecture and Industrial Design",
   "version": "1.0.0",
   "creative_intent": {
@@ -398,6 +398,50 @@
     "bus_factor_test": "PASS",
     "acceptance_status": "READY_FOR_REVIEW",
     "unresolved_blockers": 0,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "launch_ops": {
+    "complete": false,
+    "status": "NOT_EVALUATED",
+    "release_candidate_ready": false,
+    "release_sha": null,
+    "release_version": null,
+    "build_id": null,
+    "build_timestamp": null,
+    "deployment_target": null,
+    "deployment_provider": null,
+    "production_domain": null,
+    "environment_ready": false,
+    "deployment_authorized": false,
+    "deployment_authorization_ref": null,
+    "durable_deployment_policy": false,
+    "deployed": false,
+    "deployed_at": null,
+    "deployed_sha": null,
+    "production_browser_verified": false,
+    "production_accessibility_verified": false,
+    "production_security_privacy_verified": false,
+    "production_measurement_verified": false,
+    "production_seo_verified": false,
+    "production_forms_verified": false,
+    "monitoring_requirement": "NOT_EVALUATED",
+    "monitoring_ready": false,
+    "rollback_ready": false,
+    "rollback_tested": false,
+    "post_launch_status": "NOT_STARTED",
+    "observation_window": {
+      "policy": null,
+      "start": null,
+      "expected_end": null
+    },
+    "known_incidents": [],
+    "stabilization_complete": false,
+    "release_notes_ref": null,
+    "handoff_transferred": false,
+    "blocked_reason": null,
     "exception": {
       "applied": false,
       "reason": null

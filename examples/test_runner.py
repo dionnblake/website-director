@@ -18,7 +18,7 @@ import os, json, glob, struct, subprocess, hashlib, re, tempfile
 KNOWN_SCHEMA_VERSIONS = {
     '1.0.0', '1.1.0', '1.2.0', '1.3.0', '1.3.1', '1.4.0', '1.5.0', '1.6.0', '1.7.0',
     '1.8.0', '1.9.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '2.4.0', '2.5.0', '2.5.1',
-    '2.6.0', '2.7.0', '2.8.0', '2.9.0',
+    '2.6.0', '2.7.0', '2.8.0', '2.9.0', '2.10.0',
 }
 
 # Substrings that would indicate an illegal sixth (or later) owner lock. Readiness
@@ -27,6 +27,7 @@ FORBIDDEN_LOCK_SUBSTRINGS = (
     'asset', 'immersive', 'rive', 'page_experience', 'transition', 'cro',
     'measurement', 'analytics', 'security', 'privacy', 'handoff', 'signature',
     'browser_qa', 'browser', 'accessibilit', 'a11y', 'wcag',
+    'launch', 'deploy', 'rollback', 'release',
 )
 CANONICAL_LOCKS = {
     'design_direction_locked', 'information_architecture_locked',
@@ -88,11 +89,23 @@ def run():
 
     # Every subsystem state object the framework has introduced must be present,
     # and each must expose a parseable status/complete field.
-    for obj in ('assets', 'immersive', 'rive', 'page_experience', 'measurement', 'security_privacy'):
+    for obj in ('assets', 'immersive', 'rive', 'page_experience', 'measurement',
+                'security_privacy', 'launch_ops'):
         assert obj in sp, f'master template missing {obj}{{}}'
         node = sp[obj]
         assert isinstance(node, dict) and ('status' in node or 'complete' in node), \
             f'{obj}{{}} exposes no status/complete field'
+
+    # V2.10: launch_ops{} ships neutral; launch readiness never means deployed.
+    lo = sp['launch_ops']
+    assert lo.get('complete') is False and lo.get('deployed') is False, \
+        'launch_ops{} must ship neutral (not complete, not deployed)'
+    assert lo.get('status') == 'NOT_EVALUATED'
+    assert 'deployment_authorized' in lo and lo['deployment_authorized'] is False, \
+        'launch_ops.deployment_authorized must default false (RELEASE_READY != DEPLOYMENT_AUTHORIZED)'
+    for pv in ('production_browser_verified', 'production_security_privacy_verified',
+               'production_measurement_verified', 'production_seo_verified'):
+        assert lo.get(pv) is False, f'launch_ops.{pv} must default false'
 
     # V2.6 reconciliation: the canonical measurement architecture replaced cro{}.
     assert 'measurement' in sp, 'canonical measurement{} must be present'

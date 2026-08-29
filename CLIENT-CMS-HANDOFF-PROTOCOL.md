@@ -269,4 +269,27 @@ During automated testing and certification:
 7. `HANDOFF_ACCEPTANCE_STATUS= "READY_FOR_REVIEW"` (Never fabricate real client acceptance `ACCEPTED` during synthetic validation).
 
 ---
+
+## 13. Launch Operations Intake (V2.10)
+
+Phase 12.25 (`LAUNCH-OPERATIONS-PROTOCOL.md`) owns the **launch event and its immediate aftermath**; this protocol owns **long-term operations**. They meet exactly once, at the Phase 12.25 → Phase 12.5 intake.
+
+Launch Operations hands the following into this protocol's documents — it does **not** create parallel copies:
+
+| Handed over | Lands in |
+| :--- | :--- |
+| Production domain / canonical URL | `DIGITAL-OWNERSHIP-REGISTER.md`, `ENVIRONMENT-INVENTORY.md` |
+| Deployment provider / target class | `DIGITAL-OWNERSHIP-REGISTER.md`, `RECURRING-COST-REGISTER.md` |
+| Release identity (version, `release_sha`, build id) | `RELEASE-RUNBOOK.md` |
+| Rollback mechanism, owner, verification procedure | `RELEASE-RUNBOOK.md` (rollback section) |
+| Monitoring requirement + ownership | `MAINTENANCE-RESPONSIBILITY-MATRIX.md` |
+| Environment inventory delta | `ENVIRONMENT-INVENTORY.md` |
+| Recurring operational dependencies | `RECURRING-COST-REGISTER.md`, `MAINTENANCE-RESPONSIBILITY-MATRIX.md` |
+| Known incidents (`launch_ops.known_incidents[]`) | `CLIENT-HANDOFF.md` (known issues) |
+| Known limitations / gaps | `CLIENT-HANDOFF.md`, `MAINTENANCE-RESPONSIBILITY-MATRIX.md` |
+| Final launch status (`launch_ops.status`) | `CLIENT-HANDOFF.md` executive summary |
+
+On completion of the intake, Launch Operations sets `launch_ops.handoff_transferred = true`. `[CLIENT_HANDOFF_READY]` remains a readiness gate; `[RELEASE_READY]` is a separate readiness gate; neither is a sixth owner lock. Exactly five owner locks remain immutable.
+
+---
 *End of Protocol Specification.*

@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.9.0  
+> **Version:** 2.10.0  
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -85,6 +85,17 @@ V2.9 gives Website Director **one canonical accessibility authority**. Accessibi
 - **`44×44` vs `24×24` kept distinct.** Website Director's ergonomic `44×44 px` preference is preserved where approved; the WCAG 2.2 AA `24×24 px` floor is a separate, weaker criterion — both are recorded.
 - **Consumes, doesn't duplicate:** Impeccable owns the contrast math; `MOTION-DIRECTION-PROTOCOL.md` owns the motion policy; Security/Privacy owns consent-requirement determination. The Gauntlet **Accessibility Critic is preserved and enriched** to focus on experiential quality — **no new critic, no second post-build state machine**.
 - **Screen-reader honesty.** A bounded manual smoke protocol (NVDA/VoiceOver/Orca); where no screen reader can run, `BLOCKED_SCREEN_READER_ENVIRONMENT` — never a claimed pass. An engine-clean run with a failing manual keyboard review is not a full PASS.
+
+### What V2.10 Adds (Launch & Post-Launch Operations Intelligence)
+V2.10 closes the **launch boundary** gap. Website Director could get a project to a strong production candidate — but it conflated *release candidate* with *deployed*, *deployed* with *production verified*, and *production verified* with *stable*. V2.10 makes each a separately recorded state.
+
+- **Phase 12.25 (`LAUNCH-OPERATIONS-PROTOCOL.md`):** Runs after Phase 12 pre-flight and before Phase 12.5 handoff. `LOCAL BUILD → RELEASE CANDIDATE → [RELEASE_READY] → DEPLOYMENT AUTHORIZATION → PRODUCTION DEPLOYMENT → PRODUCTION VERIFICATION → POST-LAUNCH STABILITY → OPERATIONS/HANDOFF`.
+- **`[RELEASE_READY]`** is a readiness gate, **not** a sixth owner lock. `launch_ops.complete` is the single readiness flag; it means the launch *plan* is complete and the candidate may request deployment authorization — never that the site is deployed, production verified, or stable.
+- **`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`.** Deployment is an external side effect. Website Director never deploys, pushes, merges, or touches DNS. Deployment authorization is an explicit per-release owner act — never inferred from passing QA, a completed build, an approved design, "looks good", a prior project, or a previous release.
+- **Verify a known release identity on the production surface.** `deployed_sha` must match `release_sha` or `DEPLOYED_IDENTITY = UNVERIFIED` / `BLOCKED`. A localhost or staging evidence manifest never sets any `production_*_verified` flag.
+- **16-state status model + a deterministic transition graph** (`launch-ops/validator.py`). Impossible jumps (`NOT_EVALUATED → STABILIZED`, `RELEASE_READY → PRODUCTION_VERIFIED`) are rejected.
+- **Rollback readiness, concrete rollback triggers, a site-class-sized post-launch observation window, and a `SEV0`–`SEV3` incident model.** A `SEV0`/`SEV1` incident meeting a defined trigger sets `ROLLBACK_REQUIRED`.
+- **Consumes, doesn't duplicate.** Production Browser QA is the V2.8 harness in `environment = "production"` mode — no second runner. Production verification writes the canonical `accessibility.production_verified` / `security_privacy.production_verified` / `measurement.production_verified` fields those specs already defined. V2.5 `CLIENT-CMS-HANDOFF-PROTOCOL.md` remains the long-term operations authority; Launch Operations hands its record into Phase 12.5 intake (§13).
 
 ---
 
@@ -199,6 +210,7 @@ Implementation is strictly blocked until all five gates in `locks{}` evaluate to
 - **`ACCESSIBILITY_READY` (Gate Accessibility):** Certifies that the accessibility specification — applicable-component inventory, semantic / name-role-value / keyboard / focus / contrast / colour-independence / reflow / text-spacing / target-size / motion / media / form / dialog requirements, and an automated + manual + screen-reader test plan — is complete against the WCAG 2.2 AA technical target before Lock 4 engages. A readiness gate, **not** a sixth owner lock. `accessibility.complete` never means the implementation passed accessibility testing, and Website Director never claims legal accessibility compliance.
 - **`BROWSER_QA_PASS` (Gate Browser):** Certifies that machine-executed browser tests ran against the built artifact and passed — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy, reduced motion, keyboard smoke, and visual regression — with frozen-project integrity intact. A verification gate, **not** a sixth owner lock. `browser_qa.complete` never means production (DNS, CDN, real TLS, production headers) was verified.
 - **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
+- **`RELEASE_READY` (Gate Launch):** Certifies that the Phase 12.25 launch plan is complete — immutable release identity, deployment target, environment readiness, domain/DNS/HTTPS/redirect plan, monitoring determination, rollback plan and triggers — and the candidate may request deployment authorization. A readiness gate, **not** a sixth owner lock. `launch_ops.complete` never means the site is deployed (`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`), production verified, or stable. Deployment is an external owner act; Website Director never deploys.
 
 ---
 
@@ -216,6 +228,7 @@ website-director/
 ├── SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md # Risk classification, data inventory/minimization, secrets, form/auth/payment safeguards, headers, consent, disclosure, SECURITY_PRIVACY_READY gate (V2.7)
 ├── BROWSER-REGRESSION-QA-PROTOCOL.md # Phase 10.5 machine-executed browser verification, viewport matrix, assertion catalogue, flake policy, frozen-project guard, BROWSER_QA_PASS gate (V2.8)
 ├── ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md # Phase 6.9 WCAG 2.2 AA spec + Phase 10.5 verification, replaceable a11y engine, screen-reader smoke, no false conformance claims, ACCESSIBILITY_READY gate (V2.9)
+├── LAUNCH-OPERATIONS-PROTOCOL.md     # Phase 12.25 release identity, owner deployment authorization boundary, production verification against a known release, rollback readiness/triggers, post-launch observation, incident model, RELEASE_READY gate (V2.10)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -243,6 +256,8 @@ website-director/
 │   ├── browser-qa-manifest.json      # Machine-readable browser QA manifest consumed by browser-qa/runner.py (V2.8)
 │   ├── accessibility-review.md       # Phase 6.9 29-section WCAG 2.2 AA accessibility review (V2.9)
 │   ├── accessibility-test-manifest.json # Machine-readable accessibility test manifest (V2.9)
+│   ├── launch-plan.md                # Phase 12.25 26-section launch & post-launch operations plan (V2.10)
+│   ├── launch-evidence-manifest.json # Machine-readable launch evidence manifest, tied to a release identity (V2.10)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -259,8 +274,10 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.9.0)
-├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.10.0)
+├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
+│   └── validator.py                  # launch_ops{} state machine, release-readiness gate, deployment-authorization boundary, production-verification checks, rollback-trigger evaluator
+├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions; V2.10 environment=production)
 │   ├── runner.py                     # Manifest-driven orchestrator + evidence manifest emitter
 │   ├── engine/                       # Replaceable BROWSER_QA_ENGINE: playwright (real) + simulation (deterministic)
 │   ├── assertions/                   # Requirement-traced assertion catalogue
@@ -272,14 +289,16 @@ website-director/
 │   ├── test_v2_5_1_signature_choreography.py
 │   ├── test_v2_7_security_privacy.py
 │   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
-│   └── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
+│   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
+│   └── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
     ├── test_runner.py                # V2.0-V2.7 protocol/template/pilot invariant harness (repaired under V2.8)
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
-    └── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
+    ├── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
+    └── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
 ```
 
 ---

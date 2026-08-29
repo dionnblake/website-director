@@ -284,6 +284,8 @@ PRODUCTION_VERIFIED             the same, executed against the real production U
 
 A local browser test does **not** prove production DNS, CDN behaviour, production headers, real TLS, production third-party configuration, or deployed environment variables. `browser_qa.implementation_verified` and `browser_qa.production_verified` are **permanently distinct**. A localhost run never sets `production_verified`. The non-browser `simulation` engine sets **neither**.
 
+**Launch Operations (V2.10) reuses this harness — no second runner.** Phase 12.25 (`LAUNCH-OPERATIONS-PROTOCOL.md` §15, §40) runs `browser-qa/runner.py` with the manifest's `"environment": "production"` (or `https://` routes) as its **Production Browser QA** step, after an owner has deployed. The launch-mode manifest restricts `interactions` to non-destructive health-checks (no real form submission without explicit production-test authorization). The result feeds `launch_ops.production_browser_verified` alongside `browser_qa.production_verified`; the gating rules above are unchanged.
+
 ---
 
 ## 23. Regression manifest

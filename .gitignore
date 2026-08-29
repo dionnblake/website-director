@@ -37,6 +37,7 @@ browser-qa/evidence/*
 !browser-qa/evidence/README.md
 **/evidence/browser-qa/
 **/evidence/accessibility/
+**/evidence/launch/
 browser-qa/vendor/*
 !browser-qa/vendor/README.md
 axe.min.js

@@ -1,8 +1,9 @@
 # PRODUCTION QA CHECKLIST: PRE-FLIGHT VERIFICATION MATRIX
 
-> **Version:** 1.6.0
+> **Version:** 1.7.0
 > **Status:** Mandatory Pre-Deployment Gate
 > **Rule:** Every checkbox must be validated and signed off in `templates/production-review.md`.
+> **V2.10 Rule:** This checklist verifies the **release candidate** (Phase 12). It does **not** authorize deployment and does **not** verify production. "Authorized for deployment" here means the candidate is `RELEASE_READY`. Deployment authorization, production verification against a known release identity, rollback readiness, and post-launch observation are owned by **Phase 12.25** (`LAUNCH-OPERATIONS-PROTOCOL.md`, `launch_ops{}`). See §11.
 > **V2.8 Rule:** Where a requirement can be verified by machine (horizontal overflow, console cleanliness, broken assets, reduced motion, form failure/success, route integrity, measurement events, browser-observable security), the sign-off requires the **machine evidence** produced by Phase 10.5 Browser & Regression QA (`§5.4`) — not an agent assertion. Avoid checkbox theater.
 > **V2.9 Rule:** Accessibility is classified per criterion — `AUTO_VERIFIED` / `MANUAL_VERIFIED` / `BLOCKED` / `NOT_APPLICABLE` / `KNOWN_GAP` — against the **WCAG 2.2 AA** target (`§3`, `§5.5`, `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`). Untested criteria are never marked PASS. Website Director never records `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, or `WCAG COMPLIANT`.
 
@@ -374,15 +375,40 @@ Verified against `templates/accessibility-review.md` / `accessibility-test-manif
 
 ---
 
-## 9. Final Sign-Off & Deployment Authorization
+## 9. Final Sign-Off & Release Candidate Readiness
 - [ ] **Design Review Score:** $\ge 90$ points achieved in `templates/design-review.md`.
 - [ ] **Website Gauntlet Verdict:** `GAUNTLET_PASS` or authorized exception.
 - [ ] **Pre-Flight Review Documented:** All items above signed off in `templates/production-review.md`.
-- [ ] **Release Worktree Tagged:** Git branch/tag prepared for deployment.
+- [ ] **Release Worktree Tagged:** Git branch/tag prepared. This produces a **release candidate**, not a deployment — the immutable release identity is recorded in `LAUNCH-OPERATIONS-PROTOCOL.md` §8 / `launch-plan.md` §1.
+- [ ] **Candidate is `RELEASE_READY`, not `DEPLOYMENT_AUTHORIZED`.** Deployment authorization is an explicit per-release owner act performed in Phase 12.25 (§11) — never inferred from this checklist passing.
 
 ---
 
-## 10. Production Build & Deployment Integrity
+## 10. Production Build Integrity (Candidate)
 - [ ] **Build Validation:** Production bundle compiles cleanly (`npm run build` or framework equivalent) without warnings or lint errors.
 - [ ] **Asset Minification:** CSS and JavaScript bundles are minified and tree-shaken.
 - [ ] **Environment Variables:** All development API keys and mock URLs replaced with production configurations, and **no secret value is committed** — see §5.3.3 and §5.3.11.
+
+---
+
+## 11. Launch & Post-Launch Operations Boundary (V2.10)
+
+> Owned by `LAUNCH-OPERATIONS-PROTOCOL.md` (Phase 12.25). This checklist (Phase 12) verifies the **candidate**; Launch Operations verifies the **deployed artifact on production**. Do not duplicate the checkbox sets — the division is:
+
+| Concern | Owner |
+| :--- | :--- |
+| Candidate compiles, passes QA, Gauntlet, pre-flight, is a tagged release candidate | **Phase 12 (this checklist)** |
+| Immutable release identity, release candidate freeze | Phase 12.25 |
+| Owner deployment authorization (`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`) | Phase 12.25 — explicit owner act |
+| Deployment itself | **External** — the owner or an owner-authorised operator; Website Director never deploys |
+| Production verification against `deployed_sha == release_sha` on the production surface | Phase 12.25 |
+| DNS / TLS realised behaviour, redirect verification, cache/CDN, production assets | Phase 12.25 |
+| Production Browser QA (V2.8 harness, `environment = "production"`) | Phase 12.25 |
+| Production accessibility / security-privacy / measurement / SEO re-verification | Phase 12.25 (writes the canonical `*.production_verified` fields) |
+| Error-monitoring readiness, rollback plan, rollback triggers, rollback testing | Phase 12.25 |
+| Post-launch observation window, incident model, stabilization | Phase 12.25 |
+| Long-term client operations, CMS, maintenance, documentation, transfer | Phase 12.5 (`CLIENT-CMS-HANDOFF-PROTOCOL.md`) |
+
+- [ ] Phase 12.25 launch plan (`templates/launch-plan.md`) and evidence manifest exist where the project will be deployed or re-launched.
+- [ ] `launch_ops.complete` recorded honestly — it means the launch **plan** is complete, never that the site is deployed, production verified, or stabilised.
+- [ ] No `production_*_verified` flag was set from a localhost or staging run.

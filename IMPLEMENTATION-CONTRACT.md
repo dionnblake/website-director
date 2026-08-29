@@ -1,6 +1,6 @@
 # IMPLEMENTATION CONTRACT: THE DESIGN-TO-CODE GOVERNANCE PROTOCOL
 
-> **Version:** 1.6.0
+> **Version:** 1.7.0
 > **Status:** Legally Binding Execution Standard for Coding Agents
 > **Rule:** Separation of Design Authority from Implementation Execution.
 
@@ -349,6 +349,43 @@ If satisfying a required accessibility check needs a change to locked IA, copy, 
 
 ---
 
+## 2.9 Builder & Release-Operator Launch Requirements (V2.10)
+
+When `launch_ops.complete = true` is declared in `site-profile.json` (`LAUNCH-OPERATIONS-PROTOCOL.md`), builders and release operators implement launch strictly from `templates/launch-plan.md`.
+
+> **Prime Directive:** Website Director prepares plans, manifests, commands, and verification steps. **It does not deploy, push, merge, alter DNS, configure SSL, create monitoring services, or touch a live website.** Deployment is an external side effect performed by the owner or an owner-authorised operator.
+
+### 2.9.1 Release Identity & Freeze
+- Deploy only a build with a recorded immutable identity (`release_sha`, `release_version`, `build_id`, `build_timestamp`). An unidentified build is never deployed.
+- Honour the release candidate freeze: no untracked implementation changes, no silent asset/copy/analytics edits, no dependency upgrades, no new scripts, no production-only hacks after freeze. Any post-freeze change creates a new release identity or is an explicit pre-authorization candidate update with a recorded reason.
+- A dirty release candidate (uncommitted changes, unresolved drift) is never authorised or deployed.
+
+### 2.9.2 Deployment Authorization Boundary
+- `RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`. Deploy only on explicit per-release owner authorization recorded in `launch-plan.md` §19 (`deployment_authorization_ref`), or under a recorded durable deployment policy.
+- **Never infer deployment permission** from passing QA, a completed implementation, an approved design, an owner saying "looks good", a prior project's authorization, or a previous release.
+
+### 2.9.3 Production Configuration
+- Never silently change production configuration. Production config is not read from committed files; environment separation is enforced; debug endpoints, verbose logging, seeded data, mock services, and development credentials never ship.
+- **No production secret is ever committed** to source control, the launch plan, the evidence manifest, or any artifact.
+
+### 2.9.4 Verification Integrity
+- Production verification verifies a **known release identity** on the **production surface**. `deployed_sha` must match `release_sha`; where it cannot be proven, record `DEPLOYED_IDENTITY = UNVERIFIED` and mark the check `BLOCKED` — never assume a match.
+- **Never mark staging as production.** **Never claim production verification from localhost.** A `local` or `staging` evidence manifest sets no `production_*_verified` flag.
+- Do not bypass, disable, skip, or narrow a failing launch check to proceed. Do not disable Browser QA, disable accessibility verification, suppress security/privacy failures, remove analytics verification, or rewrite a baseline to get green.
+- Production Browser QA is the V2.8 harness in `environment = "production"` mode — no destructive actions, no real form submission without the §20 authorization recorded in `launch-plan.md` §13.
+
+### 2.9.5 Rollback & Incidents
+- A rollback plan (`rollback_ready`) exists before deployment authorization where practical; the mechanism is documented even for immutable static hosting.
+- Do not execute a destructive production rollback as part of this task. Rollback testing is local / staging / preview / synthetic.
+- Incidents are recorded append-only in `launch_ops.known_incidents[]`; a `SEV0`/`SEV1` incident meeting a defined trigger sets `ROLLBACK_REQUIRED`.
+
+### 2.9.6 Conflict Escalation
+If a production repair requires a change to locked IA, copy, design system, motion direction, or to accessibility / measurement / security-privacy / SEO requirements, the operator **HALTS** (`launch_ops.status = "BLOCKED"`) and routes back to the owning specification with an Owner Change Request. **No invisible production-only fixes that cause design/spec drift.**
+
+**Precedence during launch:** owner deployment authority is absolute — nothing deploys without it. Owning specifications win over launch-side convenience; approved locks win over both.
+
+---
+
 ---
 
 ## 3. Strict Prohibitions During Implementation
@@ -394,6 +431,13 @@ Once all locks are engaged and readiness gates are achieved, the coding agent is
 37. **Colour-Only Meaning:** No error, status, selected, required, or chart-series state conveyed by colour alone.
 38. **Suppressed Accessibility Findings:** No disabling an accessibility-engine rule, adding an ignore selector, deleting an accessibility test, or narrowing an accessibility assertion without a documented rationale in `accessibility-review.md`.
 39. **Fabricated Accessibility Claims:** No `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, `WCAG COMPLIANT`, `SECTION 508 COMPLIANT`, or `EN 301 549 COMPLIANT` in code, comments, documentation, commit messages, or UI; no unevidenced accessibility badge or certification mark.
+40. **Unidentified or Dirty Deployment:** No deploying a build with no recorded release identity, and no deploying a dirty release candidate (uncommitted changes, unresolved drift, post-freeze silent edits).
+41. **Unauthorized Deployment:** No deploying without an explicit per-release owner authorization reference (or a recorded durable deployment policy). Passing QA, a completed build, an approved design, "looks good", a prior project, or a previous release never authorize deployment.
+42. **Silent Production Configuration Change:** No changing production configuration, environment variables, headers, redirects, DNS, or third-party wiring outside the approved `launch-plan.md` — and no committed production secrets anywhere.
+43. **Bypassed Launch Checks:** No disabling, skipping, or narrowing a launch verification check — Browser QA, accessibility verification, security/privacy verification, or analytics verification — to proceed to or through deployment; no baseline rewrite to get green.
+44. **Staging Marked Production / Localhost Production Claims:** No recording a staging or preview pass as production verification; no setting any `production_*_verified` flag from a `local` or `staging` evidence manifest; no assuming `deployed_sha` matches `release_sha` when it cannot be proven.
+45. **Destructive Launch Actions:** No production rollback executed on a live system as part of the build task; no real production form submission, order, email, CRM record, or analytics conversion generated without the recorded §20 production-test authorization.
+46. **Invisible Production-Only Fixes:** No production hotfix that changes locked IA, copy, design tokens, motion, or accessibility / measurement / security-privacy / SEO requirements without HALTing and raising an Owner Change Request.
 
 ---
 
@@ -448,4 +492,5 @@ Before submitting code for review, the coding agent must verify:
 - [ ] Phase 10.5 Browser & Regression QA passed (`browser_qa.complete = true`), or a recorded `blocked_reason` / `exception`. Full detail: `PRODUCTION-CHECKLIST.md` §5.4 and `BROWSER-REGRESSION-QA-PROTOCOL.md`.
 - [ ] Every accessibility requirement in `templates/accessibility-review.md` §27 is implemented, or an escalation was raised. `accessibility.automated_verified` and `accessibility.manual_verified` are set on evidence; no accessibility-engine finding is suppressed without a documented rationale. Full detail: `PRODUCTION-CHECKLIST.md` §3 and §5.5, and `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`.
 - [ ] Every primary CTA, form, mobile-nav control, dialog, and route-transition container carries a stable selector or semantic role for verification; no test-only attribute alters user-facing UI.
+- [ ] If `launch_ops.complete = true`: the release has a recorded immutable identity; deployment (if any) carries an explicit per-release owner authorization reference or a durable policy; production verification traced `deployed_sha` to `release_sha` on the production surface; no `production_*_verified` flag was set from localhost/staging. Full detail: `PRODUCTION-CHECKLIST.md` §11 and `LAUNCH-OPERATIONS-PROTOCOL.md`.
 
