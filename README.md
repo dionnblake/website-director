@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.8.0  
+> **Version:** 2.9.0  
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -73,6 +73,18 @@ V2.8 closes the **verification** gap. Website Director could already design, mea
 - **Visual regression with governance:** explicit baselines, no silent overwrite, narrow masks, deterministic fixtures for dynamic content; a diff is evidence of change, not automatically a defect.
 - **Feeds the Gauntlet, doesn't merge with it:** the qualitative Website Gauntlet no longer spends cycles on a build with broken navigation, JS exceptions, missing assets, or failed forms. No new Gauntlet critic and no second state machine.
 - **Repairs two pre-existing validation defects:** `tests/test_v2_5_client_handoff.py` no longer mutates frozen pilots (all mutable work runs in a temp copy under the integrity guard); `examples/test_runner.py` asserts framework invariants and the canonical `measurement{}` architecture instead of a frozen `schema_version == "2.4.0"` / `cro{}` literal, while still verifying the grandfathered V2.4 pilot as-is.
+
+### What V2.9 Adds (Accessibility Intelligence & WCAG 2.2 AA Verification)
+V2.9 gives Website Director **one canonical accessibility authority**. Accessibility rules already lived in the production checklist, the QA rubric, the Gauntlet Accessibility Critic, Impeccable's contrast/target detectors, the browser-QA keyboard smoke, the security consent rules, and the design system — but scattered. V2.9 reconciles them.
+
+- **Phase 6.9 (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`):** Runs after Security/Privacy and **before the design system**, so accessibility informs tokens before Lock 4. Derives an applicable-component inventory and requirements for semantics, name/role/value, keyboard, focus (incl. WCAG 2.2 *focus not obscured*), contrast, colour independence, reflow at 320 CSS px, text spacing, target size, dragging, motion, images, media, forms, live regions, dialogs, tables, authentication, and consent-UI accessibility — only for what the project actually contains.
+- **`[ACCESSIBILITY_READY]`** is a readiness gate, **not** a sixth owner lock. `accessibility.complete` is the single readiness flag; it means the *specification* is implementable, never that the build passed testing.
+- **Four permanently distinct states:** `requirements_defined` ≠ `automated_verified` (engine, real browser) ≠ `manual_verified` (keyboard/zoom) ≠ `production_verified` (owner production evidence). `screen_reader_verified` is separate again.
+- **No false conformance claims.** Website Director never writes `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, or `WCAG COMPLIANT`. Permitted: `WCAG 2.2 AA TARGET TESTS PASSED`, `MANUAL REVIEW COMPLETED`, `KNOWN ACCESSIBILITY GAPS = NONE OBSERVED`, `BLOCKED_SCREEN_READER_ENVIRONMENT`.
+- **Extends V2.8 Browser QA — no separate runner.** An accessibility assertion group joins the `browser-qa/` catalogue (source `ACCESSIBILITY_REVIEW`), with a replaceable automated engine (axe-core recommended; `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE` when absent, never a PASS). Same runner, same evidence system, same `FrozenIntegrityGuard`.
+- **`44×44` vs `24×24` kept distinct.** Website Director's ergonomic `44×44 px` preference is preserved where approved; the WCAG 2.2 AA `24×24 px` floor is a separate, weaker criterion — both are recorded.
+- **Consumes, doesn't duplicate:** Impeccable owns the contrast math; `MOTION-DIRECTION-PROTOCOL.md` owns the motion policy; Security/Privacy owns consent-requirement determination. The Gauntlet **Accessibility Critic is preserved and enriched** to focus on experiential quality — **no new critic, no second post-build state machine**.
+- **Screen-reader honesty.** A bounded manual smoke protocol (NVDA/VoiceOver/Orca); where no screen reader can run, `BLOCKED_SCREEN_READER_ENVIRONMENT` — never a claimed pass. An engine-clean run with a failing manual keyboard review is not a full PASS.
 
 ---
 
@@ -184,6 +196,7 @@ Implementation is strictly blocked until all five gates in `locks{}` evaluate to
 - **`SEO_COMPLETE` (Gate SEO):** Certifies that business context, keyword discovery, competitive SERP analysis, and keyword mapping have completed before Lock 2 and Lock 3 engage.
 - **`CONVERSION_MEASUREMENT_COMPLETE` (Gate Measurement):** Certifies that the business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution strategy, and verification plan are defined before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means production analytics were observed.
 - **`SECURITY_PRIVACY_READY` (Gate Security):** Certifies that risk classification, data inventory, data minimization, applicable technical safeguards, consent/privacy dependencies, required disclosures, escalations, and implementation requirements are specified before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means legal compliance is certified, implementation is verified, or the site is vulnerability-free.
+- **`ACCESSIBILITY_READY` (Gate Accessibility):** Certifies that the accessibility specification — applicable-component inventory, semantic / name-role-value / keyboard / focus / contrast / colour-independence / reflow / text-spacing / target-size / motion / media / form / dialog requirements, and an automated + manual + screen-reader test plan — is complete against the WCAG 2.2 AA technical target before Lock 4 engages. A readiness gate, **not** a sixth owner lock. `accessibility.complete` never means the implementation passed accessibility testing, and Website Director never claims legal accessibility compliance.
 - **`BROWSER_QA_PASS` (Gate Browser):** Certifies that machine-executed browser tests ran against the built artifact and passed — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy, reduced motion, keyboard smoke, and visual regression — with frozen-project integrity intact. A verification gate, **not** a sixth owner lock. `browser_qa.complete` never means production (DNS, CDN, real TLS, production headers) was verified.
 - **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
 
@@ -202,6 +215,7 @@ website-director/
 ├── CONVERSION-ANALYTICS-PROTOCOL.md  # Conversion measurement, KPI architecture, event contracts, attribution, affiliate integrity (V2.6)
 ├── SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md # Risk classification, data inventory/minimization, secrets, form/auth/payment safeguards, headers, consent, disclosure, SECURITY_PRIVACY_READY gate (V2.7)
 ├── BROWSER-REGRESSION-QA-PROTOCOL.md # Phase 10.5 machine-executed browser verification, viewport matrix, assertion catalogue, flake policy, frozen-project guard, BROWSER_QA_PASS gate (V2.8)
+├── ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md # Phase 6.9 WCAG 2.2 AA spec + Phase 10.5 verification, replaceable a11y engine, screen-reader smoke, no false conformance claims, ACCESSIBILITY_READY gate (V2.9)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -227,6 +241,8 @@ website-director/
 │   ├── security-privacy-register.json # Machine-readable data / third-party / storage register (V2.7)
 │   ├── browser-qa-plan.md            # Phase 10.5 browser & regression QA plan (V2.8)
 │   ├── browser-qa-manifest.json      # Machine-readable browser QA manifest consumed by browser-qa/runner.py (V2.8)
+│   ├── accessibility-review.md       # Phase 6.9 29-section WCAG 2.2 AA accessibility review (V2.9)
+│   ├── accessibility-test-manifest.json # Machine-readable accessibility test manifest (V2.9)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -243,8 +259,8 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.8.0)
-├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.9.0)
+├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions)
 │   ├── runner.py                     # Manifest-driven orchestrator + evidence manifest emitter
 │   ├── engine/                       # Replaceable BROWSER_QA_ENGINE: playwright (real) + simulation (deterministic)
 │   ├── assertions/                   # Requirement-traced assertion catalogue
@@ -255,13 +271,15 @@ website-director/
 │   ├── test_v2_5_client_handoff.py   # V2.5 CMS/handoff (repaired: temp-copy isolation + integrity guard)
 │   ├── test_v2_5_1_signature_choreography.py
 │   ├── test_v2_7_security_privacy.py
-│   └── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
+│   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
+│   └── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
     ├── test_runner.py                # V2.0-V2.7 protocol/template/pilot invariant harness (repaired under V2.8)
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
-    └── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
+    ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
+    └── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
 ```
 
 ---

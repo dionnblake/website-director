@@ -96,6 +96,8 @@ Website Director keeps **one owner for each rule**. Impeccable owns the *static*
 
 Browser QA consumes Impeccable's static findings via the shared `FINDING` schema below; it adds no duplicate static detector.
 
+**Accessibility (V2.9).** `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` is the canonical accessibility authority. Impeccable keeps ownership of the **contrast math** (`low-contrast`, `gray-on-color`) and the **static target-size** check (`touch-target-undersized`) — its detectors are reused, not re-implemented. Runtime accessibility verification (computed contrast against the WCAG 2.2 AA target, accessible names, focus visibility and focus-not-obscured, keyboard traps, reflow, text spacing, dialog mechanics, form label/error association, landmarks) is executed by the V2.9 accessibility assertion group inside the V2.8 `browser-qa/` harness (`BROWSER_EXECUTED` / `DETERMINISTIC` for the contrast portion). The Gauntlet **Accessibility Critic** (§4.3, `WEBSITE-GAUNTLET-PROTOCOL.md` §4.7) is preserved and enriched — no new critic.
+
 ### Standardized Finding Schema:
 Every finding recorded in QA reviews and Gauntlet reports uses this structure:
 ```text

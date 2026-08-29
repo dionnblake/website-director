@@ -36,6 +36,10 @@ test-results/
 browser-qa/evidence/*
 !browser-qa/evidence/README.md
 **/evidence/browser-qa/
+**/evidence/accessibility/
+browser-qa/vendor/*
+!browser-qa/vendor/README.md
+axe.min.js
 *.pw-trace.zip
 
 

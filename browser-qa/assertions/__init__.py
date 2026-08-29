@@ -2,8 +2,8 @@
 
 Every assertion traces to exactly one requirement source (protocol sec 29):
 
-    LOCKED_SPEC | PRODUCTION_CHECKLIST | MEASUREMENT_PLAN |
-    SECURITY_PRIVACY_REVIEW | MOTION_SPEC | PAGE_EXPERIENCE_SPEC | BROWSER_QA_PLAN
+    LOCKED_SPEC | PRODUCTION_CHECKLIST | MEASUREMENT_PLAN | SECURITY_PRIVACY_REVIEW |
+    ACCESSIBILITY_REVIEW | MOTION_SPEC | PAGE_EXPERIENCE_SPEC | BROWSER_QA_PLAN
 
 Assertions read a ``PageObservation`` and the parsed browser-qa plan. They never
 launch a browser and never mutate anything. Where Impeccable already owns a
@@ -31,6 +31,7 @@ REQUIREMENT_SOURCES = (
     "PRODUCTION_CHECKLIST",
     "MEASUREMENT_PLAN",
     "SECURITY_PRIVACY_REVIEW",
+    "ACCESSIBILITY_REVIEW",
     "MOTION_SPEC",
     "PAGE_EXPERIENCE_SPEC",
     "BROWSER_QA_PLAN",

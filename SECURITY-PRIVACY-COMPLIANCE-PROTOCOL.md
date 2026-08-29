@@ -506,7 +506,7 @@ Where marketing claims, testimonials, ratings, statistics, certifications, or pe
 
 ## 23. Accessibility Dependency
 
-A dedicated Accessibility subsystem is **future work** and is not implemented or duplicated here. However, security and privacy UI must not introduce inaccessible patterns.
+The canonical Accessibility subsystem is `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` (Phase 6.9, V2.9). **Ownership split:** this subsystem determines *whether consent is required* and *what data obligations exist*; the Accessibility subsystem determines *whether the consent/privacy interaction is accessible*. This section records the dependency; it does not create a second consent policy or a second accessibility policy.
 
 Recorded as an accessibility dependency wherever this subsystem introduces UI:
 
@@ -516,7 +516,7 @@ Recorded as an accessibility dependency wherever this subsystem introduces UI:
 - **Rejecting optional processing must be as reachable as accepting it** — same number of interactions, same discoverability (see §27).
 - Bot challenges must offer an accessible path.
 
-Where such UI exists, `security_privacy.accessibility_dependency_recorded` is set `true` and the specific dependencies are listed in `security-privacy-review.md` for the future accessibility subsystem to consume. Existing `PRODUCTION-CHECKLIST.md` §3 and the Gauntlet Accessibility Critic continue to govern accessibility itself.
+Where such UI exists, `security_privacy.accessibility_dependency_recorded` is set `true` and the specific dependencies are listed in `security-privacy-review.md` for the Phase 6.9 accessibility review (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` §27) to consume. `PRODUCTION-CHECKLIST.md` §3 / §5.5, the Phase 10.5 accessibility assertion group, and the enriched Gauntlet Accessibility Critic verify accessibility itself. If a security control conflicts with an accessibility requirement (a CAPTCHA, an authentication barrier), the conflict **escalates to an explicit owner decision** — neither is silently degraded.
 
 ---
 

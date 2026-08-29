@@ -1,6 +1,6 @@
 # IMPLEMENTATION CONTRACT: THE DESIGN-TO-CODE GOVERNANCE PROTOCOL
 
-> **Version:** 1.5.0
+> **Version:** 1.6.0
 > **Status:** Legally Binding Execution Standard for Coding Agents
 > **Rule:** Separation of Design Authority from Implementation Execution.
 
@@ -291,6 +291,64 @@ If a browser QA failure can only be resolved by changing locked IA, copy, design
 
 ---
 
+## 2.8 Builder Accessibility Requirements (V2.9)
+
+When `accessibility.complete = true` is declared in `site-profile.json` (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`), the coding agent implements accessibility **strictly** from `templates/accessibility-review.md` §27 (Implementation Requirements) toward the recorded target (`WCAG 2.2 AA` by default).
+
+> **Prime Directive:** The builder does not invent accessibility policy. Where the specification is silent on an accessibility-relevant decision, the builder **escalates** rather than choosing a default.
+
+### 2.8.1 Semantics & Names
+- **Native semantic HTML first.** `<button>` for actions, `<a href>` for navigation, real `<h1>`–`<h6>` hierarchy (no skipped levels, one meaningful primary heading), lists as lists, tables as tables, landmark elements (`header`/`nav`/`main`/`footer`).
+- **No ARIA is better than bad ARIA.** Do not add `role`/`aria-*` where native semantics already provide the role, state, and keyboard behaviour. No redundant or conflicting ARIA.
+- Every interactive control exposes an accessible **name**, correct **role**, and current **value/state**. The visible label is contained in the accessible name (WCAG 2.5.3). Icon-only controls carry `aria-label` or visually-hidden text.
+- `<html lang>` is set; every page has a non-empty, unique `<title>`.
+
+### 2.8.2 Keyboard & Focus
+- All functionality operable by keyboard where the interaction reasonably supports it: logical tab order, Enter/Space activation, Escape to dismiss, arrow keys within composite widgets (tablist, radiogroup, menu), **no keyboard trap**.
+- A visible focus indicator on every interactive element, from the `--focus-ring` token. **Do not remove the browser outline** without an equal-or-more-visible replacement.
+- Focus is not obscured by sticky/fixed UI (WCAG 2.4.11). A skip-navigation link is provided where the spec requires one.
+- Focus is moved into a dialog on open and **restored to the trigger** on close; focus is managed on route change where the spec requires it.
+
+### 2.8.3 Forms
+- Persistent programmatic labels; required state communicated in text, not colour or `*` alone; `autocomplete` / input-purpose tokens where appropriate (WCAG 1.3.5).
+- Errors are programmatically associated (`aria-describedby`), identified by more than colour, and focus moves to the first error; an error summary where the spec requires one.
+- **An accessibility repair must never cause a false conversion success.** A server-rejected submission renders no success state and emits no success conversion event (see §2.5.10, §2.6.4).
+
+### 2.8.4 Contrast, Colour & Reflow
+- Ship only the contrast-safe token pairs from `design-system.md` §14. Do not introduce a foreground/background combination below target.
+- Meaning never depends on colour alone (WCAG 1.4.1): errors, status, selected, required, and chart series carry a non-colour indicator.
+- Content reflows at **320 CSS px** without two-dimensional scrolling except legitimate exceptions (wide tables, maps). Text is not clipped and no control is lost at 200% zoom or under the WCAG 1.4.12 text-spacing override.
+
+### 2.8.5 Target Size, Dragging, Motion, Media, Images
+- Interactive targets meet the project minimum (`44 × 44 px` where approved) and never fall below the WCAG 2.2 `24 × 24 px` floor without a recorded exception.
+- Every drag interaction has a non-drag alternative (WCAG 2.5.7) unless a genuine exception applies.
+- Reduced motion honoured; no meaning exists only in animation; autoplaying content > 5s is pausable; no content flashes more than three times per second.
+- Media (where present) has captions/transcript/controls/keyboard access and does not autoplay with sound.
+- Meaningful images have meaningful `alt`; decorative images use `alt=""`/`aria-hidden`; **`alt` is never keyword-stuffed** — SEO does not override accessibility.
+
+### 2.8.6 Dialogs, Menus, Status
+- Dialogs: correct role (`dialog`/`alertdialog`), accessible name, initial focus, containment where required, Escape, visible close, focus restoration, background made inert.
+- Menus/tabs/accordions use established patterns with correct state attributes (`aria-expanded`, `aria-selected`, `aria-current`); prefer native `<details>`/`<summary>`.
+- Dynamic status changes that need it are announced via an intentionally-politened live region — and **no unnecessary `aria-live` regions**.
+
+### 2.8.7 Authentication & Consent (only where they exist)
+- Do not require a cognitive-function test (transcription CAPTCHA, puzzle) where an accessible alternative exists (WCAG 3.3.8). Allow paste into password/OTP fields; support password managers.
+- Consent UI is keyboard operable, screen-reader understandable, readable at zoom/reflow, non-deceptive, with rejection as reachable as acceptance.
+- **Security ↔ accessibility conflicts escalate to an explicit owner decision** — never silently weaken a security control, never silently degrade accessibility.
+
+### 2.8.8 Testability & Verification
+- Expose stable browser-QA selectors where needed for verification **without test-only UI leakage** (no `data-qa-*` that alters layout, style, or copy).
+- **Do not delete an accessibility test.** Do not narrow an assertion to pass.
+- **Do not suppress an accessibility-engine finding** (an axe rule disable, an ignore selector) without a documented rationale recorded in `accessibility-review.md` §25/§26.
+- The builder's obligation ends at `accessibility.automated_verified` + `accessibility.manual_verified` (evidenced in the project evidence directory). The builder never sets `accessibility.production_verified`, and never writes `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, or `WCAG COMPLIANT`.
+
+### 2.8.9 Conflict Escalation
+If satisfying a required accessibility check needs a change to locked IA, copy, design system, or motion direction, the coding agent **HALTS and produces an Owner Change Request**. It does not silently degrade accessibility to preserve a locked aesthetic, and it does not silently override a lock.
+
+**Precedence during implementation:** accessibility and safety requirements override SEO and conversion optimisation. Approved locks override both — a conflict with a lock produces an Owner Change Request, never a silent edit in either direction.
+
+---
+
 ---
 
 ## 3. Strict Prohibitions During Implementation
@@ -331,6 +389,11 @@ Once all locks are engaged and readiness gates are achieved, the coding agent is
 32. **Broad QA Ignores:** No blanket console or network ignore. Every ignore is a justified, owned, expiring entry in the manifest.
 33. **Masked Defects:** No page-wide screenshot masks, no `overflow-x: hidden` over genuine overflow, no hiding a failing element to green a check.
 34. **Missing Test Hooks:** No shipping a primary CTA, form, mobile-nav control, dialog, or route-transition container with no stable selector or semantic role for verification — and no test-only attribute that alters user-facing layout, style, or copy.
+35. **Reconstructed ARIA Over Native:** No custom `role`/`aria-*` widget where a native control (`<button>`, `<a>`, `<select>`, `<details>`, `<input type>`) provides the correct role, state, and keyboard behaviour; no redundant or conflicting ARIA.
+36. **Removed Focus Indicator:** No `outline: none` (or equivalent) without an equal-or-more-visible token replacement meeting indicator contrast.
+37. **Colour-Only Meaning:** No error, status, selected, required, or chart-series state conveyed by colour alone.
+38. **Suppressed Accessibility Findings:** No disabling an accessibility-engine rule, adding an ignore selector, deleting an accessibility test, or narrowing an accessibility assertion without a documented rationale in `accessibility-review.md`.
+39. **Fabricated Accessibility Claims:** No `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, `WCAG COMPLIANT`, `SECTION 508 COMPLIANT`, or `EN 301 549 COMPLIANT` in code, comments, documentation, commit messages, or UI; no unevidenced accessibility badge or certification mark.
 
 ---
 
@@ -383,5 +446,6 @@ Before submitting code for review, the coding agent must verify:
 - [ ] Every security/privacy requirement in `templates/security-privacy-review.md` §21 is implemented, or an escalation was raised. Full verification detail: `PRODUCTION-CHECKLIST.md` §5.3.
 - [ ] Zero secrets in the client bundle or source control; zero undeclared third-party scripts, cookies, or storage keys in the build.
 - [ ] Phase 10.5 Browser & Regression QA passed (`browser_qa.complete = true`), or a recorded `blocked_reason` / `exception`. Full detail: `PRODUCTION-CHECKLIST.md` §5.4 and `BROWSER-REGRESSION-QA-PROTOCOL.md`.
+- [ ] Every accessibility requirement in `templates/accessibility-review.md` §27 is implemented, or an escalation was raised. `accessibility.automated_verified` and `accessibility.manual_verified` are set on evidence; no accessibility-engine finding is suppressed without a documented rationale. Full detail: `PRODUCTION-CHECKLIST.md` §3 and §5.5, and `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`.
 - [ ] Every primary CTA, form, mobile-nav control, dialog, and route-transition container carries a stable selector or semantic role for verification; no test-only attribute alters user-facing UI.
 

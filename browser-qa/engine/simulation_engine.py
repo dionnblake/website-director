@@ -22,6 +22,8 @@ from typing import Any, Dict, List, Optional
 
 from .base import (
     APPLICATION_DEFECT,
+    A11yViolation,
+    AccessibilityObservation,
     AnalyticsEvent,
     BrowserQAEngine,
     ConsoleMessage,
@@ -252,6 +254,46 @@ class SimulationEngine(BrowserQAEngine):
                 lcp_ms=p.get("lcp_ms"), cls=p.get("cls"), inp_ms=p.get("inp_ms"),
                 long_tasks=int(p.get("long_tasks", 0)),
                 measurement_kind=p.get("measurement_kind", "SYNTHETIC"))
+
+        # -- accessibility ----------------------------------
+        a = fx.get("a11y")
+        if a is not None:
+            eng = a.get("engine", {})
+            a11y = AccessibilityObservation(
+                engine_name=eng.get("name"),
+                engine_version=eng.get("version"),
+                engine_status=eng.get("status", "RAN" if eng.get("name") else "NOT_RUN"),
+                violations=[A11yViolation(rule_id=v.get("rule_id", ""), impact=v.get("impact", "moderate"),
+                                          wcag=v.get("wcag", ""), target=v.get("target", ""),
+                                          help_text=v.get("help", ""))
+                            for v in a.get("violations", [])],
+                missing_accessible_name_refs=list(a.get("missing_accessible_name", [])),
+                contrast_failures=list(a.get("contrast_failures", [])),
+                focus_visible=a.get("focus_visible", True),
+                focus_obscured_refs=list(a.get("focus_obscured", [])),
+                focus_obscured_indeterminate=a.get("focus_obscured_indeterminate", False),
+                landmarks=list(a.get("landmarks", ["header", "nav", "main", "footer"])),
+                heading_order_ok=a.get("heading_order_ok", True),
+                h1_count=int(a.get("h1_count", 1)),
+                page_lang=a.get("page_lang", "en"),
+                page_title=a.get("page_title", obs.title or "Untitled"),
+                skip_link_present=a.get("skip_link_present"),
+                color_only_state_refs=list(a.get("color_only_state", [])),
+                small_target_refs=list(a.get("small_targets", [])),
+                tiny_target_refs=list(a.get("tiny_targets", [])),
+                reflow_failures=list(a.get("reflow_failures", [])),
+                text_spacing_failures=list(a.get("text_spacing_failures", [])),
+                unlabelled_field_refs=list(a.get("unlabelled_fields", [])),
+                unassociated_error_refs=list(a.get("unassociated_errors", [])),
+                drag_without_alternative_refs=list(a.get("drag_without_alternative", [])),
+                meaningful_images_missing_alt=list(a.get("meaningful_images_missing_alt", [])),
+                decorative_images_exposed=list(a.get("decorative_images_exposed", [])),
+                dialogs=list(a.get("dialogs", [])),
+                keyboard_trap_refs=list(a.get("keyboard_traps", [])),
+                screen_reader_status=a.get("screen_reader_status", "NOT_RUN"),
+                manual_keyboard_result=a.get("manual_keyboard_result"),
+            )
+            obs.a11y = a11y
 
         obs.raw = {"fixture_dir": fixture_dir, "fixture": fx, "flaky": fx.get("flaky")}
         return obs

@@ -1,0 +1,42 @@
+{
+  "route": "/a11y-low-contrast",
+  "title": "Page",
+  "layout": {
+    "1440": {
+      "client_width": 1440,
+      "document_scroll_width": 1440,
+      "body_width": 1440
+    },
+    "390": {
+      "client_width": 390,
+      "document_scroll_width": 390,
+      "body_width": 390
+    }
+  },
+  "render_signature": {
+    "1440": "a11y_low_contrast",
+    "390": "a11y_low_contrast-390"
+  },
+  "a11y": {
+    "landmarks": [
+      "header",
+      "nav",
+      "main",
+      "footer"
+    ],
+    "heading_order_ok": true,
+    "h1_count": 1,
+    "page_lang": "en",
+    "page_title": "Page",
+    "skip_link_present": true,
+    "contrast_failures": [
+      "#8a8a8a on #ffffff = 3.1:1 @ .muted-note"
+    ]
+  },
+  "reduced_motion": {
+    "hidden_content": [],
+    "render_signature": {
+      "1440": "a11y_low_contrast-rm"
+    }
+  }
+}

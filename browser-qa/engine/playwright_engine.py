@@ -196,10 +196,79 @@ class PlaywrightEngine(BrowserQAEngine):
             obs.raw["screenshot_bytes"] = shot
 
             obs.keyboard = _keyboard_trace(page)
+
+            if (self.config or {}).get("accessibility") or (self.config or {}).get("run_axe"):
+                obs.a11y = self._axe_scan(page)
+
             ctx.close()
         finally:
             b.close()
         return obs
+
+    def _axe_scan(self, page) -> "AccessibilityObservation":
+        """Best-effort axe-core run. axe-core is a replaceable engine, not policy
+        (ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md §31). If axe cannot be injected,
+        engine_status is ENGINE_UNAVAILABLE and the assertion records BLOCKED — never PASS."""
+        from .base import AccessibilityObservation, A11yViolation
+
+        a = AccessibilityObservation()
+        # baseline DOM facts that need no engine
+        facts = page.evaluate(
+            """() => ({
+                lang: document.documentElement.lang || '',
+                title: document.title || '',
+                h1: document.querySelectorAll('h1').length,
+                landmarks: [...new Set([...document.querySelectorAll(
+                    'header,nav,main,footer,[role=banner],[role=navigation],[role=main],[role=contentinfo]')]
+                    .map(e => e.tagName.toLowerCase().replace('div','') ||
+                              (e.getAttribute('role')||'').replace('banner','header')
+                                .replace('navigation','nav').replace('contentinfo','footer')))].filter(Boolean),
+                skipLink: !!document.querySelector('a[href^="#"]:first-child, a.skip-link, a[href="#main"]'),
+                unlabelled: [...document.querySelectorAll('input:not([type=hidden]),select,textarea')]
+                    .filter(el => !el.labels?.length && !el.getAttribute('aria-label')
+                                  && !el.getAttribute('aria-labelledby') && !el.closest('label'))
+                    .map(el => el.name || el.id || el.tagName).slice(0, 20),
+                noName: [...document.querySelectorAll('button,a[href],[role=button]')]
+                    .filter(el => !(el.textContent||'').trim() && !el.getAttribute('aria-label')
+                                  && !el.getAttribute('aria-labelledby') && !el.querySelector('img[alt]:not([alt=""])'))
+                    .map(el => el.outerHTML.slice(0, 60)).slice(0, 20)
+            })""")
+        a.page_lang = facts["lang"]
+        a.page_title = facts["title"]
+        a.h1_count = int(facts["h1"])
+        a.landmarks = list(facts["landmarks"])
+        a.skip_link_present = bool(facts["skipLink"])
+        a.unlabelled_field_refs = list(facts["unlabelled"])
+        a.missing_accessible_name_refs = list(facts["noName"])
+
+        axe_path = os.path.join(self.project_root, "..", "browser-qa", "vendor", "axe.min.js")
+        axe_path = os.path.normpath(axe_path)
+        if not os.path.isfile(axe_path):
+            for cand in [os.path.join(os.path.dirname(__file__), "..", "vendor", "axe.min.js")]:
+                if os.path.isfile(os.path.normpath(cand)):
+                    axe_path = os.path.normpath(cand)
+                    break
+        try:
+            if not os.path.isfile(axe_path):
+                raise FileNotFoundError(axe_path)
+            page.add_script_tag(path=axe_path)
+            result = page.evaluate("async () => await axe.run(document, "
+                                   "{ runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','wcag21aa','wcag22aa'] } })")
+            a.engine_name = "axe-core"
+            a.engine_version = page.evaluate("() => (window.axe && axe.version) || null")
+            a.engine_status = "RAN"
+            for v in result.get("violations", []):
+                for node in v.get("nodes", [{}]):
+                    a.violations.append(A11yViolation(
+                        rule_id=v.get("id", ""), impact=v.get("impact") or "moderate",
+                        wcag=",".join(t for t in v.get("tags", []) if t.startswith("wcag")),
+                        target=";".join(node.get("target", [])), help_text=v.get("help", "")))
+        except Exception as exc:  # noqa: BLE001
+            a.engine_name = "axe-core"
+            a.engine_status = "ENGINE_UNAVAILABLE"
+            a.violations = []
+            a.__dict__["_engine_error"] = str(exc)
+        return a
 
 
 def _is_third_party(url: str, route: str) -> bool:

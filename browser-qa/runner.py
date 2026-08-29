@@ -139,7 +139,41 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
     print("evidence:", man_path)
     print("\n--- proposed site-profile.json browser_qa{} (apply manually) ---")
     print(json.dumps({"browser_qa": state}, indent=2))
+    if plan.get("accessibility"):
+        a11y_state = _propose_a11y_state(manifest, engine, is_production)
+        print("\n--- proposed site-profile.json accessibility{} verification fields (apply manually) ---")
+        print(json.dumps({"accessibility": a11y_state}, indent=2))
     return 0 if passed else 1
+
+
+def _propose_a11y_state(manifest, engine, is_production):
+    rel = [f for f in manifest["findings"] if f["check_id"].startswith("a11y.")]
+    engine_f = [f for f in rel if f["check_id"] in ("a11y.engine", "a11y.engine-violations")]
+    sr_f = [f for f in rel if f["check_id"] == "a11y.screen-reader"]
+    mk_f = [f for f in rel if f["check_id"] == "a11y.manual-keyboard"]
+    auto_only = [f for f in rel if f["check_id"] not in ("a11y.screen-reader", "a11y.manual-keyboard")]
+    real = engine.supports_real_browser
+    automated_ok = bool(auto_only) and all(f["verdict"] in (PASS, NOT_APPLICABLE, FLAKY) for f in auto_only)
+    engine_blocked = any(f["verdict"] == BLOCKED and "ENGINE_UNAVAILABLE" in f.get("detail", "")
+                         for f in engine_f)
+    manual_keyboard_pass = bool(mk_f) and all(f["verdict"] == PASS for f in mk_f)
+    manual_keyboard_fail = any(f["verdict"] == FAIL for f in mk_f)
+    sr_blocked = any(f["verdict"] == BLOCKED for f in sr_f)
+    sr_done = any(f["verdict"] == PASS for f in sr_f)
+    gaps = [f["check_id"] for f in rel if f["verdict"] in (FAIL, BLOCKED)]
+    return {
+        "automated_engine": next((f["title"].split("(")[-1].split(")")[0]
+                                  for f in engine_f if "(" in f["title"]), None),
+        "automated_verified": bool(automated_ok and real and not engine_blocked),
+        "manual_verified": bool(manual_keyboard_pass and not manual_keyboard_fail),
+        "screen_reader_verified": bool(sr_done and not sr_blocked),
+        "production_verified": bool(automated_ok and real and is_production and manual_keyboard_pass),
+        "known_gaps": gaps,
+        "blocked_reason": ("BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE" if engine_blocked
+                           else "BLOCKED_SCREEN_READER_ENVIRONMENT" if sr_blocked else None),
+        "_note": ("Full PASS requires automated checks PASS AND the manual keyboard/zoom scope "
+                  "MANUAL_VERIFIED AND screen-reader smoke COMPLETED or an explicit recorded gap."),
+    }
 
 
 def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_tests):

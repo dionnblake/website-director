@@ -1,8 +1,9 @@
 # DESIGN SYSTEM PROTOCOL: TOKEN SPECIFICATION & ARCHITECTURE
 
-> **Version:** 1.0.0  
+> **Version:** 1.1.0  
 > **Status:** Mandatory Design System Architecture  
-> **Purpose:** Establish the exhaustive, deterministic design specification required before any implementation code is written.
+> **Purpose:** Establish the exhaustive, deterministic design specification required before any implementation code is written.  
+> **V1.1 (V2.9):** §14 consumes the Phase 6.9 accessibility specification (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`). Accessibility informs token decisions **before Lock 4** — `accessibility.complete` must be `true` (or a recorded exception) before this phase engages. §14 is the accessibility content of this design system; it is **not** an alternate design system.
 
 ---
 
@@ -214,7 +215,18 @@ Every button variant must specify all states: `default`, `hover`, `active`, `foc
 ---
 
 ### 14. Accessibility (A11Y) & Usability Constraints
-- **Contrast Ratios:** Minimum `4.5:1` for normal body text and `3.0:1` for large headlines against backgrounds (WCAG 2.1 AA compliant).
-- **Keyboard Focus:** Visible, high-contrast focus rings on all interactive elements.
-- **Touch Targets:** Minimum `44px x 44px` physical touch area on all mobile viewports.
-- **Semantic HTML:** `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`.
+
+Canonical authority: `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` (Phase 6.9). Target: **WCAG 2.2 Level AA** for applicable public production sites (grandfathered projects may retain `WCAG 2.1 AA`). This section is a **technical design target**, not a legal conformance claim.
+
+Specify, where applicable to the project's components:
+
+- **Contrast-safe token pairs.** Enumerate every foreground/background combination actually in use and record the computed ratio: normal text ≥ `4.5:1`, large text ≥ `3:1`, UI components / graphical objects / focus indicators ≥ `3:1` (WCAG 1.4.11, 1.4.3). The contrast **math** is `IMPECCABLE-ENGINE-PROTOCOL.md`'s — this table records that it was run and passed. Flag `gray-on-color` (neutral gray secondary text on a coloured surface) — tint secondary text from the surface hue instead.
+- **Focus tokens.** A single `--focus-ring` (colour + width ≥ `2px` + `outline-offset`), meeting indicator contrast ≥ `3:1` against adjacent colours (WCAG 2.4.13). Never remove the browser outline without an equal-or-more-visible token replacement. Focus must not be obscured by sticky headers, consent banners, or drawers (WCAG 2.4.11).
+- **Minimum interactive geometry.** The project target-size rule: Website Director's ergonomic `44 × 44 px` on mobile (kept where already approved) **and** the WCAG 2.2 AA floor of `24 × 24 px` (with spacing/inline/essential exceptions) — recorded as **two distinct** standards. Adjacent small targets get spacing.
+- **State semantics independent of colour** (WCAG 1.4.1). Error, success, warning, selected, required, and disabled states each carry a non-colour indicator (text, icon, underline, position, shape). Define `--state-error` / `--state-success` semantics that pair a colour token with a required non-colour cue.
+- **Disabled-state semantics.** Perceivable and understandable — a disabled control's reduced contrast is a deliberate, documented interpretation, not an unexcused contrast failure.
+- **Reduced-motion tokens** (§13). The `@media (prefers-reduced-motion: reduce)` reset is mandatory; motion-carried meaning must have a static equivalent.
+- **Readable line length.** Body measure `45–75ch` (`ch` unit or `max-width` token).
+- **Text-spacing resilience** (WCAG 1.4.12). The layout tolerates line-height `1.5×`, paragraph `2×`, letter `0.12×`, word `0.16×` with no clipping or loss of function — verified by a synthetic browser fixture in Phase 10.5.
+- **Semantic HTML & landmarks.** `<header>`, `<nav>`, `<main>`, `<footer>`, plus `<section>`/`<article>`/`<aside>` where meaningful. Native controls preferred over reconstructed ARIA widgets (*no ARIA is better than bad ARIA*).
+- **Keyboard focus.** Visible, high-contrast focus indicator on every interactive element; logical tab order; no keyboard trap.

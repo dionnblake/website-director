@@ -212,9 +212,11 @@ Every run exercises `prefers-reduced-motion: reduce`. Verified: motion-heavy beh
 
 ---
 
-## 16. Keyboard smoke QA
+## 16. Keyboard smoke QA — and the V2.9 accessibility assertion group
 
-This is **not** the full Accessibility 2.2 capability and does not implement it. Browser QA verifies only basic functional keyboard behaviour: primary navigation reachable · visible focus exists · mobile/menu controls operable · dialogs Escape correctly where specified · form controls operable · no obvious keyboard trap · primary CTA reachable. Deeper conformance is future work.
+Browser QA's baseline keyboard smoke: primary navigation reachable · visible focus exists · mobile/menu controls operable · dialogs Escape correctly where specified · form controls operable · no obvious keyboard trap · primary CTA reachable.
+
+**V2.9 (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`)** formalises this and adds an **accessibility assertion group** to this same harness, gated on the plan carrying an `accessibility` block. Source: `ACCESSIBILITY_REVIEW`. It covers the machine-verifiable subset of WCAG 2.2 AA — automated-engine violations (axe-core or a replaceable engine), missing accessible names, computed contrast (consuming Impeccable's math), focus visibility, focus-not-obscured (feasible cases only — the rest `MANUAL_REQUIRED`), keyboard traps, landmarks and heading order, page `lang` and `<title>`, colour-only state heuristics, reflow at the target width, text spacing, target size (project minimum + the WCAG 24px floor), dialog mechanics, and form label/error association. Screen-reader review and deep manual criteria stay **explicitly manual** and never auto-PASS. An unavailable engine is `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE`. No second runner and no second post-build state machine — one harness, one evidence system, one frozen-project guard.
 
 ---
 
@@ -333,7 +335,7 @@ Every run writes `<evidence>/<run_id>.evidence.json` and `<run_id>.summary.md` c
 Every assertion traces to exactly one requirement source:
 
 ```
-LOCKED_SPEC · PRODUCTION_CHECKLIST · MEASUREMENT_PLAN · SECURITY_PRIVACY_REVIEW · MOTION_SPEC · PAGE_EXPERIENCE_SPEC · BROWSER_QA_PLAN
+LOCKED_SPEC · PRODUCTION_CHECKLIST · MEASUREMENT_PLAN · SECURITY_PRIVACY_REVIEW · ACCESSIBILITY_REVIEW · MOTION_SPEC · PAGE_EXPERIENCE_SPEC · BROWSER_QA_PLAN
 ```
 
 Assertions with no requirement source are prohibited. A new detection method tag, `BROWSER_EXECUTED`, joins Impeccable's `DETERMINISTIC / HEURISTIC / LLM_CRITIQUE / VISUAL_COMPARISON` (`IMPECCABLE-ENGINE-PROTOCOL.md` §2) for machine-run browser checks; visual-regression findings are tagged `VISUAL_COMPARISON`.

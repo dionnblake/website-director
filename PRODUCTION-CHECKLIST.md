@@ -1,9 +1,10 @@
 # PRODUCTION QA CHECKLIST: PRE-FLIGHT VERIFICATION MATRIX
 
-> **Version:** 1.5.0
+> **Version:** 1.6.0
 > **Status:** Mandatory Pre-Deployment Gate
 > **Rule:** Every checkbox must be validated and signed off in `templates/production-review.md`.
 > **V2.8 Rule:** Where a requirement can be verified by machine (horizontal overflow, console cleanliness, broken assets, reduced motion, form failure/success, route integrity, measurement events, browser-observable security), the sign-off requires the **machine evidence** produced by Phase 10.5 Browser & Regression QA (`§5.4`) — not an agent assertion. Avoid checkbox theater.
+> **V2.9 Rule:** Accessibility is classified per criterion — `AUTO_VERIFIED` / `MANUAL_VERIFIED` / `BLOCKED` / `NOT_APPLICABLE` / `KNOWN_GAP` — against the **WCAG 2.2 AA** target (`§3`, `§5.5`, `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`). Untested criteria are never marked PASS. Website Director never records `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, or `WCAG COMPLIANT`.
 
 ---
 
@@ -34,12 +35,30 @@
 
 ---
 
-## 3. Accessibility & Usability (WCAG 2.1 AA)
-- [ ] **Contrast Compliance:** All text colors meet minimum contrast ratio of `4.5:1` against their backgrounds (`3:1` for large display headings).
-- [ ] **Keyboard Navigation:** Full page can be traversed using `Tab` / `Shift+Tab`; focus order follows logical visual reading order.
-- [ ] **Modals & Dialogs:** Traps focus when opened; pressing `Escape` closes the modal and returns focus to the trigger element.
-- [ ] **Semantic Structure:** Exactly one `<h1>` tag per page; headings (`<h2>`, `<h3>`, `<h4>`) follow a strict hierarchical structure without skipping levels.
-- [ ] **Media Descriptions:** All `<img>` elements possess descriptive, contextual `alt` text (empty `alt=""` only for purely decorative SVG shapes with `aria-hidden="true"`).
+## 3. Accessibility & Usability (WCAG 2.2 AA target — classify each row)
+
+> Canonical authority: `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` (Phase 6.9 spec, Phase 10.5 verification). Full verification detail: §5.5. Classify every row `AUTO_VERIFIED` / `MANUAL_VERIFIED` / `BLOCKED` / `NOT_APPLICABLE` / `KNOWN_GAP`. This is a **technical target**, not a legal conformance statement.
+
+- [ ] **Contrast (1.4.3 / 1.4.11):** Text meets `4.5:1` (`3:1` large); UI components, graphical objects, and focus indicators meet `3:1`. Verified by the Impeccable contrast scan + computed-style browser check — `AUTO_VERIFIED`.
+- [ ] **Colour independence (1.4.1):** No error, status, selected, required, or chart-series meaning conveyed by colour alone.
+- [ ] **Keyboard (2.1.1 / 2.1.2):** All functionality operable by keyboard where the interaction supports it; logical order; **no keyboard trap**. Automated trap heuristic + `MANUAL_VERIFIED` walkthrough.
+- [ ] **Focus visible & not obscured (2.4.7 / 2.4.11 / 2.4.13):** Visible indicator on every control; focus not hidden behind sticky headers, consent banners, or drawers. Feasible cases `AUTO_VERIFIED`; the rest `MANUAL_VERIFIED`.
+- [ ] **Modals & Dialogs:** Correct role, accessible name, initial focus, Escape closes and returns focus to the trigger, background inert.
+- [ ] **Semantic structure (1.3.1 / 2.4.6):** Landmark regions present; one meaningful `<h1>`; heading hierarchy without skipped levels; native controls preferred over reconstructed ARIA.
+- [ ] **Page language & title (3.1.1 / 2.4.2):** `<html lang>` set; unique non-empty `<title>` per page.
+- [ ] **Names, roles, values (4.1.2 / 2.5.3):** Every interactive control exposes a name/role/state; the visible label is contained in the accessible name.
+- [ ] **Reflow & zoom (1.4.4 / 1.4.10):** Content usable at 200% text zoom and reflows at 320 CSS px with no 2-D scroll (legitimate exceptions listed), no clipped text, no lost control, no hidden conversion path.
+- [ ] **Text spacing (1.4.12):** Layout tolerates the WCAG text-spacing override with no loss — `AUTO_VERIFIED` via the synthetic fixture.
+- [ ] **Target size (2.5.8):** No control below the WCAG `24 × 24 px` floor without an exception; adjacent targets meet the project minimum (`44 × 44 px` where approved).
+- [ ] **Dragging (2.5.7):** Every drag interaction has a non-drag alternative — `NOT_APPLICABLE` where no drag exists.
+- [ ] **Motion (2.2.2 / 2.3.1):** Reduced motion honoured; nothing flashes > 3×/s; autoplaying content > 5s is pausable; no meaning only in animation.
+- [ ] **Images (1.1.1):** Meaningful images have meaningful contextual `alt`; decorative images use empty `alt`/`aria-hidden`; `alt` is not keyword-stuffed.
+- [ ] **Media (1.2.x):** Captions / transcript / controls / keyboard access where media exists — `NOT_APPLICABLE` otherwise.
+- [ ] **Forms (3.3.x / 1.3.5):** Persistent labels; required state in text; programmatic error association; error identification not by colour; focus to first error; an accessibility repair caused no false conversion success.
+- [ ] **Status messages (4.1.3):** Required dynamic changes are announced with intentional politeness; no unnecessary live regions.
+- [ ] **Accessible authentication (3.3.8):** Where auth exists — no cognitive-function test without an accessible alternative; paste allowed into password/OTP; security↔accessibility conflicts escalated, not silently resolved.
+- [ ] **Consent UI:** Keyboard operable, screen-reader understandable, readable at zoom/reflow, non-deceptive, rejection as reachable as acceptance.
+- [ ] **Screen-reader smoke (§5.5):** `MANUAL_VERIFIED` against the recorded environment, or `BLOCKED_SCREEN_READER_ENVIRONMENT` — **never PASS by default**.
 
 ---
 
@@ -286,6 +305,43 @@ Verified against `templates/browser-qa-plan.md` / `browser-qa-manifest.json` und
 - [ ] `browser_qa.implementation_verified` set only on real-browser evidence against a local/staging build.
 - [ ] `browser_qa.production_verified` remains `false` unless the run executed against the real production URL. Absent evidence is reported as `NOT_YET_VERIFIED`, never as passing.
 - [ ] Cross-browser: for a release, the interaction subset was run on Chromium + Firefox + WebKit, or "Chromium only" is explicitly recorded — no unqualified "cross-browser verified" claim.
+
+---
+
+## 5.5 Accessibility Verification (V2.9)
+
+Verified against `templates/accessibility-review.md` / `accessibility-test-manifest.json` under `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`. Phase 6.9 produced the spec; Phase 10.5 ran the automated portion. Skip only where `accessibility.exception.applied = true` with a recorded justification.
+
+> **Target: WCAG 2.2 AA (technical).** Permitted wording: `WCAG 2.2 AA TARGET TESTS PASSED`, `MANUAL REVIEW COMPLETED`, `KNOWN ACCESSIBILITY GAPS = NONE OBSERVED`, `BLOCKED_SCREEN_READER_ENVIRONMENT`. Never `ADA COMPLIANT` / `FULLY ACCESSIBLE` / `WCAG COMPLIANT`.
+
+### 5.5.1 Run integrity
+- [ ] `accessibility.complete = true` (spec) exists, and the Phase 10.5 accessibility assertion group ran against a real browser.
+- [ ] `accessibility.automated_engine` names the engine and version (e.g. `axe-core 4.10.2`), or `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE` is recorded — **not** reported as a pass.
+- [ ] `browser_qa.frozen_fixture_integrity = "PASS"` for the run.
+- [ ] Machine evidence manifest and manual notes stored in the project evidence directory.
+
+### 5.5.2 Automated (`AUTO_VERIFIED` — machine evidence)
+- [ ] Accessibility engine reports **no violations at or above the configured severity** (default: moderate), or each is a recorded `KNOWN_GAP` / `exception`.
+- [ ] Missing accessible names, colour-only state heuristics, computed contrast, focus visibility, keyboard-trap heuristic, landmarks/heading order, page `lang`/`<title>`, reflow at target width, text-spacing override, small/tiny targets, dialog mechanics, and form label/error association all pass.
+- [ ] Zero automated violations is **not** recorded as "WCAG conformant" — automated tooling covers a fraction of the criteria.
+
+### 5.5.3 Manual (`MANUAL_VERIFIED` — documented human verification)
+- [ ] Keyboard walkthrough per route: tab order, activation, Escape, arrow-key composite widgets, focus return, skip link.
+- [ ] Focus-not-obscured cases the engine flagged `MANUAL_REQUIRED`.
+- [ ] 200% zoom / 320px reflow / text-spacing review by a human.
+- [ ] Media review (captions/transcript/controls) where media exists.
+- [ ] Error prevention proportionality on consequential submissions.
+
+### 5.5.4 Screen reader
+- [ ] Bounded screen-reader smoke completed against the recorded environment (title, landmarks, headings, navigation, primary CTA, form, error, dialog, dynamic status, media) → `accessibility.screen_reader_verified = true`.
+- [ ] **Or** `BLOCKED_SCREEN_READER_ENVIRONMENT` recorded, carried into `known_gaps` and client handoff — never closed silently.
+
+### 5.5.5 Status recording
+- [ ] `accessibility.automated_verified` set **only** on real-browser engine evidence.
+- [ ] `accessibility.manual_verified` set **only** on documented human verification; an engine-clean run with a failing manual keyboard review is **not** a full PASS.
+- [ ] `accessibility.production_verified` remains `false` unless owner-supplied production evidence exists — absent evidence is `NOT_YET_VERIFIED`, never passing.
+- [ ] `accessibility.known_gaps` and exceptions carried into `templates/production-review.md` and client handoff.
+- [ ] No external side effects: no deploy, no consent-platform change, no intrusive tooling against third-party systems.
 
 ---
 

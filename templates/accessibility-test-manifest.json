@@ -1,0 +1,66 @@
+{
+  "$schema_note": "Website Director V2.9 accessibility test manifest. Filled from accessibility-review.md. Merged into (or referenced by) browser-qa-manifest.json and consumed by browser-qa/runner.py. Neutral placeholders below.",
+  "project_name": "Project Name",
+  "target": "WCAG_2_2_AA",
+  "mode": "planning",
+
+  "engine": {
+    "$source": "ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md §31 — implementation engine, not policy authority",
+    "name": "axe-core",
+    "version": null,
+    "rules": "wcag22aa",
+    "min_severity_fails": "moderate",
+    "unavailable_behavior": "BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE"
+  },
+
+  "target_size": {
+    "project_minimum_px": 44,
+    "wcag_floor_px": 24,
+    "exceptions": []
+  },
+
+  "contrast_token_pairs": [
+    { "fg": "--text-primary", "bg": "--bg-primary", "min_ratio": 4.5, "computed": null },
+    { "fg": "--text-secondary", "bg": "--bg-surface", "min_ratio": 4.5, "computed": null },
+    { "fg": "--focus-ring", "bg": "--bg-primary", "min_ratio": 3.0, "computed": null }
+  ],
+
+  "reduced_motion_dependency": true,
+  "text_spacing_check": true,
+  "reflow_target_css_px": 320,
+
+  "manual_scope": {
+    "keyboard_walkthrough_routes": ["/"],
+    "focus_not_obscured_cases": [],
+    "media_review_required": false,
+    "authentication_review_required": false
+  },
+
+  "screen_reader_plan": {
+    "environments": ["NVDA+Chromium (Windows)"],
+    "coverage": ["title", "landmarks", "headings", "navigation", "primary_cta", "form", "error", "dialog", "dynamic_status"],
+    "status": "PLANNED",
+    "blocked_reason": null
+  },
+
+  "routes": [
+    {
+      "path": "/",
+      "name": "Home",
+      "components": ["navigation", "forms"],
+      "expected_landmarks": ["header", "nav", "main", "footer"],
+      "expected_lang": "en",
+      "requires_skip_link": true,
+      "dialogs": [],
+      "forms": [{ "form_ref": "contact", "requires_error_summary": false }],
+      "decorative_images": [],
+      "meaningful_images": [],
+      "color_only_state_checks": ["form-error"],
+      "engine_scan": true,
+      "manual_keyboard": true
+    }
+  ],
+
+  "known_gaps": [],
+  "exceptions": []
+}

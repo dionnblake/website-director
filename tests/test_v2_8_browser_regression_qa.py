@@ -152,7 +152,14 @@ check("PHASE 10.5" in skill, "SKILL.md declares PHASE 10.5")
 check("[BROWSER_QA_PASS]" in skill, "SKILL.md declares the BROWSER_QA_PASS gate")
 check("GATE BROWSER" in skill, "SKILL.md workflow diagram includes GATE BROWSER")
 check("Single-Source-of-Truth Rule for `browser_qa`" in skill, "SKILL.md documents the browser_qa SoT rule")
-check("> **Version:** 2.8.0" in skill, "SKILL.md version is 2.8.0")
+
+
+def _ver_ge(text, lo=(2, 8, 0), prefix=r"> \*\*Version:\*\* "):
+    m = re.search(r"^%s(\d+)\.(\d+)\.(\d+)" % prefix, text, re.M)
+    return bool(m) and tuple(int(x) for x in m.groups()) >= lo
+
+
+check(_ver_ge(skill), "SKILL.md version is >= 2.8.0 (V2.8 is additive to later versions)")
 check("Exactly 5 owner locks remain" in skill, "SKILL.md restates the five-lock invariant for V2.8")
 
 contract = read("IMPLEMENTATION-CONTRACT.md")
@@ -181,7 +188,7 @@ check("one owner for each rule" in impeccable.lower() or "single owner" in impec
 readme = read("README.md")
 check("V2.8" in readme and "Browser" in readme, "README documents the V2.8 subsystem")
 agents = read("AGENTS.md")
-check("**Version:** 2.8.0" in agents, "AGENTS.md version is 2.8.0")
+check(_ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version is >= 2.8.0")
 check("Browser & Regression QA Governance (V2.8" in agents, "AGENTS.md adds V2.8 governance rules")
 
 # no secrets introduced

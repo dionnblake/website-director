@@ -21,6 +21,15 @@
                 "response_headers": { "Content-Security-Policy": "default-src 'self'",
                                       "X-Content-Type-Options": "nosniff" } },
   "perf": { "lcp_ms": 1700, "cls": 0.02, "inp_ms": 90, "measurement_kind": "SYNTHETIC" },
+  "a11y": {
+    "engine": { "name": "axe-core", "version": "4.10.2", "status": "RAN" },
+    "violations": [],
+    "landmarks": ["header", "nav", "main", "footer"],
+    "heading_order_ok": true, "h1_count": 1, "page_lang": "en", "page_title": "Clean reference",
+    "skip_link_present": true,
+    "screen_reader_status": "COMPLETED", "manual_keyboard_result": "PASS",
+    "dialogs": []
+  },
   "reduced_motion": { "hidden_content": [], "render_signature": { "1440": "clean-1440-rm", "390": "clean-390-rm", "768": "clean-768-rm" } },
   "layout": {
     "360": { "client_width": 360, "document_scroll_width": 360, "body_width": 360 },

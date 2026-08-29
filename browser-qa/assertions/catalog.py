@@ -342,6 +342,8 @@ def check_keyboard(obs, plan):
 # 18. VISUAL REGRESSION
 # ===========================================================================
 def check_visual_regression(obs, plan):
+    if "visual_baselines" not in plan:
+        return None  # visual regression is not part of this plan
     baselines = plan.get("visual_baselines", {})
     key = "%s@%d%s" % (obs.route, obs.viewport, "+rm" if obs.reduced_motion else "")
     baseline = baselines.get(key)
@@ -382,6 +384,187 @@ def check_perf(obs, plan):
     return out or None
 
 
+# ===========================================================================
+# ACCESSIBILITY (Website Director V2.9 — ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md §32)
+# Gated on plan["accessibility"]; source ACCESSIBILITY_REVIEW; method BROWSER_EXECUTED.
+# Deterministic contrast MATH is Impeccable's; this only checks it was run + classifies.
+# ===========================================================================
+def check_accessibility(obs, plan):
+    acfg = plan.get("accessibility")
+    if not acfg or obs.a11y is None:
+        return None
+    a = obs.a11y
+    rc = _route_cfg(plan, obs.route)
+    out = []
+    S = "ACCESSIBILITY_REVIEW"
+
+    def af(cid, title, ok, **kw):
+        f = _F("a11y." + cid, title, ok, S, obs, **kw)
+        return f
+
+    # -- automated engine (§31) --------------------------------------
+    min_sev = {"minor": 0, "moderate": 1, "serious": 2, "critical": 3}
+    floor = min_sev.get(acfg.get("engine", {}).get("min_severity_fails", "moderate"), 1)
+    if a.engine_status == "ENGINE_UNAVAILABLE":
+        out.append(Finding(check_id="a11y.engine", title="Automated accessibility engine ran",
+                           verdict="BLOCKED", requirement_source=S, route=obs.route,
+                           viewport=obs.viewport, detail="BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE",
+                           method="BROWSER_EXECUTED"))
+    elif a.engine_status == "RAN":
+        blocking = [v for v in a.violations if min_sev.get(v.impact, 1) >= floor]
+        f = af("engine-violations",
+               "Accessibility engine (%s %s): no violations at/above %s"
+               % (a.engine_name, a.engine_version or "?", acfg.get("engine", {}).get("min_severity_fails", "moderate")),
+               not blocking, detail="; ".join("%s[%s]%s" % (v.rule_id, v.impact, (" " + v.wcag) if v.wcag else "")
+                                              for v in blocking))
+        out.append(f)
+    elif acfg.get("engine", {}).get("require", False):
+        out.append(Finding(check_id="a11y.engine", title="Automated accessibility engine ran",
+                           verdict="BLOCKED", requirement_source=S, route=obs.route,
+                           viewport=obs.viewport, detail="engine required by plan but not run",
+                           method="BROWSER_EXECUTED"))
+    else:
+        out.append(af("engine", "Automated accessibility engine scan", True, na=True,
+                      detail="engine not run for this observation"))
+
+    # -- names / roles / values (§8) --------------------------------
+    if a.missing_accessible_name_refs:
+        out.append(af("accessible-name", "All interactive controls expose an accessible name",
+                      False, detail=str(a.missing_accessible_name_refs[:8])))
+    else:
+        out.append(af("accessible-name", "Interactive controls expose an accessible name", True))
+
+    # -- contrast (§12) — consumes Impeccable math ------------------
+    if a.contrast_failures:
+        f = af("contrast", "Text / UI contrast meets the WCAG 2.2 AA target", False,
+                detail=str(a.contrast_failures[:8]), owning_spec="IMPECCABLE-ENGINE-PROTOCOL.md (math)")
+        f.method = "DETERMINISTIC"
+        out.append(f)
+
+    # -- colour independence (§13) ---------------------------------
+    if a.color_only_state_refs:
+        out.append(af("color-independence", "Meaning is not conveyed by colour alone", False,
+                      detail=str(a.color_only_state_refs[:8])))
+
+    # -- focus visibility + not obscured (§10, §11) ----------------
+    out.append(af("focus-visible", "Visible focus indicator present", a.focus_visible))
+    if a.focus_obscured_refs:
+        out.append(af("focus-not-obscured", "Focused control not obscured by sticky/fixed UI (WCAG 2.4.11)",
+                      False, detail=str(a.focus_obscured_refs[:6])))
+    elif a.focus_obscured_indeterminate:
+        out.append(Finding(check_id="a11y.focus-not-obscured",
+                           title="Focus-not-obscured requires manual verification here",
+                           verdict="BLOCKED", requirement_source=S, route=obs.route, viewport=obs.viewport,
+                           detail="MANUAL_REQUIRED — engine cannot objectively establish", method="BROWSER_EXECUTED"))
+
+    # -- keyboard trap (§9) — extends V2.8 keyboard smoke ----------
+    if a.keyboard_trap_refs:
+        out.append(af("keyboard-trap", "No keyboard trap", False, detail=str(a.keyboard_trap_refs[:6])))
+
+    # -- semantic structure (§7) ---------------------------------
+    expected_lm = set(rc.get("expected_landmarks", ["main"]))
+    missing_lm = sorted(expected_lm - set(a.landmarks))
+    out.append(af("landmarks", "Expected landmark regions present", not missing_lm,
+                  detail="missing=%s" % missing_lm))
+    out.append(af("heading-order", "Logical heading hierarchy (no skipped levels)", a.heading_order_ok))
+    out.append(af("single-h1", "Exactly one primary page heading", a.h1_count == 1,
+                  detail="h1_count=%d" % a.h1_count))
+
+    # -- page language + title (§32) ----------------------------
+    out.append(af("page-lang", "Page declares a language (WCAG 3.1.1)", bool(a.page_lang),
+                  detail="lang=%r" % a.page_lang))
+    exp_lang = rc.get("expected_lang")
+    if exp_lang and a.page_lang and a.page_lang.split("-")[0] != exp_lang.split("-")[0]:
+        out.append(af("page-lang-value", "Page language matches the expected value", False,
+                      detail="got %r expected %r" % (a.page_lang, exp_lang)))
+    out.append(af("page-title", "Page has a non-empty <title> (WCAG 2.4.2)", bool(a.page_title)))
+    if rc.get("requires_skip_link") and a.skip_link_present is False:
+        out.append(af("skip-link", "Skip-navigation link present", False))
+
+    # -- reflow (§14) ------------------------------------------
+    if a.reflow_failures:
+        out.append(af("reflow", "Content reflows at the target width without loss (WCAG 1.4.10)",
+                      False, detail=str(a.reflow_failures[:6])))
+
+    # -- text spacing (§15) -----------------------------------
+    if a.text_spacing_failures:
+        out.append(af("text-spacing", "Interface tolerates the WCAG 1.4.12 text-spacing override",
+                      False, detail=str(a.text_spacing_failures[:6])))
+
+    # -- target size (§16) — project ergonomic + WCAG floor -----
+    tgt = acfg.get("target_size", {})
+    if a.tiny_target_refs:
+        out.append(af("target-size-wcag", "No control below the WCAG 2.2 24px floor without an exception",
+                      False, detail=str(a.tiny_target_refs[:8])))
+    if a.small_target_refs:
+        out.append(af("target-size-project",
+                      "Adjacent targets meet the project minimum (%dpx)" % tgt.get("project_minimum_px", 44),
+                      False, detail=str(a.small_target_refs[:8])))
+
+    # -- dragging (§17) --------------------------------------
+    if a.drag_without_alternative_refs:
+        out.append(af("drag-alternative", "Every drag interaction has a non-drag alternative (WCAG 2.5.7)",
+                      False, detail=str(a.drag_without_alternative_refs[:6])))
+
+    # -- images (§19) ---------------------------------------
+    if a.meaningful_images_missing_alt:
+        out.append(af("image-alt", "Meaningful images have alt text (WCAG 1.1.1)", False,
+                      detail=str(a.meaningful_images_missing_alt[:8])))
+    if a.decorative_images_exposed:
+        out.append(af("decorative-image", "Decorative images are hidden from assistive tech", False,
+                      detail=str(a.decorative_images_exposed[:8])))
+
+    # -- forms (§21) ---------------------------------------
+    if a.unlabelled_field_refs:
+        out.append(af("form-label", "Every form field has a programmatic label", False,
+                      detail=str(a.unlabelled_field_refs[:8])))
+    if a.unassociated_error_refs:
+        out.append(af("form-error-association",
+                      "Form errors are programmatically associated with their field", False,
+                      detail=str(a.unassociated_error_refs[:8])))
+
+    # -- dialogs (§23) — deterministic portion ------------------
+    for d in a.dialogs:
+        ref = d.get("ref", "dialog")
+        ok = (d.get("role") in ("dialog", "alertdialog") and d.get("has_name", False)
+              and d.get("initial_focus", False) and d.get("escape_closes", False)
+              and d.get("focus_returns", False))
+        out.append(af("dialog.%s" % ref,
+                      "Dialog '%s': role, name, initial focus, Escape, focus return" % ref, ok,
+                      detail=str({k: d.get(k) for k in ("role", "has_name", "initial_focus",
+                                                        "escape_closes", "focus_returns")})))
+
+    # -- reduced motion (§18) — reuse V2.8 §15 result -----------
+    if obs.reduced_motion and obs.reduced_motion_hidden_content:
+        out.append(af("reduced-motion-trap",
+                      "No content trapped behind motion under prefers-reduced-motion", False,
+                      detail=str(obs.reduced_motion_hidden_content[:6]),
+                      owning_spec="MOTION-DIRECTION-PROTOCOL.md / BROWSER-REGRESSION-QA-PROTOCOL.md §15"))
+
+    # -- screen reader (§30) — never auto-PASS ------------------
+    if a.screen_reader_status == "SCREEN_READER_UNAVAILABLE":
+        out.append(Finding(check_id="a11y.screen-reader",
+                           title="Screen-reader smoke review", verdict="BLOCKED",
+                           requirement_source=S, route=obs.route, viewport=obs.viewport,
+                           detail="BLOCKED_SCREEN_READER_ENVIRONMENT", method="BROWSER_EXECUTED"))
+    elif a.screen_reader_status == "COMPLETED":
+        out.append(af("screen-reader", "Screen-reader smoke review completed", True,
+                      detail="MANUAL_VERIFIED"))
+
+    # -- manual keyboard result gates a full PASS (§41 P) -------
+    if a.manual_keyboard_result == "FAIL":
+        out.append(af("manual-keyboard", "Manual keyboard walkthrough passed", False,
+                      detail="engine may be clean, but the manual keyboard review FAILED — "
+                             "overall accessibility verification is not a full PASS"))
+    elif a.manual_keyboard_result == "PASS":
+        out.append(af("manual-keyboard", "Manual keyboard walkthrough passed", True,
+                      detail="MANUAL_VERIFIED"))
+
+    if not out:
+        out.append(af("baseline", "Accessibility checks pass for %s" % obs.route, True))
+    return out
+
+
 ALL_CHECKS = [
     check_horizontal_overflow,
     check_clipped_and_zero_targets,
@@ -398,4 +581,5 @@ ALL_CHECKS = [
     check_keyboard,
     check_visual_regression,
     check_perf,
+    check_accessibility,
 ]

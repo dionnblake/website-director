@@ -7,6 +7,7 @@
 > **V1.1 Note:** The 100-point matrix below and its scoring remain exactly as validated in V1, so scores stay comparable across V1 and V1.1 projects. §5 adds V1.1-specific qualitative dimensions reported *alongside* the 100-point score — they are never folded into it.  
 > **V1.3 Note:** Phase 11 Design QA outputs feed directly into Phase 11.5 (Website Gauntlet Subsystem), which subjects candidate builds to independent, fresh-context adversarial critics and dimensional Reference Bars.
 > **V2.8 Note:** Phase 10.5 (Automated Browser & Regression QA, `BROWSER-REGRESSION-QA-PROTOCOL.md`) runs *before* this audit. Machine-verified defects — horizontal overflow, console/network errors, broken assets, form failure/success behaviour, measurement events, reduced motion, route integrity — are caught and evidenced there. This audit references the Phase 10.5 evidence manifest and does not re-derive those verdicts.
+> **V2.9 Note:** Deterministic accessibility verdicts against the WCAG 2.2 AA target (missing names, contrast, keyboard traps, reflow, text spacing, target size, form labels/errors, dialog mechanics, landmarks) also come from Phase 10.5 via `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`. §5.11 and the Gauntlet Accessibility Critic evaluate the *experiential* quality that deterministic rules miss — they do not re-run the engine.
 
 ---
 
@@ -23,7 +24,7 @@
 | **7. Mobile Execution & Ergonomics** | **10 pts** | - Flawless reflow on small viewports without horizontal scroll.<br>- Touch targets $\ge 44\text{px} \times 44\text{px}$.<br>- Typography scales down gracefully while maintaining readability. |
 | **8. Interaction Quality & Physics** | **5 pts** | - Cohesive, responsive hover, focus, and active states.<br>- Easing curves feel organic and premium (no jarring linear jumps).<br>- Micro-interactions reinforce user intent. |
 | **9. Imagery & Art Direction** | **5 pts** | - High-resolution, art-directed assets with unified color grading.<br>- Zero generic corporate stock photos.<br>- Visual assets directly support comprehension or credibility. |
-| **10. Accessibility & Usability** | **5 pts** | - WCAG AA contrast compliance across all text/background tokens.<br>- Clear, high-contrast keyboard focus indicators.<br>- Semantic HTML landmarks and alt attributes. |
+| **10. Accessibility & Usability** | **5 pts** | - WCAG 2.2 AA contrast (text + UI components + focus indicators) across all token pairs.<br>- Clear, high-contrast keyboard focus indicators; focus not obscured by sticky UI.<br>- Semantic HTML landmarks, meaningful alt attributes, colour-independent state.<br>- Canonical authority: `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`. Deterministic accessibility verdicts come from Phase 10.5 — this score reflects craft, not conformance. |
 | **11. AI-Slop Resistance** | **5 pts** | - Zero unmotivated purple gradients, floating pill cards, or 3-card loops.<br>- Every visual element satisfies the Seven Pillars of Justification.<br>- Passes all anti-slop checks from `DESIGN-CONSTITUTION.md`. |
 
 ---
@@ -178,7 +179,19 @@ These four dimensions exist because V1.1 introduces two new failure modes V1 cou
   - Is high-sensitivity session replay disabled by default (`SESSION_REPLAY = DISABLED`)?
 - **Fail condition:** Capturing PII in analytics, deceptive dark patterns, duplicate conversion events, broken site functionality when analytics is blocked, fake experiment winner claims, or unmotivated surveillance tracking.
 
-**Scoring note:** A `Fail` on any one of §5.1–§5.10 does not automatically zero out the 100-point score, but it blocks the `PRODUCTION CANDIDATE` verdict regardless of the numeric score — remediate the failed dimension and re-review before authorizing production.
+### 5.11 Accessibility Experience & WCAG 2.2 AA Fidelity (V2.9 Supplemental Dimension)
+- *Test Question:* Does the build meet the **WCAG 2.2 AA technical target** per `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, and does it *feel* accessible — coherent focus flow, understandable structure, clear errors, restrained motion — beyond passing the deterministic rules?
+- **Explicit checks to run (consume the Phase 10.5 evidence — do not re-run the engine):**
+  - Did the Phase 10.5 accessibility assertion group pass, or are all failures recorded `KNOWN_GAP` / `exception` with owner sign-off?
+  - Is `accessibility.automated_verified` **and** `accessibility.manual_verified` set, or is the screen-reader gap explicitly recorded (`BLOCKED_SCREEN_READER_ENVIRONMENT`) rather than glossed?
+  - Is the tab order practically sensible, not just technically valid?
+  - Are error messages specific and actionable, associated with their field, and not colour-only?
+  - Is motion restrained enough that a reduced-motion user loses no meaning?
+  - Does the consent / privacy UI *feel* operable — rejection as reachable as acceptance, readable at zoom?
+  - Is any `ADA COMPLIANT` / `FULLY ACCESSIBLE` / `WCAG COMPLIANT` claim present anywhere in the build? (Any occurrence is an automatic Fail.)
+- **Fail condition:** A Phase 10.5 accessibility failure shipped without an owner-signed gap; a fabricated conformance claim; a focus order that is disorienting in practice; colour-only or unassociated errors; motion that hides meaning from reduced-motion users.
+
+**Scoring note:** A `Fail` on any one of §5.1–§5.11 does not automatically zero out the 100-point score, but it blocks the `PRODUCTION CANDIDATE` verdict regardless of the numeric score — remediate the failed dimension and re-review before authorizing production.
 
 ---
 

@@ -129,6 +129,56 @@ class PerfSample:
     measurement_kind: str = "SYNTHETIC"     # SYNTHETIC | FIELD
 
 
+# ---------------------------------------------------------------------------
+# Accessibility (Website Director V2.9). The automated *engine* (axe-core, ...)
+# is replaceable; ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md is the policy authority.
+# ---------------------------------------------------------------------------
+ENGINE_UNAVAILABLE = "BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE"
+SCREEN_READER_UNAVAILABLE = "BLOCKED_SCREEN_READER_ENVIRONMENT"
+
+
+@dataclass
+class A11yViolation:
+    rule_id: str
+    impact: str            # "minor" | "moderate" | "serious" | "critical"
+    wcag: str = ""
+    target: str = ""
+    help_text: str = ""
+
+
+@dataclass
+class AccessibilityObservation:
+    engine_name: Optional[str] = None            # None => not run
+    engine_version: Optional[str] = None
+    engine_status: str = "NOT_RUN"               # NOT_RUN | RAN | ENGINE_UNAVAILABLE
+    violations: List[A11yViolation] = field(default_factory=list)
+    missing_accessible_name_refs: List[str] = field(default_factory=list)
+    contrast_failures: List[str] = field(default_factory=list)     # "fg on bg = 2.9:1 @ selector"
+    focus_visible: bool = True
+    focus_obscured_refs: List[str] = field(default_factory=list)
+    focus_obscured_indeterminate: bool = False   # engine could not decide -> MANUAL_REQUIRED
+    landmarks: List[str] = field(default_factory=list)             # e.g. ["header","nav","main","footer"]
+    heading_order_ok: bool = True
+    h1_count: int = 1
+    page_lang: str = "en"
+    page_title: str = ""
+    skip_link_present: Optional[bool] = None
+    color_only_state_refs: List[str] = field(default_factory=list)
+    small_target_refs: List[str] = field(default_factory=list)     # below the project minimum
+    tiny_target_refs: List[str] = field(default_factory=list)      # below the WCAG 24px floor, no exception
+    reflow_failures: List[str] = field(default_factory=list)       # at the reflow target width
+    text_spacing_failures: List[str] = field(default_factory=list)
+    unlabelled_field_refs: List[str] = field(default_factory=list)
+    unassociated_error_refs: List[str] = field(default_factory=list)
+    drag_without_alternative_refs: List[str] = field(default_factory=list)
+    meaningful_images_missing_alt: List[str] = field(default_factory=list)
+    decorative_images_exposed: List[str] = field(default_factory=list)
+    dialogs: List[Dict[str, Any]] = field(default_factory=list)    # {ref, role, has_name, initial_focus, escape_closes, focus_returns, contained}
+    keyboard_trap_refs: List[str] = field(default_factory=list)
+    screen_reader_status: str = "NOT_RUN"        # NOT_RUN | COMPLETED | SCREEN_READER_UNAVAILABLE
+    manual_keyboard_result: Optional[str] = None  # None | "PASS" | "FAIL" (declared by the manual harness/fixture)
+
+
 @dataclass
 class PageObservation:
     """Everything an assertion module is allowed to read about one page render."""
@@ -155,6 +205,7 @@ class PageObservation:
     nav_open_after_toggle: Optional[bool] = None
     nav_closed_after_route_change: Optional[bool] = None
     placeholder_hash_links: List[str] = field(default_factory=list)
+    a11y: Optional[AccessibilityObservation] = None
     raw: Dict[str, Any] = field(default_factory=dict)
 
 

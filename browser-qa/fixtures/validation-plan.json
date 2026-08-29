@@ -24,6 +24,12 @@
   },
   "console_ignore": [],
   "allowed_third_party_failures": [],
+
+  "accessibility": {
+    "target": "WCAG_2_2_AA",
+    "engine": { "name": "axe-core", "min_severity_fails": "moderate" },
+    "target_size": { "project_minimum_px": 44, "wcag_floor_px": 24 }
+  },
   "visual_baselines": {
     "clean_reference@360": "clean-360",
     "clean_reference@390": "clean-390",
@@ -43,6 +49,8 @@
   "routes": [
     { "path": "clean_reference", "reduced_motion": true,
       "expected_events": ["page_view"], "security_privacy": true,
+      "expected_landmarks": ["header", "nav", "main", "footer"], "expected_lang": "en",
+      "requires_skip_link": true, "engine_scan": true,
       "critical_hero_asset": "/assets/web/hero.avif" },
     { "path": "d_mobile_nav", "viewports": [390, 768, 1440] },
     { "path": "f_reduced_motion", "viewports": [1440], "reduced_motion": true }

@@ -165,8 +165,13 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - Eliminates unmotivated decorative containers, pill tags, and floating fake UI cards.
 - **Defects:** Purple/indigo gradient fills, floating fake dashboard widgets, pill button monoculture, uniform card grids.
 
-### 4.7 Accessibility Critic (Enhanced by Impeccable)
-- **Focus:** WCAG AA compliance, color contrast, keyboard navigation, focus states, and readability.
+### 4.7 Accessibility Critic (Enhanced by Impeccable; V2.9 — enriched, not replaced)
+- **Focus:** experiential accessibility quality against the **WCAG 2.2 AA target** — color contrast, keyboard navigation, focus states, and readability.
+- **V2.9 — no new critic.** `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` adds Phase 6.9 (spec) and a Phase 10.5 accessibility assertion group (deterministic verification). This critic is **preserved and enriched**, not duplicated. It:
+  - **Consumes** the canonical accessibility evidence (`accessibility{}`, `accessibility-review.md`, the Phase 10.5 evidence manifest) rather than re-running engine checks.
+  - Focuses on what deterministic rules miss: cognitively confusing interaction, misleading visual hierarchy, focus flow that is technically valid but practically poor, a difficult reading experience, excessive motion, an inaccessible-*feeling* consent UI, poor error clarity.
+  - Expects deterministic accessibility defects (missing names, low contrast, keyboard traps, reflow failures, unlabelled forms) to have **already failed in Phase 10.5 before Gauntlet entry** — flagging their recurrence, not owning their verdict.
+  - Never edits `accessibility{}`, the accessibility review, or instrumentation. Findings flow through the existing `gauntlet{}` object. **No second Gauntlet state machine is created.**
 - **Key Questions (V2.7 privacy-surface extension):**
   - *Is the consent dialog keyboard operable, focus-managed, and free of keyboard traps?*
   - *Is rejecting optional processing as reachable as accepting it — same interaction count, same discoverability?*
@@ -312,7 +317,7 @@ Website Director V2.8 adds **Phase 10.5 Automated Browser & Regression QA** (`BR
 PHASE 10.5  DETERMINISTIC BROWSER QA  →  [BROWSER_QA_PASS]  →  PHASE 11.5  QUALITATIVE GAUNTLET
 ```
 
-- **Entry precondition:** Gauntlet STEP 1 (Capture Artifact State) does not begin until `site-profile.json` → `browser_qa.complete` is `true` (or a recorded `browser_qa.blocked_reason` / `browser_qa.exception`). The Gauntlet does not spend adversarial-critic cycles on a build with broken navigation, JavaScript exceptions, missing assets, failed forms, or obvious responsive overflow — those are deterministic and are Phase 10.5's job.
+- **Entry precondition:** Gauntlet STEP 1 (Capture Artifact State) does not begin until `site-profile.json` → `browser_qa.complete` is `true` (or a recorded `browser_qa.blocked_reason` / `browser_qa.exception`). The Gauntlet does not spend adversarial-critic cycles on a build with broken navigation, JavaScript exceptions, missing assets, failed forms, obvious responsive overflow, **or deterministic accessibility defects** (missing accessible names, low contrast, keyboard traps, reflow failures, unlabelled forms) — those are deterministic and are Phase 10.5's job. The V2.9 accessibility assertion group runs inside the same Phase 10.5 harness and its verdicts flow through `browser_qa{}` and `accessibility{}`, not a new state object.
 - **No new critic, no new state machine.** Browser QA is an upstream phase, not a Gauntlet lens. No critic reads or writes `browser_qa{}`; findings from Phase 10.5 flow through `browser_qa{}`, findings from Phase 11.5 flow through `gauntlet{}`. The distinction is permanent: **Browser QA answers "did it behave as specified?"; the Gauntlet answers "is it good enough?"**
 - The Craft, Motion, and Accessibility critics may *reference* the Phase 10.5 evidence manifest (screenshots, reduced-motion captures) as inputs, but they never re-run browser assertions or re-derive their own pass/fail on responsive overflow, console errors, broken assets, or form integrity — those verdicts are owned by Phase 10.5.
 

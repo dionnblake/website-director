@@ -20,11 +20,20 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
 - **No persistent browser daemon** (`IMPECCABLE-ENGINE-PROTOCOL.md` §8). Launch
   per run, tear down every child process, server, and profile in `stop()`.
 - **Every assertion traces to one requirement source** (`assertions/__init__.py`
-  `REQUIREMENT_SOURCES`). No orphan checks.
+  `REQUIREMENT_SOURCES`). No orphan checks. V2.9 added `ACCESSIBILITY_REVIEW`
+  (`catalog.check_accessibility`, gated on `plan["accessibility"]`) — governed by
+  `../ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, not a separate runner.
 - **Unavailable ≠ pass.** A missing engine or unreachable site is `BLOCKED` with a
   reason. `FLAKY` never becomes `PASS`.
 - **Do not re-implement Impeccable's static detectors.** Browser QA owns only the
-  runtime-observable half (`BROWSER_EXECUTED`). See protocol §28.
+  runtime-observable half (`BROWSER_EXECUTED`). See protocol §28. Accessibility
+  contrast math stays Impeccable's; the accessibility group reuses it.
+- **Accessibility (V2.9): the automated engine is replaceable.** `axe-core` via
+  `PlaywrightEngine._axe_scan` (`vendor/axe.min.js`, git-ignored) or the
+  `simulation` engine's declared fixture violations. Unavailable engine ⇒
+  `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE`; no screen reader ⇒
+  `BLOCKED_SCREEN_READER_ENVIRONMENT`. Never a PASS. Never claim WCAG conformance
+  from zero automated violations.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.
