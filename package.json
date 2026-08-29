@@ -1,0 +1,9 @@
+{
+  "name": "website-director-her-glow-up-prototype",
+  "private": true,
+  "scripts": {
+    "test": "node --test specialists/tests/architecture.test.js specialists/tests/benchmark.test.js",
+    "validate": "node specialists/validate.js",
+    "benchmark": "node specialists/benchmark/run.js"
+  }
+}

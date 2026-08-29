@@ -1,0 +1,199 @@
+{
+  "status": "READY_FOR_OUTCOME_EXECUTION",
+  "outcome_certification": "NOT_RUN",
+  "objective": "Determine whether the curated specialist architecture produces better websites with lower or equal owner friction than baseline Website Director.",
+  "hard_rules": [
+    "Do not modify the six CORE adapters or conditional UX/IA validator merely to improve benchmark results.",
+    "Do not promote additional LIBRARY or ON-DEMAND skills into CORE during benchmarking.",
+    "Do not change Website Director phases, gates, locks, SEO integration, research requirements, brand controls, publishing boundaries, or orchestration authority.",
+    "Do not deploy or publish anything.",
+    "Do not alter the benchmark criteria after seeing results.",
+    "Use equivalent starting conditions for baseline and specialist runs.",
+    "Preserve all benchmark artifacts, routing receipts, screenshots, scores, and machine-readable results.",
+    "Do not declare success merely because the specialist architecture runs correctly."
+  ],
+  "pass_condition": {
+    "no_meaningful_accessibility_regression": true,
+    "no_meaningful_responsive_quality_regression": true,
+    "no_increase_in_owner_revision_rounds_overall": true,
+    "no_systemic_token_explosion": true,
+    "clear_improvement_in_at_least_two": [
+      "visual quality",
+      "brand fidelity",
+      "motion quality",
+      "originality",
+      "conversion structure",
+      "interaction quality"
+    ],
+    "substantial_improvement_in_at_least_one_visually_demanding_benchmark": true,
+    "routing_remains_understandable_and_narrow": true,
+    "specialist_activations_materially_affected_output": true
+  },
+  "comparisons": [
+    "BASELINE_WEBSITE_DIRECTOR",
+    "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS"
+  ],
+  "freeze_fields": [
+    "brief",
+    "startingRepository",
+    "startingCommit",
+    "projectStack",
+    "assetsSupplied",
+    "ownerConstraints",
+    "websiteDirectorVersion",
+    "evaluationCriteria",
+    "allowedInterventions",
+    "scoringRubric"
+  ],
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "BRAND_LANDING_PAGE",
+      "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+      "evaluation": [
+        "visual hierarchy",
+        "brand fidelity",
+        "typography",
+        "composition",
+        "responsive quality",
+        "CTA architecture",
+        "conversion structure",
+        "perceived polish",
+        "generic-AI design patterns",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "IMMERSIVE_CINEMATIC_PAGE",
+      "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+      "evaluation": [
+        "visual storytelling",
+        "imagery and art direction",
+        "motion judgment",
+        "animation restraint",
+        "originality",
+        "scroll behavior",
+        "reduced-motion support",
+        "accessibility",
+        "responsive behavior",
+        "performance"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "CONTENT_AFFILIATE_SITE",
+      "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+      "evaluation": [
+        "information architecture",
+        "content hierarchy",
+        "article discovery",
+        "conversion structure",
+        "affiliate usability",
+        "SEO compatibility",
+        "visual hierarchy",
+        "responsive behavior",
+        "accessibility",
+        "brand fidelity"
+      ]
+    },
+    {
+      "id": "D",
+      "name": "EXISTING_MEDIOCRE_SITE_IMPROVEMENT",
+      "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+      "evaluation": [
+        "diagnosis quality",
+        "improvement magnitude",
+        "restraint",
+        "preservation of working architecture",
+        "generic-AI-pattern reduction",
+        "UI polish",
+        "accessibility",
+        "responsive quality",
+        "owner revision burden"
+      ]
+    }
+  ],
+  "metrics": [
+    "OWNER_PROMPT_ITERATIONS",
+    "OWNER_INTERVENTIONS",
+    "OWNER_REVISION_ROUNDS",
+    "TOTAL_SPECIALISTS_USED",
+    "SPECIALIST_BUDGET_EXCEPTIONS",
+    "BUILD_STEPS",
+    "BUILD_FAILURES",
+    "RESPONSIVE_DEFECTS",
+    "ACCESSIBILITY_DEFECTS",
+    "MOTION_DEFECTS",
+    "VISUAL_QA_SCORE",
+    "GENERIC_AI_PATTERN_COUNT",
+    "BRAND_FIDELITY_SCORE",
+    "PERFORMANCE_ISSUES",
+    "TOKEN_USAGE",
+    "ELAPSED_EXECUTION_TIME"
+  ],
+  "quality_separation": {
+    "VERIFIED": [
+      "overflow",
+      "responsive defects",
+      "contrast",
+      "accessibility failures",
+      "missing reduced-motion handling",
+      "runtime errors",
+      "broken interaction states",
+      "measurable performance failures"
+    ],
+    "JUDGMENT": [
+      "visual quality",
+      "originality",
+      "premium feel",
+      "composition quality",
+      "brand expression",
+      "aesthetic coherence"
+    ]
+  },
+  "scoring_rubric": {
+    "scale": "0-5 per dimension, with evidence status recorded separately",
+    "verified_dimensions": [
+      "responsive_quality",
+      "accessibility",
+      "motion_safety",
+      "performance",
+      "runtime_integrity"
+    ],
+    "judgment_dimensions": [
+      "visual_quality",
+      "brand_fidelity",
+      "conversion_structure",
+      "originality",
+      "interaction_quality",
+      "owner_friction"
+    ],
+    "score_statuses": [
+      "VERIFIED",
+      "JUDGMENT",
+      "NOT_AVAILABLE",
+      "NOT_COMPARABLE"
+    ]
+  },
+  "required_outputs": [
+    "benchmark manifest",
+    "baseline results",
+    "specialist results",
+    "side-by-side comparison",
+    "routing receipts",
+    "quality scores",
+    "defect counts",
+    "token and cost comparison where available",
+    "screenshots and evidence",
+    "anomalies",
+    "limitations",
+    "final certification verdict"
+  ],
+  "allowed_final_verdicts": [
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_PASSED",
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_FAILED",
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE"
+  ],
+  "stop_after_report": true
+}

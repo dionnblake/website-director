@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "capability_classes": [
+    "REFERENCE_STYLE",
+    "VISUAL_IMPLEMENTATION",
+    "UX_IA",
+    "LANDING_CONVERSION",
+    "MOTION",
+    "CINEMATIC",
+    "INTERFACE_QA",
+    "SPECIALIZED_QA",
+    "ADVANCED_INTERACTION",
+    "ADVANCED_RESEARCH",
+    "ADVANCED_DESIGN_SYSTEM"
+  ],
+  "routes": {
+    "REFERENCE_STYLE": {
+      "primary": "REFERENCE_STYLE_GROUNDING",
+      "secondary": null,
+      "validator": null,
+      "activation": "CORE_CONDITIONAL",
+      "allowed_phases": ["design_direction", "visual_direction", "reference_led_redesign"]
+    },
+    "VISUAL_IMPLEMENTATION": {
+      "primary": "VISUAL_IMPLEMENTATION",
+      "secondary": null,
+      "validator": "INTERFACE_QUALITY_VALIDATOR",
+      "activation": "CORE",
+      "allowed_phases": ["implementation", "polish", "responsive_implementation"]
+    },
+    "UX_IA": {
+      "primary": "UX_IA_VALIDATOR",
+      "secondary": null,
+      "validator": null,
+      "activation": "CONDITIONAL_CORE",
+      "allowed_phases": ["architecture", "information_architecture", "navigation", "complex_flow"]
+    },
+    "LANDING_CONVERSION": {
+      "primary": "LANDING_CONVERSION",
+      "secondary": null,
+      "validator": "INTERFACE_QUALITY_VALIDATOR",
+      "activation": "CORE_CONDITIONAL_BY_PAGE_TYPE",
+      "allowed_phases": ["content_structure", "landing_page", "conversion_review"]
+    },
+    "MOTION": {
+      "primary": "MOTION_IMPLEMENTATION",
+      "secondary": "CINEMATIC_MOTION_ON_DEMAND",
+      "validator": "MOTION_VALIDATOR",
+      "activation": "CORE_CONDITIONAL",
+      "allowed_phases": ["implementation", "polish", "interaction"]
+    },
+    "CINEMATIC": {
+      "primary": null,
+      "secondary": "CINEMATIC_MOTION_ON_DEMAND",
+      "validator": null,
+      "activation": "ON_DEMAND",
+      "allowed_phases": ["cinematic_review", "immersive_website", "approved_art_direction"],
+      "requires_explicit_activation": true,
+      "requires_normalized_adapter": true,
+      "recommendation": "CINEMATIC_SPECIALIST_RECOMMENDED"
+    },
+    "INTERFACE_QA": {
+      "primary": "INTERFACE_QUALITY_VALIDATOR",
+      "secondary": null,
+      "validator": null,
+      "activation": "CORE",
+      "allowed_phases": ["qa", "interface_review", "responsive_review"]
+    },
+    "SPECIALIZED_QA": {
+      "primary": null,
+      "secondary": null,
+      "validator": null,
+      "activation": "ON_DEMAND",
+      "allowed_phases": ["qa", "diagnostic"],
+      "recommendation": "NARROW_DIAGNOSTIC_ESCALATION_REQUIRES_WEBSITE_DIRECTOR_DECISION"
+    },
+    "ADVANCED_INTERACTION": {
+      "primary": null,
+      "secondary": null,
+      "validator": null,
+      "activation": "ON_DEMAND",
+      "allowed_phases": ["interaction", "approved_art_direction"],
+      "recommendation": "ON_DEMAND_CAPABILITY_REQUIRES_NORMALIZED_ADAPTER_BEFORE_EXECUTION"
+    },
+    "ADVANCED_RESEARCH": {
+      "primary": null,
+      "secondary": null,
+      "validator": null,
+      "activation": "ON_DEMAND",
+      "allowed_phases": ["research", "advanced_research"],
+      "recommendation": "WEBSITE_DIRECTOR_RESEARCH_LIFECYCLE_REMAINS_AUTHORITATIVE"
+    },
+    "ADVANCED_DESIGN_SYSTEM": {
+      "primary": null,
+      "secondary": null,
+      "validator": null,
+      "activation": "ON_DEMAND",
+      "allowed_phases": ["design_system", "implementation", "qa"],
+      "recommendation": "ON_DEMAND_CAPABILITY_REQUIRES_NORMALIZED_ADAPTER_BEFORE_EXECUTION"
+    }
+  },
+  "routing_principles": [
+    "CURRENT_DECISION_FIRST",
+    "ONE_PRIMARY_WHEN_APPLICABLE",
+    "ONE_VALIDATOR_WHEN_APPLICABLE",
+    "SECONDARY_ONLY_FOR_COMPLEX_DECISION",
+    "NO_EQUIVALENT_SPECIALIST_COMPETITION",
+    "NO_RAW_UPSTREAM_EXECUTION",
+    "WEBSITE_DIRECTOR_RETAINS_JUDGMENT"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "benchmark_id": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_2026-08-28",
+  "certification": {
+    "verdict": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE",
+    "reasons": [
+      {
+        "scenario": "A",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "B",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "C",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "D",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "A",
+      "comparable": false,
+      "baseline": "NOT_EXECUTED",
+      "specialist": "ROUTING_ONLY",
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing."
+      ]
+    },
+    {
+      "id": "B",
+      "comparable": false,
+      "baseline": "NOT_EXECUTED",
+      "specialist": "ROUTING_ONLY",
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing."
+      ]
+    },
+    {
+      "id": "C",
+      "comparable": false,
+      "baseline": "NOT_EXECUTED",
+      "specialist": "ROUTING_ONLY",
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing.",
+        "This repository does not contain a representative starting fixture for this benchmark class."
+      ]
+    },
+    {
+      "id": "D",
+      "comparable": false,
+      "baseline": "NOT_EXECUTED",
+      "specialist": "ROUTING_ONLY",
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing.",
+        "This repository does not contain a representative starting fixture for this benchmark class."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4262 @@
+{
+  "manifest": {
+    "benchmark_id": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_2026-08-28",
+    "status": "EXECUTED_WITH_INCOMPLETE_PAIRED_RUNS",
+    "objective": "Determine whether the curated specialist architecture produces better websites with lower or equal owner friction than baseline Website Director.",
+    "criteria_source": "owner-supplied outcome benchmarking acceptance note",
+    "run_date": "2026-08-28",
+    "frozen_at": "2026-08-28T00:00:00.000Z",
+    "starting_state": {
+      "repository": "local-worktree:WEBSITE DIRECTOR",
+      "git_commit": "NO_GIT_COMMIT_PRESENT",
+      "worktree_snapshot_sha256": "0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+      "source_files": [
+        {
+          "path": "AGENTS.md",
+          "bytes": 2484,
+          "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+        },
+        {
+          "path": "assets/glow-expansion.png",
+          "bytes": 2209189,
+          "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+        },
+        {
+          "path": "assets/glow-life.png",
+          "bytes": 1980525,
+          "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+        },
+        {
+          "path": "assets/glow-meadow.png",
+          "bytes": 2210010,
+          "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+        },
+        {
+          "path": "assets/glow-morning.png",
+          "bytes": 2104555,
+          "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+        },
+        {
+          "path": "assets/glow-movement.png",
+          "bytes": 2178673,
+          "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+        },
+        {
+          "path": "assets/glow-portrait.png",
+          "bytes": 1917854,
+          "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+        },
+        {
+          "path": "assets/glow-ritual.png",
+          "bytes": 2038640,
+          "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+        },
+        {
+          "path": "assets/glow-style.png",
+          "bytes": 1797992,
+          "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+        },
+        {
+          "path": "favicon.svg",
+          "bytes": 356,
+          "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+        },
+        {
+          "path": "index.html",
+          "bytes": 25226,
+          "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+        },
+        {
+          "path": "README.md",
+          "bytes": 1559,
+          "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+        },
+        {
+          "path": "script.js",
+          "bytes": 13564,
+          "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+        },
+        {
+          "path": "styles.css",
+          "bytes": 49830,
+          "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+        }
+      ],
+      "supplied_assets": [
+        {
+          "path": "assets/glow-expansion.png",
+          "bytes": 2209189,
+          "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+        },
+        {
+          "path": "assets/glow-life.png",
+          "bytes": 1980525,
+          "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+        },
+        {
+          "path": "assets/glow-meadow.png",
+          "bytes": 2210010,
+          "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+        },
+        {
+          "path": "assets/glow-morning.png",
+          "bytes": 2104555,
+          "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+        },
+        {
+          "path": "assets/glow-movement.png",
+          "bytes": 2178673,
+          "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+        },
+        {
+          "path": "assets/glow-portrait.png",
+          "bytes": 1917854,
+          "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+        },
+        {
+          "path": "assets/glow-ritual.png",
+          "bytes": 2038640,
+          "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+        },
+        {
+          "path": "assets/glow-style.png",
+          "bytes": 1797992,
+          "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+        }
+      ],
+      "project_stack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+      "owner_constraints": [
+        "prototype-isolated",
+        "local-demo-only",
+        "no-production-content",
+        "no-publishing",
+        "no-deployment",
+        "keyboard-touch-usable",
+        "reduced-motion-supported"
+      ],
+      "website_director_version": "prototype-unversioned"
+    },
+    "hard_rules": [
+      "Do not modify the six CORE adapters or conditional UX/IA validator merely to improve benchmark results.",
+      "Do not promote additional LIBRARY or ON-DEMAND skills into CORE during benchmarking.",
+      "Do not change Website Director phases, gates, locks, SEO integration, research requirements, brand controls, publishing boundaries, or orchestration authority.",
+      "Do not deploy or publish anything.",
+      "Do not alter the benchmark criteria after seeing results.",
+      "Use equivalent starting conditions for baseline and specialist runs.",
+      "Preserve all benchmark artifacts, routing receipts, screenshots, scores, and machine-readable results.",
+      "Do not declare success merely because the specialist architecture runs correctly."
+    ],
+    "evaluation_rubric": {
+      "scale": "0-5 per dimension, with evidence status recorded separately",
+      "verified_dimensions": [
+        "responsive_quality",
+        "accessibility",
+        "motion_safety",
+        "performance",
+        "runtime_integrity"
+      ],
+      "judgment_dimensions": [
+        "visual_quality",
+        "brand_fidelity",
+        "conversion_structure",
+        "originality",
+        "interaction_quality",
+        "owner_friction"
+      ],
+      "score_statuses": [
+        "VERIFIED",
+        "JUDGMENT",
+        "NOT_AVAILABLE",
+        "NOT_COMPARABLE"
+      ]
+    },
+    "required_metrics": [
+      "OWNER_PROMPT_ITERATIONS",
+      "OWNER_INTERVENTIONS",
+      "OWNER_REVISION_ROUNDS",
+      "TOTAL_SPECIALISTS_USED",
+      "SPECIALIST_BUDGET_EXCEPTIONS",
+      "BUILD_STEPS",
+      "BUILD_FAILURES",
+      "RESPONSIVE_DEFECTS",
+      "ACCESSIBILITY_DEFECTS",
+      "MOTION_DEFECTS",
+      "VISUAL_QA_SCORE",
+      "GENERIC_AI_PATTERN_COUNT",
+      "BRAND_FIDELITY_SCORE",
+      "PERFORMANCE_ISSUES",
+      "TOKEN_USAGE",
+      "ELAPSED_EXECUTION_TIME"
+    ],
+    "quality_separation": {
+      "VERIFIED": [
+        "overflow",
+        "responsive defects",
+        "contrast",
+        "accessibility failures",
+        "missing reduced-motion handling",
+        "runtime errors",
+        "broken interaction states",
+        "measurable performance failures"
+      ],
+      "JUDGMENT": [
+        "visual quality",
+        "originality",
+        "premium feel",
+        "composition quality",
+        "brand expression",
+        "aesthetic coherence"
+      ]
+    },
+    "comparisons": [
+      "BASELINE_WEBSITE_DIRECTOR",
+      "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS"
+    ],
+    "scenario_freezes": {
+      "A": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual hierarchy",
+            "brand fidelity",
+            "typography",
+            "composition",
+            "responsive quality",
+            "CTA architecture",
+            "conversion structure",
+            "perceived polish",
+            "generic-AI design patterns",
+            "accessibility"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual hierarchy",
+            "brand fidelity",
+            "typography",
+            "composition",
+            "responsive quality",
+            "CTA architecture",
+            "conversion structure",
+            "perceived polish",
+            "generic-AI design patterns",
+            "accessibility"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      },
+      "B": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual storytelling",
+            "imagery and art direction",
+            "motion judgment",
+            "animation restraint",
+            "originality",
+            "scroll behavior",
+            "reduced-motion support",
+            "accessibility",
+            "responsive behavior",
+            "performance"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual storytelling",
+            "imagery and art direction",
+            "motion judgment",
+            "animation restraint",
+            "originality",
+            "scroll behavior",
+            "reduced-motion support",
+            "accessibility",
+            "responsive behavior",
+            "performance"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      },
+      "C": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "information architecture",
+            "content hierarchy",
+            "article discovery",
+            "conversion structure",
+            "affiliate usability",
+            "SEO compatibility",
+            "visual hierarchy",
+            "responsive behavior",
+            "accessibility",
+            "brand fidelity"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "information architecture",
+            "content hierarchy",
+            "article discovery",
+            "conversion structure",
+            "affiliate usability",
+            "SEO compatibility",
+            "visual hierarchy",
+            "responsive behavior",
+            "accessibility",
+            "brand fidelity"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      },
+      "D": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "diagnosis quality",
+            "improvement magnitude",
+            "restraint",
+            "preservation of working architecture",
+            "generic-AI-pattern reduction",
+            "UI polish",
+            "accessibility",
+            "responsive quality",
+            "owner revision burden"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "diagnosis quality",
+            "improvement magnitude",
+            "restraint",
+            "preservation of working architecture",
+            "generic-AI-pattern reduction",
+            "UI polish",
+            "accessibility",
+            "responsive quality",
+            "owner revision burden"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      }
+    },
+    "allowed_final_verdicts": [
+      "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_PASSED",
+      "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_FAILED",
+      "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE"
+    ],
+    "stop_after_report": true,
+    "outcome_certification": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE"
+  },
+  "certification": {
+    "verdict": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE",
+    "reasons": [
+      {
+        "scenario": "A",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "B",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "C",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      },
+      {
+        "scenario": "D",
+        "reasons": [
+          "baseline and specialist outputs are not comparable",
+          "baseline status is NOT_EXECUTED",
+          "specialist status is ROUTING_ONLY"
+        ]
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "A",
+      "name": "BRAND_LANDING_PAGE",
+      "comparable": false,
+      "baseline": {
+        "status": "NOT_EXECUTED",
+        "output": null,
+        "reason": "No independent baseline Website Director generation run, prompt log, or candidate artifact is present in this local prototype.",
+        "reference_artifact": {
+          "status": "CAPTURED_REFERENCE_ONLY",
+          "source": "existing local Her Glow Up static prototype",
+          "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+          "source_files": [
+            {
+              "path": "AGENTS.md",
+              "bytes": 2484,
+              "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+            },
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            },
+            {
+              "path": "favicon.svg",
+              "bytes": 356,
+              "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+            },
+            {
+              "path": "index.html",
+              "bytes": 25226,
+              "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+            },
+            {
+              "path": "README.md",
+              "bytes": 1559,
+              "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+            },
+            {
+              "path": "script.js",
+              "bytes": 13564,
+              "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+            },
+            {
+              "path": "styles.css",
+              "bytes": 49830,
+              "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+            }
+          ],
+          "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+          "verified_findings": {
+            "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+            "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+            "runtime_console_errors": "NO_ERRORS_OBSERVED",
+            "reduced_motion_rules": "RULE_PRESENT",
+            "mobile_menu_state": {
+              "open": {
+                "ariaExpanded": "true",
+                "hidden": false,
+                "focusTargetObserved": "01Begin within↗"
+              },
+              "close": {
+                "ariaExpanded": "false",
+                "hidden": true,
+                "focusTargetObserved": "Menu"
+              }
+            }
+          },
+          "judgment_findings": {
+            "status": "NOT_BLINDLY_SCORED",
+            "reason": "A single existing artifact cannot establish an A/B quality delta."
+          }
+        }
+      },
+      "specialist": {
+        "status": "ROUTING_ONLY",
+        "output": null,
+        "reason": "Normalized adapters were exercised for routing evidence only. No specialist-generated candidate was produced or supplied.",
+        "routing_decisions": 3
+      },
+      "representative_fixture_available": true,
+      "materiallyAffectedOutput": false,
+      "noMeaningfulRegression": null,
+      "improvements": [],
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 5,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      },
+      "metric_status": {
+        "OWNER_PROMPT_ITERATIONS": "NOT_AVAILABLE",
+        "OWNER_INTERVENTIONS": "NOT_AVAILABLE",
+        "OWNER_REVISION_ROUNDS": "NOT_AVAILABLE",
+        "TOTAL_SPECIALISTS_USED": "ROUTING_EVIDENCE_ONLY",
+        "SPECIALIST_BUDGET_EXCEPTIONS": "ROUTING_EVIDENCE_ONLY",
+        "BUILD_STEPS": "NOT_AVAILABLE",
+        "BUILD_FAILURES": "NOT_AVAILABLE",
+        "RESPONSIVE_DEFECTS": "NOT_AVAILABLE",
+        "ACCESSIBILITY_DEFECTS": "NOT_AVAILABLE",
+        "MOTION_DEFECTS": "NOT_AVAILABLE",
+        "VISUAL_QA_SCORE": "NOT_AVAILABLE",
+        "GENERIC_AI_PATTERN_COUNT": "NOT_AVAILABLE",
+        "BRAND_FIDELITY_SCORE": "NOT_AVAILABLE",
+        "PERFORMANCE_ISSUES": "NOT_AVAILABLE",
+        "TOKEN_USAGE": "NOT_AVAILABLE",
+        "ELAPSED_EXECUTION_TIME": "NOT_AVAILABLE"
+      },
+      "quality_scores": {
+        "baseline": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        },
+        "specialist": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        }
+      },
+      "routing": {
+        "decisionCount": 3,
+        "plans": [
+          {
+            "decision": {
+              "capabilityClass": "REFERENCE_STYLE",
+              "phase": "design_direction",
+              "currentDecision": "brand_reference_grounding",
+              "trigger": "benchmark_brand_landing",
+              "whySelected": "Use the project-local reference field to test brand fidelity without inheriting a global taste profile."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "REFERENCE_STYLE",
+              "phase": "design_direction",
+              "activation": "CORE_CONDITIONAL",
+              "selectedAdapters": [
+                "REFERENCE_STYLE_GROUNDING"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.702Z",
+                  "SPECIALIST": "codeswithroh/tastemaker",
+                  "ADAPTER_ID": "REFERENCE_STYLE_GROUNDING",
+                  "TRIGGER": "benchmark_brand_landing",
+                  "DECISION_OR_PHASE": "brand_reference_grounding",
+                  "ROLE": "IMPLEMENTATION_SPECIALIST",
+                  "WHY_SELECTED": "Use the project-local reference field to test brand fidelity without inheriting a global taste profile.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "VISUAL_IMPLEMENTATION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "INTERFACE_QUALITY_VALIDATOR"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 1,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "VISUAL_IMPLEMENTATION",
+              "phase": "implementation",
+              "currentDecision": "brand_landing_implementation",
+              "trigger": "benchmark_brand_landing",
+              "whySelected": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "VISUAL_IMPLEMENTATION",
+              "phase": "implementation",
+              "activation": "CORE",
+              "selectedAdapters": [
+                "VISUAL_IMPLEMENTATION",
+                "INTERFACE_QUALITY_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "ConardLi/garden-skills",
+                  "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+                  "TRIGGER": "benchmark_brand_landing",
+                  "DECISION_OR_PHASE": "brand_landing_implementation",
+                  "ROLE": "IMPLEMENTATION_SPECIALIST",
+                  "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                },
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "jakubkrehel/skills",
+                  "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+                  "TRIGGER": "benchmark_brand_landing",
+                  "DECISION_OR_PHASE": "brand_landing_implementation",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 2,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 2,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "LANDING_CONVERSION",
+              "phase": "landing_page",
+              "pageType": "homepage",
+              "currentDecision": "brand_landing_conversion_structure",
+              "trigger": "benchmark_brand_landing",
+              "whySelected": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "LANDING_CONVERSION",
+              "phase": "landing_page",
+              "activation": "CORE_CONDITIONAL_BY_PAGE_TYPE",
+              "selectedAdapters": [
+                "LANDING_CONVERSION",
+                "INTERFACE_QUALITY_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "elayadesign/ai-design-skills",
+                  "ADAPTER_ID": "LANDING_CONVERSION",
+                  "TRIGGER": "benchmark_brand_landing",
+                  "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+                  "ROLE": "IMPLEMENTATION_SPECIALIST",
+                  "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "UX_IA_VALIDATOR",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                },
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "jakubkrehel/skills",
+                  "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+                  "TRIGGER": "benchmark_brand_landing",
+                  "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "UX_IA_VALIDATOR",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 2,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 2,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.702Z",
+            "SPECIALIST": "codeswithroh/tastemaker",
+            "ADAPTER_ID": "REFERENCE_STYLE_GROUNDING",
+            "TRIGGER": "benchmark_brand_landing",
+            "DECISION_OR_PHASE": "brand_reference_grounding",
+            "ROLE": "IMPLEMENTATION_SPECIALIST",
+            "WHY_SELECTED": "Use the project-local reference field to test brand fidelity without inheriting a global taste profile.",
+            "ALTERNATIVES_CONSIDERED": [
+              "VISUAL_IMPLEMENTATION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "INTERFACE_QUALITY_VALIDATOR"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "ConardLi/garden-skills",
+            "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+            "TRIGGER": "benchmark_brand_landing",
+            "DECISION_OR_PHASE": "brand_landing_implementation",
+            "ROLE": "IMPLEMENTATION_SPECIALIST",
+            "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "jakubkrehel/skills",
+            "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+            "TRIGGER": "benchmark_brand_landing",
+            "DECISION_OR_PHASE": "brand_landing_implementation",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 2,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "elayadesign/ai-design-skills",
+            "ADAPTER_ID": "LANDING_CONVERSION",
+            "TRIGGER": "benchmark_brand_landing",
+            "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+            "ROLE": "IMPLEMENTATION_SPECIALIST",
+            "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "UX_IA_VALIDATOR",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "jakubkrehel/skills",
+            "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+            "TRIGGER": "benchmark_brand_landing",
+            "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "UX_IA_VALIDATOR",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 2,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          }
+        ],
+        "adapterResults": [
+          {
+            "adapterId": "REFERENCE_STYLE_GROUNDING",
+            "role": "IMPLEMENTATION_SPECIALIST",
+            "decision": "REFERENCE_STYLE",
+            "phase": "design_direction",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE_CONDITIONAL",
+            "upstreamKnowledge": [
+              "codeswithroh/tastemaker:skills/tastemaker/SKILL.md",
+              "codeswithroh/tastemaker:skills/tastemaker/ideagram/SKILL.md"
+            ],
+            "projectLocalMemory": {
+              "enabled": true,
+              "references": [
+                "local/reference-board"
+              ],
+              "antiReferences": [],
+              "styleLock": "HG-EDITORIAL-01",
+              "globalProfileInherited": false
+            },
+            "boundedGuidance": [
+              "Ground the visual thesis in the supplied project references.",
+              "Record anti-references and structural diversification rules.",
+              "Treat palette, contrast, typography direction, and style lock as inputs to Website Director judgment.",
+              "Return design guidance only; do not own IA, SEO, conversion, publishing, or approval."
+            ],
+            "findings": []
+          },
+          {
+            "adapterId": "VISUAL_IMPLEMENTATION",
+            "role": "IMPLEMENTATION_SPECIALIST",
+            "decision": "VISUAL_IMPLEMENTATION",
+            "phase": "implementation",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "ConardLi/garden-skills:skills/web-design-engineer/SKILL.md"
+            ],
+            "stackPolicy": "preserve_existing_healthy_project_capability",
+            "boundedGuidance": [
+              "Convert already-approved research, brand, IA, content, SEO, and design direction into frontend implementation.",
+              "Use the existing project stack and preserve healthy architecture.",
+              "Prioritize hierarchy, responsive composition, component coherence, interaction detail, and anti-generic execution.",
+              "Report a dependency recommendation as guidance only; never install or replace a stack."
+            ],
+            "findings": []
+          },
+          {
+            "adapterId": "INTERFACE_QUALITY_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "VISUAL_IMPLEMENTATION",
+            "phase": "implementation",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "jakubkrehel/skills:skills/better-layout/SKILL.md",
+              "jakubkrehel/skills:skills/better-typography/SKILL.md",
+              "jakubkrehel/skills:skills/better-colors/SKILL.md",
+              "jakubkrehel/skills:skills/better-accessibility/SKILL.md",
+              "jakubkrehel/skills:skills/better-writing/SKILL.md",
+              "jakubkrehel/skills:skills/better-ui/SKILL.md"
+            ],
+            "consolidatedReview": true,
+            "reviewAreas": [
+              "layout",
+              "grouping",
+              "hierarchy",
+              "typography",
+              "readability",
+              "wrapping",
+              "color_semantics",
+              "contrast",
+              "accessibility",
+              "keyboard_usability",
+              "focus_states",
+              "interface_writing",
+              "button_labels",
+              "error_states",
+              "empty_states",
+              "ui_polish",
+              "interaction_affordances",
+              "responsive_defects",
+              "narrow_width_behavior"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Return one consolidated interface review rather than recursively invoking six upstream skills.",
+              "Separate observed defects from recommendations and preserve Website Director ownership of the final decision.",
+              "Treat missing evidence as unverified, not as a pass."
+            ]
+          },
+          {
+            "adapterId": "LANDING_CONVERSION",
+            "role": "IMPLEMENTATION_SPECIALIST",
+            "decision": "LANDING_CONVERSION",
+            "phase": "landing_page",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE_CONDITIONAL_BY_PAGE_TYPE",
+            "upstreamKnowledge": [
+              "elayadesign/ai-design-skills:skills/landing-page-design/SKILL.md"
+            ],
+            "eligible": true,
+            "status": "ready_for_bounded_guidance",
+            "boundedGuidance": [
+              "Improve page sequencing, message hierarchy, CTA architecture, trust support, lead capture, and friction reduction.",
+              "Keep IA, SEO, brand, lifecycle, and owner approval with Website Director."
+            ],
+            "findings": []
+          },
+          {
+            "adapterId": "INTERFACE_QUALITY_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "LANDING_CONVERSION",
+            "phase": "landing_page",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "jakubkrehel/skills:skills/better-layout/SKILL.md",
+              "jakubkrehel/skills:skills/better-typography/SKILL.md",
+              "jakubkrehel/skills:skills/better-colors/SKILL.md",
+              "jakubkrehel/skills:skills/better-accessibility/SKILL.md",
+              "jakubkrehel/skills:skills/better-writing/SKILL.md",
+              "jakubkrehel/skills:skills/better-ui/SKILL.md"
+            ],
+            "consolidatedReview": true,
+            "reviewAreas": [
+              "layout",
+              "grouping",
+              "hierarchy",
+              "typography",
+              "readability",
+              "wrapping",
+              "color_semantics",
+              "contrast",
+              "accessibility",
+              "keyboard_usability",
+              "focus_states",
+              "interface_writing",
+              "button_labels",
+              "error_states",
+              "empty_states",
+              "ui_polish",
+              "interaction_affordances",
+              "responsive_defects",
+              "narrow_width_behavior"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Return one consolidated interface review rather than recursively invoking six upstream skills.",
+              "Separate observed defects from recommendations and preserve Website Director ownership of the final decision.",
+              "Treat missing evidence as unverified, not as a pass."
+            ]
+          }
+        ],
+        "selectedAdapterCount": 5,
+        "budgetExceptionCount": 0,
+        "materialContributionCount": 0
+      },
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing."
+      ],
+      "frozen_pair": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual hierarchy",
+            "brand fidelity",
+            "typography",
+            "composition",
+            "responsive quality",
+            "CTA architecture",
+            "conversion structure",
+            "perceived polish",
+            "generic-AI design patterns",
+            "accessibility"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual hierarchy",
+            "brand fidelity",
+            "typography",
+            "composition",
+            "responsive quality",
+            "CTA architecture",
+            "conversion structure",
+            "perceived polish",
+            "generic-AI design patterns",
+            "accessibility"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      }
+    },
+    {
+      "id": "B",
+      "name": "IMMERSIVE_CINEMATIC_PAGE",
+      "comparable": false,
+      "baseline": {
+        "status": "NOT_EXECUTED",
+        "output": null,
+        "reason": "No independent baseline Website Director generation run, prompt log, or candidate artifact is present in this local prototype.",
+        "reference_artifact": {
+          "status": "CAPTURED_REFERENCE_ONLY",
+          "source": "existing local Her Glow Up static prototype",
+          "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+          "source_files": [
+            {
+              "path": "AGENTS.md",
+              "bytes": 2484,
+              "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+            },
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            },
+            {
+              "path": "favicon.svg",
+              "bytes": 356,
+              "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+            },
+            {
+              "path": "index.html",
+              "bytes": 25226,
+              "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+            },
+            {
+              "path": "README.md",
+              "bytes": 1559,
+              "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+            },
+            {
+              "path": "script.js",
+              "bytes": 13564,
+              "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+            },
+            {
+              "path": "styles.css",
+              "bytes": 49830,
+              "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+            }
+          ],
+          "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+          "verified_findings": {
+            "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+            "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+            "runtime_console_errors": "NO_ERRORS_OBSERVED",
+            "reduced_motion_rules": "RULE_PRESENT",
+            "mobile_menu_state": {
+              "open": {
+                "ariaExpanded": "true",
+                "hidden": false,
+                "focusTargetObserved": "01Begin within↗"
+              },
+              "close": {
+                "ariaExpanded": "false",
+                "hidden": true,
+                "focusTargetObserved": "Menu"
+              }
+            }
+          },
+          "judgment_findings": {
+            "status": "NOT_BLINDLY_SCORED",
+            "reason": "A single existing artifact cannot establish an A/B quality delta."
+          }
+        }
+      },
+      "specialist": {
+        "status": "ROUTING_ONLY",
+        "output": null,
+        "reason": "Normalized adapters were exercised for routing evidence only. No specialist-generated candidate was produced or supplied.",
+        "routing_decisions": 2
+      },
+      "representative_fixture_available": true,
+      "materiallyAffectedOutput": false,
+      "noMeaningfulRegression": null,
+      "improvements": [],
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 2,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      },
+      "metric_status": {
+        "OWNER_PROMPT_ITERATIONS": "NOT_AVAILABLE",
+        "OWNER_INTERVENTIONS": "NOT_AVAILABLE",
+        "OWNER_REVISION_ROUNDS": "NOT_AVAILABLE",
+        "TOTAL_SPECIALISTS_USED": "ROUTING_EVIDENCE_ONLY",
+        "SPECIALIST_BUDGET_EXCEPTIONS": "ROUTING_EVIDENCE_ONLY",
+        "BUILD_STEPS": "NOT_AVAILABLE",
+        "BUILD_FAILURES": "NOT_AVAILABLE",
+        "RESPONSIVE_DEFECTS": "NOT_AVAILABLE",
+        "ACCESSIBILITY_DEFECTS": "NOT_AVAILABLE",
+        "MOTION_DEFECTS": "NOT_AVAILABLE",
+        "VISUAL_QA_SCORE": "NOT_AVAILABLE",
+        "GENERIC_AI_PATTERN_COUNT": "NOT_AVAILABLE",
+        "BRAND_FIDELITY_SCORE": "NOT_AVAILABLE",
+        "PERFORMANCE_ISSUES": "NOT_AVAILABLE",
+        "TOKEN_USAGE": "NOT_AVAILABLE",
+        "ELAPSED_EXECUTION_TIME": "NOT_AVAILABLE"
+      },
+      "quality_scores": {
+        "baseline": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        },
+        "specialist": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        }
+      },
+      "routing": {
+        "decisionCount": 2,
+        "plans": [
+          {
+            "decision": {
+              "capabilityClass": "MOTION",
+              "phase": "interaction",
+              "currentDecision": "immersive_motion_judgment",
+              "trigger": "benchmark_immersive_cinematic",
+              "includeSecondary": true,
+              "cinematicCandidate": true,
+              "whySelected": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "MOTION",
+              "phase": "interaction",
+              "activation": "CORE_CONDITIONAL",
+              "selectedAdapters": [
+                "MOTION_IMPLEMENTATION",
+                "MOTION_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "emilkowalski/skills",
+                  "ADAPTER_ID": "MOTION_IMPLEMENTATION",
+                  "TRIGGER": "benchmark_immersive_cinematic",
+                  "DECISION_OR_PHASE": "immersive_motion_judgment",
+                  "ROLE": "IMPLEMENTATION_SPECIALIST",
+                  "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "INTERFACE_QUALITY_VALIDATOR"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                },
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.704Z",
+                  "SPECIALIST": "emilkowalski/skills",
+                  "ADAPTER_ID": "MOTION_VALIDATOR",
+                  "TRIGGER": "benchmark_immersive_cinematic",
+                  "DECISION_OR_PHASE": "immersive_motion_judgment",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "INTERFACE_QUALITY_VALIDATOR"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 2,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": "NORMALIZED_ADAPTER_REQUIRED_BEFORE_EXECUTION",
+              "budget": {
+                "used": 2,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "CINEMATIC",
+              "phase": "immersive_website",
+              "currentDecision": "immersive_cinematic_escalation",
+              "trigger": "benchmark_immersive_cinematic",
+              "explicitActivation": true,
+              "whySelected": "Exercise the locked on-demand cinematic route; raw upstream knowledge must remain non-executable."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "CINEMATIC",
+              "phase": "immersive_website",
+              "selectedAdapters": [],
+              "receipts": [],
+              "recommendation": "CINEMATIC_SPECIALIST_RECOMMENDED",
+              "activation": "DORMANT",
+              "budget": {
+                "used": 0,
+                "ceiling": 3
+              }
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "emilkowalski/skills",
+            "ADAPTER_ID": "MOTION_IMPLEMENTATION",
+            "TRIGGER": "benchmark_immersive_cinematic",
+            "DECISION_OR_PHASE": "immersive_motion_judgment",
+            "ROLE": "IMPLEMENTATION_SPECIALIST",
+            "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "INTERFACE_QUALITY_VALIDATOR"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.704Z",
+            "SPECIALIST": "emilkowalski/skills",
+            "ADAPTER_ID": "MOTION_VALIDATOR",
+            "TRIGGER": "benchmark_immersive_cinematic",
+            "DECISION_OR_PHASE": "immersive_motion_judgment",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "INTERFACE_QUALITY_VALIDATOR"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 2,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          }
+        ],
+        "adapterResults": [
+          {
+            "adapterId": "MOTION_IMPLEMENTATION",
+            "role": "IMPLEMENTATION_SPECIALIST",
+            "decision": "MOTION",
+            "phase": "interaction",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE_CONDITIONAL",
+            "upstreamKnowledge": [
+              "emilkowalski/skills:skills/animate/SKILL.md",
+              "emilkowalski/skills:skills/emil-design-eng/SKILL.md",
+              "emilkowalski/skills:skills/find-animation-opportunities/SKILL.md"
+            ],
+            "motionClass": "CINEMATIC_CANDIDATE",
+            "firstQuestion": "SHOULD_THIS_ANIMATE",
+            "cinematicSpecialistRecommended": true,
+            "specialistRecommendation": "CINEMATIC_SPECIALIST_RECOMMENDED",
+            "boundedGuidance": [
+              "Choose whether motion is necessary before choosing a technique.",
+              "Prefer interruptible, responsive, GPU-safe properties and reduced-motion equivalents.",
+              "Use the existing project capability before considering a new library.",
+              "Return a recommendation when the decision is cinematic; do not activate another specialist."
+            ],
+            "findings": []
+          },
+          {
+            "adapterId": "MOTION_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "MOTION",
+            "phase": "interaction",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE_CONDITIONAL",
+            "upstreamKnowledge": [
+              "emilkowalski/skills:skills/review-animations/SKILL.md",
+              "emilkowalski/skills:skills/improve-animations/SKILL.md"
+            ],
+            "reviewAreas": [
+              "necessity",
+              "restraint",
+              "easing",
+              "timing",
+              "responsiveness",
+              "interruptibility",
+              "gpu_safe_properties",
+              "hover_gating",
+              "pointer_assumptions",
+              "reduced_motion",
+              "layout_property_animation",
+              "repeated_animation_fatigue",
+              "performance",
+              "consistency"
+            ],
+            "selfCertification": false,
+            "findings": [],
+            "boundedGuidance": [
+              "Validate the implementation independently from the motion builder.",
+              "Flag unnecessary movement, layout-property animation, pointer-only assumptions, and reduced-motion gaps.",
+              "Treat performance and responsive evidence as required for a pass."
+            ]
+          }
+        ],
+        "selectedAdapterCount": 2,
+        "budgetExceptionCount": 0,
+        "materialContributionCount": 0
+      },
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing."
+      ],
+      "frozen_pair": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual storytelling",
+            "imagery and art direction",
+            "motion judgment",
+            "animation restraint",
+            "originality",
+            "scroll behavior",
+            "reduced-motion support",
+            "accessibility",
+            "responsive behavior",
+            "performance"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "visual storytelling",
+            "imagery and art direction",
+            "motion judgment",
+            "animation restraint",
+            "originality",
+            "scroll behavior",
+            "reduced-motion support",
+            "accessibility",
+            "responsive behavior",
+            "performance"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      }
+    },
+    {
+      "id": "C",
+      "name": "CONTENT_AFFILIATE_SITE",
+      "comparable": false,
+      "baseline": {
+        "status": "NOT_EXECUTED",
+        "output": null,
+        "reason": "No independent baseline Website Director generation run, prompt log, or candidate artifact is present in this local prototype.",
+        "reference_artifact": {
+          "status": "CAPTURED_REFERENCE_ONLY",
+          "source": "existing local Her Glow Up static prototype",
+          "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+          "source_files": [
+            {
+              "path": "AGENTS.md",
+              "bytes": 2484,
+              "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+            },
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            },
+            {
+              "path": "favicon.svg",
+              "bytes": 356,
+              "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+            },
+            {
+              "path": "index.html",
+              "bytes": 25226,
+              "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+            },
+            {
+              "path": "README.md",
+              "bytes": 1559,
+              "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+            },
+            {
+              "path": "script.js",
+              "bytes": 13564,
+              "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+            },
+            {
+              "path": "styles.css",
+              "bytes": 49830,
+              "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+            }
+          ],
+          "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+          "verified_findings": {
+            "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+            "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+            "runtime_console_errors": "NO_ERRORS_OBSERVED",
+            "reduced_motion_rules": "RULE_PRESENT",
+            "mobile_menu_state": {
+              "open": {
+                "ariaExpanded": "true",
+                "hidden": false,
+                "focusTargetObserved": "01Begin within↗"
+              },
+              "close": {
+                "ariaExpanded": "false",
+                "hidden": true,
+                "focusTargetObserved": "Menu"
+              }
+            }
+          },
+          "judgment_findings": {
+            "status": "NOT_BLINDLY_SCORED",
+            "reason": "A single existing artifact cannot establish an A/B quality delta."
+          }
+        }
+      },
+      "specialist": {
+        "status": "ROUTING_ONLY",
+        "output": null,
+        "reason": "Normalized adapters were exercised for routing evidence only. No specialist-generated candidate was produced or supplied.",
+        "routing_decisions": 3
+      },
+      "representative_fixture_available": false,
+      "materiallyAffectedOutput": false,
+      "noMeaningfulRegression": null,
+      "improvements": [],
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 2,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      },
+      "metric_status": {
+        "OWNER_PROMPT_ITERATIONS": "NOT_AVAILABLE",
+        "OWNER_INTERVENTIONS": "NOT_AVAILABLE",
+        "OWNER_REVISION_ROUNDS": "NOT_AVAILABLE",
+        "TOTAL_SPECIALISTS_USED": "ROUTING_EVIDENCE_ONLY",
+        "SPECIALIST_BUDGET_EXCEPTIONS": "ROUTING_EVIDENCE_ONLY",
+        "BUILD_STEPS": "NOT_AVAILABLE",
+        "BUILD_FAILURES": "NOT_AVAILABLE",
+        "RESPONSIVE_DEFECTS": "NOT_AVAILABLE",
+        "ACCESSIBILITY_DEFECTS": "NOT_AVAILABLE",
+        "MOTION_DEFECTS": "NOT_AVAILABLE",
+        "VISUAL_QA_SCORE": "NOT_AVAILABLE",
+        "GENERIC_AI_PATTERN_COUNT": "NOT_AVAILABLE",
+        "BRAND_FIDELITY_SCORE": "NOT_AVAILABLE",
+        "PERFORMANCE_ISSUES": "NOT_AVAILABLE",
+        "TOKEN_USAGE": "NOT_AVAILABLE",
+        "ELAPSED_EXECUTION_TIME": "NOT_AVAILABLE"
+      },
+      "quality_scores": {
+        "baseline": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        },
+        "specialist": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        }
+      },
+      "routing": {
+        "decisionCount": 3,
+        "plans": [
+          {
+            "decision": {
+              "capabilityClass": "UX_IA",
+              "phase": "information_architecture",
+              "currentDecision": "content_affiliate_information_architecture",
+              "trigger": "benchmark_content_affiliate",
+              "whySelected": "Use the conditional IA validator for article discovery and navigation structure."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "UX_IA",
+              "phase": "information_architecture",
+              "activation": "CONDITIONAL_CORE",
+              "selectedAdapters": [
+                "UX_IA_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.705Z",
+                  "SPECIALIST": "Owl-Listener/designer-skills",
+                  "ADAPTER_ID": "UX_IA_VALIDATOR",
+                  "TRIGGER": "benchmark_content_affiliate",
+                  "DECISION_OR_PHASE": "content_affiliate_information_architecture",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Use the conditional IA validator for article discovery and navigation structure.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "INTERFACE_QUALITY_VALIDATOR",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "INTERFACE_QUALITY_VALIDATOR"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 1,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "INTERFACE_QA",
+              "phase": "qa",
+              "currentDecision": "content_affiliate_interface_review",
+              "trigger": "benchmark_content_affiliate",
+              "whySelected": "Check the interface independently after the IA decision."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "INTERFACE_QA",
+              "phase": "qa",
+              "activation": "CORE",
+              "selectedAdapters": [
+                "INTERFACE_QUALITY_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.705Z",
+                  "SPECIALIST": "jakubkrehel/skills",
+                  "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+                  "TRIGGER": "benchmark_content_affiliate",
+                  "DECISION_OR_PHASE": "content_affiliate_interface_review",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Check the interface independently after the IA decision.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 1,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "LANDING_CONVERSION",
+              "phase": "content_structure",
+              "pageType": "article",
+              "currentDecision": "content_affiliate_conversion_gate",
+              "trigger": "benchmark_content_affiliate",
+              "whySelected": "Verify the landing conversion adapter stays dormant for an article page."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "LANDING_CONVERSION",
+              "phase": "content_structure",
+              "selectedAdapters": [],
+              "receipts": [],
+              "recommendation": "LANDING_CONVERSION_NOT_ELIGIBLE_FOR_PAGE_TYPE",
+              "activation": "DORMANT",
+              "budget": {
+                "used": 0,
+                "ceiling": 3
+              }
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.705Z",
+            "SPECIALIST": "Owl-Listener/designer-skills",
+            "ADAPTER_ID": "UX_IA_VALIDATOR",
+            "TRIGGER": "benchmark_content_affiliate",
+            "DECISION_OR_PHASE": "content_affiliate_information_architecture",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Use the conditional IA validator for article discovery and navigation structure.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "LANDING_CONVERSION",
+              "INTERFACE_QUALITY_VALIDATOR",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "INTERFACE_QUALITY_VALIDATOR"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.705Z",
+            "SPECIALIST": "jakubkrehel/skills",
+            "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+            "TRIGGER": "benchmark_content_affiliate",
+            "DECISION_OR_PHASE": "content_affiliate_interface_review",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Check the interface independently after the IA decision.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          }
+        ],
+        "adapterResults": [
+          {
+            "adapterId": "UX_IA_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "UX_IA",
+            "phase": "information_architecture",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CONDITIONAL_CORE",
+            "upstreamKnowledge": [
+              "Owl-Listener/designer-skills:ux-strategy/skills/information-architecture/SKILL.md",
+              "Owl-Listener/designer-skills:interaction-design/skills/navigation-patterns/SKILL.md",
+              "Owl-Listener/designer-skills:ux-strategy/skills/experience-map/SKILL.md"
+            ],
+            "reviewAreas": [
+              "navigation",
+              "hierarchy",
+              "reading_order",
+              "information_grouping",
+              "content_discovery",
+              "progressive_disclosure",
+              "page_relationships",
+              "flow_structure",
+              "mobile_navigation",
+              "task_progression"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Challenge navigation, hierarchy, discovery, and flow when Website Director activates this conditional validator.",
+              "Do not replace the existing architecture or research lifecycle independently."
+            ]
+          },
+          {
+            "adapterId": "INTERFACE_QUALITY_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "INTERFACE_QA",
+            "phase": "qa",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "jakubkrehel/skills:skills/better-layout/SKILL.md",
+              "jakubkrehel/skills:skills/better-typography/SKILL.md",
+              "jakubkrehel/skills:skills/better-colors/SKILL.md",
+              "jakubkrehel/skills:skills/better-accessibility/SKILL.md",
+              "jakubkrehel/skills:skills/better-writing/SKILL.md",
+              "jakubkrehel/skills:skills/better-ui/SKILL.md"
+            ],
+            "consolidatedReview": true,
+            "reviewAreas": [
+              "layout",
+              "grouping",
+              "hierarchy",
+              "typography",
+              "readability",
+              "wrapping",
+              "color_semantics",
+              "contrast",
+              "accessibility",
+              "keyboard_usability",
+              "focus_states",
+              "interface_writing",
+              "button_labels",
+              "error_states",
+              "empty_states",
+              "ui_polish",
+              "interaction_affordances",
+              "responsive_defects",
+              "narrow_width_behavior"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Return one consolidated interface review rather than recursively invoking six upstream skills.",
+              "Separate observed defects from recommendations and preserve Website Director ownership of the final decision.",
+              "Treat missing evidence as unverified, not as a pass."
+            ]
+          }
+        ],
+        "selectedAdapterCount": 2,
+        "budgetExceptionCount": 0,
+        "materialContributionCount": 0
+      },
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing.",
+        "This repository does not contain a representative starting fixture for this benchmark class."
+      ],
+      "frozen_pair": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "information architecture",
+            "content hierarchy",
+            "article discovery",
+            "conversion structure",
+            "affiliate usability",
+            "SEO compatibility",
+            "visual hierarchy",
+            "responsive behavior",
+            "accessibility",
+            "brand fidelity"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "information architecture",
+            "content hierarchy",
+            "article discovery",
+            "conversion structure",
+            "affiliate usability",
+            "SEO compatibility",
+            "visual hierarchy",
+            "responsive behavior",
+            "accessibility",
+            "brand fidelity"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      }
+    },
+    {
+      "id": "D",
+      "name": "EXISTING_MEDIOCRE_SITE_IMPROVEMENT",
+      "comparable": false,
+      "baseline": {
+        "status": "NOT_EXECUTED",
+        "output": null,
+        "reason": "No independent baseline Website Director generation run, prompt log, or candidate artifact is present in this local prototype.",
+        "reference_artifact": {
+          "status": "CAPTURED_REFERENCE_ONLY",
+          "source": "existing local Her Glow Up static prototype",
+          "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+          "source_files": [
+            {
+              "path": "AGENTS.md",
+              "bytes": 2484,
+              "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+            },
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            },
+            {
+              "path": "favicon.svg",
+              "bytes": 356,
+              "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+            },
+            {
+              "path": "index.html",
+              "bytes": 25226,
+              "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+            },
+            {
+              "path": "README.md",
+              "bytes": 1559,
+              "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+            },
+            {
+              "path": "script.js",
+              "bytes": 13564,
+              "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+            },
+            {
+              "path": "styles.css",
+              "bytes": 49830,
+              "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+            }
+          ],
+          "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+          "verified_findings": {
+            "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+            "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+            "runtime_console_errors": "NO_ERRORS_OBSERVED",
+            "reduced_motion_rules": "RULE_PRESENT",
+            "mobile_menu_state": {
+              "open": {
+                "ariaExpanded": "true",
+                "hidden": false,
+                "focusTargetObserved": "01Begin within↗"
+              },
+              "close": {
+                "ariaExpanded": "false",
+                "hidden": true,
+                "focusTargetObserved": "Menu"
+              }
+            }
+          },
+          "judgment_findings": {
+            "status": "NOT_BLINDLY_SCORED",
+            "reason": "A single existing artifact cannot establish an A/B quality delta."
+          }
+        }
+      },
+      "specialist": {
+        "status": "ROUTING_ONLY",
+        "output": null,
+        "reason": "Normalized adapters were exercised for routing evidence only. No specialist-generated candidate was produced or supplied.",
+        "routing_decisions": 2
+      },
+      "representative_fixture_available": false,
+      "materiallyAffectedOutput": false,
+      "noMeaningfulRegression": null,
+      "improvements": [],
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 3,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      },
+      "metric_status": {
+        "OWNER_PROMPT_ITERATIONS": "NOT_AVAILABLE",
+        "OWNER_INTERVENTIONS": "NOT_AVAILABLE",
+        "OWNER_REVISION_ROUNDS": "NOT_AVAILABLE",
+        "TOTAL_SPECIALISTS_USED": "ROUTING_EVIDENCE_ONLY",
+        "SPECIALIST_BUDGET_EXCEPTIONS": "ROUTING_EVIDENCE_ONLY",
+        "BUILD_STEPS": "NOT_AVAILABLE",
+        "BUILD_FAILURES": "NOT_AVAILABLE",
+        "RESPONSIVE_DEFECTS": "NOT_AVAILABLE",
+        "ACCESSIBILITY_DEFECTS": "NOT_AVAILABLE",
+        "MOTION_DEFECTS": "NOT_AVAILABLE",
+        "VISUAL_QA_SCORE": "NOT_AVAILABLE",
+        "GENERIC_AI_PATTERN_COUNT": "NOT_AVAILABLE",
+        "BRAND_FIDELITY_SCORE": "NOT_AVAILABLE",
+        "PERFORMANCE_ISSUES": "NOT_AVAILABLE",
+        "TOKEN_USAGE": "NOT_AVAILABLE",
+        "ELAPSED_EXECUTION_TIME": "NOT_AVAILABLE"
+      },
+      "quality_scores": {
+        "baseline": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        },
+        "specialist": {
+          "status": "NOT_COMPARABLE",
+          "values": {}
+        }
+      },
+      "routing": {
+        "decisionCount": 2,
+        "plans": [
+          {
+            "decision": {
+              "capabilityClass": "INTERFACE_QA",
+              "phase": "interface_review",
+              "currentDecision": "mediocre_site_diagnosis",
+              "trigger": "benchmark_mediocre_site_improvement",
+              "whySelected": "Diagnose the frozen implementation before proposing changes."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "INTERFACE_QA",
+              "phase": "interface_review",
+              "activation": "CORE",
+              "selectedAdapters": [
+                "INTERFACE_QUALITY_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.705Z",
+                  "SPECIALIST": "jakubkrehel/skills",
+                  "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+                  "TRIGGER": "benchmark_mediocre_site_improvement",
+                  "DECISION_OR_PHASE": "mediocre_site_diagnosis",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Diagnose the frozen implementation before proposing changes.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "VISUAL_IMPLEMENTATION",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 1,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          },
+          {
+            "decision": {
+              "capabilityClass": "VISUAL_IMPLEMENTATION",
+              "phase": "polish",
+              "currentDecision": "mediocre_site_bounded_improvement",
+              "trigger": "benchmark_mediocre_site_improvement",
+              "whySelected": "Test whether visual implementation can improve polish while preserving the working stack."
+            },
+            "plan": {
+              "authorityOwner": "WEBSITE_DIRECTOR",
+              "capabilityClass": "VISUAL_IMPLEMENTATION",
+              "phase": "polish",
+              "activation": "CORE",
+              "selectedAdapters": [
+                "VISUAL_IMPLEMENTATION",
+                "INTERFACE_QUALITY_VALIDATOR"
+              ],
+              "receipts": [
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.705Z",
+                  "SPECIALIST": "ConardLi/garden-skills",
+                  "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+                  "TRIGGER": "benchmark_mediocre_site_improvement",
+                  "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+                  "ROLE": "IMPLEMENTATION_SPECIALIST",
+                  "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 1,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                },
+                {
+                  "receipt_version": 1,
+                  "created_at": "2026-08-28T09:42:14.705Z",
+                  "SPECIALIST": "jakubkrehel/skills",
+                  "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+                  "TRIGGER": "benchmark_mediocre_site_improvement",
+                  "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+                  "ROLE": "VALIDATOR",
+                  "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+                  "ALTERNATIVES_CONSIDERED": [
+                    "REFERENCE_STYLE_GROUNDING",
+                    "UX_IA_VALIDATOR",
+                    "LANDING_CONVERSION",
+                    "MOTION_IMPLEMENTATION",
+                    "CINEMATIC_MOTION_ON_DEMAND",
+                    "MOTION_VALIDATOR",
+                    "CINEMATIC_MOTION_ON_DEMAND"
+                  ],
+                  "SPECIALIST_BUDGET_POSITION": 2,
+                  "MATERIALLY_AFFECTED_OUTPUT": false,
+                  "OUTCOME": "ROUTED"
+                }
+              ],
+              "recommendation": null,
+              "budget": {
+                "used": 2,
+                "ceiling": 3,
+                "exception": null
+              }
+            }
+          }
+        ],
+        "receipts": [
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.705Z",
+            "SPECIALIST": "jakubkrehel/skills",
+            "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+            "TRIGGER": "benchmark_mediocre_site_improvement",
+            "DECISION_OR_PHASE": "mediocre_site_diagnosis",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Diagnose the frozen implementation before proposing changes.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "VISUAL_IMPLEMENTATION",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.705Z",
+            "SPECIALIST": "ConardLi/garden-skills",
+            "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+            "TRIGGER": "benchmark_mediocre_site_improvement",
+            "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+            "ROLE": "IMPLEMENTATION_SPECIALIST",
+            "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 1,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          },
+          {
+            "receipt_version": 1,
+            "created_at": "2026-08-28T09:42:14.705Z",
+            "SPECIALIST": "jakubkrehel/skills",
+            "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+            "TRIGGER": "benchmark_mediocre_site_improvement",
+            "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+            "ROLE": "VALIDATOR",
+            "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+            "ALTERNATIVES_CONSIDERED": [
+              "REFERENCE_STYLE_GROUNDING",
+              "UX_IA_VALIDATOR",
+              "LANDING_CONVERSION",
+              "MOTION_IMPLEMENTATION",
+              "CINEMATIC_MOTION_ON_DEMAND",
+              "MOTION_VALIDATOR",
+              "CINEMATIC_MOTION_ON_DEMAND"
+            ],
+            "SPECIALIST_BUDGET_POSITION": 2,
+            "MATERIALLY_AFFECTED_OUTPUT": false,
+            "OUTCOME": "ROUTED"
+          }
+        ],
+        "adapterResults": [
+          {
+            "adapterId": "INTERFACE_QUALITY_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "INTERFACE_QA",
+            "phase": "interface_review",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "jakubkrehel/skills:skills/better-layout/SKILL.md",
+              "jakubkrehel/skills:skills/better-typography/SKILL.md",
+              "jakubkrehel/skills:skills/better-colors/SKILL.md",
+              "jakubkrehel/skills:skills/better-accessibility/SKILL.md",
+              "jakubkrehel/skills:skills/better-writing/SKILL.md",
+              "jakubkrehel/skills:skills/better-ui/SKILL.md"
+            ],
+            "consolidatedReview": true,
+            "reviewAreas": [
+              "layout",
+              "grouping",
+              "hierarchy",
+              "typography",
+              "readability",
+              "wrapping",
+              "color_semantics",
+              "contrast",
+              "accessibility",
+              "keyboard_usability",
+              "focus_states",
+              "interface_writing",
+              "button_labels",
+              "error_states",
+              "empty_states",
+              "ui_polish",
+              "interaction_affordances",
+              "responsive_defects",
+              "narrow_width_behavior"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Return one consolidated interface review rather than recursively invoking six upstream skills.",
+              "Separate observed defects from recommendations and preserve Website Director ownership of the final decision.",
+              "Treat missing evidence as unverified, not as a pass."
+            ]
+          },
+          {
+            "adapterId": "VISUAL_IMPLEMENTATION",
+            "role": "IMPLEMENTATION_SPECIALIST",
+            "decision": "VISUAL_IMPLEMENTATION",
+            "phase": "polish",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "ConardLi/garden-skills:skills/web-design-engineer/SKILL.md"
+            ],
+            "stackPolicy": "preserve_existing_healthy_project_capability",
+            "boundedGuidance": [
+              "Convert already-approved research, brand, IA, content, SEO, and design direction into frontend implementation.",
+              "Use the existing project stack and preserve healthy architecture.",
+              "Prioritize hierarchy, responsive composition, component coherence, interaction detail, and anti-generic execution.",
+              "Report a dependency recommendation as guidance only; never install or replace a stack."
+            ],
+            "findings": []
+          },
+          {
+            "adapterId": "INTERFACE_QUALITY_VALIDATOR",
+            "role": "VALIDATOR",
+            "decision": "VISUAL_IMPLEMENTATION",
+            "phase": "polish",
+            "authorityOwner": "WEBSITE_DIRECTOR",
+            "bounded": true,
+            "canSelectSpecialists": false,
+            "canMutateStack": false,
+            "canPublish": false,
+            "canDeploy": false,
+            "materiallyAffectedOutput": false,
+            "activation": "CORE",
+            "upstreamKnowledge": [
+              "jakubkrehel/skills:skills/better-layout/SKILL.md",
+              "jakubkrehel/skills:skills/better-typography/SKILL.md",
+              "jakubkrehel/skills:skills/better-colors/SKILL.md",
+              "jakubkrehel/skills:skills/better-accessibility/SKILL.md",
+              "jakubkrehel/skills:skills/better-writing/SKILL.md",
+              "jakubkrehel/skills:skills/better-ui/SKILL.md"
+            ],
+            "consolidatedReview": true,
+            "reviewAreas": [
+              "layout",
+              "grouping",
+              "hierarchy",
+              "typography",
+              "readability",
+              "wrapping",
+              "color_semantics",
+              "contrast",
+              "accessibility",
+              "keyboard_usability",
+              "focus_states",
+              "interface_writing",
+              "button_labels",
+              "error_states",
+              "empty_states",
+              "ui_polish",
+              "interaction_affordances",
+              "responsive_defects",
+              "narrow_width_behavior"
+            ],
+            "findings": [],
+            "boundedGuidance": [
+              "Return one consolidated interface review rather than recursively invoking six upstream skills.",
+              "Separate observed defects from recommendations and preserve Website Director ownership of the final decision.",
+              "Treat missing evidence as unverified, not as a pass."
+            ]
+          }
+        ],
+        "selectedAdapterCount": 3,
+        "budgetExceptionCount": 0,
+        "materialContributionCount": 0
+      },
+      "evidence_gaps": [
+        "Independent baseline candidate output is missing.",
+        "Independent specialist candidate output is missing.",
+        "Owner prompt, intervention, revision-round, and token histories are missing.",
+        "Blind subjective scoring is missing.",
+        "This repository does not contain a representative starting fixture for this benchmark class."
+      ],
+      "frozen_pair": {
+        "baseline": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "diagnosis quality",
+            "improvement magnitude",
+            "restraint",
+            "preservation of working architecture",
+            "generic-AI-pattern reduction",
+            "UI polish",
+            "accessibility",
+            "responsive quality",
+            "owner revision burden"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        },
+        "specialist": {
+          "freeze_version": 1,
+          "frozen": true,
+          "frozen_at": "2026-08-28T00:00:00.000Z",
+          "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+          "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+          "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+          "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+          "assetsSupplied": [
+            {
+              "path": "assets/glow-expansion.png",
+              "bytes": 2209189,
+              "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+            },
+            {
+              "path": "assets/glow-life.png",
+              "bytes": 1980525,
+              "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+            },
+            {
+              "path": "assets/glow-meadow.png",
+              "bytes": 2210010,
+              "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+            },
+            {
+              "path": "assets/glow-morning.png",
+              "bytes": 2104555,
+              "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+            },
+            {
+              "path": "assets/glow-movement.png",
+              "bytes": 2178673,
+              "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+            },
+            {
+              "path": "assets/glow-portrait.png",
+              "bytes": 1917854,
+              "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+            },
+            {
+              "path": "assets/glow-ritual.png",
+              "bytes": 2038640,
+              "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+            },
+            {
+              "path": "assets/glow-style.png",
+              "bytes": 1797992,
+              "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+            }
+          ],
+          "ownerConstraints": [
+            "prototype-isolated",
+            "local-demo-only",
+            "no-production-content",
+            "no-publishing",
+            "no-deployment",
+            "keyboard-touch-usable",
+            "reduced-motion-supported"
+          ],
+          "websiteDirectorVersion": "prototype-unversioned",
+          "evaluationCriteria": [
+            "diagnosis quality",
+            "improvement magnitude",
+            "restraint",
+            "preservation of working architecture",
+            "generic-AI-pattern reduction",
+            "UI polish",
+            "accessibility",
+            "responsive quality",
+            "owner revision burden"
+          ],
+          "allowedInterventions": [
+            "Use the existing Website Director lifecycle and frozen project files.",
+            "Baseline run: no external specialists.",
+            "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+            "No stack mutation, dependency installation, publishing, or deployment."
+          ],
+          "scoringRubric": {
+            "scale": "0-5 per dimension, with evidence status recorded separately",
+            "verified_dimensions": [
+              "responsive_quality",
+              "accessibility",
+              "motion_safety",
+              "performance",
+              "runtime_integrity"
+            ],
+            "judgment_dimensions": [
+              "visual_quality",
+              "brand_fidelity",
+              "conversion_structure",
+              "originality",
+              "interaction_quality",
+              "owner_friction"
+            ],
+            "score_statuses": [
+              "VERIFIED",
+              "JUDGMENT",
+              "NOT_AVAILABLE",
+              "NOT_COMPARABLE"
+            ]
+          },
+          "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+          "frozenAt": "2026-08-28T00:00:00.000Z"
+        }
+      }
+    }
+  ],
+  "routing_receipts": [
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.702Z",
+      "SPECIALIST": "codeswithroh/tastemaker",
+      "ADAPTER_ID": "REFERENCE_STYLE_GROUNDING",
+      "TRIGGER": "benchmark_brand_landing",
+      "DECISION_OR_PHASE": "brand_reference_grounding",
+      "ROLE": "IMPLEMENTATION_SPECIALIST",
+      "WHY_SELECTED": "Use the project-local reference field to test brand fidelity without inheriting a global taste profile.",
+      "ALTERNATIVES_CONSIDERED": [
+        "VISUAL_IMPLEMENTATION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "INTERFACE_QUALITY_VALIDATOR"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "ConardLi/garden-skills",
+      "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+      "TRIGGER": "benchmark_brand_landing",
+      "DECISION_OR_PHASE": "brand_landing_implementation",
+      "ROLE": "IMPLEMENTATION_SPECIALIST",
+      "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "jakubkrehel/skills",
+      "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+      "TRIGGER": "benchmark_brand_landing",
+      "DECISION_OR_PHASE": "brand_landing_implementation",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Apply visual implementation guidance and independent interface validation to the frozen landing-page brief.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 2,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "elayadesign/ai-design-skills",
+      "ADAPTER_ID": "LANDING_CONVERSION",
+      "TRIGGER": "benchmark_brand_landing",
+      "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+      "ROLE": "IMPLEMENTATION_SPECIALIST",
+      "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "UX_IA_VALIDATOR",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "jakubkrehel/skills",
+      "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+      "TRIGGER": "benchmark_brand_landing",
+      "DECISION_OR_PHASE": "brand_landing_conversion_structure",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Evaluate CTA architecture and conversion structure only for an eligible marketing destination.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "UX_IA_VALIDATOR",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 2,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "emilkowalski/skills",
+      "ADAPTER_ID": "MOTION_IMPLEMENTATION",
+      "TRIGGER": "benchmark_immersive_cinematic",
+      "DECISION_OR_PHASE": "immersive_motion_judgment",
+      "ROLE": "IMPLEMENTATION_SPECIALIST",
+      "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "INTERFACE_QUALITY_VALIDATOR"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.704Z",
+      "SPECIALIST": "emilkowalski/skills",
+      "ADAPTER_ID": "MOTION_VALIDATOR",
+      "TRIGGER": "benchmark_immersive_cinematic",
+      "DECISION_OR_PHASE": "immersive_motion_judgment",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Test the core motion builder and independent validator while keeping cinematic expertise on-demand.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "INTERFACE_QUALITY_VALIDATOR"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 2,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.705Z",
+      "SPECIALIST": "Owl-Listener/designer-skills",
+      "ADAPTER_ID": "UX_IA_VALIDATOR",
+      "TRIGGER": "benchmark_content_affiliate",
+      "DECISION_OR_PHASE": "content_affiliate_information_architecture",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Use the conditional IA validator for article discovery and navigation structure.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "LANDING_CONVERSION",
+        "INTERFACE_QUALITY_VALIDATOR",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "INTERFACE_QUALITY_VALIDATOR"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.705Z",
+      "SPECIALIST": "jakubkrehel/skills",
+      "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+      "TRIGGER": "benchmark_content_affiliate",
+      "DECISION_OR_PHASE": "content_affiliate_interface_review",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Check the interface independently after the IA decision.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.705Z",
+      "SPECIALIST": "jakubkrehel/skills",
+      "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+      "TRIGGER": "benchmark_mediocre_site_improvement",
+      "DECISION_OR_PHASE": "mediocre_site_diagnosis",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Diagnose the frozen implementation before proposing changes.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "VISUAL_IMPLEMENTATION",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.705Z",
+      "SPECIALIST": "ConardLi/garden-skills",
+      "ADAPTER_ID": "VISUAL_IMPLEMENTATION",
+      "TRIGGER": "benchmark_mediocre_site_improvement",
+      "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+      "ROLE": "IMPLEMENTATION_SPECIALIST",
+      "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 1,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    },
+    {
+      "receipt_version": 1,
+      "created_at": "2026-08-28T09:42:14.705Z",
+      "SPECIALIST": "jakubkrehel/skills",
+      "ADAPTER_ID": "INTERFACE_QUALITY_VALIDATOR",
+      "TRIGGER": "benchmark_mediocre_site_improvement",
+      "DECISION_OR_PHASE": "mediocre_site_bounded_improvement",
+      "ROLE": "VALIDATOR",
+      "WHY_SELECTED": "Test whether visual implementation can improve polish while preserving the working stack.",
+      "ALTERNATIVES_CONSIDERED": [
+        "REFERENCE_STYLE_GROUNDING",
+        "UX_IA_VALIDATOR",
+        "LANDING_CONVERSION",
+        "MOTION_IMPLEMENTATION",
+        "CINEMATIC_MOTION_ON_DEMAND",
+        "MOTION_VALIDATOR",
+        "CINEMATIC_MOTION_ON_DEMAND"
+      ],
+      "SPECIALIST_BUDGET_POSITION": 2,
+      "MATERIALLY_AFFECTED_OUTPUT": false,
+      "OUTCOME": "ROUTED"
+    }
+  ],
+  "anomalies": [
+    "No Git commit exists in the worktree; source snapshot hash is used for identity.",
+    "The static prototype is not a complete representative fixture for benchmark classes C or D.",
+    "Routing evidence cannot establish output improvement without a generation loop."
+  ],
+  "limitations": [
+    "No paired baseline candidate output.",
+    "No paired specialist candidate output.",
+    "No owner friction or model token telemetry.",
+    "No independent blind judgment score.",
+    "Performance Timing API unavailable in the browser evidence surface."
+  ]
+}

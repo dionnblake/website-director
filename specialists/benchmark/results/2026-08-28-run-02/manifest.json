@@ -1,0 +1,1069 @@
+{
+  "benchmark_id": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_2026-08-28",
+  "status": "EXECUTED_WITH_INCOMPLETE_PAIRED_RUNS",
+  "objective": "Determine whether the curated specialist architecture produces better websites with lower or equal owner friction than baseline Website Director.",
+  "criteria_source": "owner-supplied outcome benchmarking acceptance note",
+  "run_date": "2026-08-28",
+  "frozen_at": "2026-08-28T00:00:00.000Z",
+  "starting_state": {
+    "repository": "local-worktree:WEBSITE DIRECTOR",
+    "git_commit": "NO_GIT_COMMIT_PRESENT",
+    "worktree_snapshot_sha256": "0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+    "source_files": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 2484,
+        "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+      },
+      {
+        "path": "assets/glow-expansion.png",
+        "bytes": 2209189,
+        "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+      },
+      {
+        "path": "assets/glow-life.png",
+        "bytes": 1980525,
+        "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+      },
+      {
+        "path": "assets/glow-meadow.png",
+        "bytes": 2210010,
+        "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+      },
+      {
+        "path": "assets/glow-morning.png",
+        "bytes": 2104555,
+        "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+      },
+      {
+        "path": "assets/glow-movement.png",
+        "bytes": 2178673,
+        "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+      },
+      {
+        "path": "assets/glow-portrait.png",
+        "bytes": 1917854,
+        "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+      },
+      {
+        "path": "assets/glow-ritual.png",
+        "bytes": 2038640,
+        "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+      },
+      {
+        "path": "assets/glow-style.png",
+        "bytes": 1797992,
+        "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+      },
+      {
+        "path": "favicon.svg",
+        "bytes": 356,
+        "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+      },
+      {
+        "path": "index.html",
+        "bytes": 25226,
+        "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+      },
+      {
+        "path": "README.md",
+        "bytes": 1559,
+        "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+      },
+      {
+        "path": "script.js",
+        "bytes": 13564,
+        "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+      },
+      {
+        "path": "styles.css",
+        "bytes": 49830,
+        "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+      }
+    ],
+    "supplied_assets": [
+      {
+        "path": "assets/glow-expansion.png",
+        "bytes": 2209189,
+        "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+      },
+      {
+        "path": "assets/glow-life.png",
+        "bytes": 1980525,
+        "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+      },
+      {
+        "path": "assets/glow-meadow.png",
+        "bytes": 2210010,
+        "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+      },
+      {
+        "path": "assets/glow-morning.png",
+        "bytes": 2104555,
+        "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+      },
+      {
+        "path": "assets/glow-movement.png",
+        "bytes": 2178673,
+        "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+      },
+      {
+        "path": "assets/glow-portrait.png",
+        "bytes": 1917854,
+        "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+      },
+      {
+        "path": "assets/glow-ritual.png",
+        "bytes": 2038640,
+        "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+      },
+      {
+        "path": "assets/glow-style.png",
+        "bytes": 1797992,
+        "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+      }
+    ],
+    "project_stack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+    "owner_constraints": [
+      "prototype-isolated",
+      "local-demo-only",
+      "no-production-content",
+      "no-publishing",
+      "no-deployment",
+      "keyboard-touch-usable",
+      "reduced-motion-supported"
+    ],
+    "website_director_version": "prototype-unversioned"
+  },
+  "hard_rules": [
+    "Do not modify the six CORE adapters or conditional UX/IA validator merely to improve benchmark results.",
+    "Do not promote additional LIBRARY or ON-DEMAND skills into CORE during benchmarking.",
+    "Do not change Website Director phases, gates, locks, SEO integration, research requirements, brand controls, publishing boundaries, or orchestration authority.",
+    "Do not deploy or publish anything.",
+    "Do not alter the benchmark criteria after seeing results.",
+    "Use equivalent starting conditions for baseline and specialist runs.",
+    "Preserve all benchmark artifacts, routing receipts, screenshots, scores, and machine-readable results.",
+    "Do not declare success merely because the specialist architecture runs correctly."
+  ],
+  "evaluation_rubric": {
+    "scale": "0-5 per dimension, with evidence status recorded separately",
+    "verified_dimensions": [
+      "responsive_quality",
+      "accessibility",
+      "motion_safety",
+      "performance",
+      "runtime_integrity"
+    ],
+    "judgment_dimensions": [
+      "visual_quality",
+      "brand_fidelity",
+      "conversion_structure",
+      "originality",
+      "interaction_quality",
+      "owner_friction"
+    ],
+    "score_statuses": [
+      "VERIFIED",
+      "JUDGMENT",
+      "NOT_AVAILABLE",
+      "NOT_COMPARABLE"
+    ]
+  },
+  "required_metrics": [
+    "OWNER_PROMPT_ITERATIONS",
+    "OWNER_INTERVENTIONS",
+    "OWNER_REVISION_ROUNDS",
+    "TOTAL_SPECIALISTS_USED",
+    "SPECIALIST_BUDGET_EXCEPTIONS",
+    "BUILD_STEPS",
+    "BUILD_FAILURES",
+    "RESPONSIVE_DEFECTS",
+    "ACCESSIBILITY_DEFECTS",
+    "MOTION_DEFECTS",
+    "VISUAL_QA_SCORE",
+    "GENERIC_AI_PATTERN_COUNT",
+    "BRAND_FIDELITY_SCORE",
+    "PERFORMANCE_ISSUES",
+    "TOKEN_USAGE",
+    "ELAPSED_EXECUTION_TIME"
+  ],
+  "quality_separation": {
+    "VERIFIED": [
+      "overflow",
+      "responsive defects",
+      "contrast",
+      "accessibility failures",
+      "missing reduced-motion handling",
+      "runtime errors",
+      "broken interaction states",
+      "measurable performance failures"
+    ],
+    "JUDGMENT": [
+      "visual quality",
+      "originality",
+      "premium feel",
+      "composition quality",
+      "brand expression",
+      "aesthetic coherence"
+    ]
+  },
+  "comparisons": [
+    "BASELINE_WEBSITE_DIRECTOR",
+    "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS"
+  ],
+  "scenario_freezes": {
+    "A": {
+      "baseline": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "visual hierarchy",
+          "brand fidelity",
+          "typography",
+          "composition",
+          "responsive quality",
+          "CTA architecture",
+          "conversion structure",
+          "perceived polish",
+          "generic-AI design patterns",
+          "accessibility"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      },
+      "specialist": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build a brand and marketing landing page from the frozen starting conditions.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "visual hierarchy",
+          "brand fidelity",
+          "typography",
+          "composition",
+          "responsive quality",
+          "CTA architecture",
+          "conversion structure",
+          "perceived polish",
+          "generic-AI design patterns",
+          "accessibility"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      }
+    },
+    "B": {
+      "baseline": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "visual storytelling",
+          "imagery and art direction",
+          "motion judgment",
+          "animation restraint",
+          "originality",
+          "scroll behavior",
+          "reduced-motion support",
+          "accessibility",
+          "responsive behavior",
+          "performance"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      },
+      "specialist": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build an immersive cinematic page requiring stronger art direction and motion judgment.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "visual storytelling",
+          "imagery and art direction",
+          "motion judgment",
+          "animation restraint",
+          "originality",
+          "scroll behavior",
+          "reduced-motion support",
+          "accessibility",
+          "responsive behavior",
+          "performance"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      }
+    },
+    "C": {
+      "baseline": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "information architecture",
+          "content hierarchy",
+          "article discovery",
+          "conversion structure",
+          "affiliate usability",
+          "SEO compatibility",
+          "visual hierarchy",
+          "responsive behavior",
+          "accessibility",
+          "brand fidelity"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      },
+      "specialist": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Build a content and affiliate site with useful discovery, conversion, and SEO-compatible structure.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "information architecture",
+          "content hierarchy",
+          "article discovery",
+          "conversion structure",
+          "affiliate usability",
+          "SEO compatibility",
+          "visual hierarchy",
+          "responsive behavior",
+          "accessibility",
+          "brand fidelity"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      }
+    },
+    "D": {
+      "baseline": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "diagnosis quality",
+          "improvement magnitude",
+          "restraint",
+          "preservation of working architecture",
+          "generic-AI-pattern reduction",
+          "UI polish",
+          "accessibility",
+          "responsive quality",
+          "owner revision burden"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "BASELINE_WEBSITE_DIRECTOR",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      },
+      "specialist": {
+        "freeze_version": 1,
+        "frozen": true,
+        "frozen_at": "2026-08-28T00:00:00.000Z",
+        "brief": "Improve the same intentionally mediocre and generic starting implementation in both runs.",
+        "startingRepository": "local-worktree:WEBSITE DIRECTOR",
+        "startingCommit": "WORKTREE_SNAPSHOT_SHA256:0d730cf0fc1ba80e3345bd1f0358c7f30bddb5a830350d0415e80fe51ba327d5",
+        "projectStack": "plain HTML, CSS, vanilla JavaScript, local image assets",
+        "assetsSupplied": [
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          }
+        ],
+        "ownerConstraints": [
+          "prototype-isolated",
+          "local-demo-only",
+          "no-production-content",
+          "no-publishing",
+          "no-deployment",
+          "keyboard-touch-usable",
+          "reduced-motion-supported"
+        ],
+        "websiteDirectorVersion": "prototype-unversioned",
+        "evaluationCriteria": [
+          "diagnosis quality",
+          "improvement magnitude",
+          "restraint",
+          "preservation of working architecture",
+          "generic-AI-pattern reduction",
+          "UI polish",
+          "accessibility",
+          "responsive quality",
+          "owner revision burden"
+        ],
+        "allowedInterventions": [
+          "Use the existing Website Director lifecycle and frozen project files.",
+          "Baseline run: no external specialists.",
+          "Specialist run: normalized adapters only, with raw upstream knowledge kept inert.",
+          "No stack mutation, dependency installation, publishing, or deployment."
+        ],
+        "scoringRubric": {
+          "scale": "0-5 per dimension, with evidence status recorded separately",
+          "verified_dimensions": [
+            "responsive_quality",
+            "accessibility",
+            "motion_safety",
+            "performance",
+            "runtime_integrity"
+          ],
+          "judgment_dimensions": [
+            "visual_quality",
+            "brand_fidelity",
+            "conversion_structure",
+            "originality",
+            "interaction_quality",
+            "owner_friction"
+          ],
+          "score_statuses": [
+            "VERIFIED",
+            "JUDGMENT",
+            "NOT_AVAILABLE",
+            "NOT_COMPARABLE"
+          ]
+        },
+        "runConfiguration": "WEBSITE_DIRECTOR_PLUS_CURATED_SPECIALISTS",
+        "frozenAt": "2026-08-28T00:00:00.000Z"
+      }
+    }
+  },
+  "allowed_final_verdicts": [
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_PASSED",
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_FAILED",
+    "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE"
+  ],
+  "stop_after_report": true,
+  "outcome_certification": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_INCONCLUSIVE"
+}

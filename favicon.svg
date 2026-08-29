@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Alpha Starts Now</title>
+  <desc id="desc">A cobalt triangle mark on an ink square.</desc>
+  <rect width="64" height="64" rx="4" fill="#11161d"/>
+  <path d="M32 9 54 54H10L32 9Z" fill="none" stroke="#9bdcff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m21 45 11-25 11 25M25 37h14" fill="none" stroke="#9bdcff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

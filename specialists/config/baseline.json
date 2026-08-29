@@ -1,0 +1,73 @@
+{
+  "baseline_version": "1.0",
+  "captured_at": "2026-08-28",
+  "current_website_director_root": ".",
+  "current_website_director_version": "prototype-unversioned",
+  "current_phases": [
+    "hero",
+    "orientation",
+    "field",
+    "field-notes",
+    "manifesto",
+    "becoming",
+    "glow-letter",
+    "footer"
+  ],
+  "current_gates": [],
+  "current_owner_locks": [],
+  "current_hard_rules": [
+    "prototype-isolated",
+    "local-demo-only",
+    "no-production-content",
+    "no-publishing",
+    "no-deployment",
+    "keyboard-touch-usable",
+    "reduced-motion-supported"
+  ],
+  "current_research_model": "No research lifecycle exists in this static review prototype.",
+  "current_seo_integration": "Static description metadata only; no specialist or dynamic SEO integration.",
+  "current_cinematic_integration": "Native CSS and vanilla JavaScript scroll choreography; no external cinematic dependency.",
+  "current_qa_model": "Local HTTP-server review, responsive inspection, and the global verifier.",
+  "current_brand_contract_model": "Root AGENTS.md editorial dreamscape direction for Her Glow Up.",
+  "current_publishing_boundary": "No deployment, publishing, production integration, or external data connection.",
+  "current_skill_structure": "No Website Director specialist registry, router, adapter, or upstream library existed before this change.",
+  "current_project_state_structure": "index.html, styles.css, script.js, favicon.svg, README.md, AGENTS.md, and assets/.",
+  "files_proposed_for_modification": [
+    "README.md",
+    "AGENTS.md"
+  ],
+  "files_proposed_for_creation": [
+    "package.json",
+    "specialists/AGENTS.md",
+    "specialists/package.json",
+    "specialists/README.md",
+    "specialists/config/",
+    "specialists/adapters/",
+    "specialists/router.js",
+    "specialists/receipts.js",
+    "specialists/benchmark/",
+    "specialists/tests/",
+    "specialists/validate.js",
+    "specialists/upstream/"
+  ],
+  "files_explicitly_out_of_scope": [
+    "index.html",
+    "styles.css",
+    "script.js",
+    "favicon.svg",
+    "assets/",
+    "production systems",
+    "external integrations"
+  ],
+  "difference_report": {
+    "PHASES": "UNCHANGED",
+    "GATES": "UNCHANGED",
+    "LOCKS": "UNCHANGED",
+    "SEO": "UNCHANGED",
+    "RESEARCH": "UNCHANGED",
+    "BRAND_RULES": "UNCHANGED",
+    "PUBLISHING_RULES": "UNCHANGED",
+    "DEPLOYMENT_AUTHORITY": "UNCHANGED",
+    "PROJECT_STACK": "UNCHANGED"
+  }
+}

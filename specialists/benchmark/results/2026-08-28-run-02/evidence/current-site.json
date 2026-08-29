@@ -1,0 +1,58 @@
+{
+  "status": "CAPTURED",
+  "captured_at": "2026-08-28",
+  "capture_surface": "Codex In-app Browser",
+  "url": "http://127.0.0.1:4173/",
+  "title": "Her Glow Up — Become in progress",
+  "objective": {
+    "horizontalOverflow": false,
+    "missingAltCount": 0,
+    "consoleErrors": 0,
+    "reducedMotionRuleCount": 1,
+    "mobileMenuState": {
+      "open": {
+        "ariaExpanded": "true",
+        "hidden": false,
+        "focusTargetObserved": "01Begin within↗"
+      },
+      "close": {
+        "ariaExpanded": "false",
+        "hidden": true,
+        "focusTargetObserved": "Menu"
+      }
+    },
+    "focusableCount": 43,
+    "imageCount": 9,
+    "landmarkCount": 16,
+    "linkCount": 34,
+    "buttonCount": 7,
+    "formCount": 1,
+    "externalLinkCount": 0,
+    "inlineHandlerCount": 0,
+    "performanceTimingApi": "UNAVAILABLE_IN_BROWSER_EVALUATOR",
+    "contrastAudit": "NOT_RUN",
+    "reducedMotionRenderingPass": "NOT_RUN"
+  },
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 720,
+      "documentWidth": 1265,
+      "horizontalOverflow": false
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "documentClientWidth": 375,
+      "documentScrollWidth": 375,
+      "horizontalOverflow": false,
+      "primaryNavigationVisible": false,
+      "menuButtonVisible": true
+    }
+  },
+  "screenshots": [
+    "reference-desktop-1280x720.png",
+    "reference-mobile-390x844.png"
+  ],
+  "interpretation": "Objective observations of the existing static prototype only. This file is not a baseline-versus-specialist outcome result."
+}

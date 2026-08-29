@@ -1,0 +1,88 @@
+:root {
+  --color-ink: oklch(17% 0.028 250);
+  --color-midnight: oklch(12% 0.025 250);
+  --color-graphite: oklch(28% 0.025 250);
+  --color-slate: oklch(45% 0.025 250);
+  --color-blue-deep: oklch(42% 0.14 252);
+  --color-blue: oklch(62% 0.18 248);
+  --color-blue-light: oklch(78% 0.12 230);
+  --color-accent: var(--color-blue-light);
+  --color-accent-ink: var(--color-ink);
+  --color-surface-blue: oklch(28% 0.075 252);
+  --color-bone: oklch(94% 0.025 94);
+  --color-paper: oklch(89% 0.03 91);
+  --color-white: oklch(98% 0.006 90);
+  --color-light-ink: oklch(89% 0.024 92);
+  --color-muted-light: oklch(77% 0.018 250);
+  --color-muted-dark: oklch(42% 0.026 250);
+  --color-copper: oklch(70% 0.13 60);
+  --color-copper-deep: oklch(43% 0.12 55);
+  --color-line-light: oklch(98% 0.006 90 / 0.2);
+  --color-line-light-soft: oklch(98% 0.006 90 / 0.1);
+  --color-line-dark: oklch(18% 0.028 250 / 0.18);
+  --color-line-dark-strong: oklch(18% 0.028 250 / 0.34);
+  --color-overlay: oklch(12% 0.02 250 / 0.62);
+  --color-overlay-soft: oklch(12% 0.02 250 / 0.22);
+  --color-grid-light: oklch(98% 0.006 90 / 0.13);
+  --color-grid-blue: oklch(78% 0.12 230 / 0.18);
+  --color-grain-dot: oklch(18% 0.028 250 / 0.5);
+  --color-focus: oklch(86% 0.14 92);
+  --color-success: oklch(72% 0.13 158);
+  --color-success-on-light: oklch(43% 0.13 158);
+  --color-error: oklch(66% 0.18 28);
+  --color-error-on-light: oklch(42% 0.16 28);
+  --color-error-on-dark: oklch(72% 0.14 28);
+
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
+
+  --text-xs: 0.68rem;
+  --text-sm: 0.82rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(2.5rem, 5vw, 5.75rem);
+  --text-3xl: clamp(3.8rem, 8vw, 9.75rem);
+  --text-display: clamp(4.6rem, 11.3vw, 11.8rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 780ms;
+  --dur-slower: 1200ms;
+
+  --rule-thin: 1px;
+  --rule-medium: 2px;
+  --control-height: 3.25rem;
+  --radius-none: 0;
+  --radius-tight: 2px;
+  --radius-round: 999px;
+
+  --shadow-header: 0 0.8rem 2.5rem oklch(10% 0.02 250 / 0.2);
+  --shadow-image: 0 1.5rem 4rem oklch(10% 0.02 250 / 0.26);
+  --shadow-panel: 0 1.5rem 4rem oklch(10% 0.02 250 / 0.14);
+
+  --page-pad: clamp(1.25rem, 4vw, 4.5rem);
+  --header-height: 5rem;
+  --content-width: 96rem;
+}

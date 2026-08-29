@@ -1,0 +1,494 @@
+{
+  "benchmark_id": "WEBSITE_DIRECTOR_SPECIALIST_OUTCOME_BENCHMARK_2026-08-28",
+  "status": "NOT_CERTIFIED",
+  "scenarios": [
+    {
+      "id": "A",
+      "status": "NOT_EXECUTED",
+      "reference_artifact": {
+        "status": "CAPTURED_REFERENCE_ONLY",
+        "source": "existing local Her Glow Up static prototype",
+        "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+        "source_files": [
+          {
+            "path": "AGENTS.md",
+            "bytes": 2484,
+            "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+          },
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          },
+          {
+            "path": "favicon.svg",
+            "bytes": 356,
+            "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+          },
+          {
+            "path": "index.html",
+            "bytes": 25226,
+            "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+          },
+          {
+            "path": "README.md",
+            "bytes": 1559,
+            "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+          },
+          {
+            "path": "script.js",
+            "bytes": 13564,
+            "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+          },
+          {
+            "path": "styles.css",
+            "bytes": 49830,
+            "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+          }
+        ],
+        "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+        "verified_findings": {
+          "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+          "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+          "runtime_console_errors": "NO_ERRORS_OBSERVED",
+          "reduced_motion_rules": "RULE_PRESENT",
+          "mobile_menu_state": {
+            "open": {
+              "ariaExpanded": "true",
+              "hidden": false,
+              "focusTargetObserved": "01Begin within↗"
+            },
+            "close": {
+              "ariaExpanded": "false",
+              "hidden": true,
+              "focusTargetObserved": "Menu"
+            }
+          }
+        },
+        "judgment_findings": {
+          "status": "NOT_BLINDLY_SCORED",
+          "reason": "A single existing artifact cannot establish an A/B quality delta."
+        }
+      },
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 5,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      }
+    },
+    {
+      "id": "B",
+      "status": "NOT_EXECUTED",
+      "reference_artifact": {
+        "status": "CAPTURED_REFERENCE_ONLY",
+        "source": "existing local Her Glow Up static prototype",
+        "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+        "source_files": [
+          {
+            "path": "AGENTS.md",
+            "bytes": 2484,
+            "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+          },
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          },
+          {
+            "path": "favicon.svg",
+            "bytes": 356,
+            "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+          },
+          {
+            "path": "index.html",
+            "bytes": 25226,
+            "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+          },
+          {
+            "path": "README.md",
+            "bytes": 1559,
+            "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+          },
+          {
+            "path": "script.js",
+            "bytes": 13564,
+            "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+          },
+          {
+            "path": "styles.css",
+            "bytes": 49830,
+            "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+          }
+        ],
+        "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+        "verified_findings": {
+          "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+          "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+          "runtime_console_errors": "NO_ERRORS_OBSERVED",
+          "reduced_motion_rules": "RULE_PRESENT",
+          "mobile_menu_state": {
+            "open": {
+              "ariaExpanded": "true",
+              "hidden": false,
+              "focusTargetObserved": "01Begin within↗"
+            },
+            "close": {
+              "ariaExpanded": "false",
+              "hidden": true,
+              "focusTargetObserved": "Menu"
+            }
+          }
+        },
+        "judgment_findings": {
+          "status": "NOT_BLINDLY_SCORED",
+          "reason": "A single existing artifact cannot establish an A/B quality delta."
+        }
+      },
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 2,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      }
+    },
+    {
+      "id": "C",
+      "status": "NOT_EXECUTED",
+      "reference_artifact": {
+        "status": "CAPTURED_REFERENCE_ONLY",
+        "source": "existing local Her Glow Up static prototype",
+        "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+        "source_files": [
+          {
+            "path": "AGENTS.md",
+            "bytes": 2484,
+            "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+          },
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          },
+          {
+            "path": "favicon.svg",
+            "bytes": 356,
+            "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+          },
+          {
+            "path": "index.html",
+            "bytes": 25226,
+            "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+          },
+          {
+            "path": "README.md",
+            "bytes": 1559,
+            "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+          },
+          {
+            "path": "script.js",
+            "bytes": 13564,
+            "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+          },
+          {
+            "path": "styles.css",
+            "bytes": 49830,
+            "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+          }
+        ],
+        "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+        "verified_findings": {
+          "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+          "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+          "runtime_console_errors": "NO_ERRORS_OBSERVED",
+          "reduced_motion_rules": "RULE_PRESENT",
+          "mobile_menu_state": {
+            "open": {
+              "ariaExpanded": "true",
+              "hidden": false,
+              "focusTargetObserved": "01Begin within↗"
+            },
+            "close": {
+              "ariaExpanded": "false",
+              "hidden": true,
+              "focusTargetObserved": "Menu"
+            }
+          }
+        },
+        "judgment_findings": {
+          "status": "NOT_BLINDLY_SCORED",
+          "reason": "A single existing artifact cannot establish an A/B quality delta."
+        }
+      },
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 2,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      }
+    },
+    {
+      "id": "D",
+      "status": "NOT_EXECUTED",
+      "reference_artifact": {
+        "status": "CAPTURED_REFERENCE_ONLY",
+        "source": "existing local Her Glow Up static prototype",
+        "scope": "This is one existing artifact, not an independently generated baseline or specialist candidate.",
+        "source_files": [
+          {
+            "path": "AGENTS.md",
+            "bytes": 2484,
+            "sha256": "8ba5cae06ff68ba50edc2cf0cba11a2c5448581eb2bed7823c5f6da7e2e224f4"
+          },
+          {
+            "path": "assets/glow-expansion.png",
+            "bytes": 2209189,
+            "sha256": "cb5737b5eae4b137bc6a2069329e2240297cd88b22ea989666c71aa67368421b"
+          },
+          {
+            "path": "assets/glow-life.png",
+            "bytes": 1980525,
+            "sha256": "272faca3b06b8dc6f2ac72dd1e9607bdec56fefb5519ea0f3dc10a5f89226ad2"
+          },
+          {
+            "path": "assets/glow-meadow.png",
+            "bytes": 2210010,
+            "sha256": "b8b93ea6669bd27db49b9f9de746076edda787798be83b38596502f9123ea88b"
+          },
+          {
+            "path": "assets/glow-morning.png",
+            "bytes": 2104555,
+            "sha256": "a69355fb7dd10459262c850d0a3eae4fcbdb7675348ed7940575ef7c7b1c6e1e"
+          },
+          {
+            "path": "assets/glow-movement.png",
+            "bytes": 2178673,
+            "sha256": "9af7dd0ff40ff3b9a8dbba5c549e6c4599ffb42ef813a17631626728b06e66f3"
+          },
+          {
+            "path": "assets/glow-portrait.png",
+            "bytes": 1917854,
+            "sha256": "9a32def54199e20e79b0d8e30b1698e16c3697a54287967d6f87dc954ce90a1f"
+          },
+          {
+            "path": "assets/glow-ritual.png",
+            "bytes": 2038640,
+            "sha256": "48b39943c898236c04fadf5424681e327d4434cb09e59f7e0fbcaacb3a4e999e"
+          },
+          {
+            "path": "assets/glow-style.png",
+            "bytes": 1797992,
+            "sha256": "cdd28ebefea2b5695b2c47688cd35487188cea28eb2fee5983af726ab28a18fd"
+          },
+          {
+            "path": "favicon.svg",
+            "bytes": 356,
+            "sha256": "43ef3db8d4edee835cf2a901185554f184f30a41f5124c5a8b0de66bcc4b77e6"
+          },
+          {
+            "path": "index.html",
+            "bytes": 25226,
+            "sha256": "ad6c697886276234229aae240d06542fd5f46ceed2c31e7847ba75e83ce252c1"
+          },
+          {
+            "path": "README.md",
+            "bytes": 1559,
+            "sha256": "bfba0887312c8cc8607d0cd2485557b90db02e0b48b97adb3a8b009f936995c2"
+          },
+          {
+            "path": "script.js",
+            "bytes": 13564,
+            "sha256": "2cd4e634b7603e2ca1fd586de24be0615a948204222a80276a6d3d466e3fba71"
+          },
+          {
+            "path": "styles.css",
+            "bytes": 49830,
+            "sha256": "60c0d1bc278233daa5ac60ab7102f7aff212d76190e357b999367a44203ec8f3"
+          }
+        ],
+        "browser_evidence_file": "specialists/benchmark/results/2026-08-28/evidence/current-site.json",
+        "verified_findings": {
+          "horizontal_overflow": "NO_OVERFLOW_OBSERVED",
+          "missing_image_alt": "NO_MISSING_ALT_OBSERVED",
+          "runtime_console_errors": "NO_ERRORS_OBSERVED",
+          "reduced_motion_rules": "RULE_PRESENT",
+          "mobile_menu_state": {
+            "open": {
+              "ariaExpanded": "true",
+              "hidden": false,
+              "focusTargetObserved": "01Begin within↗"
+            },
+            "close": {
+              "ariaExpanded": "false",
+              "hidden": true,
+              "focusTargetObserved": "Menu"
+            }
+          }
+        },
+        "judgment_findings": {
+          "status": "NOT_BLINDLY_SCORED",
+          "reason": "A single existing artifact cannot establish an A/B quality delta."
+        }
+      },
+      "metrics": {
+        "OWNER_PROMPT_ITERATIONS": null,
+        "OWNER_INTERVENTIONS": null,
+        "OWNER_REVISION_ROUNDS": null,
+        "TOTAL_SPECIALISTS_USED": 3,
+        "SPECIALIST_BUDGET_EXCEPTIONS": 0,
+        "BUILD_STEPS": null,
+        "BUILD_FAILURES": null,
+        "RESPONSIVE_DEFECTS": null,
+        "ACCESSIBILITY_DEFECTS": null,
+        "MOTION_DEFECTS": null,
+        "VISUAL_QA_SCORE": null,
+        "GENERIC_AI_PATTERN_COUNT": null,
+        "BRAND_FIDELITY_SCORE": null,
+        "PERFORMANCE_ISSUES": null,
+        "TOKEN_USAGE": null,
+        "ELAPSED_EXECUTION_TIME": null
+      }
+    }
+  ]
+}

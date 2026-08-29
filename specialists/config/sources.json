@@ -1,0 +1,98 @@
+{
+  "inventory_version": "1.0",
+  "inventory_timestamp": "2026-08-28T00:00:00Z",
+  "repositories": [
+    {
+      "repository": "emilkowalski/skills",
+      "repository_url": "https://github.com/emilkowalski/skills",
+      "upstream_commit_sha": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/emilkowalski-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 12,
+      "license_file": "specialists/upstream/emilkowalski-skills/LICENSE.txt"
+    },
+    {
+      "repository": "ConardLi/garden-skills",
+      "repository_url": "https://github.com/ConardLi/garden-skills",
+      "upstream_commit_sha": "aaf9a82f5efd73e87cc0998edc398e75bfc35901",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/conardli-garden-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 5,
+      "license_file": "specialists/upstream/conardli-garden-skills/LICENSE.txt"
+    },
+    {
+      "repository": "elayadesign/ai-design-skills",
+      "repository_url": "https://github.com/elayadesign/ai-design-skills",
+      "upstream_commit_sha": "1c1e97cb9878e236552c772092dda7adcdddbcb2",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/elayadesign-ai-design-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 1,
+      "license_file": "specialists/upstream/elayadesign-ai-design-skills/LICENSE.txt"
+    },
+    {
+      "repository": "MengTo/Skills",
+      "repository_url": "https://github.com/MengTo/Skills",
+      "upstream_commit_sha": "4c716b516b6b0143f3037631306b3730d2832344",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/mengto-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 130,
+      "license_file": "specialists/upstream/mengto-skills/LICENSE.txt"
+    },
+    {
+      "repository": "jakubkrehel/skills",
+      "repository_url": "https://github.com/jakubkrehel/skills",
+      "upstream_commit_sha": "ca483852de23d48ab4f4ea71da37dad12bd70a95",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/jakubkrehel-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 11,
+      "license_file": "specialists/upstream/jakubkrehel-skills/LICENSE.txt"
+    },
+    {
+      "repository": "codeswithroh/tastemaker",
+      "repository_url": "https://github.com/codeswithroh/tastemaker",
+      "upstream_commit_sha": "45313ce9f60971134704a17f7b1a64c30909c240",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/codeswithroh-tastemaker/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 2,
+      "license_file": "specialists/upstream/codeswithroh-tastemaker/LICENSE.txt"
+    },
+    {
+      "repository": "Owl-Listener/designer-skills",
+      "repository_url": "https://github.com/Owl-Listener/designer-skills",
+      "upstream_commit_sha": "20e34c4a587e5eb09fcdf8351fa97b3ad761b31e",
+      "default_branch": "main",
+      "license": "MIT",
+      "inventory_timestamp": "2026-08-28T00:00:00Z",
+      "local_snapshot_location": "specialists/upstream/owl-listener-designer-skills/",
+      "snapshot_type": "PINNED_METADATA_AND_SKILL_DEFINITION_MANIFEST",
+      "tree_truncated": false,
+      "skill_definition_count": 107,
+      "license_file": "specialists/upstream/owl-listener-designer-skills/LICENSE.txt"
+    }
+  ]
+}
+

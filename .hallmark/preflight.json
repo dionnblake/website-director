@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-28",
+  "mode": "complete",
+  "framework": "vanilla HTML/CSS/JavaScript",
+  "fontStack": "Existing Google Fonts link replaced with Barlow Condensed, Manrope, and IBM Plex Mono plus local fallbacks.",
+  "palette": "New project-local OKLCH token system in tokens.css.",
+  "motion": "Native CSS transitions and small vanilla JavaScript; no animation dependency.",
+  "spacing": "Project-local 4pt semantic spacing tokens.",
+  "preserved": [
+    "Static index.html review entrypoint",
+    "styles.css visual ownership",
+    "script.js interaction ownership",
+    "local-only review boundary",
+    "native HTML, CSS, and JavaScript stack"
+  ],
+  "introduced": [
+    "Long Document editorial field-guide macrostructure",
+    "Signal-blue and copper visual language",
+    "Project-local tokens.css",
+    "Accessible tab, menu, reveal, progress, and form interactions",
+    "Alpha Starts Now generated image set"
+  ]
+}
