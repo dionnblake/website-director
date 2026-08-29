@@ -43,6 +43,25 @@ V2.6 closes the gap between commercial intent and measurable outcome. Website Di
 - **Blocked & Exception Modes:** An unselected analytics provider is honestly `blocked`, not skipped and not faked. Bounded exceptions exist for non-commercial surfaces only.
 - **Supersedes V2.4:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` is absorbed and retained as a pointer. `site-profile.json` → `measurement{}` replaces `cro{}` as the single authoritative state; `cro{}` is grandfathered read-only.
 
+### What V2.7 Adds (Security, Privacy & Compliance Intelligence)
+V2.7 closes the **production risk governance** gap. Website Director could already design, measure, and refine. It can now also determine: **what security, privacy, consent, data-handling, and disclosure obligations does this website actually create — and what must the build do about them?**
+
+- **Phase 6.75 (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`):** Runs after the measurement plan and before the design system, so safeguards *inform* the build instead of being retrofitted onto a shipped site.
+- **Proportional Risk Classification:** 13 site classifications and a bounded `LOW | MODERATE | HIGH | SPECIALIST_REVIEW_REQUIRED` risk model derived from actual functionality. A static brochure site never inherits ecommerce or authentication obligations; an authenticated SaaS application is never treated as a brochure site.
+- **Deterministic Data Inventory:** Every data class records ten fields — source, purpose, collection point, destination, third party, retention, consent dependency, sensitivity, and whether production genuinely requires it.
+- **Data Minimization As Architecture:** Every field needs a documented purpose. Fields inherited from a form template, collected speculatively, or duplicated without purpose are removed — not footnoted.
+- **Secret Governance:** No secrets in client-side source, in Git, or in examples. `.env.example` holds names and placeholders only. Website Director identifies which secrets the architecture requires and **never asks for a real credential**.
+- **Safeguard Specification:** Form security, authentication/session security, payment boundary (`PAYMENT PROVIDER INTEGRATION ≠ STORING PAYMENT CARD DATA`), evidence-driven security headers, HTTPS/transport, and dependency/supply-chain governance — each specified only where the functionality actually exists.
+- **Third-Party Accountability:** Every production third-party runtime script must have a reason, a scope, and a consent dependency. **Unexplained third-party scripts are prohibited.**
+- **Consent Without Guessing:** `NOT_REQUIRED | REQUIRED | CONDITIONALLY_REQUIRED | UNASSESSED | OWNER_OR_COUNSEL_REVIEW_REQUIRED`. Applicable law is never inferred from an IP address. Where it cannot be reliably determined, escalation is the correct answer — not a confident guess.
+- **Truthful Disclosure:** `AFFILIATE DISCLOSURE ≠ PRIVACY POLICY ≠ TERMS ≠ ADVERTISING CONSENT`. Disclosure belongs near the recommendation, not buried exclusively in a remote footer page.
+- **Hard Legal Boundary:** Website Director **never** outputs `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED`. `security_privacy.compliance_certified` is permanently `false`. Health, biometric, government-identifier, and children's data escalate automatically.
+- **Privacy Beats Conversion:** Where they conflict, consent beats silent tracking, disclosure beats a cleaner layout, and data minimization beats speculative marketing fields. Approved locks still beat both and require an owner change request.
+- **Three Distinct Verification States:** `security_privacy.complete` (requirements specified) ≠ `implementation_verified` (controls proven in the build) ≠ `production_verified` (proven on the deployed surface). Planning is never reported as production safety.
+- **Reconciles, Does Not Duplicate:** `CONVERSION-ANALYTICS-PROTOCOL.md` §15 now delegates consent and privacy determination to this single authority. `measurement{}` stays canonical for measurement. No new Gauntlet critic and no second security state machine were created.
+
+---
+
 ---
 
 ## 2. The Core Architecture
@@ -150,6 +169,7 @@ Implementation is strictly blocked until all five gates in `locks{}` evaluate to
 - **`RESEARCH_COMPLETE` (Gate 0):** Certifies that industry landscape, Landbook, cross-industry, and deep-recon research have completed before Lock 1 engages.
 - **`SEO_COMPLETE` (Gate SEO):** Certifies that business context, keyword discovery, competitive SERP analysis, and keyword mapping have completed before Lock 2 and Lock 3 engage.
 - **`CONVERSION_MEASUREMENT_COMPLETE` (Gate Measurement):** Certifies that the business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution strategy, and verification plan are defined before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means production analytics were observed.
+- **`SECURITY_PRIVACY_READY` (Gate Security):** Certifies that risk classification, data inventory, data minimization, applicable technical safeguards, consent/privacy dependencies, required disclosures, escalations, and implementation requirements are specified before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means legal compliance is certified, implementation is verified, or the site is vulnerability-free.
 - **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
 
 ---
@@ -165,6 +185,7 @@ website-director/
 ├── SEO-INTELLIGENCE-PROTOCOL.md      # SEO Intelligence Director role, pipeline, SEO_COMPLETE gate (V1.2)
 ├── WEBSITE-GAUNTLET-PROTOCOL.md      # Website Gauntlet subsystem, critics, Reference Bars, lock protection (V1.3)
 ├── CONVERSION-ANALYTICS-PROTOCOL.md  # Conversion measurement, KPI architecture, event contracts, attribution, affiliate integrity (V2.6)
+├── SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md # Risk classification, data inventory/minimization, secrets, form/auth/payment safeguards, headers, consent, disclosure, SECURITY_PRIVACY_READY gate (V2.7)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -186,6 +207,8 @@ website-director/
 │   ├── seo-content-briefs.md         # Per-page SEO content briefs for PRIMARY pages (V1.2)
 │   ├── measurement-plan.md           # 19-section conversion measurement plan (V2.6)
 │   ├── analytics-event-manifest.json # Machine-readable event contract manifest (V2.6)
+│   ├── security-privacy-review.md    # 25-section security, privacy & compliance review (V2.7)
+│   ├── security-privacy-register.json # Machine-readable data / third-party / storage register (V2.7)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -202,7 +225,7 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.6.0)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.7.0)
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test

@@ -1,6 +1,6 @@
 # PRODUCTION QA CHECKLIST: PRE-FLIGHT VERIFICATION MATRIX
 
-> **Version:** 1.3.0
+> **Version:** 1.4.0
 > **Status:** Mandatory Pre-Deployment Gate
 > **Rule:** Every checkbox must be validated and signed off in `templates/production-review.md`.
 
@@ -166,6 +166,95 @@ Verified against `templates/measurement-plan.md` under `CONVERSION-ANALYTICS-PRO
 
 ---
 
+## 5.3 Security, Privacy & Compliance Verification (V2.7)
+
+Verified against `templates/security-privacy-review.md` under `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`. Skip only where `security_privacy.status = "not_required"` or `"exception"` with a recorded justification.
+
+> **This section verifies technical implementation only. Do not mark legal compliance "PASS."** Permitted outcomes are `REQUIREMENTS REVIEWED`, `TECHNICAL CONTROLS IMPLEMENTED`, `KNOWN GAPS DOCUMENTED`, `LEGAL REVIEW REQUIRED`, and `COMPLIANCE_NOT_CERTIFIED`. `security_privacy.compliance_certified` remains permanently `false`.
+
+### 5.3.1 Transport & HTTPS
+- [ ] **Production HTTPS enforced.** Site is served over HTTPS.
+- [ ] **HTTP redirects to HTTPS** on the production surface.
+- [ ] **Zero mixed content** — no script, style, image, font, media, or XHR over plaintext (inspect the network panel, not just the source).
+- [ ] **Canonical URLs, `og:url`, sitemap entries, and JSON-LD use HTTPS production origins.**
+- [ ] Localhost/development HTTP is **not** recorded as a defect.
+
+### 5.3.2 Security Headers
+- [ ] Each header specified in `security-privacy-review.md` §16 is present on the production response with the specified value.
+- [ ] **CSP was not widened** to `unsafe-inline`, `unsafe-eval`, or `*` to make the build pass.
+- [ ] Every origin allowed by the CSP corresponds to a declared third-party inventory entry.
+- [ ] Any header the deployment platform cannot set is **recorded as an escalation**, not silently omitted.
+
+### 5.3.3 Secrets Exposure
+- [ ] **Zero secrets in the client bundle** — grep the built output for key/token patterns and the declared secret names.
+- [ ] **Zero secrets in source control**, including fixtures, tests, and config files.
+- [ ] `.env.example` contains names and placeholders only — no real values.
+- [ ] No secret appears in console output, error responses, network payloads, evidence captures, or screenshots.
+- [ ] Feature depending on an absent required secret **fails closed**; core content remains functional.
+
+### 5.3.4 Form Security
+- [ ] **Server-side validation enforced.** Submit a payload that bypasses client-side validation and confirm the server rejects it.
+- [ ] **Client-only trust boundaries absent** — no hidden field, disabled control, or client flag relied upon for authorization or safety.
+- [ ] CSRF protection active where specified.
+- [ ] Rate limiting / abuse prevention active where specified.
+- [ ] Error responses are non-revealing — no stack traces, database errors, or framework internals.
+- [ ] **No sensitive values in URLs** — query strings, path segments, fragments, or redirect targets.
+- [ ] File-upload restrictions enforced where uploads exist (type allow-list, size limit, content-type validation, safe filename).
+- [ ] Duplicate submission does not create duplicate records or duplicate conversion events.
+- [ ] **A server-rejected submission renders no success state.**
+
+### 5.3.5 Authentication & Session (where applicable)
+- [ ] Session cookies carry `HttpOnly`, `Secure`, and the specified `SameSite` value — verified in the browser, not in source.
+- [ ] Logout invalidates the session server-side (a replayed cookie is rejected).
+- [ ] Protected resources authorize server-side per request.
+- [ ] Brute-force throttling active on credential endpoints.
+
+### 5.3.6 Third-Party Scripts
+- [ ] **Every third-party script loaded by the build appears in `security-privacy-review.md` §9.** An undeclared script is a FAIL.
+- [ ] Route-scoped scripts do not load globally.
+- [ ] **External dependency failure tested:** blocking each third-party origin leaves navigation, content, and forms functional.
+
+### 5.3.7 Cookies & Browser Storage
+- [ ] Every cookie and storage key written by the build appears in `security-privacy-review.md` §11.
+- [ ] Specified cookie attributes and lifetimes are applied.
+- [ ] Nothing outside the essential set is written before consent where consent is `REQUIRED`.
+
+### 5.3.8 Consent Behavior
+- [ ] Where consent is `REQUIRED`: consent-dependent scripts do not execute and consent-dependent storage is not written before consent — verified by observing network and storage on first load.
+- [ ] **Rejection is as reachable as acceptance** — same interaction count, same discoverability, comparable prominence.
+- [ ] No prechecked optional consent, no deceptive wording, no hidden opt-out, no unauthorized consent wall.
+- [ ] Consent UI is keyboard operable and focus-managed with no keyboard trap.
+- [ ] Consent state survives client-side route transitions without re-prompting or silently re-enabling tracking.
+
+### 5.3.9 Analytics Privacy Dependency
+- [ ] **No PII in any analytics payload** — inspect actual network payloads, not source code.
+- [ ] Validation-error events carry field category only.
+- [ ] Where the specification recorded `ACTIVATION_BLOCKED_PENDING_PRIVACY`, the integration is **not active** in the build.
+- [ ] `security_privacy.consent_status` and `measurement.consent_dependency` agree.
+
+### 5.3.10 Disclosures & Legal Surfaces
+- [ ] **Affiliate disclosure present** at the specified placement, visible without interaction, legible at body-copy standard.
+- [ ] Sponsored units are visually distinguishable from independent editorial content.
+- [ ] **Privacy notice route exists and resolves** where the specification requires one.
+- [ ] Legal/disclosure links in the footer and inline surfaces resolve — zero 404s, zero `#` placeholders.
+- [ ] No unevidenced compliance badge, seal, or certification mark is rendered.
+
+### 5.3.11 Console, Network & Configuration Leakage
+- [ ] Console is free of credential material, personal data, and internal detail.
+- [ ] Network responses do not leak internal paths, stack traces, or configuration.
+- [ ] **Production configuration verified:** debug endpoints, verbose logging, seeded test data, mock services, and development credentials are absent from production.
+- [ ] **Environment separation confirmed** — production does not read configuration from committed files.
+
+### 5.3.12 Status Recording
+- [ ] `security_privacy.implementation_verified` set **only** on build inspection plus browser/network evidence stored in the project evidence directory.
+- [ ] `security_privacy.production_verified` remains `false` unless production evidence exists. Absent evidence is reported as `NOT_YET_VERIFIED`, never as passing.
+- [ ] `security_privacy.compliance_certified` is `false`. **No legal compliance claim recorded anywhere in the sign-off.**
+- [ ] **Blocked items remain honestly blocked** — `security_privacy.blocked_reason` is present and surfaced in handoff, not quietly cleared.
+- [ ] Known gaps and escalations are carried into `templates/production-review.md` and client handoff rather than closed silently.
+- [ ] No external side effects occurred: no live site modified, no deployment triggered by this checklist, no consent platform configured, no DNS changed, no payment account touched, no production credentials used, no intrusive testing performed.
+
+---
+
 ## 6. Website Gauntlet Verification (V1.3)
 - [ ] **Adversarial Critic Sign-Off:** Phase 11.5 Website Gauntlet report generated (`templates/website-gauntlet-report.md`).
 - [ ] **Subsystem Status Verified:** `site-profile.json` → `gauntlet.status` is `GAUNTLET_PASS`, owner-accepted `GAUNTLET_CAP_REACHED`, or documented `GAUNTLET_EXCEPTION_APPLIED`.
@@ -205,4 +294,4 @@ Verified against `templates/measurement-plan.md` under `CONVERSION-ANALYTICS-PRO
 ## 10. Production Build & Deployment Integrity
 - [ ] **Build Validation:** Production bundle compiles cleanly (`npm run build` or framework equivalent) without warnings or lint errors.
 - [ ] **Asset Minification:** CSS and JavaScript bundles are minified and tree-shaken.
-- [ ] **Environment Variables:** All development API keys and mock URLs replaced with production configurations.
+- [ ] **Environment Variables:** All development API keys and mock URLs replaced with production configurations, and **no secret value is committed** — see §5.3.3 and §5.3.11.

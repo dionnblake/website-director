@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "register_version": "2.7.0",
+  "project_name": "Project Name",
+  "generated_by": "Website Director Phase 6.75 — SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md",
+  "compliance_notice": "Technical requirements register only. Not legal advice and not a compliance certification. Website Director never records GDPR/CCPA/HIPAA/PCI/COPPA compliance or LEGAL COMPLIANCE VERIFIED.",
+  "risk_classification": {
+    "risk_level": null,
+    "risk_level_allowed": [
+      "LOW",
+      "MODERATE",
+      "HIGH",
+      "SPECIALIST_REVIEW_REQUIRED"
+    ],
+    "site_classifications": [],
+    "site_classifications_allowed": [
+      "STATIC_MARKETING",
+      "CONTENT_PUBLISHER",
+      "AFFILIATE",
+      "LEAD_GENERATION",
+      "ECOMMERCE",
+      "AUTHENTICATED_APPLICATION",
+      "SAAS",
+      "COMMUNITY",
+      "USER_GENERATED_CONTENT",
+      "PAYMENT_ENABLED",
+      "HEALTH_OR_SENSITIVE_DATA",
+      "CHILD_DIRECTED_OR_CHILD_ACCESSIBLE",
+      "INTERNAL_PRIVATE_APPLICATION"
+    ],
+    "deterministic_factors": []
+  },
+  "data_inventory": [
+    {
+      "data_class": "EXAMPLE_ONLY_REPLACE",
+      "source": "visitor form",
+      "purpose": "Respond to a consultation enquiry",
+      "collection_point": "/contact -> ConsultationForm",
+      "destination": "first-party form endpoint",
+      "third_party": "NONE",
+      "retention_known": false,
+      "consent_dependency": "UNASSESSED",
+      "sensitivity": "ORDINARY",
+      "production_required": true
+    }
+  ],
+  "data_minimization": {
+    "reviewed": false,
+    "fields_removed": [],
+    "fields_made_optional": [],
+    "fields_retained_without_purpose": [],
+    "locked_change_request_required": false
+  },
+  "secrets": {
+    "policy_defined": false,
+    "required_secrets": [
+      {
+        "name": "EXAMPLE_ONLY_REPLACE_API_KEY",
+        "purpose": "Server-side form delivery",
+        "location": "server environment / platform secret store",
+        "client_exposed": false,
+        "placeholder_in_env_example": true
+      }
+    ],
+    "public_configuration_references": [],
+    "prohibitions": [
+      "No secrets in client-side source",
+      "No secrets committed to Git, including history, fixtures and tests",
+      "No production credentials in examples or documentation",
+      "No real values in .env.example",
+      "Secrets redacted from logs and error output",
+      "Secrets excluded from screenshots, evidence captures and reports",
+      "Fail closed where a required secret is absent"
+    ]
+  },
+  "third_party_services": [],
+  "third_party_scripts": [
+    {
+      "service": "EXAMPLE_ONLY_REPLACE",
+      "purpose": "",
+      "data_exposed": "",
+      "page_scope": [],
+      "consent_dependency": "UNASSESSED",
+      "security_implication": "",
+      "removal_impact": "",
+      "origins": []
+    }
+  ],
+  "storage_inventory": [
+    {
+      "name_or_category": "EXAMPLE_ONLY_REPLACE",
+      "purpose": "",
+      "owner": "",
+      "first_or_third_party": "FIRST_PARTY",
+      "lifetime": "UNKNOWN",
+      "essential_or_optional": "OPTIONAL",
+      "consent_dependency": "UNASSESSED"
+    }
+  ],
+  "consent": {
+    "status": "UNASSESSED",
+    "status_allowed": [
+      "NOT_REQUIRED",
+      "REQUIRED",
+      "CONDITIONALLY_REQUIRED",
+      "UNASSESSED",
+      "OWNER_OR_COUNSEL_REVIEW_REQUIRED"
+    ],
+    "reasoning": null,
+    "deciding_condition": null,
+    "measurement_consent_dependency_agrees": null
+  },
+  "disclosures": {
+    "privacy_notice_required": "UNASSESSED",
+    "affiliate_disclosure_required": false,
+    "sponsored_disclosure_required": false,
+    "requirements": []
+  },
+  "security_headers": {
+    "defined": false,
+    "formally_blocked": false,
+    "blocked_reason": null,
+    "policies": {
+      "content_security_policy": null,
+      "strict_transport_security": null,
+      "x_content_type_options": null,
+      "referrer_policy": null,
+      "permissions_policy": null,
+      "frame_ancestors": null,
+      "cross_origin_policies": null
+    },
+    "origin_reconciliation_complete": false,
+    "rollout": "ENFORCE"
+  },
+  "transport": {
+    "defined": false,
+    "https_redirect_required": true,
+    "mixed_content_prohibited": true,
+    "canonical_urls_https": true,
+    "localhost_exempt": true
+  },
+  "dependencies": {
+    "applicable": true,
+    "defined": false,
+    "production_dependencies": [],
+    "vulnerability_scanning_mechanism": "UNKNOWN",
+    "lockfile_committed": false
+  },
+  "escalations": {
+    "sensitive_data_detected": false,
+    "specialist_review_required": false,
+    "legal_review_required": false,
+    "categories": []
+  },
+  "claim_risk": {
+    "reviewed": false,
+    "flagged_claims": []
+  },
+  "known_gaps": [],
+  "compliance_certified": false
+}

@@ -1,10 +1,11 @@
 # CONVERSION & ANALYTICS INTELLIGENCE PROTOCOL
 
-> **Version:** 2.6.0  
+> **Version:** 2.6.1  
 > **Status:** Authoritative Conversion Measurement, Analytics Architecture, Attribution & Experimentation Standard  
 > **Supersedes:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` (V2.4.0) — retained as a superseded pointer for link stability. All of its normative content is absorbed here.  
 > **Governs:** `PHASE 6.5` (Conversion & Analytics Intelligence) and `PHASE 8.97` (Experimentation & Instrumentation Readiness)  
 > **Readiness Gate:** `GATE MEASUREMENT: [CONVERSION_MEASUREMENT_COMPLETE]`  
+> **Reconciled By:** V2.7 `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` — see §15 for the measurement/privacy authority split. No measurement content was moved or removed.  
 > **Core Principle:** Website Director does not merely assert that a CTA *should* convert. It defines what the conversion is, which event represents it, how that event is triggered, which KPI it serves, how attribution is preserved, and how the implementation is verified. Measure what matters. Never track everything merely because analytics exists. Never fabricate a number.
 
 ---
@@ -408,7 +409,17 @@ DECISION_RULE     = [Statistical and qualification criteria for action]
 
 ## 15. Privacy Boundary
 
-A dedicated Security / Privacy / Compliance subsystem is future work. This protocol does **not** implement it, and does **not** give legal advice. It enforces these immediate invariants:
+**Canonical authority (V2.7):** the dedicated Security, Privacy & Compliance subsystem now exists at `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`, governing Phase 6.75 and the `[SECURITY_PRIVACY_READY]` gate. It is the **single authority** for risk classification, data inventory, data minimization, secret governance, consent classification, privacy notice requirements, disclosure architecture, security headers, transport, dependency and third-party script accountability.
+
+This protocol does **not** duplicate that authority and does **not** give legal advice. The division is:
+
+- **This protocol owns measurement.** `measurement{}` and `measurement-plan.md` remain the canonical measurement state and strategy. Security/Privacy consumes them; it never creates a second analytics model and never silently rewrites measurement strategy.
+- **Security/Privacy owns the obligation.** Whether consent is legally implicated, whether a privacy notice is required, and whether a service may be activated are determined there and recorded at `security_privacy.consent_status`.
+- **`measurement.consent_dependency` remains the tracking integration's own dependency field** and must agree with `security_privacy.consent_status`. Where they cannot be reconciled, Phase 6.75 is `blocked` — never resolved by guesswork.
+- **Security/Privacy may block activation** of a measurement integration (`ACTIVATION_BLOCKED_PENDING_PRIVACY`) without invalidating the measurement plan, which stays complete and usable.
+- **Dark pattern status stays split by surface, not duplicated:** `measurement.dark_pattern_check` for measurement/conversion surfaces, `security_privacy.dark_pattern_review` for privacy and disclosure surfaces. Same `PASS`/`FAIL` semantics, different surfaces, one set of rules (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` §27).
+
+The following invariants remain enforced **here**, at the measurement layer, and are unchanged by V2.7:
 
 1. **No PII in analytics events by default.** Forbidden: email, phone, full name, address, free-text message bodies, SSN, date of birth.
 2. **No passwords** in any payload, ever.

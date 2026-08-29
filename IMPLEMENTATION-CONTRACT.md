@@ -1,6 +1,6 @@
 # IMPLEMENTATION CONTRACT: THE DESIGN-TO-CODE GOVERNANCE PROTOCOL
 
-> **Version:** 1.3.0
+> **Version:** 1.4.0
 > **Status:** Legally Binding Execution Standard for Coding Agents
 > **Rule:** Separation of Design Authority from Implementation Execution.
 
@@ -158,6 +158,118 @@ If the implementation conflicts with the locked measurement specification — an
 
 ---
 
+## 2.6 Builder Security & Privacy Requirements (V2.7)
+
+When `security_privacy.complete = true` is declared in `site-profile.json` (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`), the coding agent implements safeguards **strictly** from `templates/security-privacy-review.md` §21 (Implementation Requirements).
+
+> **Prime Directive:** The builder does not invent security policy. It implements the approved specification. Where the specification is silent on a security-relevant decision, the builder **escalates** rather than choosing a default.
+
+### 2.6.1 Secrets
+- **No API keys, access tokens, OAuth secrets, database credentials, service-account keys, or webhook signing secrets in client-side source** — not in JS, inline script, data attributes, or bundled config. Anything shipped to the browser is public.
+- **No secrets committed to source control**, including fixtures, tests, and history.
+- `.env.example` carries **names and placeholders only** — never a real value.
+- Secrets are read server-side from environment or platform secret storage.
+- Secrets are redacted from logs, error messages, and stack traces, and excluded from screenshots and evidence captures.
+- Where a required secret is absent, the dependent feature **fails closed** rather than degrading into an insecure or misleading state. Core site content remains functional.
+- Public configuration identifiers (e.g. a GA4 measurement ID, a publishable payment key) are implemented as configuration references, clearly distinguished from secrets.
+
+### 2.6.2 Security Headers
+- Implement exactly the headers specified in `security-privacy-review.md` §16, with the specified values.
+- **The CSP is project-specific.** Do not substitute a generic template, and do not widen a directive to `unsafe-inline`/`unsafe-eval`/`*` to make a build pass. Every allowed origin must correspond to a declared third-party inventory entry.
+- Where the deployment platform cannot set a specified header, **HALT and escalate** — do not silently omit it.
+
+### 2.6.3 Transport
+- Production builds emit HTTPS canonical URLs, `og:url`, sitemap entries, and structured data.
+- No mixed content: every script, style, image, font, media, and XHR loads over HTTPS in production.
+- HTTP→HTTPS redirect behavior is implemented where the stack controls it.
+- Local development over HTTP is expected and is not a contract violation.
+
+### 2.6.4 Forms
+- **Server-side validation is the trust boundary.** Every client-side constraint is re-enforced on the server.
+- Sanitize and contextually encode all user input before rendering, querying, or templating.
+- Implement CSRF protection on state-changing requests for session-authenticated surfaces.
+- Implement the specified bot/spam mitigation, abuse prevention, and rate limiting.
+- Error handling is helpful to the user and non-revealing about internals — no stack traces, database errors, or framework internals surfaced to the visitor.
+- **No sensitive values in URLs** — not in query strings, path segments, fragments, or redirects.
+- Where uploads exist: enforce an allow-list of types, size limits, validated content type (not extension alone), non-executable storage, and path-traversal-safe filenames.
+- No email header injection from user input; no unvalidated recipient control.
+- Guard submit handlers against duplicate submission.
+- **A success state — visual and instrumented — renders only on confirmed server success.**
+
+### 2.6.5 Authentication & Sessions
+Applies only where the specification declares authentication. Do not build authentication for a site that does not require it.
+- Never store plaintext or reversibly-encrypted passwords; use modern salted slow hashing.
+- Session cookies carry `HttpOnly`, `Secure`, and the specified `SameSite` value.
+- Implement the specified idle and absolute session lifetimes; logout invalidates the session server-side.
+- **Authorize every protected resource on the server, per request.** Hiding a link in the UI is not authorization.
+- Account recovery uses single-use expiring tokens and avoids account enumeration.
+- Implement the specified brute-force throttling, MFA capability, and reauthentication for sensitive actions.
+
+### 2.6.6 Payment Boundary
+- **Never write code that stores raw card numbers, CVV/CVC values, full magnetic-stripe data, or PINs.** This is absolute.
+- Card entry is handled by the approved provider's hosted or provider-controlled surface.
+- Verify provider webhook signatures; never trust order state from a client-supplied redirect alone.
+- **Never emit a claim of PCI compliance** in code comments, documentation, or UI because a provider is used.
+
+### 2.6.7 Third-Party Scripts
+- **Load only third-party scripts declared in `security-privacy-review.md` §9.** An undeclared third-party script is a contract violation.
+- Respect the declared `PAGE_SCOPE` — do not load a route-scoped script globally.
+- Consent-dependent scripts must not execute before consent where consent is recorded `REQUIRED`.
+- Do not add a chat widget, pixel, map, font host, A/B platform, or support tool because it seemed useful.
+
+### 2.6.8 Cookies & Browser Storage
+- Write only the cookies and storage keys declared in `security-privacy-review.md` §11.
+- Apply the specified cookie security attributes and lifetimes.
+- Consent-dependent storage is not written before consent where consent is `REQUIRED`.
+- Consent state survives client-side route transitions without re-prompting and without silently re-enabling tracking.
+
+### 2.6.9 Data Minimization
+- Implement **exactly** the fields the specification retains, with the specified required/optional status.
+- **Do not add form fields** because a component library, starter template, or form service supplies them.
+- Do not persist, log, or forward data classes absent from the §2 Data Inventory.
+
+### 2.6.10 Analytics Privacy
+- No PII in any analytics payload or UTM parameter: no email, phone, full name, postal address, free-text message body, password, payment card data, medical information, government identifier, or date of birth.
+- Validation-error events carry a field **category**, never a field **value**.
+- Where the specification records `ACTIVATION_BLOCKED_PENDING_PRIVACY`, the integration is **not activated** in the build.
+- Session replay stays disabled unless the specification explicitly authorizes it with a masking policy.
+
+### 2.6.11 Consent Gating
+- Where consent is `REQUIRED`, consent-dependent scripts and storage are gated behind consent — verified by behavior, not by intention.
+- **Rejecting optional processing must be as reachable as accepting it**: same interaction count, same discoverability, comparable visual prominence.
+- Consent UI is keyboard operable, focus-managed, and screen-reader announced, with no keyboard trap.
+- No prechecked optional consent, no deceptive wording, no hidden opt-out, no consent wall where the specification does not authorize one.
+
+### 2.6.12 Disclosures
+- Implement required affiliate/sponsored disclosure at the specified placement — visible without interaction, legible at body-copy standard, not suppressed by styling.
+- Sponsored units remain visually distinguishable from independent editorial content.
+- Implement the privacy notice route where the specification requires one and the locked IA contains it.
+- **Never invent legal wording.** Where the owner has not approved wording, escalate rather than shipping drafted legal text as final.
+
+### 2.6.13 Production-Only Safeguards & Environment Separation
+- Development mocks, debug endpoints, verbose logging, seeded test data, and development credentials must not ship to production.
+- Environment configuration is separated; production configuration is never read from committed files.
+
+### 2.6.14 Safe Failure Behavior
+- The site remains functional for content and navigation when a third-party service fails, is blocked, or is disabled.
+- Security controls fail **closed**; presentation features fail **open**. A missing analytics script never breaks a form; a missing signing secret never lets an unsigned webhook through.
+
+### 2.6.15 No Compliance Claims
+- The builder never writes `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED` into code, comments, documentation, commit messages, or UI.
+- The builder never renders a compliance badge, seal, or certification mark that the owner has not supplied and evidenced.
+
+### 2.6.16 Verification Expectations
+- The builder's obligation ends at `security_privacy.implementation_verified`, evidenced by build inspection plus browser/network capture stored in the project's evidence directory.
+- The builder **never** sets `security_privacy.production_verified`, and never sets `security_privacy.compliance_certified` (permanently `false`).
+- The builder performs no intrusive testing against external systems, and never deploys, changes DNS, configures consent platforms, or uses production credentials.
+
+### 2.6.17 Conflict Escalation
+If the implementation conflicts with the approved security/privacy specification — a specified header cannot be set, a required control is impossible on the chosen stack, a declared service needs an undeclared origin, or a required disclosure has nowhere to live in the locked layout — the coding agent **HALTS and escalates**. It does not silently omit the control, weaken the policy, invent an alternative, or edit locked copy, IA, or tokens to make the safeguard fit.
+
+**Precedence during implementation:** security and privacy requirements override conversion optimization. Approved locks override both — a conflict with a lock produces an Owner Change Request, never a silent edit.
+
+---
+
 ---
 
 ## 3. Strict Prohibitions During Implementation
@@ -180,6 +292,19 @@ Once all locks are engaged and readiness gates are achieved, the coding agent is
 14. **PII in Telemetry:** No email, phone, name, address, free-text input, password, payment card, or medical data in any analytics payload or UTM parameter.
 15. **False Conversion Signals:** No firing a success conversion event on button click when the server rejected the submission, and no emitting affiliate conversion or commission events from an outbound click.
 16. **Committed Analytics Secrets:** No API keys, tokens, or service-account credentials in source control.
+17. **Client-Side Secrets:** No API key, access token, OAuth secret, database credential, service-account key, or webhook signing secret in any code shipped to the browser. Anything the browser receives is public.
+18. **Undeclared Third-Party Scripts:** No analytics, pixel, chat widget, map, embed, font host, A/B platform, or support tool loaded that is absent from `templates/security-privacy-review.md` §9.
+19. **Undeclared Cookies or Storage:** No cookie, `localStorage`, `sessionStorage`, or IndexedDB key written that is absent from `security-privacy-review.md` §11, and none written before consent where consent is `REQUIRED`.
+20. **Invented Form Fields:** No form field added that is absent from the approved data inventory — not because a component library, starter template, or form service supplied it.
+21. **Client-Only Trust Boundaries:** No reliance on client-side validation, hidden fields, or a hidden UI control as a security or authorization boundary. Server-side enforcement is mandatory.
+22. **Raw Payment Card Storage:** No code that stores raw card numbers, CVV/CVC values, full magnetic-stripe data, or PINs. Absolute.
+23. **Plaintext Password Storage:** No plaintext or reversibly-encrypted password storage.
+24. **Sensitive Values in URLs:** No personal or sensitive data in query strings, path segments, fragments, or redirect targets.
+25. **Weakened Security Policy:** No widening a specified CSP or security header to `unsafe-inline`, `unsafe-eval`, or `*` to make a build pass, and no silently omitting a specified header.
+26. **Privacy Dark Patterns:** No consent UI where rejecting is harder than accepting, no misleading button hierarchy, no prechecked optional consent, no hidden opt-out, no obstructive unsubscribe, no disguised advertising.
+27. **Suppressed Disclosure:** No hiding, shrinking, or styling-away of a required affiliate, sponsorship, or privacy disclosure to protect visual composition.
+28. **Fabricated Compliance Claims:** No `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED` in code, comments, documentation, commit messages, or UI; no unevidenced compliance badge, seal, or certification mark.
+29. **Development Artifacts in Production:** No debug endpoints, verbose logging, seeded test data, mock services, or development credentials shipped to production.
 
 ---
 
@@ -229,4 +354,6 @@ Before submitting code for review, the coding agent must verify:
 - [ ] If a cinematic specialist was engaged, the build matches `templates/cinematic-brief.md` — typography, composition, and module selection were not overridden by the specialist's own creative defaults (see `CINEMATIC-INTEGRATION-PROTOCOL.md` §3).
 - [ ] Every page in `templates/keyword-map.md` §1 exists; no unapproved page was added. Full detail: `PRODUCTION-CHECKLIST.md` §5.1.
 - [ ] Phase 11.5 Website Gauntlet pass achieved `GAUNTLET_PASS` (or owner-accepted `GAUNTLET_CAP_REACHED` / exception).
+- [ ] Every security/privacy requirement in `templates/security-privacy-review.md` §21 is implemented, or an escalation was raised. Full verification detail: `PRODUCTION-CHECKLIST.md` §5.3.
+- [ ] Zero secrets in the client bundle or source control; zero undeclared third-party scripts, cookies, or storage keys in the build.
 

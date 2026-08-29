@@ -131,7 +131,9 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - *(V2.6)* Does the measurement architecture actually support the intended business outcome, or does it measure activity that no business decision depends on?
   - *(V2.6)* Does any critical CTA lack a measurement definition in `measurement-plan.md`?
   - *(V2.6)* Is the declared funnel genuinely observable end-to-end, or are stages asserted that nothing on the built site can evidence?
-- **Defects:** Competing CTAs, buried action buttons, unclear value exchange, premature asks before establishing value, critical CTAs with no measurement definition, funnel stages that cannot be observed.
+  - *(V2.7)* Does conversion pressure override a required disclosure, a consent obligation, or user autonomy anywhere on the page?
+  - *(V2.7)* Does any form collect fields with no documented purpose in the approved data inventory?
+- **Defects:** Competing CTAs, buried action buttons, unclear value exchange, premature asks before establishing value, critical CTAs with no measurement definition, funnel stages that cannot be observed, conversion pressure overriding disclosure or consent, unjustified form fields.
 
 ### 4.4 Trust Critic
 - **Focus:** Evidence placement, claims verification, proof density, credentials, and risk reduction.
@@ -139,7 +141,11 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - Is every major marketing claim supported by verifiable evidence or concrete data?
   - Are customer testimonials specific, attributed, and credible (vs generic praise)?
   - Are institutional credentials, security assurances, or guarantees visible at friction points?
-- **Defects:** Unattributed quotes, floating checkmarks without context, fake statistics, missing reassurance near CTAs.
+  - *(V2.7)* Are security or compliance claims implied without evidence — padlock iconography, "bank-level security", "GDPR compliant", or an unevidenced certification badge or seal?
+  - *(V2.7)* Is affiliate or sponsorship compensation disclosed where the recommendation actually appears, rather than only in a remote footer page?
+  - *(V2.7)* Is any sponsored or affiliate unit styled to be indistinguishable from independent editorial content?
+  - *(V2.7)* Does any marketing claim, statistic, certification, or testimonial in the build lack recorded evidence and provenance?
+- **Defects:** Unattributed quotes, floating checkmarks without context, fake statistics, missing reassurance near CTAs, unevidenced security or compliance claims, missing or buried affiliate/sponsorship disclosure, disguised advertising, claims with no recorded provenance.
 
 ### 4.5 Motion Critic (Enhanced by Impeccable)
 - **Focus:** Purpose of motion, timing, physics, easing, continuity, performance, and accessibility.
@@ -161,6 +167,12 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
 
 ### 4.7 Accessibility Critic (Enhanced by Impeccable)
 - **Focus:** WCAG AA compliance, color contrast, keyboard navigation, focus states, and readability.
+- **Key Questions (V2.7 privacy-surface extension):**
+  - *Is the consent dialog keyboard operable, focus-managed, and free of keyboard traps?*
+  - *Is rejecting optional processing as reachable as accepting it — same interaction count, same discoverability?*
+  - *Are privacy, cookie, and affiliate disclosures legible at body-copy contrast, or suppressed into unreadable micro-type?*
+  - *Does any bot challenge or consent wall leave a keyboard or screen-reader user with no path forward?*
+- **Defects (V2.7):** Inaccessible consent dialogs, keyboard traps in privacy UI, unreadable disclosures, impossible or unreachable cookie rejection, inaccessible bot challenges.
 
 ### 4.8 Reference Critic (Benchmarking Bar Fidelity)
 - **Focus:** Direct side-by-side comparison against named `REFERENCE_BAR` entries across assigned dimensions.
@@ -267,7 +279,28 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
   - *(V2.6) Are planning, implementation verification, and production verification reported as distinct states — or is a plan being presented as observed success?*
   - *(V2.6) Are baselines and benchmarks fabricated rather than recorded as `UNKNOWN`?*
 - **Defects:** Dark patterns, PII in analytics payloads, broken forms when tracking is blocked, premature winner declarations on synthetic data, generic vanity metric tracking, unmeasured critical CTAs, unobservable funnel claims, false conversion signals on rejected submissions, affiliate click treated as commission, fabricated baselines, planning state reported as production success.
-- **Critic Boundary:** This critic evaluates. It never edits the measurement plan, locked copy, or instrumentation. `BUILDER != CRITIC`. Findings flow through the existing `gauntlet{}` object — no parallel measurement state is created.
+  - *(V2.7) Does the build load any third-party script that is absent from the approved third-party inventory?*
+  - *(V2.7) Does consent-dependent tracking or storage fire before consent where consent is recorded `REQUIRED`?*
+  - *(V2.7) Does any analytics payload or UTM parameter carry PII — verified against actual network payloads, not source?*
+  - *(V2.7) Does the consent or privacy UI use a dark pattern — suppressed rejection, misleading hierarchy, deceptive wording, prechecked optional consent, hidden opt-out?*
+  - *(V2.7) Is a compliance claim or unevidenced security badge rendered anywhere in the build?*
+- **Additional Defects (V2.7):** Unexplained third-party scripts, consent-dependent tracking firing before consent, PII in observed payloads, privacy dark patterns, rendered compliance certification claims.
+- **Critic Boundary:** This critic evaluates. It never edits the measurement plan, the security/privacy review, locked copy, or instrumentation. `BUILDER != CRITIC`. Findings flow through the existing `gauntlet{}` object — no parallel measurement or security state is created.
+
+---
+
+### 4.15 Security & Privacy Coverage (V2.7 — No New Critic)
+
+Security, privacy, consent, and disclosure quality is evaluated by **enriching the existing critics above**, not by adding a critic:
+
+| Critic | Owns |
+| :--- | :--- |
+| **Trust Critic (4.4)** | Unevidenced security/compliance claims, missing or buried affiliate and sponsorship disclosure, disguised advertising, claims without provenance |
+| **Conversion Critic (4.3)** | Conversion pressure overriding disclosure or consent; form fields with no documented purpose |
+| **Accessibility Critic (4.7)** | Inaccessible consent dialogs, keyboard traps, unreadable disclosures, unreachable rejection |
+| **Conversion Measurement & Analytics Critic (4.14)** | Unexplained third-party scripts, consent-dependent tracking before consent, PII in payloads, privacy dark patterns, rendered compliance claims |
+
+`BUILDER != CRITIC` is maintained. **No second Gauntlet state machine is created** — findings flow through the existing `gauntlet{}` object, and no critic writes to `security_privacy{}`.
 
 ---
 
