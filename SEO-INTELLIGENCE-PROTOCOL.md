@@ -261,6 +261,17 @@ and source identity are owned by EVIDENCE-PROVENANCE-PROTOCOL.md; SEO owns
 search intent and metadata strategy. Do not duplicate the ledger or silently
 promote research references into factual claims.
 
+## 14.1 Content Operations Integration (V2.13)
+
+Content Operations consumes this protocol's approved page, keyword, metadata,
+canonical, structured-data, and freshness strategy. It may expose bounded
+editor fields such as `SEO_TITLE`, `META_DESCRIPTION`, `CANONICAL_OVERRIDE`,
+`OG_TITLE`, `OG_DESCRIPTION`, `OG_IMAGE`, and `INDEXABILITY`, but it does not
+re-author search strategy. Local, staging, preview, invalid, duplicate, or
+unsupported SEO values remain blocked. Structured-data schema stays
+system-controlled and evidence-bound; editors cannot change analytics
+identifiers or site-wide SEO architecture.
+
 ## 15. Handoff Boundary (Builder Cannot Reopen Strategy)
 
 `keyword-map.md` and `seo-content-briefs.md` are locked inputs to Phase 9 (`IMPLEMENTATION-CONTRACT.md`) once `seo.complete` is `true`. The Website Builder implements the approved page/keyword mapping; it does not independently perform new keyword research or create new SEO-motivated pages merely because it notices search-relevant terms during the build. If new evidence suggests the specification itself was wrong, Website Director reopens this protocol explicitly — the Builder does not silently deviate. See `IMPLEMENTATION-CONTRACT.md` §3.

@@ -129,7 +129,7 @@ check(not bad, "No framework document makes a false deployment/launch claim (vio
 
 # ---- state object -------------------------------------------------------
 profile = json.loads(read("templates", "site-profile.json"))
-check(profile.get("schema_version") in ("2.10.0", "2.11.0", "2.11.1", "2.12.0"),
+check(profile.get("schema_version") in ("2.10.0", "2.11.0", "2.11.1", "2.12.0", "2.13.0"),
       "site-profile.json preserves the V2.10 contract under current framework validation")
 check("launch_ops" in profile, "site-profile.json contains launch_ops{}")
 lo0 = profile.get("launch_ops", {})
@@ -155,7 +155,8 @@ check(not any(isinstance(vv, bool) and "lock" in k for k, vv in lo0.items()),
 owners = [k for k, vv in profile.items() if isinstance(vv, dict) and "complete" in vv]
 check(owners.count("launch_ops") == 1, "Exactly one launch completion flag in the schema")
 check("browser_qa" in profile and "measurement" in profile and "security_privacy" in profile
-      and "accessibility" in profile and "provenance" in profile, "V2.6-V2.12 state objects preserved")
+      and "accessibility" in profile and "provenance" in profile and "content_ops" in profile,
+      "V2.6-V2.13 state objects preserved")
 
 # ---- no separate runner -------------------------------------------------
 check(not exists("launch-qa") and not exists("launch-runner.py") and not exists("deploy-runner.py"),

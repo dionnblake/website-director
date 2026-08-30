@@ -4,7 +4,8 @@
 
 Own the canonical machine-readable schema, registry, compatibility, and
 validation-manifest contracts for Website Director Capability 6, the additive
-Capability 6.5 adapter registration, and Capability 7 evidence provenance.
+Capability 6.5 adapter registration, Capability 7 evidence provenance, and
+Capability #8 Content Operations and CMS Architecture.
 
 ## Ownership
 
@@ -26,6 +27,9 @@ Capability 6.5 adapter registration, and Capability 7 evidence provenance.
   inspiration adapter without creating a new site-profile state, phase, gate,
   or owner lock. Capability 7 consumes that reference evidence but does not
   reimplement the adapter.
+- Content Operations state, the CONTENT_OPERATIONS_CMS protocol, Phase 6.25,
+  the CONTENT_OPERATIONS_READY readiness gate, and its test suite are distinct
+  from V2.5 handoff state and add no owner lock.
 
 ## Local Contracts
 
@@ -37,8 +41,9 @@ Capability 6.5 adapter registration, and Capability 7 evidence provenance.
   checkout carries the complete certified V2.10 corpus; missing registered
   artifacts are validation failures, not migration permission.
 - Framework-validation state is external to the site profile.
-- The current framework version is 2.12.0. The provenance readiness gate is
-  not an owner lock; the exact five-lock invariant remains authoritative.
+- The current framework version is 2.13.0. The content-operations and
+  provenance readiness gates are not owner locks; the exact five-lock
+  invariant remains authoritative.
 - Registry references must resolve or carry an explicit historical status and
   replacement policy.
 

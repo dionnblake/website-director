@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.12.0
+> **Version:** 2.13.0
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -127,8 +127,38 @@ attribution, permitted use, AI-media metadata, and SHA-256 byte identity.
 - **Verification:** provenance/validator.py and the registered synthetic A-V
   suite plus W-AK fail-closed regression edges run without network access,
   credentials, deployment, or frozen-project mutation.
-- **Capability boundary:** Capability 8 Content/CMS, Localization, Ecommerce,
-  Authentication, and Application modules remain out of scope.
+- **Capability boundary:** Capability #8 is implemented in V2.13. Localization/
+  I18n, Ecommerce, Authentication, and Application modules remain out of scope.
+
+### What V2.13.0 Adds (Content Operations & CMS Architecture)
+
+V2.13.0 implements Capability #8 as a bounded, provider-neutral content
+architecture subsystem. It runs at Phase 6.25 after the content-structure lock
+and before measurement, so the system models content and editorial risk before
+implementation.
+
+- **CMS need/no-need assessment:** `NO_CMS_REQUIRED`,
+  `STATIC_STRUCTURED_CONTENT`, `FILE_BASED_CMS`, `HEADLESS_CMS`,
+  `TRADITIONAL_CMS`, `DATABASE_BACKED_CONTENT`, `ECOMMERCE_CATALOG`,
+  `APPLICATION_DATA`, or `HYBRID`, based on recorded facts rather than vendor
+  habit.
+- **Semantic content model:** Stable types, fields, relationships, taxonomies,
+  SEO/media/provenance references, and validation remain separate from UI
+  components and presentation slots.
+- **Editorial safety:** Editable-surface classifications, explicit role
+  capabilities, draft/review/publish lifecycle, real-route preview,
+  scheduling architecture, safe rich text, and agent `DRAFT` boundaries are
+  machine-validated.
+- **Continuity and portability:** Slug uniqueness, required 301 redirects,
+  archive/delete separation, migration inventory, revision policy, and export
+  of media, relationships, slugs, and provenance are recorded explicitly.
+- **Authority boundaries:** SEO, Measurement, Security & Privacy,
+  Accessibility, Asset Director, Evidence Provenance, and V2.5 client handoff
+  remain their own authorities. V2.5 still owns long-term client operations,
+  backup/restore, training, maintenance, costs, and handoff acceptance.
+- **Readiness:** `[CONTENT_OPERATIONS_READY]` reads `content_ops.complete` and
+  adds no owner lock. Capability #9 Localization/I18n and Capability #10
+  Ecommerce, Authentication, and Application Modules remain out of scope.
 
 ---
 
@@ -263,6 +293,7 @@ website-director/
 ├── ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md # Phase 6.9 WCAG 2.2 AA spec + Phase 10.5 verification, replaceable a11y engine, screen-reader smoke, no false conformance claims, ACCESSIBILITY_READY gate (V2.9)
 ├── LAUNCH-OPERATIONS-PROTOCOL.md     # Phase 12.25 release identity, owner deployment authorization boundary, production verification against a known release, rollback readiness/triggers, post-launch observation, incident model, RELEASE_READY gate (V2.10)
 ├── EVIDENCE-PROVENANCE-PROTOCOL.md   # Phase 6.95 evidence, claim, rights, attribution, asset identity, and reference-only provenance gate (V2.12)
+├── CONTENT-OPERATIONS-CMS-PROTOCOL.md # Phase 6.25 semantic content model, CMS decision, editorial/publishing, slug, portability, and migration gate (V2.13)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -294,6 +325,9 @@ website-director/
 │   ├── launch-evidence-manifest.json # Machine-readable launch evidence manifest, tied to a release identity (V2.10)
 │   ├── evidence-ledger.md             # Human-readable cross-cutting claim and asset evidence ledger (V2.12)
 │   ├── evidence-ledger.json           # Machine-readable cross-cutting provenance ledger (V2.12)
+│   ├── content-model.md               # Capability #8 semantic content model and editorial architecture (V2.13)
+│   ├── content-model.json             # Machine-readable content model contract (V2.13)
+│   ├── cms-decision.md                # Vendor-neutral CMS need/provider decision record (V2.13)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -310,10 +344,13 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.12.0; exact five-lock profile)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.13.0; exact five-lock profile)
 ├── provenance/                        # Capability 7 deterministic evidence and asset provenance validator
 │   ├── validator.py                   # Fail-closed ledger, manifest, risk, hash, and state validation
 │   └── AGENTS.md                      # Local provenance boundary and verification contract
+├── content-ops/                       # Capability #8 deterministic content/CMS architecture validator
+│   ├── validator.py                   # CMS necessity, model, lifecycle, publishing, slug, rich-text, portability, and reference checks
+│   └── AGENTS.md                      # Local content-operations boundary and verification contract
 ├── integrations/                    # Bounded external evidence adapters (V2.11.1)
 │   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
@@ -333,15 +370,17 @@ website-director/
 │   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
 │   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
 │   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
-│   └── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
+│   ├── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
+│   └── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.12 protocol/template/pilot invariant harness
+    ├── test_runner.py                # V2.0-V2.13 protocol/template/pilot invariant harness
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
     ├── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
-    └── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
+    ├── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
+    └── CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md # Phase 6.25 scenario A-V content/CMS validation suite (V2.13)
 ```
 
 ---
@@ -358,12 +397,13 @@ The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PR
 
 ---
 
-## Framework Self-Validation (V2.12.0)
+## Framework Self-Validation (V2.13.0)
 
-<!-- FRAMEWORK_VERSION: 2.12.0 -->
+<!-- FRAMEWORK_VERSION: 2.13.0 -->
 
-The V2.12 framework self-validation layer, V2.11.1 design-inspiration adapter,
-and V2.12 Capability 7 evidence/provenance validator are additive to the
+The V2.13 framework self-validation layer, V2.11.1 design-inspiration adapter,
+V2.12 Capability 7 evidence/provenance validator, and V2.13 Capability #8
+content-operations validator are additive to the
 certified V2.10 Website Director system. The corrected lineage retains the
 complete historical `projects/` corpus.
 
@@ -402,4 +442,5 @@ security_privacy=owner-controlled historical protocol state
 framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
+content_ops=content_ops.complete
 -->

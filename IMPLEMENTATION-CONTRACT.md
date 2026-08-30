@@ -43,6 +43,49 @@ Implementation may NOT commence until all five gates in `site-profile.json` → 
 
 ---
 
+## 2.0 Builder Content Operations Requirements (V2.13)
+
+When a project uses Capability #8, implementation consumes the validated
+`templates/content-model.md`, `templates/content-model.json`, and
+`templates/cms-decision.md` from Phase 6.25. The builder must:
+
+- render declared semantic content types and fields without inventing fields,
+  duplicating repeated entities, or coupling content to card/column/line,
+  breakpoint, color, CSS, design-token, or component-slot names;
+- preserve required-field validation, relationships, taxonomy rules, editor
+  help, character limits, preview behavior, lifecycle states, and role
+  capabilities;
+- keep `DRAFT`, `IN_REVIEW`, `APPROVED`, `SCHEDULED`, and `ARCHIVED` content
+  out of public listings/routes as specified. `PUBLISHED` content must resolve
+  on the intended surface;
+- enforce `CAN_EDIT`, `CAN_REVIEW`, `CAN_PUBLISH`, `CAN_ARCHIVE`, and
+  `CAN_DELETE` separately. Agent-generated content remains `DRAFT` until human
+  review; no agent may publish autonomously;
+- preserve normalized unique slugs and create/verify a durable 301 redirect
+  for every published or archived slug change. Archive, unpublish, and delete
+  remain distinct operations;
+- sanitize rich text to the approved semantic allowlist. No scripts, inline
+  CSS, arbitrary fonts/colors, event handlers, or unvalidated embeds;
+- keep analytics event identifiers, structured-data schema, security headers,
+  design tokens, canonical lock state, and other system-generated controls
+  outside editor surfaces;
+- preserve Asset Director asset identity and V2.12 provenance references,
+  canonical SEO strategy, accessibility semantics, security/privacy controls,
+  measurement contracts, and V2.5 handoff inputs. Do not create duplicate
+  ledgers or substitute provider fields for those authorities;
+- implement only the selected architecture recorded in the decision. Unknown
+  provider configuration, missing export path, unresolved migration, or
+  missing high-risk evidence remains visible as `UNKNOWN`, `BLOCKED`, or
+  `FAIL`, never inferred as ready.
+
+If implementation requires changing the locked content structure, approved
+copy, or another owner-controlled contract, **HALT** and raise an Owner Change
+Request. This section does not authorize CMS installation, production
+publishing, deployment, Capability #9 Localization/I18n, or Capability #10
+Ecommerce, Authentication, and Application Modules.
+
+---
+
 ## 2.1 Builder SEO Requirements (V1.2)
 
 Gates 2 and 3 above are additionally sourced from `templates/keyword-map.md` and `templates/seo-content-briefs.md` once `seo.complete` is `true` (`SEO-INTELLIGENCE-PROTOCOL.md` §6). The coding agent implements, per page, exactly what those artifacts specify:

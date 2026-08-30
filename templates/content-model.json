@@ -1,0 +1,122 @@
+{
+  "template": true,
+  "template_version": "2.13.0",
+  "framework_version": "2.13.0",
+  "cms_requirement": "UNASSESSED",
+  "content_inventory": [],
+  "content_types": [],
+  "content_ownership": [],
+  "content_ownership_contract": {
+    "required_fields": ["TYPE_ID", "CONTENT_OWNER"]
+  },
+  "content_type_contract": {
+    "required_fields": [
+      "TYPE_ID",
+      "NAME",
+      "PURPOSE",
+      "ROUTES_USED",
+      "FIELDS",
+      "REQUIRED_FIELDS",
+      "OPTIONAL_FIELDS",
+      "RELATIONSHIPS",
+      "SEO_FIELDS",
+      "MEDIA_FIELDS",
+      "PROVENANCE_FIELDS",
+      "EDITORIAL_STATUS",
+      "SLUG_POLICY",
+      "ARCHIVE_POLICY"
+    ]
+  },
+  "field_contract": {
+    "required_fields": [
+      "FIELD_ID",
+      "LABEL",
+      "TYPE",
+      "REQUIRED",
+      "VALIDATION",
+      "DEFAULT",
+      "EDITOR_HELP",
+      "CHARACTER_LIMIT",
+      "RELATIONSHIP",
+      "LOCALIZABLE",
+      "SEO_ROLE",
+      "PROVENANCE_ROLE"
+    ]
+  },
+  "taxonomies": [],
+  "editable_surfaces": [],
+  "roles": [],
+  "lifecycle": {
+    "states": ["DRAFT", "PUBLISHED"],
+    "transitions": []
+  },
+  "publishing_workflow": {
+    "agent_default_status": "DRAFT",
+    "human_review_required": true,
+    "autonomous_publish": false
+  },
+  "preview": {
+    "required": false,
+    "renderer": "real_design_system_route_composition",
+    "raw_json_is_preview": false
+  },
+  "scheduling": {
+    "required": false,
+    "SCHEDULED_AT": null,
+    "TIMEZONE": null,
+    "PUBLISHING_SYSTEM": null,
+    "FAILURE_BEHAVIOR": "record_and_hold"
+  },
+  "seo": {
+    "editable_fields": [],
+    "structured_data_editable": false,
+    "strategy_source": "SEO-INTELLIGENCE-PROTOCOL.md"
+  },
+  "media": {
+    "required_reference_fields": ["ASSET_ID", "PROVENANCE_REF"],
+    "reference_only_sources_cannot_publish": true
+  },
+  "evidence_provenance": {
+    "ledger_source": "EVIDENCE-PROVENANCE-PROTOCOL.md",
+    "high_risk_claims_require_reference": true
+  },
+  "slug_policy": {
+    "normalization": "lowercase-kebab-case",
+    "unique": true,
+    "reserved_routes": true,
+    "published_change_requires_301": true
+  },
+  "archive_delete": {
+    "archive_distinct_from_delete": true,
+    "delete_requires_inbound_link_review": true,
+    "restore_policy": "V2.5_HANDOFF_AUTHORITY"
+  },
+  "portability": {
+    "export_format": "JSON",
+    "media_export": "ASSET_ID_AND_PROVENANCE_REF",
+    "relationship_export": "TYPE_ID_AND_FIELD_ID",
+    "slug_export": "SOURCE_AND_TARGET",
+    "provenance_export": "PROVENANCE_REF"
+  },
+  "migration": {
+    "required": false,
+    "inventory": []
+  },
+  "revision_history": {
+    "status": "VERSIONED",
+    "owner": "PROJECT_OWNER_OR_PROVIDER"
+  },
+  "known_constraints": [],
+  "exceptions": [],
+  "handoff_requirements": {
+    "authority": "CLIENT-CMS-HANDOFF-PROTOCOL.md",
+    "duplicate_editor_guides": false,
+    "required_inputs": [
+      "content model",
+      "CMS decision",
+      "roles and lifecycle",
+      "portability and migration record",
+      "limitations"
+    ]
+  }
+}

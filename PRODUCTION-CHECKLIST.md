@@ -130,6 +130,44 @@ Verifies the build matches the locked SEO specification (`templates/keyword-map.
 - [ ] **No Obvious Keyword Stuffing:** Spot-check copy against `SEO-INTELLIGENCE-PROTOCOL.md` §11 — natural language, not repeated exact-match phrases.
 - [ ] **No Duplicate/Thin Pages:** Every shipped page has a stated purpose in `keyword-map.md`; none exist solely because a keyword was noticed during build.
 
+## 5.1 Content Operations & CMS Verification (V2.13)
+
+> Canonical architecture: `CONTENT-OPERATIONS-CMS-PROTOCOL.md`,
+> `templates/content-model.md`, `templates/content-model.json`, and
+> `templates/cms-decision.md`. V2.5 remains the authority for long-term client
+> CMS operations, training, backup/restore, maintenance, cost records, and
+> handoff acceptance.
+
+- [ ] Content types and fields match the validated semantic model; no repeated
+      entity is duplicated as presentation-coupled markup.
+- [ ] Required fields, validation, character limits, relationships, taxonomy,
+      SEO fields, media fields, and provenance references are implemented.
+- [ ] Editable surfaces and roles are enforced. Editors cannot edit analytics
+      event identifiers, structured-data schema, security headers, design
+      tokens, canonical lock state, or other system-generated controls.
+- [ ] Lifecycle behavior is verified: drafts/review/scheduled/archived content
+      is not publicly listed or exposed, and published content resolves.
+- [ ] Agent-generated content enters `DRAFT`; no autonomous agent can publish.
+- [ ] Preview renders the real route and design system; raw JSON is not used
+      as visual preview evidence.
+- [ ] If scheduling exists, `SCHEDULED_AT`, `TIMEZONE`, `PUBLISHING_SYSTEM`,
+      and `FAILURE_BEHAVIOR` are recorded. No unverified scheduler is claimed.
+- [ ] Slugs are normalized and unique. Every published or archived slug change
+      has a durable 301 redirect; archive, unpublish, and delete remain distinct.
+- [ ] Rich text rejects scripts, inline CSS, unsafe URLs, arbitrary styling,
+      and unvalidated embeds.
+- [ ] Production media resolves to Asset Director identity and V2.12
+      provenance. Research/inspiration references remain `REFERENCE_ONLY`.
+- [ ] High-risk claims resolve to evidence; SEO strategy is consumed rather
+      than re-authored; affiliate disclosure and freshness fields are present
+      where applicable.
+- [ ] Portability and migration records are complete, and provider lock-in is
+      explicitly accepted rather than presented as an export guarantee.
+- [ ] The deterministic result from `content-ops/validator.py` is attached to
+      the review. `[CONTENT_OPERATIONS_READY]` is a readiness gate, not a
+      sixth owner lock, and `content_ops.complete` does not prove production
+      behavior.
+
 ---
 
 ## 5.2 Conversion & Analytics Verification (V2.6)

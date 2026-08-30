@@ -4,7 +4,8 @@
 
 Own the deterministic Website Director self-validation library and its
 `python -m framework_validation` CLI, including registry-driven execution of
-the additive V2.11.1 adapter suite and the V2.12 Capability 7 provenance suite.
+the additive V2.11.1 adapter suite, the V2.12 Capability 7 provenance suite,
+and the V2.13 Capability #8 content-operations suite.
 
 ## Ownership
 
@@ -26,6 +27,9 @@ read-only mutation evidence. `__main__.py` owns the module entrypoint.
 - Capability 7 provenance validation is fail-closed for production records,
   reference-only for research inputs, and separate from Asset Director
   provenance_status. Its readiness flag is not an owner lock.
+- Capability #8 content operations validation is provider-neutral, fail-closed
+  for unsafe models and publishing boundaries, and separate from V2.5 client
+  handoff operations. Its readiness flag is not an owner lock.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
 
 ## Work Guidance
@@ -36,8 +40,7 @@ special cases that turn invalid evidence into a pass.
 
 ## Verification
 
-Run `python -m unittest tests.test_v2_11_framework_validation`,
-`python -m unittest tests.test_v2_12_evidence_asset_provenance`, and
+Run the V2.11, V2.12, and V2.13 suites directly, then run
 `python -m framework_validation --run-suites`. Inspect both generated reports
 and the final mutation evidence.
 

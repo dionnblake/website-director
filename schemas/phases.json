@@ -90,11 +90,19 @@
       "status": "HISTORICAL"
     },
     {
+      "phase": "6.25",
+      "name": "Content Operations and CMS Architecture",
+      "protocol": "CONTENT_OPERATIONS_CMS",
+      "gate": "CONTENT_OPERATIONS_READY",
+      "preconditions": ["CONTENT_STRUCTURE_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
       "phase": "6.5",
       "name": "Conversion and Analytics Intelligence",
       "protocol": "CONVERSION_ANALYTICS",
       "gate": "CONVERSION_MEASUREMENT_COMPLETE",
-      "preconditions": ["CONTENT_STRUCTURE_LOCKED"],
+      "preconditions": ["CONTENT_OPERATIONS_READY"],
       "status": "HISTORICAL"
     },
     {

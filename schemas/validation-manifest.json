@@ -15,6 +15,7 @@
     "SKILL.md",
     "FRAMEWORK-VALIDATION-PROTOCOL.md",
     "EVIDENCE-PROVENANCE-PROTOCOL.md",
+    "CONTENT-OPERATIONS-CMS-PROTOCOL.md",
     "templates/framework-validation-review.md"
   ],
   "canonical_json_roots": [
@@ -25,7 +26,7 @@
     "browser-qa/config",
     "tests"
   ],
-  "python_roots": ["framework_validation", "browser-qa", "provenance", "tests"],
+  "python_roots": ["framework_validation", "browser-qa", "provenance", "content-ops", "tests"],
   "canonical_protocol_registry": "schemas/protocols.json",
   "canonical_gate_registry": "schemas/gates.json",
   "canonical_phase_registry": "schemas/phases.json",
@@ -55,6 +56,9 @@
     "templates/cinematic-brief.md",
     "templates/competitor-landscape.md",
     "templates/content-plan.md",
+    "templates/content-model.md",
+    "templates/content-model.json",
+    "templates/cms-decision.md",
     "templates/creative-intent-contract.md",
     "templates/design-direction.md",
     "templates/design-intelligence.md",

@@ -645,6 +645,11 @@ If production evidence is unavailable, the flag stays `false` and the status is 
 4. **Forms:** Track `form_view`, `lead_form_start`, `form_validation_error`, and `lead_form_submit`. Never capture field values or keystrokes. Deduplicate submit handlers so rapid clicks cannot produce multiple conversion events.
 5. **Signature Choreography (V2.5.1):** Scroll choreography progress is not a conversion signal and is not instrumented as one.
 6. **Client Handoff (V2.5):** The measurement plan and its blocked/exception status are handoff deliverables. A blocked provider is disclosed to the client, never hidden.
+7. **Content Operations (V2.13):** Content Operations consumes the locked CTA
+   and content model. Editors may not rename analytics events, add tracking
+   fields, or treat content views/clicks as conversions outside this protocol.
+   Affiliate content preserves `CLICK ≠ CONVERSION ≠ COMMISSION`; downstream
+   conversion remains platform evidence, never a CMS inference.
 
 ---
 

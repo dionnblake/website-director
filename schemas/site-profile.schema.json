@@ -4,7 +4,7 @@
   "title": "Website Director current site profile",
   "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
   "x-framework-version-source": "framework-version.json",
-  "x-framework-version": "2.12.0",
+  "x-framework-version": "2.13.0",
   "type": "object",
   "required": [
     "schema_version",
@@ -28,6 +28,7 @@
     "browser_qa": { "$ref": "#/$defs/state" },
     "accessibility": { "$ref": "#/$defs/state" },
     "provenance": { "$ref": "#/$defs/state" },
+    "content_ops": { "$ref": "#/$defs/content_ops" },
     "launch_ops": { "$ref": "#/$defs/launch_ops" },
     "gauntlet": { "$ref": "#/$defs/state" },
     "handoff": { "$ref": "#/$defs/state" },
@@ -81,6 +82,42 @@
         "exception": { "$ref": "#/$defs/exception" }
       },
       "additionalProperties": true
+    },
+    "content_ops": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "type": "object",
+          "properties": {
+            "complete": { "type": "boolean" },
+            "cms_requirement": {
+              "type": "string",
+              "enum": [
+                "UNASSESSED",
+                "NO_CMS_REQUIRED",
+                "STATIC_STRUCTURED_CONTENT",
+                "FILE_BASED_CMS",
+                "HEADLESS_CMS",
+                "TRADITIONAL_CMS",
+                "DATABASE_BACKED_CONTENT",
+                "ECOMMERCE_CATALOG",
+                "APPLICATION_DATA",
+                "HYBRID"
+              ]
+            },
+            "content_model_ready": { "type": "boolean" },
+            "editable_surfaces_defined": { "type": "boolean" },
+            "editorial_workflow_defined": { "type": "boolean" },
+            "publishing_authority_defined": { "type": "boolean" },
+            "slug_policy_defined": { "type": "boolean" },
+            "portability_reviewed": { "type": "boolean" },
+            "migration_required": { "type": "boolean" },
+            "selected_architecture": { "type": ["string", "null"] },
+            "blocked_reason": { "type": ["string", "null"] },
+            "exception": { "$ref": "#/$defs/exception" }
+          }
+        }
+      ]
     },
     "launch_ops": {
       "allOf": [

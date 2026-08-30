@@ -1,6 +1,6 @@
 # Evidence, Claim & Asset Provenance Intelligence Protocol
 
-**Framework:** Website Director V2.12.0  
+**Framework:** Website Director V2.13.0
 **Phase:** 6.95, after Accessibility and before Design System  
 **Readiness gate:** EVIDENCE_PROVENANCE_READY  
 **Canonical state:** provenance.complete  
@@ -11,8 +11,10 @@
 
 This protocol implements Capability 7. It governs traceability of evidence,
 claims, research references, testimonials, certifications, and production
-assets. It does not add Content/CMS, Localization, Ecommerce, Authentication,
-Application, or any other Capability 8 module.
+assets. It does not add Content/CMS architecture, Localization, Ecommerce,
+Authentication, Application, or any other Capability #8 module. Capability #8
+Content Operations consumes this protocol's references; it does not duplicate
+the ledger or change provenance authority.
 
 The invariant is:
 
@@ -29,6 +31,12 @@ selection, optimization, and asset readiness. This protocol owns
 cross-cutting source identity, evidence, rights records, attribution,
 permitted-use boundaries, claim traceability, and release references. Existing
 assets.provenance_status remains valid and distinct from provenance.complete.
+
+Content records may carry a `PROVENANCE_REF` to this ledger for factual claims
+and production media. High-risk claims without a resolvable reference remain
+blocked or failed. Research and inspiration media remain `REFERENCE_ONLY` and
+cannot be promoted by a CMS field. Asset Director still owns asset production,
+and Content Operations owns only the content-facing reference contract.
 
 ## 1. Lifecycle placement and state
 

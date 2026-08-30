@@ -10,6 +10,7 @@
     { "path": "security_privacy.complete", "canonical_concept": "security_privacy_readiness", "status": "ACTIVE", "owner_protocol": "SECURITY_PRIVACY", "writable_by": ["website_director.security_privacy"] },
     { "path": "accessibility.complete", "canonical_concept": "accessibility_readiness", "status": "ACTIVE", "owner_protocol": "ACCESSIBILITY", "writable_by": ["website_director.accessibility"] },
     { "path": "provenance.complete", "canonical_concept": "evidence_asset_provenance_readiness", "status": "ACTIVE", "owner_protocol": "EVIDENCE_PROVENANCE", "writable_by": ["website_director.provenance"] },
+    { "path": "content_ops.complete", "canonical_concept": "content_operations_readiness", "status": "ACTIVE", "owner_protocol": "CONTENT_OPERATIONS_CMS", "writable_by": ["website_director.content_ops"] },
     { "path": "browser_qa.complete", "canonical_concept": "browser_qa_verification", "status": "ACTIVE", "owner_protocol": "BROWSER_QA", "writable_by": ["browser_qa.runner"] },
     { "path": "launch_ops.complete", "canonical_concept": "launch_readiness", "status": "ACTIVE", "owner_protocol": "LAUNCH_OPERATIONS", "writable_by": ["website_director.launch_ops"] },
     { "path": "gauntlet.status", "canonical_concept": "gauntlet_refinement", "status": "ACTIVE", "owner_protocol": "GAUNTLET", "writable_by": ["website_director.gauntlet"] },

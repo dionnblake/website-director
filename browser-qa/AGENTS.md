@@ -34,6 +34,10 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE`; no screen reader ⇒
   `BLOCKED_SCREEN_READER_ENVIRONMENT`. Never a PASS. Never claim WCAG conformance
   from zero automated violations.
+- **Content Operations (V2.13):** applicable draft/public visibility, preview,
+  scheduling, rich-text, slug/redirect, media/evidence, and editor-boundary
+  behavior is consumed through this same harness. Content Operations does not
+  create a second browser runner or authorize production publishing.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

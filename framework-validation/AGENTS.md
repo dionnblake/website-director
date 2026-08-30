@@ -9,13 +9,14 @@ Website Director framework validator.
 
 `reports/runtime/` is disposable machine output. A versioned report at
 `reports/<version>-certification.json` is an inspectable certification artifact
-for this isolated review prototype.
+for this isolated review prototype. The current V2.13 report is generated at
+`reports/2.13.0-certification.json` and remains a derived, ignored artifact.
 
 ## Local Contracts
 
 - The validator is the only writer of report files in this boundary.
-- Runtime output may be ignored by Git; versioned certification reports remain
-  available for review unless the owner requests cleanup.
+- Runtime output and the current V2.13 certification report may be ignored by
+  Git; historical versioned certification reports remain available for review.
 - Reports describe framework validation only. They do not authorize publishing,
   deployment, external communication, or production readiness.
 - Report paths must not become inputs to the source-mutation snapshot.

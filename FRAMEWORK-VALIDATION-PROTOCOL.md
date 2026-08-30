@@ -1,6 +1,6 @@
 # Website Director Framework Self-Validation Protocol
 
-<!-- FRAMEWORK_VERSION: 2.12.0 -->
+<!-- FRAMEWORK_VERSION: 2.13.0 -->
 <!-- protocol-id: FRAMEWORK_VALIDATION -->
 <!-- protocol-status: ACTIVE -->
 <!-- protocol-domain: framework-governance -->
@@ -17,7 +17,10 @@ deterministic suite, while this validator remains offline and does not connect
 to the MCP or provider. Capability 7 Evidence, Claim and Asset Provenance is
 validated by its own registered deterministic suite and offline validator. It
 does not validate subjective visual quality, publish the prototype, deploy
-production, send messages, use credentials, or begin Capability 8 modules.
+production, send messages, use credentials, or begin Capability #9
+Localization/I18n or Capability #10 Ecommerce, Authentication, and Application
+modules. Capability #8 Content Operations and CMS Architecture is validated by
+its own registered deterministic suite and provider-neutral content-ops validator.
 
 The corrected checkout is based directly on the certified V2.10 lineage and
 retains its operational documents, browser-QA harness, and complete frozen
@@ -34,7 +37,7 @@ rewriting historical project material or introducing external side effects.
 - [schemas/site-profile.schema.json](schemas/site-profile.schema.json) defines
   the current site-profile contract.
 - [templates/site-profile.json](templates/site-profile.json) is the current
-  V2.12-compatible profile fixture. Framework-validation state is external to
+  V2.13-compatible profile fixture. Framework-validation state is external to
   it, and provenance.complete remains distinct from assets.provenance_status.
 - [schemas/protocols.json](schemas/protocols.json),
   [schemas/gates.json](schemas/gates.json),
@@ -54,6 +57,13 @@ rewriting historical project material or introducing external side effects.
   and [provenance/validator.py](provenance/validator.py) are the Capability 7
   machine contract and validator. They verify recorded evidence boundaries
   without determining ownership or legal status.
+- [CONTENT-OPERATIONS-CMS-PROTOCOL.md](CONTENT-OPERATIONS-CMS-PROTOCOL.md),
+  [content-ops/validator.py](content-ops/validator.py),
+  [templates/content-model.md](templates/content-model.md),
+  [templates/content-model.json](templates/content-model.json), and
+  [templates/cms-decision.md](templates/cms-decision.md) are the Capability #8
+  content/CMS architecture authorities. V2.5 remains the long-term handoff
+  authority.
 
 ## Invariants
 
@@ -72,8 +82,9 @@ The owner-lock set is exactly:
 4. `design_system_locked`
 5. `motion_direction_locked`
 
-Measurement, SEO, security, privacy, accessibility, provenance, browser QA,
-launch, assets, handoff, and framework-validation status are not owner locks. Readiness
+Measurement, SEO, security, privacy, accessibility, provenance, content
+operations, browser QA, launch, assets, handoff, and framework-validation
+status are not owner locks. Readiness
 and verification gates may refer to state, but they do not own lifecycle locks.
 
 ## Validation sequence
@@ -87,7 +98,7 @@ It performs the following deterministic sequence:
 1. Capture branch, commit, worktree, and `origin/main` divergence metadata.
 2. Load the validation manifest and verify required directories and files.
 3. Validate the canonical version source, document markers, monotonicity, and
-   V2.10 lineage metadata.
+   V2.10 lineage metadata and V2.13 Capability #8 registration.
 4. Validate JSON parsing, the current profile schema, historical compatibility,
    and the external framework-validation state boundary.
 5. Validate protocol, gate, phase, state-ownership, template, and Markdown
@@ -97,7 +108,8 @@ It performs the following deterministic sequence:
 7. Snapshot and verify the registered `FrozenIntegrityGuard` boundary.
 8. Discover and, for release certification, run all active registered suites,
    including the Capability 7 A-V evidence and asset provenance controls plus
-   W-AK fail-closed regression edges.
+   W-AK fail-closed regression edges and the Capability #8 A-V content/CMS
+   controls.
 9. Run deterministic negative controls for the required failure modes.
 10. Record change impact and mutation evidence, then write the runtime and
     versioned certification reports only to their designated paths.

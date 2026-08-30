@@ -310,6 +310,17 @@
       "compatibility_pointer": "Additive V2.11.1 discovery transport; Visual Research and Awwwards remain interpretation authorities."
     },
     {
+      "id": "CONTENT_OPERATIONS_CMS",
+      "path": "CONTENT-OPERATIONS-CMS-PROTOCOL.md",
+      "status": "ACTIVE",
+      "domain": "content-operations-cms",
+      "phase": "6.25",
+      "state_owner": "content_ops.complete",
+      "supersedes": [],
+      "superseded_by": null,
+      "compatibility_pointer": "Additive V2.13 Capability 8; V2.5 Client CMS Handoff remains the long-term ownership and operations authority."
+    },
+    {
       "id": "CLIENT_CMS_HANDOFF",
       "path": "CLIENT-CMS-HANDOFF-PROTOCOL.md",
       "status": "HISTORICAL",

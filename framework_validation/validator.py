@@ -345,6 +345,7 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
             "browser_qa",
             "accessibility",
             "provenance",
+            "content_ops",
             "gauntlet",
             "handoff",
             "signature_choreography",
@@ -1734,7 +1735,7 @@ def _check_impact(ctx: ValidationContext) -> None:
     impacts = set()
     for path in paths:
         lower = path.lower().replace("\\", "/")
-        if lower.startswith("schemas/") or "framework-validation" in lower or lower in {"framework-version.json", "framework_validation/validator.py"}:
+        if lower.startswith("schemas/") or lower.startswith("content-ops/") or "framework-validation" in lower or lower in {"framework-version.json", "framework_validation/validator.py"}:
             impacts.add("CORE_GOVERNANCE")
         elif lower.startswith("browser-qa/"):
             impacts.add("BROWSER_QA")

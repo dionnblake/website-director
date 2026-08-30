@@ -353,7 +353,7 @@ class EvidenceAssetProvenanceTests(unittest.TestCase):
         protocols = json.loads((ROOT / "schemas/protocols.json").read_text(encoding="utf-8"))
         gates = json.loads((ROOT / "schemas/gates.json").read_text(encoding="utf-8"))
         phases = json.loads((ROOT / "schemas/phases.json").read_text(encoding="utf-8"))
-        self.assertEqual(profile["schema_version"], "2.12.0")
+        self.assertEqual(profile["schema_version"], "2.13.0")
         self.assertFalse(profile["provenance"]["complete"])
         self.assertEqual(schema["$id"], "https://website-director.local/schemas/evidence-ledger.schema.json")
         self.assertTrue(any(item["id"] == "EVIDENCE_PROVENANCE" for item in protocols["protocols"]))

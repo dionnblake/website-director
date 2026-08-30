@@ -26,7 +26,8 @@
     "2.9.0",
     "2.10.0",
     "2.11.0",
-    "2.11.1"
+    "2.11.1",
+    "2.12.0"
   ],
   "historical_profiles": [
     { "release": "V1 baseline", "schema_version": null, "allow_missing_schema_version": true, "allow_four_locks": true },
@@ -40,7 +41,8 @@
     { "release": "V2.9 Accessibility", "schema_version": "2.9.0", "canonical_state": "accessibility", "allow_missing_optional_states": true },
     { "release": "V2.10 Launch Ops", "schema_version": "2.10.0", "canonical_state": "launch_ops", "allow_missing_optional_states": true },
     { "release": "V2.11 Framework Validation", "schema_version": "2.11.0", "canonical_state": "framework_validation", "allow_missing_optional_states": true },
-    { "release": "V2.11.1 Design Inspiration", "schema_version": "2.11.1", "canonical_state": "research", "allow_missing_optional_states": true }
+    { "release": "V2.11.1 Design Inspiration", "schema_version": "2.11.1", "canonical_state": "research", "allow_missing_optional_states": true },
+    { "release": "V2.12 Provenance", "schema_version": "2.12.0", "canonical_state": "provenance", "allow_missing_optional_states": true }
   ],
   "rules": {
     "historical_is_read_only": true,

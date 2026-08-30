@@ -170,6 +170,23 @@
       "order_independent": true
     },
     {
+      "id": "v2_13_content_operations",
+      "label": "V2.13 Content Operations and CMS Architecture A-V controls",
+      "status": "ACTIVE",
+      "command": ["python", "tests/test_v2_13_content_operations.py"],
+      "paths": ["tests/test_v2_13_content_operations.py", "content-ops/validator.py"],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
+    },
+    {
       "id": "examples_test_runner",
       "label": "Historical examples test runner",
       "status": "ACTIVE",

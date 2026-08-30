@@ -167,6 +167,34 @@ Pixel-quality and art-direction judgement stay with Asset Director / the Gauntle
 
 ---
 
+## 11.1 Content Operations & CMS runtime QA (V2.13)
+
+Browser QA consumes the validated Capability #8 content model and
+`content_ops{}` state; it does not create a second content runner or CMS
+authority. Where the project exposes these surfaces, the existing harness
+verifies:
+
+- required semantic fields render and repeated entities resolve through the
+  model rather than duplicated presentation markup;
+- draft, review, scheduled, and archived records are not publicly visible or
+  listed, while published records resolve on the intended route;
+- preview uses the real route composition and design system, not raw JSON;
+- editor-facing controls cannot change analytics identifiers, structured-data
+  schema, security headers, design tokens, or owner lock state;
+- rich-text script/style/event-handler/unsafe-embed inputs are rejected;
+- published or archived slug changes preserve their declared 301 redirects;
+- production media references resolve to Asset Director identity and V2.12
+  provenance, and research/inspiration references remain `REFERENCE_ONLY`;
+- agent-generated content cannot skip the human-review boundary into
+  `PUBLISHED`.
+
+Failures are traced back to `CONTENT-OPERATIONS-CMS-PROTOCOL.md` and recorded
+as `FAIL`, `BLOCKED`, or `NOT_APPLICABLE` according to the manifest. A local
+browser run does not set production verification, and no browser test may
+write under `projects/`.
+
+---
+
 ## 12. Test isolation & the Frozen Project Integrity Guard
 
 **Hard invariant.** Browser and QA tests:

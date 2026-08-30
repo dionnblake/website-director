@@ -1,14 +1,14 @@
 {
-  "version": "2.12.0",
-  "schema_version": "2.12.0",
-  "previous_version": "2.11.1",
+  "version": "2.13.0",
+  "schema_version": "2.13.0",
+  "previous_version": "2.12.0",
   "release_type": "minor",
   "status": "CURRENT",
   "source_of_truth": true,
   "lineage": {
     "base_branch": "codex/website-director-v2-11-1-design-inspiration-mcp",
-    "base_commit": "9df114d3b11cc881a0b000cdcbc633e86a0dc0d6",
-    "base_version": "2.11.1",
-    "current_checkout_note": "V2.12 adds the bounded Capability 7 Evidence, Claim and Asset Provenance system while preserving the certified framework, five owner locks, and frozen project corpus. Capability 8 content/CMS, localization, ecommerce, authentication, and application modules remain out of scope."
+    "base_commit": "29cd53afd42c6151b12447ae1f7328acb7d41fea",
+    "base_version": "2.12.0",
+    "current_checkout_note": "V2.13 adds the bounded Capability 8 Content Operations and CMS Architecture system while preserving the certified framework, five owner locks, and frozen project corpus. Capability 9 Localization/I18n and Capability 10 Ecommerce, Authentication, and Application Modules remain out of scope."
   }
 }

@@ -5,10 +5,10 @@ description: "Directs and governs end-to-end website design and implementation s
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.12.0
+> **Version:** 2.13.0
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.12.0 is additive to V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 7 Evidence, Claim and Asset Provenance Intelligence at Phase 6.95 without retrofitting historical projects or changing the five owner locks. Capability 8 Content/CMS, Localization, Ecommerce, Authentication, and Application modules remain out of scope.
+> **Compatibility:** V2.13.0 is additive to V2.12.0, V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 8 Content Operations and CMS Architecture at Phase 6.25 without retrofitting historical projects or changing the five owner locks. Capability 9 Localization/I18n and Capability 10 Ecommerce, Authentication, and Application modules remain out of scope.
 
 ---
 
@@ -52,6 +52,8 @@ An agent running Website Director must advance strictly through these phases. Do
 │          ──► GATE 2: [INFORMATION_ARCHITECTURE_LOCKED]       │
 │ PHASE 6: CONTENT STRUCTURE & EVIDENCE PLAN                   │
 │          ──► GATE 3: [CONTENT_STRUCTURE_LOCKED]              │
+│ PHASE 6.25: CONTENT OPERATIONS & CMS ARCHITECTURE             │
+│          ──► GATE CONTENT: [CONTENT_OPERATIONS_READY]         │
 │ PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE               │
 │          ──► GATE MEASUREMENT:                               │
 │              [CONVERSION_MEASUREMENT_COMPLETE]               │
@@ -224,9 +226,21 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+### PHASE 6.25: Content Operations & CMS Architecture (Content Readiness Gate)
+- Consult [CONTENT-OPERATIONS-CMS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONTENT-OPERATIONS-CMS-PROTOCOL.md).
+- **Precondition:** `locks.content_structure_locked` must be `true`. Do not select a CMS until the actual content inventory, editor roles, update frequency, relationships, preview, scheduling, SEO, media, security, portability, and handoff facts are recorded.
+- Build the semantic content model in [templates/content-model.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/content-model.md) and [templates/content-model.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/content-model.json). Content types and fields describe subject meaning, not UI slots, breakpoints, colors, design tokens, analytics identifiers, or security configuration.
+- Classify the requirement as `NO_CMS_REQUIRED`, `STATIC_STRUCTURED_CONTENT`, `FILE_BASED_CMS`, `HEADLESS_CMS`, `TRADITIONAL_CMS`, `DATABASE_BACKED_CONTENT`, `ECOMMERCE_CATALOG`, `APPLICATION_DATA`, or `HYBRID`. The bounded necessity score is a planning aid, not objective mathematics or provider selection.
+- Define editable surfaces, role capabilities, lifecycle (`DRAFT`, `IN_REVIEW`, `APPROVED`, `SCHEDULED`, `PUBLISHED`, `ARCHIVED`), preview, scheduling architecture, SEO fields, media/evidence references, slugs and 301 redirects, archive/delete rules, portability, migration, revisions, affiliate fields, and freshness fields.
+- Agent-generated content defaults to `DRAFT` and requires human review before publication. A provider without export capability is a visible lock-in warning requiring owner acceptance and an exit plan. High-risk claims consume V2.12 provenance; Asset Director, Accessibility, Security & Privacy, SEO, Measurement, and V2.5 Handoff remain their own authorities.
+- Run `content-ops/validator.py` through `python tests/test_v2_13_content_operations.py`; unresolved provider, model, evidence, redirect, rich-text, permission, or portability decisions remain `BLOCKED` or `FAIL`.
+- **ENGAGE GATE CONTENT:** Update `site-profile.json` → `content_ops.complete = true` only when the model, decision, editable surfaces, editorial workflow, publishing authority, slug policy, portability review, and applicable migrations are validated. `[CONTENT_OPERATIONS_READY]` is a readiness gate, not a sixth owner lock. Capability #9 Localization/I18n and Capability #10 Ecommerce, Authentication, and Application Modules remain out of scope.
+
+---
+
 ### PHASE 6.5: Conversion & Analytics Intelligence (Measurement Readiness Gate)
 - Consult [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md).
-- **Precondition:** `locks.content_structure_locked` must be `true`. Measurement is derived from locked copy and the approved CTA inventory — it never runs against draft content.
+- **Precondition:** `content_ops.complete` must be `true` (or a recorded content-operations exception) after `locks.content_structure_locked` is `true`. Measurement is derived from locked copy and the approved CTA inventory — it never runs against draft content.
 - **Core Standard:** Website Director does not merely assert that a CTA *should* convert. It defines what the conversion is, which event represents it, how it is triggered, which KPI it serves, how attribution is preserved, and how implementation is verified.
 - **Derivation Rule (Do Not Re-Interview):** Derive requirements from `project-brief.md`, `positioning.md`, `information-architecture.md`, `content-plan.md`, `keyword-map.md`, `seo-content-briefs.md`, and `site-profile.json` → `conversion_context{}`. Re-engage the owner only for genuinely unresolved commercial facts (analytics provider, affiliate conversion feed availability).
 - **Execution Workflow:**
@@ -558,6 +572,7 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Browser & Regression QA** | [BROWSER-REGRESSION-QA-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/BROWSER-REGRESSION-QA-PROTOCOL.md) | `browser-qa-plan.md`, `browser-qa-manifest.json`, `browser-qa/` harness, `evidence/browser-qa/` |
 | **Accessibility Intelligence** | [ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md) | `accessibility-review.md`, `accessibility-test-manifest.json`, `browser-qa/` accessibility assertions, `evidence/accessibility/` |
 | **Launch & Post-Launch Operations** | [LAUNCH-OPERATIONS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/LAUNCH-OPERATIONS-PROTOCOL.md) | `launch-plan.md`, `launch-evidence-manifest.json`, `launch-ops/validator.py`, `browser-qa/` (`environment=production`), `evidence/launch/` |
+| **Content Operations & CMS Architecture** | [CONTENT-OPERATIONS-CMS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONTENT-OPERATIONS-CMS-PROTOCOL.md) | `content-model.md`, `content-model.json`, `cms-decision.md`, `content-ops/validator.py` |
 | **Quality Engine** | [IMPECCABLE-ENGINE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMPECCABLE-ENGINE-PROTOCOL.md) | `IMPECCABLE-ENGINE-PROTOCOL.md` |
 | **Design QA** | [QA-RUBRIC.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/QA-RUBRIC.md) | `design-review.md` |
 | **Gauntlet Refinement** | [WEBSITE-GAUNTLET-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/WEBSITE-GAUNTLET-PROTOCOL.md) | `website-gauntlet-report.md` |
@@ -642,6 +657,38 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - `[CRO_MEASUREMENT_READY]` (Phase 8.97) is a **downstream sub-gate** reading this same object. It does not own a completion flag.
 - **Legacy `cro{}` (V2.4–V2.5):** grandfathered and read-only. Projects carrying it remain valid. It is not migrated automatically and frozen pilots are not retrofitted. New projects use `measurement{}`.
 
+### 5.12a Single-Source-of-Truth Rule for `content_ops` State (V2.13)
+`content_ops.complete` is the **only** authoritative readiness flag for
+`[CONTENT_OPERATIONS_READY]` at Phase 6.25. It is distinct from the V2.5
+`handoff.status` and the historical `handoff.cms_requirement`,
+`handoff.cms_provider`, and `handoff.cms_architecture` fields.
+- `content_ops.cms_requirement` uses the bounded classification taxonomy:
+  `UNASSESSED`, `NO_CMS_REQUIRED`, `STATIC_STRUCTURED_CONTENT`,
+  `FILE_BASED_CMS`, `HEADLESS_CMS`, `TRADITIONAL_CMS`,
+  `DATABASE_BACKED_CONTENT`, `ECOMMERCE_CATALOG`, `APPLICATION_DATA`, or
+  `HYBRID`. It records a decision, not a provider installation.
+- `content_ops.complete = true` certifies that the semantic content model,
+  editable surfaces, editorial workflow, publishing authority, slug policy,
+  portability review, and applicable migration requirements are specified and
+  validated. It never means a provider is installed, content is published, or
+  production behavior is verified.
+- Content types and fields remain separate from UI components. Presentation-
+  coupled fields, editable analytics identifiers, design tokens, structured
+  data schema, security headers, and owner lock state are prohibited.
+- Agent-generated content enters `DRAFT` and requires human review. Agents
+  never receive autonomous `CAN_PUBLISH` authority. Published or archived
+  slug changes require a durable 301 redirect, and unsafe rich text or
+  unresolved high-risk provenance remains `FAIL`/`BLOCKED`.
+- Media references consume Asset Director and V2.12 Evidence Provenance; SEO,
+  Accessibility, Security & Privacy, Measurement, and V2.5 Handoff retain
+  their own authorities. No second ledger, accessibility state, security
+  state, measurement state, or handoff CMS authority is created.
+- `content_ops{}` contains NO lock boolean. `[CONTENT_OPERATIONS_READY]` is a
+  readiness gate, not a sixth owner lock. Exactly 5 owner locks remain.
+- **Backward compatibility:** historical profiles and frozen projects that do
+  not contain `content_ops{}` remain valid and are not retrofitted. New or
+  reopened work uses the V2.13 subsystem.
+
 ---
 
 ### 5.14 Single-Source-of-Truth Rule for `security_privacy` State (V2.7)
@@ -682,9 +729,9 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 
 ---
 
-## 5.18 Framework Self-Validation (V2.12)
+## 5.18 Framework Self-Validation (V2.13)
 
-<!-- FRAMEWORK_VERSION: 2.12.0 -->
+<!-- FRAMEWORK_VERSION: 2.13.0 -->
 
 Capability 6 is a read-only framework validation layer. Run
 `python -m framework_validation --run-suites` from the repository root when
@@ -697,15 +744,19 @@ separately tested, bounded Design Inspiration MCP adapter in
 not become a design authority.
 
 The validator's state is external to `templates/site-profile.json`. The current
-profile remains a V2.12-compatible project-state document with the current
+profile is a V2.13-compatible project-state document with the current
 framework version recorded explicitly. Exactly five owner locks remain
 authoritative. Historical projects under `projects/` are read-only and are
 never retrofitted merely because the framework version advances.
 
-Capability 7 Evidence & Asset Provenance is implemented at Phase 6.95 through
-EVIDENCE-PROVENANCE-PROTOCOL.md, provenance/validator.py, and the
-provenance.complete state. Capability 8 Content/CMS, Localization, Ecommerce,
-Authentication, and Application modules remain out of scope.
+Capability 7 Evidence & Asset Provenance remains implemented at Phase 6.95
+through EVIDENCE-PROVENANCE-PROTOCOL.md, provenance/validator.py, and the
+provenance.complete state. Capability 8 Content Operations and CMS Architecture
+is implemented at Phase 6.25 through CONTENT-OPERATIONS-CMS-PROTOCOL.md,
+content-ops/validator.py, the content_ops.complete state, and the
+[CONTENT_OPERATIONS_READY] readiness gate. Capability 9 Localization/I18n and
+Capability 10 Ecommerce, Authentication, and Application modules remain out of
+scope.
 
 ## 5.19 Design Inspiration MCP Boundary (V2.11.1)
 

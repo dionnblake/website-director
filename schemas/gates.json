@@ -173,6 +173,15 @@
       "status": "HISTORICAL"
     },
     {
+      "name": "CONTENT_OPERATIONS_READY",
+      "type": "READINESS",
+      "authoritative_state": "content_ops.complete",
+      "phase": "6.25",
+      "owner_protocol": "CONTENT_OPERATIONS_CMS",
+      "owner_artifact": "templates/content-model.md",
+      "status": "ACTIVE"
+    },
+    {
       "name": "CONVERSION_MEASUREMENT_COMPLETE",
       "type": "READINESS",
       "authoritative_state": "measurement.complete",
