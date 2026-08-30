@@ -136,6 +136,23 @@
       "order_independent": true
     },
     {
+      "id": "v2_11_design_inspiration_mcp",
+      "label": "V2.11.1 bounded Design Inspiration MCP adapter controls",
+      "status": "ACTIVE",
+      "command": ["python", "tests/test_v2_11_design_inspiration_mcp.py"],
+      "paths": ["tests/test_v2_11_design_inspiration_mcp.py"],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
+    },
+    {
       "id": "examples_test_runner",
       "label": "Historical examples test runner",
       "status": "ACTIVE",

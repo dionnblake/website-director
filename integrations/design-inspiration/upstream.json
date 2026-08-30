@@ -1,0 +1,38 @@
+{
+  "source_repository": "https://github.com/YonasValentin/design-inspiration-mcp-server",
+  "upstream_commit_sha": "2935c0775fb1cfe3d95503615901e1fa743430e8",
+  "pin_type": "immutable_commit",
+  "auto_update": false,
+  "package_version": "1.0.0",
+  "changelog_version": "1.1.0",
+  "license": "MIT",
+  "audit_date": "2026-08-29",
+  "audit_status": "AUDITED_SOURCE_NOT_INSTALLED",
+  "runtime_model": "MODEL_A_EXTERNAL_PINNED_STDIO",
+  "transport": "stdio",
+  "exposed_search_tools": [
+    "design_search_images",
+    "design_search_references",
+    "design_search_styles"
+  ],
+  "disabled_tools": [
+    "design_extract_tokens"
+  ],
+  "credential_environment": [
+    "SERPER_API_KEY"
+  ],
+  "network_destinations": [
+    "https://google.serper.dev/images",
+    "https://google.serper.dev/search"
+  ],
+  "observed_error_behavior": [
+    "missing SERPER_API_KEY raises a provider configuration error",
+    "HTTP 401 reports an invalid-key error",
+    "HTTP 429 reports a rate-limit error",
+    "other non-OK responses report the status and response text",
+    "dembrandt timeout, process error, stderr, or invalid JSON can surface as extraction failure"
+  ],
+  "live_smoke_status": "BLOCKED_CREDENTIAL_MISSING",
+  "remote_image_policy": "REFERENCE_ONLY_NO_DOWNLOAD",
+  "subprocess_policy": "dembrandt_not_invoked_by_adapter"
+}

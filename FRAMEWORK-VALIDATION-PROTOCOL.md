@@ -1,6 +1,6 @@
 # Website Director Framework Self-Validation Protocol
 
-<!-- FRAMEWORK_VERSION: 2.11.0 -->
+<!-- FRAMEWORK_VERSION: 2.11.1 -->
 <!-- protocol-id: FRAMEWORK_VALIDATION -->
 <!-- protocol-status: ACTIVE -->
 <!-- protocol-domain: framework-governance -->
@@ -11,9 +11,12 @@
 
 Capability 6 validates Website Director itself: its version authority,
 registries, schemas, references, state ownership, compatibility records,
-frozen-project integrity, test isolation, and read-only CI policy. It does not
-validate subjective visual quality, publish the prototype, deploy production,
-send messages, use credentials, or begin Capability #7 or later.
+frozen-project integrity, test isolation, and read-only CI policy. The additive
+Capability 6.5 Design Inspiration MCP adapter is validated by its registered
+deterministic suite, while this validator remains offline and does not connect
+to the MCP or provider. It does not validate subjective visual quality,
+publish the prototype, deploy production, send messages, use credentials, or
+begin Capability #7 or later.
 
 The corrected checkout is based directly on the certified V2.10 lineage and
 retains its operational documents, browser-QA harness, and complete frozen

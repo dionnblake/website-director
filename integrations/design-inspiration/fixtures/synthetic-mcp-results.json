@@ -1,0 +1,75 @@
+{
+  "fixture_status": "SYNTHETIC_NO_NETWORK_NO_DOWNLOADS",
+  "retrieved_at": "2026-08-29T00:00:00Z",
+  "images": [
+    {
+      "title": "Precision interface study",
+      "source": "Dribbble",
+      "link": "https://dribbble.com/shots/1001/precision?utm_source=fixture",
+      "imageUrl": "https://images.example.test/dribbble-precision.png",
+      "snippet": "Synthetic craft reference for interface hierarchy."
+    },
+    {
+      "title": "Material systems case study",
+      "source": "Behance",
+      "link": "https://www.behance.net/gallery/2002/material-systems",
+      "imageUrl": "https://images.example.test/behance-material.png",
+      "snippet": "Synthetic case-study reference for material language."
+    },
+    {
+      "title": "World-class showcase rhythm",
+      "source": "Awwwards",
+      "link": "https://www.awwwards.com/sites/world-class-rhythm",
+      "imageUrl": "https://images.example.test/awwwards-rhythm.png",
+      "snippet": "Synthetic showcase benchmark; policy interpretation remains canonical."
+    },
+    {
+      "title": "Product onboarding flow",
+      "source": "Mobbin",
+      "link": "https://mobbin.com/flows/3003/onboarding",
+      "imageUrl": "https://images.example.test/mobbin-onboarding.png",
+      "snippet": "Synthetic flow reference for production interaction sequencing."
+    },
+    {
+      "title": "Editorial material mood",
+      "source": "Pinterest",
+      "link": "https://www.pinterest.com/pin/4004/editorial-material",
+      "imageUrl": "https://images.example.test/pinterest-editorial.png",
+      "snippet": "Synthetic mood signal; no image is treated as a production asset."
+    },
+    {
+      "title": "Precision interface duplicate with tracking",
+      "source": "Dribbble",
+      "link": "https://dribbble.com/shots/1001/precision?utm_medium=duplicate",
+      "imageUrl": "https://images.example.test/dribbble-precision-duplicate.png",
+      "snippet": "Synthetic duplicate used to prove canonical URL deduplication."
+    }
+  ],
+  "references": [
+    {
+      "title": "Precision interface study",
+      "link": "https://dribbble.com/shots/1001/precision",
+      "snippet": "Synthetic structured reference result."
+    },
+    {
+      "title": "Material systems case study",
+      "link": "https://www.behance.net/gallery/2002/material-systems",
+      "snippet": "Synthetic structured reference result."
+    },
+    {
+      "title": "World-class showcase rhythm",
+      "link": "https://www.awwwards.com/sites/world-class-rhythm",
+      "snippet": "Synthetic structured reference result."
+    },
+    {
+      "title": "Product onboarding flow",
+      "link": "https://mobbin.com/flows/3003/onboarding",
+      "snippet": "Synthetic structured reference result."
+    },
+    {
+      "title": "Editorial material mood",
+      "link": "https://www.pinterest.com/pin/4004/editorial-material",
+      "snippet": "Synthetic structured reference result."
+    }
+  ]
+}

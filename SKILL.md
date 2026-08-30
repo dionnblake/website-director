@@ -1,14 +1,14 @@
 ---
 name: website-director
-description: "Directs and governs end-to-end website design and implementation specifications. Turns vague business requirements into award-winning production-grade websites through adaptive creative briefing (Creative Briefing Room V1.8), visual research, design intelligence synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), mandatory SEO intelligence, archetype synthesis, anti-AI-slop design systems, pre-lock high-fidelity visual prototypes (Visual Prototype Gate V1.9), Awwwards showcase benchmarking, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL & Three.js engineering (Immersive Web Specialist V2.1), interactive vector motion (Rive Specialist V2.2), page experience & route transitions (Page Experience Specialist V2.3), deterministic conversion measurement architecture, KPI hierarchy, CTA-to-event traceability, attribution & UTM governance, affiliate measurement integrity, data-minimized analytics & hypothesis-driven experimentation (Conversion & Analytics Intelligence V2.6), production risk governance covering data inventory, data minimization, secrets, form/auth/payment safeguards, security headers, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), deliberate motion direction, official GSAP motion engineering (gsap-skills), Lenis smooth inertial scrolling, split-mask typography, pinned scrollytelling, magnetic micro-physics, strict implementation contracts, deterministic Impeccable quality scans, 100-point QA rubrics, and the adversarial Website Gauntlet refinement subsystem."
+description: "Directs and governs end-to-end website design and implementation specifications. Turns vague business requirements into award-winning production-grade websites through adaptive creative briefing (Creative Briefing Room V1.8), bounded unified design-inspiration discovery, visual research, design intelligence synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), mandatory SEO intelligence, archetype synthesis, anti-AI-slop design systems, pre-lock high-fidelity visual prototypes (Visual Prototype Gate V1.9), Awwwards showcase benchmarking, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL & Three.js engineering (Immersive Web Specialist V2.1), interactive vector motion (Rive Specialist V2.2), page experience & route transitions (Page Experience Specialist V2.3), deterministic conversion measurement architecture, KPI hierarchy, CTA-to-event traceability, attribution & UTM governance, affiliate measurement integrity, data-minimized analytics & hypothesis-driven experimentation (Conversion & Analytics Intelligence V2.6), production risk governance covering data inventory, data minimization, secrets, form/auth/payment safeguards, security headers, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), deliberate motion direction, official GSAP motion engineering (gsap-skills), Lenis smooth inertial scrolling, split-mask typography, pinned scrollytelling, magnetic micro-physics, strict implementation contracts, deterministic Impeccable quality scans, 100-point QA rubrics, and the adversarial Website Gauntlet refinement subsystem."
 ---
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.11.0  
+> **Version:** 2.11.1
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.11.0 is additive to V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. `2.11.0` follows `2.10.0` under semantic versioning. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
+> **Compatibility:** V2.11.1 is additive to V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. `2.11.1` follows `2.11.0` under semantic versioning and adds only the bounded Design Inspiration MCP adapter. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
 
 ---
 
@@ -128,9 +128,10 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ### PHASE 3: Visual Research (Visual Research Director)
 - Consult [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md) and [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md).
-- Run the four research channels (Industry Landscape, Landbook, Cross-Industry, JCodesMore Recon on the shortlisted 2–3 deep-recon targets only) through progressive filtering.
+- Optionally prepare the bounded unified Design Inspiration MCP request through `integrations/design-inspiration/` for Dribbble, Behance, Awwwards, Mobbin, and Pinterest discovery. A missing `SERPER_API_KEY` is `BLOCKED_CREDENTIAL_MISSING`, not a pass or a reason to invent evidence.
+- Run the existing research channels (Industry Landscape, Landbook, Cross-Industry, Awwwards, the unified Design Inspiration MCP, and JCodesMore Recon on the shortlisted 2–3 deep-recon targets only) through progressive filtering.
 - Deep reconnaissance on shortlisted targets uses [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md) in `RESEARCH_ONLY_MODE` exclusively — never the JCodesMore default cloning pipeline.
-- Populate [templates/research-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/research-brief.md), [templates/competitor-landscape.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/competitor-landscape.md), [templates/inspiration-board.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/inspiration-board.md), [templates/reference-deconstruction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/reference-deconstruction.md) (per deep-recon target), and [templates/research-synthesis.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/research-synthesis.md).
+- Populate [templates/research-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/research-brief.md), [templates/competitor-landscape.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/competitor-landscape.md), [templates/inspiration-board.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/inspiration-board.md), [templates/reference-deconstruction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/reference-deconstruction.md) (per deep-recon target), and [templates/research-synthesis.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/research-synthesis.md). MCP candidates remain reference evidence and must carry platform, URL, query, grade, selection reason, pattern learned, non-copy boundary, production plausibility, accessibility risk, and implementation risk.
 - If a bounded exception applies (extremely small project, explicit user opt-out, no internet access), record it in `site-profile.json` → `research.exception` per `VISUAL-RESEARCH-PROTOCOL.md` §5. Never skip silently.
 - **ENGAGE GATE 0:** Update `site-profile.json` → `research.complete = true`. This is a readiness gate, not an owner-approval lock — see §6.
 
@@ -513,7 +514,7 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Governance** | [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) | `site-profile.json` |
 | **Creative Briefing** | [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md) | `creative-intent-contract.md`, `project-brief.md`, `positioning.md` |
 | **SEO Intelligence** | [SEO-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SEO-INTELLIGENCE-PROTOCOL.md) | `seo-business-context.md`, `keyword-research.md`, `seo-competitive-landscape.md`, `keyword-map.md`, `seo-content-briefs.md` |
-| **Visual Research** | [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md), [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md), [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md) | `research-brief.md`, `competitor-landscape.md`, `inspiration-board.md`, `reference-deconstruction.md`, `research-synthesis.md` |
+| **Visual Research** | [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md), [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md), [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md), `integrations/design-inspiration/ADAPTER.md` | `research-brief.md`, `competitor-landscape.md`, `inspiration-board.md`, `reference-deconstruction.md`, `research-synthesis.md` |
 | **Design Intelligence** | [DESIGN-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-INTELLIGENCE-PROTOCOL.md) | `design-intelligence.md` |
 | **Showcase Benchmarking** | [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md) | `inspiration-board.md`, `visual-prototype-review.md` |
 | **Visual Direction** | [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md), [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) | `reference-analysis.md`, `design-direction.md` |
@@ -655,14 +656,17 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 
 ## 5.18 Framework Self-Validation (V2.11)
 
-<!-- FRAMEWORK_VERSION: 2.11.0 -->
+<!-- FRAMEWORK_VERSION: 2.11.1 -->
 
 Capability 6 is a read-only framework validation layer. Run
 `python -m framework_validation --run-suites` from the repository root when
 validating the framework itself. It owns framework structure, schemas,
 registries, compatibility checks, frozen-project integrity, test isolation,
 negative controls, and CI policy. It does not own project content, production
-publishing, deployment, or any external integration.
+publishing, deployment, or any external integration. Capability 6.5 is the
+separately tested, bounded Design Inspiration MCP adapter in
+`integrations/design-inspiration/`; it supplies evidence to Phase 3 and does
+not become a design authority.
 
 The validator's state is external to `templates/site-profile.json`. The current
 profile remains a V2.10-compatible project-state document with the current
@@ -670,8 +674,27 @@ framework version recorded explicitly. Exactly five owner locks remain
 authoritative. Historical projects under `projects/` are read-only and are
 never retrofitted merely because the framework version advances.
 
-Capability 6.5 Design Inspiration MCP and Capability 7 are not part of this
-checkout.
+Capability 7 Evidence & Asset Provenance is not part of this checkout.
+
+## 5.19 Design Inspiration MCP Boundary (V2.11.1)
+
+The adapter is an optional discovery transport, not a new Website Director
+phase, readiness gate, lock, state object, or provider-specific design system.
+It accepts only the audited immutable upstream commit recorded in
+`integrations/design-inspiration/upstream.json`, keeps `SERPER_API_KEY`
+environment-only, and uses deterministic fixtures when a live key is absent.
+
+Only `design_search_images`, `design_search_references`, and
+`design_search_styles` are exposed through the integration. The upstream
+`design_extract_tokens` path is disabled by default because its arbitrary URL
+and external `dembrandt` subprocess behavior is not bounded. Deliberate
+reference deconstruction may be considered only under the conditions recorded
+in `ADAPTER.md`, and no token result becomes an implementation token.
+
+Every candidate is normalized as `REFERENCE_ONLY`, graded with a bounded
+heuristic, deduplicated by canonical source URL, and filtered through the
+existing Visual Research and Awwwards interpretation authorities. The binding
+rule is **RESEARCH PATTERNS, DO NOT CLONE COMPOSITIONS.**
 
 <!-- FRAMEWORK_GOVERNANCE
 framework_version_source=framework-version.json

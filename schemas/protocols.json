@@ -299,6 +299,17 @@
       "compatibility_pointer": "V2.10 parent lineage"
     },
     {
+      "id": "DESIGN_INSPIRATION_ADAPTER",
+      "path": "integrations/design-inspiration/ADAPTER.md",
+      "status": "ACTIVE",
+      "domain": "visual-research-adapter",
+      "phase": "3",
+      "state_owner": "research.complete",
+      "supersedes": [],
+      "superseded_by": null,
+      "compatibility_pointer": "Additive V2.11.1 discovery transport; Visual Research and Awwwards remain interpretation authorities."
+    },
+    {
       "id": "CLIENT_CMS_HANDOFF",
       "path": "CLIENT-CMS-HANDOFF-PROTOCOL.md",
       "status": "HISTORICAL",

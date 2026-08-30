@@ -129,7 +129,7 @@ check(not bad, "No framework document makes a false deployment/launch claim (vio
 
 # ---- state object -------------------------------------------------------
 profile = json.loads(read("templates", "site-profile.json"))
-check(profile.get("schema_version") in ("2.10.0", "2.11.0"),
+check(profile.get("schema_version") in ("2.10.0", "2.11.0", "2.11.1"),
       "site-profile.json preserves the V2.10 contract under current V2.11 validation")
 check("launch_ops" in profile, "site-profile.json contains launch_ops{}")
 lo0 = profile.get("launch_ops", {})

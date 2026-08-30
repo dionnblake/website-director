@@ -4,7 +4,7 @@
   "title": "Website Director current site profile",
   "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
   "x-framework-version-source": "framework-version.json",
-  "x-framework-version": "2.11.0",
+  "x-framework-version": "2.11.1",
   "type": "object",
   "required": [
     "schema_version",

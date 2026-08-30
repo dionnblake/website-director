@@ -8,6 +8,6 @@ dependencies = []
 testpaths = ["tests"]
 # The V2.5-V2.10 historical suites are script entrypoints with intentional
 # process-level exits; the registry runs them directly. Pytest collects the
-# standard-library unit suite only.
-python_files = ["test_v2_11_framework_validation.py"]
+# standard-library unit suites only.
+python_files = ["test_v2_11_framework_validation.py", "test_v2_11_design_inspiration_mcp.py"]
 addopts = "-q"

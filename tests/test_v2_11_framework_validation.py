@@ -16,7 +16,7 @@ from framework_validation import validator
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT_VERSION = "2.11.0"
+CURRENT_VERSION = "2.11.1"
 
 
 def _load_json(relative: str) -> object:

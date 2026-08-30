@@ -1,8 +1,8 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.11.0  
+> **Version:** 2.11.1
 > **Status:** Production-Grade Skill & Specification System  
-> **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
+> **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
 ---
 
@@ -96,6 +96,16 @@ V2.10 closes the **launch boundary** gap. Website Director could get a project t
 - **16-state status model + a deterministic transition graph** (`launch-ops/validator.py`). Impossible jumps (`NOT_EVALUATED → STABILIZED`, `RELEASE_READY → PRODUCTION_VERIFIED`) are rejected.
 - **Rollback readiness, concrete rollback triggers, a site-class-sized post-launch observation window, and a `SEV0`–`SEV3` incident model.** A `SEV0`/`SEV1` incident meeting a defined trigger sets `ROLLBACK_REQUIRED`.
 - **Consumes, doesn't duplicate.** Production Browser QA is the V2.8 harness in `environment = "production"` mode — no second runner. Production verification writes the canonical `accessibility.production_verified` / `security_privacy.production_verified` / `measurement.production_verified` fields those specs already defined. V2.5 `CLIENT-CMS-HANDOFF-PROTOCOL.md` remains the long-term operations authority; Launch Operations hands its record into Phase 12.5 intake (§13).
+
+### What V2.11.1 Adds (Unified Design Inspiration MCP Adapter)
+V2.11.1 adds a bounded, replaceable discovery transport to the existing Visual Research phase. It is evidence acquisition, not a new design authority or a new lifecycle phase.
+
+- **Unified five-platform discovery:** The audited MCP can surface Dribbble, Behance, Awwwards, Mobbin, and Pinterest through three bounded search tools. Awwwards policy and interpretation remain owned by `AWWWARDS-SHOWCASE-INTELLIGENCE.md`.
+- **Pinned and audited:** The integration records the exact upstream commit, package/version discrepancy, license, audit date, network destinations, environment input, subprocess boundary, and output limits in `integrations/design-inspiration/`.
+- **Reference-only evidence:** Results are normalized with source URL, query, timestamp, upstream commit, heuristic grade, and `REFERENCE_ONLY` copyright boundary. Image URLs are never production assets, and no assets are downloaded.
+- **Fail-closed safety:** `SERPER_API_KEY` is environment-only. Generic or sensitive queries are rejected or safely rewritten. The upstream `design_extract_tokens` path is disabled by default and remains blocked unless every deliberate reference-deconstruction condition is met; the adapter never runs `dembrandt`.
+- **Originality guard:** The binding rule is **RESEARCH PATTERNS, DO NOT CLONE COMPOSITIONS.** No MCP result can set design direction, implementation tokens, locked copy, accessibility requirements, conversion decisions, security decisions, or production provenance.
+- **No new lock or gate:** The adapter feeds the existing research pipeline and does not add a site-profile state object, completion flag, owner lock, or Capability 7 Evidence & Asset Provenance system.
 
 ---
 
@@ -274,7 +284,9 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.11.0; V2.10-compatible)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.11.1; V2.10-compatible)
+├── integrations/                    # Bounded external evidence adapters (V2.11.1)
+│   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
 │   └── validator.py                  # launch_ops{} state machine, release-readiness gate, deployment-authorization boundary, production-verification checks, rollback-trigger evaluator
 ├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions; V2.10 environment=production)
@@ -290,7 +302,8 @@ website-director/
 │   ├── test_v2_7_security_privacy.py
 │   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
 │   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
-│   └── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
+│   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
+│   └── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
     ├── test_runner.py                # V2.0-V2.7 protocol/template/pilot invariant harness (repaired under V2.8)
@@ -315,13 +328,13 @@ The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PR
 
 ---
 
-## Framework Self-Validation (V2.11)
+## Framework Self-Validation (V2.11.1)
 
-<!-- FRAMEWORK_VERSION: 2.11.0 -->
+<!-- FRAMEWORK_VERSION: 2.11.1 -->
 
-The V2.11 framework self-validation layer is additive to the certified V2.10
-Website Director system. The corrected lineage starts directly from the V2.10
-certification commit and retains the complete historical `projects/` corpus.
+The V2.11 framework self-validation layer and V2.11.1 design-inspiration
+adapter are additive to the certified V2.10 Website Director system. The
+corrected lineage retains the complete historical `projects/` corpus.
 
 Run the deterministic framework gate locally with:
 
@@ -334,6 +347,11 @@ references, historical compatibility, frozen-project integrity, test isolation,
 negative controls, and the read-only GitHub Actions policy. Runtime reports are
 written under `framework-validation/reports/runtime/`; certification reports are
 explicit evidence artifacts and do not authorize deployment or publishing.
+
+The V2.11.1 adapter is validated by a separate deterministic A–R suite. Its
+source audit, exact upstream pin, normalized reference schema, credential
+states, query policy, platform recognition, originality refusal, and blocked
+token-extraction path are checked without a live key or network access.
 
 The framework contract deliberately remains outside the current site profile.
 Exactly five owner locks remain authoritative:

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "website-director-design-inspiration": {
+      "command": "node",
+      "args": ["<PINNED_DESIGN_INSPIRATION_CHECKOUT>\\dist\\index.js"],
+      "env": {
+        "SERPER_API_KEY": "${SERPER_API_KEY}"
+      },
+      "transport": "stdio",
+      "note": "Configure locally against the audited commit only. Never place a real key in this repository or a global MCP config."
+    }
+  }
+}

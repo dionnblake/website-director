@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/integrations/design-inspiration/normalized-result.schema.json",
+  "title": "Website Director normalized design inspiration reference",
+  "description": "A research-only candidate. It is evidence for synthesis and never a production asset or implementation specification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_platform",
+    "source_url",
+    "title",
+    "image_url",
+    "query",
+    "pattern_type",
+    "visual_notes",
+    "production_plausibility",
+    "reference_grade",
+    "why_selected",
+    "pattern_to_learn",
+    "what_not_to_copy",
+    "accessibility_risk",
+    "implementation_risk",
+    "copyright_boundary",
+    "retrieved_at",
+    "provider",
+    "upstream_commit"
+  ],
+  "properties": {
+    "source_platform": {
+      "type": "string",
+      "enum": ["Dribbble", "Behance", "Awwwards", "Mobbin", "Pinterest"]
+    },
+    "source_url": { "type": "string", "format": "uri" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 180 },
+    "image_url": { "type": ["string", "null"], "format": "uri" },
+    "query": { "type": "string", "minLength": 2, "maxLength": 200 },
+    "pattern_type": { "type": "string", "minLength": 1 },
+    "visual_notes": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 500 }
+    },
+    "production_plausibility": {
+      "type": ["string", "null"],
+      "enum": ["HIGH", "MEDIUM", "LOW", "UNASSESSED", null]
+    },
+    "reference_grade": {
+      "type": ["string", "null"],
+      "enum": ["A", "B", "C", "D", "UNASSESSED", null]
+    },
+    "why_selected": { "type": "string", "minLength": 1 },
+    "pattern_to_learn": { "type": "string", "minLength": 1 },
+    "what_not_to_copy": { "type": "string", "minLength": 1 },
+    "accessibility_risk": { "type": "string", "minLength": 1 },
+    "implementation_risk": { "type": "string", "minLength": 1 },
+    "copyright_boundary": { "const": "REFERENCE_ONLY" },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "provider": { "const": "design-inspiration-mcp-server" },
+    "upstream_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "interpretation_authority": { "type": "string" }
+  }
+}

@@ -3,7 +3,8 @@
 ## Purpose
 
 Own the deterministic Website Director self-validation library and its
-`python -m framework_validation` CLI.
+`python -m framework_validation` CLI, including registry-driven execution of
+the additive V2.11.1 adapter suite.
 
 ## Ownership
 
@@ -19,6 +20,9 @@ read-only mutation evidence. `__main__.py` owns the module entrypoint.
 - Never publish, deploy, push, merge, use credentials, perform network
   mutation, or mutate `projects/`.
 - Framework validation state stays outside `templates/site-profile.json`.
+- Adapter suites remain deterministic and are run only through the commands
+  registered in `schemas/test-suites.json`; framework validation itself makes
+  no live MCP or provider request.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
 
 ## Work Guidance

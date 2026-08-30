@@ -1,6 +1,6 @@
 # Framework Validation Review
 
-<!-- FRAMEWORK_VERSION: 2.11.0 -->
+<!-- FRAMEWORK_VERSION: 2.11.1 -->
 
 Use this record alongside the machine-generated
 `framework-validation/reports/runtime/framework-validation-report.json`.

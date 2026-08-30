@@ -1816,7 +1816,9 @@ def _check_mutation_evidence(ctx: ValidationContext, before_status: str, before_
 
 def _run_negative_controls(ctx: ValidationContext) -> None:
     scenarios: list[tuple[str, str, Callable[[], bool]]] = []
-    base_profile = {"schema_version": "2.11.0", "framework_version": "2.11.0", "project_name": "fixture", "locks": {name: False for name in CANONICAL_LOCKS}, "measurement": {"complete": False}}
+    current_version = str(ctx.metadata.get("framework_version"))
+    legacy_versions = set(ctx.metadata.get("legacy_schema_versions", []))
+    base_profile = {"schema_version": current_version, "framework_version": current_version, "project_name": "fixture", "locks": {name: False for name in CANONICAL_LOCKS}, "measurement": {"complete": False}}
 
     def sixth_lock() -> bool:
         bad = json.loads(json.dumps(base_profile))
@@ -1862,7 +1864,7 @@ def _run_negative_controls(ctx: ValidationContext) -> None:
     def obsolete_state() -> bool:
         bad = json.loads(json.dumps(base_profile))
         bad["cro"] = {"complete": False}
-        return "OBSOLETE_CURRENT_STATE" in [rule for rule, _ in _profile_error_records(bad, True, "2.11.0", {"2.10.0"})]
+        return "OBSOLETE_CURRENT_STATE" in [rule for rule, _ in _profile_error_records(bad, True, current_version, legacy_versions)]
 
     def missing_protocol() -> bool:
         bad = {"protocols": [{"id": "MISSING", "path": "__missing__.md", "status": "ACTIVE", "domain": "fixture", "phase": "0", "state_owner": "fixture"}]}

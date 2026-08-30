@@ -3,7 +3,8 @@
 ## Purpose
 
 Own the canonical machine-readable schema, registry, compatibility, and
-validation-manifest contracts for Website Director Capability 6.
+validation-manifest contracts for Website Director Capability 6 and the
+additive Capability 6.5 adapter registration.
 
 ## Ownership
 
@@ -16,6 +17,9 @@ validation-manifest contracts for Website Director Capability 6.
 - `test-suites.json` owns discoverable isolated test commands.
 - `validation-manifest.json` owns source roots and report destinations.
 - `framework-validation-report.schema.json` owns report shape.
+- The V2.11.1 integration registry entries point to the bounded design-
+  inspiration adapter without creating a new site-profile state, phase, gate,
+  or owner lock.
 
 ## Local Contracts
 

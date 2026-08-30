@@ -8,7 +8,9 @@ Website Director prototype and its framework validator.
 ## Ownership
 
 `site-profile.json` is the current V2.10-compatible site-profile fixture with
-the V2.11 framework version recorded explicitly.
+the V2.11.1 framework version recorded explicitly. `inspiration-board.md` and
+`research-synthesis.md` own the reference-evidence fields consumed by the
+bounded V2.11.1 Design Inspiration MCP adapter.
 `framework-validation-review.md` is the human review record template.
 
 ## Local Contracts
@@ -18,6 +20,9 @@ the V2.11 framework version recorded explicitly.
 - It must contain exactly the five approved owner locks.
 - Framework-validation status, reports, and release certification do not belong
   inside the site profile.
+- MCP-discovered references remain `REFERENCE_ONLY`; template fields must not
+  turn them into production assets, implementation tokens, or a new state
+  object.
 - Historical templates may be referenced by compatibility records but must not
   be silently regenerated or promoted to current.
 

@@ -1,7 +1,7 @@
 # REFERENCE RECON PROTOCOL: BOUNDED FORENSIC ANALYSIS
 
-> **Version:** 1.1.0
-> **Status:** Mandatory Operating Standard (V1.1 Extension)
+> **Version:** 1.2.0
+> **Status:** Mandatory Operating Standard (V1.1 Extension; V2.11.1 adapter additive)
 > **Rule:** Reconnaissance, never reconstruction. Default cloning behavior is explicitly disabled.
 
 ---
@@ -31,6 +31,13 @@ This distinction is enforced through a single operating mode:
 ## 2. `RESEARCH_ONLY_MODE`
 
 **Trigger:** Invoked only on the 2–3 deep-recon targets that survive progressive filtering (`RESEARCH-SOURCES.md` §6) — never on the full 10–15 candidate pool.
+
+MCP-discovered candidates must first pass the unified adapter's nomination
+boundary in `RESEARCH-SOURCES.md` §3.25. MCP search output is evidence for
+selection, not permission to begin recon. Every nominated target carries its
+platform, exact URL and query, retrieval timestamp, upstream commit, grade,
+selection reason, transferable pattern, non-copy boundary, production
+plausibility, accessibility risk, and implementation risk.
 
 ### Allowed
 - Screenshots (full page, key sections, key interaction states)

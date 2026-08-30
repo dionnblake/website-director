@@ -20,6 +20,7 @@
     ".hallmark",
     "schemas",
     "templates",
+    "integrations",
     "browser-qa/config",
     "tests"
   ],

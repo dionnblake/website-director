@@ -1,0 +1,1511 @@
+{
+  "base_branch": "codex/website-director-v2-11-lineage-repair",
+  "base_commit": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+  "base_version": "2.11.0",
+  "branch": "codex/website-director-v2-11-1-design-inspiration-mcp",
+  "category_status": {
+    "compatibility": "PASS",
+    "frozen_fixture_integrity": "PASS",
+    "invariants": "PASS",
+    "negative_controls": "PASS",
+    "references": "PASS",
+    "schema": "PASS",
+    "structural": "PASS",
+    "version": "PASS",
+    "versioned_test_suites": "PASS"
+  },
+  "change_impact": [
+    "CORE_GOVERNANCE",
+    "LAUNCH",
+    "PROTOCOL_ONLY"
+  ],
+  "checks": [
+    {
+      "category": "structural",
+      "detail": "canonical framework validation structure exists",
+      "rule_id": "FRAMEWORK_STRUCTURE",
+      "status": "PASS"
+    },
+    {
+      "category": "structural",
+      "detail": "framework-version.json is the only canonical framework version source",
+      "rule_id": "SINGLE_CANONICAL_VERSION_SOURCE",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "canonical framework version is '2.11.1'",
+      "rule_id": "CANONICAL_VERSION_SEMVER",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "framework-version.json must be marked as the current source of truth",
+      "rule_id": "CANONICAL_VERSION_AUTHORITY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "framework version '2.11.1' must increase from previous version '2.11.0'",
+      "rule_id": "VERSION_MONOTONICITY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "lineage base_version must match previous_version",
+      "rule_id": "LINEAGE_BASE_VERSION_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "README.md contains one consistent FRAMEWORK_VERSION marker",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "AGENTS.md contains one consistent FRAMEWORK_VERSION marker",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "SKILL.md contains one consistent FRAMEWORK_VERSION marker",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "FRAMEWORK-VALIDATION-PROTOCOL.md contains one consistent FRAMEWORK_VERSION marker",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "templates/site-profile.json version marker derives from canonical framework version",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "schemas/site-profile.schema.json version marker derives from canonical framework version",
+      "rule_id": "VERSION_DOCUMENT_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "AGENTS.md carries the canonical framework version marker",
+      "rule_id": "GOVERNANCE_VERSION_MARKER",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the version authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the deployment authorization marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the external side-effect boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the state ownership authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the browser-QA guard authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the accessibility boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the security/privacy boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the framework-state separation marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the current framework phase marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md records the current framework gate marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "AGENTS.md preserves exactly five canonical owner locks",
+      "rule_id": "GOVERNANCE_FIVE_LOCKS",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "SKILL.md carries the canonical framework version marker",
+      "rule_id": "GOVERNANCE_VERSION_MARKER",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the version authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the deployment authorization marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the external side-effect boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the state ownership authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the browser-QA guard authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the accessibility boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the security/privacy boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the framework-state separation marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the current framework phase marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md records the current framework gate marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "SKILL.md preserves exactly five canonical owner locks",
+      "rule_id": "GOVERNANCE_FIVE_LOCKS",
+      "status": "PASS"
+    },
+    {
+      "category": "version",
+      "detail": "README.md carries the canonical framework version marker",
+      "rule_id": "GOVERNANCE_VERSION_MARKER",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the version authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the deployment authorization marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the external side-effect boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the state ownership authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the browser-QA guard authority marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the accessibility boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the security/privacy boundary marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the framework-state separation marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the current framework phase marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md records the current framework gate marker",
+      "rule_id": "AGENTS_GOVERNANCE_CONSISTENCY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "README.md preserves exactly five canonical owner locks",
+      "rule_id": "GOVERNANCE_FIVE_LOCKS",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "detail": "validated 27 canonical JSON artifact(s)",
+      "rule_id": "JSON_ARTIFACT_VALIDITY",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "detail": "current site-profile schema declares the five-lock contract and framework version",
+      "rule_id": "SITE_PROFILE_SCHEMA_AUTHORITY",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "detail": "current templates/site-profile.json passes the current profile contract",
+      "rule_id": "CURRENT_SITE_PROFILE_VALID",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "detail": "historical schemas have explicit compatibility rules and self-validation remains external to site profiles",
+      "rule_id": "SCHEMA_COMPATIBILITY_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "protocol registry shape, statuses, domains, and compatibility pointers are valid",
+      "rule_id": "PROTOCOL_REGISTRY_VALID",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active protocol FRAMEWORK_VALIDATION resolves to a local file",
+      "rule_id": "CANONICAL_PROTOCOL_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active protocol WEBSITE_DIRECTOR_CORE resolves to a local file",
+      "rule_id": "CANONICAL_PROTOCOL_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active protocol DESIGN_INSPIRATION_ADAPTER resolves to a local file",
+      "rule_id": "CANONICAL_PROTOCOL_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "gate registry shape and five-lock classification are valid",
+      "rule_id": "GATE_REGISTRY_VALID",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "phase registry identities, ordering, and references are valid",
+      "rule_id": "PHASE_REGISTRY_VALID",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate FRAMEWORK_VALIDATION_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate FRAMEWORK_VALIDATION_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate STRUCTURAL_VALIDATION_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate STRUCTURAL_VALIDATION_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate SCHEMA_VALIDATION_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate SCHEMA_VALIDATION_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate REFERENCE_VALIDATION_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate REFERENCE_VALIDATION_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate INVARIANT_VALIDATION_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate INVARIANT_VALIDATION_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate BACKWARD_COMPATIBILITY_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate BACKWARD_COMPATIBILITY_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate VERSIONED_TEST_SUITES_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate VERSIONED_TEST_SUITES_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate FROZEN_FIXTURE_INTEGRITY_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate FROZEN_FIXTURE_INTEGRITY_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate NEGATIVE_CONTROLS_PASS points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate NEGATIVE_CONTROLS_PASS has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate DESIGN_DIRECTION_LOCKED points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate DESIGN_DIRECTION_LOCKED has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate INFORMATION_ARCHITECTURE_LOCKED points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate INFORMATION_ARCHITECTURE_LOCKED has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate CONTENT_STRUCTURE_LOCKED points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate CONTENT_STRUCTURE_LOCKED has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate DESIGN_SYSTEM_LOCKED points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate DESIGN_SYSTEM_LOCKED has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "active gate MOTION_DIRECTION_LOCKED points to a registered active state concept",
+      "rule_id": "GATE_STATE_REFERENCE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "active gate MOTION_DIRECTION_LOCKED has a resolvable owner artifact",
+      "rule_id": "ACTIVE_GATE_ARTIFACT_EXISTS",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "state concepts have one active owner and historical aliases are non-authoritative",
+      "rule_id": "STATE_OWNERSHIP_REGISTRY_VALID",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "canonical template references resolve",
+      "rule_id": "TEMPLATE_REFERENCE_INTEGRITY",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "no unregistered templates detected",
+      "rule_id": "ORPHAN_TEMPLATE",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "validated 154 internal Markdown reference(s)",
+      "rule_id": "MARKDOWN_REFERENCE_INTEGRITY",
+      "status": "PASS"
+    },
+    {
+      "category": "references",
+      "detail": "repository-relative Markdown references preserve path casing",
+      "rule_id": "MARKDOWN_REFERENCE_CASE",
+      "status": "PASS"
+    },
+    {
+      "category": "structural",
+      "detail": "compiled 22 framework Python source file(s) without writing bytecode",
+      "rule_id": "PYTHON_SYNTAX_VALIDATION",
+      "status": "PASS"
+    },
+    {
+      "category": "structural",
+      "detail": "framework_validation exposes a package import surface",
+      "rule_id": "PYTHON_IMPORT_SURFACE",
+      "status": "PASS"
+    },
+    {
+      "category": "structural",
+      "detail": "framework validation workflow passes the available YAML syntax check",
+      "rule_id": "CI_WORKFLOW_YAML",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "workflow jobs, permissions, commands, and triggers are safe and complete",
+      "rule_id": "CI_WORKFLOW_SELF_CHECK",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "detail": "frozen-project registry contains a non-empty historical inventory",
+      "rule_id": "FROZEN_PROJECT_COUNT_NONZERO",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "detail": "frozen-project inventory declares the protected projects root",
+      "rule_id": "FROZEN_PROJECT_REGISTRY",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "detail": "all registered frozen project paths are present",
+      "rule_id": "FROZEN_PROJECT_CORPUS_PRESENT",
+      "status": "PASS"
+    },
+    {
+      "category": "frozen_fixture_integrity",
+      "detail": "frozen-integrity guard captured a non-empty protected project corpus",
+      "rule_id": "PROTECTED_FILE_COUNT_NONZERO",
+      "status": "PASS"
+    },
+    {
+      "category": "frozen_fixture_integrity",
+      "detail": "V2.8 FrozenIntegrityGuard was loaded and snapshotted before suite execution",
+      "rule_id": "FROZEN_INTEGRITY_GUARD_AVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "core framework CI is required while extended browser CI remains explicit, optional, and unscheduled",
+      "rule_id": "TEST_TIER_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite framework_validation has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_client_handoff has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_5_1_signature_choreography has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_7_security_privacy has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_8_browser_regression_qa has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_9_accessibility has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_10_launch_operations has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite v2_11_design_inspiration_mcp has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner is discoverable",
+      "rule_id": "ACTIVE_TEST_SUITE_DISCOVERABLE",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner declares isolated test behavior",
+      "rule_id": "TEST_ISOLATION_POLICY",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "active suite examples_test_runner has no external side-effect command",
+      "rule_id": "TEST_SUITE_NO_EXTERNAL_SIDE_EFFECTS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite framework_validation completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_5_client_handoff completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_5_1_signature_choreography completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_7_security_privacy completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_8_browser_regression_qa completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_9_accessibility completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_10_launch_operations completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite v2_11_design_inspiration_mcp completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "versioned_test_suites",
+      "detail": "registered suite examples_test_runner completed",
+      "rule_id": "VERSIONED_TEST_SUITE_PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "structural",
+      "detail": "changed paths are classified without changing validation policy",
+      "rule_id": "CHANGE_IMPACT_CLASSIFICATION",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control sixth_owner_lock deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control duplicate_state_completion_flag deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control broken_template_reference deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control invalid_json deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control invalid_schema deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control malformed_semver deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control current_version_drift deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control frozen_fixture_mutation deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control invalid_state_transition deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control obsolete_current_state deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control missing_canonical_protocol deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control broken_protocol_pointer deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control malformed_registry deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_controls",
+      "detail": "negative control unsafe_ci_permissions deterministically produces a failure signal",
+      "rule_id": "NEGATIVE_CONTROL_PROVEN",
+      "status": "PASS"
+    },
+    {
+      "category": "frozen_fixture_integrity",
+      "detail": "FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged)",
+      "rule_id": "FROZEN_FIXTURE_INTEGRITY",
+      "status": "PASS"
+    },
+    {
+      "category": "invariants",
+      "detail": "framework validation did not mutate source outside designated report paths",
+      "rule_id": "MUTATION_EVIDENCE_READ_ONLY",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "detail": "development head and remote main are not aligned: REMOTE_MAIN_BEHIND_DEVELOPMENT",
+      "rule_id": "MAIN_DIVERGENCE_STATUS",
+      "status": "WARNING"
+    },
+    {
+      "category": "release_certification",
+      "detail": "release certification requires every mandatory framework validation category to pass",
+      "rule_id": "RELEASE_CERTIFICATION_REQUIREMENTS",
+      "status": "PASS"
+    }
+  ],
+  "checks_blocked": 0,
+  "checks_failed": 0,
+  "checks_info": 0,
+  "checks_passed": 209,
+  "checks_total": 210,
+  "checks_warning": 1,
+  "commit_sha": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+  "development_head": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+  "divergence_status": "REMOTE_MAIN_BEHIND_DEVELOPMENT",
+  "findings": [
+    {
+      "EXPECTED": "divergence is reported without merge",
+      "FILE": "git refs",
+      "LOCATION": "origin/main",
+      "MESSAGE": "development head and remote main are not aligned: REMOTE_MAIN_BEHIND_DEVELOPMENT",
+      "OBSERVED": {
+        "canonical_development_head": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+        "remote_main_head": "f2d5449c4d28b3cde1054837a786f385f4173d35",
+        "remote_main_ref": "origin/main",
+        "status": "REMOTE_MAIN_BEHIND_DEVELOPMENT"
+      },
+      "OWNER": "release-governance",
+      "RULE_ID": "MAIN_DIVERGENCE_STATUS",
+      "SEVERITY": "WARNING"
+    }
+  ],
+  "framework_status": "FRAMEWORK_VALIDATION_PASS",
+  "framework_version": "2.11.1",
+  "frozen_project_count": 17,
+  "frozen_registry_entries": 17,
+  "historical_profiles_checked": 16,
+  "identity": {
+    "branch": "codex/website-director-v2-11-1-design-inspiration-mcp",
+    "commit_sha": "3025e975c8206d019af7f3c89a3de8138ec9d0f3"
+  },
+  "main_divergence": {
+    "canonical_development_head": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+    "remote_main_head": "f2d5449c4d28b3cde1054837a786f385f4173d35",
+    "remote_main_ref": "origin/main",
+    "status": "REMOTE_MAIN_BEHIND_DEVELOPMENT"
+  },
+  "mutation_evidence": {
+    "expected_changed_files": [
+      "framework-validation/reports/2.11.1-certification.json",
+      "framework-validation/reports/runtime/framework-validation-report.json"
+    ],
+    "frozen_path_mutations": [],
+    "git_status_after": "M AGENTS.md\n M FRAMEWORK-VALIDATION-PROTOCOL.md\n M README.md\n M REFERENCE-RECON-PROTOCOL.md\n M RESEARCH-SOURCES.md\n M SKILL.md\n M VISUAL-RESEARCH-PROTOCOL.md\n M examples/test_runner.py\n M framework-version.json\n M framework_validation/AGENTS.md\n M framework_validation/validator.py\n M pyproject.toml\n M schemas/AGENTS.md\n M schemas/compatibility.json\n M schemas/protocols.json\n M schemas/site-profile.schema.json\n M schemas/test-suites.json\n M schemas/validation-manifest.json\n M templates/AGENTS.md\n M templates/framework-validation-review.md\n M templates/inspiration-board.md\n M templates/research-synthesis.md\n M templates/site-profile.json\n M tests/AGENTS.md\n M tests/test_v2_10_launch_operations.py\n M tests/test_v2_11_framework_validation.py\n?? framework-validation/reports/2.11.1-certification.json\n?? integrations/\n?? tests/test_v2_11_design_inspiration_mcp.py",
+    "git_status_before": "M AGENTS.md\n M FRAMEWORK-VALIDATION-PROTOCOL.md\n M README.md\n M REFERENCE-RECON-PROTOCOL.md\n M RESEARCH-SOURCES.md\n M SKILL.md\n M VISUAL-RESEARCH-PROTOCOL.md\n M examples/test_runner.py\n M framework-version.json\n M framework_validation/AGENTS.md\n M framework_validation/validator.py\n M pyproject.toml\n M schemas/AGENTS.md\n M schemas/compatibility.json\n M schemas/protocols.json\n M schemas/site-profile.schema.json\n M schemas/test-suites.json\n M schemas/validation-manifest.json\n M templates/AGENTS.md\n M templates/framework-validation-review.md\n M templates/inspiration-board.md\n M templates/research-synthesis.md\n M templates/site-profile.json\n M tests/AGENTS.md\n M tests/test_v2_10_launch_operations.py\n M tests/test_v2_11_framework_validation.py\n?? framework-validation/reports/2.11.1-certification.json\n?? integrations/\n?? tests/test_v2_11_design_inspiration_mcp.py",
+    "unexpected_changed_files": []
+  },
+  "negative_controls": [
+    {
+      "caught": true,
+      "expected_rule": "OWNER_LOCK_INVARIANT",
+      "scenario": "sixth_owner_lock"
+    },
+    {
+      "caught": true,
+      "expected_rule": "DUPLICATE_CANONICAL_COMPLETION_FLAG",
+      "scenario": "duplicate_state_completion_flag"
+    },
+    {
+      "caught": true,
+      "expected_rule": "BROKEN_TEMPLATE_REFERENCE",
+      "scenario": "broken_template_reference"
+    },
+    {
+      "caught": true,
+      "expected_rule": "INVALID_JSON_ARTIFACT",
+      "scenario": "invalid_json"
+    },
+    {
+      "caught": true,
+      "expected_rule": "CURRENT_PROFILE_FIELD_TYPE",
+      "scenario": "invalid_schema"
+    },
+    {
+      "caught": true,
+      "expected_rule": "CANONICAL_VERSION_SEMVER",
+      "scenario": "malformed_semver"
+    },
+    {
+      "caught": true,
+      "expected_rule": "VERSION_DOCUMENT_CONSISTENCY",
+      "scenario": "current_version_drift"
+    },
+    {
+      "caught": true,
+      "expected_rule": "FROZEN_FIXTURE_MUTATION",
+      "scenario": "frozen_fixture_mutation"
+    },
+    {
+      "caught": true,
+      "expected_rule": "INVALID_STATE_TRANSITION",
+      "scenario": "invalid_state_transition"
+    },
+    {
+      "caught": true,
+      "expected_rule": "OBSOLETE_CURRENT_STATE",
+      "scenario": "obsolete_current_state"
+    },
+    {
+      "caught": true,
+      "expected_rule": "CANONICAL_PROTOCOL_EXISTS",
+      "scenario": "missing_canonical_protocol"
+    },
+    {
+      "caught": true,
+      "expected_rule": "BROKEN_PROTOCOL_COMPATIBILITY_POINTER",
+      "scenario": "broken_protocol_pointer"
+    },
+    {
+      "caught": true,
+      "expected_rule": "PROTOCOL_REGISTRY_SHAPE",
+      "scenario": "malformed_registry"
+    },
+    {
+      "caught": true,
+      "expected_rule": "CI_READ_ONLY_PERMISSIONS",
+      "scenario": "unsafe_ci_permissions"
+    }
+  ],
+  "pre_existing_failures": [],
+  "protected_file_count": 465,
+  "release_certification": {
+    "artifact_generated_by": "framework_validation.validator",
+    "required_categories": {
+      "compatibility": "PASS",
+      "frozen_fixture_integrity": "PASS",
+      "invariants": "PASS",
+      "negative_controls": "PASS",
+      "references": "PASS",
+      "schema": "PASS",
+      "structural": "PASS",
+      "versioned_test_suites": "PASS"
+    },
+    "status": "PASS"
+  },
+  "remote_main_head": "f2d5449c4d28b3cde1054837a786f385f4173d35",
+  "status": "PASS",
+  "suite_runs": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "tests.test_v2_11_framework_validation"
+      ],
+      "id": "framework_validation",
+      "output_tail": ".................................\n----------------------------------------------------------------------\nRan 33 tests in 3.162s\n\nOK",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_5_client_handoff.py"
+      ],
+      "id": "v2_5_client_handoff",
+      "output_tail": " slug rejected\n[PASS] Unknown content field rejected\n[PASS] Safe edit of project summary succeeded\n[PASS] Draft content is not visible in public listing\n[PASS] Publishing draft succeeded\n[PASS] Published content appears in public listing\n[PASS] Archiving project succeeded\n[PASS] Archived record removed from public listing\n[PASS] Archived record preserved in content database\n[PASS] Slug change succeeded\n[PASS] Redirect registry recorded 301 redirect\n[PASS] Backup created with valid SHA-256\n[PASS] Restore executed successfully\n[PASS] RESTORE_HASH_MATCH == TRUE\n[PASS] Zero personal developer accounts recorded\n[PASS] Zero secret values in handoff documentation\n[PASS] Client independence test PASS\n[PASS] Bus factor test PASS\n[PASS] Handoff acceptance status is READY_FOR_REVIEW\n[PASS] Legacy pilot alpha-starts-now preserved without V2.5 mutations\n[PASS] Legacy pilot v1-9-visual-prototype-certification-pilot preserved without V2.5 mutations\n[PASS] Legacy pilot v2-0-asset-director-pilot preserved without V2.5 mutations\n[PASS] Legacy pilot v2-1-immersive-web-certification-pilot preserved without V2.5 mutations\n[PASS] Legacy pilot v2-2-rive-certification-pilot preserved without V2.5 mutations\n[PASS] Legacy pilot v2-3-page-experience-certification-pilot preserved without V2.5 mutations\n[PASS] Legacy pilot v2-4-cro-analytics-certification-pilot preserved without V2.5 mutations\n[PASS] NEGATIVE CONTROL: guard.verify() FAILS on a deliberate frozen-fixture mutation\n[PASS] NEGATIVE CONTROL: guard names the exact mutated file\n[PASS] NEGATIVE CONTROL: guard also flags the git working-tree change\n[PASS] NEGATIVE CONTROL: violation ledger was written\n[PASS] NEGATIVE CONTROL: restore-after-the-fact did not erase the recorded violation\n[PASS] FROZEN FIXTURE INTEGRITY: projects/ is byte-for-byte unchanged (FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged))\n------------------------------------------------------------\nV2.5 CLIENT CMS & HANDOFF TEST SUITE COMPLETE: 43/43 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_5_1_signature_choreography.py"
+      ],
+      "id": "v2_5_1_signature_choreography",
+      "output_tail": "[PASS] SIGNATURE-SCROLL-SPATIAL-CHOREOGRAPHY-LIBRARY.md exists\n[PASS] templates/signature-interaction-registry.json exists\n[PASS] Registry schema_version is 2.5.1\n[PASS] Pattern registry contains >= 18 patterns (actual: 18)\n[PASS] All pattern IDs are unique\n[PASS] All patterns have 100% required field compliance\n[PASS] Pilot site-profile.json exists\n[PASS] Pilot schema_version is 2.5.1\n[PASS] Exactly 5 owner locks in locks{}\n[PASS] No sixth signature owner lock created\n[PASS] Primary pattern is PINNED_HORIZONTAL_SCROLLYTELLING\n[PASS] Supporting pattern is SCROLL_DRIVEN_ASSEMBLY\n[PASS] Interaction level is 2_FEATURE\n[PASS] Mobile strategy is REFLOWED\n[PASS] index.html exists\n[PASS] Pinned scrollytelling container present in DOM\n[PASS] All 5 chapter panels present in DOM\n[PASS] Scroll-driven assembly container present in DOM\n[PASS] Vertical capabilities section follows scrollytelling\n[PASS] Mobile reflow CSS media query present\n[PASS] prefers-reduced-motion media query present\n[PASS] GSAP and ScrollTrigger properly invoked in JS\n[PASS] Reduced-motion bypassed inside JS\n[PASS] Evidence source-hashes.json ledger exists\n[PASS] Historical pilot alpha-starts-now unmutated by V2.5.1\n[PASS] Historical pilot v1-9-visual-prototype-certification-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-0-asset-director-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-1-immersive-web-certification-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-2-rive-certification-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-3-page-experience-certification-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-4-cro-analytics-certification-pilot unmutated by V2.5.1\n[PASS] Historical pilot v2-5-client-handoff-certification-pilot unmutated by V2.5.1\n------------------------------------------------------------\nV2.5.1 TEST SUITE RESULT: 32/32 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_7_security_privacy.py"
+      ],
+      "id": "v2_7_security_privacy",
+      "output_tail": "preserves its original lock count (5)\n[PASS] Pilot v1-1-luxury-hospitality-pilot site-profile.json is valid JSON\n[PASS] Pilot v1-1-luxury-hospitality-pilot preserves its original lock count (5)\n[PASS] Pilot v1-6-marine-chronometry-pilot site-profile.json is valid JSON\n[PASS] Pilot v1-6-marine-chronometry-pilot preserves its original lock count (5)\n[PASS] Pilot v1-9-visual-prototype-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v1-9-visual-prototype-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-0-asset-director-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-0-asset-director-pilot preserves its original lock count (5)\n[PASS] Pilot v2-1-immersive-web-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-1-immersive-web-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-2-rive-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-2-rive-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-3-page-experience-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-3-page-experience-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-4-cro-analytics-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-4-cro-analytics-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-5-1-signature-choreography-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-5-1-signature-choreography-certification-pilot preserves its original lock count (5)\n[PASS] Pilot v2-5-client-handoff-certification-pilot site-profile.json is valid JSON\n[PASS] Pilot v2-5-client-handoff-certification-pilot preserves its original lock count (5)\n[PASS] No frozen pilot was retrofitted with security_privacy{} (found: none)\n[PASS] All repository JSON parses (invalid: none)\n------------------------------------------------------------\nV2.7 SECURITY, PRIVACY & COMPLIANCE TEST SUITE RESULT: 117/117 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_8_browser_regression_qa.py"
+      ],
+      "id": "v2_8_browser_regression_qa",
+      "output_tail": "vacy_passed\": null,\n    \"reduced_motion_passed\": null,\n    \"keyboard_smoke_passed\": null,\n    \"visual_regression_status\": \"NOT_RUN\",\n    \"frozen_fixture_integrity\": \"PASS\",\n    \"flaky_tests\": [\n      \"fixture.flaky-probe @ j_flaky:1440 (recovered on retry 1)\"\n    ],\n    \"blocked_reason\": null,\n    \"implementation_verified\": false,\n    \"production_verified\": false,\n    \"exception\": {\n      \"applied\": false,\n      \"reason\": null\n    }\n  }\n}\n[PASS] J. First-run-fail / retry-pass recorded as FLAKY, not PASS ({'FLAKY': 1})\n[PASS] J. A FLAKY result does not produce a green (0) runner exit\n{\n  \"PASS\": 24\n}\n\nfrozen_fixture_integrity: PASS - FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged)\nevidence: C:\\Users\\ALPHA\\AppData\\Local\\Temp\\wd-v2_8-local-8u18_a1o\\ev\\bqa-20260830T053618Z.evidence.json\n\n--- proposed site-profile.json browser_qa{} (apply manually) ---\n{\n  \"browser_qa\": {\n    \"complete\": true,\n    \"engine\": \"simulation (non-browser adapter)\",\n    \"plan_ready\": true,\n    \"smoke_passed\": true,\n    \"responsive_passed\": true,\n    \"console_passed\": true,\n    \"network_passed\": true,\n    \"form_passed\": true,\n    \"measurement_passed\": true,\n    \"security_privacy_passed\": true,\n    \"reduced_motion_passed\": null,\n    \"keyboard_smoke_passed\": true,\n    \"visual_regression_status\": \"MATCH\",\n    \"frozen_fixture_integrity\": \"PASS\",\n    \"flaky_tests\": [],\n    \"blocked_reason\": null,\n    \"implementation_verified\": false,\n    \"production_verified\": false,\n    \"exception\": {\n      \"applied\": false,\n      \"reason\": null\n    }\n  }\n}\n[PASS] K. Run recorded as environment=local\n[PASS] K. Clean local run passes\n[PASS] L. Email address in analytics payload -> FAIL (got ['FAIL'])\n[PASS] Clean reference fixture yields zero FAIL/BLOCKED ([])\n[PASS] FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged))\n------------------------------------------------------------\nV2.8 BROWSER & REGRESSION QA TEST SUITE RESULT: 72/72 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_9_accessibility.py"
+      ],
+      "id": "v2_9_accessibility",
+      "output_tail": "y Critic preserved\n[PASS] Gauntlet adds no new accessibility critic for V2.9\n[PASS] README documents the V2.9 subsystem\n[PASS] AGENTS.md version >= 2.9.0\n[PASS] AGENTS.md adds V2.9 governance\n[PASS] No secret-shaped material in any V2.9 file\n[PASS] All repository JSON parses (invalid: none)\n[PASS] Clean accessibility fixture yields zero FAIL/BLOCKED ([])\n[PASS] A. Icon-only button with no accessible name -> FAIL\n[PASS] B. Text below target contrast -> FAIL\n[PASS] B. Contrast finding tagged DETERMINISTIC (Impeccable owns the math)\n[PASS] C. Dialog keyboard trap -> FAIL\n[PASS] D. Sticky header covers focused control -> FAIL\n[PASS] D'. Engine cannot establish focus-obscured -> BLOCKED (never silent PASS)\n[PASS] E. Form control with no label -> FAIL\n[PASS] F. Form error not programmatically associated -> FAIL\n[PASS] G. Reduced-motion content trap -> FAIL (via V2.8 \ufffd15 integration)\n[PASS] H. 320px reflow makes the primary CTA unreachable -> FAIL\n[PASS] I. Text-spacing override clips content -> FAIL\n[PASS] J. Tiny adjacent targets -> FAIL against the project minimum\n[PASS] J'. Control below the WCAG 24px floor -> FAIL\n[PASS] K. Colour-only error state -> FAIL\n[PASS] L. Dialog with correct name/focus/Escape/return -> PASS\n[PASS] M. Decorative image handled correctly -> PASS ([])\n[PASS] N. Meaningful image missing alt -> FAIL\n[PASS] O. Screen-reader environment unavailable -> BLOCKED (never PASS)\n[PASS] P. Engine reports zero violations -> engine check PASS\n[PASS] P. ...but the manual keyboard review FAILs -> overall accessibility verification is NOT a full PASS\n[PASS] Q. Exactly the five canonical owner locks, no sixth\n[PASS] R. Frozen pilot mutation -> integrity guard FAIL\n[PASS] R. Guard names the mutated frozen file\n[PASS] FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged))\n------------------------------------------------------------\nV2.9 ACCESSIBILITY INTELLIGENCE TEST SUITE RESULT: 80/80 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_10_launch_operations.py"
+      ],
+      "id": "v2_10_launch_operations",
+      "output_tail": "e -> release readiness PASS\n[PASS] A. deployed = false\n[PASS] A. production_verified unreachable -- no deployment authorization yet -> BLOCKED\n[PASS] B. Deployment inferred from QA / Gauntlet pass -> FAIL\n[PASS] B'. deployment_authorized=true with no reference / durable policy -> FAIL\n[PASS] B''. Explicit per-release owner authorization reference -> PASS\n[PASS] C. deployed_sha != release_sha -> FAIL\n[PASS] C'. Unprovable deployed identity -> BLOCKED (never assumed)\n[PASS] D. HTTPS failure -> FAIL\n[PASS] E. HTTP -> HTTPS redirect correct -> PASS\n[PASS] F. Staging noindex on production -> SEO launch FAIL\n[PASS] G. Canonical points to localhost -> FAIL\n[PASS] H. Analytics missing in production -> measurement FAIL\n[PASS] I. Duplicate conversion event -> FAIL\n[PASS] J. Analytics fires before consent -> FAIL\n[PASS] K. Misconfigured form endpoint -> FAIL without a real submission\n[PASS] K'. Real production submission without production-test authorization -> FAIL\n[PASS] L. Critical asset missing -> FAIL\n[PASS] M. Perfect staging pass -> production_verified = false\n[PASS] M'. Staging manifest flagged not-production\n[PASS] N. Rollback plan absent (required) -> release readiness FAIL\n[PASS] N'. launch.rollback_ready is the failing check\n[PASS] N''. Rollback genuinely not required -> NOT_APPLICABLE, gate not blocked\n[PASS] O. SEV0 incident -> ROLLBACK_REQUIRED\n[PASS] O'. Cosmetic discrepancy is below the rollback threshold -- triage, not rollback\n[PASS] P. Browser QA evidence tagged environment=local inside a production manifest -> FAIL\n[PASS] Q. Exactly the five canonical owner locks, no launch/deploy/rollback lock\n[PASS] R. Frozen pilot mutation -> integrity guard FAIL\n[PASS] R. Guard names the mutated frozen file\n[PASS] FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged))\n------------------------------------------------------------\nV2.10 LAUNCH & POST-LAUNCH OPERATIONS TEST SUITE RESULT: 100/100 ASSERTIONS PASSED",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tests/test_v2_11_design_inspiration_mcp.py"
+      ],
+      "id": "v2_11_design_inspiration_mcp",
+      "output_tail": "_and_not_a_production_asset) ... ok\ntest_i_generic_query_is_rejected (__main__.DesignInspirationMCPTests.test_i_generic_query_is_rejected) ... ok\ntest_j_specific_query_is_accepted_and_context_generates_specific_query (__main__.DesignInspirationMCPTests.test_j_specific_query_is_accepted_and_context_generates_specific_query) ... ok\ntest_k_high_craft_low_utility_is_dribbble_fantasy_d (__main__.DesignInspirationMCPTests.test_k_high_craft_low_utility_is_dribbble_fantasy_d) ... ok\ntest_l_realistic_references_can_be_a_or_b (__main__.DesignInspirationMCPTests.test_l_realistic_references_can_be_a_or_b) ... ok\ntest_m_exact_copy_request_is_refused (__main__.DesignInspirationMCPTests.test_m_exact_copy_request_is_refused) ... ok\ntest_n_token_extraction_is_blocked_but_search_is_unaffected (__main__.DesignInspirationMCPTests.test_n_token_extraction_is_blocked_but_search_is_unaffected) ... ok\ntest_o_secret_query_is_rejected_and_not_echoed (__main__.DesignInspirationMCPTests.test_o_secret_query_is_rejected_and_not_echoed) ... ok\ntest_p_unpinned_upstream_fails_closed (__main__.DesignInspirationMCPTests.test_p_unpinned_upstream_fails_closed) ... ok\ntest_q_existing_validator_rejects_a_sixth_owner_lock (__main__.DesignInspirationMCPTests.test_q_existing_validator_rejects_a_sixth_owner_lock) ... ok\ntest_r_frozen_integrity_guard_detects_mutation (__main__.DesignInspirationMCPTests.test_r_frozen_integrity_guard_detects_mutation) ... ok\ntest_registered_tools_are_search_only_and_adapter_has_no_io_imports (__main__.DesignInspirationMCPTests.test_registered_tools_are_search_only_and_adapter_has_no_io_imports) ... ok\ntest_search_budget_is_bounded_by_stage (__main__.DesignInspirationMCPTests.test_search_budget_is_bounded_by_stage) ... ok\ntest_upstream_pin_record_and_platform_contract_are_complete (__main__.DesignInspirationMCPTests.test_upstream_pin_record_and_platform_contract_are_complete) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 0.115s\n\nOK",
+      "return_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "examples/test_runner.py"
+      ],
+      "id": "examples_test_runner",
+      "output_tail": "arses as JSON with valid enums.\n[PASS] E. Artifact Truth verified: all 12 physical PNG files exist, dimensions match headers, measured sizes match manifest.\n[PASS] F. Master/Web directory separation enforced.\n[PASS] G. Prototype Boundary verified: placeholders locked to PROTOTYPE_ONLY.\n[PASS] H. Legal & Provenance Boundary verified.\n[PASS] I. Lock invariants verified across 16 profiles (lock counts: [4, 5]; no 6th lock). Grandfathered cro{} profiles left untouched: ['v2-4-cro-analytics-certification-pilot', 'v2-5-client-handoff-certification-pilot'].\n[PASS] J. Historical Pilot Integrity verified (0 historical pilots modified).\n[PASS] K. Asset Readiness Decision Engine verified across all 5 synthetic cases (A-E).\n[PASS] L. Immersive Web Protocol & Templates verified.\n[PASS] M. AETHEL Pilot site-profile.json state & 5-lock invariant verified.\n[PASS] N. AETHEL WebGL application (ES Module, Three.js v0.185.1/r185), semantic DOM, fallback, and all 5 real-render screenshots verified.\n[PASS] O. Rive Interactive Motion Protocol, KINETIX Pilot state, bumpy state machine, bump trigger input, pristine runtime SHA-256 match, and 5 real browser screenshots verified.\n[PASS] P. Page Experience Protocol, ATLAS FORM Pilot routes, View Transitions, scroll/anchor/history, 5-lock invariant verified.\n[PASS] Q. Grandfathered V2.4 NORTHSTAR pilot verified as-is (schema 2.4.0, cro{} instrumentation_ready, event manifest, node PII/unknown-event simulation, screenshots); V2.4 semantics preserved in the canonical protocol.\n[PASS] R. Negative control: sixth-lock profiles and unknown schema versions are rejected.\n\nALL 18/18 DETERMINISTIC ASSERTION GROUPS COMPLETED SUCCESSFULLY!\n[Analytics Rejected] Unknown event name: \"random_click_button_123\"\n[Analytics Rejected] PII Field detected: \"email\" in event \"consultation_start\"\n[Analytics Rejected] PII Field detected: \"phone\" in event \"consultation_submit_success\"\n[Analytics Rejected] PII Field detected: \"message_body\" in event \"form_validation_error\"",
+      "return_code": 0
+    }
+  ],
+  "timestamp": "2026-08-30T05:36:22.274585Z"
+}

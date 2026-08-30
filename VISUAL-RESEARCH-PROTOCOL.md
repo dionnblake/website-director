@@ -1,7 +1,7 @@
 # VISUAL RESEARCH PROTOCOL: THE VISUAL RESEARCH DIRECTOR ROLE
 
-> **Version:** 1.1.0
-> **Status:** Mandatory Operating Standard (V1.1 Extension)
+> **Version:** 1.2.0
+> **Status:** Mandatory Operating Standard (V1.1 Extension; V2.11.1 adapter additive)
 > **Rule:** See, investigate, compare, deconstruct, synthesize — then hand off. Never design, never build, never clone.
 
 ---
@@ -30,7 +30,7 @@ Under Website Director V1.8, Phase 3 Visual Research must NEVER execute before `
 | It DOES | It DOES NOT |
 | :--- | :--- |
 | Research industry, competitor, and cross-industry references | Build the website |
-| Discover candidates via Landbook | Select final design unilaterally |
+| Discover candidates via Landbook and the unified Design Inspiration MCP | Select final design unilaterally |
 | Run bounded deep reconnaissance on shortlisted references | Copy websites |
 | Extract and document transferable principles | Lock `DESIGN_DIRECTION_LOCKED` |
 | Produce `research-synthesis.md` with explicit recommendations | Implement components |
@@ -52,7 +52,7 @@ Website Director reads the synthesis, weighs it against `DESIGN-ARCHETYPES.md` a
 │   10–15 real competitors/peers, per RESEARCH-SOURCES.md §2 │
 │   → templates/competitor-landscape.md                      │
 ├──────────────────────────────────────────────────────────┤
-│ STEP 3: LANDBOOK + AWWWARDS SHOWCASE + CROSS-INDUSTRY   │
+│ STEP 3: LANDBOOK + MCP + AWWWARDS SHOWCASE + CROSS-INDUSTRY │
 │   Candidate references organized by design purpose       │
 │   (Awwwards required for SHOWCASE per AWWWARDS protocol) │
 │   → templates/inspiration-board.md                       │
@@ -85,6 +85,34 @@ Website Director reads the synthesis, weighs it against `DESIGN-ARCHETYPES.md` a
 
 `research-synthesis.md` is the hand-off artifact. It must populate `templates/reference-analysis.md`'s 12-vector matrix (if the client's direction ultimately draws on specific references) or inform archetype/blend selection in `DESIGN-ARCHETYPES.md` (if it does not) — it does not create a third, parallel design-selection path.
 
+### 3.1 Unified Design Inspiration MCP Discovery (V2.11.1)
+
+`integrations/design-inspiration/` is an optional, replaceable discovery
+transport for the three audited search tools. It formally recognizes
+Dribbble, Behance, Awwwards, Mobbin, and Pinterest through one adapter. It
+does not replace Industry Landscape, Landbook, Cross-Industry, Awwwards, or
+JCodesMore research, and it never becomes the design authority.
+
+Use it only after the project brief, positioning, audience, emotional posture,
+design ambition, and research question are sufficiently specific. Generic
+queries are rejected or rewritten from that context. The bounded budget is
+8 (maximum 12) initial candidates, 3 (maximum 6) shortlisted references, and
+1–3 deep targets. Candidates are deduplicated by canonical source URL and must
+carry platform, URL, query, timestamp, upstream commit, selection rationale,
+pattern learned, what not to copy, production plausibility, accessibility
+risk, implementation risk, and `REFERENCE_ONLY` boundary.
+
+`SERPER_API_KEY` is environment-only. Missing credentials produce
+`BLOCKED_CREDENTIAL_MISSING`; they do not produce a pass or fabricated
+evidence. The upstream `design_extract_tokens` tool is disabled by default.
+No MCP image URL is downloaded or promoted to a production asset.
+
+The governing transformation remains:
+
+`MCP evidence → transferable pattern → client-specific reason → original synthesis`
+
+**RESEARCH PATTERNS, DO NOT CLONE COMPOSITIONS.**
+
 ---
 
 ## 4. `RESEARCH_COMPLETE` — A Readiness Gate, Not a Design Lock
@@ -93,12 +121,12 @@ Website Director reads the synthesis, weighs it against `DESIGN-ARCHETYPES.md` a
 
 **Required for `research.complete: true`:**
 - `templates/competitor-landscape.md` populated (industry landscape research exists).
-- `templates/inspiration-board.md` populated (Landbook + cross-industry discovery exists).
+- `templates/inspiration-board.md` populated (Landbook + cross-industry discovery exists; any MCP candidates are recorded as evidence).
 - Deep reconnaissance completed on the identified 2–3 targets where the shortlist warranted it (`reference-deconstruction.md` populated, or explicitly noted as "no target warranted deep recon").
 - `templates/research-synthesis.md` populated, including its Originality Check section.
 - Source provenance recorded per `RESEARCH-SOURCES.md` §7 for every reference cited.
 
-**`research.mode` values:** `"full"` (all four channels run), `"bounded"` (scoped down for project size, see §5), `"exception"` (skipped, see §5).
+**`research.mode` values:** `"full"` (all applicable channels run), `"bounded"` (scoped down for project size, see §5), `"exception"` (skipped, see §5). The optional MCP transport is recorded as available, blocked, disabled, or unused in research evidence, not as a new site-profile state.
 
 ---
 

@@ -1,14 +1,14 @@
 {
-  "version": "2.11.0",
-  "schema_version": "2.11.0",
-  "previous_version": "2.10.0",
-  "release_type": "minor",
+  "version": "2.11.1",
+  "schema_version": "2.11.1",
+  "previous_version": "2.11.0",
+  "release_type": "patch",
   "status": "CURRENT",
   "source_of_truth": true,
   "lineage": {
-    "base_branch": "origin/feat/v2-10-launch-post-launch-operations",
-    "base_commit": "575e6b7adb8623b4f8d4a7f160bd4a8c8eb5d518",
-    "base_version": "2.10.0",
-    "current_checkout_note": "The corrected checkout retains the certified V2.10 framework and frozen project corpus, then adds the additive Capability 6 self-validation layer."
+    "base_branch": "codex/website-director-v2-11-lineage-repair",
+    "base_commit": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
+    "base_version": "2.11.0",
+    "current_checkout_note": "The corrected V2.11 checkout retains the certified framework and frozen project corpus, then adds the bounded Capability 6.5 Design Inspiration MCP adapter without Capability 7."
   }
 }
