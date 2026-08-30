@@ -1,0 +1,36 @@
+{
+  "registry_version": "1.0.0",
+  "protected_paths": ["projects/"],
+  "guard": "browser-qa/guards/frozen_integrity_guard.py",
+  "status": "HISTORICAL_LINEAGE_INVENTORY",
+  "projects": [
+    { "path": "projects/alpha-starts-now", "release": "V1 baseline", "status": "HISTORICAL_FROZEN", "expected_role": "original pilot evidence" },
+    { "path": "projects/alpha-starts-now-v1-1", "release": "V1.1", "status": "HISTORICAL_FROZEN", "expected_role": "production redesign pilot" },
+    { "path": "projects/alpha-starts-now-v1-6-flagship", "release": "V1.6", "status": "HISTORICAL_FROZEN", "expected_role": "flagship pilot" },
+    { "path": "projects/alpha-starts-now-flagship-proof", "release": "V1.6", "status": "HISTORICAL_FROZEN", "expected_role": "flagship proof evidence" },
+    { "path": "projects/alpha-starts-now-clean-room", "release": "V1.6", "status": "HISTORICAL_FROZEN", "expected_role": "clean-room creative pilot" },
+    { "path": "projects/v1-1-architecture-pilot", "release": "V1.1", "status": "HISTORICAL_FROZEN", "expected_role": "architecture pilot" },
+    { "path": "projects/v1-1-automotive-restomod-pilot", "release": "V1.1", "status": "HISTORICAL_FROZEN", "expected_role": "automotive pilot" },
+    { "path": "projects/v1-1-luxury-hospitality-pilot", "release": "V1.1", "status": "HISTORICAL_FROZEN", "expected_role": "hospitality pilot" },
+    { "path": "projects/v1-6-marine-chronometry-pilot", "release": "V1.6", "status": "HISTORICAL_FROZEN", "expected_role": "marine chronometry pilot" },
+    { "path": "projects/v1-9-visual-prototype-certification-pilot", "release": "V1.9", "status": "HISTORICAL_FROZEN", "expected_role": "visual prototype evidence" },
+    { "path": "projects/v2-0-asset-director-pilot", "release": "V2.0", "status": "HISTORICAL_FROZEN", "expected_role": "asset director evidence" },
+    { "path": "projects/v2-1-immersive-web-certification-pilot", "release": "V2.1", "status": "HISTORICAL_FROZEN", "expected_role": "immersive web evidence" },
+    { "path": "projects/v2-2-rive-certification-pilot", "release": "V2.2", "status": "HISTORICAL_FROZEN", "expected_role": "Rive evidence" },
+    { "path": "projects/v2-3-page-experience-certification-pilot", "release": "V2.3", "status": "HISTORICAL_FROZEN", "expected_role": "transition evidence" },
+    { "path": "projects/v2-4-cro-analytics-certification-pilot", "release": "V2.4", "status": "HISTORICAL_FROZEN", "expected_role": "grandfathered CRO evidence" },
+    { "path": "projects/v2-5-client-handoff-certification-pilot", "release": "V2.5", "status": "HISTORICAL_FROZEN", "expected_role": "client handoff evidence" },
+    { "path": "projects/v2-5-1-signature-choreography-certification-pilot", "release": "V2.5.1", "status": "HISTORICAL_FROZEN", "expected_role": "signature choreography evidence" }
+  ],
+  "policy": {
+    "missing_from_current_overlay_is_warning": false,
+    "hashes_required": false,
+    "mutation_is_hard_failure": true,
+    "restore_after_mutation_is_still_failure": true
+  },
+  "inventory": {
+    "project_count": 17,
+    "protected_file_count": 465,
+    "source": "certified V2.10 checkout inventory"
+  }
+}

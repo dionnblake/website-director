@@ -1,0 +1,284 @@
+{
+  "registry_version": "1.0.0",
+  "gates": [
+    {
+      "name": "FRAMEWORK_VALIDATION_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.status",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "STRUCTURAL_VALIDATION_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.structural",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "SCHEMA_VALIDATION_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.schema",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "REFERENCE_VALIDATION_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.references",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "INVARIANT_VALIDATION_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.invariants",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "BACKWARD_COMPATIBILITY_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.compatibility",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "VERSIONED_TEST_SUITES_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.versioned_test_suites",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "FROZEN_FIXTURE_INTEGRITY_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.frozen_fixture_integrity",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "NEGATIVE_CONTROLS_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "framework_validation.categories.negative_controls",
+      "phase": "0",
+      "owner_protocol": "FRAMEWORK_VALIDATION",
+      "owner_artifact": "framework-validation/reports/runtime/framework-validation-report.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "DESIGN_DIRECTION_LOCKED",
+      "type": "OWNER_LOCK",
+      "authoritative_state": "locks.design_direction_locked",
+      "phase": "4",
+      "owner_protocol": "WEBSITE_DIRECTOR_CORE",
+      "owner_artifact": "templates/site-profile.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "INFORMATION_ARCHITECTURE_LOCKED",
+      "type": "OWNER_LOCK",
+      "authoritative_state": "locks.information_architecture_locked",
+      "phase": "5",
+      "owner_protocol": "WEBSITE_DIRECTOR_CORE",
+      "owner_artifact": "templates/site-profile.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "CONTENT_STRUCTURE_LOCKED",
+      "type": "OWNER_LOCK",
+      "authoritative_state": "locks.content_structure_locked",
+      "phase": "6",
+      "owner_protocol": "WEBSITE_DIRECTOR_CORE",
+      "owner_artifact": "templates/site-profile.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "DESIGN_SYSTEM_LOCKED",
+      "type": "OWNER_LOCK",
+      "authoritative_state": "locks.design_system_locked",
+      "phase": "7",
+      "owner_protocol": "WEBSITE_DIRECTOR_CORE",
+      "owner_artifact": "templates/site-profile.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "MOTION_DIRECTION_LOCKED",
+      "type": "OWNER_LOCK",
+      "authoritative_state": "locks.motion_direction_locked",
+      "phase": "8",
+      "owner_protocol": "WEBSITE_DIRECTOR_CORE",
+      "owner_artifact": "templates/site-profile.json",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "CREATIVE_INTENT_CONFIRMED",
+      "type": "READINESS",
+      "authoritative_state": "creative_intent.confirmed",
+      "phase": "1",
+      "owner_protocol": "DISCOVERY",
+      "owner_artifact": "templates/creative-intent-contract.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "SEO_COMPLETE",
+      "type": "READINESS",
+      "authoritative_state": "seo.complete",
+      "phase": "2.5",
+      "owner_protocol": "SEO_INTELLIGENCE",
+      "owner_artifact": "templates/seo-content-briefs.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "RESEARCH_COMPLETE",
+      "type": "READINESS",
+      "authoritative_state": "research.complete",
+      "phase": "3",
+      "owner_protocol": "VISUAL_RESEARCH",
+      "owner_artifact": "templates/research-synthesis.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "DESIGN_INTELLIGENCE_COMPLETE",
+      "type": "READINESS",
+      "authoritative_state": "design_intelligence.complete",
+      "phase": "3.5",
+      "owner_protocol": "DESIGN_INTELLIGENCE",
+      "owner_artifact": "templates/design-intelligence.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "VISUAL_PROTOTYPES_OWNER_READY",
+      "type": "READINESS",
+      "authoritative_state": "visual_prototypes.owner_selection_confirmed",
+      "phase": "4.5",
+      "owner_protocol": "VISUAL_PROTOTYPE",
+      "owner_artifact": "templates/visual-prototype-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "CONVERSION_MEASUREMENT_COMPLETE",
+      "type": "READINESS",
+      "authoritative_state": "measurement.complete",
+      "phase": "6.5",
+      "owner_protocol": "CONVERSION_ANALYTICS",
+      "owner_artifact": "templates/measurement-plan.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "SECURITY_PRIVACY_READY",
+      "type": "READINESS",
+      "authoritative_state": "security_privacy.complete",
+      "phase": "6.75",
+      "owner_protocol": "SECURITY_PRIVACY",
+      "owner_artifact": "templates/security-privacy-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "ACCESSIBILITY_READY",
+      "type": "READINESS",
+      "authoritative_state": "accessibility.complete",
+      "phase": "6.9",
+      "owner_protocol": "ACCESSIBILITY",
+      "owner_artifact": "templates/accessibility-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "ASSET_DIRECTION_READY",
+      "type": "READINESS",
+      "authoritative_state": "asset_direction.complete",
+      "phase": "8.5",
+      "owner_protocol": "ASSET_DIRECTOR",
+      "owner_artifact": "templates/asset-direction-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "IMMERSIVE_IMPLEMENTATION_READY",
+      "type": "READINESS",
+      "authoritative_state": "immersive_web.implementation_ready",
+      "phase": "8.75",
+      "owner_protocol": "IMMERSIVE_WEB",
+      "owner_artifact": "templates/immersive-web-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "RIVE_IMPLEMENTATION_READY",
+      "type": "READINESS",
+      "authoritative_state": "rive.implementation_ready",
+      "phase": "8.85",
+      "owner_protocol": "RIVE",
+      "owner_artifact": "templates/rive-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "TRANSITION_READY",
+      "type": "READINESS",
+      "authoritative_state": "page_experience.transition_ready",
+      "phase": "8.95",
+      "owner_protocol": "PAGE_EXPERIENCE",
+      "owner_artifact": "templates/page-experience-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "CRO_MEASUREMENT_READY",
+      "type": "READINESS",
+      "authoritative_state": "cro.measurement_ready",
+      "phase": "8.97",
+      "owner_protocol": "CRO_ANALYTICS",
+      "owner_artifact": "templates/cro-analytics-review.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "BROWSER_QA_PASS",
+      "type": "VERIFICATION",
+      "authoritative_state": "browser_qa.complete",
+      "phase": "10.5",
+      "owner_protocol": "BROWSER_QA",
+      "owner_artifact": "templates/browser-qa-plan.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "GAUNTLET_PASS",
+      "type": "REFINEMENT",
+      "authoritative_state": "gauntlet.status",
+      "phase": "11.5",
+      "owner_protocol": "GAUNTLET",
+      "owner_artifact": "templates/website-gauntlet-report.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "RELEASE_READY",
+      "type": "READINESS",
+      "authoritative_state": "launch_ops.complete",
+      "phase": "12.25",
+      "owner_protocol": "LAUNCH_OPERATIONS",
+      "owner_artifact": "templates/launch-plan.md",
+      "status": "HISTORICAL"
+    },
+    {
+      "name": "CLIENT_HANDOFF_READY",
+      "type": "READINESS",
+      "authoritative_state": "handoff.status",
+      "phase": "12.5",
+      "owner_protocol": "CLIENT_CMS_HANDOFF",
+      "owner_artifact": "templates/launch-plan.md",
+      "status": "HISTORICAL"
+    }
+  ]
+}

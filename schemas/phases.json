@@ -1,0 +1,237 @@
+{
+  "registry_version": "1.0.0",
+  "phases": [
+    {
+      "phase": "0",
+      "name": "Framework Self-Validation",
+      "protocol": "FRAMEWORK_VALIDATION",
+      "gate": "FRAMEWORK_VALIDATION_PASS",
+      "preconditions": [],
+      "status": "ACTIVE"
+    },
+    {
+      "phase": "1",
+      "name": "Creative Briefing and Progressive Discovery",
+      "protocol": "DISCOVERY",
+      "gate": "CREATIVE_INTENT_CONFIRMED",
+      "preconditions": [],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "2",
+      "name": "Positioning and Boundary Mapping",
+      "protocol": "WEBSITE_DIRECTOR_CORE",
+      "gate": null,
+      "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "2.5",
+      "name": "SEO Intelligence",
+      "protocol": "SEO_INTELLIGENCE",
+      "gate": "SEO_COMPLETE",
+      "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "3",
+      "name": "Visual Research",
+      "protocol": "VISUAL_RESEARCH",
+      "gate": "RESEARCH_COMPLETE",
+      "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "3.5",
+      "name": "Design Intelligence",
+      "protocol": "DESIGN_INTELLIGENCE",
+      "gate": "DESIGN_INTELLIGENCE_COMPLETE",
+      "preconditions": ["RESEARCH_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "3.75",
+      "name": "Showcase Benchmarking",
+      "protocol": "AWWWARDS_SHOWCASE",
+      "gate": null,
+      "preconditions": ["RESEARCH_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "4",
+      "name": "Visual Direction Formulation",
+      "protocol": "VISUAL_DIRECTION",
+      "gate": "DESIGN_DIRECTION_LOCKED",
+      "preconditions": ["DESIGN_INTELLIGENCE_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "4.5",
+      "name": "High-Fidelity Visual Prototypes",
+      "protocol": "VISUAL_PROTOTYPE",
+      "gate": "VISUAL_PROTOTYPES_OWNER_READY",
+      "preconditions": ["DESIGN_INTELLIGENCE_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "5",
+      "name": "Information Architecture",
+      "protocol": "INFORMATION_ARCHITECTURE",
+      "gate": "INFORMATION_ARCHITECTURE_LOCKED",
+      "preconditions": ["DESIGN_DIRECTION_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "6",
+      "name": "Content Structure",
+      "protocol": "CONTENT_STRUCTURE",
+      "gate": "CONTENT_STRUCTURE_LOCKED",
+      "preconditions": ["INFORMATION_ARCHITECTURE_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "6.5",
+      "name": "Conversion and Analytics Intelligence",
+      "protocol": "CONVERSION_ANALYTICS",
+      "gate": "CONVERSION_MEASUREMENT_COMPLETE",
+      "preconditions": ["CONTENT_STRUCTURE_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "6.75",
+      "name": "Security, Privacy and Compliance Intelligence",
+      "protocol": "SECURITY_PRIVACY",
+      "gate": "SECURITY_PRIVACY_READY",
+      "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "6.9",
+      "name": "Accessibility Intelligence",
+      "protocol": "ACCESSIBILITY",
+      "gate": "ACCESSIBILITY_READY",
+      "preconditions": ["SECURITY_PRIVACY_READY"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "7",
+      "name": "Design System Token Architecture",
+      "protocol": "DESIGN_SYSTEM",
+      "gate": "DESIGN_SYSTEM_LOCKED",
+      "preconditions": ["ACCESSIBILITY_READY"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8",
+      "name": "Motion Direction",
+      "protocol": "MOTION_DIRECTION",
+      "gate": "MOTION_DIRECTION_LOCKED",
+      "preconditions": ["DESIGN_SYSTEM_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8.5",
+      "name": "Asset Director",
+      "protocol": "ASSET_DIRECTOR",
+      "gate": "ASSET_DIRECTION_READY",
+      "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8.75",
+      "name": "Immersive Web Specialist",
+      "protocol": "IMMERSIVE_WEB",
+      "gate": "IMMERSIVE_IMPLEMENTATION_READY",
+      "preconditions": ["ASSET_DIRECTION_READY"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8.85",
+      "name": "Rive Interactive Motion Specialist",
+      "protocol": "RIVE",
+      "gate": "RIVE_IMPLEMENTATION_READY",
+      "preconditions": ["ASSET_DIRECTION_READY"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8.95",
+      "name": "Page Experience and Transition Specialist",
+      "protocol": "PAGE_EXPERIENCE",
+      "gate": "TRANSITION_READY",
+      "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "8.97",
+      "name": "CRO Analytics Compatibility Layer",
+      "protocol": "CRO_ANALYTICS",
+      "gate": "CRO_MEASUREMENT_READY",
+      "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "9",
+      "name": "Implementation Contract",
+      "protocol": "IMPLEMENTATION_CONTRACT",
+      "gate": null,
+      "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "10",
+      "name": "Build Execution",
+      "protocol": "IMPLEMENTATION_CONTRACT",
+      "gate": null,
+      "preconditions": ["IMPLEMENTATION_CONTRACT"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "10.5",
+      "name": "Automated Browser and Regression QA",
+      "protocol": "BROWSER_QA",
+      "gate": "BROWSER_QA_PASS",
+      "preconditions": ["IMPLEMENTATION_CONTRACT"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "11",
+      "name": "Design QA and Refinement",
+      "protocol": "DESIGN_QA",
+      "gate": null,
+      "preconditions": ["BROWSER_QA_PASS"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "11.5",
+      "name": "Website Gauntlet",
+      "protocol": "GAUNTLET",
+      "gate": "GAUNTLET_PASS",
+      "preconditions": ["BROWSER_QA_PASS"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "12",
+      "name": "Production Preflight",
+      "protocol": "PRODUCTION_PREFLIGHT",
+      "gate": null,
+      "preconditions": ["GAUNTLET_PASS"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "12.25",
+      "name": "Launch and Post-Launch Operations",
+      "protocol": "LAUNCH_OPERATIONS",
+      "gate": "RELEASE_READY",
+      "preconditions": ["GAUNTLET_PASS"],
+      "status": "HISTORICAL"
+    },
+    {
+      "phase": "12.5",
+      "name": "Client CMS Handoff",
+      "protocol": "CLIENT_CMS_HANDOFF",
+      "gate": "CLIENT_HANDOFF_READY",
+      "preconditions": ["RELEASE_READY"],
+      "status": "HISTORICAL"
+    }
+  ]
+}

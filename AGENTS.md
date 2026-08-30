@@ -1,5 +1,7 @@
 # DOX framework
 
+> **Version:** 2.11.0
+
 - DOX is highly performant AGENTS.md hierarchy installed here
 - Agent must follow DOX instructions across any edits
 
@@ -195,4 +197,43 @@ These rules are additive. They do not replace any existing Website Director gove
 - **ARC//FORGE Advanced Fabrication:** Operating under `schema_version = 2.5.1` with pinned horizontal scrollytelling (`PAT-01`), scroll-driven assembly (`PAT-04`), mobile reflow, reduced motion fallback, and Motion Lock 5 integration. Status: **`WEBSITE_DIRECTOR_V2_5_1_SIGNATURE_SCROLL_SPATIAL_CHOREOGRAPHY_LIBRARY_CERTIFIED`** (Independent QA PASS; 56/56 Validation Cases PASS; Complete & Validated).
 - **Morrow & Vale Architecture and Industrial Design:** Operating under schema_version = 2.5.0 with full synthetic CMS, 9 handoff documents, 301 slug redirect registry, SHA-256 backup/restore proof, zero secrets, and full client independence. Status: **WEBSITE_DIRECTOR_V2_5_CLIENT_CMS_HANDOFF_SYSTEM_CERTIFIED** (Independent QA PASS; 42/42 Validation Cases PASS; Complete & Validated).
 - **Thalassa Batho-Systems (V1.9 Real-Browser Certification Pilot):** Operating under `schema_version = 1.9.0` (`CREATIVE_AMBITION = SHOWCASE`, `DIRECTION_COUNT = 3`, 3 real Chromium-rendered visual prototypes, 10 divergence vectors, Portfolio Art Director audit, Asset limitation recorded). Status: **`VISUAL_PROTOTYPES_OWNER_REVIEW_READY`** (Real-Browser QA PASS; Hard Stop Enforced; Terminal Lock 1 False).
+
+## Framework self-validation contract
+
+<!-- FRAMEWORK_VERSION: 2.11.0 -->
+<!-- FRAMEWORK_GOVERNANCE
+framework_version_source=framework-version.json
+owner_locks=design_direction_locked,information_architecture_locked,content_structure_locked,design_system_locked,motion_direction_locked
+frozen_projects=projects/
+deployment_authority=OWNER_APPROVAL_REQUIRED
+external_side_effects=NONE
+state_ownership=schemas/state-ownership.json
+browser_qa=browser-qa/guards/frozen_integrity_guard.py
+accessibility=owner-controlled historical protocol state
+security_privacy=owner-controlled historical protocol state
+framework_phase=0:Framework Self-Validation:ACTIVE
+framework_gate=FRAMEWORK_VALIDATION_PASS
+framework_validation_state=EXTERNAL_TO_SITE_PROFILE
+-->
+
+Capability 6 is the framework's self-validation and CI layer. Its canonical
+protocol is `FRAMEWORK-VALIDATION-PROTOCOL.md`; its version source is
+`framework-version.json`; and its executable surface is `framework_validation/`.
+It validates framework structure, schemas, references, state ownership,
+historical compatibility, frozen-project integrity, test isolation, negative
+controls, and read-only CI policy.
+
+The certified V2.10 lineage and its real frozen `projects/` corpus remain
+authoritative. Framework validation is additive and external to
+`templates/site-profile.json`. The five owner locks are the complete set. No
+measurement, SEO, security, privacy, accessibility, browser-QA, launch, asset,
+handoff, or framework-validation state may become an owner lock. Capability
+6.5 and Capability 7 remain out of scope for this checkout.
+
+## Framework validation Child DOX Index
+
+- `.github/AGENTS.md` - read-only CI workflow boundary.
+- `framework-validation/AGENTS.md` - certification report and runtime artifact boundary.
+- `framework_validation/AGENTS.md` - deterministic validator package and CLI.
+- `schemas/AGENTS.md` - canonical framework registries, schemas, and compatibility policy.
 

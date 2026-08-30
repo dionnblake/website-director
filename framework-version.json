@@ -1,0 +1,14 @@
+{
+  "version": "2.11.0",
+  "schema_version": "2.11.0",
+  "previous_version": "2.10.0",
+  "release_type": "minor",
+  "status": "CURRENT",
+  "source_of_truth": true,
+  "lineage": {
+    "base_branch": "origin/feat/v2-10-launch-post-launch-operations",
+    "base_commit": "575e6b7adb8623b4f8d4a7f160bd4a8c8eb5d518",
+    "base_version": "2.10.0",
+    "current_checkout_note": "The corrected checkout retains the certified V2.10 framework and frozen project corpus, then adds the additive Capability 6 self-validation layer."
+  }
+}

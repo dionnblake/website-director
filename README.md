@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.10.0  
+> **Version:** 2.11.0  
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -312,3 +312,31 @@ Activate Website Director for [Company Name].
 ```
 
 The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SKILL.md), initialize [templates/site-profile.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/site-profile.json), and begin guided extraction.
+
+---
+
+## Framework Self-Validation (V2.11)
+
+<!-- FRAMEWORK_VERSION: 2.11.0 -->
+
+The V2.11 framework self-validation layer is additive to the certified V2.10
+Website Director system. The corrected lineage starts directly from the V2.10
+certification commit and retains the complete historical `projects/` corpus.
+
+Run the deterministic framework gate locally with:
+
+```text
+python -m framework_validation --run-suites
+```
+
+The validator checks the framework registries and schemas, current-version
+references, historical compatibility, frozen-project integrity, test isolation,
+negative controls, and the read-only GitHub Actions policy. Runtime reports are
+written under `framework-validation/reports/runtime/`; certification reports are
+explicit evidence artifacts and do not authorize deployment or publishing.
+
+The framework contract deliberately remains outside the current site profile.
+Exactly five owner locks remain authoritative:
+`design_direction_locked`, `information_architecture_locked`,
+`content_structure_locked`, `design_system_locked`, and
+`motion_direction_locked`.

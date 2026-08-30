@@ -46,3 +46,11 @@ axe.min.js
 
 # Browser automation throwaway profiles
 .chrome_test_profile/
+
+# Framework self-validation (V2.11) runtime artifacts
+.pytest_cache/
+.mypy_cache/
+.coverage
+framework-validation/reports/runtime/*
+!framework-validation/reports/runtime/.gitkeep
+browser-qa/evidence/*.log

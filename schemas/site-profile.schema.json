@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/site-profile.schema.json",
+  "title": "Website Director current site profile",
+  "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
+  "x-framework-version-source": "framework-version.json",
+  "x-framework-version": "2.11.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "framework_version",
+    "project_name",
+    "locks"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "framework_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "project_name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "locks": { "$ref": "#/$defs/locks" },
+    "creative_intent": { "$ref": "#/$defs/state" },
+    "research": { "$ref": "#/$defs/state" },
+    "seo": { "$ref": "#/$defs/state" },
+    "design_intelligence": { "$ref": "#/$defs/state" },
+    "measurement": { "$ref": "#/$defs/state" },
+    "security_privacy": { "$ref": "#/$defs/state" },
+    "browser_qa": { "$ref": "#/$defs/state" },
+    "accessibility": { "$ref": "#/$defs/state" },
+    "launch_ops": { "$ref": "#/$defs/launch_ops" },
+    "gauntlet": { "$ref": "#/$defs/state" },
+    "handoff": { "$ref": "#/$defs/state" },
+    "signature_choreography": { "$ref": "#/$defs/state" },
+    "visual_prototypes": { "$ref": "#/$defs/state" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "locks": {
+      "type": "object",
+      "properties": {
+        "design_direction_locked": { "type": "boolean" },
+        "information_architecture_locked": { "type": "boolean" },
+        "content_structure_locked": { "type": "boolean" },
+        "design_system_locked": { "type": "boolean" },
+        "motion_direction_locked": { "type": "boolean" }
+      },
+      "required": [
+        "design_direction_locked",
+        "information_architecture_locked",
+        "content_structure_locked",
+        "design_system_locked",
+        "motion_direction_locked"
+      ],
+      "additionalProperties": false
+    },
+    "exception": {
+      "type": "object",
+      "required": ["applied", "reason"],
+      "properties": {
+        "applied": { "type": "boolean" },
+        "reason": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "complete": { "type": "boolean" },
+        "status": { "type": "string" },
+        "implementation_verified": { "type": "boolean" },
+        "production_verified": { "type": "boolean" },
+        "exception": { "$ref": "#/$defs/exception" }
+      },
+      "additionalProperties": true
+    },
+    "launch_ops": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "NOT_EVALUATED",
+                "PLANNING",
+                "BLOCKED",
+                "RELEASE_READY",
+                "AWAITING_DEPLOYMENT_AUTHORIZATION",
+                "DEPLOYMENT_AUTHORIZED",
+                "DEPLOYING",
+                "DEPLOYED",
+                "PRODUCTION_VERIFICATION_RUNNING",
+                "PRODUCTION_VERIFICATION_FAILED",
+                "PRODUCTION_VERIFIED",
+                "POST_LAUNCH_MONITORING",
+                "STABILIZED",
+                "ROLLBACK_REQUIRED",
+                "ROLLED_BACK",
+                "EXCEPTION_APPLIED"
+              ]
+            },
+            "deployed": { "type": "boolean" },
+            "deployment_authorized": { "type": "boolean" },
+            "stabilization_complete": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  }
+}

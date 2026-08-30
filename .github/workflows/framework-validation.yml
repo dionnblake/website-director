@@ -1,0 +1,52 @@
+name: Website Director framework validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - framework-development
+      - "release/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-framework-validation:
+    name: Core framework validation (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run framework validator and registered suites
+        run: python -m framework_validation --run-suites
+
+      - name: Run framework regression suite
+        run: python -m unittest tests.test_v2_11_framework_validation
+
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: framework-validation-${{ matrix.os }}
+          path: |
+            framework-validation/reports/
+            framework-validation/reports/runtime/
+          if-no-files-found: warn

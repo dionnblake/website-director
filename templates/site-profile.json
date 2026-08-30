@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "schema_version": "2.10.0",
+  "schema_version": "2.11.0",
+  "framework_version": "2.11.0",
   "project_name": "Morrow & Vale Architecture and Industrial Design",
   "version": "1.0.0",
   "creative_intent": {

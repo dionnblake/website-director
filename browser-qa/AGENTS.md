@@ -43,3 +43,11 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
 ## Child DOX Index
 
 _(none — this directory has no sub-contracts)_
+
+## Framework validation integration
+
+The V2.11 framework validator may invoke the canonical frozen-integrity guard
+as a read-only boundary around deterministic suites. The guard remains the
+single authority for protected `projects/` paths. Framework validation does not
+replace the Browser QA protocol, add a second browser runner, or permit writes
+to historical project artifacts.

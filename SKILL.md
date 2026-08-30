@@ -5,10 +5,10 @@ description: "Directs and governs end-to-end website design and implementation s
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.10.0  
+> **Version:** 2.11.0  
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.10.0 is additive to V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. `2.10.0` follows `2.9.0` under semantic versioning — the minor version reaching 9 does not force a major bump. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
+> **Compatibility:** V2.11.0 is additive to V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. `2.11.0` follows `2.10.0` under semantic versioning. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
 
 ---
 
@@ -650,6 +650,28 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - `accessibility{}` contains NO lock boolean. `[ACCESSIBILITY_READY]` is a readiness gate, NOT a sixth owner/design lock. Exactly 5 owner locks remain immutable.
 - Accessibility **consumes** `measurement{}`, `security_privacy{}`, `motion{}`, and Impeccable's contrast math; it re-authors none of them. Post-build verification runs inside the V2.8 `browser-qa/` harness (one runner, one evidence system, one `FrozenIntegrityGuard`) — **no second post-build state machine**. The Gauntlet Accessibility Critic is preserved and enriched — **no new critic**.
 - **Backward compatibility:** projects without `accessibility{}` are valid and are not retrofitted. Frozen certification pilots are never reopened. Historical accessibility evidence stays historical evidence.
+
+---
+
+## 5.18 Framework Self-Validation (V2.11)
+
+<!-- FRAMEWORK_VERSION: 2.11.0 -->
+
+Capability 6 is a read-only framework validation layer. Run
+`python -m framework_validation --run-suites` from the repository root when
+validating the framework itself. It owns framework structure, schemas,
+registries, compatibility checks, frozen-project integrity, test isolation,
+negative controls, and CI policy. It does not own project content, production
+publishing, deployment, or any external integration.
+
+The validator's state is external to `templates/site-profile.json`. The current
+profile remains a V2.10-compatible project-state document with the current
+framework version recorded explicitly. Exactly five owner locks remain
+authoritative. Historical projects under `projects/` are read-only and are
+never retrofitted merely because the framework version advances.
+
+Capability 6.5 Design Inspiration MCP and Capability 7 are not part of this
+checkout.
 
 ---
 

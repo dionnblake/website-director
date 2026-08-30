@@ -1,0 +1,41 @@
+{
+  "manifest_version": "1.0.0",
+  "canonical_version_source": "framework-version.json",
+  "current_version_documents": [
+    { "path": "README.md", "marker": "FRAMEWORK_VERSION" },
+    { "path": "AGENTS.md", "marker": "FRAMEWORK_VERSION" },
+    { "path": "SKILL.md", "marker": "FRAMEWORK_VERSION" },
+    { "path": "FRAMEWORK-VALIDATION-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" },
+    { "path": "templates/site-profile.json", "json_pointer": "/schema_version" },
+    { "path": "schemas/site-profile.schema.json", "json_pointer": "/x-framework-version" }
+  ],
+  "canonical_markdown": [
+    "README.md",
+    "AGENTS.md",
+    "SKILL.md",
+    "FRAMEWORK-VALIDATION-PROTOCOL.md",
+    "templates/framework-validation-review.md"
+  ],
+  "canonical_json_roots": [
+    ".hallmark",
+    "schemas",
+    "templates",
+    "browser-qa/config",
+    "tests"
+  ],
+  "python_roots": ["framework_validation", "browser-qa", "tests"],
+  "canonical_protocol_registry": "schemas/protocols.json",
+  "canonical_gate_registry": "schemas/gates.json",
+  "canonical_phase_registry": "schemas/phases.json",
+  "canonical_state_registry": "schemas/state-ownership.json",
+  "canonical_frozen_registry": "schemas/frozen-projects.json",
+  "canonical_test_registry": "schemas/test-suites.json",
+  "site_profile_schema": "schemas/site-profile.schema.json",
+  "current_site_profile": "templates/site-profile.json",
+  "frozen_guard_path": "browser-qa/guards/frozen_integrity_guard.py",
+  "protected_paths": ["projects/"],
+  "workflow_path": ".github/workflows/framework-validation.yml",
+  "runtime_report_path": "framework-validation/reports/runtime/framework-validation-report.json",
+  "certification_report_pattern": "framework-validation/reports/{version}-certification.json",
+  "explicit_negative_fixture_metadata": "fixture.json"
+}

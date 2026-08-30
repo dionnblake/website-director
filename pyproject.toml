@@ -1,0 +1,10 @@
+[project]
+name = "website-director-framework-validation"
+description = "Deterministic self-validation contracts for the Website Director prototype"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q"

@@ -1,0 +1,5 @@
+{
+  "validation": "compatibility",
+  "allow_invalid_json": false,
+  "purpose": "Historical site-profile compatibility fixtures are read-only test inputs."
+}

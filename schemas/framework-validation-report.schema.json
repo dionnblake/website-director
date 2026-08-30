@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/framework-validation-report.schema.json",
+  "title": "Website Director framework validation report",
+  "type": "object",
+  "required": [
+    "framework_version",
+    "commit_sha",
+    "base_branch",
+    "base_commit",
+    "base_version",
+    "development_head",
+    "remote_main_head",
+    "divergence_status",
+    "timestamp",
+    "status",
+    "framework_status",
+    "checks_total",
+    "checks_passed",
+    "checks_failed",
+    "checks_blocked",
+    "findings"
+  ],
+  "properties": {
+    "framework_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "commit_sha": { "type": "string" },
+    "base_branch": { "type": "string" },
+    "base_commit": { "type": "string" },
+    "base_version": { "type": "string" },
+    "development_head": { "type": "string" },
+    "remote_main_head": { "type": "string" },
+    "divergence_status": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "status": { "enum": ["PASS", "FAIL", "BLOCKED"] },
+    "framework_status": { "enum": ["FRAMEWORK_VALIDATION_PASS", "FRAMEWORK_VALIDATION_FAIL", "FRAMEWORK_VALIDATION_BLOCKED"] },
+    "checks_total": { "type": "integer", "minimum": 0 },
+    "checks_passed": { "type": "integer", "minimum": 0 },
+    "checks_failed": { "type": "integer", "minimum": 0 },
+    "checks_blocked": { "type": "integer", "minimum": 0 },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["RULE_ID", "SEVERITY", "FILE", "LOCATION", "MESSAGE", "EXPECTED", "OBSERVED", "OWNER"],
+      "properties": {
+        "RULE_ID": { "type": "string" },
+        "SEVERITY": { "enum": ["ERROR", "WARNING", "INFO"] },
+        "FILE": { "type": "string" },
+        "LOCATION": { "type": "string" },
+        "MESSAGE": { "type": "string" },
+        "EXPECTED": {},
+        "OBSERVED": {},
+        "OWNER": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}
