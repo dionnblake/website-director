@@ -274,7 +274,7 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.10.0)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.11.0; V2.10-compatible)
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
 │   └── validator.py                  # launch_ops{} state machine, release-readiness gate, deployment-authorization boundary, production-verification checks, rollback-trigger evaluator
 ├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions; V2.10 environment=production)
@@ -340,3 +340,17 @@ Exactly five owner locks remain authoritative:
 `design_direction_locked`, `information_architecture_locked`,
 `content_structure_locked`, `design_system_locked`, and
 `motion_direction_locked`.
+
+<!-- FRAMEWORK_GOVERNANCE
+framework_version_source=framework-version.json
+owner_locks=design_direction_locked,information_architecture_locked,content_structure_locked,design_system_locked,motion_direction_locked
+deployment_authority=OWNER_APPROVAL_REQUIRED
+external_side_effects=NONE
+state_ownership=schemas/state-ownership.json
+browser_qa=browser-qa/guards/frozen_integrity_guard.py
+accessibility=owner-controlled historical protocol state
+security_privacy=owner-controlled historical protocol state
+framework_phase=0:Framework Self-Validation:ACTIVE
+framework_gate=FRAMEWORK_VALIDATION_PASS
+framework_validation_state=EXTERNAL_TO_SITE_PROFILE
+-->

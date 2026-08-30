@@ -2,7 +2,7 @@
 
 These tests exercise pure validator rules with synthetic data and keep all
 mutation probes inside temporary directories. They do not treat missing
-historical overlay material as permission to regenerate it.
+historical material as permission to regenerate it.
 """
 
 from __future__ import annotations
@@ -53,6 +53,17 @@ class FrameworkValidationTests(unittest.TestCase):
         profile = _load_json("templates/site-profile.json")
         self.assertIsInstance(profile, dict)
         self.assertEqual(validator.validate_owner_locks(profile), [])
+
+    def test_frozen_inventory_matches_checked_out_corpus(self) -> None:
+        registry = _load_json("schemas/frozen-projects.json")
+        self.assertIsInstance(registry, dict)
+        entries = registry["projects"]
+        self.assertEqual(registry["inventory"]["project_count"], len(entries))
+        self.assertEqual(
+            registry["inventory"]["protected_file_count"],
+            sum(1 for path in (ROOT / "projects").rglob("*") if path.is_file()),
+        )
+        self.assertTrue(all((ROOT / entry["path"]).is_dir() for entry in entries))
 
     def test_sixth_owner_lock_is_rejected(self) -> None:
         profile = _load_json("templates/site-profile.json")

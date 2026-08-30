@@ -7,7 +7,8 @@ Website Director prototype and its framework validator.
 
 ## Ownership
 
-`site-profile.json` is the current neutral site-profile fixture.
+`site-profile.json` is the current V2.10-compatible site-profile fixture with
+the V2.11 framework version recorded explicitly.
 `framework-validation-review.md` is the human review record template.
 
 ## Local Contracts

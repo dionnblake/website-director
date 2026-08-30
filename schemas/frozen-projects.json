@@ -23,7 +23,7 @@
     { "path": "projects/v2-5-1-signature-choreography-certification-pilot", "release": "V2.5.1", "status": "HISTORICAL_FROZEN", "expected_role": "signature choreography evidence" }
   ],
   "policy": {
-    "missing_from_current_overlay_is_warning": false,
+    "missing_registered_project_is_warning": false,
     "hashes_required": false,
     "mutation_is_hard_failure": true,
     "restore_after_mutation_is_still_failure": true

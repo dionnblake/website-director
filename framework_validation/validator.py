@@ -61,6 +61,7 @@ HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
 SOURCE_IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache"}
 REPORT_RUNTIME_PREFIX = "framework-validation/reports/runtime/"
 REPORT_CERTIFICATION_PREFIX = "framework-validation/reports/"
+RUNTIME_SOURCE_PREFIXES = (REPORT_RUNTIME_PREFIX, "browser-qa/evidence/")
 
 LAUNCH_STATUSES = (
     "NOT_EVALUATED",
@@ -369,6 +370,8 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
             if not isinstance(value, bool):
                 records.append(("STATE_BOOLEAN_TYPE", f"{path} must be boolean"))
         if key == "exception":
+            if not current and value is None:
+                continue
             if not isinstance(value, dict) or not isinstance(value.get("applied"), bool) or "reason" not in value:
                 records.append(("EXCEPTION_SHAPE", f"{path} must contain boolean applied and reason"))
             elif value.get("applied") is True and not value.get("reason"):
@@ -543,7 +546,7 @@ def validate_protocol_paths(registry: Mapping[str, Any], root: str | os.PathLike
         if entry.get("status") == "ACTIVE":
             records.append("CANONICAL_PROTOCOL_EXISTS")
         else:
-            records.append("HISTORICAL_PROTOCOL_NOT_IN_OVERLAY")
+            records.append("HISTORICAL_PROTOCOL_NOT_IN_CHECKOUT")
     return sorted(set(records))
 
 
@@ -1544,11 +1547,22 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
     registry = ctx.read_json(relative)
     protected = registry.get("protected_paths", []) if isinstance(registry, dict) else []
     entries = registry.get("projects", []) if isinstance(registry, dict) else []
+    ctx.metadata["frozen_project_count"] = len(entries) if isinstance(entries, list) else 0
+    ctx.check(
+        "FROZEN_PROJECT_COUNT_NONZERO",
+        "compatibility",
+        isinstance(entries, list) and len(entries) > 0,
+        "frozen-project registry contains a non-empty historical inventory",
+        file=relative,
+        location="/projects",
+        expected="at least one registered frozen project",
+        observed=ctx.metadata["frozen_project_count"],
+    )
     protected_ok = isinstance(protected, list) and "projects/" in protected and isinstance(entries, list)
     ctx.check("FROZEN_PROJECT_REGISTRY", "compatibility", protected_ok, "frozen-project inventory declares the protected projects root", file=relative, location="/protected_paths", expected="projects/ registered", observed=registry)
     missing = [entry.get("path") for entry in entries if isinstance(entry, dict) and entry.get("path") and not ctx.path(str(entry["path"])).exists()]
     if missing:
-        missing_is_warning = bool((registry.get("policy") or {}).get("missing_from_current_overlay_is_warning")) if isinstance(registry, dict) else False
+        missing_is_warning = bool((registry.get("policy") or {}).get("missing_registered_project_is_warning")) if isinstance(registry, dict) else False
         ctx.check("FROZEN_PROJECT_CORPUS_NOT_IN_CHECKOUT", "compatibility", False, "registered frozen projects are absent from this checkout; no migration is attempted", file=relative, location="/projects", expected="all registered projects are present", observed={"missing_count": len(missing), "sample": missing[:5]}, severity="WARNING" if missing_is_warning else "ERROR", owner="framework-owner")
     else:
         ctx.check("FROZEN_PROJECT_CORPUS_PRESENT", "compatibility", True, "all registered frozen project paths are present", file=relative, location="/projects")
@@ -1564,6 +1578,17 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
         guard = guard_class(str(ctx.root), protected_paths=ctx.manifest.get("protected_paths", ["projects/"]), ledger_path=ledger, run_id="framework-validation")
         guard.snapshot()
         ctx.metadata["frozen_guard"] = guard
+        ctx.metadata["protected_file_count"] = len(getattr(guard, "_baseline", {}))
+        ctx.check(
+            "PROTECTED_FILE_COUNT_NONZERO",
+            "frozen_fixture_integrity",
+            ctx.metadata["protected_file_count"] > 0,
+            "frozen-integrity guard captured a non-empty protected project corpus",
+            file=guard_relative,
+            location="snapshot",
+            expected="at least one protected project file",
+            observed=ctx.metadata["protected_file_count"],
+        )
         ctx.check("FROZEN_INTEGRITY_GUARD_AVAILABLE", "frozen_fixture_integrity", True, "V2.8 FrozenIntegrityGuard was loaded and snapshotted before suite execution", file=guard_relative, location="root")
     except Exception as exc:  # noqa: BLE001
         ctx.metadata["frozen_guard"] = None
@@ -1731,7 +1756,7 @@ def _iter_source_files(root: Path, report_paths: set[str]) -> Iterable[tuple[str
         for filename in filenames:
             path = directory_path / filename
             relative = path.relative_to(root).as_posix()
-            if relative.startswith(REPORT_RUNTIME_PREFIX) or (relative.startswith(REPORT_CERTIFICATION_PREFIX) and relative.endswith("-certification.json")) or relative in report_paths:
+            if any(relative.startswith(prefix) for prefix in RUNTIME_SOURCE_PREFIXES) or (relative.startswith(REPORT_CERTIFICATION_PREFIX) and relative.endswith("-certification.json")) or relative in report_paths:
                 continue
             yield relative, path
 
@@ -2029,6 +2054,8 @@ def _build_report(ctx: ValidationContext, identity: Mapping[str, str], divergenc
         "suite_runs": ctx.metadata.get("suite_runs", []),
         "negative_controls": ctx.metadata.get("negative_controls", []),
         "historical_profiles_checked": ctx.metadata.get("historical_profiles_checked", 0),
+        "frozen_project_count": ctx.metadata.get("frozen_project_count", 0),
+        "protected_file_count": ctx.metadata.get("protected_file_count", 0),
         "frozen_registry_entries": ctx.metadata.get("frozen_registry_entries", 0),
         "mutation_evidence": ctx.metadata.get("mutation_evidence", {}),
         "pre_existing_failures": [],

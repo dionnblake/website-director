@@ -673,6 +673,20 @@ never retrofitted merely because the framework version advances.
 Capability 6.5 Design Inspiration MCP and Capability 7 are not part of this
 checkout.
 
+<!-- FRAMEWORK_GOVERNANCE
+framework_version_source=framework-version.json
+owner_locks=design_direction_locked,information_architecture_locked,content_structure_locked,design_system_locked,motion_direction_locked
+deployment_authority=OWNER_APPROVAL_REQUIRED
+external_side_effects=NONE
+state_ownership=schemas/state-ownership.json
+browser_qa=browser-qa/guards/frozen_integrity_guard.py
+accessibility=owner-controlled historical protocol state
+security_privacy=owner-controlled historical protocol state
+framework_phase=0:Framework Self-Validation:ACTIVE
+framework_gate=FRAMEWORK_VALIDATION_PASS
+framework_validation_state=EXTERNAL_TO_SITE_PROFILE
+-->
+
 ---
 
 ### 5.17 Single-Source-of-Truth Rule for `launch_ops` State (V2.10)

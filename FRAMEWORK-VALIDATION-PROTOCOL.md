@@ -30,7 +30,8 @@ rewriting historical project material or introducing external side effects.
 - [schemas/site-profile.schema.json](schemas/site-profile.schema.json) defines
   the current site-profile contract.
 - [templates/site-profile.json](templates/site-profile.json) is the current
-  neutral profile fixture. Framework-validation state is external to it.
+  V2.10-compatible profile fixture. Framework-validation state is external to
+  it.
 - [schemas/protocols.json](schemas/protocols.json),
   [schemas/gates.json](schemas/gates.json),
   [schemas/phases.json](schemas/phases.json), and
