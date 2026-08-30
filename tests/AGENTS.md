@@ -15,6 +15,8 @@ negative-control suite registered in `schemas/test-suites.json`.
 - Tests use temporary directories and fixtures for mutation probes.
 - Tests do not modify the protected `projects/` corpus, external systems, or
   production credentials.
+- Historical V2.5-V2.10 suites are direct script entrypoints and are run by
+  the registry; pytest collection is limited to the V2.11 unittest suite.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
