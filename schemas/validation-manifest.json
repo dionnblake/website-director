@@ -7,7 +7,8 @@
     { "path": "SKILL.md", "marker": "FRAMEWORK_VERSION" },
     { "path": "FRAMEWORK-VALIDATION-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" },
     { "path": "templates/site-profile.json", "json_pointer": "/schema_version" },
-    { "path": "schemas/site-profile.schema.json", "json_pointer": "/x-framework-version" }
+    { "path": "schemas/site-profile.schema.json", "json_pointer": "/x-framework-version" },
+    { "path": "LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" }
   ],
   "canonical_markdown": [
     "README.md",
@@ -16,6 +17,7 @@
     "FRAMEWORK-VALIDATION-PROTOCOL.md",
     "EVIDENCE-PROVENANCE-PROTOCOL.md",
     "CONTENT-OPERATIONS-CMS-PROTOCOL.md",
+    "LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md",
     "templates/framework-validation-review.md"
   ],
   "canonical_json_roots": [
@@ -26,7 +28,7 @@
     "browser-qa/config",
     "tests"
   ],
-  "python_roots": ["framework_validation", "browser-qa", "provenance", "content-ops", "tests"],
+  "python_roots": ["framework_validation", "browser-qa", "provenance", "content-ops", "localization", "tests"],
   "canonical_protocol_registry": "schemas/protocols.json",
   "canonical_gate_registry": "schemas/gates.json",
   "canonical_phase_registry": "schemas/phases.json",
@@ -89,6 +91,9 @@
     "templates/rive-implementation-brief.md",
     "templates/security-privacy-register.json",
     "templates/security-privacy-review.md",
+    "templates/locale-registry.json",
+    "templates/localization-manifest.json",
+    "templates/localization-plan.md",
     "templates/seo-business-context.md",
     "templates/seo-competitive-landscape.md",
     "templates/seo-content-briefs.md",

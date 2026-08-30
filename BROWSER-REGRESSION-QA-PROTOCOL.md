@@ -195,6 +195,37 @@ write under `projects/`.
 
 ---
 
+## 11.2 Localization & Internationalization runtime QA (V2.14)
+
+Browser QA consumes the provider-neutral Capability #9 localization plan and
+`localization{}` contract through this same runner. It does not create a second
+localization runner, translation state machine, CMS, or production authority.
+Where a project requires localization, the existing assertion catalogue uses
+the `LOCALIZATION_PLAN` requirement source to verify the runtime-observable
+subset:
+
+- locale routes resolve and map to equivalent content routes;
+- the rendered `html lang` and direction match the locale contract;
+- a locale switcher is present where required, has text labels rather than
+  flag-only labels, identifies the current locale, and is keyboard operable;
+- untranslated system strings are absent and explicit fallback behaviour is
+  observable;
+- localized `hreflang` entries are present, covered, reciprocal, and include
+  the current locale; localized pages use a self-referencing canonical;
+- localized title, description, Open Graph, alt text, and form labels/errors
+  are present where the plan requires them;
+- pseudo-localized text meets the declared expansion target without overflow;
+- RTL direction, focus, navigation, directional-icon policy, forms, and
+  overflow remain functional where an RTL locale is required.
+
+The `simulation` engine accepts deterministic fixture observations for these
+checks. The `playwright` adapter collects DOM, metadata, route, fallback,
+expansion, and RTL facts when the plan enables localization. Simulation is a
+dry run and never sets implementation or production verification. No browser
+test may write under `projects/`.
+
+---
+
 ## 12. Test isolation & the Frozen Project Integrity Guard
 
 **Hard invariant.** Browser and QA tests:
@@ -245,6 +276,15 @@ Every run exercises `prefers-reduced-motion: reduce`. Verified: motion-heavy beh
 Browser QA's baseline keyboard smoke: primary navigation reachable · visible focus exists · mobile/menu controls operable · dialogs Escape correctly where specified · form controls operable · no obvious keyboard trap · primary CTA reachable.
 
 **V2.9 (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`)** formalises this and adds an **accessibility assertion group** to this same harness, gated on the plan carrying an `accessibility` block. Source: `ACCESSIBILITY_REVIEW`. It covers the machine-verifiable subset of WCAG 2.2 AA — automated-engine violations (axe-core or a replaceable engine), missing accessible names, computed contrast (consuming Impeccable's math), focus visibility, focus-not-obscured (feasible cases only — the rest `MANUAL_REQUIRED`), keyboard traps, landmarks and heading order, page `lang` and `<title>`, colour-only state heuristics, reflow at the target width, text spacing, target size (project minimum + the WCAG 24px floor), dialog mechanics, and form label/error association. Screen-reader review and deep manual criteria stay **explicitly manual** and never auto-PASS. An unavailable engine is `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE`. No second runner and no second post-build state machine — one harness, one evidence system, one frozen-project guard.
+
+**V2.14 (`LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md`)** adds the
+`LOCALIZATION_PLAN` assertion group to this same harness. It consumes the
+canonical localization plan and checks locale routes, equivalent routes,
+`html lang`, text-labelled switchers, fallback, `hreflang`, localized
+canonicals and metadata, localized forms, pseudo-localized expansion, and RTL
+runtime behaviour where applicable. It does not create a second runner or set
+`localization.complete`; simulation remains a dry run and production
+verification remains owned by Launch Operations.
 
 ---
 

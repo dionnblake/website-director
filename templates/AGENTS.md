@@ -7,8 +7,8 @@ Website Director prototype and its framework validator.
 
 ## Ownership
 
-site-profile.json is the current V2.13-compatible site-profile fixture with
-the V2.13 framework version recorded explicitly. content-model.md and
+site-profile.json is the current V2.14-compatible site-profile fixture with
+the V2.14 framework version recorded explicitly. content-model.md and
 content-model.json own the Capability #8 semantic content-model contract;
 cms-decision.md owns the vendor-neutral CMS necessity and provider decision
 record. inspiration-board.md and
@@ -16,7 +16,9 @@ research-synthesis.md own the reference-evidence fields consumed by the
 bounded V2.11.1 Design Inspiration MCP adapter. evidence-ledger.md and
 evidence-ledger.json own the Capability 7 claim, source, rights, attribution,
 asset, and research-reference recording templates. framework-validation-review.md
-is the human review record template.
+is the human review record template. localization-plan.md,
+localization-manifest.json, and locale-registry.json own the provider-neutral
+Capability #9 localization and internationalization planning artifacts.
 
 ## Local Contracts
 
@@ -38,6 +40,12 @@ is the human review record template.
 - Content Operations templates define entities, fields, editorial lifecycle,
   editable surfaces, portability, migration, and provider decisions without
   duplicating V2.5 handoff operations or creating a sixth lock.
+- Localization templates define evidence-based requirement assessment, BCP
+  47-style locale identity, route and fallback policy, translation review and
+  freshness, formatting, RTL, typography and font provenance, localized SEO,
+  content-model integration, accessibility, analytics, assets, browser QA,
+  launch, and handoff inputs. They do not provision providers, publish, deploy,
+  certify legal translation, or create a sixth lock.
 - Historical templates may be referenced by compatibility records but must not
   be silently regenerated or promoted to current.
 
@@ -49,9 +57,10 @@ when its manifest and registry ownership are clear.
 ## Verification
 
 Run `python -m framework_validation --run-suites` and inspect schema, reference,
-content-operations, provenance, and five-lock findings. The synthetic
-Capability 7 A-V suite plus W-AK fail-closed regression edges and Capability 8
-A-V suite must remain isolated from projects/ and external systems.
+content-operations, localization, provenance, and five-lock findings. The
+synthetic Capability 7 A-V suite plus W-AK fail-closed regression edges,
+Capability 8 A-V suite, and Capability 9 A-AF suite must remain isolated from
+projects/ and external systems.
 
 ## Child DOX Index
 

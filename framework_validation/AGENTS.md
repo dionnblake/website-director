@@ -5,7 +5,8 @@
 Own the deterministic Website Director self-validation library and its
 `python -m framework_validation` CLI, including registry-driven execution of
 the additive V2.11.1 adapter suite, the V2.12 Capability 7 provenance suite,
-and the V2.13 Capability #8 content-operations suite.
+the V2.13 Capability #8 content-operations suite, and the V2.14 Capability #9
+localization and internationalization suite.
 
 ## Ownership
 
@@ -30,6 +31,10 @@ read-only mutation evidence. `__main__.py` owns the module entrypoint.
 - Capability #8 content operations validation is provider-neutral, fail-closed
   for unsafe models and publishing boundaries, and separate from V2.5 client
   handoff operations. Its readiness flag is not an owner lock.
+- Capability #9 localization validation is provider-neutral, fail-closed for
+  invalid locale, route, fallback, translation, formatting, RTL, typography,
+  provenance, SEO, accessibility, analytics, CMS, and handoff contracts. Its
+  readiness flag is not an owner lock and it never calls a translation provider.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
 
 ## Work Guidance
@@ -40,7 +45,7 @@ special cases that turn invalid evidence into a pass.
 
 ## Verification
 
-Run the V2.11, V2.12, and V2.13 suites directly, then run
+Run the V2.11, V2.12, V2.13, and V2.14 suites directly, then run
 `python -m framework_validation --run-suites`. Inspect both generated reports
 and the final mutation evidence.
 

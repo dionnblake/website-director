@@ -321,6 +321,17 @@
       "compatibility_pointer": "Additive V2.13 Capability 8; V2.5 Client CMS Handoff remains the long-term ownership and operations authority."
     },
     {
+      "id": "LOCALIZATION_INTERNATIONALIZATION",
+      "path": "LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md",
+      "status": "ACTIVE",
+      "domain": "localization-internationalization",
+      "phase": "6.35",
+      "state_owner": "localization.complete",
+      "supersedes": [],
+      "superseded_by": null,
+      "compatibility_pointer": "Additive V2.14 Capability 9; SEO, Content Operations, Accessibility, Security and Privacy, Measurement, Provenance, Browser QA, Launch Ops, and V2.5 Client Handoff remain their own authorities."
+    },
+    {
       "id": "CLIENT_CMS_HANDOFF",
       "path": "CLIENT-CMS-HANDOFF-PROTOCOL.md",
       "status": "HISTORICAL",

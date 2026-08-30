@@ -1,14 +1,14 @@
 {
-  "version": "2.13.0",
-  "schema_version": "2.13.0",
-  "previous_version": "2.12.0",
+  "version": "2.14.0",
+  "schema_version": "2.14.0",
+  "previous_version": "2.13.0",
   "release_type": "minor",
   "status": "CURRENT",
   "source_of_truth": true,
   "lineage": {
     "base_branch": "codex/website-director-v2-11-1-design-inspiration-mcp",
-    "base_commit": "29cd53afd42c6151b12447ae1f7328acb7d41fea",
-    "base_version": "2.12.0",
-    "current_checkout_note": "V2.13 adds the bounded Capability 8 Content Operations and CMS Architecture system while preserving the certified framework, five owner locks, and frozen project corpus. Capability 9 Localization/I18n and Capability 10 Ecommerce, Authentication, and Application Modules remain out of scope."
+    "base_commit": "2195fdb815f041083c70d634bf92f76df0720e8d",
+    "base_version": "2.13.0",
+    "current_checkout_note": "V2.14 adds bounded Capability 9 Localization and Internationalization Intelligence at Phase 6.35 while preserving the certified framework, five owner locks, frozen project corpus, provider-neutral operation, and existing Content Operations, SEO, Accessibility, Security and Privacy, Measurement, Provenance, Browser QA, Launch Ops, and Client Handoff authorities. Capability 10 Ecommerce, Authentication, and Application Modules remains out of scope."
   }
 }

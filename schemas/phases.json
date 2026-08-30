@@ -98,6 +98,14 @@
       "status": "HISTORICAL"
     },
     {
+      "phase": "6.35",
+      "name": "Localization and Internationalization Intelligence",
+      "protocol": "LOCALIZATION_INTERNATIONALIZATION",
+      "gate": "LOCALIZATION_READY",
+      "preconditions": ["CONTENT_OPERATIONS_READY"],
+      "status": "ACTIVE"
+    },
+    {
       "phase": "6.5",
       "name": "Conversion and Analytics Intelligence",
       "protocol": "CONVERSION_ANALYTICS",

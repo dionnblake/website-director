@@ -18,6 +18,10 @@ frozen-integrity negative controls, plus W–AK fail-closed regression edges.
 `test_v2_13_content_operations.py` owns Capability #8 synthetic A–V content
 model, CMS decision, editorial lifecycle, publishing, slug, rich-text,
 portability, provenance-boundary, and frozen-integrity controls.
+`test_v2_14_localization.py` owns Capability #9 synthetic A-AF requirement,
+locale, route, fallback, translation, formatting, RTL, typography, SEO,
+content-model, accessibility, analytics, provenance, handoff, and
+frozen-integrity controls.
 
 ## Local Contracts
 
@@ -25,7 +29,7 @@ portability, provenance-boundary, and frozen-integrity controls.
 - Tests do not modify the protected `projects/` corpus, external systems, or
   production credentials.
 - Historical V2.5-V2.10 suites are direct script entrypoints and are run by
-  the registry; pytest collection is limited to the registered V2.11-V2.13
+  the registry; pytest collection is limited to the registered V2.11-V2.14
   unittest suites.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
@@ -35,6 +39,10 @@ portability, provenance-boundary, and frozen-integrity controls.
 - The Content Operations suite uses synthetic content models, decisions,
   redirects, media/provenance references, and temporary mutation fixtures. It
   never selects a real provider, publishes content, or modifies projects/.
+- The Localization suite uses synthetic locale registries, translation records,
+  browser-observable page metadata, formatting, RTL, font, asset, CMS, and
+  temporary mutation fixtures. It never calls a translation provider, uses
+  production credentials, publishes, deploys, or modifies projects/.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
@@ -47,8 +55,8 @@ fixtures read-only and distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 
-Run the V2.11, V2.12, and V2.13 suites directly, then run all registered suites
-through `python -m framework_validation --run-suites`.
+Run the V2.11, V2.12, V2.13, and V2.14 suites directly, then run all registered
+suites through `python -m framework_validation --run-suites`.
 
 ## Child DOX Index
 

@@ -8,6 +8,7 @@ by appending to ``ALL_CHECKS`` at the bottom.
 from __future__ import annotations
 
 import re
+import unicodedata
 from typing import Any, Dict, List, Optional
 
 from engine.base import APPLICATION_DEFECT
@@ -385,6 +386,205 @@ def check_perf(obs, plan):
 
 
 # ===========================================================================
+# LOCALIZATION / INTERNATIONALIZATION (Website Director V2.14)
+# Gated on plan["localization"]; source LOCALIZATION_PLAN.
+# This group owns only runtime-observable route, DOM, metadata, fallback,
+# pseudo-localization, and RTL facts. The localization validator owns the
+# provider-neutral readiness and content/translation contracts.
+# ===========================================================================
+def _locale_key(value: Any) -> str:
+    return str(value or "").strip().replace("_", "-").lower()
+
+
+def _has_text_label(value: Any) -> bool:
+    # Emoji flags and bare icon glyphs do not satisfy the text-label contract.
+    return any(unicodedata.category(char).startswith("L") for char in str(value or ""))
+
+
+def check_localization(obs, plan):
+    cfg = plan.get("localization")
+    if not cfg or (cfg.get("required") is False and not cfg.get("run", False)):
+        return None
+    S = "LOCALIZATION_PLAN"
+    if obs.localization is None:
+        return Finding(check_id="localization.observation", title="Localization runtime facts were collected",
+                       verdict="BLOCKED", requirement_source=S, route=obs.route,
+                       viewport=obs.viewport, detail="BLOCKED_LOCALIZATION_OBSERVATION_UNAVAILABLE",
+                       method="BROWSER_EXECUTED")
+
+    l = obs.localization
+    rc = _route_cfg(plan, obs.route)
+    out = []
+
+    def lf(cid, title, ok, **kw):
+        return _F("localization." + cid, title, ok, S, obs, **kw)
+
+    expected_locale = rc.get("locale") or rc.get("expected_locale") or cfg.get("expected_locale")
+    expected_direction = rc.get("direction") or rc.get("expected_direction") or cfg.get("direction")
+    supported = cfg.get("supported_locales") or cfg.get("locales") or []
+    if isinstance(supported, dict):
+        supported = list(supported.keys())
+    supported_keys = {_locale_key(value) for value in supported if value}
+
+    if cfg.get("check_routes", True):
+        out.append(lf("route-resolves", "Localized route resolves", l.route_resolves,
+                      detail="route=%s" % obs.route))
+
+    if expected_locale:
+        got = l.html_lang or l.locale
+        out.append(lf("html-lang", "Rendered page language matches the route locale",
+                      _locale_key(got) == _locale_key(expected_locale),
+                      detail="got=%r expected=%r" % (got, expected_locale)))
+        if l.locale and supported_keys:
+            out.append(lf("locale-supported", "Rendered locale is in the supported locale registry",
+                          _locale_key(l.locale) in supported_keys,
+                          detail="got=%r supported=%s" % (l.locale, sorted(supported_keys))))
+
+    switcher_cfg = cfg.get("switcher", {})
+    if not isinstance(switcher_cfg, dict):
+        switcher_cfg = {}
+    switcher_required = switcher_cfg.get(
+        "required", cfg.get("switcher_required", len(supported_keys) > 1))
+    if switcher_required:
+        out.append(lf("switcher-present", "Locale switcher is present", l.switcher_present))
+        out.append(lf("switcher-accessible", "Locale switcher has an accessible name and role",
+                      l.switcher_accessible))
+        out.append(lf("switcher-keyboard", "Locale switcher is keyboard operable",
+                      l.switcher_keyboard_operable))
+        labels_ok = bool(l.switcher_labels) and all(_has_text_label(label) for label in l.switcher_labels)
+        out.append(lf("switcher-text-labels", "Locale choices have visible or assistive text labels",
+                      labels_ok, detail=str(l.switcher_labels[:8])))
+        if expected_locale:
+            out.append(lf("switcher-current-locale", "Locale switcher identifies the current locale",
+                          _locale_key(l.switcher_current_locale) == _locale_key(expected_locale),
+                          detail="got=%r expected=%r" % (l.switcher_current_locale, expected_locale)))
+
+    expected_equivalent = rc.get("equivalent_route") or rc.get("expected_equivalent_route")
+    if expected_equivalent:
+        out.append(lf("equivalent-route", "Locale route maps to the equivalent content route",
+                      l.equivalent_route == expected_equivalent,
+                      detail="got=%r expected=%r" % (l.equivalent_route, expected_equivalent)))
+
+    hcfg = cfg.get("hreflang", {})
+    if not isinstance(hcfg, dict):
+        hcfg = {}
+    hreflang_required = hcfg.get(
+        "required", cfg.get("require_hreflang", len(supported_keys) > 1))
+    if hreflang_required:
+        entries = [entry for entry in l.hreflang if isinstance(entry, dict)]
+        codes = {_locale_key(entry.get("hreflang") or entry.get("locale")) for entry in entries}
+        expected_codes = {_locale_key(value) for value in (hcfg.get("locales") or supported) if value}
+        valid_codes = bool(entries) and all(bool(code) and (code == "x-default" or re.match(
+            r"^[a-z]{2,8}(?:-[a-z0-9]{2,8})*$", code, re.I)) for code in codes)
+        out.append(lf("hreflang-present", "Localized hreflang links are present", bool(entries)))
+        out.append(lf("hreflang-codes", "Localized hreflang codes are syntactically valid", valid_codes,
+                      detail=str(sorted(codes))))
+        if expected_codes:
+            out.append(lf("hreflang-coverage", "Localized hreflang links cover the declared locales",
+                          expected_codes.issubset(codes),
+                          detail="missing=%s" % sorted(expected_codes - codes)))
+        reciprocal_ok = all(entry.get("reciprocal") is True for entry in entries)
+        out.append(lf("hreflang-reciprocal", "Localized hreflang links are reciprocal", reciprocal_ok))
+        if expected_locale:
+            self_code = _locale_key(expected_locale)
+            out.append(lf("hreflang-self", "The current locale has a self hreflang entry",
+                          self_code in codes))
+        if hcfg.get("require_x_default"):
+            out.append(lf("hreflang-x-default", "Localized hreflang links include x-default",
+                          "x-default" in codes))
+
+    canonical_required = hcfg.get(
+        "require_localized_canonical", cfg.get("require_localized_canonical", False))
+    if canonical_required:
+        canonical_ok = (bool(l.canonical) and l.canonical_points_to_source is not True
+                        and l.canonical_is_self is True)
+        out.append(lf("canonical-self", "Localized page canonical is self-referencing",
+                      canonical_ok, detail="canonical=%r" % l.canonical))
+    if hcfg.get("expected_canonical"):
+        out.append(lf("canonical-value", "Localized page uses the declared canonical URL",
+                      l.canonical == hcfg["expected_canonical"],
+                      detail="got=%r expected=%r" % (l.canonical, hcfg["expected_canonical"])))
+
+    metadata_cfg = cfg.get("metadata", {})
+    if not isinstance(metadata_cfg, dict):
+        metadata_cfg = {}
+    for key, label in (("title", "title"), ("description", "description"),
+                       ("og", "Open Graph metadata"), ("alt", "localized image alt text")):
+        if metadata_cfg.get(key) or metadata_cfg.get("localized_" + key):
+            out.append(lf("metadata-" + key, "%s is localized" % label.capitalize(),
+                          bool(getattr(l, "localized_" + key)),
+                          detail="metadata field=%s" % key))
+
+    if l.untranslated_system_strings:
+        out.append(lf("untranslated-system-strings", "No untranslated system strings remain",
+                      False, detail=str(l.untranslated_system_strings[:8])))
+
+    fallback_cfg = cfg.get("fallback", {})
+    if not isinstance(fallback_cfg, dict):
+        fallback_cfg = {}
+    fallback_required = fallback_cfg.get("required", cfg.get("fallback_required", False))
+    if fallback_required:
+        expected_fallback = fallback_cfg.get("locale") or rc.get("fallback_locale")
+        fallback_ok = l.fallback_explicit and not l.fallback_source_silent
+        if expected_fallback:
+            fallback_ok = fallback_ok and _locale_key(l.fallback_locale) == _locale_key(expected_fallback)
+        out.append(lf("fallback-explicit", "Locale fallback behavior is explicit", fallback_ok,
+                      detail="locale=%r expected=%r" % (l.fallback_locale, expected_fallback)))
+
+    forms_cfg = cfg.get("forms", {})
+    if not isinstance(forms_cfg, dict):
+        forms_cfg = {}
+    if forms_cfg.get("required"):
+        out.append(lf("form-labels", "Localized form labels are present", l.localized_form_labels))
+        out.append(lf("form-errors", "Localized form errors are present", l.localized_form_errors))
+
+    pseudo_cfg = cfg.get("pseudo_localization", cfg.get("pseudolocalization", {}))
+    if not isinstance(pseudo_cfg, dict):
+        pseudo_cfg = {}
+    if pseudo_cfg.get("enabled") or pseudo_cfg.get("required") or cfg.get("text_expansion_required"):
+        minimum_ratio = float(pseudo_cfg.get("minimum_ratio", pseudo_cfg.get("expansion_ratio", 1.3)))
+        expansion_ok = (l.text_expansion_ratio >= minimum_ratio and not l.text_overflow_refs
+                        and not (obs.layout is not None and obs.layout.has_horizontal_overflow))
+        out.append(lf("text-expansion", "Localized text meets the expansion target without overflow",
+                      expansion_ok,
+                      detail="ratio=%.3f minimum=%.3f overflow=%s" %
+                             (l.text_expansion_ratio, minimum_ratio, l.text_overflow_refs[:8])))
+    elif l.text_overflow_refs:
+        out.append(lf("text-overflow", "Localized text does not overflow its container", False,
+                      detail=str(l.text_overflow_refs[:8])))
+    elif obs.layout is not None and obs.layout.has_horizontal_overflow and cfg.get("check_overflow", False):
+        out.append(lf("text-overflow", "Localized page has no horizontal overflow", False,
+                      detail="viewport=%d" % obs.viewport))
+
+    rtl_cfg = cfg.get("rtl", {})
+    if not isinstance(rtl_cfg, dict):
+        rtl_cfg = {}
+    rtl_required = rtl_cfg.get("required", cfg.get("rtl_required", expected_direction == "rtl"))
+    if rtl_required:
+        out.append(lf("rtl-direction", "RTL locale renders with RTL direction",
+                      l.html_dir == "rtl" and l.rtl_layout_direction == "rtl",
+                      detail="html_dir=%r layout=%r" % (l.html_dir, l.rtl_layout_direction)))
+        out.append(lf("rtl-focus", "RTL focus remains visible", l.rtl_focus_visible))
+        out.append(lf("rtl-navigation", "RTL navigation remains operable", l.rtl_navigation_operable))
+        out.append(lf("rtl-icon-policy", "RTL directional icon mirroring follows an explicit policy",
+                      bool(l.rtl_icon_mirror_policy)))
+        out.append(lf("rtl-icons", "RTL directional icons follow the mirror policy",
+                      not l.rtl_icon_failures, detail=str(l.rtl_icon_failures[:8])))
+        out.append(lf("rtl-forms", "RTL forms remain operable", l.rtl_forms_operable))
+        layout_overflow = obs.layout is not None and obs.layout.has_horizontal_overflow
+        out.append(lf("rtl-overflow", "RTL layout has no overflow",
+                      not l.rtl_overflow_refs and not layout_overflow,
+                      detail=str(l.rtl_overflow_refs[:8])))
+
+    if expected_direction and expected_direction != "rtl":
+        out.append(lf("direction", "Rendered direction matches the locale contract",
+                      l.html_dir == expected_direction,
+                      detail="got=%r expected=%r" % (l.html_dir, expected_direction)))
+
+    return out
+
+
+# ===========================================================================
 # ACCESSIBILITY (Website Director V2.9 — ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md §32)
 # Gated on plan["accessibility"]; source ACCESSIBILITY_REVIEW; method BROWSER_EXECUTED.
 # Deterministic contrast MATH is Impeccable's; this only checks it was run + classifies.
@@ -581,5 +781,6 @@ ALL_CHECKS = [
     check_keyboard,
     check_visual_regression,
     check_perf,
+    check_localization,
     check_accessibility,
 ]

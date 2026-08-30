@@ -30,6 +30,7 @@ from .base import (
     ConsoleMessage,
     KeyboardTrace,
     LayoutMetrics,
+    LocalizationObservation,
     NetworkRequest,
     PageObservation,
     PerfSample,
@@ -197,6 +198,9 @@ class PlaywrightEngine(BrowserQAEngine):
 
             obs.keyboard = _keyboard_trace(page)
 
+            if (self.config or {}).get("localization") or (self.config or {}).get("run_localization"):
+                obs.localization = self._localization_scan(page, resp)
+
             if (self.config or {}).get("accessibility") or (self.config or {}).get("run_axe"):
                 obs.a11y = self._axe_scan(page)
 
@@ -269,6 +273,132 @@ class PlaywrightEngine(BrowserQAEngine):
             a.violations = []
             a.__dict__["_engine_error"] = str(exc)
         return a
+
+    def _localization_scan(self, page, response) -> "LocalizationObservation":
+        """Collect only browser-observable localization facts.
+
+        The page may expose explicit ``data-*`` QA hooks for facts such as
+        fallback and translation metadata. Unknown authoring intent is not
+        guessed; the assertion catalogue remains the authority for whether a
+        plan requires each fact.
+        """
+        facts = page.evaluate(
+            """() => {
+                const root = document.documentElement;
+                const text = el => (el.getAttribute('aria-label') || el.textContent || '').trim();
+                const attrBool = (el, name, fallback) => {
+                    const value = el && el.getAttribute(name);
+                    if (value === null) return fallback;
+                    return !['false', '0', 'no'].includes(value.toLowerCase());
+                };
+                const switcher = document.querySelector(
+                    '[data-locale-switcher], [data-language-switcher], ' +
+                    '[aria-label*="language" i], [aria-label*="locale" i]');
+                const items = switcher ? [...switcher.querySelectorAll(
+                    'a,button,[role="option"],[role="menuitem"]')] : [];
+                const forms = [...document.querySelectorAll('form')];
+                const localizedNodes = [...document.querySelectorAll(
+                    '[data-i18n], [data-i18n-key], [data-localized]')];
+                const ratios = localizedNodes.map(el => {
+                    const sourceLength = Number(el.getAttribute('data-source-length'));
+                    const currentLength = (el.textContent || '').trim().length;
+                    return sourceLength > 0 ? currentLength / sourceLength : 1;
+                }).filter(Number.isFinite);
+                const alternate = [...document.querySelectorAll(
+                    'link[rel="alternate"][hreflang]')].map(link => ({
+                    hreflang: link.getAttribute('hreflang') || '',
+                    url: link.href || link.getAttribute('href') || '',
+                    reciprocal: attrBool(link, 'data-reciprocal', false),
+                    self: attrBool(link, 'data-self', false),
+                    x_default: (link.getAttribute('hreflang') || '').toLowerCase() === 'x-default'
+                }));
+                const canonicalLink = document.querySelector('link[rel="canonical"]');
+                const canonical = canonicalLink ? (canonicalLink.href || canonicalLink.getAttribute('href') || '') : '';
+                const currentUrl = location.href.split('#')[0];
+                const canonicalUrl = canonical.split('#')[0];
+                const overflow = localizedNodes.filter(el => el.scrollWidth > el.clientWidth + 1)
+                    .map(el => el.getAttribute('data-i18n') || el.getAttribute('data-i18n-key') || el.tagName);
+                const rootFallback = root.getAttribute('data-locale-fallback');
+                const rootLocale = root.getAttribute('data-locale') || root.lang || '';
+                return {
+                    locale: rootLocale,
+                    html_lang: root.lang || '',
+                    html_dir: root.getAttribute('dir') ||
+                        (getComputedStyle(root).direction === 'rtl' ? 'rtl' : 'ltr'),
+                    switcher_present: !!switcher,
+                    switcher_accessible: !!switcher && !!(switcher.getAttribute('aria-label') || switcher.getAttribute('role') || switcher.textContent.trim()),
+                    switcher_keyboard_operable: !!switcher && items.length > 0 && items.every(el => ['A', 'BUTTON'].includes(el.tagName) || el.getAttribute('role')),
+                    switcher_labels: items.map(text).filter(Boolean),
+                    switcher_current_locale: (() => {
+                        const current = items.find(el => el.getAttribute('aria-current') === 'true' ||
+                            el.getAttribute('aria-current') === 'page');
+                        return current ? (current.getAttribute('data-locale') || current.lang || '') : '';
+                    })(),
+                    equivalent_route: root.getAttribute('data-equivalent-route') ||
+                        (document.body && document.body.getAttribute('data-equivalent-route')) || '',
+                    hreflang: alternate,
+                    canonical: canonical,
+                    canonical_is_self: !!canonical && canonicalUrl === currentUrl,
+                    localized_title: attrBool(root, 'data-localized-title', false),
+                    localized_description: attrBool(root, 'data-localized-description',
+                        false),
+                    localized_og: attrBool(root, 'data-localized-og',
+                        false),
+                    localized_alt: attrBool(root, 'data-localized-alt', false),
+                    untranslated_system_strings: [...document.querySelectorAll(
+                        '[data-i18n-untranslated]')].map(text).filter(Boolean),
+                    fallback_explicit: (rootFallback !== null && !!rootFallback.trim()) ||
+                        attrBool(root, 'data-locale-fallback-explicit', false),
+                    fallback_locale: rootFallback || root.getAttribute('data-fallback-locale') || '',
+                    fallback_source_silent: attrBool(root, 'data-locale-fallback-source-silent', false),
+                    localized_form_labels: forms.length === 0 || attrBool(root, 'data-localized-form-labels', false),
+                    localized_form_errors: forms.length === 0 || attrBool(root, 'data-localized-form-errors', false),
+                    text_expansion_ratio: ratios.length ? Math.max(...ratios) : 1,
+                    text_overflow_refs: overflow,
+                    rtl_layout_direction: root.getAttribute('dir') || '',
+                    rtl_focus_visible: attrBool(root, 'data-rtl-focus-visible', false),
+                    rtl_navigation_operable: attrBool(root, 'data-rtl-navigation-operable', false),
+                    rtl_icon_mirror_policy: root.getAttribute('data-rtl-icon-mirror-policy') || '',
+                    rtl_icon_failures: [...document.querySelectorAll(
+                        '[data-directional-icon][data-mirrored="false"]')].map(text),
+                    rtl_forms_operable: attrBool(root, 'data-rtl-forms-operable', false),
+                    rtl_overflow_refs: overflow
+                };
+            }""")
+        return LocalizationObservation(
+            locale=facts.get("locale", ""),
+            html_lang=facts.get("html_lang", ""),
+            html_dir=facts.get("html_dir", ""),
+            route_resolves=response is None or bool(response.ok),
+            switcher_present=bool(facts.get("switcher_present", False)),
+            switcher_accessible=bool(facts.get("switcher_accessible", False)),
+            switcher_keyboard_operable=bool(facts.get("switcher_keyboard_operable", False)),
+            switcher_labels=list(facts.get("switcher_labels", [])),
+            switcher_current_locale=facts.get("switcher_current_locale", ""),
+            equivalent_route=facts.get("equivalent_route", ""),
+            hreflang=list(facts.get("hreflang", [])),
+            canonical=facts.get("canonical", ""),
+            canonical_is_self=facts.get("canonical_is_self"),
+            localized_title=bool(facts.get("localized_title", False)),
+            localized_description=bool(facts.get("localized_description", False)),
+            localized_og=bool(facts.get("localized_og", False)),
+            localized_alt=bool(facts.get("localized_alt", False)),
+            untranslated_system_strings=list(facts.get("untranslated_system_strings", [])),
+            fallback_explicit=bool(facts.get("fallback_explicit", False)),
+            fallback_locale=facts.get("fallback_locale", ""),
+            fallback_source_silent=bool(facts.get("fallback_source_silent", False)),
+            localized_form_labels=bool(facts.get("localized_form_labels", False)),
+            localized_form_errors=bool(facts.get("localized_form_errors", False)),
+            text_expansion_ratio=float(facts.get("text_expansion_ratio", 1)),
+            text_overflow_refs=list(facts.get("text_overflow_refs", [])),
+            rtl_layout_direction=facts.get("rtl_layout_direction", ""),
+            rtl_focus_visible=bool(facts.get("rtl_focus_visible", False)),
+            rtl_navigation_operable=bool(facts.get("rtl_navigation_operable", False)),
+            rtl_icon_mirror_policy=facts.get("rtl_icon_mirror_policy", ""),
+            rtl_icon_failures=list(facts.get("rtl_icon_failures", [])),
+            rtl_forms_operable=bool(facts.get("rtl_forms_operable", False)),
+            rtl_overflow_refs=list(facts.get("rtl_overflow_refs", [])),
+        )
 
 
 def _is_third_party(url: str, route: str) -> bool:

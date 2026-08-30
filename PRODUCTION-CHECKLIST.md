@@ -170,6 +170,75 @@ Verifies the build matches the locked SEO specification (`templates/keyword-map.
 
 ---
 
+## 5.1.1 Localization & Internationalization Verification (V2.14)
+
+Verified against `templates/localization-plan.md`,
+`templates/localization-manifest.json`, and `templates/locale-registry.json`
+under `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md`. Skip only where
+`localization.required = false` or an owner-recorded exception has a reason.
+`[LOCALIZATION_READY]` is a readiness gate, not a sixth owner lock.
+
+- [ ] Requirement assessment is evidence-based. English-only projects remain
+      `NOT_REQUIRED` without speculative locale routes, catalogs, fonts, or
+      analytics dimensions.
+- [ ] Required projects declare exactly one source locale and exactly one
+      default locale using valid BCP 47-style identifiers. Language, script,
+      and region are recorded separately where applicable.
+- [ ] Route strategy is explicit: `PATH_PREFIX`, `SUBDOMAIN`,
+      `SEPARATE_DOMAIN`, or `NO_PUBLIC_LOCALE_ROUTING`. Path-prefix projects
+      record explicit `ROOT` or `PREFIX` default URL behavior and pass route
+      collision and reserved-path checks.
+- [ ] Locale switcher uses visible language labels, exposes current locale,
+      works by keyboard and assistive technology, and does not rely on flags
+      alone.
+- [ ] Coverage is recorded as `FULL`, `PARTIAL`, or `NOT_AVAILABLE`. Fallback
+      policy is explicit and acyclic. Unavailable content is not silently shown
+      as fully translated.
+- [ ] UI messages use stable semantic IDs, safe named interpolation, and
+      standards-aware plural categories. No translated fragments are assembled
+      by string concatenation.
+- [ ] Dates, times, numbers, currencies, units, and timezone behavior use
+      locale-aware rules. Currency is explicit and never inferred from
+      language. Fixed masks such as `MM/DD/YYYY` are absent.
+- [ ] RTL pages expose correct `dir`, reading order, focus order, forms,
+      overflow, and bidirectional behavior. CSS uses logical properties where
+      practical. Brand marks are not mechanically mirrored.
+- [ ] Script, CJK, and Arabic-derived font coverage is verified where
+      applicable. Webfont license, redistribution, and V2.12 provenance are
+      resolved. 30 percent and 50 percent expansion cases are tested.
+- [ ] Content localization consumes the V2.13 content model. Localizable and
+      non-localizable fields, localized slugs, redirects, portability, and
+      editorial ownership are explicit. No second CMS or content model exists.
+- [ ] Translation status, source version, method, reviewer, and evidence are
+      retained. Machine translation is draft-only. Human or authorized review
+      precedes publication. Source changes mark translations `STALE`, and stale
+      content is not treated as current.
+- [ ] Localized claims preserve source evidence and claim strength. Legal,
+      privacy, terms, consent, disclaimer, and regulatory translations are not
+      marked legally approved without the required legal review.
+- [ ] Localized pages use intentional reciprocal hreflang, localized
+      self-canonicals, route-aware sitemaps, structured data, Open Graph locale
+      fields, and localized alt text according to the SEO and accessibility
+      authorities.
+- [ ] Existing analytics event names remain stable and locale is a parameter.
+      No per-language event taxonomy or unapproved personal data is emitted.
+- [ ] The existing Browser QA runner covers locale routes, `lang`, `dir`,
+      fallback, formatting, pluralization, pseudo-localized overflow, RTL,
+      fonts, accessibility, and localized SEO. No second runner exists.
+- [ ] Launch Ops retains production verification and deployment authorization.
+      A local plan or browser run does not establish production verification.
+      No provider account, live translation call, production credential,
+      Search Console property, analytics property, publication, deployment,
+      DNS change, or live site mutation occurred in this review.
+- [ ] The localization result distinguishes `complete`,
+      `implementation_verified`, and `production_verified`. Missing evidence
+      remains `UNKNOWN`, `UNASSESSED`, or `BLOCKED`.
+- [ ] Locale registry, translation ownership, stale process, localized asset
+      responsibilities, SEO rules, and backup/restore expectations transfer
+      through the existing V2.5 handoff authority.
+
+---
+
 ## 5.2 Conversion & Analytics Verification (V2.6)
 
 Verified against `templates/measurement-plan.md` under `CONVERSION-ANALYTICS-PROTOCOL.md`. Skip only where `measurement.mode = "not_required"` or `"exception"` with a recorded justification. **A blocked integration is reported as blocked — never as passing.**

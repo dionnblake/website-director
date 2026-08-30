@@ -39,6 +39,17 @@
 - Third-party script inventory: `[declared origins]` — runtime must match.
 - Disclosure/privacy routes that must resolve: `[…]`
 
+## 5.1 Localization / internationalization assertions (from `localization-plan.md` — do not re-author)
+
+- Required: `true` / `false`; source locale: `[locale / N/A]`; default locale: `[locale / N/A]`.
+- Locale routes: `[PATH_PREFIX / SUBDOMAIN / SEPARATE_DOMAIN / NO_PUBLIC_LOCALE_ROUTING]`.
+- Route checks: locale routes resolve; equivalent content mapping is preserved; fallback behaviour is explicit.
+- Locale switcher: `[required / not applicable]` — text-labelled, keyboard operable, and current locale announced.
+- SEO runtime checks: localized `html lang`, reciprocal `hreflang`, localized self-canonical, localized metadata, and `x-default` where specified.
+- Forms: localized labels, validation messages, and consent/error states where applicable.
+- Pseudo-localization / expansion target: `[enabled / not applicable]`; RTL target: `[required / not applicable]`.
+- Expected runtime failures are `FAIL` or `BLOCKED`; simulation is not implementation or production verification.
+
 ## 6. Reduced-motion assertions (from `motion-direction.md`)
 
 - Motion-heavy surfaces: `[list]` — each must remain meaningful with `prefers-reduced-motion: reduce`; no content permanently hidden awaiting animation.

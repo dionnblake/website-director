@@ -4,8 +4,9 @@
 
 Own the canonical machine-readable schema, registry, compatibility, and
 validation-manifest contracts for Website Director Capability 6, the additive
-Capability 6.5 adapter registration, Capability 7 evidence provenance, and
-Capability #8 Content Operations and CMS Architecture.
+  Capability 6.5 adapter registration, Capability 7 evidence provenance,
+  Capability #8 Content Operations and CMS Architecture, and Capability #9
+  Localization and Internationalization.
 
 ## Ownership
 
@@ -30,6 +31,10 @@ Capability #8 Content Operations and CMS Architecture.
 - Content Operations state, the CONTENT_OPERATIONS_CMS protocol, Phase 6.25,
   the CONTENT_OPERATIONS_READY readiness gate, and its test suite are distinct
   from V2.5 handoff state and add no owner lock.
+- Localization state, the LOCALIZATION_INTERNATIONALIZATION protocol, Phase
+  6.35, the LOCALIZATION_READY readiness gate, the locale registry, manifest,
+  and test suite are distinct from Content Operations, V2.5 handoff, and all
+  adjacent authorities. They add no owner lock.
 
 ## Local Contracts
 
@@ -41,8 +46,8 @@ Capability #8 Content Operations and CMS Architecture.
   checkout carries the complete certified V2.10 corpus; missing registered
   artifacts are validation failures, not migration permission.
 - Framework-validation state is external to the site profile.
-- The current framework version is 2.13.0. The content-operations and
-  provenance readiness gates are not owner locks; the exact five-lock
+- The current framework version is 2.14.0. The content-operations,
+  localization, and provenance readiness gates are not owner locks; the exact five-lock
   invariant remains authoritative.
 - Registry references must resolve or carry an explicit historical status and
   replacement policy.
@@ -56,8 +61,9 @@ validator, tests, protocol, and affected DOX when a durable contract changes.
 
 Run `python -m unittest tests.test_v2_11_framework_validation` and
 `python -m framework_validation --run-suites`. Validate every JSON file under
-the manifest's canonical roots, including evidence-ledger.schema.json and the
-provenance state/gate/phase registries.
+the manifest's canonical roots, including evidence-ledger.schema.json,
+localization-manifest.schema.json, and the provenance, content-operations, and
+localization state/gate/phase registries.
 
 ## Child DOX Index
 

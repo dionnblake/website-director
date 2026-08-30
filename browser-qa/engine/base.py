@@ -1,4 +1,4 @@
-"""BROWSER_QA_ENGINE adapter interface (Website Director V2.8).
+"""BROWSER_QA_ENGINE adapter interface (Website Director V2.14).
 
 The *policy* (BROWSER-REGRESSION-QA-PROTOCOL.md, the plan template, the assertion
 catalogue, the evidence schema) is canonical and permanent. The *engine* that
@@ -180,6 +180,51 @@ class AccessibilityObservation:
 
 
 @dataclass
+class LocalizationObservation:
+    """Runtime-observable localization facts for the shared Browser QA runner.
+
+    The localization protocol owns the requirements; this observation only
+    carries facts a browser or deterministic fixture can expose. It is kept
+    separate from the canonical localization readiness state so Browser QA
+    cannot silently promote a plan into a readiness decision.
+    """
+
+    locale: str = ""
+    html_lang: str = ""
+    html_dir: str = ""
+    route_resolves: bool = False
+    switcher_present: bool = False
+    switcher_accessible: bool = False
+    switcher_keyboard_operable: bool = False
+    switcher_labels: List[str] = field(default_factory=list)
+    switcher_current_locale: str = ""
+    equivalent_route: str = ""
+    hreflang: List[Dict[str, Any]] = field(default_factory=list)
+    canonical: str = ""
+    canonical_is_self: Optional[bool] = None
+    canonical_points_to_source: bool = False
+    localized_title: bool = False
+    localized_description: bool = False
+    localized_og: bool = False
+    localized_alt: bool = False
+    untranslated_system_strings: List[str] = field(default_factory=list)
+    fallback_explicit: bool = False
+    fallback_locale: str = ""
+    fallback_source_silent: bool = False
+    localized_form_labels: bool = False
+    localized_form_errors: bool = False
+    text_expansion_ratio: float = 1.0
+    text_overflow_refs: List[str] = field(default_factory=list)
+    rtl_layout_direction: str = ""
+    rtl_focus_visible: bool = False
+    rtl_navigation_operable: bool = False
+    rtl_icon_mirror_policy: str = ""
+    rtl_icon_failures: List[str] = field(default_factory=list)
+    rtl_forms_operable: bool = False
+    rtl_overflow_refs: List[str] = field(default_factory=list)
+
+
+@dataclass
 class PageObservation:
     """Everything an assertion module is allowed to read about one page render."""
     route: str
@@ -206,6 +251,7 @@ class PageObservation:
     nav_closed_after_route_change: Optional[bool] = None
     placeholder_hash_links: List[str] = field(default_factory=list)
     a11y: Optional[AccessibilityObservation] = None
+    localization: Optional[LocalizationObservation] = None
     raw: Dict[str, Any] = field(default_factory=dict)
 
 

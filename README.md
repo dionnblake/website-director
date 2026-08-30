@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.13.0
+> **Version:** 2.14.0
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -127,8 +127,9 @@ attribution, permitted use, AI-media metadata, and SHA-256 byte identity.
 - **Verification:** provenance/validator.py and the registered synthetic A-V
   suite plus W-AK fail-closed regression edges run without network access,
   credentials, deployment, or frozen-project mutation.
-- **Capability boundary:** Capability #8 is implemented in V2.13. Localization/
-  I18n, Ecommerce, Authentication, and Application modules remain out of scope.
+- **Capability boundary:** Capability #8 is implemented in V2.13 and Capability
+  #9 Localization and Internationalization is implemented in V2.14. Ecommerce,
+  Authentication, and Application modules remain out of scope.
 
 ### What V2.13.0 Adds (Content Operations & CMS Architecture)
 
@@ -157,8 +158,41 @@ implementation.
   remain their own authorities. V2.5 still owns long-term client operations,
   backup/restore, training, maintenance, costs, and handoff acceptance.
 - **Readiness:** `[CONTENT_OPERATIONS_READY]` reads `content_ops.complete` and
-  adds no owner lock. Capability #9 Localization/I18n and Capability #10
-  Ecommerce, Authentication, and Application Modules remain out of scope.
+  adds no owner lock.
+
+### What V2.14.0 Adds (Localization and Internationalization Intelligence)
+
+V2.14.0 implements Capability #9 as a bounded, provider-neutral localization
+and internationalization subsystem. It runs at Phase 6.35 after Content
+Operations and CMS Architecture and before Conversion and Analytics. An
+English-only project may record `localization.required = false` without
+locale or translation bloat.
+
+- **Canonical architecture:** `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md`,
+  `templates/localization-plan.md`, `templates/localization-manifest.json`,
+  `templates/locale-registry.json`, and `localization/validator.py` own the
+  requirement model, locale registry, routing, fallback, translation review,
+  formatting, RTL, typography, assets, SEO, accessibility, analytics,
+  provenance, QA, launch, and handoff contracts.
+- **Single state and readiness:** `localization.complete` is the sole
+  localization readiness flag and `[LOCALIZATION_READY]` is a readiness gate,
+  not a sixth owner lock. Exactly five owner locks remain.
+- **Fail-closed controls:** BCP 47-style locale identity, one source and one
+  default locale, explicit `ROOT` or `PREFIX` URL policy, acyclic fallback,
+  semantic UI IDs, safe pluralization/interpolation, locale-aware formatting,
+  RTL direction, logical CSS, script font and license provenance, text
+  expansion, localized SEO/hreflang/canonicals, content-model integration,
+  human review, translation freshness, and pseudo-localization QA are
+  deterministic controls.
+- **Authority boundaries:** Content Operations owns what content fields exist;
+  Localization owns which fields vary and their review lifecycle. Existing
+  SEO, Accessibility, Security and Privacy, Measurement, Provenance, Browser
+  QA, Launch Ops, and V2.5 Handoff authorities remain intact. No provider,
+  production credential, live analytics property, deployment, or publishing
+  action is required.
+- **Compatibility:** Existing V1 through V2.13 profiles and frozen pilots may
+  omit `localization{}` and are not retrofitted. Capability #10 Ecommerce,
+  Authentication, and Application Modules remains out of scope.
 
 ---
 
@@ -207,6 +241,14 @@ PHASE 5: INFORMATION ARCHITECTURE & SECTION MORPHOLOGY
       ▼
 PHASE 6: CONTENT STRATEGY, UX WRITING & COPYWRITING
       ├─► [LOCK 3: CONTENT_STRUCTURE_LOCKED]
+      │
+      ▼
+PHASE 6.25: CONTENT OPERATIONS & CMS ARCHITECTURE
+      ├─► [GATE CONTENT: CONTENT_OPERATIONS_READY] (readiness gate)
+      │
+      ▼
+PHASE 6.35: LOCALIZATION & INTERNATIONALIZATION INTELLIGENCE
+      ├─► [GATE LOCALIZATION: LOCALIZATION_READY] (readiness gate)
       │
       ▼
 PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE
@@ -294,6 +336,7 @@ website-director/
 ├── LAUNCH-OPERATIONS-PROTOCOL.md     # Phase 12.25 release identity, owner deployment authorization boundary, production verification against a known release, rollback readiness/triggers, post-launch observation, incident model, RELEASE_READY gate (V2.10)
 ├── EVIDENCE-PROVENANCE-PROTOCOL.md   # Phase 6.95 evidence, claim, rights, attribution, asset identity, and reference-only provenance gate (V2.12)
 ├── CONTENT-OPERATIONS-CMS-PROTOCOL.md # Phase 6.25 semantic content model, CMS decision, editorial/publishing, slug, portability, and migration gate (V2.13)
+├── LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md # Phase 6.35 locale, routing, fallback, translation, formatting, RTL, SEO, QA, and handoff governance (V2.14)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -328,6 +371,9 @@ website-director/
 │   ├── content-model.md               # Capability #8 semantic content model and editorial architecture (V2.13)
 │   ├── content-model.json             # Machine-readable content model contract (V2.13)
 │   ├── cms-decision.md                # Vendor-neutral CMS need/provider decision record (V2.13)
+│   ├── localization-plan.md            # Capability #9 localization and internationalization plan (V2.14)
+│   ├── localization-manifest.json      # Machine-readable localization contract (V2.14)
+│   ├── locale-registry.json            # Machine-readable locale registry (V2.14)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -344,13 +390,16 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.13.0; exact five-lock profile)
+│   └── site-profile.json              # Machine-readable state & lock schema (v2.14.0; exact five-lock profile)
 ├── provenance/                        # Capability 7 deterministic evidence and asset provenance validator
 │   ├── validator.py                   # Fail-closed ledger, manifest, risk, hash, and state validation
 │   └── AGENTS.md                      # Local provenance boundary and verification contract
 ├── content-ops/                       # Capability #8 deterministic content/CMS architecture validator
 │   ├── validator.py                   # CMS necessity, model, lifecycle, publishing, slug, rich-text, portability, and reference checks
 │   └── AGENTS.md                      # Local content-operations boundary and verification contract
+├── localization/                      # Capability #9 deterministic localization and internationalization validator
+│   ├── validator.py                   # Locale, route, fallback, translation, formatting, RTL, typography, SEO, and integration checks
+│   └── AGENTS.md                      # Local localization boundary and verification contract
 ├── integrations/                    # Bounded external evidence adapters (V2.11.1)
 │   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
@@ -371,16 +420,18 @@ website-director/
 │   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
 │   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
 │   ├── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
-│   └── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
+│   ├── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
+│   └── test_v2_14_localization.py      # Capability #9 A-AF locale, translation, RTL, SEO, provenance, and frozen-integrity controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.13 protocol/template/pilot invariant harness
+    ├── test_runner.py                # V2.0-V2.14 protocol/template/pilot invariant harness
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
     ├── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
     ├── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
-    └── CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md # Phase 6.25 scenario A-V content/CMS validation suite (V2.13)
+    ├── CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md # Phase 6.25 scenario A-V content/CMS validation suite (V2.13)
+    └── LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md # Phase 6.35 scenario A-AF localization validation suite (V2.14)
 ```
 
 ---
@@ -397,13 +448,14 @@ The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PR
 
 ---
 
-## Framework Self-Validation (V2.13.0)
+## Framework Self-Validation (V2.14.0)
 
-<!-- FRAMEWORK_VERSION: 2.13.0 -->
+<!-- FRAMEWORK_VERSION: 2.14.0 -->
 
 The V2.13 framework self-validation layer, V2.11.1 design-inspiration adapter,
-V2.12 Capability 7 evidence/provenance validator, and V2.13 Capability #8
-content-operations validator are additive to the
+V2.12 Capability 7 evidence/provenance validator, V2.13 Capability #8
+content-operations validator, and V2.14 Capability #9 localization and
+internationalization validator are additive to the
 certified V2.10 Website Director system. The corrected lineage retains the
 complete historical `projects/` corpus.
 
@@ -424,6 +476,14 @@ source audit, exact upstream pin, normalized reference schema, credential
 states, query policy, platform recognition, originality refusal, and blocked
 token-extraction path are checked without a live key or network access.
 
+The V2.14 localization subsystem is validated by a separate deterministic
+A-AF suite. It checks conditional requirement assessment, BCP 47-style locale
+identity, source/default uniqueness, routes, fallbacks, translation review and
+freshness, formatting, RTL, typography and font provenance, SEO, content-model
+integration, accessibility, analytics, assets, handoff, and pseudo-localization.
+It uses no provider account, network translation call, production credential,
+publishing action, or frozen-project mutation.
+
 The framework contract deliberately remains outside the current site profile.
 Exactly five owner locks remain authoritative:
 `design_direction_locked`, `information_architecture_locked`,
@@ -443,4 +503,5 @@ framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
 content_ops=content_ops.complete
+localization=localization.complete
 -->

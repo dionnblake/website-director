@@ -1,5 +1,5 @@
 {
-  "$schema_note": "Website Director V2.8 browser-qa manifest. Consumed by browser-qa/runner.py. Fill from templates/browser-qa-plan.md. Neutral placeholders below.",
+  "$schema_note": "Website Director V2.14 browser-qa manifest. Consumed by browser-qa/runner.py. Fill from templates/browser-qa-plan.md. Neutral placeholders below.",
   "project_name": "Project Name",
   "environment": "local",
   "repo_root": "..",
@@ -33,6 +33,22 @@
     "required_headers": ["Content-Security-Policy", "Strict-Transport-Security", "X-Content-Type-Options", "Referrer-Policy"],
     "allowed_third_party_scripts": [],
     "disclosure_routes": []
+  },
+
+  "localization": {
+    "$source": "localization-plan.md / localization-manifest.json — do NOT re-author localization readiness here",
+    "required": false,
+    "source_locale": null,
+    "default_locale": null,
+    "supported_locales": [],
+    "check_routes": true,
+    "switcher": { "required": false },
+    "hreflang": { "required": false, "require_localized_canonical": false },
+    "fallback": { "required": false },
+    "metadata": { "title": false, "description": false, "og": false, "alt": false },
+    "forms": { "required": false },
+    "pseudo_localization": { "enabled": false, "minimum_ratio": 1.3 },
+    "rtl": { "required": false }
   },
 
   "console_ignore": [],

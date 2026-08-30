@@ -1,4 +1,4 @@
-"""Manifest-driven Browser & Regression QA runner (Website Director V2.8).
+"""Manifest-driven Browser & Regression QA runner (Website Director V2.14).
 
     python browser-qa/runner.py --plan <project>/browser-qa-manifest.json \
         --engine simulation --evidence <project>/evidence/browser-qa
@@ -70,7 +70,12 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
                                  run_id="browser-qa-%d" % int(time.time()))
     guard.snapshot()
 
-    engine = load_engine(engine_name, project_root, plan.get("engine_config", {}))
+    engine_config = dict(plan.get("engine_config", {}))
+    # Runtime specialist checks consume their canonical plan blocks through the
+    # same engine. They do not create a second runner or a second state owner.
+    if plan.get("localization") and "localization" not in engine_config:
+        engine_config["localization"] = plan["localization"]
+    engine = load_engine(engine_name, project_root, engine_config)
     run_id = "bqa-%s" % time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     started = time.time()
     findings_json: List[Dict[str, Any]] = []

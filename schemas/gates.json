@@ -182,6 +182,15 @@
       "status": "ACTIVE"
     },
     {
+      "name": "LOCALIZATION_READY",
+      "type": "READINESS",
+      "authoritative_state": "localization.complete",
+      "phase": "6.35",
+      "owner_protocol": "LOCALIZATION_INTERNATIONALIZATION",
+      "owner_artifact": "templates/localization-plan.md",
+      "status": "ACTIVE"
+    },
+    {
       "name": "CONVERSION_MEASUREMENT_COMPLETE",
       "type": "READINESS",
       "authoritative_state": "measurement.complete",

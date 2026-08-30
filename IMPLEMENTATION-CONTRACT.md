@@ -81,8 +81,64 @@ When a project uses Capability #8, implementation consumes the validated
 If implementation requires changing the locked content structure, approved
 copy, or another owner-controlled contract, **HALT** and raise an Owner Change
 Request. This section does not authorize CMS installation, production
-publishing, deployment, Capability #9 Localization/I18n, or Capability #10
-Ecommerce, Authentication, and Application Modules.
+publishing, deployment, provider installation, or Capability #10 Ecommerce,
+Authentication, and Application Modules.
+
+---
+
+## 2.0.1 Builder Localization & Internationalization Requirements (V2.14)
+
+When Capability #9 is required, implementation consumes the validated
+`LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md`,
+`templates/localization-plan.md`, `templates/localization-manifest.json`,
+`templates/locale-registry.json`, and `localization.complete` state. The builder
+must:
+
+- use the registered BCP 47-style locale identifiers, exactly one source locale,
+  exactly one default locale, the selected route strategy, the explicit default
+  URL policy, and the acyclic fallback policy;
+- render an accessible text-labelled locale switcher and expose the correct
+  `lang` and `dir` values. Flags may supplement labels but cannot be the only
+  locale identifier;
+- keep localizable content, UI messages, alt text, SEO text, form labels,
+  errors, and consent copy in the approved message/content architecture. Do
+  not concatenate translated fragments or use English text as message IDs;
+- use standards-aware plural categories, safe named interpolation, locale-aware
+  date/time/number/currency/unit formatting, explicit currency codes, and an
+  explicit timezone and conversion policy. Never infer currency from language
+  or ship a universal `MM/DD/YYYY` display mask;
+- implement RTL direction, bidirectional text handling, and logical CSS where
+  practical. Do not mechanically mirror logos or brand marks. Document
+  directional icon exceptions;
+- verify script and glyph coverage, CJK and Arabic-derived support where
+  applicable, font licensing and redistribution status, V2.12 provenance, and
+  30 percent and 50 percent text expansion before release review;
+- consume V2.13 Content Operations models and classify localizable versus
+  non-localizable fields. Preserve stable IDs, evidence references, hashes,
+  slugs, redirect records, editorial status, portability, and review history;
+- keep translation statuses explicit. Machine output is draft-only; human or
+  explicitly authorized review is required before publication. Source changes
+  mark translations `STALE`. Machine-translated legal content is never
+  automatically legally approved, and translated claims cannot strengthen
+  source claims;
+- implement localized self-canonicals, intentional reciprocal hreflang and
+  x-default behavior, localized sitemap and structured-data inputs, and
+  locale-aware Open Graph metadata according to the SEO authority;
+- reuse the existing measurement event names and add locale as a parameter.
+  Do not create one event taxonomy per language. Preserve Security & Privacy,
+  Accessibility, Provenance, Browser QA, Launch Ops, and V2.5 Handoff contracts;
+- treat an absent or blocked provider as explicit state. No provider account,
+  translation API, production credential, publication, deployment, DNS change,
+  live analytics mutation, or external side effect is authorized by this
+  contract.
+
+`localization.complete` means the localization plan and contract are complete.
+It does not mean linguistic quality, provider configuration, implementation
+verification, production verification, legal approval, publishing, or deployment.
+`[LOCALIZATION_READY]` is a readiness gate and does not create a sixth owner
+lock. If implementation requires changing locked IA, content, copy, design
+tokens, motion, measurement, SEO, accessibility, security/privacy, or
+provenance requirements, **HALT** and raise an Owner Change Request.
 
 ---
 

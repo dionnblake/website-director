@@ -21,8 +21,10 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   per run, tear down every child process, server, and profile in `stop()`.
 - **Every assertion traces to one requirement source** (`assertions/__init__.py`
   `REQUIREMENT_SOURCES`). No orphan checks. V2.9 added `ACCESSIBILITY_REVIEW`
-  (`catalog.check_accessibility`, gated on `plan["accessibility"]`) — governed by
-  `../ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, not a separate runner.
+  (`catalog.check_accessibility`, gated on `plan["accessibility"]`) and V2.14
+  added `LOCALIZATION_PLAN` (`catalog.check_localization`, gated on
+  `plan["localization"]`) — both are governed by their canonical protocols,
+  not separate runners.
 - **Unavailable ≠ pass.** A missing engine or unreachable site is `BLOCKED` with a
   reason. `FLAKY` never becomes `PASS`.
 - **Do not re-implement Impeccable's static detectors.** Browser QA owns only the
@@ -38,6 +40,11 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   scheduling, rich-text, slug/redirect, media/evidence, and editor-boundary
   behavior is consumed through this same harness. Content Operations does not
   create a second browser runner or authorize production publishing.
+- **Localization & Internationalization (V2.14):** locale routes, equivalent
+  routes, `html lang`, text-labelled switchers, fallback, `hreflang`, localized
+  canonicals/metadata/forms, pseudo-localization expansion, and RTL runtime
+  behavior are consumed through this same harness. Localization does not
+  create a second runner or set `localization.complete`.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

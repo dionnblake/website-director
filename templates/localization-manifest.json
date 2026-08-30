@@ -1,0 +1,79 @@
+{
+  "$schema": "../schemas/localization-manifest.schema.json",
+  "template": true,
+  "template_version": "2.14.0",
+  "framework_version": "2.14.0",
+  "project_name": "Project Name",
+  "required": false,
+  "status": "NOT_REQUIRED",
+  "source_locale": null,
+  "default_locale": null,
+  "supported_locales": [],
+  "locale_registry_ref": "templates/locale-registry.json",
+  "locale_registry": {
+    "required": false,
+    "source_locale": null,
+    "default_locale": null,
+    "route_strategy": "NO_PUBLIC_LOCALE_ROUTING",
+    "default_locale_url_policy": null,
+    "fallback_policy": "NO_FALLBACK",
+    "locales": []
+  },
+  "route_strategy": "NO_PUBLIC_LOCALE_ROUTING",
+  "default_locale_url_policy": null,
+  "fallback_policy": "NO_FALLBACK",
+  "fallback_policy_defined": false,
+  "formatting": {
+    "date_strategy": null,
+    "time_strategy": null,
+    "number_strategy": null,
+    "currency_strategy": null,
+    "unit_strategy": null,
+    "pluralization_strategy": null,
+    "interpolation_strategy": null,
+    "currency_by_locale": {}
+  },
+  "logical_css": {
+    "required": false,
+    "uses_logical_properties": false
+  },
+  "rtl": [],
+  "ui_strings": [],
+  "translations": [],
+  "pages": [],
+  "fonts": [],
+  "assets": [],
+  "pseudolocalization": [],
+  "content_ops": {
+    "content_model_ref": null,
+    "strategy": null,
+    "localizable_fields": [],
+    "non_localizable_fields": []
+  },
+  "accessibility": {
+    "locale_switcher_required": false,
+    "locale_switcher_accessible": false,
+    "flag_only_selector": false,
+    "keyboard_accessible": false,
+    "screen_reader_accessible": false,
+    "current_locale_exposed": false,
+    "translated_form_errors": false,
+    "translated_labels": false
+  },
+  "analytics": {
+    "locale_parameter_required": false,
+    "locale_parameter": false,
+    "events": []
+  },
+  "handoff": {
+    "v25_handoff_ref": null,
+    "provider_dependencies": [],
+    "duplicates_v25_handoff": false
+  },
+  "exception": {
+    "applied": false,
+    "reason": null
+  },
+  "external_translation_provider_required": false,
+  "provider_adapter": null
+}

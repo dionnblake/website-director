@@ -5,10 +5,10 @@ description: "Directs and governs end-to-end website design and implementation s
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.13.0
+> **Version:** 2.14.0
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.13.0 is additive to V2.12.0, V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 8 Content Operations and CMS Architecture at Phase 6.25 without retrofitting historical projects or changing the five owner locks. Capability 9 Localization/I18n and Capability 10 Ecommerce, Authentication, and Application modules remain out of scope.
+> **Compatibility:** V2.14.0 is additive to V2.13.0, V2.12.0, V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 9 Localization and Internationalization at Phase 6.35 without retrofitting historical projects or changing the five owner locks. Capability 10 Ecommerce, Authentication, and Application modules remains out of scope.
 
 ---
 
@@ -54,6 +54,8 @@ An agent running Website Director must advance strictly through these phases. Do
 │          ──► GATE 3: [CONTENT_STRUCTURE_LOCKED]              │
 │ PHASE 6.25: CONTENT OPERATIONS & CMS ARCHITECTURE             │
 │          ──► GATE CONTENT: [CONTENT_OPERATIONS_READY]         │
+│ PHASE 6.35: LOCALIZATION & INTERNATIONALIZATION INTELLIGENCE  │
+│          ──► GATE LOCALIZATION: [LOCALIZATION_READY]          │
 │ PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE               │
 │          ──► GATE MEASUREMENT:                               │
 │              [CONVERSION_MEASUREMENT_COMPLETE]               │
@@ -234,7 +236,20 @@ An agent running Website Director must advance strictly through these phases. Do
 - Define editable surfaces, role capabilities, lifecycle (`DRAFT`, `IN_REVIEW`, `APPROVED`, `SCHEDULED`, `PUBLISHED`, `ARCHIVED`), preview, scheduling architecture, SEO fields, media/evidence references, slugs and 301 redirects, archive/delete rules, portability, migration, revisions, affiliate fields, and freshness fields.
 - Agent-generated content defaults to `DRAFT` and requires human review before publication. A provider without export capability is a visible lock-in warning requiring owner acceptance and an exit plan. High-risk claims consume V2.12 provenance; Asset Director, Accessibility, Security & Privacy, SEO, Measurement, and V2.5 Handoff remain their own authorities.
 - Run `content-ops/validator.py` through `python tests/test_v2_13_content_operations.py`; unresolved provider, model, evidence, redirect, rich-text, permission, or portability decisions remain `BLOCKED` or `FAIL`.
-- **ENGAGE GATE CONTENT:** Update `site-profile.json` → `content_ops.complete = true` only when the model, decision, editable surfaces, editorial workflow, publishing authority, slug policy, portability review, and applicable migrations are validated. `[CONTENT_OPERATIONS_READY]` is a readiness gate, not a sixth owner lock. Capability #9 Localization/I18n and Capability #10 Ecommerce, Authentication, and Application Modules remain out of scope.
+- **ENGAGE GATE CONTENT:** Update `site-profile.json` → `content_ops.complete = true` only when the model, decision, editable surfaces, editorial workflow, publishing authority, slug policy, portability review, and applicable migrations are validated. `[CONTENT_OPERATIONS_READY]` is a readiness gate, not a sixth owner lock.
+
+---
+
+### PHASE 6.35: Localization and Internationalization Intelligence (Localization Readiness Gate)
+- Consult [LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md), [templates/localization-plan.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/localization-plan.md), and [templates/locale-registry.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/locale-registry.json).
+- **Precondition:** `content_ops.complete` or a recorded Content Operations exception must exist after `locks.content_structure_locked` is addressed. The phase runs before Phase 6.5 Measurement and does not renumber historical phases.
+- **Requirement assessment:** Record whether localization is `NOT_REQUIRED`, `PLANNING`, `READY`, `BLOCKED`, `IMPLEMENTED`, `VERIFIED`, or `EXCEPTION_APPLIED`. Do not infer need from IP address, browser language, ethnicity, company name, or geographic stereotype. English-only sites may keep `localization.required = false`.
+- **Canonical state:** `localization.complete` is the only localization readiness flag. `implementation_verified` and `production_verified` remain separate. The phase creates no `i18n{}`, `l10n{}`, translation completion flag, or owner lock.
+- **Locale architecture:** Use BCP 47-style locale codes, exactly one source locale and one default locale when required, an explicit route strategy and default URL policy, an acyclic fallback policy, content coverage, a text-labelled accessible locale switcher, and stable locale ownership.
+- **Content and translation:** Consume V2.13 content models. Classify localizable and non-localizable fields, preserve slugs and redirects, track `SOURCE` through `PUBLISHED`, mark source changes `STALE`, and require human or explicitly authorized review before publication. Machine translation is draft-only and never establishes legal approval.
+- **Engineering and experience:** Use semantic UI message IDs, safe interpolation and plural categories, locale-aware dates/times/numbers/currency/units, explicit currency, RTL direction and logical CSS, script and CJK font coverage, V2.12 font/asset provenance, 30 percent and 50 percent expansion tests, localized SEO/hreflang/self-canonical rules, and localized accessibility text.
+- **Integration and verification:** Reuse the existing measurement event names with a locale parameter, extend the existing browser QA runner with pseudo-localization and RTL checks, transfer durable work through V2.5 Handoff, and leave production verification to Launch Operations. Run `python tests/test_v2_14_localization.py`.
+- **ENGAGE GATE LOCALIZATION:** `[LOCALIZATION_READY]` reads `localization.complete`, is a readiness gate rather than a sixth owner lock, and never authorizes provider installation, publishing, deployment, production credentials, DNS, analytics changes, or live site changes.
 
 ---
 
@@ -691,6 +706,48 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 
 ---
 
+### 5.12b Single-Source-of-Truth Rule for `localization` State (V2.14)
+`localization.complete` is the **only** authoritative readiness flag for
+`[LOCALIZATION_READY]` at Phase 6.35. It is separate from Content Operations,
+SEO, Accessibility, Security & Privacy, Measurement, Provenance, Browser QA,
+Launch Ops, and V2.5 Handoff state. No parallel `i18n{}`, `l10n{}`,
+`translation{}`, `language_locked`, `translation_locked`, or
+`localization_locked` authority may be created.
+- `localization.required` is an evidence-based conditional decision. An
+  English-only project may use `false`; IP address, browser language, owner
+  ethnicity, company name, and geographic stereotypes never establish need.
+- Required work records exactly one source locale, exactly one default locale,
+  supported BCP 47-style locale identifiers, route strategy, default URL
+  policy, content coverage, fallback policy, direction, review ownership, and
+  translation status.
+- `SOURCE`, `NOT_TRANSLATED`, `MACHINE_DRAFT`, `HUMAN_REVIEW_REQUIRED`,
+  `REVIEWED`, `APPROVED`, `STALE`, and `PUBLISHED` are explicit lifecycle
+  states. Machine output is draft-only. Human or explicitly authorized review
+  is required before production publication. Legal translation is never
+  automatically legally approved.
+- UI strings use semantic IDs, safe named interpolation, and standards-aware
+  plural categories. Dates, times, numbers, currencies, units, and timezone
+  behavior are locale-aware. Currency is explicit and never inferred from
+  language.
+- RTL pages expose correct direction and use logical CSS where practical.
+  Brand marks are not mechanically mirrored. Script and CJK font coverage,
+  license status, V2.12 provenance, and 30 percent/50 percent expansion are
+  release inputs.
+- Localization consumes V2.13 content models and classifies localizable versus
+  non-localizable fields. It preserves slugs, redirects, SEO/hreflang and
+  localized self-canonicals, accessible language metadata, existing analytics
+  event names with a locale parameter, and provenance identity.
+- `localization.complete = true` certifies the plan and contract, not provider
+  installation, linguistic quality, legal compliance, local browser success,
+  production verification, publishing, or deployment. The existing browser QA
+  runner, Launch Ops authority, and V2.5 Handoff remain the relevant downstream
+  systems. No provider account or external side effect is required.
+- **Backward compatibility:** historical profiles and frozen projects that do
+  not contain `localization{}` remain valid and are not retrofitted. Capability
+  #10 Ecommerce, Authentication, and Application Modules remains out of scope.
+
+---
+
 ### 5.14 Single-Source-of-Truth Rule for `security_privacy` State (V2.7)
 `security_privacy.complete` is the **only** authoritative readiness flag for `[SECURITY_PRIVACY_READY]`. No second, independently-writable completion flag may ever be created for security/privacy readiness.
 - `security_privacy.status` values: `"not_evaluated"`, `"assessing"`, `"requirements_ready"`, `"blocked"`, `"escalated"`, `"exception"`, `"not_required"`.
@@ -729,9 +786,9 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 
 ---
 
-## 5.18 Framework Self-Validation (V2.13)
+## 5.18 Framework Self-Validation (V2.14)
 
-<!-- FRAMEWORK_VERSION: 2.13.0 -->
+<!-- FRAMEWORK_VERSION: 2.14.0 -->
 
 Capability 6 is a read-only framework validation layer. Run
 `python -m framework_validation --run-suites` from the repository root when
@@ -744,7 +801,7 @@ separately tested, bounded Design Inspiration MCP adapter in
 not become a design authority.
 
 The validator's state is external to `templates/site-profile.json`. The current
-profile is a V2.13-compatible project-state document with the current
+profile is a V2.14-compatible project-state document with the current
 framework version recorded explicitly. Exactly five owner locks remain
 authoritative. Historical projects under `projects/` are read-only and are
 never retrofitted merely because the framework version advances.
@@ -754,8 +811,11 @@ through EVIDENCE-PROVENANCE-PROTOCOL.md, provenance/validator.py, and the
 provenance.complete state. Capability 8 Content Operations and CMS Architecture
 is implemented at Phase 6.25 through CONTENT-OPERATIONS-CMS-PROTOCOL.md,
 content-ops/validator.py, the content_ops.complete state, and the
-[CONTENT_OPERATIONS_READY] readiness gate. Capability 9 Localization/I18n and
-Capability 10 Ecommerce, Authentication, and Application modules remain out of
+[CONTENT_OPERATIONS_READY] readiness gate. Capability 9 Localization and
+Internationalization is implemented at Phase 6.35 through
+LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md, localization/validator.py, the
+localization.complete state, and the [LOCALIZATION_READY] readiness gate.
+Capability 10 Ecommerce, Authentication, and Application modules remains out of
 scope.
 
 ## 5.19 Design Inspiration MCP Boundary (V2.11.1)
@@ -791,6 +851,7 @@ provenance=provenance.complete
 framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
+localization=localization.complete
 -->
 
 ---

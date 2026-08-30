@@ -30,6 +30,7 @@ from .base import (
     FormState,
     KeyboardTrace,
     LayoutMetrics,
+    LocalizationObservation,
     NetworkRequest,
     PageObservation,
     PerfSample,
@@ -294,6 +295,59 @@ class SimulationEngine(BrowserQAEngine):
                 manual_keyboard_result=a.get("manual_keyboard_result"),
             )
             obs.a11y = a11y
+
+        # -- localization ---------------------------------------------
+        loc = fx.get("localization")
+        if loc is not None:
+            if not isinstance(loc, dict):
+                loc = {"route_resolves": False}
+            switcher = loc.get("switcher", {}) if isinstance(loc.get("switcher", {}), dict) else {}
+            fallback = loc.get("fallback", {}) if isinstance(loc.get("fallback", {}), dict) else {}
+            rtl = loc.get("rtl", {}) if isinstance(loc.get("rtl", {}), dict) else {}
+            forms = loc.get("forms", {}) if isinstance(loc.get("forms", {}), dict) else {}
+            obs.localization = LocalizationObservation(
+                locale=loc.get("locale", ""),
+                html_lang=loc.get("html_lang", ""),
+                html_dir=loc.get("html_dir", ""),
+                route_resolves=loc.get("route_resolves", False),
+                switcher_present=loc.get("switcher_present", switcher.get("present", False)),
+                switcher_accessible=loc.get("switcher_accessible", switcher.get("accessible", True)),
+                switcher_keyboard_operable=loc.get(
+                    "switcher_keyboard_operable", switcher.get("keyboard_operable", True)),
+                switcher_labels=list(loc.get("switcher_labels", switcher.get("labels", []))),
+                switcher_current_locale=loc.get(
+                    "switcher_current_locale", switcher.get("current_locale", "")),
+                equivalent_route=loc.get("equivalent_route", ""),
+                hreflang=list(loc.get("hreflang", [])),
+                canonical=loc.get("canonical", ""),
+                canonical_is_self=loc.get("canonical_is_self"),
+                canonical_points_to_source=loc.get("canonical_points_to_source", False),
+                localized_title=loc.get("localized_title", False),
+                localized_description=loc.get("localized_description", False),
+                localized_og=loc.get("localized_og", False),
+                localized_alt=loc.get("localized_alt", False),
+                untranslated_system_strings=list(loc.get("untranslated_system_strings", [])),
+                fallback_explicit=loc.get("fallback_explicit", fallback.get("explicit", False)),
+                fallback_locale=loc.get("fallback_locale", fallback.get("locale", "")),
+                fallback_source_silent=loc.get(
+                    "fallback_source_silent", fallback.get("source_silent", False)),
+                localized_form_labels=loc.get(
+                    "localized_form_labels", forms.get("labels", False)),
+                localized_form_errors=loc.get(
+                    "localized_form_errors", forms.get("errors", False)),
+                text_expansion_ratio=float(loc.get("text_expansion_ratio", 1.0)),
+                text_overflow_refs=list(loc.get("text_overflow_refs", [])),
+                rtl_layout_direction=loc.get(
+                    "rtl_layout_direction", rtl.get("layout_direction", "")),
+                rtl_focus_visible=loc.get("rtl_focus_visible", rtl.get("focus_visible", False)),
+                rtl_navigation_operable=loc.get(
+                    "rtl_navigation_operable", rtl.get("navigation_operable", False)),
+                rtl_icon_mirror_policy=loc.get(
+                    "rtl_icon_mirror_policy", rtl.get("icon_mirror_policy", "")),
+                rtl_icon_failures=list(loc.get("rtl_icon_failures", rtl.get("icon_failures", []))),
+                rtl_forms_operable=loc.get("rtl_forms_operable", rtl.get("forms_operable", False)),
+                rtl_overflow_refs=list(loc.get("rtl_overflow_refs", rtl.get("overflow_refs", []))),
+            )
 
         obs.raw = {"fixture_dir": fixture_dir, "fixture": fx, "flaky": fx.get("flaky")}
         return obs
