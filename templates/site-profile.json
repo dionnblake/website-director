@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "schema_version": "2.11.1",
-  "framework_version": "2.11.1",
+  "schema_version": "2.12.0",
+  "framework_version": "2.12.0",
   "project_name": "Morrow & Vale Architecture and Industrial Design",
   "version": "1.0.0",
   "creative_intent": {
@@ -371,6 +371,24 @@
     "screen_reader_verified": false,
     "production_verified": false,
     "known_gaps": [],
+    "blocked_reason": null,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "provenance": {
+    "complete": false,
+    "claim_inventory_complete": false,
+    "asset_inventory_complete": false,
+    "research_reference_inventory_complete": false,
+    "license_review_complete": false,
+    "attribution_review_complete": false,
+    "ledger_ref": "evidence-ledger.json",
+    "implementation_verified": false,
+    "production_verified": false,
+    "unresolved_items": [],
+    "high_risk_items": [],
     "blocked_reason": null,
     "exception": {
       "applied": false,

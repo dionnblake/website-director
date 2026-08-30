@@ -344,6 +344,7 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
             "security_privacy",
             "browser_qa",
             "accessibility",
+            "provenance",
             "gauntlet",
             "handoff",
             "signature_choreography",

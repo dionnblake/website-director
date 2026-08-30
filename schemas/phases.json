@@ -114,11 +114,19 @@
       "status": "HISTORICAL"
     },
     {
+      "phase": "6.95",
+      "name": "Evidence and Asset Provenance Intelligence",
+      "protocol": "EVIDENCE_PROVENANCE",
+      "gate": "EVIDENCE_PROVENANCE_READY",
+      "preconditions": ["ACCESSIBILITY_READY"],
+      "status": "HISTORICAL"
+    },
+    {
       "phase": "7",
       "name": "Design System Token Architecture",
       "protocol": "DESIGN_SYSTEM",
       "gate": "DESIGN_SYSTEM_LOCKED",
-      "preconditions": ["ACCESSIBILITY_READY"],
+      "preconditions": ["ACCESSIBILITY_READY", "EVIDENCE_PROVENANCE_READY"],
       "status": "HISTORICAL"
     },
     {

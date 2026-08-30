@@ -210,6 +210,17 @@ Result → `launch_ops.production_forms_verified`.
 
 ## 14. Assets
 
+### Evidence and provenance intake (V2.12)
+
+- [ ] Every release asset resolves to an asset provenance_ref in the
+      cross-cutting evidence ledger.
+- [ ] Every production claim used by launch copy, metadata, structured data,
+      or disclosures resolves to an EVIDENCE_REF.
+- [ ] Required attribution, license evidence, permitted uses, AI metadata,
+      source dates, and handoff restrictions are present.
+- [ ] provenance/validator.py result is attached as PASS, or the launch stays
+      BLOCKED / FAIL. This does not authorize deployment.
+
 - [ ] Hero / logos / fonts / favicon / social preview / critical video / generated imagery / responsive assets present on production
 - [ ] No `file://` / `assets/source/…` / unresolved dev paths shipped
 - [ ] No accidental placeholder images

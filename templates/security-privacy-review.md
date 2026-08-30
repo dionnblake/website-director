@@ -331,6 +331,14 @@ AFFILIATE DISCLOSURE ≠ PRIVACY POLICY ≠ TERMS ≠ ADVERTISING CONSENT
 
 **Reviewed:** `TRUE | FALSE` → `security_privacy.claim_risk_reviewed`
 
+**V2.12 ownership split:** Security & Privacy owns data risk, consent,
+disclosure placement, and truthful marketing-risk review. Source identity,
+evidence strength, permitted use, attribution, and asset hash identity are
+owned by EVIDENCE-PROVENANCE-PROTOCOL.md. Record the compact EVIDENCE_REF here;
+do not duplicate or replace the evidence ledger. A missing or blocked
+provenance record remains a security/privacy known gap where the claim or
+asset creates disclosure risk.
+
 ---
 
 ## 16. Security Headers

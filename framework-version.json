@@ -1,14 +1,14 @@
 {
-  "version": "2.11.1",
-  "schema_version": "2.11.1",
-  "previous_version": "2.11.0",
-  "release_type": "patch",
+  "version": "2.12.0",
+  "schema_version": "2.12.0",
+  "previous_version": "2.11.1",
+  "release_type": "minor",
   "status": "CURRENT",
   "source_of_truth": true,
   "lineage": {
-    "base_branch": "codex/website-director-v2-11-lineage-repair",
-    "base_commit": "3025e975c8206d019af7f3c89a3de8138ec9d0f3",
-    "base_version": "2.11.0",
-    "current_checkout_note": "The corrected V2.11 checkout retains the certified framework and frozen project corpus, then adds the bounded Capability 6.5 Design Inspiration MCP adapter without Capability 7."
+    "base_branch": "codex/website-director-v2-11-1-design-inspiration-mcp",
+    "base_commit": "9df114d3b11cc881a0b000cdcbc633e86a0dc0d6",
+    "base_version": "2.11.1",
+    "current_checkout_note": "V2.12 adds the bounded Capability 7 Evidence, Claim and Asset Provenance system while preserving the certified framework, five owner locks, and frozen project corpus. Capability 8 content/CMS, localization, ecommerce, authentication, and application modules remain out of scope."
   }
 }

@@ -124,3 +124,9 @@ This list is identical in spirit to the Anti-Cloning Rules already in `REFERENCE
 ## 6. Output
 
 Populated `templates/reference-deconstruction.md` per deep-recon target, feeding `templates/research-synthesis.md`. Record provenance per `RESEARCH-SOURCES.md` §7, with `Deep Recon Performed: Yes` and the study's stated purpose.
+
+The source identity and rights boundary is also recorded in the cross-cutting
+evidence ledger. Deep-recon screenshots, downloaded reference media, and
+competitor assets remain REFERENCE_ONLY unless independently sourced and
+approved under EVIDENCE-PROVENANCE-PROTOCOL.md. Hashes may identify a captured
+snapshot but do not establish rights.

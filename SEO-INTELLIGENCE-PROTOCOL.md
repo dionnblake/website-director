@@ -247,6 +247,20 @@ If the routed capability (§3) incurs API/credit cost:
 
 ---
 
-## 14. Handoff Boundary (Builder Cannot Reopen Strategy)
+## 14. Evidence Traceability Boundary
+
+Every factual SEO output, including title claims, meta descriptions, FAQ
+answers, structured-data properties, ratings, awards, location statements,
+years, and performance language, must resolve to an EVIDENCE_REF in the
+project evidence ledger. SEO does not invent authority, freshness, ratings,
+reviews, or competitive statistics.
+
+If evidence is missing, stale, contradicted, or unverified, the claim remains
+UNKNOWN, REVIEW_REQUIRED, BLOCKED, or FAIL as appropriate. The claim inventory
+and source identity are owned by EVIDENCE-PROVENANCE-PROTOCOL.md; SEO owns
+search intent and metadata strategy. Do not duplicate the ledger or silently
+promote research references into factual claims.
+
+## 15. Handoff Boundary (Builder Cannot Reopen Strategy)
 
 `keyword-map.md` and `seo-content-briefs.md` are locked inputs to Phase 9 (`IMPLEMENTATION-CONTRACT.md`) once `seo.complete` is `true`. The Website Builder implements the approved page/keyword mapping; it does not independently perform new keyword research or create new SEO-motivated pages merely because it notices search-relevant terms during the build. If new evidence suggests the specification itself was wrong, Website Director reopens this protocol explicitly — the Builder does not silently deviate. See `IMPLEMENTATION-CONTRACT.md` §3.

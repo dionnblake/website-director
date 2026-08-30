@@ -14,6 +14,7 @@
     "AGENTS.md",
     "SKILL.md",
     "FRAMEWORK-VALIDATION-PROTOCOL.md",
+    "EVIDENCE-PROVENANCE-PROTOCOL.md",
     "templates/framework-validation-review.md"
   ],
   "canonical_json_roots": [
@@ -24,7 +25,7 @@
     "browser-qa/config",
     "tests"
   ],
-  "python_roots": ["framework_validation", "browser-qa", "tests"],
+  "python_roots": ["framework_validation", "browser-qa", "provenance", "tests"],
   "canonical_protocol_registry": "schemas/protocols.json",
   "canonical_gate_registry": "schemas/gates.json",
   "canonical_phase_registry": "schemas/phases.json",
@@ -47,6 +48,8 @@
     "templates/asset-intent-brief.md",
     "templates/asset-manifest.json",
     "templates/asset-provenance.md",
+    "templates/evidence-ledger.json",
+    "templates/evidence-ledger.md",
     "templates/browser-qa-manifest.json",
     "templates/browser-qa-plan.md",
     "templates/cinematic-brief.md",

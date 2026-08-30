@@ -12,6 +12,8 @@
   "environment": "production",
   "production_url": null,
   "generated_by": "launch-ops/validator.py",
+  "provenance_ledger_ref": "evidence-ledger.json",
+  "provenance_status": "NOT_EVALUATED",
   "notes": "Every check MUST tie to release_sha. A manifest with no release_sha is invalid. environment must be 'production' for any production_verified determination; a 'local' or 'staging' manifest never sets production_verified.",
   "checks": {
     "dns_resolves": { "result": "NOT_EVALUATED", "detail": null, "evidence_ref": null },

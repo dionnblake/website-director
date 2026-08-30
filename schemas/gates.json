@@ -200,6 +200,15 @@
       "status": "HISTORICAL"
     },
     {
+      "name": "EVIDENCE_PROVENANCE_READY",
+      "type": "READINESS",
+      "authoritative_state": "provenance.complete",
+      "phase": "6.95",
+      "owner_protocol": "EVIDENCE_PROVENANCE",
+      "owner_artifact": "templates/evidence-ledger.md",
+      "status": "ACTIVE"
+    },
+    {
       "name": "ASSET_DIRECTION_READY",
       "type": "READINESS",
       "authoritative_state": "asset_direction.complete",

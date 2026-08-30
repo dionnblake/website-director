@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.11.1
+> **Version:** 2.12.0
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -105,7 +105,30 @@ V2.11.1 adds a bounded, replaceable discovery transport to the existing Visual R
 - **Reference-only evidence:** Results are normalized with source URL, query, timestamp, upstream commit, heuristic grade, and `REFERENCE_ONLY` copyright boundary. Image URLs are never production assets, and no assets are downloaded.
 - **Fail-closed safety:** `SERPER_API_KEY` is environment-only. Generic or sensitive queries are rejected or safely rewritten. The upstream `design_extract_tokens` path is disabled by default and remains blocked unless every deliberate reference-deconstruction condition is met; the adapter never runs `dembrandt`.
 - **Originality guard:** The binding rule is **RESEARCH PATTERNS, DO NOT CLONE COMPOSITIONS.** No MCP result can set design direction, implementation tokens, locked copy, accessibility requirements, conversion decisions, security decisions, or production provenance.
-- **No new lock or gate:** The adapter feeds the existing research pipeline and does not add a site-profile state object, completion flag, owner lock, or Capability 7 Evidence & Asset Provenance system.
+- **No new lock or gate:** The adapter feeds the existing research pipeline and does not add a site-profile lock. Capability 7 is a separate cross-cutting provenance protocol and readiness gate owned by EVIDENCE-PROVENANCE-PROTOCOL.md.
+
+### What V2.12.0 Adds (Evidence, Claim & Asset Provenance Intelligence)
+V2.12.0 implements Capability 7 as a bounded, offline, fail-closed evidence
+system. It records the identity and support of claims, source and license
+evidence, research-reference boundaries, testimonials, certifications,
+attribution, permitted use, AI-media metadata, and SHA-256 byte identity.
+
+- **Phase 6.95:** Evidence and Asset Provenance runs after Accessibility and
+  before the Design System.
+- **One readiness state:** provenance.complete is the only completion flag for
+  EVIDENCE_PROVENANCE_READY. It is separate from Asset Director's
+  assets.provenance_status and creates no owner lock.
+- **Production boundary:** Missing, stale, contradictory, ambiguous,
+  unverified, or mismatched evidence is BLOCKED or FAIL. Prototype exceptions
+  remain PROTOTYPE_ONLY.
+- **Reference boundary:** MCP, showcase, competitor, screenshot, and research
+  inputs remain REFERENCE_ONLY; the adapter is consumed rather than
+  reimplemented.
+- **Verification:** provenance/validator.py and the registered synthetic A-V
+  suite plus W-AK fail-closed regression edges run without network access,
+  credentials, deployment, or frozen-project mutation.
+- **Capability boundary:** Capability 8 Content/CMS, Localization, Ecommerce,
+  Authentication, and Application modules remain out of scope.
 
 ---
 
@@ -239,6 +262,7 @@ website-director/
 ├── BROWSER-REGRESSION-QA-PROTOCOL.md # Phase 10.5 machine-executed browser verification, viewport matrix, assertion catalogue, flake policy, frozen-project guard, BROWSER_QA_PASS gate (V2.8)
 ├── ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md # Phase 6.9 WCAG 2.2 AA spec + Phase 10.5 verification, replaceable a11y engine, screen-reader smoke, no false conformance claims, ACCESSIBILITY_READY gate (V2.9)
 ├── LAUNCH-OPERATIONS-PROTOCOL.md     # Phase 12.25 release identity, owner deployment authorization boundary, production verification against a known release, rollback readiness/triggers, post-launch observation, incident model, RELEASE_READY gate (V2.10)
+├── EVIDENCE-PROVENANCE-PROTOCOL.md   # Phase 6.95 evidence, claim, rights, attribution, asset identity, and reference-only provenance gate (V2.12)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -268,6 +292,8 @@ website-director/
 │   ├── accessibility-test-manifest.json # Machine-readable accessibility test manifest (V2.9)
 │   ├── launch-plan.md                # Phase 12.25 26-section launch & post-launch operations plan (V2.10)
 │   ├── launch-evidence-manifest.json # Machine-readable launch evidence manifest, tied to a release identity (V2.10)
+│   ├── evidence-ledger.md             # Human-readable cross-cutting claim and asset evidence ledger (V2.12)
+│   ├── evidence-ledger.json           # Machine-readable cross-cutting provenance ledger (V2.12)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -284,7 +310,10 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json             # Machine-readable state & lock schema (v2.11.1; V2.10-compatible)
+│   └── site-profile.json             # Machine-readable state & lock schema (v2.12.0; exact five-lock profile)
+├── provenance/                        # Capability 7 deterministic evidence and asset provenance validator
+│   ├── validator.py                   # Fail-closed ledger, manifest, risk, hash, and state validation
+│   └── AGENTS.md                      # Local provenance boundary and verification contract
 ├── integrations/                    # Bounded external evidence adapters (V2.11.1)
 │   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
@@ -303,10 +332,11 @@ website-director/
 │   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
 │   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
 │   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
-│   └── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
+│   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
+│   └── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.7 protocol/template/pilot invariant harness (repaired under V2.8)
+    ├── test_runner.py                # V2.0-V2.12 protocol/template/pilot invariant harness
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
@@ -328,13 +358,14 @@ The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PR
 
 ---
 
-## Framework Self-Validation (V2.11.1)
+## Framework Self-Validation (V2.12.0)
 
-<!-- FRAMEWORK_VERSION: 2.11.1 -->
+<!-- FRAMEWORK_VERSION: 2.12.0 -->
 
-The V2.11 framework self-validation layer and V2.11.1 design-inspiration
-adapter are additive to the certified V2.10 Website Director system. The
-corrected lineage retains the complete historical `projects/` corpus.
+The V2.12 framework self-validation layer, V2.11.1 design-inspiration adapter,
+and V2.12 Capability 7 evidence/provenance validator are additive to the
+certified V2.10 Website Director system. The corrected lineage retains the
+complete historical `projects/` corpus.
 
 Run the deterministic framework gate locally with:
 

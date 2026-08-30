@@ -115,6 +115,19 @@ The governing transformation remains:
 
 ---
 
+## 3.2 Evidence Ledger Boundary (V2.12)
+
+Every reference finding is also eligible for a record in
+EVIDENCE-PROVENANCE-PROTOCOL.md and templates/evidence-ledger.json. Preserve
+the exact source URL, platform, query, retrieval time, reference grade,
+upstream SHA-256 where supplied by the Design Inspiration adapter,
+PATTERN_TO_LEARN, and WHAT_NOT_TO_COPY. Reference records are
+REFERENCE_ONLY and are not production asset provenance.
+
+Visual Research owns interpretation and originality decisions. The provenance
+system owns source identity and traceability; it does not replace Visual
+Research or reimplement the bounded MCP adapter.
+
 ## 4. `RESEARCH_COMPLETE` — A Readiness Gate, Not a Design Lock
 
 `research.complete` in `site-profile.json` is a **readiness gate**, semantically distinct from the four (now five) design-approval locks in `locks{}`. It answers "is there enough visual intelligence to design responsibly?" — not "has the owner approved a design." Website Director may not issue `DESIGN_DIRECTION_LOCKED` until `research.complete` is `true`, but flipping `research.complete` to `true` requires no owner sign-off the way a lock does; it requires the research artifacts below to exist and be populated.

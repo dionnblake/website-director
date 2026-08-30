@@ -861,12 +861,12 @@ Neither flag ever establishes legal compliance, absence of vulnerabilities, or t
 
 1. **Conversion & Analytics Intelligence (V2.6):** `measurement{}` remains the canonical measurement authority. This subsystem reviews and may block activation; it never creates a second analytics model and never silently rewrites measurement strategy (§16).
 2. **Client CMS & Handoff (V2.5):** `ENVIRONMENT-INVENTORY.md`, `DIGITAL-OWNERSHIP-REGISTER.md`, and the third-party register are inputs and handoff destinations. Secret custody and third-party accounts are disclosed to the client, never hidden. A blocked or escalated security state is a handoff disclosure.
-3. **Asset Director (V2.0):** `asset-provenance.md` remains the authority for asset licensing. §22 covers *claim* risk in copy and does not duplicate asset provenance.
+3. **Asset Director (V2.0):** Asset Director remains the authority for visual strategy and readiness. EVIDENCE-PROVENANCE-PROTOCOL.md owns source identity, rights evidence, permitted use, attribution, and hash identity. §22 remains the authority for claim-risk and disclosure review; the systems do not duplicate each other.
 4. **Immersive Web (V2.1) / Rive (V2.2):** WebGL/WASM runtimes, worker origins, and CDN-hosted runtime files are third-party inventory entries (§15) and CSP inputs (§12).
 5. **Page Experience (V2.3):** Route transitions must not leak sensitive values into history entries or URLs, and consent state must survive client-side navigation without re-prompting or silently re-enabling tracking.
 6. **SEO Intelligence (V1.2):** Canonical URLs, `og:url`, and sitemap entries must use production HTTPS origins (§13.4). A required privacy/disclosure route must appear in the approved page set — via owner change request, never a silent addition.
 7. **Accessibility (future capability):** Dependencies are recorded, not implemented (§23).
-8. **Evidence & Asset Provenance (future capability):** Only the §22 safety boundary is implemented here.
+8. **Evidence & Asset Provenance (V2.12):** This subsystem consumes provenance risk and disclosure dependencies. It does not re-author the evidence ledger or create a second rights state. Claims that require disclosure remain subject to this protocol's data-risk and truthful-disclosure controls.
 
 ---
 

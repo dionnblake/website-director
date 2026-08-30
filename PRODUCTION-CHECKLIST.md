@@ -412,3 +412,27 @@ Verified against `templates/accessibility-review.md` / `accessibility-test-manif
 - [ ] Phase 12.25 launch plan (`templates/launch-plan.md`) and evidence manifest exist where the project will be deployed or re-launched.
 - [ ] `launch_ops.complete` recorded honestly — it means the launch **plan** is complete, never that the site is deployed, production verified, or stabilised.
 - [ ] No `production_*_verified` flag was set from a localhost or staging run.
+
+## 5.6 Evidence, Claim & Asset Provenance (V2.12)
+
+- [ ] Every production claim has an EVIDENCE_REF resolving to a recorded
+      source, evidence strength, support match, owner, and review date.
+- [ ] Every production asset has an asset-level provenance_ref resolving to
+      the same ASSET_ID in the evidence ledger.
+- [ ] Asset Director assets.provenance_status and cross-cutting
+      provenance.complete are both recorded distinctly; one does not imply the
+      other.
+- [ ] Stock, open-license, public-domain, commissioned, third-party brand,
+      font, icon, screenshot, quoted, and AI-generated material has evidence
+      of permitted use appropriate to its risk.
+- [ ] Required attribution is present. Unknown, stale, contradicted,
+      ambiguous, unverified, or hash-mismatched records are BLOCKED or FAIL.
+- [ ] Research and showcase references remain REFERENCE_ONLY and are not
+      promoted into production assets.
+- [ ] The deterministic result from provenance/validator.py is attached to
+      the review. implementation_verified and production_verified remain
+      separate evidence states.
+
+The canonical provenance gate is EVIDENCE_PROVENANCE_READY. It is a readiness
+gate, not a sixth owner lock. Deployment remains governed by Launch Ops and
+requires owner authorization.

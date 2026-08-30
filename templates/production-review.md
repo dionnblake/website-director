@@ -25,6 +25,7 @@
 | **Favicon & 404** | Favicon package configured, custom 404 page | [PASS / FAIL] | [Custom 404 tested] |
 | **Console Clean** | Zero JS errors, 404 asset failures | [PASS / FAIL] | [Clean browser console] |
 | **Build Status** | Clean production bundle without warnings | [PASS / FAIL] | [Executed `npm run build` cleanly] |
+| **Evidence & Asset Provenance** | Claims and production assets resolve to the approved ledger; no blocked or stale records | [PASS / FAIL / BLOCKED] | [Ledger run ID, unresolved items, and asset hash result] |
 
 ---
 
@@ -37,3 +38,5 @@
 ## 3. Final Deployment Authorization
 - [ ] **ALL PRE-FLIGHT CHECKS PASSED:** Build is authorized for live commercial deployment.
 - [ ] **DEPLOYMENT BLOCKED:** Outstanding issues must be remediated prior to launch.
+- [ ] Provenance is a readiness input only; deployment still requires the
+      canonical Launch Ops owner authorization.

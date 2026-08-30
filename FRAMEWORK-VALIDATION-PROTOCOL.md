@@ -1,6 +1,6 @@
 # Website Director Framework Self-Validation Protocol
 
-<!-- FRAMEWORK_VERSION: 2.11.1 -->
+<!-- FRAMEWORK_VERSION: 2.12.0 -->
 <!-- protocol-id: FRAMEWORK_VALIDATION -->
 <!-- protocol-status: ACTIVE -->
 <!-- protocol-domain: framework-governance -->
@@ -14,9 +14,10 @@ registries, schemas, references, state ownership, compatibility records,
 frozen-project integrity, test isolation, and read-only CI policy. The additive
 Capability 6.5 Design Inspiration MCP adapter is validated by its registered
 deterministic suite, while this validator remains offline and does not connect
-to the MCP or provider. It does not validate subjective visual quality,
-publish the prototype, deploy production, send messages, use credentials, or
-begin Capability #7 or later.
+to the MCP or provider. Capability 7 Evidence, Claim and Asset Provenance is
+validated by its own registered deterministic suite and offline validator. It
+does not validate subjective visual quality, publish the prototype, deploy
+production, send messages, use credentials, or begin Capability 8 modules.
 
 The corrected checkout is based directly on the certified V2.10 lineage and
 retains its operational documents, browser-QA harness, and complete frozen
@@ -33,8 +34,8 @@ rewriting historical project material or introducing external side effects.
 - [schemas/site-profile.schema.json](schemas/site-profile.schema.json) defines
   the current site-profile contract.
 - [templates/site-profile.json](templates/site-profile.json) is the current
-  V2.10-compatible profile fixture. Framework-validation state is external to
-  it.
+  V2.12-compatible profile fixture. Framework-validation state is external to
+  it, and provenance.complete remains distinct from assets.provenance_status.
 - [schemas/protocols.json](schemas/protocols.json),
   [schemas/gates.json](schemas/gates.json),
   [schemas/phases.json](schemas/phases.json), and
@@ -49,6 +50,10 @@ rewriting historical project material or introducing external side effects.
 - [schemas/test-suites.json](schemas/test-suites.json) is the versioned suite
   registry. Active suites must be deterministic, isolated, order-independent,
   and free of external side effects.
+- [schemas/evidence-ledger.schema.json](schemas/evidence-ledger.schema.json)
+  and [provenance/validator.py](provenance/validator.py) are the Capability 7
+  machine contract and validator. They verify recorded evidence boundaries
+  without determining ownership or legal status.
 
 ## Invariants
 
@@ -67,8 +72,8 @@ The owner-lock set is exactly:
 4. `design_system_locked`
 5. `motion_direction_locked`
 
-Measurement, SEO, security, privacy, accessibility, browser QA, launch,
-assets, handoff, and framework-validation status are not owner locks. Readiness
+Measurement, SEO, security, privacy, accessibility, provenance, browser QA,
+launch, assets, handoff, and framework-validation status are not owner locks. Readiness
 and verification gates may refer to state, but they do not own lifecycle locks.
 
 ## Validation sequence
@@ -90,7 +95,9 @@ It performs the following deterministic sequence:
 6. Parse framework Python sources without writing bytecode and validate the
    read-only workflow contract.
 7. Snapshot and verify the registered `FrozenIntegrityGuard` boundary.
-8. Discover and, for release certification, run all active registered suites.
+8. Discover and, for release certification, run all active registered suites,
+   including the Capability 7 A-V evidence and asset provenance controls plus
+   W-AK fail-closed regression edges.
 9. Run deterministic negative controls for the required failure modes.
 10. Record change impact and mutation evidence, then write the runtime and
     versioned certification reports only to their designated paths.

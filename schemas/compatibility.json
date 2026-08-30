@@ -25,7 +25,8 @@
     "2.8.0",
     "2.9.0",
     "2.10.0",
-    "2.11.0"
+    "2.11.0",
+    "2.11.1"
   ],
   "historical_profiles": [
     { "release": "V1 baseline", "schema_version": null, "allow_missing_schema_version": true, "allow_four_locks": true },
@@ -38,7 +39,8 @@
     { "release": "V2.8 Browser QA", "schema_version": "2.8.0", "canonical_state": "browser_qa", "allow_missing_optional_states": true },
     { "release": "V2.9 Accessibility", "schema_version": "2.9.0", "canonical_state": "accessibility", "allow_missing_optional_states": true },
     { "release": "V2.10 Launch Ops", "schema_version": "2.10.0", "canonical_state": "launch_ops", "allow_missing_optional_states": true },
-    { "release": "V2.11 Framework Validation", "schema_version": "2.11.0", "canonical_state": "framework_validation", "allow_missing_optional_states": true }
+    { "release": "V2.11 Framework Validation", "schema_version": "2.11.0", "canonical_state": "framework_validation", "allow_missing_optional_states": true },
+    { "release": "V2.11.1 Design Inspiration", "schema_version": "2.11.1", "canonical_state": "research", "allow_missing_optional_states": true }
   ],
   "rules": {
     "historical_is_read_only": true,

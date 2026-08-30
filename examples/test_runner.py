@@ -3,7 +3,7 @@ import os, json, glob, struct, subprocess, hashlib, re, tempfile
 # ---------------------------------------------------------------------------
 # Repaired under V2.8 (BROWSER-REGRESSION-QA-PROTOCOL.md sec 0 Defect B).
 #
-# What this harness proves: the V2.0-V2.7 protocol documents, master templates,
+# What this harness proves: the V2.0-V2.12 protocol documents, master templates,
 # and certification pilots are internally consistent, that the master
 # site-profile template tracks the framework version declared in SKILL.md
 # rather than a frozen literal, that the canonical measurement{} architecture
@@ -18,7 +18,7 @@ import os, json, glob, struct, subprocess, hashlib, re, tempfile
 KNOWN_SCHEMA_VERSIONS = {
     '1.0.0', '1.1.0', '1.2.0', '1.3.0', '1.3.1', '1.4.0', '1.5.0', '1.6.0', '1.7.0',
     '1.8.0', '1.9.0', '2.0.0', '2.1.0', '2.2.0', '2.3.0', '2.4.0', '2.5.0', '2.5.1',
-    '2.6.0', '2.7.0', '2.8.0', '2.9.0', '2.10.0', '2.11.0', '2.11.1',
+    '2.6.0', '2.7.0', '2.8.0', '2.9.0', '2.10.0', '2.11.0', '2.11.1', '2.12.0',
 }
 
 # Substrings that would indicate an illegal sixth (or later) owner lock. Readiness
@@ -59,7 +59,7 @@ def parse_png_dimensions(filepath):
     return None, None
 
 def run():
-    print('=== WEBSITE DIRECTOR V2.0-V2.7 PROTOCOL, TEMPLATE & PILOT INVARIANT HARNESS ===\n')
+    print('=== WEBSITE DIRECTOR V2.0-V2.12 PROTOCOL, TEMPLATE & PILOT INVARIANT HARNESS ===\n')
 
     # A. Protocol Existence and Integrity
     assert os.path.exists('ASSET-DIRECTOR-PROTOCOL.md')
@@ -70,7 +70,7 @@ def run():
     print('[PASS] A. Asset Director Protocol verified.')
 
     # B. Templates Existence and Neutral State
-    for tmpl in ['templates/asset-intent-brief.md', 'templates/photography-shot-list.md', 'templates/asset-manifest.json', 'templates/asset-provenance.md', 'templates/immersive-implementation-brief.md', 'templates/rive-implementation-brief.md', 'templates/page-experience-brief.md', 'templates/analytics-measurement-plan.md', 'templates/experiment-brief.md', 'templates/analytics-event-manifest.json']:
+    for tmpl in ['templates/asset-intent-brief.md', 'templates/photography-shot-list.md', 'templates/asset-manifest.json', 'templates/asset-provenance.md', 'templates/evidence-ledger.md', 'templates/evidence-ledger.json', 'templates/immersive-implementation-brief.md', 'templates/rive-implementation-brief.md', 'templates/page-experience-brief.md', 'templates/analytics-measurement-plan.md', 'templates/experiment-brief.md', 'templates/analytics-event-manifest.json']:
         assert os.path.exists(tmpl)
         with open(tmpl, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -90,7 +90,7 @@ def run():
     # Every subsystem state object the framework has introduced must be present,
     # and each must expose a parseable status/complete field.
     for obj in ('assets', 'immersive', 'rive', 'page_experience', 'measurement',
-                'security_privacy', 'launch_ops'):
+                'security_privacy', 'provenance', 'launch_ops'):
         assert obj in sp, f'master template missing {obj}{{}}'
         node = sp[obj]
         assert isinstance(node, dict) and ('status' in node or 'complete' in node), \
@@ -113,6 +113,10 @@ def run():
     assert isinstance(sp['measurement'].get('complete'), bool), 'measurement.complete is a bool flag'
     assert 'security_privacy' in sp and sp['security_privacy'].get('complete') is False, \
         'security_privacy{} ships in a neutral (incomplete) state'
+    assert 'provenance' in sp and sp['provenance'].get('complete') is False, \
+        'provenance{} must ship neutral (not complete)'
+    assert sp['provenance'].get('ledger_ref') == 'evidence-ledger.json', \
+        'provenance{} must point to the canonical ledger template'
 
     # Exactly five owner locks, no subsystem readiness flag leaking into locks{}.
     assert_five_lock_invariant(sp['locks'], 'templates/site-profile.json')

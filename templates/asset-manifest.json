@@ -1,7 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "project_name": "[Project Name]",
-  "version": "2.0.0",
+  "version": "2.12.0",
   "last_updated": "[YYYY-MM-DD]",
+  "provenance_ledger_ref": "evidence-ledger.json",
+  "provenance_policy": "Every production asset resolves to an asset record in the cross-cutting evidence ledger. Hashes prove identity only.",
   "assets": []
 }

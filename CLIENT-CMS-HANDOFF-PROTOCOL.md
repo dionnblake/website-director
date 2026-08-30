@@ -292,4 +292,32 @@ Launch Operations hands the following into this protocol's documents — it does
 On completion of the intake, Launch Operations sets `launch_ops.handoff_transferred = true`. `[CLIENT_HANDOFF_READY]` remains a readiness gate; `[RELEASE_READY]` is a separate readiness gate; neither is a sixth owner lock. Exactly five owner locks remain immutable.
 
 ---
+
+## 14. Evidence, Claim & Asset Provenance Handoff (V2.12)
+
+The client handoff transfers the same project evidence ledger consumed by
+Launch Ops. It does not create a parallel provenance authority or rewrite
+historical project records.
+
+Transfer, where applicable:
+
+- evidence-ledger.json and the human review record
+- claim EVIDENCE_REF values, source dates, expiration or review dates, and
+  disclosure dependencies
+- asset provenance_ref values, origin, license evidence, authorized uses,
+  attribution, SHA-256 identity, and handoff restrictions
+- testimonial source, consent, authority, edit notes, attribution, and
+  production approval
+- certification or award issuer, evidence, validity, and display
+  authorization
+- research and MCP reference records with platform, source URL, query,
+  retrieval time, upstream SHA-256, REFERENCE_ONLY status, and
+  PATTERN_TO_LEARN / WHAT_NOT_TO_COPY
+
+Open or high-risk records remain visibly BLOCKED or REVIEW_REQUIRED in the
+handoff. assets.provenance_status remains Asset Director state;
+provenance.complete remains the cross-cutting readiness state; neither is a
+deployment authorization.
+
+---
 *End of Protocol Specification.*

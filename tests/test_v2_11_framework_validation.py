@@ -16,7 +16,7 @@ from framework_validation import validator
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CURRENT_VERSION = "2.11.1"
+CURRENT_VERSION = "2.12.0"
 
 
 def _load_json(relative: str) -> object:
@@ -146,7 +146,7 @@ class FrameworkValidationTests(unittest.TestCase):
                 profile,
                 current=True,
                 current_version=CURRENT_VERSION,
-                legacy_versions=["2.10.0"],
+                legacy_versions=["2.10.0", "2.11.0", "2.11.1"],
             ),
         )
 
@@ -174,7 +174,7 @@ class FrameworkValidationTests(unittest.TestCase):
                 profile,
                 current=False,
                 current_version=CURRENT_VERSION,
-                legacy_versions=["2.4.0", "2.10.0"],
+                legacy_versions=["2.4.0", "2.10.0", "2.11.0", "2.11.1"],
             ),
             [],
         )
@@ -202,6 +202,8 @@ class FrameworkValidationTests(unittest.TestCase):
                             "2.8.0",
                             "2.9.0",
                             "2.10.0",
+                            "2.11.0",
+                            "2.11.1",
                         ],
                     ),
                     [],
@@ -255,6 +257,8 @@ class FrameworkValidationTests(unittest.TestCase):
                     "2.8.0",
                     "2.9.0",
                     "2.10.0",
+                    "2.11.0",
+                    "2.11.1",
                 ],
             ),
             [],
@@ -270,7 +274,7 @@ class FrameworkValidationTests(unittest.TestCase):
                 profile,
                 current=True,
                 current_version=CURRENT_VERSION,
-                legacy_versions=["2.10.0"],
+                legacy_versions=["2.10.0", "2.11.0", "2.11.1"],
             ),
         )
 

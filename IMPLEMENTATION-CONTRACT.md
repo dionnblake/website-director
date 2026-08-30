@@ -493,4 +493,12 @@ Before submitting code for review, the coding agent must verify:
 - [ ] Every accessibility requirement in `templates/accessibility-review.md` §27 is implemented, or an escalation was raised. `accessibility.automated_verified` and `accessibility.manual_verified` are set on evidence; no accessibility-engine finding is suppressed without a documented rationale. Full detail: `PRODUCTION-CHECKLIST.md` §3 and §5.5, and `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`.
 - [ ] Every primary CTA, form, mobile-nav control, dialog, and route-transition container carries a stable selector or semantic role for verification; no test-only attribute alters user-facing UI.
 - [ ] If `launch_ops.complete = true`: the release has a recorded immutable identity; deployment (if any) carries an explicit per-release owner authorization reference or a durable policy; production verification traced `deployed_sha` to `release_sha` on the production surface; no `production_*_verified` flag was set from localhost/staging. Full detail: `PRODUCTION-CHECKLIST.md` §11 and `LAUNCH-OPERATIONS-PROTOCOL.md`.
+- [ ] Every production claim resolves to EVIDENCE_REF and every production
+      asset resolves to an asset provenance_ref in the cross-cutting ledger.
+      Run provenance/validator.py in production mode; missing, stale,
+      contradictory, ambiguous, unverified, or hash-mismatched records block
+      the release.
+- [ ] Research and screenshot references remain REFERENCE_ONLY. AI-generated
+      media records provider, date, source inputs, edit history, and SHA-256;
+      the hash is identity evidence only.
 

@@ -5,10 +5,10 @@ description: "Directs and governs end-to-end website design and implementation s
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.11.1
+> **Version:** 2.12.0
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.11.1 is additive to V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. `2.11.1` follows `2.11.0` under semantic versioning and adds only the bounded Design Inspiration MCP adapter. A project created under earlier versions is not corrupt — see §6 Backward Compatibility.
+> **Compatibility:** V2.12.0 is additive to V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 7 Evidence, Claim and Asset Provenance Intelligence at Phase 6.95 without retrofitting historical projects or changing the five owner locks. Capability 8 Content/CMS, Localization, Ecommerce, Authentication, and Application modules remain out of scope.
 
 ---
 
@@ -59,6 +59,8 @@ An agent running Website Director must advance strictly through these phases. Do
 │          ──► GATE SECURITY: [SECURITY_PRIVACY_READY]         │
 │ PHASE 6.9: ACCESSIBILITY INTELLIGENCE (WCAG 2.2 AA)          │
 │          ──► GATE ACCESSIBILITY: [ACCESSIBILITY_READY]       │
+│ PHASE 6.95: EVIDENCE & ASSET PROVENANCE INTELLIGENCE         │
+│          ──► GATE PROVENANCE: [EVIDENCE_PROVENANCE_READY]    │
 │ PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE                    │
 │          ──► GATE 4: [DESIGN_SYSTEM_LOCKED]                  │
 │ PHASE 8: MOTION / CINEMATIC DIRECTION                        │
@@ -303,9 +305,35 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
+### PHASE 6.95: Evidence, Claim & Asset Provenance Intelligence
+- Consult EVIDENCE-PROVENANCE-PROTOCOL.md and compile the project evidence
+  ledger from actual sources, claims, research references, testimonials,
+  certifications, and assets.
+- Run provenance/validator.py in production mode by default. Missing,
+  stale, contradictory, ambiguous, unverified, or hash-mismatched evidence is
+  BLOCKED or FAIL, never an inferred pass.
+- Record claim-level EVIDENCE_REF values in the Content Plan and asset-level
+  provenance_ref values in Asset Director manifests. Preserve the existing
+  assets.provenance_status field as Asset Director state.
+- Keep research and screenshot references REFERENCE_ONLY. Record platform,
+  source URL, query, retrieval time, upstream SHA-256, PATTERN_TO_LEARN, and
+  WHAT_NOT_TO_COPY for Design Inspiration MCP inputs; do not reimplement the
+  adapter.
+- AI media records provider or tool, date, source inputs, edit history, and
+  output SHA-256. A hash establishes identity only and never establishes
+  ownership, exclusivity, copyright, or permitted use.
+- **ENGAGE GATE PROVENANCE:** Set provenance.complete only when claims,
+  assets, license, and attribution review pass. implementation_verified and
+  production_verified require their own evidence and are never inferred.
+- **Invariant:** EVIDENCE_PROVENANCE_READY is a readiness gate, not a sixth
+  owner lock. Exactly 5 owner locks remain immutable. Prototype exceptions
+  remain PROTOTYPE_ONLY.
+
+---
+
 ### PHASE 7: Design System Token Architecture
 - Consult [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md).
-- **Precondition:** `accessibility.complete` must be `true` (or a recorded exception) — §14 of `templates/design-system.md` consumes the Phase 6.9 requirements (contrast-safe token pairs, focus tokens, minimum interactive geometry, colour-independent state semantics, text-spacing resilience) before Lock 4 engages.
+- **Precondition:** `accessibility.complete` must be `true` (or a recorded exception) — §14 of `templates/design-system.md` consumes the Phase 6.9 requirements (contrast-safe token pairs, focus tokens, minimum interactive geometry, colour-independent state semantics, text-spacing resilience) before Lock 4 engages. `provenance.complete` must also be true (or carry a recorded prototype/exception boundary) so token and production decisions consume the evidence ledger.
 - Fill out all 14 token sub-systems in [templates/design-system.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-system.md).
 - Map CSS variables for colors (60/30/10 rule), mathematical type scale, 8-point spacing, geometry, shadows, motion tokens (§13 — consumed by Phase 8), and accessibility.
 - **ENGAGE LOCK 4:** Update `site-profile.json` → `locks.design_system_locked = true`.
@@ -654,9 +682,9 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 
 ---
 
-## 5.18 Framework Self-Validation (V2.11)
+## 5.18 Framework Self-Validation (V2.12)
 
-<!-- FRAMEWORK_VERSION: 2.11.1 -->
+<!-- FRAMEWORK_VERSION: 2.12.0 -->
 
 Capability 6 is a read-only framework validation layer. Run
 `python -m framework_validation --run-suites` from the repository root when
@@ -669,12 +697,15 @@ separately tested, bounded Design Inspiration MCP adapter in
 not become a design authority.
 
 The validator's state is external to `templates/site-profile.json`. The current
-profile remains a V2.10-compatible project-state document with the current
+profile remains a V2.12-compatible project-state document with the current
 framework version recorded explicitly. Exactly five owner locks remain
 authoritative. Historical projects under `projects/` are read-only and are
 never retrofitted merely because the framework version advances.
 
-Capability 7 Evidence & Asset Provenance is not part of this checkout.
+Capability 7 Evidence & Asset Provenance is implemented at Phase 6.95 through
+EVIDENCE-PROVENANCE-PROTOCOL.md, provenance/validator.py, and the
+provenance.complete state. Capability 8 Content/CMS, Localization, Ecommerce,
+Authentication, and Application modules remain out of scope.
 
 ## 5.19 Design Inspiration MCP Boundary (V2.11.1)
 
@@ -705,6 +736,7 @@ state_ownership=schemas/state-ownership.json
 browser_qa=browser-qa/guards/frozen_integrity_guard.py
 accessibility=owner-controlled historical protocol state
 security_privacy=owner-controlled historical protocol state
+provenance=provenance.complete
 framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE

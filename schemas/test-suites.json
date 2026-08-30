@@ -153,6 +153,23 @@
       "order_independent": true
     },
     {
+      "id": "v2_12_evidence_asset_provenance",
+      "label": "V2.12 Evidence, Claim and Asset Provenance A-V controls plus W-AK fail-closed edges",
+      "status": "ACTIVE",
+      "command": ["python", "tests/test_v2_12_evidence_asset_provenance.py"],
+      "paths": ["tests/test_v2_12_evidence_asset_provenance.py", "provenance/validator.py"],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
+    },
+    {
       "id": "examples_test_runner",
       "label": "Historical examples test runner",
       "status": "ACTIVE",

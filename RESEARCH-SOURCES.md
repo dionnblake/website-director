@@ -181,3 +181,13 @@ Every reference recorded in `competitor-landscape.md`, `inspiration-board.md`, o
 | **Deep Recon Performed** | `Yes` / `No` — whether `REFERENCE-RECON-PROTOCOL.md` was invoked on this reference. |
 
 This is markdown/JSON provenance, not a database. Do not build tracking infrastructure beyond these fields.
+
+## 8. Cross-cutting Evidence Ledger
+
+The fields in this document remain the research-source authority for research
+interpretation. For V2.12 projects, mirror the source identity needed for
+traceability into templates/evidence-ledger.json, including platform, source
+URL, query, retrieval time, reference grade, upstream SHA-256 where available,
+PATTERN_TO_LEARN, WHAT_NOT_TO_COPY, and REFERENCE_ONLY status. The ledger does
+not replace this research protocol, and research references do not become
+production claims or assets without independent evidence.

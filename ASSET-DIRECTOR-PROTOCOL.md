@@ -312,9 +312,31 @@ Prior to beginning Phase 10 implementation, the project must satisfy the **Asset
 - PRIMARY_VISUAL_LANGUAGE is declared and aligned with locked Design Direction.
 - HERO_ASSET is certified PRODUCTION_READY (passes HERO_ASSET_STRENGTH).
 - SIGNATURE_ASSET is certified PRODUCTION_READY (for SHOWCASE projects).
-- ASSET_PROVENANCE audit is complete with zero unknown or infringed licenses.
+- Recorded asset provenance is complete for the selected assets, with no
+  unresolved UNKNOWN rights records or missing required evidence. This is a
+  readiness input, not a legal certification.
 - RESPONSIVE_CROP_PLAN is defined for desktop, tablet, and mobile.
 - WEB_OPTIMIZATION_PLAN meets Core Web Vitals performance budgets.
 
 > [!IMPORTANT]
 > **Readiness Gate Invariant:** [ASSET_DIRECTION_READY] is a quality readiness check, NOT a sixth owner lock. The Five Mandatory Design Locks (Locks 1–5) remain exactly five.
+
+## 16. V2.12 Evidence & Asset Provenance Integration
+
+Asset Director remains the authority for visual asset strategy, generation,
+selection, optimization, responsive crops, performance budgets, and visual
+readiness. The cross-cutting EVIDENCE-PROVENANCE-PROTOCOL.md owns source
+identity, rights evidence, permitted uses, attribution, claim traceability,
+and hash identity.
+
+Every production asset in an Asset Director manifest carries provenance_ref
+resolving to the same asset record in templates/evidence-ledger.json. An
+external, AI-generated, commissioned, third-party brand, font, icon, stock,
+quoted, screenshot, or research asset with unresolved high-risk provenance
+cannot be marked PRODUCTION_READY. assets.provenance_status remains distinct
+from provenance.complete.
+
+Research and showcase imagery remain REFERENCE_ONLY. A matching SHA-256
+establishes byte identity only; it does not establish ownership, exclusivity,
+copyright, or permitted use. Asset readiness is blocked when the evidence
+ledger is blocked or fails.

@@ -1,0 +1,28 @@
+{
+  "$schema": "schemas/evidence-ledger.schema.json",
+  "schema_version": "2.12.0",
+  "project_name": "Project Name",
+  "policy": {
+    "production_default": "FAIL_CLOSED",
+    "hash_semantics": "IDENTITY_ONLY_NOT_RIGHTS",
+    "legal_certification": "NOT_PROVIDED",
+    "prototype_exception_status": "PROTOTYPE_ONLY"
+  },
+  "sources": [],
+  "claims": [],
+  "testimonials": [],
+  "certifications": [],
+  "research_references": [],
+  "assets": [],
+  "review_schedule": {
+    "owner": "[Owner]",
+    "next_review_date": "[YYYY-MM-DD]"
+  },
+  "exceptions": [],
+  "production_approval": {
+    "status": "NOT_APPROVED",
+    "owner": "[Owner]",
+    "approval_ref": null,
+    "approved_at": null
+  }
+}

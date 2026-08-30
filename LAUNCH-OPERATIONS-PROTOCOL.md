@@ -783,4 +783,29 @@ This subsystem implements Website Director architecture only. It never: deploys 
 
 ---
 
+## 56. Evidence, Claim & Asset Provenance Intake (V2.12)
+
+Before a release candidate can be treated as ready, Launch Ops consumes the
+canonical provenance result from EVIDENCE-PROVENANCE-PROTOCOL.md and
+provenance/validator.py. It does not create a second ledger, claim inventory,
+asset-rights authority, or completion flag.
+
+- Every release claim resolves to EVIDENCE_REF and every production asset
+  resolves to an asset provenance_ref in the same ledger.
+- Unknown, stale, contradicted, ambiguous, unverified, or hash-mismatched
+  records keep release readiness BLOCKED or FAIL.
+- Asset Director assets.provenance_status remains distinct from
+  provenance.complete.
+- implementation_verified and production_verified remain separate. Local or
+  staging evidence never sets production_verified.
+- Required attribution and handoff restrictions travel with the release
+  identity and are rechecked on the production surface where applicable.
+- Research and screenshot inputs remain REFERENCE_ONLY and cannot become
+  release assets.
+
+EVIDENCE_PROVENANCE_READY is a readiness input, not deployment authorization.
+The existing per-release owner authorization boundary remains unchanged.
+
+---
+
 *End of Protocol Specification.*

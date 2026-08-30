@@ -12,6 +12,9 @@ negative-control suite registered in `schemas/test-suites.json`.
 `test_v2_11_design_inspiration_mcp.py` owns the deterministic V2.11.1
 Capability 6.5 A–R adapter, credential, provenance, originality, token, and
 frozen-integrity controls.
+`test_v2_12_evidence_asset_provenance.py` owns Capability 7 synthetic A–V
+evidence, claim, rights, attribution, hash, research-reference, and
+frozen-integrity negative controls, plus W–AK fail-closed regression edges.
 
 ## Local Contracts
 
@@ -22,6 +25,9 @@ frozen-integrity controls.
   the registry; pytest collection is limited to the two V2.11 unittest suites.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
+- The Evidence and Asset Provenance suite uses synthetic records and temporary
+  hash fixtures only. It never retrofits historical projects or makes a live
+  provider, browser, network, credential, or production request.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
@@ -34,8 +40,9 @@ fixtures read-only and distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 
-Run `python -m unittest tests.test_v2_11_framework_validation` directly and via
-`python -m framework_validation --run-suites`.
+Run `python -m unittest tests.test_v2_11_framework_validation` and
+`python -m unittest tests.test_v2_12_evidence_asset_provenance` directly, then
+run both through `python -m framework_validation --run-suites`.
 
 ## Child DOX Index
 

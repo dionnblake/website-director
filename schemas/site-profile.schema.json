@@ -4,7 +4,7 @@
   "title": "Website Director current site profile",
   "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
   "x-framework-version-source": "framework-version.json",
-  "x-framework-version": "2.11.1",
+  "x-framework-version": "2.12.0",
   "type": "object",
   "required": [
     "schema_version",
@@ -27,6 +27,7 @@
     "security_privacy": { "$ref": "#/$defs/state" },
     "browser_qa": { "$ref": "#/$defs/state" },
     "accessibility": { "$ref": "#/$defs/state" },
+    "provenance": { "$ref": "#/$defs/state" },
     "launch_ops": { "$ref": "#/$defs/launch_ops" },
     "gauntlet": { "$ref": "#/$defs/state" },
     "handoff": { "$ref": "#/$defs/state" },
@@ -66,9 +67,17 @@
       "type": "object",
       "properties": {
         "complete": { "type": "boolean" },
+        "claim_inventory_complete": { "type": "boolean" },
+        "asset_inventory_complete": { "type": "boolean" },
+        "research_reference_inventory_complete": { "type": "boolean" },
+        "license_review_complete": { "type": "boolean" },
+        "attribution_review_complete": { "type": "boolean" },
+        "ledger_ref": { "type": "string" },
         "status": { "type": "string" },
         "implementation_verified": { "type": "boolean" },
         "production_verified": { "type": "boolean" },
+        "implementation_evidence_ref": { "type": "string" },
+        "production_evidence_ref": { "type": "string" },
         "exception": { "$ref": "#/$defs/exception" }
       },
       "additionalProperties": true

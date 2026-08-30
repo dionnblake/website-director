@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/evidence-ledger.schema.json",
+  "title": "Website Director Evidence, Claim and Asset Provenance Ledger",
+  "description": "Recorded source identity, support, rights evidence, attribution and permitted-use boundaries. This schema does not certify legal ownership or compliance.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_name",
+    "sources",
+    "claims",
+    "testimonials",
+    "certifications",
+    "research_references",
+    "assets"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "type": "string", "const": "2.12.0" },
+    "project_name": { "type": "string", "minLength": 1 },
+    "policy": { "type": "object" },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "testimonials": { "type": "array", "items": { "$ref": "#/$defs/testimonial" } },
+    "certifications": { "type": "array", "items": { "$ref": "#/$defs/certification" } },
+    "research_references": { "type": "array", "items": { "$ref": "#/$defs/research_reference" } },
+    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } },
+    "review_schedule": { "type": "object" },
+    "exceptions": { "type": "array", "items": { "type": "object" } },
+    "production_approval": { "type": "object" }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 },
+    "source": {
+      "type": "object",
+      "required": ["source_id", "source_type", "url_or_ref", "source_date", "retrieved_date", "evidence_excerpt"],
+      "properties": {
+        "source_id": { "$ref": "#/$defs/id" },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "PRIMARY_SOURCE",
+            "AUTHORITATIVE_SECONDARY",
+            "REPUTABLE_SECONDARY",
+            "OWNER_ATTESTED",
+            "CUSTOMER_ATTESTED",
+            "INTERNAL_RECORD",
+            "RESEARCH_REFERENCE",
+            "UNVERIFIED"
+          ]
+        },
+        "title": { "type": "string" },
+        "url_or_ref": { "type": "string", "minLength": 1 },
+        "source_date": { "type": ["string", "null"] },
+        "retrieved_date": { "type": ["string", "null"] },
+        "evidence_excerpt": { "type": ["string", "null"] },
+        "sha256": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "claim_id",
+        "claim_text",
+        "claim_type",
+        "route",
+        "component",
+        "source_ref",
+        "source_type",
+        "source_date",
+        "verified_date",
+        "evidence_strength",
+        "owner",
+        "disclosure_required",
+        "claim_status",
+        "production_status"
+      ],
+      "properties": {
+        "claim_id": { "$ref": "#/$defs/id" },
+        "claim_text": { "type": "string", "minLength": 1 },
+        "claim_type": { "type": "string" },
+        "route": { "type": "string" },
+        "component": { "type": "string" },
+        "source_ref": { "type": "string", "minLength": 1 },
+        "source_type": { "type": "string" },
+        "source_url_or_ref": { "type": "string" },
+        "source_date": { "type": ["string", "null"] },
+        "verified_date": { "type": ["string", "null"] },
+        "evidence_strength": { "type": "string" },
+        "owner": { "type": "string" },
+        "expiration_or_review_date": { "type": ["string", "null"] },
+        "disclosure_required": { "type": "boolean" },
+        "claim_origin": {
+          "type": "string",
+          "enum": ["MERCHANT", "EDITORIAL", "OWNER", "THIRD_PARTY", "UNVERIFIED"]
+        },
+        "affiliate": { "type": "boolean" },
+        "production_status": { "type": "string" },
+        "claim_status": { "type": "string" },
+        "evidence_match": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "testimonial": {
+      "type": "object",
+      "required": ["testimonial_id", "text", "source_ref", "consent_status", "quote_status", "date", "production_status", "production_approved"],
+      "properties": {
+        "testimonial_id": { "$ref": "#/$defs/id" },
+        "text": { "type": "string", "minLength": 1 },
+        "source_ref": { "type": "string", "minLength": 1 },
+        "source_type": { "type": "string" },
+        "authority": { "type": "string" },
+        "consent_status": { "type": "string" },
+        "quote_status": { "type": "string" },
+        "edited": { "type": "boolean" },
+        "edit_notes": { "type": "string" },
+        "attribution": { "type": "string" },
+        "date": { "type": "string" },
+        "production_approved": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "certification": {
+      "type": "object",
+      "required": ["certification_id", "issuer", "status", "evidence_ref", "validity", "authorized_display"],
+      "properties": {
+        "certification_id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "issuer": { "type": "string", "minLength": 1 },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "CURRENT",
+            "VALID",
+            "VERIFIED",
+            "ISSUED",
+            "RENEWED",
+            "REVOKED",
+            "EXPIRED",
+            "SUSPENDED",
+            "UNVERIFIED",
+            "REVIEW_REQUIRED",
+            "UNKNOWN",
+            "INACTIVE",
+            "LAPSED",
+            "WITHDRAWN",
+            "CANCELLED",
+            "PROHIBITED"
+          ]
+        },
+        "evidence_ref": { "type": "string", "minLength": 1 },
+        "validity": {},
+        "valid_until": { "type": ["string", "null"] },
+        "authorized_display": { "type": "boolean" },
+        "production_status": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "research_reference": {
+      "type": "object",
+      "required": [
+        "reference_id",
+        "platform",
+        "source_url",
+        "query",
+        "retrieved_at",
+        "reference_purpose",
+        "grade",
+        "pattern_to_learn",
+        "what_not_to_copy",
+        "upstream_sha256",
+        "reference_only"
+      ],
+      "properties": {
+        "reference_id": { "$ref": "#/$defs/id" },
+        "platform": { "type": "string" },
+        "source_url": { "type": "string", "format": "uri" },
+        "query": { "type": "string" },
+        "retrieved_at": { "type": "string" },
+        "reference_purpose": { "type": "string" },
+        "grade": { "type": "string" },
+        "pattern_to_learn": { "type": "string" },
+        "what_not_to_copy": { "type": "string" },
+        "upstream_sha256": { "type": "string" },
+        "reference_only": { "const": true }
+      },
+      "additionalProperties": true
+    },
+    "asset": {
+      "type": "object",
+      "required": ["asset_id", "file", "asset_type", "origin", "production_status"],
+      "properties": {
+        "asset_id": { "$ref": "#/$defs/id" },
+        "file": { "type": "string", "minLength": 1 },
+        "asset_type": { "type": "string" },
+        "origin": { "type": "string", "enum": [
+          "OWNER_PROVIDED",
+          "CLIENT_PROVIDED",
+          "ORIGINAL_CREATED",
+          "AI_GENERATED",
+          "LICENSED_STOCK",
+          "OPEN_LICENSE",
+          "PUBLIC_DOMAIN",
+          "COMMISSIONED",
+          "THIRD_PARTY_BRAND",
+          "SCREENSHOT_REFERENCE",
+          "RESEARCH_REFERENCE",
+          "UNKNOWN"
+        ] },
+        "source_url": { "type": "string" },
+        "creator": { "type": "string" },
+        "owner": { "type": "string" },
+        "license": { "type": "string" },
+        "license_evidence": { "type": "string" },
+        "license_evidence_ref": { "type": "string" },
+        "license_ref": { "type": "string" },
+        "authorized_uses": { "type": ["array", "string"] },
+        "attribution": { "type": "string" },
+        "modified": { "type": "boolean" },
+        "modification_notes": { "type": "string" },
+        "provider": { "type": "string" },
+        "generation_date": { "type": "string" },
+        "source_inputs": { "type": "array" },
+        "sha256": { "type": "string" },
+        "production_approved": { "type": "boolean" },
+        "production_status": { "type": "string" },
+        "handoff_restrictions": { "type": ["array", "string"] }
+      },
+      "additionalProperties": true
+    }
+  }
+}
