@@ -5,10 +5,10 @@ description: "Directs and governs end-to-end website design and implementation s
 
 # WEBSITE DIRECTOR: OPERATING MANUAL & SKILL SPECIFICATION
 
-> **Version:** 2.14.0
+> **Version:** 2.15.0
 > **Status:** Active Production Skill  
 > **Mission:** Prevent AI coding agents from improvising visual language, unresearched sitemaps, un-directed media, unmotivated 3D canvas bloat, gratuitous vector slop, arbitrary analytics tracking, manipulative dark patterns, or unverified "I checked the browser" claims by enforcing adaptive creative briefing, owner-confirmed creative intent contracts, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis, subject-grounded distinctiveness discipline, mandatory SEO/competitive intelligence, pre-lock high-fidelity visual prototypes, owner visual direction selection, rigorous design tokenization, authoritative art direction & visual asset production (Asset Director V2.0), immersive WebGL / Three.js / R3F engineering discipline (Immersive Web Specialist V2.1), interactive vector motion & state machines (Rive Specialist V2.2), page experience & route continuity (Page Experience Specialist V2.3), deterministic conversion measurement architecture, CTA-to-event traceability, attribution governance, affiliate measurement integrity & hypothesis experimentation (Conversion & Analytics Intelligence V2.6), production risk governance, data minimization, secret custody, form and session safeguards, third-party script accountability, consent classification and truthful disclosure (Security, Privacy & Compliance Intelligence V2.7), machine-executed browser verification, regression baselines, deterministic evidence artifacts and frozen-project integrity (Browser & Regression QA V2.8), one canonical accessibility authority deriving WCAG 2.2 AA requirements, informing tokens before Lock 4, binding implementation, and separating automated / manual / production accessibility verification without false conformance claims (Accessibility Intelligence V2.9), one canonical launch authority that separates a release candidate from a deployed site from a production-verified site from a stabilised site, requires explicit per-release owner deployment authorization, verifies a known release identity on the production surface, and defines rollback readiness, rollback triggers, a post-launch observation window and an incident model — without ever deploying, pushing, or touching DNS (Launch & Post-Launch Operations Intelligence V2.10), separation of design from coding, deliberate motion direction, official GSAP motion implementation engineering, Lenis smooth scrolling, split-text mask choreography, pinned scrollytelling, magnetic micro-physics, deterministic Impeccable quality scans, audited QA gates, and reference-grounded adversarial Gauntlet refinement loops.  
-> **Compatibility:** V2.14.0 is additive to V2.13.0, V2.12.0, V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds Capability 9 Localization and Internationalization at Phase 6.35 without retrofitting historical projects or changing the five owner locks. Capability 10 Ecommerce, Authentication, and Application modules remains out of scope.
+> **Compatibility:** V2.15.0 is additive to V2.14.0, V2.13.0, V2.12.0, V2.11.1, V2.11.0, V2.10.0, V2.9.0, V2.8.0, V2.7.0, V2.6.0, V2.5.1, V2.5.0, V2.4.0, V2.3.0, V2.2.0, V2.1.0, V2.0.0, V1.9.0, V1.8.0, V1.7.0, V1.6.0, V1.5.0, V1.4.0, V1.3.1, V1.3.0, V1.2.0, V1.1.0, and V1.0.0. It adds conditional Capability 10 Application, Commerce, and Authentication Architecture at Phase 6.99 without retrofitting historical projects or changing the five owner locks. Application modules are selected only from explicit behavior and user stories.
 
 ---
 
@@ -743,8 +743,34 @@ Launch Ops, and V2.5 Handoff state. No parallel `i18n{}`, `l10n{}`,
   runner, Launch Ops authority, and V2.5 Handoff remain the relevant downstream
   systems. No provider account or external side effect is required.
 - **Backward compatibility:** historical profiles and frozen projects that do
-  not contain `localization{}` remain valid and are not retrofitted. Capability
-  #10 Ecommerce, Authentication, and Application Modules remains out of scope.
+  not contain `localization{}` or `application{}` remain valid and are not
+  retrofitted. Capability #10 is conditional and provider-neutral.
+
+---
+
+### 5.12c Conditional Application, Commerce and Authentication State (V2.15)
+
+`application.complete` is the only authoritative readiness flag for
+`[APPLICATION_ARCHITECTURE_READY]`. This capability adds no owner lock and
+does not create `auth.complete`, `commerce.complete`, `payments.complete`, or
+`application_locked`; exactly five owner locks remain.
+
+- Requirement is derived from explicit stories, actors, routes, data, state
+  changes, and side effects. Industry, company name, geography, IP, browser
+  language, and stereotypes are not signals.
+- `templates/application-module-registry.json` is an opt-in catalogue. A
+  project activates only justified modules and their dependency closure.
+- Authentication, sessions, server-side and object-level authorization,
+  password hashing, recovery, pricing, payment confirmation, distinct payment
+  and order states, hosted/tokenized collection, signed/idempotent webhooks,
+  entitlements, booking, uploads, UGC, messaging, integrations, secrets, and
+  high-risk operations are explicit fail-closed controls.
+- `application.complete` certifies an architecture contract only. It never
+  means provider setup, live user creation, payment processing, deployment,
+  production verification, or legal compliance.
+- Browser QA reuses its single existing runner and consumes explicit
+  application observations. Launch Operations owns deployment and production
+  verification. V2.5 Handoff owns durable client operations.
 
 ---
 
@@ -786,9 +812,9 @@ Launch Ops, and V2.5 Handoff state. No parallel `i18n{}`, `l10n{}`,
 
 ---
 
-## 5.18 Framework Self-Validation (V2.14)
+## 5.18 Framework Self-Validation (V2.15)
 
-<!-- FRAMEWORK_VERSION: 2.14.0 -->
+<!-- FRAMEWORK_VERSION: 2.15.0 -->
 
 Capability 6 is a read-only framework validation layer. Run
 `python -m framework_validation --run-suites` from the repository root when
@@ -801,7 +827,7 @@ separately tested, bounded Design Inspiration MCP adapter in
 not become a design authority.
 
 The validator's state is external to `templates/site-profile.json`. The current
-profile is a V2.14-compatible project-state document with the current
+profile is a V2.15-compatible project-state document with the current
 framework version recorded explicitly. Exactly five owner locks remain
 authoritative. Historical projects under `projects/` are read-only and are
 never retrofitted merely because the framework version advances.
@@ -815,8 +841,12 @@ content-ops/validator.py, the content_ops.complete state, and the
 Internationalization is implemented at Phase 6.35 through
 LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md, localization/validator.py, the
 localization.complete state, and the [LOCALIZATION_READY] readiness gate.
-Capability 10 Ecommerce, Authentication, and Application modules remains out of
-scope.
+Capability 10 Application, Commerce, and Authentication Architecture is
+implemented conditionally at Phase 6.99 through
+APPLICATION-COMMERCE-AUTH-PROTOCOL.md, application/validator.py, the
+application.complete state, and the [APPLICATION_ARCHITECTURE_READY]
+readiness gate. It does not add an owner lock or authorize providers,
+credentials, live users, payments, deployment, or production verification.
 
 ## 5.19 Design Inspiration MCP Boundary (V2.11.1)
 
@@ -852,6 +882,7 @@ framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
 localization=localization.complete
+application=application.complete
 -->
 
 ---

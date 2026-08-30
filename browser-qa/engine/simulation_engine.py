@@ -24,6 +24,7 @@ from .base import (
     APPLICATION_DEFECT,
     A11yViolation,
     AccessibilityObservation,
+    ApplicationObservation,
     AnalyticsEvent,
     BrowserQAEngine,
     ConsoleMessage,
@@ -347,6 +348,62 @@ class SimulationEngine(BrowserQAEngine):
                 rtl_icon_failures=list(loc.get("rtl_icon_failures", rtl.get("icon_failures", []))),
                 rtl_forms_operable=loc.get("rtl_forms_operable", rtl.get("forms_operable", False)),
                 rtl_overflow_refs=list(loc.get("rtl_overflow_refs", rtl.get("overflow_refs", []))),
+            )
+
+        # -- conditional application architecture ----------------------
+        app = fx.get("application")
+        if app is not None:
+            if not isinstance(app, dict):
+                app = {}
+
+            def app_fact(name: str, *aliases: str):
+                for key in (name,) + aliases:
+                    if key in app:
+                        return app[key]
+                return None
+
+            obs.application = ApplicationObservation(
+                authenticated=app_fact("authenticated"),
+                authorization_enforced=app_fact("authorization_enforced", "server_authorization_enforced"),
+                object_access_allowed=app_fact("object_access_allowed", "object_level_access_allowed"),
+                client_role_trusted=app_fact("client_role_trusted", "trust_client_role"),
+                password_plaintext=app_fact("password_plaintext", "plaintext_password"),
+                password_hash_exposed=app_fact("password_hash_exposed", "hash_exposed"),
+                account_recovery_defined=app_fact("account_recovery_defined", "recovery_defined"),
+                admin_route_server_protected=app_fact("admin_route_server_protected", "admin_server_protected"),
+                client_price_trusted=app_fact("client_price_trusted", "trust_client_price"),
+                canonical_price_verified=app_fact("canonical_price_verified", "server_price_verified"),
+                checkout_click_marks_paid=app_fact("checkout_click_marks_paid", "button_marks_paid"),
+                payment_confirmed=app_fact("payment_confirmed", "server_payment_confirmed"),
+                webhook_signature_verified=app_fact("webhook_signature_verified", "signature_verified"),
+                webhook_idempotent=app_fact("webhook_idempotent", "idempotent_webhook"),
+                duplicate_side_effect_created=app_fact("duplicate_side_effect_created", "duplicate_effect"),
+                raw_card_stored=app_fact("raw_card_stored", "stores_raw_card"),
+                hosted_or_tokenized_payment=app_fact("hosted_or_tokenized_payment", "hosted_or_tokenized"),
+                subscription_entitlement_granted=app_fact("subscription_entitlement_granted", "entitlement_granted"),
+                entitlement_revoked_on_payment_failure=app_fact("entitlement_revoked_on_payment_failure", "failed_payment_revokes_entitlement"),
+                digital_shipping_unnecessary=app_fact("digital_shipping_unnecessary", "digital_shipping_bloat"),
+                physical_shipping_defined=app_fact("physical_shipping_defined", "shipping_defined"),
+                booking_overlap_prevented=app_fact("booking_overlap_prevented", "overlap_prevented"),
+                booking_timezone_explicit=app_fact("booking_timezone_explicit", "timezone_explicit"),
+                upload_allowlist_enforced=app_fact("upload_allowlist_enforced", "allowlist_enforced"),
+                executable_upload_accepted=app_fact("executable_upload_accepted", "accepts_executable"),
+                private_storage_authorized=app_fact("private_storage_authorized", "authorized_download"),
+                private_file_public=app_fact("private_file_public", "public_url_exposed"),
+                ugc_sanitized=app_fact("ugc_sanitized", "sanitized"),
+                ugc_script_executed=app_fact("ugc_script_executed", "script_executed"),
+                transactional_email_failure_visible=app_fact("transactional_email_failure_visible", "delivery_failure_visible"),
+                transactional_email_failure_reported_success=app_fact("transactional_email_failure_reported_success", "failure_reported_as_success"),
+                integration_inventory_complete=app_fact("integration_inventory_complete", "inventory_complete"),
+                application_secret_exposed=app_fact("application_secret_exposed", "secret_exposed_client"),
+                purchase_event_authoritative=app_fact("purchase_event_authoritative", "server_confirmed_purchase"),
+                purchase_event_from_click=app_fact("purchase_event_from_click", "purchase_event_button_triggered"),
+                canonical_event_with_locale=app_fact("canonical_event_with_locale", "locale_parameter_present"),
+                private_route_indexable=app_fact("private_route_indexable", "private_route_indexed"),
+                provider_available=app_fact("provider_available"),
+                live_payment_attempted=app_fact("live_payment_attempted", "real_payment_attempted"),
+                live_user_created=app_fact("live_user_created", "real_user_attempted"),
+                raw=dict(app),
             )
 
         obs.raw = {"fixture_dir": fixture_dir, "fixture": fx, "flaky": fx.get("flaky")}

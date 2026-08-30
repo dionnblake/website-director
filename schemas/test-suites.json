@@ -212,6 +212,32 @@
       "order_independent": true
     },
     {
+      "id": "v2_15_application_architecture",
+      "label": "V2.15 Conditional Application, Commerce and Authentication A-AV controls",
+      "status": "ACTIVE",
+      "command": ["python", "tests/test_v2_15_application_architecture.py"],
+      "paths": [
+        "tests/test_v2_15_application_architecture.py",
+        "application/validator.py",
+        "templates/application-module-registry.json",
+        "browser-qa/assertions/catalog.py",
+        "browser-qa/engine/base.py",
+        "browser-qa/engine/simulation_engine.py",
+        "browser-qa/engine/playwright_engine.py",
+        "browser-qa/runner.py"
+      ],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
+    },
+    {
       "id": "examples_test_runner",
       "label": "Historical examples test runner",
       "status": "ACTIVE",

@@ -198,7 +198,7 @@ DEFAULT_MANIFEST: dict[str, Any] = {
     "current_version_documents": [],
     "canonical_markdown": [],
     "canonical_json_roots": ["schemas", "templates"],
-    "python_roots": ["framework_validation"],
+    "python_roots": ["framework_validation", "application"],
     "canonical_protocol_registry": "schemas/protocols.json",
     "canonical_gate_registry": "schemas/gates.json",
     "canonical_phase_registry": "schemas/phases.json",
@@ -351,6 +351,7 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
             "handoff",
             "signature_choreography",
             "visual_prototypes",
+            "application",
         ):
             if state_name in profile and not isinstance(profile.get(state_name), dict):
                 records.append(("CURRENT_STATE_OBJECT_TYPE", f"current state object {state_name!r} must be an object"))
@@ -1088,6 +1089,90 @@ def _check_site_profile_schema(ctx: ValidationContext, current_version: str) -> 
     ctx.metadata["frozen_registry_entries"] = len(frozen_registry.get("projects", [])) if isinstance(frozen_registry, dict) else 0
 
 
+def _check_application_architecture(ctx: ValidationContext) -> None:
+    """Validate the canonical conditional Capability #10 artifacts."""
+
+    registry_rel = "templates/application-module-registry.json"
+    manifest_rel = "templates/application-architecture-manifest.json"
+    validator_path = ctx.path("application/validator.py")
+    registry = ctx.read_json(registry_rel)
+    manifest = ctx.read_json(manifest_rel)
+    artifacts_ok = (
+        validator_path.is_file()
+        and isinstance(registry, dict)
+        and isinstance(manifest, dict)
+    )
+    ctx.check(
+        "APPLICATION_ARCHITECTURE_ARTIFACTS",
+        "structural",
+        artifacts_ok,
+        "conditional application architecture artifacts exist",
+        file=manifest_rel,
+        location="root",
+        expected="validator, module registry, and architecture manifest",
+        observed={
+            "validator": validator_path.is_file(),
+            "module_registry": isinstance(registry, dict),
+            "manifest": isinstance(manifest, dict),
+        },
+    )
+    if not artifacts_ok:
+        return
+    try:
+        spec = importlib.util.spec_from_file_location("website_director_application_validator", validator_path)
+        if spec is None or spec.loader is None:
+            raise ImportError("application validator loader unavailable")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        registry_result = module.validate_module_registry(registry)
+        manifest_result = module.validate_application_architecture(manifest, module_registry=registry)
+        registry_ok = bool(registry_result.get("ok"))
+        manifest_ok = bool(manifest_result.get("ok"))
+        ctx.check(
+            "APPLICATION_MODULE_REGISTRY_VALID",
+            "invariants",
+            registry_ok,
+            "application module registry passes deterministic validation",
+            file=registry_rel,
+            location="/modules",
+            expected="unique known modules with explicit dependency and verification fields",
+            observed=registry_result,
+        )
+        ctx.check(
+            "APPLICATION_ARCHITECTURE_MANIFEST_VALID",
+            "invariants",
+            manifest_ok,
+            "canonical application architecture manifest passes deterministic validation",
+            file=manifest_rel,
+            location="/application",
+            expected="conditional provider-neutral manifest",
+            observed=manifest_result,
+            blocked=manifest_result.get("status") == "BLOCKED",
+        )
+        forbidden = module._forbidden_state_issues(manifest)
+        ctx.check(
+            "APPLICATION_NO_PARALLEL_STATE",
+            "invariants",
+            not forbidden,
+            "application architecture has one completion state and no application lock",
+            file=manifest_rel,
+            location="/application",
+            expected="application.complete only; no auth/commerce/payment completion or application lock",
+            observed=forbidden,
+        )
+    except Exception as exc:  # noqa: BLE001 - validator failures are framework findings
+        ctx.check(
+            "APPLICATION_VALIDATOR_LOAD",
+            "structural",
+            False,
+            f"application validator could not be loaded: {exc}",
+            file="application/validator.py",
+            location="module",
+            expected="stdlib validator imports and exposes canonical functions",
+            observed=str(exc),
+        )
+
+
 def _check_protocols_gates_phases(ctx: ValidationContext) -> None:
     protocol_rel = str(ctx.manifest.get("canonical_protocol_registry"))
     gate_rel = str(ctx.manifest.get("canonical_gate_registry"))
@@ -1736,7 +1821,7 @@ def _check_impact(ctx: ValidationContext) -> None:
     impacts = set()
     for path in paths:
         lower = path.lower().replace("\\", "/")
-        if lower.startswith("schemas/") or lower.startswith("content-ops/") or lower.startswith("localization/") or "framework-validation" in lower or lower in {"framework-version.json", "framework_validation/validator.py"}:
+        if lower.startswith("schemas/") or lower.startswith("content-ops/") or lower.startswith("localization/") or lower.startswith("application/") or "framework-validation" in lower or lower in {"framework-version.json", "framework_validation/validator.py"}:
             impacts.add("CORE_GOVERNANCE")
         elif lower.startswith("browser-qa/"):
             impacts.add("BROWSER_QA")
@@ -2107,6 +2192,7 @@ def validate_repository(
     _check_site_profile_schema(ctx, current_version)
     _check_protocols_gates_phases(ctx)
     _check_state_ownership(ctx)
+    _check_application_architecture(ctx)
     _check_template_references(ctx)
     _check_markdown_references(ctx)
     _check_python(ctx)

@@ -50,6 +50,15 @@
 - Pseudo-localization / expansion target: `[enabled / not applicable]`; RTL target: `[required / not applicable]`.
 - Expected runtime failures are `FAIL` or `BLOCKED`; simulation is not implementation or production verification.
 
+## 5.2 Conditional application architecture assertions (from `application-architecture-plan.md` — do not re-author)
+
+- Required: `true` / `false`; activated modules: `[module IDs / none]`.
+- Authentication and authorization: server enforcement, object access, recovery, and client-role trust are explicit where required.
+- Commerce: canonical server price, payment confirmation, distinct payment/order state, hosted or tokenized collection, signed idempotent webhooks, and authoritative purchase events.
+- Subscription, booking, uploads, UGC, transactional email, integrations, private routes, and high-risk operations are checked only when their modules are activated.
+- Missing required observations or unavailable providers are `BLOCKED`; simulation does not establish implementation or production verification.
+- Real user creation, live payment attempts, raw card data, provider credentials, and external writes are forbidden in QA.
+
 ## 6. Reduced-motion assertions (from `motion-direction.md`)
 
 - Motion-heavy surfaces: `[list]` — each must remain meaningful with `prefers-reduced-motion: reduce`; no content permanently hidden awaiting animation.
@@ -90,7 +99,7 @@ Every "allowed to fail" entry needs a justification and must assert the site sta
 | `browser_qa.complete` | `false` |
 | `browser_qa.engine` | `[…]` |
 | smoke / responsive / console / network | |
-| form / measurement / security_privacy / reduced_motion / keyboard_smoke | |
+| form / measurement / security_privacy / application / reduced_motion / keyboard_smoke | |
 | `visual_regression_status` | `NOT_RUN` |
 | `frozen_fixture_integrity` | `UNVERIFIED` |
 | `flaky_tests` | `[]` |
@@ -98,3 +107,8 @@ Every "allowed to fail" entry needs a justification and must assert the site sta
 | `production_verified` (real production URL) | `false` |
 | `blocked_reason` | `null` |
 | Owning-spec conflicts / change requests raised | `[…]` |
+
+framework_version=2.15.0
+framework_phase=6.99:Conditional Application Architecture:ACTIVE
+framework_gate=APPLICATION_ARCHITECTURE_READY
+owner_locks=design_direction_locked,information_architecture_locked,content_structure_locked,design_system_locked,motion_direction_locked

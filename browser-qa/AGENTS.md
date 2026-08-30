@@ -24,7 +24,9 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   (`catalog.check_accessibility`, gated on `plan["accessibility"]`) and V2.14
   added `LOCALIZATION_PLAN` (`catalog.check_localization`, gated on
   `plan["localization"]`) — both are governed by their canonical protocols,
-  not separate runners.
+  not separate runners. V2.15 adds `APPLICATION_ARCHITECTURE_PLAN` through
+  `catalog.check_application`, gated on `plan["application"]`, with explicit
+  application observations and no new state owner.
 - **Unavailable ≠ pass.** A missing engine or unreachable site is `BLOCKED` with a
   reason. `FLAKY` never becomes `PASS`.
 - **Do not re-implement Impeccable's static detectors.** Browser QA owns only the
@@ -45,6 +47,13 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   canonicals/metadata/forms, pseudo-localization expansion, and RTL runtime
   behavior are consumed through this same harness. Localization does not
   create a second runner or set `localization.complete`.
+- **Conditional Application Architecture (V2.15):** authenticated routes,
+  server-side authorization, object access, pricing, payment confirmation,
+  signed/idempotent webhooks, subscriptions, bookings, uploads, UGC,
+  transactional messaging, integrations, private-route indexing, and
+  authoritative purchase events are consumed through the same runner only for
+  activated modules. Missing observations block. The harness never creates a
+  live user, attempts a live payment, or sets `application.complete`.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

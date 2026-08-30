@@ -352,6 +352,17 @@
       "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "Additive V2.12 Capability 7; Asset Director, Security & Privacy, SEO, Accessibility, Launch Ops, and Client Handoff remain their own authorities."
+    },
+    {
+      "id": "APPLICATION_COMMERCE_AUTH",
+      "path": "APPLICATION-COMMERCE-AUTH-PROTOCOL.md",
+      "status": "ACTIVE",
+      "domain": "application-commerce-authentication",
+      "phase": "6.99",
+      "state_owner": "application.complete",
+      "supersedes": [],
+      "superseded_by": null,
+      "compatibility_pointer": "Additive V2.15 Capability 10; conditional, provider-neutral, and does not add an owner lock or authorize deployment."
     }
   ]
 }

@@ -226,6 +226,39 @@ test may write under `projects/`.
 
 ---
 
+## 11.3 Conditional Application, Commerce & Authentication runtime QA (V2.15)
+
+Browser QA consumes the provider-neutral Capability #10 application plan
+through this same runner. It does not create a second application runner,
+authentication harness, payment harness, or production authority. The group
+is `NOT_APPLICABLE` when `application.required` is false, and is `BLOCKED`
+when a required application observation is unavailable.
+
+Where the plan activates application modules, the assertion catalogue checks
+only explicit browser-observable evidence and leaves server authority to the
+application validator and the real integration environment:
+
+- protected routes do not become usable through client-controlled roles,
+  object identifiers, or hidden UI alone;
+- checkout and purchase UI do not claim payment, fulfillment, entitlement, or
+  conversion before authoritative confirmation;
+- payment, order, subscription, booking, webhook, upload, UGC, email, and
+  integration observations satisfy the active module contract;
+- private routes and private resources are not publicly indexable or exposed;
+- canonical measurement events carry locale context without duplicate
+  localized purchase events;
+- provider unavailability, live payment attempts, real-user creation, and
+  missing evidence remain `BLOCKED` or `FAIL`, never a pass.
+
+The `simulation` engine accepts explicit application facts for deterministic
+negative controls. The `playwright` adapter reads only declared
+`data-qa-application` observations and does not infer security, payment, or
+authorization correctness from visual state. Production application
+verification remains owned by Launch Operations, and long-term operational
+transfer remains owned by V2.5 Handoff.
+
+---
+
 ## 12. Test isolation & the Frozen Project Integrity Guard
 
 **Hard invariant.** Browser and QA tests:

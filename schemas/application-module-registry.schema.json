@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/application-module-registry.schema.json",
+  "title": "Website Director application module registry",
+  "type": "object",
+  "required": ["framework_version", "provider_policy", "modules"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "$schema_note": {"type": "string"},
+    "framework_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "provider_policy": {"type": "string", "enum": ["PROVIDER_NEUTRAL", "UNSELECTED"]},
+    "modules": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/module"}
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "module": {
+      "type": "object",
+      "required": ["module_id", "required", "status", "business_reason", "data_classes", "security_risk", "external_provider", "owner", "dependencies", "verification_required", "exception"],
+      "properties": {
+        "module_id": {"type": "string"},
+        "required": {"type": "boolean"},
+        "status": {"type": "string"},
+        "business_reason": {"type": "string", "minLength": 1},
+        "data_classes": {"type": "array", "items": {"type": "string"}},
+        "security_risk": {"type": "string"},
+        "external_provider": {"type": ["string", "null", "object"]},
+        "owner": {"type": "string", "minLength": 1},
+        "dependencies": {"type": "array", "items": {"type": "string"}},
+        "verification_required": {"type": "boolean"},
+        "exception": {
+          "type": "object",
+          "required": ["applied", "reason"],
+          "properties": {"applied": {"type": "boolean"}, "reason": {"type": ["string", "null"]}},
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

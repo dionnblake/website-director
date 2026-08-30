@@ -30,6 +30,7 @@ from .base import (
     ConsoleMessage,
     KeyboardTrace,
     LayoutMetrics,
+    ApplicationObservation,
     LocalizationObservation,
     NetworkRequest,
     PageObservation,
@@ -201,6 +202,9 @@ class PlaywrightEngine(BrowserQAEngine):
             if (self.config or {}).get("localization") or (self.config or {}).get("run_localization"):
                 obs.localization = self._localization_scan(page, resp)
 
+            if (self.config or {}).get("application") or (self.config or {}).get("run_application"):
+                obs.application = self._application_scan(page)
+
             if (self.config or {}).get("accessibility") or (self.config or {}).get("run_axe"):
                 obs.a11y = self._axe_scan(page)
 
@@ -273,6 +277,69 @@ class PlaywrightEngine(BrowserQAEngine):
             a.violations = []
             a.__dict__["_engine_error"] = str(exc)
         return a
+
+    def _application_scan(self, page) -> "ApplicationObservation":
+        """Collect explicit application QA hooks without guessing intent.
+
+        Generated projects may expose boolean facts on a
+        ``[data-qa-application]`` element or the document root. Absent hooks
+        remain ``None`` so required assertions fail closed.
+        """
+        from .base import ApplicationObservation
+
+        facts = page.evaluate(
+            """() => {
+                const root = document.documentElement;
+                const marker = document.querySelector('[data-qa-application]') || root;
+                const bool = name => {
+                    const value = marker.getAttribute('data-qa-' + name);
+                    if (value === null) return null;
+                    return !['false', '0', 'no', 'fail'].includes(value.toLowerCase());
+                };
+                return {
+                    authenticated: bool('authenticated'),
+                    authorization_enforced: bool('authorization-enforced'),
+                    object_access_allowed: bool('object-access-allowed'),
+                    client_role_trusted: bool('client-role-trusted'),
+                    password_plaintext: bool('password-plaintext'),
+                    password_hash_exposed: bool('password-hash-exposed'),
+                    account_recovery_defined: bool('account-recovery-defined'),
+                    admin_route_server_protected: bool('admin-route-server-protected'),
+                    client_price_trusted: bool('client-price-trusted'),
+                    canonical_price_verified: bool('canonical-price-verified'),
+                    checkout_click_marks_paid: bool('checkout-click-marks-paid'),
+                    payment_confirmed: bool('payment-confirmed'),
+                    webhook_signature_verified: bool('webhook-signature-verified'),
+                    webhook_idempotent: bool('webhook-idempotent'),
+                    duplicate_side_effect_created: bool('duplicate-side-effect-created'),
+                    raw_card_stored: bool('raw-card-stored'),
+                    hosted_or_tokenized_payment: bool('hosted-or-tokenized-payment'),
+                    subscription_entitlement_granted: bool('subscription-entitlement-granted'),
+                    entitlement_revoked_on_payment_failure: bool('entitlement-revoked-on-payment-failure'),
+                    digital_shipping_unnecessary: bool('digital-shipping-unnecessary'),
+                    physical_shipping_defined: bool('physical-shipping-defined'),
+                    booking_overlap_prevented: bool('booking-overlap-prevented'),
+                    booking_timezone_explicit: bool('booking-timezone-explicit'),
+                    upload_allowlist_enforced: bool('upload-allowlist-enforced'),
+                    executable_upload_accepted: bool('executable-upload-accepted'),
+                    private_storage_authorized: bool('private-storage-authorized'),
+                    private_file_public: bool('private-file-public'),
+                    ugc_sanitized: bool('ugc-sanitized'),
+                    ugc_script_executed: bool('ugc-script-executed'),
+                    transactional_email_failure_visible: bool('transactional-email-failure-visible'),
+                    transactional_email_failure_reported_success: bool('transactional-email-failure-reported-success'),
+                    integration_inventory_complete: bool('integration-inventory-complete'),
+                    application_secret_exposed: bool('application-secret-exposed'),
+                    purchase_event_authoritative: bool('purchase-event-authoritative'),
+                    purchase_event_from_click: bool('purchase-event-from-click'),
+                    canonical_event_with_locale: bool('canonical-event-with-locale'),
+                    private_route_indexable: bool('private-route-indexable'),
+                    provider_available: bool('provider-available'),
+                    live_payment_attempted: bool('live-payment-attempted'),
+                    live_user_created: bool('live-user-created')
+                };
+            }""")
+        return ApplicationObservation(**facts, raw=facts)
 
     def _localization_scan(self, page, response) -> "LocalizationObservation":
         """Collect only browser-observable localization facts.

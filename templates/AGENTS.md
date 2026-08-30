@@ -7,8 +7,8 @@ Website Director prototype and its framework validator.
 
 ## Ownership
 
-site-profile.json is the current V2.14-compatible site-profile fixture with
-the V2.14 framework version recorded explicitly. content-model.md and
+site-profile.json is the current V2.15-compatible site-profile fixture with
+the V2.15 framework version recorded explicitly. content-model.md and
 content-model.json own the Capability #8 semantic content-model contract;
 cms-decision.md owns the vendor-neutral CMS necessity and provider decision
 record. inspiration-board.md and
@@ -46,6 +46,11 @@ Capability #9 localization and internationalization planning artifacts.
   content-model integration, accessibility, analytics, assets, browser QA,
   launch, and handoff inputs. They do not provision providers, publish, deploy,
   certify legal translation, or create a sixth lock.
+- Application architecture templates define conditional, behavior-based
+  classification, minimal module activation, provider-neutral auth/commerce
+  contracts, verification evidence, exceptions, and the single
+  `application.complete` readiness flag. They never activate every module,
+  contain credentials, perform live payments, deploy, or create a sixth lock.
 - Historical templates may be referenced by compatibility records but must not
   be silently regenerated or promoted to current.
 
@@ -57,9 +62,10 @@ when its manifest and registry ownership are clear.
 ## Verification
 
 Run `python -m framework_validation --run-suites` and inspect schema, reference,
-content-operations, localization, provenance, and five-lock findings. The
+content-operations, localization, application, provenance, and five-lock findings. The
 synthetic Capability 7 A-V suite plus W-AK fail-closed regression edges,
-Capability 8 A-V suite, and Capability 9 A-AF suite must remain isolated from
+Capability 8 A-V suite, Capability 9 A-AF suite, and Capability 10 A-AV suite
+must remain isolated from
 projects/ and external systems.
 
 ## Child DOX Index

@@ -1,6 +1,6 @@
 # Localization and Internationalization Intelligence Protocol
 
-<!-- FRAMEWORK_VERSION: 2.14.0 -->
+<!-- FRAMEWORK_VERSION: 2.15.0 -->
 
 **Protocol ID:** `LOCALIZATION_INTERNATIONALIZATION`<br>
 **Capability:** #9<br>

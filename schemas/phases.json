@@ -138,6 +138,14 @@
       "status": "HISTORICAL"
     },
     {
+      "phase": "6.99",
+      "name": "Conditional Application Architecture",
+      "protocol": "APPLICATION_COMMERCE_AUTH",
+      "gate": "APPLICATION_ARCHITECTURE_READY",
+      "preconditions": ["CONTENT_OPERATIONS_READY", "LOCALIZATION_READY", "EVIDENCE_PROVENANCE_READY"],
+      "status": "ACTIVE"
+    },
+    {
       "phase": "7",
       "name": "Design System Token Architecture",
       "protocol": "DESIGN_SYSTEM",

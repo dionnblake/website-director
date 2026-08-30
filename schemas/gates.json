@@ -227,6 +227,15 @@
       "status": "ACTIVE"
     },
     {
+      "name": "APPLICATION_ARCHITECTURE_READY",
+      "type": "READINESS",
+      "authoritative_state": "application.complete",
+      "phase": "6.99",
+      "owner_protocol": "APPLICATION_COMMERCE_AUTH",
+      "owner_artifact": "templates/application-architecture-plan.md",
+      "status": "ACTIVE"
+    },
+    {
       "name": "ASSET_DIRECTION_READY",
       "type": "READINESS",
       "authoritative_state": "asset_direction.complete",

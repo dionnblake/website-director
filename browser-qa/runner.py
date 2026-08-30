@@ -1,4 +1,4 @@
-"""Manifest-driven Browser & Regression QA runner (Website Director V2.14).
+"""Manifest-driven Browser & Regression QA runner (Website Director V2.15).
 
     python browser-qa/runner.py --plan <project>/browser-qa-manifest.json \
         --engine simulation --evidence <project>/evidence/browser-qa
@@ -75,6 +75,8 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
     # same engine. They do not create a second runner or a second state owner.
     if plan.get("localization") and "localization" not in engine_config:
         engine_config["localization"] = plan["localization"]
+    if plan.get("application") and "application" not in engine_config:
+        engine_config["application"] = plan["application"]
     engine = load_engine(engine_name, project_root, engine_config)
     run_id = "bqa-%s" % time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     started = time.time()

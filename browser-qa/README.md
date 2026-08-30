@@ -1,4 +1,4 @@
-# browser-qa/ — Website Director Browser & Regression QA Harness (V2.14)
+# browser-qa/ — Website Director Browser & Regression QA Harness (V2.15)
 
 Reusable, framework-level machine-executed browser verification. The **policy** is
 canonical (`../BROWSER-REGRESSION-QA-PROTOCOL.md`); the **engine** that drives a
@@ -40,6 +40,14 @@ direction, text-labelled switchers, fallback, `hreflang`, localized metadata
 and forms, pseudo-localization expansion, and RTL runtime behaviour. It never
 sets `localization.complete` and does not create a second runner.
 
+When `application` is required, the same runner consumes the
+`APPLICATION_ARCHITECTURE_PLAN` assertion group. It checks only explicit
+runtime facts for activated authentication, authorization, commerce,
+subscription, booking, upload, UGC, integration, private-route, and
+authoritative-event requirements. Missing facts block. It never sets
+`application.complete`, creates a second runner, creates users, or attempts a
+live payment.
+
 Install the real engine once:
 
 ```bash
@@ -70,3 +78,5 @@ python tests/test_v2_8_browser_regression_qa.py
 runs the repo-level invariants plus the scenario A–L negative controls on the
 `simulation` engine with only the standard library. Capability #9 localization
 controls live in `tests/test_v2_14_localization.py` and reuse this catalogue.
+Capability #10 application controls live in
+`tests/test_v2_15_application_architecture.py` and reuse this catalogue.

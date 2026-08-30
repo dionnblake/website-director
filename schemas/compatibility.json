@@ -28,7 +28,8 @@
     "2.11.0",
     "2.11.1",
     "2.12.0",
-    "2.13.0"
+    "2.13.0",
+    "2.14.0"
   ],
   "historical_profiles": [
     { "release": "V1 baseline", "schema_version": null, "allow_missing_schema_version": true, "allow_four_locks": true },
@@ -44,7 +45,8 @@
     { "release": "V2.11 Framework Validation", "schema_version": "2.11.0", "canonical_state": "framework_validation", "allow_missing_optional_states": true },
     { "release": "V2.11.1 Design Inspiration", "schema_version": "2.11.1", "canonical_state": "research", "allow_missing_optional_states": true },
     { "release": "V2.12 Provenance", "schema_version": "2.12.0", "canonical_state": "provenance", "allow_missing_optional_states": true },
-    { "release": "V2.13 Content Operations", "schema_version": "2.13.0", "canonical_state": "content_ops", "allow_missing_optional_states": true }
+    { "release": "V2.13 Content Operations", "schema_version": "2.13.0", "canonical_state": "content_ops", "allow_missing_optional_states": true },
+    { "release": "V2.14 Localization", "schema_version": "2.14.0", "canonical_state": "localization", "allow_missing_optional_states": true }
   ],
   "rules": {
     "historical_is_read_only": true,
@@ -52,6 +54,8 @@
     "historical_state_is_not_migrated_implicitly": true,
     "current_requires_exact_five_locks": true,
     "framework_validation_state_is_external_to_site_profile": true,
-    "localization_missing_state_is_valid": true
+    "localization_missing_state_is_valid": true,
+    "application_missing_state_is_valid": true,
+    "application_is_conditional": true
   }
 }

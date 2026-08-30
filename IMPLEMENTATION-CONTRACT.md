@@ -142,6 +142,53 @@ provenance requirements, **HALT** and raise an Owner Change Request.
 
 ---
 
+## 2.0.2 Builder Conditional Application Architecture Requirements (V2.15)
+
+When Capability #10 is required, implementation consumes the reviewed
+`APPLICATION-COMMERCE-AUTH-PROTOCOL.md`,
+`templates/application-architecture-plan.md`,
+`templates/application-architecture-manifest.json`, the selected module
+records, and the `application.complete` state. The builder must:
+
+- implement only the modules justified by explicit user stories and include
+  their declared dependency closure. A static marketing or public content
+  site must not receive authentication, database, payment, or other
+  application infrastructure merely because the registry exists;
+- keep authentication, sessions, recovery, password hashing, MFA, and email
+  verification explicit where required. Plaintext passwords and exposed
+  password hashes are forbidden;
+- enforce authorization, roles, tenant boundaries, and object ownership on the
+  server. Client role flags, hidden admin controls, route obscurity, and
+  disabled buttons are never access controls;
+- keep the server authoritative for data, price, tax, inventory, payment,
+  order, entitlement, booking, upload, and user-content state. Payment and
+  order status machines remain separate;
+- use hosted or tokenized payment collection, never store raw card data, and
+  show success or grant entitlements only after authoritative payment
+  confirmation. Webhooks verify signatures and idempotency before side effects;
+- define subscription failure/entitlement behavior, booking conflict and
+  timezone behavior, upload allowlists/private storage, UGC sanitization,
+  transactional-message failure, integration inventory, and high-risk
+  verification when those modules are active;
+- keep secrets server-side and out of source, bundles, fixtures, logs,
+  screenshots, analytics, and handoff artifacts. No provider account, live
+  user, live payment, production credential, publish, deploy, or production
+  verification is authorized by this contract;
+- reuse Content Operations, Localization, Provenance, Measurement, Security
+  and Privacy, Accessibility, Browser QA, Launch Ops, and V2.5 Handoff
+  authorities without creating parallel state or a sixth owner lock.
+
+`application.complete` means the architecture contract is complete. It does
+not mean a provider is configured, a live user or payment exists, the build is
+implemented, or production is verified. `[APPLICATION_ARCHITECTURE_READY]` is
+a readiness gate, not an owner lock. Missing or unavailable evidence remains
+`FAIL` or `BLOCKED`. If an application requirement conflicts with locked IA,
+copy, design, motion, measurement, SEO, accessibility, security/privacy,
+localization, provenance, or content structure, **HALT** and raise an Owner
+Change Request.
+
+---
+
 ## 2.1 Builder SEO Requirements (V1.2)
 
 Gates 2 and 3 above are additionally sourced from `templates/keyword-map.md` and `templates/seo-content-briefs.md` once `seo.complete` is `true` (`SEO-INTELLIGENCE-PROTOCOL.md` §6). The coding agent implements, per page, exactly what those artifacts specify:

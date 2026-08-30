@@ -5,8 +5,9 @@
 Own the canonical machine-readable schema, registry, compatibility, and
 validation-manifest contracts for Website Director Capability 6, the additive
   Capability 6.5 adapter registration, Capability 7 evidence provenance,
-  Capability #8 Content Operations and CMS Architecture, and Capability #9
-  Localization and Internationalization.
+  Capability #8 Content Operations and CMS Architecture, Capability #9
+  Localization and Internationalization, and conditional Capability #10
+  Application, Commerce, and Authentication Architecture.
 
 ## Ownership
 
@@ -35,6 +36,11 @@ validation-manifest contracts for Website Director Capability 6, the additive
   6.35, the LOCALIZATION_READY readiness gate, the locale registry, manifest,
   and test suite are distinct from Content Operations, V2.5 handoff, and all
   adjacent authorities. They add no owner lock.
+- Application state, the APPLICATION_COMMERCE_AUTH protocol, Phase 6.99, the
+  APPLICATION_ARCHITECTURE_READY readiness gate, module registry, manifest,
+  and test suite are conditional, provider-neutral, and distinct from
+  authentication, commerce, payment, and V2.5 handoff sub-states. They add no
+  owner lock and do not activate every module automatically.
 
 ## Local Contracts
 
@@ -46,9 +52,9 @@ validation-manifest contracts for Website Director Capability 6, the additive
   checkout carries the complete certified V2.10 corpus; missing registered
   artifacts are validation failures, not migration permission.
 - Framework-validation state is external to the site profile.
-- The current framework version is 2.14.0. The content-operations,
-  localization, and provenance readiness gates are not owner locks; the exact five-lock
-  invariant remains authoritative.
+- The current framework version is 2.15.0. The content-operations,
+  localization, application, and provenance readiness gates are not owner
+  locks; the exact five-lock invariant remains authoritative.
 - Registry references must resolve or carry an explicit historical status and
   replacement policy.
 
@@ -62,8 +68,9 @@ validator, tests, protocol, and affected DOX when a durable contract changes.
 Run `python -m unittest tests.test_v2_11_framework_validation` and
 `python -m framework_validation --run-suites`. Validate every JSON file under
 the manifest's canonical roots, including evidence-ledger.schema.json,
-localization-manifest.schema.json, and the provenance, content-operations, and
-localization state/gate/phase registries.
+localization-manifest.schema.json, application-module-registry.schema.json,
+and the provenance, content-operations, localization, and application
+state/gate/phase registries.
 
 ## Child DOX Index
 

@@ -809,4 +809,45 @@ The existing per-release owner authorization boundary remains unchanged.
 
 ---
 
+## 57. Conditional Application, Commerce & Authentication Integration (V2.15)
+
+Capability #10 is conditional and provider-neutral. Launch Operations consumes
+the canonical `application{}` result when a project's observed behavior or
+user stories require an authenticated application, commerce, booking,
+membership, portal, community, marketplace, or other application module. It
+does not infer requirement from branding, industry, geography, or a provider
+name, and it does not create a second application readiness state.
+
+`application.complete` and `[APPLICATION_ARCHITECTURE_READY]` are planning
+readiness facts. They do not authorize deployment, payment processing,
+account creation, production database access, provider installation, or live
+user testing. Launch Operations remains the only authority for deployment
+authorization and production realization.
+
+Before a release candidate that requires Capability #10 can be considered
+`RELEASE_READY`, the launch record must identify:
+
+- the approved application classifications and the minimal activated modules;
+- implementation evidence for server-side authentication, authorization,
+  object-level access control, data protection, and any high-risk operations;
+- payment, subscription, booking, upload, webhook, email, and integration
+  verification evidence where those modules are active;
+- the known provider and environment boundary without recording credentials;
+- production verification requirements for routes, entitlements, order state,
+  webhook idempotency, private resources, localized events, and error paths;
+- unresolved provider outages, missing evidence, or unavailable test paths as
+  `BLOCKED` or `REVIEW_REQUIRED`, never as a successful integration.
+
+The launch phase may verify deployment realization against a known release
+identity after explicit owner authorization. It may not perform a live
+purchase, create a real user, submit production credentials, or substitute
+synthetic application/payment evidence for production verification.
+
+The V2.5 handoff remains the long-term authority for application operations,
+access ownership, backup/restore, migrations, maintenance, incident response,
+and client training. This integration adds no owner lock; the five existing
+locks remain exact.
+
+---
+
 *End of Protocol Specification.*

@@ -4,7 +4,7 @@
   "title": "Website Director current site profile",
   "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
   "x-framework-version-source": "framework-version.json",
-  "x-framework-version": "2.14.0",
+  "x-framework-version": "2.15.0",
   "type": "object",
   "required": [
     "schema_version",
@@ -30,6 +30,7 @@
     "provenance": { "$ref": "#/$defs/state" },
     "content_ops": { "$ref": "#/$defs/content_ops" },
     "localization": { "$ref": "#/$defs/localization" },
+    "application": { "$ref": "#/$defs/application" },
     "launch_ops": { "$ref": "#/$defs/launch_ops" },
     "gauntlet": { "$ref": "#/$defs/state" },
     "handoff": { "$ref": "#/$defs/state" },
@@ -160,6 +161,51 @@
             "content_localization_ready": { "type": "boolean" },
             "rtl_required": { "type": "boolean" },
             "translation_review_required": { "type": "boolean" },
+            "implementation_verified": { "type": "boolean" },
+            "production_verified": { "type": "boolean" },
+            "blocked_reason": { "type": ["string", "null"] },
+            "exception": { "$ref": "#/$defs/exception" }
+          }
+        }
+      ]
+    },
+    "application": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "type": "object",
+          "required": [
+            "required",
+            "complete",
+            "status",
+            "classifications",
+            "modules_required",
+            "modules_ready",
+            "authentication_required",
+            "commerce_required",
+            "database_required",
+            "external_integrations",
+            "high_risk_operations",
+            "implementation_verified",
+            "production_verified",
+            "blocked_reason",
+            "exception"
+          ],
+          "properties": {
+            "required": { "type": "boolean" },
+            "complete": { "type": "boolean" },
+            "status": {
+              "type": "string",
+              "enum": ["NOT_REQUIRED", "PARTIALLY_REQUIRED", "REQUIRED", "PLANNING", "READY", "BLOCKED", "IMPLEMENTED", "VERIFIED", "EXCEPTION_APPLIED"]
+            },
+            "classifications": { "type": "array", "items": { "type": "string" } },
+            "modules_required": { "type": "array", "items": { "type": "string" } },
+            "modules_ready": { "type": "array", "items": { "type": "string" } },
+            "authentication_required": { "type": "boolean" },
+            "commerce_required": { "type": "boolean" },
+            "database_required": { "type": "boolean" },
+            "external_integrations": { "type": "array" },
+            "high_risk_operations": { "type": "array" },
             "implementation_verified": { "type": "boolean" },
             "production_verified": { "type": "boolean" },
             "blocked_reason": { "type": ["string", "null"] },

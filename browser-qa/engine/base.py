@@ -1,4 +1,4 @@
-"""BROWSER_QA_ENGINE adapter interface (Website Director V2.14).
+"""BROWSER_QA_ENGINE adapter interface (Website Director V2.15).
 
 The *policy* (BROWSER-REGRESSION-QA-PROTOCOL.md, the plan template, the assertion
 catalogue, the evidence schema) is canonical and permanent. The *engine* that
@@ -225,6 +225,59 @@ class LocalizationObservation:
 
 
 @dataclass
+class ApplicationObservation:
+    """Browser-observable facts for the conditional application contract.
+
+    ``None`` means that the engine did not observe an explicit fact. Assertions
+    fail closed for required controls instead of treating an absent hook as a
+    pass. These fields are observations only; they never become application
+    readiness state.
+    """
+
+    authenticated: Optional[bool] = None
+    authorization_enforced: Optional[bool] = None
+    object_access_allowed: Optional[bool] = None
+    client_role_trusted: Optional[bool] = None
+    password_plaintext: Optional[bool] = None
+    password_hash_exposed: Optional[bool] = None
+    account_recovery_defined: Optional[bool] = None
+    admin_route_server_protected: Optional[bool] = None
+    client_price_trusted: Optional[bool] = None
+    canonical_price_verified: Optional[bool] = None
+    checkout_click_marks_paid: Optional[bool] = None
+    payment_confirmed: Optional[bool] = None
+    webhook_signature_verified: Optional[bool] = None
+    webhook_idempotent: Optional[bool] = None
+    duplicate_side_effect_created: Optional[bool] = None
+    raw_card_stored: Optional[bool] = None
+    hosted_or_tokenized_payment: Optional[bool] = None
+    subscription_entitlement_granted: Optional[bool] = None
+    entitlement_revoked_on_payment_failure: Optional[bool] = None
+    digital_shipping_unnecessary: Optional[bool] = None
+    physical_shipping_defined: Optional[bool] = None
+    booking_overlap_prevented: Optional[bool] = None
+    booking_timezone_explicit: Optional[bool] = None
+    upload_allowlist_enforced: Optional[bool] = None
+    executable_upload_accepted: Optional[bool] = None
+    private_storage_authorized: Optional[bool] = None
+    private_file_public: Optional[bool] = None
+    ugc_sanitized: Optional[bool] = None
+    ugc_script_executed: Optional[bool] = None
+    transactional_email_failure_visible: Optional[bool] = None
+    transactional_email_failure_reported_success: Optional[bool] = None
+    integration_inventory_complete: Optional[bool] = None
+    application_secret_exposed: Optional[bool] = None
+    purchase_event_authoritative: Optional[bool] = None
+    purchase_event_from_click: Optional[bool] = None
+    canonical_event_with_locale: Optional[bool] = None
+    private_route_indexable: Optional[bool] = None
+    provider_available: Optional[bool] = None
+    live_payment_attempted: Optional[bool] = None
+    live_user_created: Optional[bool] = None
+    raw: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
 class PageObservation:
     """Everything an assertion module is allowed to read about one page render."""
     route: str
@@ -252,6 +305,7 @@ class PageObservation:
     placeholder_hash_links: List[str] = field(default_factory=list)
     a11y: Optional[AccessibilityObservation] = None
     localization: Optional[LocalizationObservation] = None
+    application: Optional[ApplicationObservation] = None
     raw: Dict[str, Any] = field(default_factory=dict)
 
 

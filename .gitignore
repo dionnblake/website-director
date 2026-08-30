@@ -55,4 +55,5 @@ framework-validation/reports/runtime/*
 !framework-validation/reports/runtime/.gitkeep
 framework-validation/reports/2.13.0-certification.json
 framework-validation/reports/2.14.0-certification.json
+framework-validation/reports/2.15.0-certification.json
 browser-qa/evidence/*.log

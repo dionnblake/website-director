@@ -383,6 +383,50 @@ Verified against `templates/security-privacy-review.md` under `SECURITY-PRIVACY-
 
 ---
 
+## 5.3.13 Conditional Application, Commerce & Authentication (V2.15)
+
+Run this section only when the reviewed application architecture marks the
+capability `REQUIRED`. A static marketing or public content site records
+`application.required = false` and does not activate these controls.
+
+- [ ] `application.complete` is the sole application readiness flag and
+  `[APPLICATION_ARCHITECTURE_READY]` is recorded as a readiness gate, not an
+  owner lock. Exactly five owner locks remain.
+- [ ] Activated modules are limited to story-justified records and include
+  their dependency closure. Unused modules remain `NOT_REQUIRED`.
+- [ ] Authentication, recovery, sessions, password hashing, MFA, email
+  verification, and provider availability are explicit where applicable.
+- [ ] Authorization is server-enforced, default deny, and object-level. Client
+  roles, hidden admin routes, disabled buttons, and route obscurity are not
+  controls.
+- [ ] Database migrations, transactions, retention, deletion, backup, restore,
+  API input/output/error contracts, rate limits, and abuse controls are defined.
+- [ ] Catalog price, tax, currency, inventory, cart totals, checkout success,
+  entitlement, booking, and order state are server-authoritative. Payment and
+  order state machines are separate.
+- [ ] Payment collection is hosted or tokenized, raw card data is absent, and
+  no live payment was attempted. Payment confirmation precedes success,
+  fulfillment, entitlement, and purchase measurement.
+- [ ] Webhooks verify signatures, reject unknown events, and are idempotent.
+  Duplicate delivery creates no duplicate order, refund, entitlement, email,
+  or booking.
+- [ ] Subscription failure, booking overlap/timezone, upload allowlist/private
+  storage, UGC sanitization, transactional email failure, integration
+  inventory, secret custody, and high-risk verification are evidenced where
+  their modules are active.
+- [ ] Private routes are not indexable, localized application events reuse
+  canonical event names with a locale parameter, and PII is absent from
+  analytics and logs.
+- [ ] Missing or unavailable provider evidence is `BLOCKED`, not passing. No
+  provider account, production credential, live user, payment, deployment, or
+  production verification was created by this checklist.
+
+Application architecture evidence: `[path / status]`
+Application Browser QA evidence: `[path / status]`
+Known gaps / owner decisions: `[list]`
+
+---
+
 ## 5.4 Browser & Regression QA Evidence (V2.8)
 
 Verified against `templates/browser-qa-plan.md` / `browser-qa-manifest.json` under `BROWSER-REGRESSION-QA-PROTOCOL.md`. Phase 10.5 runs before this checklist. Skip only where `browser_qa.exception.applied = true` with a recorded justification. **A `BLOCKED` result is reported as blocked — never as passing. A `FLAKY` result is not a pass.**

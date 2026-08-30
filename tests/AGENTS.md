@@ -22,6 +22,10 @@ portability, provenance-boundary, and frozen-integrity controls.
 locale, route, fallback, translation, formatting, RTL, typography, SEO,
 content-model, accessibility, analytics, provenance, handoff, and
 frozen-integrity controls.
+`test_v2_15_application_architecture.py` owns conditional Capability #10
+synthetic A-AV application, authentication, authorization, commerce, payment,
+booking, upload, UGC, integration, high-risk, provider-outage, and
+frozen-integrity controls.
 
 ## Local Contracts
 
@@ -29,7 +33,7 @@ frozen-integrity controls.
 - Tests do not modify the protected `projects/` corpus, external systems, or
   production credentials.
 - Historical V2.5-V2.10 suites are direct script entrypoints and are run by
-  the registry; pytest collection is limited to the registered V2.11-V2.14
+  the registry; pytest collection is limited to the registered V2.11-V2.15
   unittest suites.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
@@ -43,6 +47,9 @@ frozen-integrity controls.
   browser-observable page metadata, formatting, RTL, font, asset, CMS, and
   temporary mutation fixtures. It never calls a translation provider, uses
   production credentials, publishes, deploys, or modifies projects/.
+- The Application Architecture suite uses synthetic behavior and observation
+  fixtures only. It never creates users, charges cards, calls providers,
+  sends email, publishes, deploys, or modifies projects/.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
@@ -55,8 +62,8 @@ fixtures read-only and distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, and V2.14 suites directly, then run all registered
-suites through `python -m framework_validation --run-suites`.
+Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, then run all
+registered suites through `python -m framework_validation --run-suites`.
 
 ## Child DOX Index
 

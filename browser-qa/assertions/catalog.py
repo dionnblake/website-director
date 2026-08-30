@@ -11,7 +11,7 @@ import re
 import unicodedata
 from typing import Any, Dict, List, Optional
 
-from engine.base import APPLICATION_DEFECT
+from engine.base import APPLICATION_DEFECT, BLOCKED, PASS
 from . import Finding  # noqa: F401  (dataclass used by type readers / re-export)
 
 
@@ -585,6 +585,113 @@ def check_localization(obs, plan):
 
 
 # ===========================================================================
+# APPLICATION ARCHITECTURE (Website Director V2.15)
+# Gated on plan["application"]; source APPLICATION_ARCHITECTURE_PLAN.
+# Runtime facts are explicit observations only. Missing required facts block.
+# ===========================================================================
+def check_application(obs, plan):
+    cfg = plan.get("application")
+    if not isinstance(cfg, dict):
+        return None
+    if not cfg.get("required", False):
+        return _F("application.not-required", "Application architecture is not required by the plan",
+                  True, "APPLICATION_ARCHITECTURE_PLAN", obs, na=True,
+                  owning_spec="application-architecture-plan.md")
+    source = "APPLICATION_ARCHITECTURE_PLAN"
+    if obs.application is None:
+        from . import Finding
+        return Finding(check_id="application.observation", title="Application runtime facts were collected",
+                       verdict=BLOCKED, requirement_source=source, route=obs.route,
+                       viewport=obs.viewport, browser=obs.browser,
+                       detail="required application observation was not provided by the selected engine",
+                       owning_spec="application-architecture-plan.md")
+    app = obs.application
+    modules = {str(item.get("module_id", item.get("id", ""))).upper()
+               if isinstance(item, dict) else str(item).upper()
+               for item in cfg.get("modules_required", cfg.get("modules", []))}
+    modules.discard("")
+    out = []
+
+    def af(check_id, title, value, expected=True, detail=""):
+        from . import Finding
+        if value is None:
+            verdict = BLOCKED
+            extra = detail or "explicit browser evidence was not observed"
+        else:
+            ok = value is expected
+            verdict = PASS if ok else "FAIL"
+            extra = detail or "observed=%r expected=%r" % (value, expected)
+        return Finding(check_id="application." + check_id, title=title,
+                       verdict=verdict, requirement_source=source,
+                       route=obs.route, viewport=obs.viewport, browser=obs.browser,
+                       detail=extra, owning_spec="application-architecture-plan.md",
+                       evidence={"observed": value, "expected": expected})
+
+    def need(check_id, title, value, expected=True, detail=""):
+        out.append(af(check_id, title, value, expected, detail))
+
+    if "AUTHENTICATION" in modules:
+        need("authentication", "Authenticated flow exposes an explicit authentication boundary", app.authenticated)
+        need("password-plaintext", "Authentication does not store plaintext passwords", app.password_plaintext, False)
+        need("password-hash-exposed", "Password hashes are not exposed to clients", app.password_hash_exposed, False)
+        need("account-recovery", "Account recovery is explicitly defined", app.account_recovery_defined)
+    if "AUTHORIZATION" in modules or "AUTHENTICATION" in modules:
+        need("authorization", "Authorization is enforced at the server boundary", app.authorization_enforced)
+        need("client-role", "Client role flags are not trusted", app.client_role_trusted, False)
+    if "USER_PROFILE" in modules or "USER_GENERATED_CONTENT" in modules or "ORDER_MANAGEMENT" in modules or "BOOKING" in modules:
+        need("object-access", "Object-level access is authorized for the observed resource", app.object_access_allowed)
+    if "ADMIN_INTERFACE" in modules:
+        need("admin-route", "Administrative route is server-protected", app.admin_route_server_protected)
+
+    commerce_modules = {"CATALOG", "CART", "CHECKOUT", "PAYMENT", "ORDER_MANAGEMENT", "SUBSCRIPTION"}
+    if modules & commerce_modules:
+        need("client-price", "Client-submitted price is not authoritative", app.client_price_trusted, False)
+        need("canonical-price", "Canonical price is verified at the server boundary", app.canonical_price_verified)
+        need("checkout-click", "Checkout click does not mark an order paid", app.checkout_click_marks_paid, False)
+        need("payment-confirmation", "Payment confirmation is authoritative before success", app.payment_confirmed)
+        need("raw-card", "Raw card data is not stored", app.raw_card_stored, False)
+        need("hosted-tokenized", "Payment collection is hosted or tokenized", app.hosted_or_tokenized_payment)
+    if "WEBHOOKS" in modules or "PAYMENT" in modules or "SUBSCRIPTION" in modules:
+        need("webhook-signature", "Webhook signatures are verified", app.webhook_signature_verified)
+        need("webhook-idempotency", "Webhook side effects are idempotent", app.webhook_idempotent)
+        need("duplicate-side-effect", "Duplicate webhook delivery creates no duplicate side effect", app.duplicate_side_effect_created, False)
+    if "SUBSCRIPTION" in modules:
+        need("subscription-entitlement", "Subscription entitlement is observed separately from billing", app.subscription_entitlement_granted)
+        need("entitlement-revocation", "Failed payment revokes or suspends entitlement", app.entitlement_revoked_on_payment_failure)
+    if "BOOKING" in modules:
+        need("booking-overlap", "Booking conflict checks prevent overlapping reservations", app.booking_overlap_prevented)
+        need("booking-timezone", "Booking time uses an explicit timezone contract", app.booking_timezone_explicit)
+    if "FILE_UPLOAD" in modules:
+        need("upload-allowlist", "File uploads enforce an allowlist", app.upload_allowlist_enforced)
+        need("executable-upload", "Executable uploads are rejected", app.executable_upload_accepted, False)
+        need("private-upload-auth", "Private downloads require authorization", app.private_storage_authorized)
+        need("private-file-public", "Private files are not exposed by a public URL", app.private_file_public, False)
+    if "USER_GENERATED_CONTENT" in modules:
+        need("ugc-sanitized", "User-generated content is sanitized", app.ugc_sanitized)
+        need("ugc-script", "User-generated content does not execute script", app.ugc_script_executed, False)
+    if "TRANSACTIONAL_EMAIL" in modules:
+        need("email-failure-visible", "Required email delivery failures are observable", app.transactional_email_failure_visible)
+        need("email-failure-success", "Email failure is not presented as success", app.transactional_email_failure_reported_success, False)
+    if "THIRD_PARTY_INTEGRATION" in modules:
+        need("integration-inventory", "External integrations match the declared inventory", app.integration_inventory_complete)
+        need("secret-exposure", "Application secrets are not exposed to the client", app.application_secret_exposed, False)
+    if cfg.get("purchase_event_required") or modules & {"PAYMENT", "ORDER_MANAGEMENT"}:
+        need("purchase-event-authority", "Purchase event follows authoritative confirmation", app.purchase_event_authoritative)
+        need("purchase-event-click", "Purchase event is not emitted from a button click", app.purchase_event_from_click, False)
+    if cfg.get("localized_measurement_required"):
+        need("canonical-locale-event", "Localized measurement uses the canonical event plus locale", app.canonical_event_with_locale)
+    if cfg.get("private_routes"):
+        need("private-route-index", "Private application routes are not indexable", app.private_route_indexable, False)
+    if app.provider_available is False:
+        need("provider-availability", "Required application provider is available", app.provider_available)
+    if cfg.get("forbid_live_side_effects", True):
+        need("live-payment", "Browser QA does not attempt a live payment", app.live_payment_attempted, False)
+        need("live-user", "Browser QA does not create a live user", app.live_user_created, False)
+    return out or [_F("application.baseline", "Application architecture observations hold",
+                      True, source, obs, owning_spec="application-architecture-plan.md")]
+
+
+# ===========================================================================
 # ACCESSIBILITY (Website Director V2.9 — ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md §32)
 # Gated on plan["accessibility"]; source ACCESSIBILITY_REVIEW; method BROWSER_EXECUTED.
 # Deterministic contrast MATH is Impeccable's; this only checks it was run + classifies.
@@ -782,5 +889,6 @@ ALL_CHECKS = [
     check_visual_regression,
     check_perf,
     check_localization,
+    check_application,
     check_accessibility,
 ]

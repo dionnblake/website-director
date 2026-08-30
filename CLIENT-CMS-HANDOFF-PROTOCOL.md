@@ -320,4 +320,49 @@ provenance.complete remains the cross-cutting readiness state; neither is a
 deployment authorization.
 
 ---
+
+## 15. Conditional Application, Commerce & Authentication Handoff (V2.15)
+
+Capability #10 is handed off only when the project's behavior-based
+requirement assessment marks application architecture as required. A static
+marketing, editorial, or lead-generation site does not receive an invented
+authentication, database, commerce, or application stack merely because this
+framework contains the capability.
+
+For an applicable project, the handoff package must preserve the canonical
+`application{}` state, the approved classifications, the minimal module
+registry, dependency rationale, data classes, security risks, provider
+declarations, verification evidence, exceptions, and unresolved gaps. The
+package must make the following operational boundaries explicit:
+
+- authentication and session ownership, recovery and verification paths,
+  MFA status, authorization roles, default-deny behavior, and object-level
+  access-control rules;
+- database ownership, migration and rollback procedures, transaction
+  boundaries, backups, restore evidence, retention, deletion, and recovery;
+- catalog, price, currency, cart, checkout, payment, order, subscription,
+  entitlement, booking, inventory, tax, shipping, webhook, and refund
+  responsibilities where active;
+- upload storage and signed access, UGC moderation and sanitization,
+  transactional email failure handling, notifications, jobs, audit records,
+  administrative access and impersonation controls;
+- API ownership, rate limits, secrets by name only, third-party integration
+  inventory, provider outage behavior, monitoring, incident response, and
+  client/operator training.
+
+Handoff records must never contain production credentials, raw payment-card
+data, live customer data, or an assertion that an unavailable provider was
+verified. `implementation_verified` and `production_verified` remain
+separate. Synthetic auth and payment simulations are evidence of control
+behavior only; they do not authorize live users, live purchases, publishing,
+deployment, or account/provider changes.
+
+`application.complete` is the sole Capability #10 readiness flag. It is not a
+sixth owner lock, and this handoff protocol does not create
+`application_locked`, `auth.complete`, `commerce.complete`, or
+`payments.complete`. Launch Operations retains deployment and production
+verification authority; V2.5 retains long-term operations and transfer
+authority.
+
+---
 *End of Protocol Specification.*

@@ -1,6 +1,6 @@
 # WEBSITE DIRECTOR
 
-> **Version:** 2.14.0
+> **Version:** 2.15.0
 > **Status:** Production-Grade Skill & Specification System  
 > **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
 
@@ -128,8 +128,9 @@ attribution, permitted use, AI-media metadata, and SHA-256 byte identity.
   suite plus W-AK fail-closed regression edges run without network access,
   credentials, deployment, or frozen-project mutation.
 - **Capability boundary:** Capability #8 is implemented in V2.13 and Capability
-  #9 Localization and Internationalization is implemented in V2.14. Ecommerce,
-  Authentication, and Application modules remain out of scope.
+  #9 Localization and Internationalization is implemented in V2.14. Capability
+  #10 Application, Commerce, and Authentication Architecture is conditional in
+  V2.15 and activates only from explicit behavior and user stories.
 
 ### What V2.13.0 Adds (Content Operations & CMS Architecture)
 
@@ -190,9 +191,45 @@ locale or translation bloat.
   QA, Launch Ops, and V2.5 Handoff authorities remain intact. No provider,
   production credential, live analytics property, deployment, or publishing
   action is required.
-- **Compatibility:** Existing V1 through V2.13 profiles and frozen pilots may
-  omit `localization{}` and are not retrofitted. Capability #10 Ecommerce,
-  Authentication, and Application Modules remains out of scope.
+- **Compatibility:** Existing V1 through V2.14 profiles and frozen pilots may
+  omit `localization{}` and `application{}` and are not retrofitted. Capability
+  #10 is conditional and is assessed only from explicit application behavior.
+
+### What V2.15.0 Adds (Conditional Application, Commerce and Authentication Architecture)
+
+V2.15.0 implements Capability #10 as a bounded, provider-neutral architecture
+subsystem. It runs at Phase 6.99 after the planning authorities and before
+Design System and implementation. Static marketing and public content sites
+remain `NOT_REQUIRED` when their stories do not require stateful behavior.
+
+- **Behavior-based classification:** `application/validator.py` derives
+  application requirement, classifications, and minimal module activation from
+  explicit user stories, actors, data, routes, and side effects. It never uses
+  industry, company name, geography, IP address, browser language, or
+  stereotype as a requirement signal.
+- **Opt-in module registry:**
+  `templates/application-module-registry.json` records authentication,
+  authorization, database/API, catalog/cart/checkout/payment/order,
+  subscriptions, bookings, memberships, UGC, uploads, messaging, webhooks,
+  jobs, admin, audit, search, storage, entitlements, and integrations. A
+  project activates only the modules justified by behavior and their
+  dependencies.
+- **Security architecture:** Password hashing, sessions, server-side and
+  object-level authorization, canonical pricing, payment confirmation,
+  distinct payment/order states, hosted/tokenized payment collection,
+  signed/idempotent webhooks, entitlements, booking conflicts, private
+  uploads, UGC sanitization, transactional delivery, secret custody, and
+  high-risk verification are deterministic fail-closed controls.
+- **One state and one gate:** `application.complete` is the sole application
+  readiness flag and `[APPLICATION_ARCHITECTURE_READY]` is a readiness gate,
+  not a sixth owner lock. Exactly five owner locks remain.
+- **No external effects:** The subsystem never creates provider accounts,
+  users, payments, credentials, live analytics, deployments, or production
+  verification. Launch Operations and V2.5 Handoff remain their authorities.
+- **Verification:** `tests/test_v2_15_application_architecture.py` runs the
+  synthetic A-AV controls. Browser QA consumes application observations through
+  its existing runner; missing evidence and unavailable providers remain
+  `BLOCKED`.
 
 ---
 
@@ -253,6 +290,22 @@ PHASE 6.35: LOCALIZATION & INTERNATIONALIZATION INTELLIGENCE
       ▼
 PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE
       ├─► [GATE MEASUREMENT: CONVERSION_MEASUREMENT_COMPLETE] (readiness gate)
+      │
+      ▼
+PHASE 6.75: SECURITY, PRIVACY & COMPLIANCE INTELLIGENCE
+      ├─► [GATE SECURITY: SECURITY_PRIVACY_READY] (readiness gate)
+      │
+      ▼
+PHASE 6.9: ACCESSIBILITY INTELLIGENCE
+      ├─► [GATE ACCESSIBILITY: ACCESSIBILITY_READY] (readiness gate)
+      │
+      ▼
+PHASE 6.95: EVIDENCE & ASSET PROVENANCE
+      ├─► [GATE PROVENANCE: EVIDENCE_PROVENANCE_READY] (readiness gate)
+      │
+      ▼
+PHASE 6.99: CONDITIONAL APPLICATION, COMMERCE & AUTHENTICATION ARCHITECTURE
+      ├─► [GATE APPLICATION: APPLICATION_ARCHITECTURE_READY] (readiness gate)
       │
       ▼
 PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE
@@ -337,6 +390,7 @@ website-director/
 ├── EVIDENCE-PROVENANCE-PROTOCOL.md   # Phase 6.95 evidence, claim, rights, attribution, asset identity, and reference-only provenance gate (V2.12)
 ├── CONTENT-OPERATIONS-CMS-PROTOCOL.md # Phase 6.25 semantic content model, CMS decision, editorial/publishing, slug, portability, and migration gate (V2.13)
 ├── LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md # Phase 6.35 locale, routing, fallback, translation, formatting, RTL, SEO, QA, and handoff governance (V2.14)
+├── APPLICATION-COMMERCE-AUTH-PROTOCOL.md # Phase 6.99 conditional application, auth, commerce, booking, UGC, integration, and verification governance (V2.15)
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
@@ -374,6 +428,10 @@ website-director/
 │   ├── localization-plan.md            # Capability #9 localization and internationalization plan (V2.14)
 │   ├── localization-manifest.json      # Machine-readable localization contract (V2.14)
 │   ├── locale-registry.json            # Machine-readable locale registry (V2.14)
+│   ├── application-architecture-plan.md # Capability #10 conditional application architecture plan (V2.15)
+│   ├── application-architecture-manifest.json # Machine-readable application architecture contract (V2.15)
+│   ├── application-architecture-review.md # Capability #10 review and verification record (V2.15)
+│   ├── application-module-registry.json # Opt-in provider-neutral application module registry (V2.15)
 │   ├── research-brief.md             # Visual research scoping template
 │   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
 │   ├── inspiration-board.md          # Landbook + cross-industry discovery template
@@ -390,7 +448,7 @@ website-director/
 │   ├── design-review.md              # 100-point QA review & upgrade recommendations
 │   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
 │   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json              # Machine-readable state & lock schema (v2.14.0; exact five-lock profile)
+│   └── site-profile.json              # Machine-readable state & lock schema (v2.15.0; exact five-lock profile)
 ├── provenance/                        # Capability 7 deterministic evidence and asset provenance validator
 │   ├── validator.py                   # Fail-closed ledger, manifest, risk, hash, and state validation
 │   └── AGENTS.md                      # Local provenance boundary and verification contract
@@ -400,11 +458,14 @@ website-director/
 ├── localization/                      # Capability #9 deterministic localization and internationalization validator
 │   ├── validator.py                   # Locale, route, fallback, translation, formatting, RTL, typography, SEO, and integration checks
 │   └── AGENTS.md                      # Local localization boundary and verification contract
+├── application/                        # Capability #10 conditional application architecture validator
+│   ├── validator.py                   # Behavior-based requirement, module, auth, commerce, integration, and high-risk checks
+│   └── AGENTS.md                      # Local application boundary and verification contract
 ├── integrations/                    # Bounded external evidence adapters (V2.11.1)
 │   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
 ├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
 │   └── validator.py                  # launch_ops{} state machine, release-readiness gate, deployment-authorization boundary, production-verification checks, rollback-trigger evaluator
-├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility assertions; V2.10 environment=production)
+├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility; V2.10 production; V2.15 application assertions)
 │   ├── runner.py                     # Manifest-driven orchestrator + evidence manifest emitter
 │   ├── engine/                       # Replaceable BROWSER_QA_ENGINE: playwright (real) + simulation (deterministic)
 │   ├── assertions/                   # Requirement-traced assertion catalogue
@@ -421,17 +482,19 @@ website-director/
 │   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
 │   ├── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
 │   ├── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
-│   └── test_v2_14_localization.py      # Capability #9 A-AF locale, translation, RTL, SEO, provenance, and frozen-integrity controls
+│   ├── test_v2_14_localization.py      # Capability #9 A-AF locale, translation, RTL, SEO, provenance, and frozen-integrity controls
+│   └── test_v2_15_application_architecture.py # Capability #10 A-AV application, auth, commerce, payment, and frozen-integrity controls
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.14 protocol/template/pilot invariant harness
+    ├── test_runner.py                # V2.0-V2.15 protocol/template/pilot invariant harness
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
     ├── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
     ├── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
     ├── CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md # Phase 6.25 scenario A-V content/CMS validation suite (V2.13)
-    └── LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md # Phase 6.35 scenario A-AF localization validation suite (V2.14)
+    ├── LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md # Phase 6.35 scenario A-AF localization validation suite (V2.14)
+    └── APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md # Phase 6.99 scenario A-AV conditional application validation suite (V2.15)
 ```
 
 ---
@@ -448,9 +511,9 @@ The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PR
 
 ---
 
-## Framework Self-Validation (V2.14.0)
+## Framework Self-Validation (V2.15.0)
 
-<!-- FRAMEWORK_VERSION: 2.14.0 -->
+<!-- FRAMEWORK_VERSION: 2.15.0 -->
 
 The V2.13 framework self-validation layer, V2.11.1 design-inspiration adapter,
 V2.12 Capability 7 evidence/provenance validator, V2.13 Capability #8
@@ -484,6 +547,15 @@ integration, accessibility, analytics, assets, handoff, and pseudo-localization.
 It uses no provider account, network translation call, production credential,
 publishing action, or frozen-project mutation.
 
+The V2.15 conditional application architecture subsystem is validated by a
+separate deterministic A-AV suite. It covers requirement assessment,
+classifications, module dependencies, authentication, authorization, data,
+commerce, payments, webhooks, subscriptions, bookings, uploads, UGC,
+messaging, integrations, measurement, private-route SEO, high-risk controls,
+provider blocking, exact five-lock preservation, and frozen-integrity evidence.
+It uses no live user, payment, provider, credential, deployment, publishing, or
+production request.
+
 The framework contract deliberately remains outside the current site profile.
 Exactly five owner locks remain authoritative:
 `design_direction_locked`, `information_architecture_locked`,
@@ -504,4 +576,5 @@ framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
 content_ops=content_ops.complete
 localization=localization.complete
+application=application.complete
 -->

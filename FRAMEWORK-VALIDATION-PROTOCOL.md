@@ -1,6 +1,6 @@
 # Website Director Framework Self-Validation Protocol
 
-<!-- FRAMEWORK_VERSION: 2.14.0 -->
+<!-- FRAMEWORK_VERSION: 2.15.0 -->
 <!-- protocol-id: FRAMEWORK_VALIDATION -->
 <!-- protocol-status: ACTIVE -->
 <!-- protocol-domain: framework-governance -->
@@ -18,11 +18,15 @@ to the MCP or provider. Capability 7 Evidence, Claim and Asset Provenance is
 validated by its own registered deterministic suite and offline validator. It
 does not validate subjective visual quality, publish the prototype, deploy
 production, send messages, use credentials, or begin Capability #9
-Localization/I18n or Capability #10 Ecommerce, Authentication, and Application
-modules. Capability #8 Content Operations and CMS Architecture is validated by
+Localization/I18n. Capability #8 Content Operations and CMS Architecture is validated by
 its own registered deterministic suite and provider-neutral content-ops validator.
 Capability #9 Localization and Internationalization is validated by its own
 registered deterministic suite and provider-neutral localization validator.
+Capability #10 Application, Commerce, and Authentication Architecture is
+validated by its own registered deterministic A-AV suite and provider-neutral
+application validator. Application readiness is conditional and does not add an
+owner lock or authorize providers, live users, payments, deployment, or
+production verification.
 
 The corrected checkout is based directly on the certified V2.10 lineage and
 retains its operational documents, browser-QA harness, and complete frozen
@@ -39,7 +43,7 @@ rewriting historical project material or introducing external side effects.
 - [schemas/site-profile.schema.json](schemas/site-profile.schema.json) defines
   the current site-profile contract.
 - [templates/site-profile.json](templates/site-profile.json) is the current
-  V2.14-compatible profile fixture. Framework-validation state is external to
+  V2.15-compatible profile fixture. Framework-validation state is external to
   it, and provenance.complete remains distinct from assets.provenance_status.
 - [schemas/protocols.json](schemas/protocols.json),
   [schemas/gates.json](schemas/gates.json),
@@ -73,6 +77,11 @@ rewriting historical project material or introducing external side effects.
   [templates/cms-decision.md](templates/cms-decision.md) are the Capability #8
   content/CMS architecture authorities. V2.5 remains the long-term handoff
   authority.
+- [APPLICATION-COMMERCE-AUTH-PROTOCOL.md](APPLICATION-COMMERCE-AUTH-PROTOCOL.md),
+  [application/validator.py](application/validator.py), and the
+  `application.complete` state are the conditional Capability #10 application
+  architecture authorities. They add no owner lock and require no provider
+  account.
 
 ## Invariants
 
@@ -107,8 +116,8 @@ It performs the following deterministic sequence:
 1. Capture branch, commit, worktree, and `origin/main` divergence metadata.
 2. Load the validation manifest and verify required directories and files.
 3. Validate the canonical version source, document markers, monotonicity, and
-   V2.10 lineage metadata, V2.13 Capability #8 registration, and V2.14
-   Capability #9 registration.
+   V2.10 lineage metadata, V2.13 Capability #8 registration, V2.14 Capability
+   #9 registration, and V2.15 Capability #10 registration.
 4. Validate JSON parsing, the current profile schema, historical compatibility,
    and the external framework-validation state boundary.
 5. Validate protocol, gate, phase, state-ownership, template, and Markdown
@@ -119,7 +128,8 @@ It performs the following deterministic sequence:
 8. Discover and, for release certification, run all active registered suites,
    including the Capability 7 A-V evidence and asset provenance controls plus
    W-AK fail-closed regression edges and the Capability #8 A-V content/CMS
-   controls and the Capability #9 A-AF localization controls.
+   controls, the Capability #9 A-AF localization controls, and the Capability
+   #10 A-AV application architecture controls.
 9. Run deterministic negative controls for the required failure modes.
 10. Record change impact and mutation evidence, then write the runtime and
     versioned certification reports only to their designated paths.
