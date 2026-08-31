@@ -1,0 +1,607 @@
+{
+  "schema_version": "2.5.1",
+  "total_patterns": 18,
+  "families": [
+    "PINNED",
+    "DIRECTIONAL",
+    "SPATIAL",
+    "DEPTH",
+    "ASSEMBLY",
+    "CAMERA",
+    "CHAPTER",
+    "TRANSFORMATION",
+    "REVEAL",
+    "TEMPORAL",
+    "MAGNIFICATION",
+    "FRAMING",
+    "STATE_DRIVEN",
+    "LAYERED",
+    "NAVIGATIONAL"
+  ],
+  "patterns": [
+    {
+      "pattern_id": "PAT-01",
+      "pattern_name": "PINNED_HORIZONTAL_SCROLLYTELLING",
+      "family": "PINNED",
+      "description": "Physical vertical scroll input translates a story or gallery horizontally while the viewport remains pinned in place.",
+      "narrative_purpose": "Communicates lateral chapter progression, evolution, portfolios, or chronological sequence without changing overall document flow.",
+      "best_for": [
+        "Product evolution",
+        "Design portfolios",
+        "Chronological timelines",
+        "Material transformation journeys",
+        "Multi-step case studies"
+      ],
+      "avoid_when": [
+        "Content requires quick vertical skimming",
+        "Text blocks are heavy and dense",
+        "Mobile viewports without dedicated reflow"
+      ],
+      "primary_technique": "GSAP ScrollTrigger pin + scrub horizontal translation",
+      "optional_techniques": [
+        "Split text masking",
+        "Foreground/background parallax offsets"
+      ],
+      "mobile_strategy": "REFLOWED",
+      "reduced_motion_strategy": "Convert to natural unpinned vertical card sequence with instant visibility",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "MODERATE",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Structured sequential chapters",
+        "High-impact widescreen imagery or cards",
+        "Concise captions"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-02",
+      "pattern_name": "VERTICAL_HORIZONTAL_VERTICAL_JOURNEY",
+      "family": "DIRECTIONAL",
+      "description": "Document flows vertically, smoothly pivots into a dedicated horizontal world, completes an expansive chapter, and exits cleanly back into vertical document flow.",
+      "narrative_purpose": "Signals departure from normal reading into an immersive product world or manufacturing atelier, reinforcing a sense of entry and exit.",
+      "best_for": [
+        "Entering manufacturing floor or studio",
+        "Deep product showcase chapter",
+        "Historical archive immersion"
+      ],
+      "avoid_when": [
+        "Short pages with fewer than 3 major sections",
+        "Sites with urgent conversion flows"
+      ],
+      "primary_technique": "GSAP ScrollTrigger pin container with entrance/exit transitions",
+      "optional_techniques": [
+        "Atmospheric ambient lighting shift",
+        "Scale-up entry mask"
+      ],
+      "mobile_strategy": "REFLOWED",
+      "reduced_motion_strategy": "Unpinned vertical sections with standard section spacing",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Distinct world-entry concept",
+        "Clear visual entry/exit cues"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-03",
+      "pattern_name": "PINNED_SPLIT_NARRATIVE",
+      "family": "PINNED",
+      "description": "One half of the screen remains anchored (persistent visual object, architectural model, or chapter index) while the other half scrolls narrative content.",
+      "narrative_purpose": "Provides a persistent visual anchor or context while complex modular evidence or technical specifications unfold alongside.",
+      "best_for": [
+        "Architecture projects",
+        "Technical spec breakdowns",
+        "Case studies with fixed hero imagery",
+        "Process walkthroughs"
+      ],
+      "avoid_when": [
+        "Narrow mobile viewports",
+        "Screens with equal priority multi-column data"
+      ],
+      "primary_technique": "CSS position: sticky or GSAP ScrollTrigger pin",
+      "optional_techniques": [
+        "Synchronized cross-fade of anchored element",
+        "Interactive step indicator"
+      ],
+      "mobile_strategy": "STACKED",
+      "reduced_motion_strategy": "Standard stacked layout with static sticky anchors",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "LOW",
+      "complexity_level": "LOW",
+      "content_requirements": [
+        "1 anchor visual asset",
+        "3-5 corresponding narrative text blocks"
+      ],
+      "signature_potential": "MODERATE"
+    },
+    {
+      "pattern_id": "PAT-04",
+      "pattern_name": "SCROLL_DRIVEN_ASSEMBLY",
+      "family": "ASSEMBLY",
+      "description": "Scroll progressively translates, scales, and locks individual components, layers, or structural parts together into a completed system.",
+      "narrative_purpose": "Communicates craftsmanship, precision engineering, internal architecture, and modular integrity by showing how parts form the whole.",
+      "best_for": [
+        "Precision hardware",
+        "Industrial machinery",
+        "Horology and chronometry",
+        "Architectural construction layers"
+      ],
+      "avoid_when": [
+        "Pure software or abstract services without physical/modular components",
+        "Missing exploded-view assets"
+      ],
+      "primary_technique": "GSAP Timeline pinned scrub with CSS transforms (x, y, scale, autoAlpha)",
+      "optional_techniques": [
+        "SVG path drawing",
+        "Rive state machine assembly",
+        "Three.js modular mesh transform"
+      ],
+      "mobile_strategy": "SIMPLIFIED",
+      "reduced_motion_strategy": "Display fully assembled state with static callout breakdown list",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "Isolated layer assets or transparent component PNG/SVGs",
+        "Component callout metadata"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-05",
+      "pattern_name": "SCROLL_CAMERA_JOURNEY",
+      "family": "CAMERA",
+      "description": "Scroll moves a virtual 3D camera along a defined trajectory (dolly, orbit, crane, or room traversal) through a spatial scene.",
+      "narrative_purpose": "Transports the visitor through physical scale, spatial depth, or interior environments impossible to capture in flat layouts.",
+      "best_for": [
+        "Architectural tours",
+        "3D product deep dives",
+        "Luxury automotive exteriors",
+        "Geographical landscapes"
+      ],
+      "avoid_when": [
+        "Low-powered mobile hardware",
+        "When 2D imagery communicates the product faster and sharper"
+      ],
+      "primary_technique": "Three.js / WebGL camera coordinate interpolation mapped to ScrollTrigger",
+      "optional_techniques": [
+        "Post-processing focal depth blur",
+        "Dynamic lighting angle shift"
+      ],
+      "mobile_strategy": "STATIC_FALLBACK",
+      "reduced_motion_strategy": "Static high-resolution rendered keyframes with zero camera motion",
+      "accessibility_risk": "MODERATE",
+      "performance_risk": "HIGH",
+      "novelty_level": "VERY_HIGH",
+      "complexity_level": "VERY_HIGH",
+      "content_requirements": [
+        "Optimized GLB/GLTF model < 3MB",
+        "Strict WebGL fallback renders"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-06",
+      "pattern_name": "STICKY_CHAPTER_STACK",
+      "family": "CHAPTER",
+      "description": "Consecutive full-width section cards or chapter decks scroll upward, stick at top of viewport, and stack or reveal subsequent cards beneath them.",
+      "narrative_purpose": "Creates a tangible sense of progression across distinct pillars, principles, or pillars of strategy without breaking vertical flow.",
+      "best_for": [
+        "Company principles",
+        "Tiered service offerings",
+        "Strategy frameworks",
+        "Curated editorial portfolios"
+      ],
+      "avoid_when": [
+        "Long lists (> 5 cards)",
+        "Deep nested interactive forms"
+      ],
+      "primary_technique": "CSS position: sticky + top offsets or GSAP ScrollTrigger stack scrub",
+      "optional_techniques": [
+        "Subtle scale-down of prior cards (0.95)",
+        "Backdrop shadow depth"
+      ],
+      "mobile_strategy": "FULL",
+      "reduced_motion_strategy": "Normal vertical scroll with zero scale transforms",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "MODERATE",
+      "complexity_level": "LOW",
+      "content_requirements": [
+        "3-5 cards with uniform aspect ratio and clear title hierarchy"
+      ],
+      "signature_potential": "MODERATE"
+    },
+    {
+      "pattern_id": "PAT-07",
+      "pattern_name": "IMAGE_TO_WORLD_TRANSITION",
+      "family": "TRANSFORMATION",
+      "description": "A thumbnail or card image scales up with scroll until it fills 100% of the viewport and seamlessly reveals the next section's interior environment.",
+      "narrative_purpose": "Creates cinematic continuity between high-level overview and deep environmental immersion.",
+      "best_for": [
+        "Case study deep dives",
+        "Luxury hospitality room showcases",
+        "Real estate development highlights"
+      ],
+      "avoid_when": [
+        "Low-resolution imagery (< 1920px)",
+        "Heavy text-focused documentation"
+      ],
+      "primary_technique": "GSAP ScrollTrigger scrub scaling image container from inset to fixed viewport",
+      "optional_techniques": [
+        "Shared-element native View Transitions (V2.3)",
+        "Text overlay cross-fade"
+      ],
+      "mobile_strategy": "SIMPLIFIED",
+      "reduced_motion_strategy": "Instant cross-fade or standard block layout",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Ultra-high resolution master asset (>= 2560px width)",
+        "Color-matched background"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-08",
+      "pattern_name": "SCROLL_MORPH_SEQUENCE",
+      "family": "TRANSFORMATION",
+      "description": "Scroll scrubs vector paths, typographic letterforms, or geometric wireframes from one meaningful state or silhouette into another.",
+      "narrative_purpose": "Symbolizes transition, alchemy, precision refinement, or adaptive functionality.",
+      "best_for": [
+        "Brand identity evolution",
+        "Adaptive ergonomics",
+        "Material state changes (solid to aerodynamic)"
+      ],
+      "avoid_when": [
+        "Complex bitmap images",
+        "Gratuitous decorative shape twisting without brand meaning"
+      ],
+      "primary_technique": "GSAP MorphSVG / SVG path interpolation scrubbed via ScrollTrigger",
+      "optional_techniques": [
+        "Variable font weight/width axis interpolation",
+        "Rive shape state machine"
+      ],
+      "mobile_strategy": "FULL",
+      "reduced_motion_strategy": "Display final state statically with zero path morphing",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "HIGH",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Matching node-count SVG source paths",
+        "Clear morphological intent"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-09",
+      "pattern_name": "PROGRESSIVE_REVEAL_CORRIDOR",
+      "family": "REVEAL",
+      "description": "The viewport acts as an aperture or architectural corridor where layered foreground masks, framing portals, and midground planes part as scroll advances.",
+      "narrative_purpose": "Evokes exclusivity, uncovering hidden mastery, or passing through architectural thresholds.",
+      "best_for": [
+        "Luxury sanctuaries",
+        "Haute horlogerie",
+        "Bespoke tailoring",
+        "Private wealth and archival vaults"
+      ],
+      "avoid_when": [
+        "High-velocity conversion landing pages",
+        "Complex data tables"
+      ],
+      "primary_technique": "CSS clip-path / mask-image animation mapped to GSAP ScrollTrigger",
+      "optional_techniques": [
+        "Differential parallax depth on foreground portals"
+      ],
+      "mobile_strategy": "SIMPLIFIED",
+      "reduced_motion_strategy": "Unmasked static layout with clean dividers",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Layered architectural mask assets",
+        "High-contrast background art"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-10",
+      "pattern_name": "DEPTH_SCROLLYTELLING",
+      "family": "DEPTH",
+      "description": "Scroll moves the perspective through multi-layered 2.5D or 3D planes using scale, blur, and opacity changes rather than standard vertical translation.",
+      "narrative_purpose": "Creates an expansive dimensional journey, drawing the user inward through scale layers.",
+      "best_for": [
+        "Scientific research",
+        "Micro-mechanics",
+        "Deep space / oceanic themes",
+        "Complex ecosystem platforms"
+      ],
+      "avoid_when": [
+        "Dense text reading",
+        "Users prone to motion sensitivity"
+      ],
+      "primary_technique": "CSS 3D perspective + GSAP transform (translateZ, scale, filter: blur)",
+      "optional_techniques": [
+        "Multi-layer Canvas 2D or Three.js depth buffer"
+      ],
+      "mobile_strategy": "REFLOWED",
+      "reduced_motion_strategy": "Sequential vertical sections with static scale and no blur",
+      "accessibility_risk": "MODERATE",
+      "performance_risk": "MODERATE",
+      "novelty_level": "VERY_HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "3-5 depth layers with transparent backgrounds",
+        "Clear focal point at each depth stop"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-11",
+      "pattern_name": "DIAGONAL_SPATIAL_JOURNEY",
+      "family": "SPATIAL",
+      "description": "Scroll translates the canvas along an intentional diagonal, curved, or isometric vector across an expansive conceptual map or blueprint.",
+      "narrative_purpose": "Breaks rectilinear grid constraints to express continuous flow, architectural plans, or systemic navigation.",
+      "best_for": [
+        "Urban planning & architecture",
+        "Complex transit or energy networks",
+        "Interactive campus maps"
+      ],
+      "avoid_when": [
+        "Standard e-commerce catalogs",
+        "High-density tabular reporting"
+      ],
+      "primary_technique": "GSAP coordinate mapping translating an oversized canvas on X and Y axes simultaneously",
+      "optional_techniques": [
+        "SVG path motion guide",
+        "Mini-map radar HUD indicator"
+      ],
+      "mobile_strategy": "REFLOWED",
+      "reduced_motion_strategy": "Standard linear vertical stack with static map snapshots",
+      "accessibility_risk": "MODERATE",
+      "performance_risk": "MODERATE",
+      "novelty_level": "VERY_HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "High-res isometric canvas or vector floorplan",
+        "Defined landmark coordinates"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-12",
+      "pattern_name": "PINNED_TIMELINE",
+      "family": "TEMPORAL",
+      "description": "A calibrated temporal axis or milestone rail remains pinned while historical events, milestones, or iterations scrub through the viewport.",
+      "narrative_purpose": "Provides grounded temporal context, demonstrating heritage, evolution, or forward roadmap velocity.",
+      "best_for": [
+        "Company heritage milestones",
+        "Clinical trial phases",
+        "Multi-year development roadmaps"
+      ],
+      "avoid_when": [
+        "Fewer than 3 milestones",
+        "Non-chronological narratives"
+      ],
+      "primary_technique": "GSAP ScrollTrigger pinned track with milestone progress bar and active state highlights",
+      "optional_techniques": [
+        "Year counter kinetic ticker",
+        "Milestone preview drawer"
+      ],
+      "mobile_strategy": "VERTICAL_RAIL",
+      "reduced_motion_strategy": "Static vertical timeline with all entries expanded",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "MODERATE",
+      "complexity_level": "LOW",
+      "content_requirements": [
+        "Chronological date-tagged milestone items with verified copy"
+      ],
+      "signature_potential": "MODERATE"
+    },
+    {
+      "pattern_id": "PAT-13",
+      "pattern_name": "SCROLL_DRIVEN_MAGNIFICATION",
+      "family": "MAGNIFICATION",
+      "description": "Scroll seamlessly navigates from macro object view into granular microscopic detail (e.g. building -> facade -> material weave).",
+      "narrative_purpose": "Proves relentless obsession with detail, material quality, and micro-engineering.",
+      "best_for": [
+        "Luxury textiles & fashion",
+        "High-end audio equipment",
+        "Chronom\u00e9trie dials",
+        "Architectural materials"
+      ],
+      "avoid_when": [
+        "Stock low-res photography",
+        "Digital services with no tangible material texture"
+      ],
+      "primary_technique": "GSAP scale + clip-rect zoom scrub on multi-resolution asset stacks",
+      "optional_techniques": [
+        "SVG cross-section overlay",
+        "High-DPI canvas tile swapping"
+      ],
+      "mobile_strategy": "SIMPLIFIED",
+      "reduced_motion_strategy": "Side-by-side macro and micro static comparison images",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "MODERATE",
+      "content_requirements": [
+        "Macro and micro high-fidelity paired photography"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-14",
+      "pattern_name": "FIXED_FRAME_MOVING_WORLD",
+      "family": "FRAMING",
+      "description": "A signature physical aperture, viewfinder, architectural window, or device bezel remains fixed in the viewport while worlds scroll behind or inside it.",
+      "narrative_purpose": "Frames the story through the brand's own lens, instrument, or iconic product silhouette.",
+      "best_for": [
+        "Optics & cameras",
+        "Mobile application features",
+        "Architectural apertures",
+        "Automotive windshield perspectives"
+      ],
+      "avoid_when": [
+        "Generic mockups with no brand meaning",
+        "Multi-column editorial reading"
+      ],
+      "primary_technique": "Fixed overlay container with overflow:hidden and scrubbed background layers",
+      "optional_techniques": [
+        "Reflective lens glare highlight",
+        "Masked backdrop filter"
+      ],
+      "mobile_strategy": "FULL",
+      "reduced_motion_strategy": "Static frame with single representative hero scene",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "MODERATE",
+      "complexity_level": "LOW",
+      "content_requirements": [
+        "Custom transparent bezel/frame SVG/PNG asset",
+        "Multiple framed scene assets"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-15",
+      "pattern_name": "SCROLL_SYNCHRONIZED_STATE_STORY",
+      "family": "STATE_DRIVEN",
+      "description": "Scroll acts as a continuous numerical input scrubbing an interactive state machine (e.g., biometric strain -> recovery, aerodynamic drag -> lift).",
+      "narrative_purpose": "Transforms abstract operational data into a dynamic, visceral cause-and-effect narrative.",
+      "best_for": [
+        "Biometric fitness platforms",
+        "Aerodynamic vehicle testing",
+        "Energy storage discharge cycles",
+        "Financial yield models"
+      ],
+      "avoid_when": [
+        "Static informational brochures",
+        "When state inputs have no clear physical or mathematical meaning"
+      ],
+      "primary_technique": "Rive State Machine numeric input or GSAP scrubbed HUD telemetry",
+      "optional_techniques": [
+        "Real-time SVG gauge updates",
+        "Dynamic color gradient shift based on state threshold"
+      ],
+      "mobile_strategy": "FULL",
+      "reduced_motion_strategy": "Static step-by-step state cards with pre-rendered gauges",
+      "accessibility_risk": "LOW",
+      "performance_risk": "MODERATE",
+      "novelty_level": "HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "Calibrated telemetry data / state definition",
+        "Interactive Rive artboard or SVG HUD"
+      ],
+      "signature_potential": "VERY_HIGH"
+    },
+    {
+      "pattern_id": "PAT-16",
+      "pattern_name": "LAYERED_FOREGROUND_PASS",
+      "family": "LAYERED",
+      "description": "Narrative typography and cards slide behind and between silhouetted foreground environmental elements at differential speeds.",
+      "narrative_purpose": "Establishes rich physical depth, atmosphere, and cinematic tangibility without WebGL.",
+      "best_for": [
+        "Landscape hospitality",
+        "High-craft fabrication",
+        "Outdoor performance apparel",
+        "Heavy machinery"
+      ],
+      "avoid_when": [
+        "Small screens where foreground elements obscure text readability",
+        "Busy, unmasked imagery"
+      ],
+      "primary_technique": "Multi-layer CSS z-index stack with GSAP yPercent parallax offsets",
+      "optional_techniques": [
+        "Subtle depth of field blur on extreme foreground element"
+      ],
+      "mobile_strategy": "SIMPLIFIED",
+      "reduced_motion_strategy": "Remove parallax offsets; flatten to static layered stack",
+      "accessibility_risk": "LOW",
+      "performance_risk": "LOW",
+      "novelty_level": "MODERATE",
+      "complexity_level": "LOW",
+      "content_requirements": [
+        "Transparent silhouetted foreground asset (e.g. steel beam, mountain contour, timber pillar)"
+      ],
+      "signature_potential": "MODERATE"
+    },
+    {
+      "pattern_id": "PAT-17",
+      "pattern_name": "SPATIAL_PORTFOLIO_WALL",
+      "family": "NAVIGATIONAL",
+      "description": "Projects and artifacts exist across a large multi-directional visual plane, navigating via smooth momentum pan or controlled scroll triggers.",
+      "narrative_purpose": "Provides a curator's gallery experience, encouraging nonlinear exploration and serendipitous discovery.",
+      "best_for": [
+        "Creative agencies",
+        "Art foundations",
+        "Industrial design archives",
+        "Fashion lookbooks"
+      ],
+      "avoid_when": [
+        "Commercial conversion flows",
+        "Audience with strict task-focused lookup needs"
+      ],
+      "primary_technique": "Infinite/bounded 2D canvas translation with accessible semantic DOM links",
+      "optional_techniques": [
+        "Cursor-follow inertial drift",
+        "Project preview modal expand"
+      ],
+      "mobile_strategy": "REFLOWED_GRID",
+      "reduced_motion_strategy": "Standard accessible 2-column or 1-column project grid",
+      "accessibility_risk": "HIGH",
+      "performance_risk": "HIGH",
+      "novelty_level": "VERY_HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "10+ high-quality project thumbnails",
+        "Full semantic link fallback list"
+      ],
+      "signature_potential": "HIGH"
+    },
+    {
+      "pattern_id": "PAT-18",
+      "pattern_name": "NARRATIVE_ZOOM_THROUGH",
+      "family": "DEPTH",
+      "description": "Scroll travels directly into a negative space aperture (e.g. inside a typography letter, camera lens, or doorway) to reveal the next conceptual universe.",
+      "narrative_purpose": "Creates a dramatic conceptual rupture or leap into the core essence of a brand or revelation.",
+      "best_for": [
+        "Immersive brand manifestos",
+        "Product launch reveals",
+        "Cinematic brand stories"
+      ],
+      "avoid_when": [
+        "Frequent repetition across a single site (use exactly once per site)",
+        "Task-oriented utility apps"
+      ],
+      "primary_technique": "GSAP scale transform (up to 20x) with clip-path mask to transparent viewport",
+      "optional_techniques": [
+        "Atmospheric particle pass-through"
+      ],
+      "mobile_strategy": "STATIC_REVEAL",
+      "reduced_motion_strategy": "Instant section cut with zero zoom expansion",
+      "accessibility_risk": "MODERATE",
+      "performance_risk": "MODERATE",
+      "novelty_level": "VERY_HIGH",
+      "complexity_level": "HIGH",
+      "content_requirements": [
+        "Vector aperture graphic or clean mask",
+        "Clear destination section"
+      ],
+      "signature_potential": "VERY_HIGH"
+    }
+  ]
+}

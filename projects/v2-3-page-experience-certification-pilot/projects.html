@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architectural Monographs — ATLAS FORM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-focus);
+    }
+    .project-card-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #1b212f 0%, #0d1117 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+    .project-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">ATLAS FORM</a>
+      <nav aria-label="Primary Navigation">
+        <a href="index.html">Journal</a>
+        <a href="projects.html" class="active">Monographs</a>
+        <a href="project-detail.html#materials">Specifications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="kicker">Monograph Archive · 2026 Volume</div>
+    <h1>Curated Monograph Index</h1>
+    <p class="lead">
+      Selected permanent structures rigorously documented across topographical context, structural engineering, and material provenance.
+    </p>
+
+    <div class="archive-grid">
+      
+      <!-- Primary Shared Element Card: Kronos Pavilion -->
+      <a href="project-detail.html" class="project-card" id="card-kronos">
+        <div class="project-card-image">
+          <svg viewBox="0 0 100 100" width="80" height="80" fill="none" stroke="var(--accent-gold)" stroke-width="1.5">
+            <polygon points="50,15 85,80 15,80" />
+            <line x1="50" y1="15" x2="50" y2="80" stroke-dasharray="2 2" />
+            <circle cx="50" cy="55" r="12" stroke="var(--accent-cyan)" />
+          </svg>
+          <span style="position: absolute; bottom: 12px; right: 16px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">FIG. 08-A</span>
+        </div>
+        <div class="project-card-body">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 8px;">MONOGRAPH 08</div>
+            <h2 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px;">Kronos Subterranean Pavilion</h2>
+            <p style="color: var(--text-secondary); font-size: 0.88rem;">
+              Subtractive monolithic basalt chamber excavated into coastal magma strata.
+            </p>
+          </div>
+          <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan);">
+            Read Monograph →
+          </div>
+        </div>
+      </a>
+
+      <!-- Secondary Card -->
+      <div class="project-card" style="opacity: 0.75;">
+        <div style="width: 100%; height: 240px; background: #131722; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-subtle);">
+          <svg viewBox="0 0 100 100" width="80" height="80" fill="none" stroke="var(--text-muted)" stroke-width="1.5">
+            <rect x="25" y="25" width="50" height="50" />
+            <circle cx="50" cy="50" r="15" />
+          </svg>
+        </div>
+        <div class="project-card-body">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;">MONOGRAPH 09</div>
+            <h2 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 8px;">Aethel Horology Atrium</h2>
+            <p style="color: var(--text-secondary); font-size: 0.88rem;">
+              Acoustically isolated chronometer assembly vault engineered in Le Brassus.
+            </p>
+          </div>
+          <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+            In Editorial Curation
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const isFallback = params.get('forceTransitionFallback') === '1';
+      if (isFallback) {
+        document.documentElement.setAttribute('data-transition-fallback', 'true');
+        // Propagate fallback flag to all internal navigation links to preserve standard document navigation
+        document.querySelectorAll('a[href]').forEach(a => {
+          try {
+            const u = new URL(a.getAttribute('href'), window.location.href);
+            if (u.origin === window.location.origin && !u.pathname.includes('#')) {
+              u.searchParams.set('forceTransitionFallback', '1');
+              a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+            }
+          } catch(e) {}
+        });
+      }
+      // Standards-compliant pagereveal & pageswap interception to immediately skipTransition() if fallback is active
+      if (typeof window !== 'undefined') {
+        window.addEventListener('pagereveal', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+        window.addEventListener('pageswap', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

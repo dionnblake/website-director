@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos Subterranean Pavilion — ATLAS FORM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .detail-hero {
+      margin-top: 20px;
+      margin-bottom: 48px;
+    }
+    .monograph-hero-image {
+      width: 100%;
+      height: 460px;
+      background: linear-gradient(135deg, #1b212f 0%, #0d1117 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .content-columns {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .spec-table th, .spec-table td {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+    .spec-table th {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-weight: 400;
+      font-size: 0.78rem;
+    }
+    .spec-table td {
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+    @media (max-width: 768px) {
+      .content-columns { grid-template-columns: 1fr; }
+      .monograph-hero-image { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">ATLAS FORM</a>
+      <nav aria-label="Primary Navigation">
+        <a href="index.html">Journal</a>
+        <a href="projects.html" class="active">Monographs</a>
+        <a href="project-detail.html#materials">Specifications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div style="margin-bottom: 24px;">
+      <a href="projects.html" style="color: var(--accent-gold); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem;">← Back to Monograph Archive</a>
+    </div>
+
+    <div class="kicker">Monograph 08 · Snaefellsnes Peninsula</div>
+    <h1>Kronos Subterranean Pavilion</h1>
+    
+    <div class="detail-hero">
+      <!-- Destination Shared Element -->
+      <div class="monograph-hero-image">
+        <svg viewBox="0 0 100 100" width="160" height="160" fill="none" stroke="var(--accent-gold)" stroke-width="1.5">
+          <polygon points="50,15 85,80 15,80" />
+          <line x1="50" y1="15" x2="50" y2="80" stroke-dasharray="2 2" />
+          <circle cx="50" cy="55" r="12" stroke="var(--accent-cyan)" />
+        </svg>
+        <div style="position: absolute; bottom: 20px; right: 24px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-gold);">
+          TECTONIC ISOMETRIC SCHEMATIC
+        </div>
+      </div>
+
+      <div class="content-columns">
+        <div>
+          <h2 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 16px;">Excavation & Geological Dialogue</h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 24px; line-height: 1.7;">
+            Constructed over a 36-month excavation period, the Kronos Pavilion is not sited upon the terrain, but subtracted directly from it. Over 4,200 cubic meters of volcanic basalt were diamond-wire sawed to form the primary acoustic and structural envelope.
+          </p>
+          
+          <h2 id="materials" style="font-family: var(--font-display); font-size: 1.6rem; margin-top: 48px; margin-bottom: 16px;">Material Provenance & Specifications</h2>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;">
+            Rigorous material analysis conducted on diamond-honed basalt aggregate and custom-alloyed thermal stabilization frames.
+          </p>
+          <table class="spec-table">
+            <tr>
+              <th>COMPONENT</th>
+              <th>MATERIAL SPECIFICATION</th>
+            </tr>
+            <tr>
+              <td>Primary Monolith</td>
+              <td>Honed Snaefellsnes Basalt</td>
+            </tr>
+            <tr>
+              <td>Tension Rods</td>
+              <td>Grade 5 Titanium Alloy (Ti-6Al-4V)</td>
+            </tr>
+            <tr>
+              <td>Acoustic Core</td>
+              <td>Micro-Perforated Volcanic Ash Composite</td>
+            </tr>
+            <tr>
+              <td>Thermal Inertia</td>
+              <td>Delta T &lt; 0.4°C per 24h cycle</td>
+            </tr>
+          </table>
+        </div>
+
+        <aside style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 28px; border-radius: 4px; height: fit-content;">
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 12px;">ACQUISITION & VISITS</div>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 20px;">
+            Private architectural delegations and research access scheduled bi-annually.
+          </p>
+          <a href="#reserve" class="btn-primary" style="width: 100%; justify-content: center;">Request Dossier</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const isFallback = params.get('forceTransitionFallback') === '1';
+      if (isFallback) {
+        document.documentElement.setAttribute('data-transition-fallback', 'true');
+        // Propagate fallback flag to all internal navigation links to preserve standard document navigation
+        document.querySelectorAll('a[href]').forEach(a => {
+          try {
+            const u = new URL(a.getAttribute('href'), window.location.href);
+            if (u.origin === window.location.origin && !u.pathname.includes('#')) {
+              u.searchParams.set('forceTransitionFallback', '1');
+              a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+            }
+          } catch(e) {}
+        });
+      }
+      // Standards-compliant pagereveal & pageswap interception to immediately skipTransition() if fallback is active
+      if (typeof window !== 'undefined') {
+        window.addEventListener('pagereveal', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+        window.addEventListener('pageswap', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario H — dynamic timestamp handled deterministically</title>
+<main>
+  <h1>Dynamic content stability scenario</h1>
+  <!-- In QA/test mode the clock is frozen and the rotating testimonial is pinned,
+       so the render signature is stable and no false visual regression is raised. -->
+  <time data-qa-freeze data-qa-frozen-value="2026-01-01T00:00:00Z" datetime="2026-01-01T00:00:00Z">1 January 2026</time>
+  <blockquote data-qa-pin="testimonial-01">"Deterministic fixtures keep regression honest."</blockquote>
+  <a class="primary-cta" data-qa="primary-cta" href="/contact">Start a project</a>
+</main>

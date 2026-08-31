@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "2.1.0",
+  "project_name": "AETHEL Precision Horology & Chronométrie",
+  "version": "1.0.0",
+  "creative_intent": {
+    "status": "confirmed",
+    "creative_ambition": "SHOWCASE",
+    "visual_intensity": "HIGH",
+    "motion_appetite": "CINEMATIC",
+    "experimentation_tolerance": "CALCULATED_RISK",
+    "understanding_confidence": "HIGH",
+    "confirmed_at": "2026-08-27T00:00:00Z"
+  },
+  "positioning": {
+    "archetype_primary": "PRECISION_MECHANICAL",
+    "archetype_secondary": "MONOLITHIC_EDITORIAL",
+    "industry": "High-Complication Haute Horlogerie",
+    "target_audience": "Horological collectors, precision engineers, luxury patrons"
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "motion": {
+    "level": "MOTION_LEVEL_2",
+    "gsap_required": true,
+    "lenis_required": true
+  },
+  "assets": {
+    "status": "prototype_ready",
+    "visual_language_ready": true,
+    "hero_asset_status": "prototype_ready",
+    "signature_asset_status": "prototype_ready",
+    "provenance_status": "schema_validated_synthetic",
+    "responsive_crop_status": "prototype_ready",
+    "optimization_status": "prototype_ready",
+    "shot_list_required": false
+  },
+  "immersive": {
+    "status": "implementation_ready",
+    "level": 2,
+    "justification": "Spatial exploded view communicates the 4-layer mechanical chronograph calibre architecture with complete technical clarity impossible in static 2D.",
+    "engine": "THREE_JS_VANILLA",
+    "mobile_policy": "SIMPLIFIED",
+    "reduced_motion_policy": "FREEZE_ROTATION_SNAP_EXPLODED",
+    "webgl_fallback_ready": true,
+    "performance_budget_ready": true,
+    "accessibility_alternative_ready": true,
+    "cleanup_plan_ready": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

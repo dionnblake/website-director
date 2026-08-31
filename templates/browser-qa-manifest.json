@@ -1,0 +1,92 @@
+{
+  "$schema_note": "Website Director V2.15 browser-qa manifest. Consumed by browser-qa/runner.py. Fill from templates/browser-qa-plan.md. Neutral placeholders below.",
+  "project_name": "Project Name",
+  "environment": "local",
+  "repo_root": "..",
+  "protected_paths": ["projects/"],
+  "engine_config": {
+    "serve_dir": "build",
+    "base_url": ""
+  },
+  "viewports": {
+    "smoke": [390, 768, 1440],
+    "regression": [360, 375, 390, 428, 768, 1024, 1280, 1440]
+  },
+  "browsers": {
+    "smoke": ["chromium"],
+    "regression": ["chromium", "firefox", "webkit"]
+  },
+  "reduced_motion_all_routes": true,
+  "perf_thresholds": { "lcp_ms": 2500, "cls": 0.1, "inp_ms": 200 },
+
+  "runtime_observations": {
+    "$source": "browser QA plan — required runtime facts are never inferred from source markup",
+    "forms": { "required": false, "exercise": false },
+    "mobile_navigation": { "required": false, "require_route_change_close": false }
+  },
+
+  "measurement": {
+    "$source": "measurement-plan.md / analytics-event-manifest.json — do NOT invent events here",
+    "expected_events": [
+      { "name": "page_view", "fires_on_every_route": true, "required_params": ["page_path"] }
+    ]
+  },
+
+  "security_privacy": {
+    "$source": "security-privacy-review.md — do NOT re-author requirements here",
+    "expect_https_production": true,
+    "consent": "UNASSESSED",
+    "required_headers": ["Content-Security-Policy", "Strict-Transport-Security", "X-Content-Type-Options", "Referrer-Policy"],
+    "allowed_third_party_scripts": [],
+    "disclosure_routes": []
+  },
+
+  "localization": {
+    "$source": "localization-plan.md / localization-manifest.json — do NOT re-author localization readiness here",
+    "required": false,
+    "source_locale": null,
+    "default_locale": null,
+    "supported_locales": [],
+    "check_routes": true,
+    "switcher": { "required": false },
+    "hreflang": { "required": false, "require_localized_canonical": false },
+    "fallback": { "required": false },
+    "metadata": { "title": false, "description": false, "og": false, "alt": false },
+    "forms": { "required": false },
+    "pseudo_localization": { "enabled": false, "minimum_ratio": 1.3 },
+    "rtl": { "required": false }
+  },
+
+  "application": {
+    "$source": "application-architecture-plan.md / application-architecture-manifest.json — do NOT re-author application readiness here",
+    "required": false,
+    "modules_required": [],
+    "private_routes": false,
+    "purchase_event_required": false,
+    "localized_measurement_required": false,
+    "forbid_live_side_effects": true
+  },
+
+  "console_ignore": [],
+  "allowed_third_party_failures": [],
+
+  "baseline_version": "0",
+  "baseline_authorized_by": null,
+  "visual_baselines": {},
+  "masks": {},
+
+  "routes": [
+    {
+      "path": "/",
+      "name": "Home",
+      "viewports": [360, 390, 768, 1024, 1280, 1440],
+      "reduced_motion": true,
+      "security_privacy": true,
+      "critical_hero_asset": null,
+      "expected_events": ["page_view"],
+      "intentional_hash_links": [],
+      "screenshot_surfaces": ["full", "hero"],
+      "interactions": []
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "": "http://json-schema.org/draft-07/schema#",
+  "project_name": "VANDENBERG VELO | Synthetic V2.0 Certification Pilot",
+  "version": "2.0.0",
+  "last_updated": "2026-08-26",
+  "assets": [
+    {
+      "asset_id": "hero-aeroti-fixture-01",
+      "role": "HERO_IMAGE",
+      "source_type": "TEMPORARY_PROTOTYPE_PLACEHOLDER",
+      "master_path": "assets/source/hero-aeroti-fixture-master.png",
+      "web_path": "assets/web/hero-aeroti-fixture-desktop.png",
+      "format": "png",
+      "dimensions": "320x180",
+      "file_size_kb": 0.59,
+      "license": "synthetic_fixture_not_for_production",
+      "provenance_ref": "projects/v2-0-asset-director-pilot/asset-provenance.md#hero-aeroti-fixture-01",
+      "authenticity_class": "DECORATIVE_GENERATED_MEDIA",
+      "status": "PROTOTYPE_ONLY",
+      "crop_variants": {
+        "desktop": "assets/web/hero-aeroti-fixture-desktop.png",
+        "tablet": "assets/web/hero-aeroti-fixture-tablet.png",
+        "mobile": "assets/web/hero-aeroti-fixture-mobile.png"
+      },
+      "accessibility": {
+        "type": "INFORMATIVE",
+        "alt_text": "Synthetic prototype placeholder for titanium bottom bracket junction."
+      },
+      "optimization_status": "NOT_PRODUCTION_OPTIMIZED"
+    },
+    {
+      "asset_id": "sig-monocoque-fixture-01",
+      "role": "SIGNATURE_ASSET",
+      "source_type": "TEMPORARY_PROTOTYPE_PLACEHOLDER",
+      "master_path": "assets/source/sig-monocoque-fixture-master.png",
+      "web_path": "assets/web/sig-monocoque-fixture.png",
+      "format": "png",
+      "dimensions": "200x200",
+      "file_size_kb": 0.58,
+      "license": "synthetic_fixture_not_for_production",
+      "provenance_ref": "projects/v2-0-asset-director-pilot/asset-provenance.md#sig-monocoque-fixture-01",
+      "authenticity_class": "DECORATIVE_GENERATED_MEDIA",
+      "status": "PROTOTYPE_ONLY",
+      "crop_variants": {
+        "desktop": "assets/web/sig-monocoque-fixture.png",
+        "tablet": "assets/web/sig-monocoque-fixture.png",
+        "mobile": "assets/web/sig-monocoque-fixture.png"
+      },
+      "accessibility": {
+        "type": "COMPLEX",
+        "alt_text": "Synthetic prototype placeholder for signature exploded monocoque render."
+      },
+      "optimization_status": "NOT_PRODUCTION_OPTIMIZED"
+    },
+    {
+      "asset_id": "macro-welds-fixture-01",
+      "role": "DETAIL_MACRO",
+      "source_type": "TEMPORARY_PROTOTYPE_PLACEHOLDER",
+      "master_path": "assets/source/macro-welds-fixture-master.png",
+      "web_path": "assets/web/macro-welds-fixture-4x3.png",
+      "format": "png",
+      "dimensions": "240x180",
+      "file_size_kb": 0.55,
+      "license": "synthetic_fixture_not_for_production",
+      "provenance_ref": "projects/v2-0-asset-director-pilot/asset-provenance.md#macro-welds-fixture-01",
+      "authenticity_class": "DECORATIVE_GENERATED_MEDIA",
+      "status": "PROTOTYPE_ONLY",
+      "crop_variants": {
+        "desktop": "assets/web/macro-welds-fixture-4x3.png",
+        "mobile": "assets/web/macro-welds-fixture-square.png"
+      },
+      "accessibility": {
+        "type": "INFORMATIVE",
+        "alt_text": "Synthetic prototype placeholder for titanium weld macro detail."
+      },
+      "optimization_status": "NOT_PRODUCTION_OPTIMIZED"
+    },
+    {
+      "asset_id": "founder-portrait-fixture-01",
+      "role": "FOUNDER_IMAGE",
+      "source_type": "TEMPORARY_PROTOTYPE_PLACEHOLDER",
+      "master_path": "assets/source/founder-portrait-fixture-master.png",
+      "web_path": "assets/web/founder-portrait-fixture.png",
+      "format": "png",
+      "dimensions": "320x180",
+      "file_size_kb": 0.59,
+      "license": "synthetic_fixture_not_for_production",
+      "provenance_ref": "projects/v2-0-asset-director-pilot/asset-provenance.md#founder-portrait-fixture-01",
+      "authenticity_class": "DECORATIVE_GENERATED_MEDIA",
+      "status": "PROTOTYPE_ONLY",
+      "crop_variants": {
+        "desktop": "assets/web/founder-portrait-fixture.png",
+        "mobile": "assets/web/founder-portrait-fixture-mobile.png"
+      },
+      "accessibility": {
+        "type": "INFORMATIVE",
+        "alt_text": "Synthetic prototype placeholder for master builder workshop portrait."
+      },
+      "optimization_status": "NOT_PRODUCTION_OPTIMIZED"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THALASSA  | Direction 02: The Milled Monograph</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.6;
+      padding-bottom: 5urm;
+    }
+    .fixture-banner {
+      background: #eab308;
+      color: #000;
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 0.4rem 0.5rem;
+      word-break: break-word;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    header {
+      border-bottom: 1px solid #21262d;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0d1117;
+    }
+    .brand {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f0f6fc;
+    }
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+    }
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+    .chapter {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: #d29922;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 3.75rem);
+      word-break: break-word;
+      font-weight: normal;
+      line-height: 1.15;
+      color: #f0f6fc;
+      max-width: 960px;
+      margin: 0 auto 2rem;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .lead {
+      font-size: 1.2rem;
+      color: #8b949e;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+    .btn-gold {
+      background: #J29922;
+      color: #0d1117;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    .dial-showcase {
+      max-width: 1000px;
+      margin: 4rem auto;
+      background: #161b22;
+      border: 1px solid #30363d;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      text-align: left;
+    }
+    .dial-col h3 {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.75rem;
+      color: #8b949e;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .dial-col .big-num {
+      font-size: 2.5rem;
+      color: #f0f6fc;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    .dial-col:over .big-num {
+      transform: translateY(-4px);
+      color: #d29922;
+    }
+    .dial-col p {
+      font-size: 0.9rem;
+      color: #8b949e;
+    }
+    .editorial-section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      border-top: 1px solid #21262d;
+      padding-top: 4rem;
+    }
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+    }
+    .side-label {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: #d29922;
+      text-transform: uppercase;
+    }
+    .editorial-body p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #c9d1d9;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      h1 {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .dial-col:hover .big-num {
+        transform: none !important;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    @media (max-width: 800px) {
+      header { padding: 1.25rem 1.5rem; }
+      nav { display: none; }
+      .dial-showcase { grid-template-columns: 1fr; }
+      .editorial-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fixture-banner">SYNTHETIC CERTIFICATION FIXTURE — NOT A REAL COMPANY</div>
+  <header>
+    <div class="brand">Thalassa Batho-Systems</div>
+    <nav>
+      <a href="#philosophy">Metallurgy</a>
+      <a href="#treatise">Treatise</a>
+      <a href="#archive">Archive</a>
+    </upper>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="chapter">Tome I // Fictional Hadal Oceanography</div>
+      <h1>The Quiet Resilience of Titanium at Eleven Thousand Meters.</h1>
+      <p class="lead">Where daylight cannot penetrate and hydrostatic forces exceed 1,100 atmospheres, our machined titanium Grade 5 ELI vessels preserve instrumental equilibrium in synthetic simulation trials.</p>
+      <button class="btn-gold">Commission Hadal Telemetry Dossier</button>
+    </section>
+    <div class="dial-showcase">
+      <div class="dial-col">
+        <h3>Yield Elasticity</h3>
+        <div class="big-num">828 MPa</div>
+        <p>Micro-crystalline titanium lattice forged under vacuum arc remelting.</p>
+      </div>
+      <div class="dial-col">
+        <h3>Depth Threshold</h3>
+        <div class="big-num">11,000 M</div>
+        <p>Calibrated for continuous deployment in simulated abyssal conditions.</p>
+      </div>
+      <div class="dial-col">
+        <h3>Acoustic Velocity</h3>
+        <div class="big-num">1,522 m/s</div>
+        <p>Acoustic transponder beam penetration through abyssal thermoclines.</p>
+      </div>
+    </div>
+    <section class="editorial-section" id="treatise">
+      <div class="editorial-grid">
+        <div class="side-label">The Metallurgical Axiom</div>
+        <div class="editorial-body">
+          <p>Submergence beyond six thousand meters admits no margin for mechanical compromise. At these depths, structural deformation occurs not through sudden shear, but via microscopic grain fatigue over prolonged hydrostatic cycles.</p>
+          <p>Every Thalassa pressure housing is carved from a solid cylindrical ingot of Ti-6Al-4V ELI, inspected under ultrasonic resonance testing to ensure absolute isotropic integrity under synthetic testing standards.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

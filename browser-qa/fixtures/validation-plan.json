@@ -1,0 +1,58 @@
+{
+  "$comment": "Self-validation plan for the browser-qa harness. Routes are fixture folders under browser-qa/fixtures/. Exercised by tests/test_v2_8_browser_regression_qa.py with the simulation engine. This plan lists only the PASS-expected fixtures; the negative-control fixtures are driven per-scenario by the test.",
+  "project": "browser-qa self-validation",
+  "environment": "local",
+  "protected_paths": ["projects/"],
+  "viewports": {
+    "smoke": [390, 768, 1440],
+    "regression": [360, 375, 390, 428, 768, 1024, 1280, 1440]
+  },
+  "browsers": { "smoke": ["simulation"], "regression": ["simulation"] },
+  "perf_thresholds": { "lcp_ms": 2500, "cls": 0.1, "inp_ms": 200 },
+  "measurement": {
+    "expected_events": [
+      { "name": "page_view", "fires_on_this_route": true, "required_params": ["page_path"] },
+      { "name": "contact_submit_error", "fires_on_this_route": false }
+    ]
+  },
+  "security_privacy": {
+    "expect_https_production": true,
+    "consent": "NOT_REQUIRED",
+    "required_headers": ["Content-Security-Policy", "X-Content-Type-Options"],
+    "allowed_third_party_scripts": [],
+    "disclosure_routes": ["/privacy"]
+  },
+  "console_ignore": [],
+  "allowed_third_party_failures": [],
+
+  "accessibility": {
+    "target": "WCAG_2_2_AA",
+    "engine": { "name": "axe-core", "min_severity_fails": "moderate" },
+    "target_size": { "project_minimum_px": 44, "wcag_floor_px": 24 }
+  },
+  "visual_baselines": {
+    "clean_reference@360": "clean-360",
+    "clean_reference@390": "clean-390",
+    "clean_reference@768": "clean-768",
+    "clean_reference@1024": "clean-1024",
+    "clean_reference@1280": "clean-1280",
+    "clean_reference@1440": "clean-1440",
+    "clean_reference@390+rm": "clean-390-rm",
+    "clean_reference@768+rm": "clean-768-rm",
+    "clean_reference@1440+rm": "clean-1440-rm",
+    "d_mobile_nav@390": "d-390",
+    "d_mobile_nav@768": "d-768",
+    "d_mobile_nav@1440": "d-1440",
+    "f_reduced_motion@1440": "f-1440",
+    "f_reduced_motion@1440+rm": "f-1440-rm"
+  },
+  "routes": [
+    { "path": "clean_reference", "reduced_motion": true,
+      "expected_events": ["page_view"], "security_privacy": true,
+      "expected_landmarks": ["header", "nav", "main", "footer"], "expected_lang": "en",
+      "requires_skip_link": true, "engine_scan": true,
+      "critical_hero_asset": "/assets/web/hero.avif" },
+    { "path": "d_mobile_nav", "viewports": [390, 768, 1440] },
+    { "path": "f_reduced_motion", "viewports": [1440], "reduced_motion": true }
+  ]
+}

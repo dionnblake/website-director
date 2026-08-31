@@ -1,0 +1,13 @@
+{
+  "route": "/d-nav",
+  "title": "Scenario D",
+  "nav": { "open_after_toggle": true, "closed_after_route_change": true },
+  "keyboard": { "menu_toggle_operable": true, "no_keyboard_trap": true, "visible_focus_ring": true,
+                "primary_nav_reachable": true, "primary_cta_reachable": true },
+  "layout": {
+    "390": { "client_width": 390, "document_scroll_width": 390, "body_width": 390 },
+    "768": { "client_width": 768, "document_scroll_width": 768, "body_width": 768 },
+    "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 }
+  },
+  "render_signature": { "390": "d-390", "768": "d-768", "1440": "d-1440" }
+}

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHEL | Calibre 01 Precision Chronométrie</title>
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-surface: #12161f;
+      --text-primary: #f0f4f8;
+      --text-secondary: #8c9ba8;
+      --accent-brass: #d4af37;
+      --accent-steel: #5078a0;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+      --font-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 80px);
+      align-items: center;
+      padding: 0 48px;
+      max-width: 1600px;
+      margin: 0 auto;
+      gap: 48px;
+    }
+
+    .hero-content {
+      padding: 40px 0;
+      z-index: 10;
+    }
+
+    .calibre-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-brass);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .calibre-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent-brass);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .hero-summary {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: 36px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-value {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #000;
+      padding: 16px 36px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-brass);
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: #fff;
+      padding: 15px 28px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-brass);
+      color: var(--accent-brass);
+    }
+
+    /* 3D Viewport Stage */
+    .viewport-column {
+      position: relative;
+      height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: radial-gradient(circle at center, rgba(20, 26, 38, 0.6) 0%, rgba(10, 12, 16, 0.9) 70%);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    #three-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+      cursor: grab;
+    }
+
+    #three-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Universal 2D Fallback */
+    #fallback-2d {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      text-align: center;
+      background: var(--bg-surface);
+    }
+
+    .fallback-svg {
+      width: 240px;
+      height: 240px;
+      margin-bottom: 24px;
+    }
+
+    .fallback-notice {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-brass);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .fallback-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .fallback-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 360px;
+    }
+
+    /* Interactive Overlay Controls */
+    .controls-overlay {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .interactive-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: rgba(10, 12, 16, 0.75);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.05em;
+    }
+
+    .explode-toggle {
+      pointer-events: auto;
+      background: rgba(18, 22, 31, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .explode-toggle:hover {
+      border-color: var(--accent-brass);
+      color: var(--accent-brass);
+    }
+
+    /* Telemetry HUD */
+    .telemetry-hud {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      text-align: right;
+      line-height: 1.5;
+      background: rgba(10, 12, 16, 0.6);
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      pointer-events: none;
+    }
+
+    /* Responsive Art Direction */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+        min-height: auto;
+      }
+      .viewport-column {
+        height: 480px;
+        order: -1;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 20px;
+      }
+      .brand-logo {
+        font-size: 1.15rem;
+      }
+      .nav-tag {
+        font-size: 0.65rem;
+      }
+      .hero-container {
+        padding: 20px 16px;
+        gap: 20px;
+      }
+      .viewport-column {
+        height: 320px;
+      }
+      h1 {
+        font-size: 1.6rem;
+        word-break: break-word;
+      }
+      .calibre-kicker {
+        font-size: 0.72rem;
+      }
+      .hero-summary {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+      }
+      .specs-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .cta-row {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+      .controls-overlay {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+      }
+      .telemetry-hud {
+        top: 10px;
+        right: 10px;
+        font-size: 0.6rem;
+        padding: 4px 8px;
+      }
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="brand-logo">AETHEL</div>
+    <div class="nav-tag">Manufacture de Haute Horlogerie</div>
+  </header>
+
+  <main class="hero-container">
+    
+    <!-- Semantic Content & Accessible Hierarchy -->
+    <section class="hero-content">
+      <div class="calibre-kicker">Integrated Column-Wheel Chronograph</div>
+      <h1>AETHEL Calibre 01 Architecture</h1>
+      <p class="hero-summary">
+        Constructed from Grade 5 titanium, micro-blasted ruthenium bridges, and high-beat silicon escapement. Engineered with vertical clutch architecture operating at 36,000 vibrations per hour.
+      </p>
+
+      <div class="specs-grid">
+        <div class="spec-item">
+          <span class="spec-label">Frequency</span>
+          <span class="spec-value">5 Hz (36,000 vph)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Power Reserve</span>
+          <span class="spec-value">68 Hours</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Jewels</span>
+          <span class="spec-value">38 Synthetic Rubies</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Components</span>
+          <span class="spec-value">284 Finished Parts</span>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#reserve" class="btn-primary">Inquire Acquisition</a>
+        <button class="btn-secondary" id="btn-explode-doc">Explore Assembly</button>
+      </div>
+    </section>
+
+    <!-- Immersive 3D Spatial Canvas & Universal Fallback -->
+    <div class="viewport-column" id="stage-wrapper">
+      
+      <canvas id="three-canvas" aria-label="3D Interactive Mechanical Assembly of AETHEL Calibre 01"></canvas>
+      
+      <div class="telemetry-hud" id="telemetry-hud">
+        FPS: <span id="fps-val">60</span><br>
+        DPR: <span id="dpr-val">1.0</span><br>
+        REV: <span id="rev-val">r185</span><br>
+        CALLS: <span id="calls-val">0</span><br>
+        TRIS: <span id="tris-val">0</span><br>
+        PARTS: 4 TIERS
+      </div>
+
+      <div class="controls-overlay">
+        <div class="interactive-badge">Drag to Rotate • Scroll to Zoom</div>
+        <button class="explode-toggle" id="btn-explode" aria-label="Toggle Exploded Assembly View">EXPLODE CALIBRE</button>
+      </div>
+
+      <!-- Zero-CLS Universal 2D Fallback -->
+      <div id="fallback-2d" role="region" aria-label="Technical Blueprint Fallback">
+        <svg class="fallback-svg" viewBox="0 0 200 200" fill="none" stroke="#d4af37" stroke-width="1.5">
+          <circle cx="100" cy="100" r="90" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+          <circle cx="100" cy="100" r="75" stroke="#f0f4f8"/>
+          <circle cx="100" cy="100" r="50" stroke="#5078a0"/>
+          <circle cx="100" cy="100" r="25" stroke="#d4af37"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke-opacity="0.2"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke-opacity="0.2"/>
+          <polygon points="100,60 120,100 100,90 80,100" fill="#d4af37" fill-opacity="0.3"/>
+        </svg>
+        <div class="fallback-notice">2D Technical Fallback Mode</div>
+        <div class="fallback-title">Calibre 01 Schematic</div>
+        <div class="fallback-desc">Rendering in high-contrast vector technical mode. All functional specifications and acquisition options remain active above.</div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Immersive Three.js Modern ES Module Implementation -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    // Expose runtime revision to window for verification
+    window.THREE_RUNTIME_REVISION = THREE.REVISION;
+    const revEl = document.getElementById('rev-val');
+    if (revEl) revEl.textContent = 'r' + THREE.REVISION;
+
+    // 1. Fallback & Query Override Detection
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceFallback = urlParams.get('forceWebGLFallback') === '1';
+    
+    const canvas = document.getElementById('three-canvas');
+    const fallback = document.getElementById('fallback-2d');
+    const telemetryHud = document.getElementById('telemetry-hud');
+    const controlsOverlay = document.querySelector('.controls-overlay');
+
+    function activateFallback(reason) {
+      console.warn('WebGL Fallback Activated:', reason);
+      if (canvas) canvas.style.display = 'none';
+      if (telemetryHud) telemetryHud.style.display = 'none';
+      if (controlsOverlay) controlsOverlay.style.display = 'none';
+      if (fallback) fallback.style.display = 'flex';
+    }
+
+    if (forceFallback) {
+      activateFallback('User Forced via ?forceWebGLFallback=1');
+    } else if (!window.WebGLRenderingContext) {
+      activateFallback('WebGL context unavailable in browser');
+    } else {
+      initThreeScene();
+    }
+
+    function initThreeScene() {
+      // 2. Reduced Motion Configuration & Deterministic Exposure
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        document.documentElement.setAttribute('data-reduced-motion', 'true');
+      }
+
+      // 3. Three.js Scene Setup & DPR Bounding
+      let renderer, scene, camera, animFrameId;
+      const stageWrapper = document.getElementById('stage-wrapper');
+      
+      try {
+        const isMobile = window.innerWidth <= 768;
+        const maxDpr = isMobile ? 1.5 : 2.0;
+        const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+        
+        document.getElementById('dpr-val').textContent = dpr.toFixed(1);
+
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true,
+          alpha: true,
+          powerPreference: 'high-performance'
+        });
+        renderer.setPixelRatio(dpr);
+        renderer.setSize(stageWrapper.clientWidth, stageWrapper.clientHeight);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+
+        // Capture WebGL Renderer & Vendor Diagnostic Strings
+        const gl = renderer.getContext();
+        const debugInfo = gl ? gl.getExtension('WEBGL_debug_renderer_info') : null;
+        window.WEBGL_DIAGNOSTICS = {
+          renderer: debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+          vendor: debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR),
+          version: gl.getParameter(gl.VERSION)
+        };
+
+        // Context Loss Handling
+        canvas.addEventListener('webglcontextlost', function(e) {
+          e.preventDefault();
+          activateFallback('WebGL context lost event received');
+        }, false);
+
+        canvas.addEventListener('webglcontextrestored', function() {
+          console.log('WebGL context restored');
+        }, false);
+
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(45, stageWrapper.clientWidth / stageWrapper.clientHeight, 0.1, 100);
+        camera.position.set(0, 0, 5.5);
+      } catch (err) {
+        activateFallback('Renderer init failed: ' + err.message);
+        return;
+      }
+
+      // 4. Lighting Rig
+      const keyLight = new THREE.DirectionalLight(0xfff4e6, 1.8);
+      keyLight.position.set(4, 6, 5);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xaaccff, 0.6);
+      fillLight.position.set(-4, -2, 3);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0x66aaff, 2.2);
+      rimLight.position.set(0, 4, -5);
+      scene.add(rimLight);
+
+      const ambientLight = new THREE.AmbientLight(0x222630, 0.8);
+      scene.add(ambientLight);
+
+      // 5. Procedural Mechanical Horology Hierarchy (4 Tiers)
+      const movementRoot = new THREE.Group();
+      scene.add(movementRoot);
+
+      // Materials (Modern PBR Materials with Transmission)
+      const matTitanium = new THREE.MeshStandardMaterial({ color: 0x8a929e, metalness: 0.9, roughness: 0.25 });
+      const matBrass = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.8, roughness: 0.3 });
+      const matBluedSteel = new THREE.MeshStandardMaterial({ color: 0x224488, metalness: 0.85, roughness: 0.2 });
+      const matRuby = new THREE.MeshPhysicalMaterial({ color: 0xdd1144, transmission: 0.8, roughness: 0.1, transparent: true, opacity: 0.9 });
+      const matCrystal = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.95, roughness: 0.05, transparent: true, opacity: 0.35 });
+
+      // Tier 1: Baseplate Chassis
+      const tier1 = new THREE.Group();
+      const baseplate = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, 0.12, 48), matTitanium);
+      baseplate.rotation.x = Math.PI / 2;
+      tier1.add(baseplate);
+      for (let i = 0; i < 6; i++) {
+        const screw = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.14, 16), matBluedSteel);
+        const ang = (i / 6) * Math.PI * 2;
+        screw.position.set(Math.cos(ang) * 1.35, Math.sin(ang) * 1.35, 0);
+        screw.rotation.x = Math.PI / 2;
+        tier1.add(screw);
+      }
+      movementRoot.add(tier1);
+
+      // Tier 2: Gear Train & Column Wheel
+      const tier2 = new THREE.Group();
+      const mainGear = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.1, 16, 40), matBrass);
+      tier2.add(mainGear);
+      const columnWheel = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.18, 8), matBluedSteel);
+      columnWheel.rotation.x = Math.PI / 2;
+      columnWheel.position.set(0.5, 0.4, 0.05);
+      tier2.add(columnWheel);
+      movementRoot.add(tier2);
+
+      // Tier 3: Escapement Balance Wheel & Bridge
+      const tier3 = new THREE.Group();
+      const balanceWheel = new THREE.Mesh(new THREE.RingGeometry(0.4, 0.55, 32), matBrass);
+      balanceWheel.position.set(-0.4, -0.3, 0.1);
+      tier3.add(balanceWheel);
+      const bridge = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.25, 0.08), matTitanium);
+      bridge.position.set(-0.3, -0.3, 0.15);
+      bridge.rotation.z = Math.PI / 6;
+      tier3.add(bridge);
+      const jewel = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.1, 16), matRuby);
+      jewel.rotation.x = Math.PI / 2;
+      jewel.position.set(-0.4, -0.3, 0.16);
+      tier3.add(jewel);
+      movementRoot.add(tier3);
+
+      // Tier 4: Skeleton Sapphire Dial & Index Ring
+      const tier4 = new THREE.Group();
+      const dialCrystal = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.04, 48), matCrystal);
+      dialCrystal.rotation.x = Math.PI / 2;
+      tier4.add(dialCrystal);
+      const indexBezel = new THREE.Mesh(new THREE.TorusGeometry(1.65, 0.04, 16, 60), matTitanium);
+      tier4.add(indexBezel);
+      movementRoot.add(tier4);
+
+      // 6. Interaction & Pointer Parallax State
+      let isDragging = false;
+      let prevMouseX = 0, prevMouseY = 0;
+      let targetRotX = 0.2, targetRotY = -0.3;
+      let isExploded = false;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const deltaX = e.clientX - prevMouseX;
+          const deltaY = e.clientY - prevMouseY;
+          targetRotY += deltaX * 0.008;
+          targetRotX += deltaY * 0.008;
+          prevMouseX = e.clientX;
+          prevMouseY = e.clientY;
+        }
+      });
+
+      // Touch handling for mobile
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          prevMouseX = e.touches[0].clientX;
+          prevMouseY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => { isDragging = false; });
+
+      window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length === 1) {
+          const deltaX = e.touches[0].clientX - prevMouseX;
+          const deltaY = e.touches[0].clientY - prevMouseY;
+          targetRotY += deltaX * 0.01;
+          targetRotX += deltaY * 0.01;
+          prevMouseX = e.touches[0].clientX;
+          prevMouseY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      // Explode Animation Toggle
+      function toggleExplode() {
+        isExploded = !isExploded;
+        const btn1 = document.getElementById('btn-explode');
+        const btn2 = document.getElementById('btn-explode-doc');
+        const label = isExploded ? 'ASSEMBLE CALIBRE' : 'EXPLODE CALIBRE';
+        if (btn1) btn1.textContent = label;
+        if (btn2) btn2.textContent = isExploded ? 'Reset Assembly' : 'Explore Assembly';
+      }
+
+      document.getElementById('btn-explode').addEventListener('click', toggleExplode);
+      document.getElementById('btn-explode-doc').addEventListener('click', toggleExplode);
+
+      // 7. Render Loop with Visibility Throttling, Metric Telemetry & Lifecycle Teardown
+      let lastTime = performance.now();
+      let frames = 0;
+      const fpsVal = document.getElementById('fps-val');
+      const callsVal = document.getElementById('calls-val');
+      const trisVal = document.getElementById('tris-val');
+
+      function animate(time) {
+        animFrameId = requestAnimationFrame(animate);
+
+        // Visibility Throttling (skip computation when tab hidden)
+        if (document.hidden) return;
+
+        frames++;
+        if (time > lastTime + 1000) {
+          if (fpsVal) fpsVal.textContent = Math.round((frames * 1000) / (time - lastTime));
+          lastTime = time;
+          frames = 0;
+        }
+
+        // Reduced motion check
+        if (!prefersReducedMotion) {
+          if (!isDragging) {
+            targetRotY += 0.003;
+          }
+          // Balance wheel oscillation
+          balanceWheel.rotation.z = Math.sin(time * 0.015) * 0.4;
+        }
+
+        // Smooth rotation interpolation
+        movementRoot.rotation.x += (targetRotX - movementRoot.rotation.x) * 0.08;
+        movementRoot.rotation.y += (targetRotY - movementRoot.rotation.y) * 0.08;
+
+        // Exploded Z-tier transitions
+        const targetT1Z = isExploded ? -0.7 : 0.0;
+        const targetT2Z = isExploded ? -0.2 : 0.0;
+        const targetT3Z = isExploded ? 0.35 : 0.0;
+        const targetT4Z = isExploded ? 0.9 : 0.0;
+
+        const lerpSpeed = prefersReducedMotion ? 1.0 : 0.08;
+        tier1.position.z += (targetT1Z - tier1.position.z) * lerpSpeed;
+        tier2.position.z += (targetT2Z - tier2.position.z) * lerpSpeed;
+        tier3.position.z += (targetT3Z - tier3.position.z) * lerpSpeed;
+        tier4.position.z += (targetT4Z - tier4.position.z) * lerpSpeed;
+
+        renderer.render(scene, camera);
+
+        // Record measured runtime metrics from renderer.info
+        if (callsVal && renderer.info) callsVal.textContent = renderer.info.render.calls;
+        if (trisVal && renderer.info) trisVal.textContent = renderer.info.render.triangles;
+      }
+
+      animFrameId = requestAnimationFrame(animate);
+
+      // Resize Management
+      function handleResize() {
+        if (!stageWrapper || !renderer || !camera) return;
+        const w = stageWrapper.clientWidth;
+        const h = stageWrapper.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      window.addEventListener('resize', handleResize);
+
+      // Explicit Teardown Function (Certifiable Lifecycle Disposal)
+      window.disposeAethelScene = function() {
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        window.removeEventListener('resize', handleResize);
+        scene.traverse((obj) => {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+            else obj.material.dispose();
+          }
+        });
+        if (renderer) {
+          renderer.dispose();
+          renderer.forceContextLoss();
+        }
+        console.log('AETHEL Scene disposed cleanly.');
+      };
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+[
+  {
+    "release": "V1 baseline",
+    "profile": {
+      "project_name": "v1-baseline",
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false
+      }
+    }
+  },
+  {
+    "release": "V1.1",
+    "profile": {
+      "schema_version": "1.1.0",
+      "project_name": "v1-1",
+      "locks": {}
+    }
+  },
+  {
+    "release": "V1.2 SEO",
+    "profile": {
+      "schema_version": "1.2.0",
+      "project_name": "v1-2-seo",
+      "seo": {"complete": false}
+    }
+  },
+  {
+    "release": "V1.3 Gauntlet",
+    "profile": {
+      "schema_version": "1.3.0",
+      "project_name": "v1-3-gauntlet",
+      "gauntlet": {"status": "NOT_STARTED"}
+    }
+  },
+  {
+    "release": "V2.4 CRO",
+    "profile": {
+      "schema_version": "2.4.0",
+      "project_name": "v2-4-cro",
+      "cro": {"complete": false}
+    }
+  },
+  {
+    "release": "V2.6 Measurement",
+    "profile": {
+      "schema_version": "2.6.0",
+      "project_name": "v2-6-measurement",
+      "measurement": {"complete": false}
+    }
+  },
+  {
+    "release": "V2.7 Security",
+    "profile": {
+      "schema_version": "2.7.0",
+      "project_name": "v2-7-security",
+      "security_privacy": {"complete": false}
+    }
+  },
+  {
+    "release": "V2.8 Browser QA",
+    "profile": {
+      "schema_version": "2.8.0",
+      "project_name": "v2-8-browser-qa",
+      "browser_qa": {"complete": false}
+    }
+  },
+  {
+    "release": "V2.9 Accessibility",
+    "profile": {
+      "schema_version": "2.9.0",
+      "project_name": "v2-9-accessibility",
+      "accessibility": {"complete": false}
+    }
+  },
+  {
+    "release": "V2.10 Launch Ops",
+    "profile": {
+      "schema_version": "2.10.0",
+      "project_name": "v2-10-launch-ops",
+      "launch_ops": {
+        "status": "NOT_EVALUATED",
+        "status_history": ["NOT_EVALUATED", "PLANNING"]
+      }
+    }
+  }
+]

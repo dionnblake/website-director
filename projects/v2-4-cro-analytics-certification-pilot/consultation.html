@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confidential Assessment | Northstar Performance Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-mark" data-nav-track="header_logo">
+        <span></span> NORTHSTAR LAB
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" data-nav-track="header_nav">Overview</a></li>
+          <li><a href="services.html" data-nav-track="header_nav">Protocols</a></li>
+          <li><a href="case-study.html" data-nav-track="header_nav">Case Evidence</a></li>
+          <li><a href="consultation.html" class="active nav-cta" data-nav-track="header_cta">Assessment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="badge">Confidential Inquiry</div>
+      <h1>Request an Executive Strategy Session.</h1>
+      <p class="lead">Schedule a confidential diagnostic conversation with our senior clinical performance directors.</p>
+    </section>
+
+    <div class="form-container">
+      <form id="consultation-form" novalidate>
+        <div class="form-group" id="group-role">
+          <label for="executive-role">Executive Role / Title</label>
+          <select id="executive-role" name="executive_role" required>
+            <option value="">Select executive capacity...</option>
+            <option value="ceo_founder">Chief Executive Officer / Founder</option>
+            <option value="managing_partner">Managing Partner / Fund Principal</option>
+            <option value="board_member">Board Director / Executive Committee</option>
+            <option value="other_executive">Senior Enterprise Executive</option>
+          </select>
+          <div class="error-message">Please select your executive role.</div>
+        </div>
+
+        <div class="form-group" id="group-cadence">
+          <label for="primary-objective">Primary Diagnostic Objective</label>
+          <select id="primary-objective" name="primary_objective" required>
+            <option value="">Select primary objective...</option>
+            <option value="cognitive_velocity">Cognitive Velocity & Decision Endurance</option>
+            <option value="autonomic_recovery">Autonomic Stress & Sleep Resilience</option>
+            <option value="transaction_support">High-Stakes Transaction / M&A Cadence</option>
+          </select>
+          <div class="error-message">Please select a diagnostic focus.</div>
+        </div>
+
+        <div class="form-group" id="group-code">
+          <label for="org-domain">Corporate Advisory Reference Code (Optional)</label>
+          <input type="text" id="org-domain" name="org_domain" placeholder="e.g. NS-2026-EXEC" />
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn" style="width: 100%;">Submit Consultation Request</button>
+      </form>
+
+      <div class="success-state" id="success-confirmation">
+        <h3>Diagnostic Request Confirmed</h3>
+        <p>Your confidential strategy inquiry has been registered with our senior advisory team. A clinical director will review your executive profile within 4 business hours.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Northstar Performance Lab. Confidential & Proprietary Advisory Architecture.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('consultation-form');
+      const roleSelect = document.getElementById('executive-role');
+      const objectiveSelect = document.getElementById('primary-objective');
+      const submitBtn = document.getElementById('submit-btn');
+      const successState = document.getElementById('success-confirmation');
+
+      let formStarted = false;
+      let formSubmitted = false;
+
+      // Track consultation_start on first interaction
+      function onFirstFocus() {
+        if (!formStarted && window.trackEvent) {
+          formStarted = true;
+          window.trackEvent('consultation_start', {
+            form_id: 'executive_consultation_form',
+            source_intent: 'strategy_session_inquiry'
+          });
+        }
+      }
+
+      roleSelect.addEventListener('focus', onFirstFocus);
+      objectiveSelect.addEventListener('focus', onFirstFocus);
+
+      // Handle Form Submit with Strict Validation and Deduplication
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Deduplicate: prevent re-submission if already successful
+        if (formSubmitted) {
+          return;
+        }
+
+        let hasError = false;
+
+        // Reset errors
+        document.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+
+        if (!roleSelect.value) {
+          document.getElementById('group-role').classList.add('has-error');
+          hasError = true;
+        }
+
+        if (!objectiveSelect.value) {
+          document.getElementById('group-cadence').classList.add('has-error');
+          hasError = true;
+        }
+
+        if (hasError) {
+          // Emit diagnostic validation error (NEVER sending form input text)
+          if (window.trackEvent) {
+            window.trackEvent('form_validation_error', {
+              form_id: 'executive_consultation_form',
+              error_field_category: 'required_selection_missing'
+            });
+          }
+          return;
+        }
+
+        // Lock form submission state
+        formSubmitted = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Inquiry Registered';
+
+        // Emit Macro Conversion Event
+        if (window.trackEvent) {
+          window.trackEvent('consultation_submit_success', {
+            form_id: 'executive_consultation_form',
+            qualification_tier: 'tier_1_executive'
+          });
+        }
+
+        // Show Success UI
+        form.style.display = 'none';
+        successState.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

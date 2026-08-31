@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Starts Now — Morning Protocol Deck [Tactical Blueprint]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-base: #060D17;
+      --navy-card: #0C1A2E;
+      --navy-panel: #11223B;
+      --navy-highlight: #1B355A;
+      --white-pure: #FFFFFF;
+      --white-subtle: #E2E8F0;
+      --yellow-signal: #FACC15;
+      --yellow-amber: #EAB308;
+      --border-tech: #1E3A5F;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--navy-base);
+      color: var(--white-pure);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-bar {
+      background: var(--navy-card);
+      border-bottom: 1px solid var(--border-tech);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--yellow-signal);
+    }
+    header {
+      border-bottom: 1px solid var(--border-tech);
+      background: rgba(6, 13, 23, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-logo-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      border: 2px solid var(--yellow-signal);
+      object-fit: cover;
+    }
+    .brand-text h1 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--white-pure);
+    }
+    .brand-text span {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--yellow-signal);
+      letter-spacing: 0.1em;
+    }
+    .btn-signal {
+      background: var(--yellow-signal);
+      color: var(--navy-base);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--yellow-signal);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-signal:hover {
+      background: transparent;
+      color: var(--yellow-signal);
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.3);
+    }
+    .hero-tech {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--yellow-signal);
+      border: 1px solid var(--yellow-signal);
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .hero-tech h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-tech h2 span {
+      color: var(--yellow-signal);
+    }
+    .hero-tech p {
+      color: var(--white-subtle);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white-pure);
+      border: 1px solid var(--border-tech);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--yellow-signal);
+      color: var(--yellow-signal);
+    }
+    .hero-graphic {
+      background: var(--navy-card);
+      border: 1px solid var(--border-tech);
+      padding: 2.5rem;
+      border-radius: 4px;
+      position: relative;
+      text-align: center;
+    }
+    .hero-graphic-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 8px;
+      border: 2px solid var(--yellow-signal);
+      box-shadow: 0 0 30px rgba(250, 204, 21, 0.25);
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
+    .telemetry-row {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid var(--border-tech);
+      padding-top: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .telemetry-item span {
+      display: block;
+      color: var(--yellow-signal);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .interactive-deck {
+      max-width: 1300px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .deck-header {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .deck-header h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+    }
+    .deck-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+      background: var(--navy-card);
+      border: 1px solid var(--border-tech);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .deck-nav {
+      background: var(--navy-panel);
+      border-right: 1px solid var(--border-tech);
+      display: flex;
+      flex-direction: column;
+    }
+    .deck-tab {
+      padding: 1.5rem;
+      border: none;
+      background: transparent;
+      color: var(--white-subtle);
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-tech);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .deck-tab:hover, .deck-tab.active {
+      background: var(--navy-highlight);
+      color: var(--yellow-signal);
+      border-left: 4px solid var(--yellow-signal);
+    }
+    .deck-content {
+      padding: 3rem;
+    }
+    .deck-pane {
+      display: none;
+    }
+    .deck-pane.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pane-tag {
+      font-family: var(--font-mono);
+      color: var(--yellow-signal);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+    .deck-pane h4 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .deck-pane p {
+      font-size: 1.05rem;
+      color: var(--white-subtle);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 650px;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .specs-table th, .specs-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-tech);
+      text-align: left;
+    }
+    .specs-table th {
+      background: var(--navy-panel);
+      color: var(--yellow-signal);
+    }
+    .blueprint-cta-box {
+      max-width: 1300px;
+      margin: 4rem auto 6rem;
+      padding: 4rem 2rem;
+      background: var(--navy-card);
+      border: 1px solid var(--yellow-signal);
+      border-radius: 4px;
+      text-align: center;
+    }
+    .blueprint-cta-box h3 {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 540px;
+      margin: 2rem auto 1rem;
+    }
+    .input-field {
+      flex: 1;
+      background: var(--navy-base);
+      border: 1px solid var(--border-tech);
+      padding: 0.85rem 1.25rem;
+      color: var(--white-pure);
+      font-family: var(--font-mono);
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: var(--yellow-signal);
+    }
+    footer {
+      border-top: 1px solid var(--border-tech);
+      padding: 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--white-subtle);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div>PROTOCOL REVISION // 2026.08</div>
+    <div>DIRECT DISPATCH // ZERO HYPE STANDARD</div>
+    <div>AUTHENTICATED BLUEPRINT</div>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="#" class="brand-logo-wrap">
+        <img src="../assets/asn-logo.jpg" alt="ASN Emblem" class="brand-logo-img">
+        <div class="brand-text">
+          <h1>ALPHA STARTS NOW</h1>
+          <span>TACTICAL MORNING OPERATIONS</span>
+        </div>
+      </a>
+      <a href="#deploy" class="btn-signal">Deploy Protocol</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-tech">
+      <div>
+        <div class="hero-badge">Verified Morning Architecture</div>
+        <h2>THE FIVE MORNING <span>RITUALS.</span></h2>
+        <p>
+          A battle-tested, zero-fluff daily operating system designed for adult men. Replace chaotic mornings and reactionary phone-scrolling with disciplined, calculated momentum.
+        </p>
+        <div class="hero-actions">
+          <a href="#deploy" class="btn-signal">Get The 5 Rituals Deck →</a>
+          <a href="#deck" class="btn-outline">Inspect Specs</a>
+        </div>
+      </div>
+      <div class="hero-graphic">
+        <img src="../assets/asn-logo.jpg" alt="Alpha Starts Now Wolf Crest" class="hero-graphic-logo">
+        <div class="telemetry-row">
+          <div class="telemetry-item">
+            <span>5</span>
+            RITUALS
+          </div>
+          <div class="telemetry-item">
+            <span>135</span>
+            MIN WINDOW
+          </div>
+          <div class="telemetry-item">
+            <span>100%</span>
+            DISCIPLINE
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="interactive-deck" id="deck">
+      <div class="deck-header">
+        <div>
+          <div style="font-family:var(--font-mono); color:var(--yellow-signal); font-size:0.8rem; margin-bottom:0.4rem;">SEQUENTIAL HARDWARE SPECS</div>
+          <h3>Operational Ritual Deck</h3>
+        </div>
+      </div>
+
+      <div class="deck-grid">
+        <div class="deck-nav">
+          <button class="deck-tab active" onclick="showPane(0)">01 // COLD & HYDRATE <span>→</span></button>
+          <button class="deck-tab" onclick="showPane(1)">02 // KINETIC FLOW <span>→</span></button>
+          <button class="deck-tab" onclick="showPane(2)">03 // DAWN PHOTONS <span>→</span></button>
+          <button class="deck-tab" onclick="showPane(3)">04 // ANALOGUE INTENT <span>→</span></button>
+          <button class="deck-tab" onclick="showPane(4)">05 // 90-MIN CHAMBER <span>→</span></button>
+        </div>
+        <div class="deck-content">
+          <div class="deck-pane active" id="pane-0">
+            <div class="pane-tag">STAGE 01 // MINUTES 00–05</div>
+            <h4>The Cold Standard & Mineral Hydration</h4>
+            <p>Immediate cellular rehydration with 24oz water, sodium, potassium, and magnesium. Followed by a sharp 90-second cold water face splash or cold immersion to shock adrenergic alertness.</p>
+            <table class="specs-table">
+              <tr><th>METRIC</th><th>TARGET</th></tr>
+              <tr><td>Fluid Volume</td><td>24 oz + Himalayan Salt</td></tr>
+              <tr><td>Neuro Stimulus</td><td>Cold Water Immersion / Splash</td></tr>
+              <tr><td>Primary Target</td><td>Zero phone check, instant physical arousal</td></tr>
+            </table>
+          </div>
+          <div class="deck-pane" id="pane-1">
+            <div class="pane-tag">STAGE 02 // MINUTES 05–15</div>
+            <h4>Kinetic Mobility Primer</h4>
+            <p>Uncompromising full-body joint flow: thoracic rotations, deep hip openers, and scapular wall slides to restore posture and athletic readiness.</p>
+            <table class="specs-table">
+              <tr><th>METRIC</th><th>TARGET</th></tr>
+              <tr><td>Time Commitment</td><td>10 Minutes</td></tr>
+              <tr><td>Pattern</td><td>Spinal, Hip, Shoulder Joint Articulation</td></tr>
+              <tr><td>Output</td><td>Zero stiffness, ready neuromuscular state</td></tr>
+            </table>
+          </div>
+          <div class="deck-pane" id="pane-2">
+            <div class="pane-tag">STAGE 03 // MINUTES 15–30</div>
+            <h4>Natural Sunlight Immersion</h4>
+            <p>Direct retinal exposure to morning sunlight without sunglasses. Sets cortisol awakening spike and anchors circadian master clocks.</p>
+            <table class="specs-table">
+              <tr><th>METRIC</th><th>TARGET</th></tr>
+              <tr><td>Window</td><td>Within 30 min of sunrise</td></tr>
+              <tr><td>Duration</td><td>10–15 Minutes Outdoors</td></tr>
+              <tr><td>Mechanism</td><td>Melanopsin retinal phototransduction</td></tr>
+            </table>
+          </div>
+          <div class="deck-pane" id="pane-3">
+            <div class="pane-tag">STAGE 04 // MINUTES 30–45</div>
+            <h4>Analogue Focus & Written Intent</h4>
+            <p>Pen to paper. Eliminate reactive digital noise. Define the single needle-moving objective of the day before reading a single message.</p>
+            <table class="specs-table">
+              <tr><th>METRIC</th><th>TARGET</th></tr>
+              <tr><td>Tool</td><td>Hardcover Journal & Ink</td></tr>
+              <tr><td>Rule</td><td>AirPlane Mode Active</td></tr>
+              <tr><td>Output</td><td>Single Primary Mission Defined</td></tr>
+            </table>
+          </div>
+          <div class="deck-pane" id="pane-4">
+            <div class="pane-tag">STAGE 05 // MINUTES 45–135</div>
+            <h4>The 90-Minute Focus Chamber</h4>
+            <p>Deep, uninterrupted cognitive or physical output on the primary mission. No browser tabs, no team chats, zero distraction.</p>
+            <table class="specs-table">
+              <tr><th>METRIC</th><th>TARGET</th></tr>
+              <tr><td>Block Length</td><td>90 Minutes Unbroken</td></tr>
+              <tr><td>Context Switching</td><td>Zero Permitted</td></tr>
+              <tr><td>Outcome</td><td>Core mission completed before noon</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blueprint-cta-box" id="deploy">
+      <img src="../assets/asn-logo.jpg" alt="ASN Emblem" style="width:64px; height:64px; border-radius:4px; border:2px solid var(--yellow-signal); margin-bottom:1rem;">
+      <h3>DEPLOY THE 5 MORNING RITUALS</h3>
+      <p style="color:var(--white-subtle); max-width:600px; margin:0 auto;">Download the high-resolution field PDF blueprint with complete execution guidelines.</p>
+      <form class="form-row" onsubmit="event.preventDefault(); alert('Deployment instructions sent.');">
+        <input type="email" class="input-field" placeholder="INPUT AUTHORIZED EMAIL" required>
+        <button type="submit" class="btn-signal">RECEIVE BLUEPRINT</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>ALPHA STARTS NOW // STRICTLY GROUNDED DISCIPLINE // NO FICTIONAL METRICS</p>
+  </footer>
+
+  <script>
+    function showPane(index) {
+      const tabs = document.querySelectorAll('.deck-tab');
+      const panes = document.querySelectorAll('.deck-pane');
+      tabs.forEach((t, i) => t.classList.toggle('active', i === index));
+      panes.forEach((p, i) => p.classList.toggle('active', i === index));
+    }
+  </script>
+</body>
+</html>

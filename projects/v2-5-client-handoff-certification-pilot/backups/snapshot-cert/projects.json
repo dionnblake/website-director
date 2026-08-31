@@ -1,0 +1,126 @@
+[
+  {
+    "id": "prj-01",
+    "title": "Lumina Pavilion for Modern Art",
+    "slug": "lumina-pavilion",
+    "summary": "Updated alpine daylight summary",
+    "status": "PUBLISHED",
+    "hero_image": {
+      "src": "/assets/projects/lumina-pavilion-hero.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Exterior elevation of Lumina Pavilion at sunset showing rammed-earth textures"
+    },
+    "industry": "Cultural Architecture",
+    "year": 2025,
+    "lead_architect": "team-01",
+    "featured": true,
+    "seo": {
+      "seo_title": "Lumina Pavilion | Cultural Architecture | Morrow & Vale",
+      "seo_description": "Monolithic glass and rammed-earth exhibition pavilion in Engadin by Morrow & Vale."
+    }
+  },
+  {
+    "id": "prj-02",
+    "title": "Aethel Horology Atelier",
+    "slug": "aethel-atelier-workshop",
+    "summary": "Acoustically isolated watchmaking workshop featuring precision natural timber baffling.",
+    "status": "PUBLISHED",
+    "hero_image": {
+      "src": "/assets/projects/aethel-atelier-hero.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Interior watchmaking bench illuminated by high-CRI north light"
+    },
+    "industry": "Industrial Design & Horology",
+    "year": 2026,
+    "lead_architect": "team-02",
+    "featured": true,
+    "seo": {
+      "seo_title": "Aethel Horology Atelier | Morrow & Vale",
+      "seo_description": "Acoustically isolated horological workshop architecture by Morrow & Vale."
+    }
+  },
+  {
+    "id": "prj-03",
+    "title": "Cantonal Journal Design",
+    "slug": "cantonal-journal",
+    "summary": "Unbuilt monolithic archive study",
+    "status": "ARCHIVED",
+    "hero_image": {
+      "src": "/assets/projects/cantonal.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Plan"
+    },
+    "industry": "Cultural",
+    "lead_architect": "team-01"
+  },
+  {
+    "id": "prj-03",
+    "title": "Cantonal Journal Design",
+    "slug": "cantonal-journal",
+    "summary": "Unbuilt monolithic archive study",
+    "status": "DRAFT",
+    "hero_image": {
+      "src": "/assets/projects/cantonal.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Plan"
+    },
+    "industry": "Cultural",
+    "lead_architect": "team-01"
+  },
+  {
+    "id": "prj-03",
+    "title": "Cantonal Journal Design",
+    "slug": "cantonal-journal",
+    "summary": "Unbuilt monolithic archive study",
+    "status": "DRAFT",
+    "hero_image": {
+      "src": "/assets/projects/cantonal.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Plan"
+    },
+    "industry": "Cultural",
+    "lead_architect": "team-01"
+  },
+  {
+    "id": "prj-03",
+    "title": "Cantonal Journal Design",
+    "slug": "cantonal-journal",
+    "summary": "Unbuilt monolithic archive study",
+    "status": "DRAFT",
+    "hero_image": {
+      "src": "/assets/projects/cantonal.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Plan"
+    },
+    "industry": "Cultural",
+    "lead_architect": "team-01"
+  },
+  {
+    "id": "prj-03",
+    "title": "Cantonal Journal Design",
+    "slug": "cantonal-journal",
+    "summary": "Unbuilt monolithic archive study",
+    "status": "DRAFT",
+    "hero_image": {
+      "src": "/assets/projects/cantonal.webp",
+      "aspect_ratio": "16:9",
+      "min_width": 1920,
+      "min_height": 1080,
+      "alt_text": "Plan"
+    },
+    "industry": "Cultural",
+    "lead_architect": "team-01"
+  }
+]

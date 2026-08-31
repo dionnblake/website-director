@@ -37,3 +37,17 @@ Implementation is strictly blocked until all five locks in `site-profile.json` â
 4. **Responsive Reflow:** Adhere strictly to the breakpoint container behavior defined in `design-system.md`.
 5. **Zero Motion Improvisation:** Do not invent animation, easing, scroll behavior, or hero motion. Every motion behavior must trace to a specific line in `motion-direction.md` (and `cinematic-brief.md` if a specialist was engaged). A `MOTION_LEVEL_0` lock means zero added animation, not a suggestion.
 6. **Change Management:** If an unexpected technical obstacle arises, update `design-system.md` or `motion-direction.md` first before writing code.
+
+## 4. Evidence and asset provenance guardrails
+
+1. Every production claim and production asset must resolve to an
+   EVIDENCE_REF or asset provenance reference in the project ledger.
+2. Asset Director remains responsible for visual readiness; the cross-cutting
+   provenance ledger remains responsible for source identity, rights evidence,
+   attribution, permitted use, and hashes.
+3. Research references, competitor screenshots, and showcase imagery are
+   REFERENCE_ONLY and cannot become production assets.
+4. Unknown, stale, contradictory, or high-risk unresolved records block
+   production. Prototype exceptions remain PROTOTYPE_ONLY.
+5. Do not represent a hash as proof of ownership, exclusivity, copyright, or
+   legal compliance.

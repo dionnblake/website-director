@@ -25,3 +25,35 @@ desktop.ini
 # Local runtime logs & scratch
 *.log
 scratch/
+
+# Browser & Regression QA (V2.8) — runtime artifacts only; policy/harness is tracked
+node_modules/
+.playwright/
+playwright-report/
+test-results/
+**/.chrome_test_profile/
+**/.pw-profile/
+browser-qa/evidence/*
+!browser-qa/evidence/README.md
+**/evidence/browser-qa/
+**/evidence/accessibility/
+**/evidence/launch/
+browser-qa/vendor/*
+!browser-qa/vendor/README.md
+axe.min.js
+*.pw-trace.zip
+
+
+# Browser automation throwaway profiles
+.chrome_test_profile/
+
+# Framework self-validation (V2.11) runtime artifacts
+.pytest_cache/
+.mypy_cache/
+.coverage
+framework-validation/reports/runtime/*
+!framework-validation/reports/runtime/.gitkeep
+framework-validation/reports/2.13.0-certification.json
+framework-validation/reports/2.14.0-certification.json
+framework-validation/reports/2.15.0-certification.json
+browser-qa/evidence/*.log

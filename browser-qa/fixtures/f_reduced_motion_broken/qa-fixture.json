@@ -1,0 +1,10 @@
+{
+  "route": "/f-reduced-motion-broken",
+  "title": "Scenario F'",
+  "reduced_motion": {
+    "hidden_content": ["p.await-anim (opacity:0, no reduced-motion fallback)"],
+    "render_signature": { "1440": "fb-1440-rm" }
+  },
+  "layout": { "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 } },
+  "render_signature": { "1440": "fb-1440" }
+}

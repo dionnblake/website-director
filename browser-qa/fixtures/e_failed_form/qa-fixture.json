@@ -1,0 +1,20 @@
+{
+  "route": "/e-form-correct",
+  "title": "Scenario E (correct behaviour under server rejection)",
+  "forms": [
+    {
+      "form_ref": "contact",
+      "fields_have_labels": true,
+      "invalid_shows_error": true,
+      "duplicate_submit_prevented": true,
+      "keyboard_submittable": true,
+      "server_reject": { "success_state": false, "success_event": false, "error_visible": true }
+    }
+  ],
+  "analytics_events": [
+    { "name": "page_view", "params": { "page_path": "/e-form-correct" }, "count": 1 },
+    { "name": "contact_submit_error", "params": { "error_category": "server" }, "count": 1 }
+  ],
+  "layout": { "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 } },
+  "render_signature": { "1440": "e-1440" }
+}

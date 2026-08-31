@@ -107,6 +107,15 @@ Generate an original, bespoke Design System specification (`templates/design-sys
 
 ---
 
+## 4.1 Evidence and rights boundary
+
+Reference inputs are research evidence, not production asset provenance.
+Record the exact source URL, access date, reference purpose, transferable
+pattern, and what must not be copied in the project evidence ledger. A
+reference screenshot, logo, illustration, or composition cannot be promoted
+into a production asset without independent origin and permitted-use evidence.
+Claim language derived from a reference also requires its own EVIDENCE_REF.
+
 ## 5. ORIGINAL_MODE Workflow
 
 When no references are provided:

@@ -1,0 +1,205 @@
+{
+  "": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "2.0.0",
+  "project_name": "VANDENBERG VELO | Handcrafted Titanium & Monocoque Performance Bicycles",
+  "version": "2.0.0",
+  "creative_intent": {
+    "status": "confirmed",
+    "understanding_confidence": "high",
+    "creative_ambition": "SHOWCASE",
+    "visual_intensity": "HIGH",
+    "motion_appetite": "RESTRAINED_KINETIC",
+    "experimentation_tolerance": "MEDIUM",
+    "confirmed": true,
+    "confirmation_timestamp": "2026-08-26T21:00:00Z",
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "business_type": "Bespoke Artisan Performance Bicycles",
+  "audience": {
+    "primary_decision_maker": "High-Net-Worth Endurance Cyclist / Connoisseur Collector",
+    "market_segment": "Ultra-Premium Bespoke Craft",
+    "target_visitor": "Discerning cyclist seeking uncompromised titanium fabrication and aerodynamic custom fit",
+    "visitor_state": "High scrutiny, valuing craftsmanship authenticity and material provenance over mass marketing"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Commission Bespoke Frame Build",
+      "cta_label": "Initiate Atelier Commission",
+      "target_metric": "Atelier Commission Inquiries"
+    },
+    "secondary_conversion": {
+      "goal": "Download Metallurgy & Geometry Specification",
+      "cta_label": "Download Frame Architecture Dossier",
+      "target_metric": "Specification Dossier Downloads"
+    },
+    "primary_objection": "Lead time, bespoke fit accuracy, and real structural performance credibility",
+    "primary_trust_requirement": "Authentic workshop fabrication evidence, aerospace titanium grading, and master framebuilder provenance"
+  },
+  "brand_attributes": [
+    "Handcrafted",
+    "Aerospace Titanium",
+    "Uncompromising Precision",
+    "Tactile Luxury",
+    "Quiet Velocity"
+  ],
+  "design_archetypes": {
+    "primary": "Modernist",
+    "primary_weight": 0.5,
+    "secondary": "Editorial",
+    "secondary_weight": 0.3,
+    "accent": "Technical",
+    "accent_weight": 0.2
+  },
+  "density": "balanced_airy",
+  "layout_style": "editorial_asymmetric_split",
+  "geometry": "refined_sharp",
+  "corner_style": "2px",
+  "typography_direction": {
+    "display_family": "Cormorant Garamond",
+    "body_family": "Inter",
+    "mono_family": "JetBrains Mono",
+    "scale_ratio": "1.333_perfect_fourth",
+    "heading_tracking": "-0.02em"
+  },
+  "imagery_direction": {
+    "style": "high_contrast_tactile_macro_photography",
+    "aspect_ratios": [
+      "16/9",
+      "4/3",
+      "1/1",
+      "9/16"
+    ],
+    "treatment": "natural_raking_light_neutral_charcoal_grading"
+  },
+  "motion_direction": {
+    "physics": "inertial_smooth",
+    "default_duration_ms": 350,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "prefers_reduced_motion_supported": true
+  },
+  "ai_slop_tolerance": 0.0,
+  "research": {
+    "complete": true,
+    "mode": "ORIGINAL_MODE",
+    "sources": [
+      "Direct atelier recon",
+      "Titanium framebuilding craft standards",
+      "Awwwards editorial craft benchmarks"
+    ],
+    "deep_recon_targets": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    },
+    "showcase_research_status": "COMPLETE"
+  },
+  "motion": {
+    "level": "LEVEL_1",
+    "gsap_required": true,
+    "implementation_engine": "GSAP_CORE",
+    "skills_used": [
+      "core",
+      "scrolltrigger"
+    ],
+    "plugins_used": [
+      "ScrollTrigger"
+    ],
+    "reduced_motion_verified": true,
+    "cleanup_verified": true,
+    "performance_verified": true,
+    "cinematic_specialist_required": false,
+    "cinematic_brief_complete": false
+  },
+  "seo": {
+    "complete": true,
+    "mode": "STANDALONE",
+    "blocked_reason": null,
+    "research_date": "2026-08-26",
+    "data_sources": [
+      "Bespoke Cycling Search Landscape"
+    ],
+    "target_market": "Global Luxury Endurance",
+    "gsc_connected": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "design_intelligence": {
+    "complete": true,
+    "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
+    "product_type_matched": "luxury_ecommerce_bespoke_craft",
+    "candidate_styles": [
+      "editorial_luxury",
+      "minimalist_technical"
+    ],
+    "selected_style": "editorial_luxury",
+    "candidate_palette_matched": "charcoal_titanium_platinum_ochre",
+    "candidate_typography_matched": "cormorant_inter",
+    "stack_guidance_applied": "astro_or_vanilla_modern",
+    "distinctiveness_check_complete": true,
+    "hero_thesis_declared": true,
+    "signature_element_declared": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "qa_status": {
+    "design_qa_score": null,
+    "design_qa_verdict": "PENDING",
+    "production_preflight_passed": false
+  },
+  "gauntlet": {
+    "status": "NOT_RUN",
+    "iteration_count": 0,
+    "max_iterations": 3,
+    "verdict": "PENDING",
+    "largest_remaining_gap": null,
+    "residual_defects": [],
+    "reference_bars": [],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "visual_prototypes": {
+    "status": "ready_for_owner_review",
+    "required": true,
+    "direction_count": 3,
+    "showcase_research": "COMPLETE",
+    "portfolio_art_director_review": true,
+    "divergence_verified": true,
+    "asset_limitation_noted": false,
+    "owner_selected_direction": null,
+    "owner_selection_confirmed": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "assets": {
+    "status": "prototype_ready",
+    "visual_language_ready": true,
+    "hero_asset_status": "prototype_ready",
+    "signature_asset_status": "prototype_ready",
+    "provenance_status": "schema_validated_synthetic",
+    "responsive_crop_status": "prototype_ready",
+    "optimization_status": "prototype_fixtures",
+    "shot_list_required": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

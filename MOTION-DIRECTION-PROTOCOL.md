@@ -103,6 +103,8 @@ Every project, regardless of motion level, must implement the `prefers-reduced-m
 - Where motion communicates information (a scroll-driven reveal sequencing content, a sticky narrative), the reduced-motion fallback must preserve **equivalent meaning** through static layout — never hide content inside an animation state with no static equivalent.
 - Keyboard and screen-reader workflows must remain fully intact regardless of motion level; motion must never be the only path to content or navigation.
 
+**This protocol owns the motion *policy*.** `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` (Phase 6.9) and the Phase 10.5 reduced-motion assertion **consume** it — they verify that the policy holds (no content trapped behind motion, no meaning only in animation, autoplay > 5s pausable, no strobing), they do not create a competing motion policy. A reduced-motion content-trap detected in Phase 10.5 is the same finding whether reported under `MOTION_SPEC` or `ACCESSIBILITY_REVIEW`.
+
 ---
 
 ## 8. Source-of-Truth Rule (Motion State)

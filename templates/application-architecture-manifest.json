@@ -1,0 +1,38 @@
+{
+  "$schema_note": "Website Director V2.15 application architecture manifest. Provider-neutral, conditional, and consumed by application/validator.py. It is not a production implementation.",
+  "framework_version": "2.15.0",
+  "project_name": "Project Name",
+  "provider_policy": "PROVIDER_NEUTRAL",
+  "module_registry": "templates/application-module-registry.json",
+  "application": {
+    "required": false,
+    "complete": false,
+    "status": "NOT_REQUIRED",
+    "classifications": ["STATIC_MARKETING"],
+    "modules_required": [],
+    "modules_ready": [],
+    "authentication_required": false,
+    "commerce_required": false,
+    "database_required": false,
+    "external_integrations": [],
+    "high_risk_operations": [],
+    "implementation_verified": false,
+    "production_verified": false,
+    "blocked_reason": null,
+    "exception": {"applied": false, "reason": null},
+    "user_stories": [],
+    "actors": [],
+    "provider_available": true,
+    "policies": {
+      "authentication": "NOT_APPLICABLE",
+      "authorization": "NOT_APPLICABLE",
+      "data": "NOT_APPLICABLE",
+      "commerce": "NOT_APPLICABLE",
+      "uploads": "NOT_APPLICABLE",
+      "user_generated_content": "NOT_APPLICABLE"
+    },
+    "integrations": [],
+    "measurement": {"localized_measurement_required": false},
+    "seo": {"private_route_indexable": false}
+  }
+}

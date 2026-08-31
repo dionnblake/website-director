@@ -1,0 +1,93 @@
+# browser-qa/ — Website Director Browser & Regression QA Harness (V2.15)
+
+Reusable, framework-level machine-executed browser verification. The **policy** is
+canonical (`../BROWSER-REGRESSION-QA-PROTOCOL.md`); the **engine** that drives a
+browser is replaceable.
+
+```
+runner.py            manifest-driven orchestrator + evidence manifest emitter
+config/              viewports.json · browser-policy.json · ignore-justifications.example.json
+engine/
+  base.py            BROWSER_QA_ENGINE contract + PageObservation shape + verdict vocabulary
+  simulation_engine.py   deterministic, dependency-free (fixture-driven)
+  playwright_engine.py   reference real-browser adapter (Chromium / Firefox / WebKit)
+assertions/
+  __init__.py        Finding dataclass, requirement-source enforcement, evaluate()
+  catalog.py         every check, grouped by protocol section, each requirement-traced
+guards/
+  frozen_integrity_guard.py   protected-path snapshot/verify (default: projects/)
+fixtures/            synthetic scenario pages for the framework's own negative controls
+evidence/            run artifacts — git-ignored (see evidence/README.md)
+```
+
+## Run against a generated project
+
+```bash
+python browser-qa/runner.py \
+  --plan   path/to/project/browser-qa-manifest.json \
+  --engine playwright \
+  --mode   smoke \
+  --evidence path/to/project/evidence/browser-qa
+```
+
+`--mode regression` runs the extended viewport + cross-browser matrix. `--engine
+simulation` dry-runs the plan with no browser (never sets
+`implementation_verified` / `production_verified`).
+
+When `localization` is required in the manifest, the same runner consumes the
+`LOCALIZATION_PLAN` assertion group. It checks locale routes, language and
+direction, text-labelled switchers, fallback, `hreflang`, localized metadata
+and forms, pseudo-localization expansion, and RTL runtime behaviour. It never
+sets `localization.complete` and does not create a second runner.
+
+When `application` is required, the same runner consumes the
+`APPLICATION_ARCHITECTURE_PLAN` assertion group. It checks only explicit
+runtime facts for activated authentication, authorization, commerce,
+subscription, booking, upload, UGC, integration, private-route, and
+authoritative-event requirements. Missing facts block. It never sets
+`application.complete`, creates a second runner, creates users, or attempts a
+live payment.
+
+Install the real engine once:
+
+```bash
+pip install playwright && python -m playwright install chromium firefox webkit
+```
+
+## Verdicts
+
+`PASS` · `FAIL` · `FLAKY` (fail-then-pass on retry — never laundered to PASS) ·
+`BLOCKED` (engine/site unavailable — never a PASS) · `NOT_APPLICABLE`.
+
+The runner exits non-zero on any `FAIL`, `BLOCKED`, `FLAKY`, or frozen-fixture
+mutation, and prints the `browser_qa{}` block to apply to `site-profile.json`
+(it never writes the profile itself).
+
+For routes whose interaction behavior is release-critical, declare the
+`runtime_observations` block from the manifest template. `forms.required` and
+`mobile_navigation.required` make the corresponding `PageObservation` facts
+mandatory; missing facts are `BLOCKED`. Set `forms.exercise` only for a local
+or synthetic same-origin form, where the Playwright adapter intercepts the
+request and uses disposable values. The evidence manifest includes the raw
+form and mobile-navigation observations plus engine, viewport, console,
+network, keyboard, accessibility, and screenshot references. `simulation`
+remains explicitly labeled `SIMULATION`; only Playwright emits
+`REAL_BROWSER` evidence.
+
+## Add an engine
+
+Implement `BrowserQAEngine.observe()` in a new module and register it in
+`engine/base.load_engine()`. No policy change is required — the assertion
+catalogue and runner only depend on `PageObservation`.
+
+## Framework self-validation
+
+```bash
+python tests/test_v2_8_browser_regression_qa.py
+```
+
+runs the repo-level invariants plus the scenario A–L negative controls on the
+`simulation` engine with only the standard library. Capability #9 localization
+controls live in `tests/test_v2_14_localization.py` and reuse this catalogue.
+Capability #10 application controls live in
+`tests/test_v2_15_application_architecture.py` and reuse this catalogue.

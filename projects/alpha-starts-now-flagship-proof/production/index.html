@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Starts Now — The 5 Morning Rituals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas-obsidian: #040914;
+      --canvas-midnight: #0A1528;
+      --canvas-surface: #10213B;
+      --canvas-elevated: #162B4D;
+      --text-pure: #FFFFFF;
+      --text-slate: #CBD5E1;
+      --text-muted: #94A3B8;
+      --gold-solar: #F59E0B;
+      --gold-dawn: #FDE047;
+      --gold-amber: #D97706;
+      --gold-glow: rgba(245, 158, 11, 0.35);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(245, 158, 11, 0.28);
+      --border-gold-bright: rgba(245, 158, 11, 0.65);
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-full: 9999px;
+      --shadow-node: 0 20px 40px rgba(0, 0, 0, 0.6);
+      --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--canvas-obsidian);
+      color: var(--text-pure);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Header */
+    .cinema-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(4, 9, 20, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cinema-brand {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .cinema-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-solar);
+      box-shadow: 0 0 16px var(--gold-glow);
+      object-fit: cover;
+    }
+    .cinema-brand-text h1 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      color: var(--gold-dawn);
+      font-weight: 700;
+    }
+    .cinema-brand-text p {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-menu a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-slate);
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover { color: var(--gold-dawn); }
+    .cinema-cta-btn {
+      background: linear-gradient(135deg, var(--gold-solar), var(--gold-amber));
+      color: #040914;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 20px var(--gold-glow);
+      transition: all 0.3s var(--ease-cinematic);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    .cinema-cta-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+    }
+
+    /* SECTION 1: Cinematic Hero with Man Standing on Left & Typography on Right */
+    .hero-cinematic {
+      height: 100vh; min-height: 720px; max-height: 960px;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      background: 
+        linear-gradient(270deg, #040914 0%, rgba(4, 9, 20, 0.98) 42%, rgba(4, 9, 20, 0.65) 68%, rgba(4, 9, 20, 0.1) 100%),
+        linear-gradient(180deg, transparent 75%, #040914 100%),
+        url('assets/hero-dawn-man.jpg') left 5% center / cover no-repeat;
+    }
+    .hero-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .hero-content {
+      max-width: 660px;
+      text-align: left;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.25rem;
+      background: rgba(4, 9, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-full);
+      color: var(--gold-dawn);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .hero-cinematic h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.8vw, 4.6rem);
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: #FFFFFF;
+    }
+    .hero-cinematic h1 span {
+      background: linear-gradient(180deg, #FFF099, #F59E0B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+    .hero-cinematic p {
+      font-size: 1.15rem;
+      color: var(--text-slate);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .btn-secondary {
+      background: rgba(4, 9, 20, 0.7);
+      backdrop-filter: blur(8px);
+      color: var(--text-pure);
+      border: 1px solid var(--border-gold);
+      padding: 0.75rem 1.75rem;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--gold-dawn);
+      color: var(--gold-dawn);
+      background: rgba(16, 33, 59, 0.8);
+    }
+    .scroll-indicator {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-solar);
+      gap: 0.75rem;
+    }
+
+    /* SECTION 2: The Mandate */
+    .mandate-section {
+      background: var(--canvas-midnight);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 5.5rem 2rem;
+      text-align: center;
+    }
+    .mandate-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .mandate-tag {
+      font-family: var(--font-mono);
+      color: var(--gold-solar);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .mandate-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.4;
+      color: #FFFFFF;
+    }
+    .mandate-inner h2 em {
+      font-style: italic;
+      color: var(--gold-dawn);
+    }
+
+    /* SECTION 3: The 5 Rituals Scrollytelling Arc */
+    .scrolly-section {
+      padding: 7rem 2rem;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 5rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .scrolly-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 4.5rem;
+      max-width: 1140px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .timeline-track {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-solar), rgba(245, 158, 11, 0.15));
+      transform: translateX(-50%);
+    }
+    .timeline-node {
+      display: grid;
+      grid-template-columns: 1fr 64px 1fr;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .node-left { text-align: right; }
+    .node-right { text-align: left; }
+    .node-card {
+      background: var(--canvas-midnight);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-node);
+      transition: all 0.3s var(--ease-cinematic);
+    }
+    .node-card:hover {
+      border-color: var(--gold-solar);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(245, 158, 11, 0.25);
+    }
+    .node-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-solar);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .node-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #FFF;
+    }
+    .node-card p {
+      color: var(--text-slate);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .node-icon-center {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--canvas-surface);
+      border: 2px solid var(--gold-solar);
+      color: var(--gold-dawn);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 auto;
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+
+    /* Node Images on Opposite Side */
+    .node-image-wrap {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--shadow-node);
+      aspect-ratio: 4 / 3;
+      transition: all 0.3s var(--ease-cinematic);
+    }
+    .node-image-wrap:hover {
+      border-color: var(--gold-dawn);
+      box-shadow: 0 16px 40px rgba(245, 158, 11, 0.3);
+      transform: translateY(-4px);
+    }
+    .node-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease-cinematic);
+    }
+    .node-image-wrap:hover .node-img {
+      transform: scale(1.04);
+    }
+
+    /* SECTION 4: Hardware Specifications Grid */
+    .specs-section {
+      background: var(--canvas-midnight);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 6rem 2rem;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .spec-card {
+      background: var(--canvas-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+    }
+    .spec-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gold-solar);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .spec-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: #FFF;
+    }
+    .spec-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* SECTION 5: Discipline Code */
+    .code-section {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .code-card {
+      background: radial-gradient(circle at 50% 50%, #162B4D 0%, #040914 90%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-md);
+      padding: 4rem 3rem;
+      box-shadow: var(--shadow-node);
+    }
+    .code-card h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .code-card p {
+      color: var(--text-slate);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    /* SECTION 6: Conversion Vault */
+    .vault-section {
+      background: radial-gradient(circle at 50% 50%, #10213B 0%, #040914 85%);
+      border-top: 1px solid var(--border-gold);
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+    .vault-crest {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-solar);
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+    .vault-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .vault-section p {
+      color: var(--text-slate);
+      font-size: 1.15rem;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+    .vault-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+    }
+    .vault-input {
+      flex: 1;
+      background: rgba(4, 9, 20, 0.9);
+      border: 1px solid var(--border-gold);
+      padding: 1rem 1.5rem;
+      color: #FFF;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border-radius: var(--radius-sm);
+    }
+    .vault-input:focus {
+      outline: none;
+      border-color: var(--gold-dawn);
+      box-shadow: 0 0 16px var(--gold-glow);
+    }
+    .vault-trust {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 7: Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--canvas-obsidian);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+    .footer-col h5 {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--gold-solar);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold-dawn); }
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      .hero-cinematic { padding: 8rem 2rem 4rem; background-position: left 20% center; }
+      .hero-container { justify-content: center; }
+      .hero-content { max-width: 100%; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .scroll-indicator { justify-content: center; }
+    }
+
+    @media (max-width: 860px) {
+      .cinema-header { padding: 1rem 1.5rem; }
+      .nav-menu { display: none; }
+      .timeline-track { left: 24px; }
+      .timeline-node { grid-template-columns: 48px 1fr; gap: 1.5rem; }
+      .node-left { text-align: left; grid-column: 2; }
+      .node-right { grid-column: 2; }
+      .node-image-wrap { grid-column: 2; }
+      .node-icon-center { grid-column: 1; margin: 0; }
+      .vault-form { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="cinema-header">
+    <a href="#" class="cinema-brand">
+      <img src="assets/asn-logo.jpg" alt="Alpha Starts Now Crest" class="cinema-logo-img">
+      <div class="cinema-brand-text">
+        <h1>ALPHA STARTS NOW</h1>
+        <p>The Standard of Deliberate Men</p>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#rituals">The 5 Rituals</a></li>
+      <li><a href="#specs">Specifications</a></li>
+      <li><a href="#code">The Code</a></li>
+      <li><a href="#vault">Dispatch</a></li>
+    </ul>
+    <a href="#vault" class="cinema-cta-btn">Claim The Protocol</a>
+  </header>
+
+  <main>
+    <!-- SECTION 1: Cinematic Dawn Hero with Man on Peak (Left) & Narrative (Right) -->
+    <section class="hero-cinematic">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">★ Foundational Operating Standard</div>
+          <h1>THE DAWN VANGUARD.<span>THE 5 MORNING RITUALS.</span></h1>
+          <p>
+            The morning is the decisive crucible of character and agency. Enter the sequential discipline architecture engineered for adult men who demand physical capability, mental clarity, and zero noise.
+          </p>
+          <div class="hero-actions">
+            <a href="#vault" class="cinema-cta-btn">Claim The 5 Rituals Protocol →</a>
+            <a href="#rituals" class="btn-secondary">Inspect The Framework</a>
+          </div>
+          <div class="scroll-indicator">
+            <span>DESCEND INTO THE SEQUENCE</span>
+            <span>▼</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: The Mandate -->
+    <section class="mandate-section">
+      <div class="mandate-inner">
+        <div class="mandate-tag">The Decisive Crucible</div>
+        <h2>
+          Most men surrender the day in their first ten waking minutes—bombarded by algorithmic feeds and physiological lethargy. <em>Deliberate men take command of the dawn before the world asks for their attention.</em>
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 3: The 5 Rituals Scrollytelling Arc with Paired Correlated Imagery -->
+    <section class="scrolly-section" id="rituals">
+      <div class="section-header">
+        <div class="mandate-tag">Sequential Daily Architecture</div>
+        <h2>The Fivefold Morning Arc</h2>
+      </div>
+
+      <div class="scrolly-timeline">
+        <div class="timeline-track"></div>
+
+        <!-- Node 1: Cold Surge -->
+        <div class="timeline-node">
+          <div class="node-left">
+            <div class="node-card">
+              <div class="node-badge">05:00 // RITUAL I</div>
+              <h3>Cold Immersion & Mineral Surge</h3>
+              <p>Immediate 24oz mineralized cellular hydration combined with cold thermal shock. Instantly elevates central nervous system arousal, spikes adrenergic alertness, and eliminates morning sleep inertia without reaching for a phone.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">I</div>
+          <div class="node-image-wrap">
+            <img src="assets/ritual-1.jpg" alt="Ritual I: Cold Immersion & Mineral Surge" class="node-img">
+          </div>
+        </div>
+
+        <!-- Node 2: Kinetic Flow -->
+        <div class="timeline-node">
+          <div class="node-image-wrap">
+            <img src="assets/ritual-2.jpg" alt="Ritual II: Kinetic Articulation & Flow" class="node-img">
+          </div>
+          <div class="node-icon-center">II</div>
+          <div class="node-right">
+            <div class="node-card">
+              <div class="node-badge">05:10 // RITUAL II</div>
+              <h3>Kinetic Articulation & Flow</h3>
+              <p>Ten minutes of deliberate, non-negotiable multi-planar mobility: thoracic spine rotational sweeps, deep hip opener holds, and scapular wall glides. Restores athletic alignment and decompresses joints from sleep.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 3: Solar Photons -->
+        <div class="timeline-node">
+          <div class="node-left">
+            <div class="node-card">
+              <div class="node-badge">05:25 // RITUAL III</div>
+              <h3>Solar Photon Retinal Calibration</h3>
+              <p>Direct outdoor ambient light exposure within the first 30 minutes of sunrise. Activates melanopsin retinal ganglion cells, anchoring the suprachiasmatic nucleus clock and triggering the natural morning cortisol peak for sustained daytime energy.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">III</div>
+          <div class="node-image-wrap">
+            <img src="assets/ritual-3.jpg" alt="Ritual III: Solar Photon Calibration" class="node-img">
+          </div>
+        </div>
+
+        <!-- Node 4: Analogue Intent -->
+        <div class="timeline-node">
+          <div class="node-image-wrap">
+            <img src="assets/ritual-4.jpg" alt="Ritual IV: Analogue Written Blueprint" class="node-img">
+          </div>
+          <div class="node-icon-center">IV</div>
+          <div class="node-right">
+            <div class="node-card">
+              <div class="node-badge">05:45 // RITUAL IV</div>
+              <h3>Analogue Written Blueprint</h3>
+              <p>Pen to heavy paper in strict physical isolation. No browser tabs, no team chats, no email inboxes. Articulate the single needle-moving operational mission of the day, identify key friction points, and commit to the execution sequence.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 5: Focus Chamber -->
+        <div class="timeline-node">
+          <div class="node-left">
+            <div class="node-card">
+              <div class="node-badge">06:00 // RITUAL V</div>
+              <h3>The 90-Minute Focus Chamber</h3>
+              <p>Unbroken, locked cognitive or physical execution on your primary mission before any incoming external demands are permitted. Win the decisive battle of the day before 08:00.</p>
+            </div>
+          </div>
+          <div class="node-icon-center">V</div>
+          <div class="node-image-wrap">
+            <img src="assets/ritual-5.jpg" alt="Ritual V: The 90-Minute Focus Chamber" class="node-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Hardware Specifications Grid -->
+    <section class="specs-section" id="specs">
+      <div class="section-header">
+        <div class="mandate-tag">Operational Blueprint</div>
+        <h2>Precision Execution Specifications</h2>
+      </div>
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-eyebrow">STANDARDS // 01</div>
+          <h4>Electrolyte & Fluid Standard</h4>
+          <p>24 oz filtered water + 1/4 tsp unrefined Celtic grey salt + magnesium malate. Recharges intracellular water balance and electrolyte conductivity before caffeine ingestion.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-eyebrow">STANDARDS // 02</div>
+          <h4>Neuromuscular Priming</h4>
+          <p>Cat-cow spinal waves, 90/90 hip flow, deep thoracic thread-the-needle. Elevates core body temperature and restores full athletic range of motion without fatigue.</p>
+        </div>
+        <div class="spec-card">
+          <div class="spec-eyebrow">STANDARDS // 03</div>
+          <h4>The Zero-Notification Rule</h4>
+          <p>Airplane mode locked from 21:00 the prior night until 07:30 completion. Defends neurochemical attention and protects creative agency from algorithmic hijacking.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Discipline Code -->
+    <section class="code-section" id="code">
+      <div class="code-card">
+        <div class="mandate-tag">Our Uncompromised Standard</div>
+        <h3>Grounded Reality. Zero Grift.</h3>
+        <p>
+          We reject gym-bro rage, rented luxury posturing, and pseudo-scientific biohacking gimmicks. Alpha Starts Now is built strictly on verified behavioral discipline, physiological fundamentals, and daily masculine agency.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Conversion Vault -->
+    <section class="vault-section" id="vault">
+      <img src="assets/asn-logo.jpg" alt="ASN Crest" class="vault-crest">
+      <h2>COMMAND YOUR DAWN.</h2>
+      <p>Receive the complete high-resolution 5 Morning Rituals PDF field manual, daily sequential checklist, and weekly editorial dispatch.</p>
+      <form class="vault-form" onsubmit="event.preventDefault(); alert('The 5 Morning Rituals Blueprint has been dispatched to your email.');">
+        <input type="email" class="vault-input" placeholder="Enter your primary email address" required>
+        <button type="submit" class="cinema-cta-btn">Receive The Blueprint →</button>
+      </form>
+      <div class="vault-trust">Direct field delivery. Strictly zero marketing spam. Unsubscribe in one click.</div>
+    </section>
+  </main>
+
+  <!-- SECTION 7: Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="cinema-brand" style="margin-bottom:1rem;">
+          <img src="assets/asn-logo.jpg" alt="ASN Logo" style="width:36px; height:36px; border-radius:50%; border:1px solid var(--gold-solar);">
+          <span style="font-family:var(--font-display); font-size:1rem; color:var(--gold-dawn);">ALPHA STARTS NOW</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.85rem; max-width:320px;">The definitive morning architecture and discipline dispatch for deliberate adult men.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Protocol</h5>
+        <ul>
+          <li><a href="#rituals">The 5 Rituals</a></li>
+          <li><a href="#specs">Specifications</a></li>
+          <li><a href="#vault">Field Manual</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Publication</h5>
+        <ul>
+          <li><a href="#code">The Standard</a></li>
+          <li><a href="#vault">Weekly Dispatch</a></li>
+          <li><a href="#code">Discipline Code</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Governance</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">FTC Disclosures</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Alpha Starts Now. All rights reserved. Protocol Revision 2026.08 // Verified Operating Standard.
+    </div>
+  </footer>
+</body>
+</html>

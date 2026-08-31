@@ -44,7 +44,17 @@
 
 ---
 
-## 5. Content Lock Gate
+## 5. Evidence Reference Map
+
+Do not duplicate the full evidence ledger in the content plan. For each
+production claim, record the compact reference below and resolve it in
+templates/evidence-ledger.json:
+
+| Claim ID | Route / Component | Claim Type | EVIDENCE_REF | Status | Review Date | Disclosure Dependency |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| [claim-01] | [ROUTE / COMPONENT] | [CLAIM_TYPE] | [SOURCE_OR_CLAIM_ID] | [SUPPORTED / BLOCKED] | [YYYY-MM-DD] | [NONE / REQUIRED] |
+
+## 6. Content Lock Gate
 - [ ] All headlines, body copy, and CTA text written in final production form.
 - [ ] No `Lorem Ipsum` or generic placeholder text remains.
 - [ ] Ready to lock `CONTENT_STRUCTURE_LOCKED` in `site-profile.json`.

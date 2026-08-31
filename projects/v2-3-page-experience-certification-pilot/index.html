@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATLAS FORM — Architecture & Industrial Design Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .featured-cover {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .meta-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 768px) {
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">ATLAS FORM</a>
+      <nav aria-label="Primary Navigation">
+        <a href="index.html" class="active">Journal</a>
+        <a href="projects.html">Monographs</a>
+        <a href="project-detail.html#materials">Specifications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="kicker">Quarterly Monograph · Issue 08</div>
+    <h1>Tectonic Permanence & Spatial Restraint</h1>
+    <p class="lead">
+      Documenting structural purity, raw geological aggregate, and monolithic horological architecture across the Northern Hemisphere.
+    </p>
+
+    <div class="featured-grid">
+      <div class="featured-cover">
+        <div>
+          <div class="meta-tag">CURATED CASE STUDY</div>
+          <h2 style="font-family: var(--font-display); font-size: 1.8rem; margin: 16px 0 12px;">Kronos Subterranean Pavilion</h2>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px;">
+            Cast basalt, tensioned structural steel, and deep thermal mass nestled into the basalt cliffs of the Snaefellsnes peninsula.
+          </p>
+        </div>
+        <div>
+          <a href="projects.html" class="btn-primary">Explore Project Archive →</a>
+        </div>
+      </div>
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 32px; border-radius: 4px;">
+        <h3 style="font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 16px;">Editorial Principles</h3>
+        <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 14px;">
+          <li><strong>01 / Geological Truth:</strong> Form follows native strata.</li>
+          <li><strong>02 / Light as Mass:</strong> Subtractive apertures cutting deep voids.</li>
+          <li><strong>03 / Zero Superfluity:</strong> Total rejection of ornamental facade veneer.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const isFallback = params.get('forceTransitionFallback') === '1';
+      if (isFallback) {
+        document.documentElement.setAttribute('data-transition-fallback', 'true');
+        // Propagate fallback flag to all internal navigation links to preserve standard document navigation
+        document.querySelectorAll('a[href]').forEach(a => {
+          try {
+            const u = new URL(a.getAttribute('href'), window.location.href);
+            if (u.origin === window.location.origin && !u.pathname.includes('#')) {
+              u.searchParams.set('forceTransitionFallback', '1');
+              a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+            }
+          } catch(e) {}
+        });
+        console.warn('View transitions forced to fallback mode via query param.');
+      }
+      // Standards-compliant pagereveal & pageswap interception to immediately skipTransition() if fallback is active
+      if (typeof window !== 'undefined') {
+        window.addEventListener('pagereveal', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+        window.addEventListener('pageswap', (e) => {
+          if (isFallback && e.viewTransition) {
+            e.viewTransition.skipTransition();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

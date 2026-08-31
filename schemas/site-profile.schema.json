@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/site-profile.schema.json",
+  "title": "Website Director current site profile",
+  "description": "The current project-state contract. Framework self-validation state is deliberately kept outside this object.",
+  "x-framework-version-source": "framework-version.json",
+  "x-framework-version": "2.15.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "framework_version",
+    "project_name",
+    "locks"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "framework_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "project_name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "locks": { "$ref": "#/$defs/locks" },
+    "creative_intent": { "$ref": "#/$defs/state" },
+    "research": { "$ref": "#/$defs/state" },
+    "seo": { "$ref": "#/$defs/state" },
+    "design_intelligence": { "$ref": "#/$defs/state" },
+    "measurement": { "$ref": "#/$defs/state" },
+    "security_privacy": { "$ref": "#/$defs/state" },
+    "browser_qa": { "$ref": "#/$defs/state" },
+    "accessibility": { "$ref": "#/$defs/state" },
+    "provenance": { "$ref": "#/$defs/state" },
+    "content_ops": { "$ref": "#/$defs/content_ops" },
+    "localization": { "$ref": "#/$defs/localization" },
+    "application": { "$ref": "#/$defs/application" },
+    "launch_ops": { "$ref": "#/$defs/launch_ops" },
+    "gauntlet": { "$ref": "#/$defs/state" },
+    "handoff": { "$ref": "#/$defs/state" },
+    "signature_choreography": { "$ref": "#/$defs/state" },
+    "visual_prototypes": { "$ref": "#/$defs/state" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "locks": {
+      "type": "object",
+      "properties": {
+        "design_direction_locked": { "type": "boolean" },
+        "information_architecture_locked": { "type": "boolean" },
+        "content_structure_locked": { "type": "boolean" },
+        "design_system_locked": { "type": "boolean" },
+        "motion_direction_locked": { "type": "boolean" }
+      },
+      "required": [
+        "design_direction_locked",
+        "information_architecture_locked",
+        "content_structure_locked",
+        "design_system_locked",
+        "motion_direction_locked"
+      ],
+      "additionalProperties": false
+    },
+    "exception": {
+      "type": "object",
+      "required": ["applied", "reason"],
+      "properties": {
+        "applied": { "type": "boolean" },
+        "reason": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "complete": { "type": "boolean" },
+        "claim_inventory_complete": { "type": "boolean" },
+        "asset_inventory_complete": { "type": "boolean" },
+        "research_reference_inventory_complete": { "type": "boolean" },
+        "license_review_complete": { "type": "boolean" },
+        "attribution_review_complete": { "type": "boolean" },
+        "ledger_ref": { "type": "string" },
+        "status": { "type": "string" },
+        "implementation_verified": { "type": "boolean" },
+        "production_verified": { "type": "boolean" },
+        "implementation_evidence_ref": { "type": "string" },
+        "production_evidence_ref": { "type": "string" },
+        "exception": { "$ref": "#/$defs/exception" }
+      },
+      "additionalProperties": true
+    },
+    "content_ops": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "type": "object",
+          "properties": {
+            "complete": { "type": "boolean" },
+            "cms_requirement": {
+              "type": "string",
+              "enum": [
+                "UNASSESSED",
+                "NO_CMS_REQUIRED",
+                "STATIC_STRUCTURED_CONTENT",
+                "FILE_BASED_CMS",
+                "HEADLESS_CMS",
+                "TRADITIONAL_CMS",
+                "DATABASE_BACKED_CONTENT",
+                "ECOMMERCE_CATALOG",
+                "APPLICATION_DATA",
+                "HYBRID"
+              ]
+            },
+            "content_model_ready": { "type": "boolean" },
+            "editable_surfaces_defined": { "type": "boolean" },
+            "editorial_workflow_defined": { "type": "boolean" },
+            "publishing_authority_defined": { "type": "boolean" },
+            "slug_policy_defined": { "type": "boolean" },
+            "portability_reviewed": { "type": "boolean" },
+            "migration_required": { "type": "boolean" },
+            "selected_architecture": { "type": ["string", "null"] },
+            "blocked_reason": { "type": ["string", "null"] },
+            "exception": { "$ref": "#/$defs/exception" }
+          }
+        }
+      ]
+    },
+    "localization": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "type": "object",
+          "required": [
+            "required",
+            "complete",
+            "source_locale",
+            "default_locale",
+            "supported_locales",
+            "route_strategy",
+            "fallback_policy_defined",
+            "seo_localization_ready",
+            "content_localization_ready",
+            "rtl_required",
+            "translation_review_required",
+            "implementation_verified",
+            "production_verified",
+            "blocked_reason",
+            "exception"
+          ],
+          "properties": {
+            "required": { "type": "boolean" },
+            "complete": { "type": "boolean" },
+            "source_locale": { "type": ["string", "null"] },
+            "default_locale": { "type": ["string", "null"] },
+            "supported_locales": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "route_strategy": {
+              "type": ["string", "null"],
+              "enum": ["PATH_PREFIX", "SUBDOMAIN", "SEPARATE_DOMAIN", "NO_PUBLIC_LOCALE_ROUTING", null]
+            },
+            "fallback_policy_defined": { "type": "boolean" },
+            "seo_localization_ready": { "type": "boolean" },
+            "content_localization_ready": { "type": "boolean" },
+            "rtl_required": { "type": "boolean" },
+            "translation_review_required": { "type": "boolean" },
+            "implementation_verified": { "type": "boolean" },
+            "production_verified": { "type": "boolean" },
+            "blocked_reason": { "type": ["string", "null"] },
+            "exception": { "$ref": "#/$defs/exception" }
+          }
+        }
+      ]
+    },
+    "application": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "type": "object",
+          "required": [
+            "required",
+            "complete",
+            "status",
+            "classifications",
+            "modules_required",
+            "modules_ready",
+            "authentication_required",
+            "commerce_required",
+            "database_required",
+            "external_integrations",
+            "high_risk_operations",
+            "implementation_verified",
+            "production_verified",
+            "blocked_reason",
+            "exception"
+          ],
+          "properties": {
+            "required": { "type": "boolean" },
+            "complete": { "type": "boolean" },
+            "status": {
+              "type": "string",
+              "enum": ["NOT_REQUIRED", "PARTIALLY_REQUIRED", "REQUIRED", "PLANNING", "READY", "BLOCKED", "IMPLEMENTED", "VERIFIED", "EXCEPTION_APPLIED"]
+            },
+            "classifications": { "type": "array", "items": { "type": "string" } },
+            "modules_required": { "type": "array", "items": { "type": "string" } },
+            "modules_ready": { "type": "array", "items": { "type": "string" } },
+            "authentication_required": { "type": "boolean" },
+            "commerce_required": { "type": "boolean" },
+            "database_required": { "type": "boolean" },
+            "external_integrations": { "type": "array" },
+            "high_risk_operations": { "type": "array" },
+            "implementation_verified": { "type": "boolean" },
+            "production_verified": { "type": "boolean" },
+            "blocked_reason": { "type": ["string", "null"] },
+            "exception": { "$ref": "#/$defs/exception" }
+          }
+        }
+      ]
+    },
+    "launch_ops": {
+      "allOf": [
+        { "$ref": "#/$defs/state" },
+        {
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "NOT_EVALUATED",
+                "PLANNING",
+                "BLOCKED",
+                "RELEASE_READY",
+                "AWAITING_DEPLOYMENT_AUTHORIZATION",
+                "DEPLOYMENT_AUTHORIZED",
+                "DEPLOYING",
+                "DEPLOYED",
+                "PRODUCTION_VERIFICATION_RUNNING",
+                "PRODUCTION_VERIFICATION_FAILED",
+                "PRODUCTION_VERIFIED",
+                "POST_LAUNCH_MONITORING",
+                "STABILIZED",
+                "ROLLBACK_REQUIRED",
+                "ROLLED_BACK",
+                "EXCEPTION_APPLIED"
+              ]
+            },
+            "deployed": { "type": "boolean" },
+            "deployment_authorized": { "type": "boolean" },
+            "stabilization_complete": { "type": "boolean" }
+          }
+        }
+      ]
+    }
+  }
+}

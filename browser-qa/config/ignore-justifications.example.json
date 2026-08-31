@@ -1,0 +1,21 @@
+{
+  "$comment": "Template for a project's documented ignore list. Copy into the project's browser-qa-manifest.json. EVERY entry needs a justification and an owner. An empty list is the correct default (BROWSER-REGRESSION-QA-PROTOCOL.md sec 9, sec 10).",
+  "console_ignore": [
+    {
+      "pattern": "Download the React DevTools",
+      "classification": "TEST_ENVIRONMENT_NOISE",
+      "justification": "Emitted only in dev builds; production bundle does not print it. Verified in the production build inspection dated 2026-08-29.",
+      "owner": "build",
+      "expires": "on next framework upgrade"
+    }
+  ],
+  "allowed_third_party_failures": [
+    {
+      "url_contains": "cdn.optional-widget.example",
+      "classification": "THIRD_PARTY_DEFECT",
+      "justification": "Optional social embed. Site is fully functional when it fails; failure is designed for. Declared in security-privacy-review.md sec 9.",
+      "owner": "owner",
+      "site_still_functional": true
+    }
+  ]
+}

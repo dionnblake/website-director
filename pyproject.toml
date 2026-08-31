@@ -1,0 +1,13 @@
+[project]
+name = "website-director-framework-validation"
+description = "Deterministic self-validation contracts for the Website Director prototype"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The V2.5-V2.10 historical suites are script entrypoints with intentional
+# process-level exits; the registry runs them directly. Pytest collects the
+# standard-library unit suites only.
+python_files = ["test_v2_11_framework_validation.py", "test_v2_11_design_inspiration_mcp.py"]
+addopts = "-q"

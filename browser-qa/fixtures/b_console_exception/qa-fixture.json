@@ -1,0 +1,9 @@
+{
+  "route": "/b-console",
+  "title": "Scenario B",
+  "console": [
+    { "level": "error", "text": "Uncaught Error: scenario B: uncaught application error", "classification": "APPLICATION_DEFECT" }
+  ],
+  "layout": { "1440": { "client_width": 1440, "document_scroll_width": 1440, "body_width": 1440 } },
+  "render_signature": { "1440": "b-1440" }
+}

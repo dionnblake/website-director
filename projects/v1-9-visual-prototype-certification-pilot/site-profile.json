@@ -1,0 +1,152 @@
+{
+  "": "http://json-schema.org/draft-07/schema#",
+  "schema_version": "1.9.0",
+  "project_name": "THALASSA BATHO-SYSTEMS",
+  "version": "1.0.0",
+  "creative_intent": {
+    "status": "confirmed",
+    "understanding_confidence": "high",
+    "creative_ambition": "showcase",
+    "visual_intensity": "high_contrast_restrained",
+    "motion_appetite": "deliberate_telemetry",
+    "experimentation_tolerance": "medium_high",
+    "confirmed": true,
+    "confirmation_timestamp": "2026-08-27T02:10:00Z",
+    "fixture_type": "SYNTHETIC_CERTIFICATION_FIXTURE",
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "business_type": "Deep-Sea Mechanical Research & Hadal Telemetry Instruments",
+  "audience": {
+    "primary_decision_maker": "Chief Oceanographer / Director of Deep Submergence Systems / Marine Research Institute Head",
+    "market_segment": "Global Marine Science, Hadal Trench Exploration, Autonomous Deep-Submergence Engineering",
+    "target_visitor": "Institutional deep-sea mission directors and oceanographic research engineers requiring pressure-certified mechanical telemetry",
+    "visitor_state": "Zero tolerance for superficial tech hype; demanding empirical depth ratings, pressure vessel metallurgical proof, and acoustic acoustic telemetry precision"
+  },
+  "conversion_context": {
+    "primary_conversion": {
+      "goal": "Request Mission Instrumentation Dossier & Pressure Vessel Spec",
+      "cta_label": "Request Hadal Mission Spec (11,000m)",
+      "target_metric": "Technical Instrumentation Dossier Inquiries"
+    },
+    "secondary_conversion": {
+      "goal": "Download Metallurgical & Pressure Certification Index",
+      "cta_label": "Download Bathyal Telemetry Archive",
+      "target_metric": "Technical Whitepaper Downloads"
+    },
+    "primary_objection": "Titanium alloy fatigue limits under 1,100 bar cyclic hydrostatic loads",
+    "primary_trust_requirement": "Real physical proof: ASTM Grade 5 titanium vessel geometry, acoustic transducer pulse fidelity, and Lloyd Register hadal pressure certification"
+  },
+  "brand_attributes": [
+    "Sub-Surface Nautical Authority",
+    "Surgical Metallurgical Precision",
+    "Abyssal Hydrostatic Depth",
+    "Scientific Instrumentation Clarity",
+    "Zero-Tolerance Hadal Reliability"
+  ],
+  "design_archetypes": {
+    "primary": "Technical",
+    "primary_weight": 0.6,
+    "secondary": "Modernist",
+    "secondary_weight": 0.3,
+    "accent": "Editorial",
+    "accent_weight": 0.1
+  },
+  "density": "high",
+  "layout_style": "abyssal_telemetry_grid",
+  "geometry": "precision_milled_bevel",
+  "corner_style": "2px",
+  "typography_direction": {
+    "headline": "Monumental Technical Grotesk / Milled Monograph / Hydro-Telemetry Sans",
+    "body": "High-legibility engineering grotesque",
+    "code": "Surgical Hydrostatic Monospace"
+  },
+  "research": {
+    "complete": true,
+    "source": "AWWWARDS_SHOWCASE_INTELLIGENCE_AND_DIRECT_ARCHIVES",
+    "showcase_research_status": "PARTIAL",
+    "competitor_landscape_reviewed": true,
+    "deep_recon_completed": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "seo": {
+    "complete": true,
+    "mode": "standard",
+    "primary_keyword": "hadal exploration instruments",
+    "search_intent": "COMMERCIAL_INVESTIGATION",
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "design_intelligence": {
+    "complete": true,
+    "source_sha": "e4f45473691e4b389519ee4bc359a3d6df666c26",
+    "product_type_matched": "scientific_instrumentation",
+    "candidate_styles": [
+      "Technical Engineering Matrix",
+      "Milled Abyssal Monograph",
+      "Hydrostatic Telemetry Terminal"
+    ],
+    "selected_style": null,
+    "candidate_palette_matched": "Abyssal Black / Titanium Lustre / Hydro-Phosphor Cyan",
+    "candidate_typography_matched": "Space Grotesk + JetBrains Mono",
+    "stack_guidance_applied": "Vanilla HTML/CSS + GSAP Telemetry Canvas",
+    "distinctiveness_check_complete": true,
+    "hero_thesis_declared": true,
+    "signature_element_declared": true,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "locks": {
+    "design_direction_locked": false,
+    "information_architecture_locked": false,
+    "content_structure_locked": false,
+    "design_system_locked": false,
+    "motion_direction_locked": false
+  },
+  "qa_status": {
+    "design_qa_score": null,
+    "design_qa_verdict": "PENDING",
+    "production_preflight_passed": false
+  },
+  "gauntlet": {
+    "status": "NOT_RUN",
+    "iteration_count": 0,
+    "max_iterations": 3,
+    "verdict": "PENDING",
+    "largest_remaining_gap": null,
+    "residual_defects": [],
+    "reference_bars": [
+      "AWWWARDS_HERO_BAR: Real-time 11,000m Depth / Pressure Vector Scale",
+      "AWWWARDS_TYPOGRAPHY_BAR: Precision 10px Hydrostatic Metadata vs Monumental Technical Display",
+      "AWWWARDS_INTERACTION_BAR: Tactile Milled Pressure Dial & Acoustic Pulse Probe"
+    ],
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  },
+  "visual_prototypes": {
+    "status": "ready_for_owner_review",
+    "required": true,
+    "direction_count": 3,
+    "showcase_research": "required",
+    "portfolio_art_director_review": true,
+    "divergence_verified": true,
+    "asset_limitation_noted": true,
+    "owner_selected_direction": null,
+    "owner_selection_confirmed": false,
+    "exception": {
+      "applied": false,
+      "reason": null
+    }
+  }
+}

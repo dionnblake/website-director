@@ -53,7 +53,10 @@ Website Director interprets the evidence returned by whichever capability answer
 
 ---
 
-## 4. Required Business Context (Precondition for Any Research)
+## 4. Required Business Context & Gate Precondition (V1.8)
+
+**Precondition for Any Research:**
+Under Website Director V1.8, Phase 2.5 SEO Intelligence must NEVER execute before `site-profile.json` $\rightarrow$ `creative_intent.confirmed = true` (or an explicit grandfathered legacy baseline). SEO Intelligence cannot independently bypass `[CREATIVE_INTENT_CONFIRMED]`.
 
 Before any keyword research, establish and record in `templates/seo-business-context.md`:
 
@@ -66,7 +69,7 @@ TARGET LOCATION / COUNTRY = LANGUAGE =
 KNOWN COMPETITORS =         EXISTING WEBSITE =
 ```
 
-Most of this is already captured in `templates/project-brief.md` (Discovery Stage 1) and `templates/positioning.md` (Discovery Stage 2) — do not re-interview the owner for information already on file; carry it forward into `seo-business-context.md`. **Do not run generic keyword research without this context.** Search volume without business relevance is not useful evidence.
+Most of this is derived directly from `templates/creative-intent-contract.md`, `templates/project-brief.md`, and `templates/positioning.md` — do not re-interview the owner for information already on file; carry it forward into `seo-business-context.md`. **Do not run generic keyword research without confirmed creative intent and business context.** Search volume without business relevance is not useful evidence.
 
 ---
 
@@ -244,6 +247,31 @@ If the routed capability (§3) incurs API/credit cost:
 
 ---
 
-## 14. Handoff Boundary (Builder Cannot Reopen Strategy)
+## 14. Evidence Traceability Boundary
+
+Every factual SEO output, including title claims, meta descriptions, FAQ
+answers, structured-data properties, ratings, awards, location statements,
+years, and performance language, must resolve to an EVIDENCE_REF in the
+project evidence ledger. SEO does not invent authority, freshness, ratings,
+reviews, or competitive statistics.
+
+If evidence is missing, stale, contradicted, or unverified, the claim remains
+UNKNOWN, REVIEW_REQUIRED, BLOCKED, or FAIL as appropriate. The claim inventory
+and source identity are owned by EVIDENCE-PROVENANCE-PROTOCOL.md; SEO owns
+search intent and metadata strategy. Do not duplicate the ledger or silently
+promote research references into factual claims.
+
+## 14.1 Content Operations Integration (V2.13)
+
+Content Operations consumes this protocol's approved page, keyword, metadata,
+canonical, structured-data, and freshness strategy. It may expose bounded
+editor fields such as `SEO_TITLE`, `META_DESCRIPTION`, `CANONICAL_OVERRIDE`,
+`OG_TITLE`, `OG_DESCRIPTION`, `OG_IMAGE`, and `INDEXABILITY`, but it does not
+re-author search strategy. Local, staging, preview, invalid, duplicate, or
+unsupported SEO values remain blocked. Structured-data schema stays
+system-controlled and evidence-bound; editors cannot change analytics
+identifiers or site-wide SEO architecture.
+
+## 15. Handoff Boundary (Builder Cannot Reopen Strategy)
 
 `keyword-map.md` and `seo-content-briefs.md` are locked inputs to Phase 9 (`IMPLEMENTATION-CONTRACT.md`) once `seo.complete` is `true`. The Website Builder implements the approved page/keyword mapping; it does not independently perform new keyword research or create new SEO-motivated pages merely because it notices search-relevant terms during the build. If new evidence suggests the specification itself was wrong, Website Director reopens this protocol explicitly — the Builder does not silently deviate. See `IMPLEMENTATION-CONTRACT.md` §3.

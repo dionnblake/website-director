@@ -1,0 +1,30 @@
+{
+  "registry_version": "1.0.0",
+  "description": "One writable authority per current framework state concept. Historical aliases remain readable but cannot become current authority.",
+  "states": [
+    { "path": "framework_validation.status", "canonical_concept": "framework_validation", "status": "ACTIVE", "owner_protocol": "FRAMEWORK_VALIDATION", "writable_by": ["framework_validation.validator"] },
+    { "path": "research.complete", "canonical_concept": "research_readiness", "status": "ACTIVE", "owner_protocol": "VISUAL_RESEARCH", "writable_by": ["website_director.research"] },
+    { "path": "seo.complete", "canonical_concept": "seo_readiness", "status": "ACTIVE", "owner_protocol": "SEO_INTELLIGENCE", "writable_by": ["website_director.seo"] },
+    { "path": "design_intelligence.complete", "canonical_concept": "design_intelligence_readiness", "status": "ACTIVE", "owner_protocol": "DESIGN_INTELLIGENCE", "writable_by": ["website_director.design_intelligence"] },
+    { "path": "measurement.complete", "canonical_concept": "conversion_measurement_readiness", "status": "ACTIVE", "owner_protocol": "CONVERSION_ANALYTICS", "writable_by": ["website_director.measurement"] },
+    { "path": "security_privacy.complete", "canonical_concept": "security_privacy_readiness", "status": "ACTIVE", "owner_protocol": "SECURITY_PRIVACY", "writable_by": ["website_director.security_privacy"] },
+    { "path": "accessibility.complete", "canonical_concept": "accessibility_readiness", "status": "ACTIVE", "owner_protocol": "ACCESSIBILITY", "writable_by": ["website_director.accessibility"] },
+    { "path": "provenance.complete", "canonical_concept": "evidence_asset_provenance_readiness", "status": "ACTIVE", "owner_protocol": "EVIDENCE_PROVENANCE", "writable_by": ["website_director.provenance"] },
+    { "path": "content_ops.complete", "canonical_concept": "content_operations_readiness", "status": "ACTIVE", "owner_protocol": "CONTENT_OPERATIONS_CMS", "writable_by": ["website_director.content_ops"] },
+    { "path": "localization.complete", "canonical_concept": "localization_readiness", "status": "ACTIVE", "owner_protocol": "LOCALIZATION_INTERNATIONALIZATION", "writable_by": ["website_director.localization"] },
+    { "path": "application.complete", "canonical_concept": "conditional_application_architecture_readiness", "status": "ACTIVE", "owner_protocol": "APPLICATION_COMMERCE_AUTH", "writable_by": ["website_director.application"] },
+    { "path": "browser_qa.complete", "canonical_concept": "browser_qa_verification", "status": "ACTIVE", "owner_protocol": "BROWSER_QA", "writable_by": ["browser_qa.runner"] },
+    { "path": "launch_ops.complete", "canonical_concept": "launch_readiness", "status": "ACTIVE", "owner_protocol": "LAUNCH_OPERATIONS", "writable_by": ["website_director.launch_ops"] },
+    { "path": "gauntlet.status", "canonical_concept": "gauntlet_refinement", "status": "ACTIVE", "owner_protocol": "GAUNTLET", "writable_by": ["website_director.gauntlet"] },
+    { "path": "locks.*", "canonical_concept": "owner_design_locks", "status": "ACTIVE", "owner_protocol": "WEBSITE_DIRECTOR_CORE", "writable_by": ["owner.approval"] }
+  ],
+  "aliases": [
+    { "path": "cro.complete", "canonical_concept": "conversion_measurement_readiness", "status": "SUPERSEDED", "replaced_by": "measurement.complete", "allowed_in": ["V2.4", "V2.5", "historical_frozen_projects"] },
+    { "path": "conversion.complete", "canonical_concept": "conversion_measurement_readiness", "status": "DEPRECATED", "replaced_by": "measurement.complete", "allowed_in": ["historical_frozen_projects"] }
+  ],
+  "rules": {
+    "active_concept_has_one_owner": true,
+    "superseded_alias_cannot_be_current": true,
+    "readiness_gates_are_not_owner_locks": true
+  }
+}

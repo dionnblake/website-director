@@ -1,0 +1,42 @@
+{
+  "route": "/a11y-color-only-error",
+  "title": "Page",
+  "layout": {
+    "1440": {
+      "client_width": 1440,
+      "document_scroll_width": 1440,
+      "body_width": 1440
+    },
+    "390": {
+      "client_width": 390,
+      "document_scroll_width": 390,
+      "body_width": 390
+    }
+  },
+  "render_signature": {
+    "1440": "a11y_color_only_error",
+    "390": "a11y_color_only_error-390"
+  },
+  "a11y": {
+    "landmarks": [
+      "header",
+      "nav",
+      "main",
+      "footer"
+    ],
+    "heading_order_ok": true,
+    "h1_count": 1,
+    "page_lang": "en",
+    "page_title": "Page",
+    "skip_link_present": true,
+    "color_only_state": [
+      "form error shown only as red border, no text/icon"
+    ]
+  },
+  "reduced_motion": {
+    "hidden_content": [],
+    "render_signature": {
+      "1440": "a11y_color_only_error-rm"
+    }
+  }
+}

@@ -40,6 +40,22 @@
 
 ---
 
+## 6.5. Reference Evidence Ledger
+
+Record every external candidate that materially informs this synthesis. MCP
+rows use `Source Type: design_inspiration_mcp`; other research channels retain
+their existing source type. This ledger records evidence and interpretation,
+not production assets or implementation tokens.
+
+| Platform | Source URL | Query | Grade | Why Selected | Pattern to Learn | What Not To Copy | Production Plausibility | Accessibility Risk | Implementation Risk | Retrieved At | Upstream Commit | Copyright Boundary |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| [Platform or NOT_APPLICABLE] | [Exact URL] | [Exact query or NOT_APPLICABLE] | [A/B/C/D/UNASSESSED] | [Client-specific reason] | [Transferable mechanic] | [Composition/assets/copy] | [HIGH/MEDIUM/LOW/UNASSESSED] | [Risk or UNASSESSED] | [LOW/MEDIUM/HIGH/UNASSESSED] | [ISO timestamp] | [SHA or NOT_APPLICABLE] | `REFERENCE_ONLY` |
+
+MCP image URLs remain research pointers. Asset Director controls all
+production image selection, licensing, provenance, and optimization.
+
+---
+
 ## 7. Motion Principles to Carry Forward
 
 | Principle | Source | Why It Applies to This Client |
@@ -80,4 +96,6 @@
 - [ ] Every section above is a decision or a rejection, not a restated fact.
 - [ ] Originality Check (§11) completed honestly.
 - [ ] Source provenance for every cited reference recorded per `RESEARCH-SOURCES.md` §7.
+- [ ] The Reference Evidence Ledger (§6.5) is complete for every external candidate used.
+- [ ] No reference has been cloned, and no MCP image or token has entered production implementation.
 - [ ] `research.complete` may now be set to `true` in `site-profile.json`.

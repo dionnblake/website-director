@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Starts Now — The 5 Morning Rituals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-navy-dark: #070F1E;
+      --bg-navy: #0D1B2A;
+      --bg-navy-light: #15253A;
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-gold: #F59E0B;
+      --accent-yellow: #FACC15;
+      --accent-gold-glow: rgba(245, 158, 11, 0.2);
+      --border-subtle: rgba(248, 250, 252, 0.12);
+      --border-gold: rgba(245, 158, 11, 0.4);
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-display: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-navy-dark);
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    header {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 15, 30, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 0 16px var(--accent-gold-glow);
+      object-fit: cover;
+    }
+    .brand-titles h1 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+    .brand-titles p {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-yellow); }
+    .btn-gold {
+      background: linear-gradient(135deg, #F59E0B, #EAB308);
+      color: #070F1E;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-gold-glow);
+    }
+    .hero {
+      padding: 6rem 2rem 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--bg-navy-light);
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      color: var(--accent-yellow);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: #FFFFFF;
+    }
+    .hero h2 em {
+      font-style: italic;
+      color: var(--accent-yellow);
+    }
+    .hero-sub {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-white);
+      border: 1px solid var(--border-subtle);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent-yellow);
+      color: var(--accent-yellow);
+    }
+    .hero-emblem-showcase {
+      margin-top: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+    .emblem-large {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-gold);
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.35);
+      object-fit: cover;
+    }
+    .section-divider {
+      border-top: 1px solid var(--border-subtle);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .rituals-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+    .section-header {
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .section-tag {
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .section-header h3 {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 400;
+    }
+    .rituals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .ritual-card {
+      background: var(--bg-navy);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ritual-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+    }
+    .card-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent-yellow);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .card-num::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+    .ritual-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: #FFFFFF;
+    }
+    .ritual-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .card-meta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .protocol-breakdown {
+      background: var(--bg-navy);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 3.5rem 3rem;
+      text-align: center;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+    }
+    .protocol-breakdown h3 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+    .protocol-breakdown p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .form-group {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 520px;
+      margin: 0 auto 1rem;
+    }
+    .form-input {
+      flex: 1;
+      background: var(--bg-navy-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 0.9rem 1.25rem;
+      color: #FFF;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-yellow);
+    }
+    .privacy-notice {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="#" class="brand-group">
+        <img src="../assets/asn-logo.jpg" alt="Alpha Starts Now Crest" class="brand-logo-img">
+        <div class="brand-titles">
+          <h1>ALPHA STARTS NOW</h1>
+          <p>The Standard of Deliberate Men</p>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#rituals">The 5 Rituals</a></li>
+        <li><a href="#protocol">Protocol Blueprint</a></li>
+      </ul>
+      <a href="#claim" class="btn-gold">Get The 5 Rituals</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge">
+        <span>★</span> Foundational Operating Standard
+      </div>
+      <h2>Take Command of the Dawn.<br><em>The 5 Morning Rituals.</em></h2>
+      <p class="hero-sub">
+        No hype, no pseudo-science, no noise. A disciplined, sequential morning architecture engineered for adult men who demand daily agency and mental clarity.
+      </p>
+      <div class="hero-actions">
+        <a href="#claim" class="btn-gold">Claim The 5 Rituals Protocol →</a>
+        <a href="#rituals" class="btn-secondary">Inspect The Framework</a>
+      </div>
+      <div class="hero-emblem-showcase">
+        <img src="../assets/asn-logo.jpg" alt="Alpha Starts Now Wolf Crest" class="emblem-large">
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="rituals-section" id="rituals">
+      <div class="section-header">
+        <div class="section-tag">Sequential Daily Architecture</div>
+        <h3>The Five Pillars of Morning Execution</h3>
+      </div>
+      <div class="rituals-grid">
+        <div class="ritual-card">
+          <div class="card-num">RITUAL 01</div>
+          <h4>The Cold Standard & Hydration</h4>
+          <p>Immediate 24oz mineralized hydration upon waking, paired with cold water immersion or cold exposure to stimulate central nervous alertness.</p>
+          <div class="card-meta">Execution: First 5 Minutes</div>
+        </div>
+        <div class="ritual-card">
+          <div class="card-num">RITUAL 02</div>
+          <h4>Kinetic Mobility Primer</h4>
+          <p>Ten minutes of full-body joint articulation and controlled bodyweight tension to unbind the spine and prime athletic posture.</p>
+          <div class="card-meta">Execution: Minutes 5 – 15</div>
+        </div>
+        <div class="ritual-card">
+          <div class="card-num">RITUAL 03</div>
+          <h4>Natural Light Immersion</h4>
+          <p>Direct outdoor photon exposure within the first 30 minutes of dawn to calibrate circadian rhythm, wakefulness, and hormonal timing.</p>
+          <div class="card-meta">Execution: Minutes 15 – 30</div>
+        </div>
+        <div class="ritual-card">
+          <div class="card-num">RITUAL 04</div>
+          <h4>Zero-Screen Written Intent</h4>
+          <p>No notifications, feeds, or incoming emails. Pure analogue journaling of the day’s single high-leverage objective and primary constraints.</p>
+          <div class="card-meta">Execution: Minutes 30 – 45</div>
+        </div>
+        <div class="ritual-card">
+          <div class="card-num">RITUAL 05</div>
+          <h4>The 90-Minute Focus Chamber</h4>
+          <p>Unbroken execution on the highest-priority operational task before any incoming demands or communication are permitted.</p>
+          <div class="card-meta">Execution: Minutes 45 – 135</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rituals-section" id="claim" style="padding-top:0;">
+      <div class="protocol-breakdown">
+        <img src="../assets/asn-logo.jpg" alt="ASN Emblem" style="width:72px; height:72px; border-radius:50%; border:2px solid var(--accent-gold); margin-bottom:1.5rem;">
+        <h3>Master Your Morning Before the World Awakes.</h3>
+        <p>Get the complete step-by-step PDF field blueprint and sequential checklist for The 5 Morning Rituals.</p>
+        <form class="form-group" onsubmit="event.preventDefault(); alert('Protocol guide sent. Check your inbox.');">
+          <input type="email" class="form-input" placeholder="Enter your primary email address" required>
+          <button type="submit" class="btn-gold">Get The Protocol</button>
+        </form>
+        <div class="privacy-notice">Direct delivery. Zero marketing spam. Unsubscribe anytime.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Alpha Starts Now. Built for discipline, clarity, and daily standards.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "version": "2.15.0",
+  "schema_version": "2.15.0",
+  "previous_version": "2.14.0",
+  "release_type": "minor",
+  "status": "CURRENT",
+  "source_of_truth": true,
+  "lineage": {
+    "base_branch": "codex/website-director-v2-14-localization",
+    "base_commit": "d2cc002e5156ec62999dcc69d2baf2a8869e1317",
+    "base_version": "2.14.0",
+    "current_checkout_note": "V2.15 adds conditional Capability 10 Application, Commerce, and Authentication Architecture at Phase 6.99 while preserving the certified framework, five owner locks, frozen project corpus, provider-neutral operation, and existing Content Operations, SEO, Accessibility, Security and Privacy, Measurement, Provenance, Browser QA, Launch Ops, and Client Handoff authorities. Application architecture is activated only by explicit behavior and user stories."
+  }
+}

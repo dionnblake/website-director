@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northstar Performance Lab | Executive Biological & Cognitive Architecture</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-mark" data-nav-track="header_logo">
+        <span></span> NORTHSTAR LAB
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active" data-nav-track="header_nav">Overview</a></li>
+          <li><a href="services.html" data-nav-track="header_nav">Protocols</a></li>
+          <li><a href="case-study.html" data-nav-track="header_nav">Case Evidence</a></li>
+          <li><a href="consultation.html" class="nav-cta" data-nav-track="header_cta">Assessment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="badge">Executive Diagnostic System</div>
+      <h1>Empirical biological and cognitive resilience for enterprise leaders.</h1>
+      <p class="lead">Northstar Lab designs confidential, metric-driven human performance architecture for CEOs, managing partners, and senior executive boards operating in high-entropy environments.</p>
+      
+      <div class="cta-group" id="hero-cta-container">
+        <a href="consultation.html" class="btn-primary" id="hero-primary-cta" data-nav-track="hero_cta">Request Strategy Session</a>
+        <a href="services.html" class="btn-secondary" data-nav-track="hero_secondary">Review Protocols</a>
+        <p class="variant-subtitle" id="hero-subtitle">Confidential 45-minute diagnostic session with managing partners.</p>
+      </div>
+    </section>
+
+    <section class="grid-3">
+      <div class="card">
+        <div class="card-meta">PILLAR 01</div>
+        <h3>Neuro-Endocrine Mapping</h3>
+        <p>Quantitative biomarker analysis tracking autonomic regulation, sleep architecture, and cortisol modulation under enterprise volatility.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">PILLAR 02</div>
+        <h3>Cognitive Velocity & Focus</h3>
+        <p>Targeted neuro-efficiency protocols engineered to sustain executive working memory and decisive strategic clarity across 14-hour decision cycles.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">PILLAR 03</div>
+        <h3>Longitudinal Optimization</h3>
+        <p>Continuous closed-loop biometric telemetry and quarterly protocol adjustments overseen directly by clinical performance directors.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Northstar Performance Lab. Confidential & Proprietary Advisory Architecture.</p>
+  </footer>
+
+  <script>
+    // Synthetic Experiment Handler: consultation-positioning-v1
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const variant = urlParams.get('variant') === 'challenger' ? 'challenger' : 'control';
+      
+      const ctaBtn = document.getElementById('hero-primary-cta');
+      const subtitle = document.getElementById('hero-subtitle');
+
+      if (variant === 'challenger') {
+        ctaBtn.textContent = "See If We're a Fit";
+        subtitle.textContent = "Evaluate executive diagnostic fit before confidential booking.";
+      } else {
+        ctaBtn.textContent = "Request Strategy Session";
+        subtitle.textContent = "Confidential 45-minute diagnostic session with managing partners.";
+      }
+
+      // Track Experiment Exposure once
+      if (window.trackEvent) {
+        window.trackEvent('experiment_exposure', {
+          experiment_id: 'consultation-positioning-v1',
+          variant_id: variant
+        });
+      }
+    });
+  </script>
+</body>
+</html>

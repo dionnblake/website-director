@@ -1,0 +1,18 @@
+{
+  "$comment": "Canonical viewport matrix (BROWSER-REGRESSION-QA-PROTOCOL.md sec 6). A project may narrow or extend this in its browser-qa-manifest.json, but every project MUST cover one width in each class.",
+  "classes": {
+    "small_mobile":     { "widths": [360],        "required": true },
+    "standard_mobile":  { "widths": [375, 390],   "required": true },
+    "large_mobile":     { "widths": [428],        "required": false },
+    "tablet":           { "widths": [768],        "required": true },
+    "laptop":           { "widths": [1024, 1280], "required": true },
+    "desktop":          { "widths": [1440],       "required": true }
+  },
+  "required_smoke_matrix": [390, 768, 1440],
+  "extended_regression_matrix": [360, 375, 390, 428, 768, 1024, 1280, 1440],
+  "notes": [
+    "The required smoke matrix runs on every build and on every reopened build.",
+    "The extended regression matrix runs before Gauntlet entry, before production pre-flight, and on any change to layout, tokens, IA, or motion.",
+    "Do not run every assertion at every width when it multiplies cost without signal: responsive invariants and screenshots run across the full class set; measurement, console, network, and form assertions run on the smoke matrix unless a route is viewport-conditional."
+  ]
+}

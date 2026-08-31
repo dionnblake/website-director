@@ -1,0 +1,33 @@
+{
+  "$schema": "../schemas/localization-manifest.schema.json",
+  "template": true,
+  "template_version": "2.14.0",
+  "framework_version": "2.14.0",
+  "project_name": "Project Name",
+  "required": false,
+  "status": "NOT_REQUIRED",
+  "source_locale": null,
+  "default_locale": null,
+  "supported_locales": [],
+  "route_strategy": "NO_PUBLIC_LOCALE_ROUTING",
+  "default_locale_url_policy": null,
+  "fallback_policy": "NO_FALLBACK",
+  "locales": [],
+  "field_contract": [
+    "locale",
+    "language",
+    "region",
+    "script",
+    "enabled",
+    "default",
+    "source",
+    "route_prefix",
+    "direction",
+    "status",
+    "translation_owner",
+    "fallback_locale",
+    "seo_enabled",
+    "content_coverage",
+    "review_status"
+  ]
+}

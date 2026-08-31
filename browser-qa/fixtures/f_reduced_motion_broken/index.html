@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Scenario F' — content trapped behind animation under reduced motion</title>
+<main>
+  <h1>Reduced-motion defect scenario</h1>
+  <!-- .await-anim stays opacity:0 forever when reduced motion suppresses the animation -->
+  <p class="await-anim" style="opacity:0">This paragraph never becomes visible with reduced motion.</p>
+  <a class="primary-cta" data-qa="primary-cta" href="/contact">Start a project</a>
+</main>

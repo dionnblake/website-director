@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/localization-manifest.schema.json",
+  "title": "Website Director localization and internationalization manifest",
+  "description": "Provider-neutral Capability 9 planning and verification contract. It records requirements and evidence without publishing, provisioning a provider, or certifying legal translation.",
+  "type": "object",
+  "required": ["template_version", "framework_version", "project_name", "required", "status"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "template": { "type": "boolean" },
+    "template_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "framework_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "project_name": { "type": "string", "minLength": 1 },
+    "required": { "type": "boolean" },
+    "complete": { "type": "boolean" },
+    "status": {
+      "type": "string",
+      "enum": ["NOT_REQUIRED", "PLANNING", "READY", "BLOCKED", "IMPLEMENTED", "VERIFIED", "EXCEPTION_APPLIED"]
+    },
+    "source_locale": { "type": ["string", "null"], "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+    "default_locale": { "type": ["string", "null"], "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+    "supported_locales": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" }
+    },
+    "locale_registry_ref": { "type": ["string", "null"] },
+    "locale_registry": { "$ref": "#/$defs/locale_registry" },
+    "route_strategy": {
+      "type": ["string", "null"],
+      "enum": ["PATH_PREFIX", "SUBDOMAIN", "SEPARATE_DOMAIN", "NO_PUBLIC_LOCALE_ROUTING", null]
+    },
+    "default_locale_url_policy": { "type": ["string", "null"], "enum": ["ROOT", "PREFIX", null] },
+    "fallback_policy": {
+      "type": ["string", "null"],
+      "enum": ["NO_FALLBACK", "SOURCE_LOCALE_FALLBACK", "PARENT_LANGUAGE_FALLBACK", "CONTENT_TYPE_SPECIFIC", null]
+    },
+    "fallback_policy_defined": { "type": "boolean" },
+    "formatting": { "type": "object" },
+    "logical_css": { "type": "object" },
+    "rtl": { "type": "array" },
+    "ui_strings": { "type": "array" },
+    "translations": { "type": "array" },
+    "pages": { "type": "array" },
+    "fonts": { "type": "array" },
+    "assets": { "type": "array" },
+    "pseudolocalization": { "type": "array" },
+    "content_ops": { "type": "object" },
+    "accessibility": { "type": "object" },
+    "analytics": { "type": "object" },
+    "handoff": { "type": "object" },
+    "exception": {
+      "type": "object",
+      "required": ["applied", "reason"],
+      "properties": {
+        "applied": { "type": "boolean" },
+        "reason": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "external_translation_provider_required": { "type": "boolean" },
+    "provider_adapter": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "locale": {
+      "type": "object",
+      "required": ["locale", "language", "enabled", "default", "source", "direction", "status", "translation_owner", "fallback_locale", "seo_enabled", "content_coverage", "review_status"],
+      "properties": {
+        "locale": { "type": "string", "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+        "language": { "type": "string", "pattern": "^[A-Za-z]{2,8}$" },
+        "region": { "type": ["string", "null"], "pattern": "^(?:[A-Za-z]{2}|[0-9]{3})$" },
+        "script": { "type": ["string", "null"], "pattern": "^[A-Za-z]{4}$" },
+        "enabled": { "type": "boolean" },
+        "default": { "type": "boolean" },
+        "source": { "type": "boolean" },
+        "route_prefix": { "type": ["string", "null"] },
+        "route_host": { "type": ["string", "null"] },
+        "direction": { "type": "string", "enum": ["ltr", "rtl"] },
+        "status": { "type": "string" },
+        "translation_owner": { "type": "string", "minLength": 1 },
+        "fallback_locale": { "type": ["string", "null"], "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+        "seo_enabled": { "type": "boolean" },
+        "content_coverage": { "type": "string", "enum": ["FULL", "PARTIAL", "NOT_AVAILABLE"] },
+        "review_status": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "locale_registry": {
+      "type": "object",
+      "properties": {
+        "required": { "type": "boolean" },
+        "status": { "type": "string" },
+        "source_locale": { "type": ["string", "null"], "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+        "default_locale": { "type": ["string", "null"], "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" },
+        "supported_locales": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$" }
+        },
+        "route_strategy": {
+          "type": ["string", "null"],
+          "enum": ["PATH_PREFIX", "SUBDOMAIN", "SEPARATE_DOMAIN", "NO_PUBLIC_LOCALE_ROUTING", null]
+        },
+        "default_locale_url_policy": { "type": ["string", "null"], "enum": ["ROOT", "PREFIX", null] },
+        "fallback_policy": {
+          "type": ["string", "null"],
+          "enum": ["NO_FALLBACK", "SOURCE_LOCALE_FALLBACK", "PARENT_LANGUAGE_FALLBACK", "CONTENT_TYPE_SPECIFIC", null]
+        },
+        "locales": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/locale" }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

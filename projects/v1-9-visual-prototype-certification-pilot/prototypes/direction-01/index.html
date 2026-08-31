@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THALASSA | Direction 01: The Hydrostatic Terminal</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #03080e;
+      color: #e2f1f8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      padding-bottom: 5rem;
+      overflow-x: hidden;
+    }
+    .fixture-banner {
+      background: #eab308;
+      color: #000;
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 0.4rem 0.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      word-break: break-word;
+    }
+    header {
+      border-bottom: 1px solid #12283a;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #03080e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .badge {
+      font-family: monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: #00f0ff;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    nav a {
+      color: #6b8a9e;
+      text-decoration: none;
+      font-family: monospace;
+      font-size: 0.8rem;
+      margin-right: 1.5rem;
+      text-transform: uppercase;
+    }
+    .header-btn {
+      font-family: monospace;
+      font-size: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      background: transparent;
+      border: 1px solid #1d4566;
+      color: #00f0ff;
+      cursor: pointer;
+    }
+    .hero {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .tag {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #6b8a9e;
+      margin-bottom: 1.5rem;
+    }
+    .tag span { color: #00f0ff; }
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      word-break: break-word;
+    }
+    .lead {
+      font-size: 1.1rem;
+      color: #6b8a9e;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-main {
+      font-family: monospace;
+      font-size: 0.85rem;
+      font-weight: bold;
+      background: #00f0ff;
+      color: #03080e;
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .btn-ghost {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: transparent;
+      border: 1px solid #1d4566;
+      color: #e2f1f8;
+      padding: 1rem 1.75rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .pod {
+      background: #07131e;
+      border: 1px solid #1d4566;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .telemetry-sweep {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+      animation: sweepAnim 3s infinite linear;
+    }
+    @keyframes sweepAnim {
+      0% { top: 0; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .pod-top {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #12283a;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #00f0ff;
+    }
+    .depth-val {
+      font-family: monospace;
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .depth-unit {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #00f0ff;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      border: 1px solid #12283a;
+      padding: 1rem;
+      background: #03080e;
+      font-family: monospace;
+    }
+    .card label {
+      display: block;
+      font-size: 0.65rem;
+      color: #3e5a6c;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .card .val {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #e2f1f8;
+    }
+    .section {
+      max-width: 1300px;
+      margin: 0 auto;
+      border-top: 1px solid #12283a;
+      padding: 4rem 2rem;
+    }
+    .sec-tag {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #00f0ff;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .sec-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    th, td {
+      padding: 1.25rem 1rem;
+      border-bottom: 1px solid #12283a;
+      text-align: left;
+    }
+    th { color: #6b8a9e; font-size: 0.75rem; text-transform: uppercase; }
+    td:first-child { color: #ffffff; font-weight: bold; }
+    td.cyan { color: #00f0ff; font-weight: bold; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .telemetry-sweep {
+        animation: none;
+        display: none;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 2.5rem 1.25rem; }
+      header { padding: 1rem 1.25rem; }
+      nav { display: none; }
+      .depth-val { font-size: 2.5rem; }
+      table { font-size: 0.75rem; }
+      th, td { padding: 0.75rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fixture-banner">SYNTHETIC CERTIFICATION FIXTURE - NOT A REAL COMPANY</div>
+  <header>
+    <div class="badge">Thalassa Batho-Systems</div>
+    <nav>
+      <a href="#telemetry">Telemetry</a>
+      <a href="#specs">Vessels</a>
+      <a href="#cert">Test Protocol</a>
+    </nav>
+    <button class="header-btn">Spec Hub</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="tag">FICTIONAL HADAL CLASS: <span>1,150 BAR</span> // RATING: <span>11,000M</span></div>
+        <h1>Surgical Mechanical Telemetry for the Hadal Abyss.</h1>
+        <p class="lead">Thalassa designs titanium Grade 5 deep-submergence pressure hulls and acoustic pulse telemetry verified to 11,000m depth in synthetic hadal pressure chambers.</p>
+        <div class="cta-row">
+          <button class="btn-main">Request Hadal Mission Spec</button>
+          <button class="btn-ghost">Download Telemetry Dossier</button>
+        </div>
+      </div>
+      <div class="pod" id="telemetry">
+        <div class="telemetry-sweep"></div>
+        <div class="pod-top">
+          <span>SIMULATED PRESSURE CHAMBER</span>
+          <span>AUTON-09</span>
+        </div>
+        <div class="depth-val" id="depthCounter">10,928</div>
+        <div class="depth-unit">METERS / 1,093 BAR HYDROSTATIC</div>
+        <div class="grid-2">
+          <div class="card"><label>Hull Alloy</label><div class="val">Ti-6Al-4V ELI</div></div>
+          <div class="card"><label>Acoustic Pulse</label><div class="val">14.2 kHz Telemetry</div></div>
+          <div class="card"><label>Yield Stress</label><div class="val">828 MPa Verified</div></div>
+          <div class="card"><label>Thermal Delta</label><div class="val">+1.2C Isothermal</div></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="specs">
+      <div class="sec-tag">Synthetic Pressure Vessel Architecture</div>
+      <h2 class="sec-title">Tested Beyond Simulated Challenger Deep Hydrostatic Thresholds</h2>
+      <table>
+        <thead>
+          <tr><th>Instrument Series</th><th>Operating Depth</th><th>Wall Thickness</th><th>Slant Range</th><th>Certification Standard</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>HADAL-TITAN V8</td><td class="cyan">11,000 m (1,100 bar)</td><td>48.5 mm Grade 5 ELI</td><td>18.5 km Range</td><td>Synthetic Hadal Test Protocol #4982</td></tr>
+          <tr><td>BATHYAL-PROBE MK IV</td><td class="cyan">6,500 m (650 bar)</td><td>32.0 mm High-Tensile Ti</td><td>12.0 km Acoustic</td><td>Simulated Deep Submersible Standard</td></tr>
+          <tr><td>ABYSSAL-LOG TRANSDUCER</td><td class="cyan">9,000 m (900 bar)</td><td>40.0 mm Monel Bevel</td><td>24.0 km Pulse</td><td>Synthetic Hadal Class Protocol</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script>
+    const counter = document.getElementById('depthCounter');
+    let base = 10928;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => {
+        const delta = Math.floor(Math.random() * 5) - 2;
+        counter.innerText = (base + delta).toLocaleString();
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

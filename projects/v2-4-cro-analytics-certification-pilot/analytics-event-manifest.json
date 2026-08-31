@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.4.0",
+  "project_name": "Northstar Performance Lab",
+  "event_naming_convention": "object_action",
+  "pii_governance": {
+    "default_pii_allowed": false,
+    "forbidden_fields": [
+      "email",
+      "phone",
+      "full_name",
+      "name",
+      "address",
+      "password",
+      "message_body",
+      "message",
+      "ssn",
+      "date_of_birth",
+      "dob",
+      "credit_card"
+    ]
+  },
+  "events": [
+    {
+      "event_name": "page_view",
+      "version": 1,
+      "category": "navigation",
+      "description": "Fired once per unique route visit upon route settlement.",
+      "trigger": "route_settled",
+      "properties": [
+        "page_path",
+        "page_title",
+        "referrer"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "orientation",
+      "conversion_level": "DIAGNOSTIC",
+      "experiment_related": false
+    },
+    {
+      "event_name": "navigation_select",
+      "version": 1,
+      "category": "navigation",
+      "description": "Fired when user clicks primary or secondary navigation links.",
+      "trigger": "link_click",
+      "properties": [
+        "target_path",
+        "menu_location"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "orientation",
+      "conversion_level": "DIAGNOSTIC",
+      "experiment_related": false
+    },
+    {
+      "event_name": "pricing_view",
+      "version": 1,
+      "category": "consideration",
+      "description": "Fired when advisory tier structure is viewed in viewport.",
+      "trigger": "intersection_observer",
+      "properties": [
+        "component_id",
+        "viewport_ratio"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "consideration",
+      "conversion_level": "MICRO",
+      "experiment_related": false
+    },
+    {
+      "event_name": "case_study_view",
+      "version": 1,
+      "category": "proof",
+      "description": "Fired when executive case dossier is viewed and engaged.",
+      "trigger": "page_engagement",
+      "properties": [
+        "study_id",
+        "client_sector"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "proof",
+      "conversion_level": "MICRO",
+      "experiment_related": false
+    },
+    {
+      "event_name": "consultation_start",
+      "version": 1,
+      "category": "intent",
+      "description": "Fired on initial visitor interaction with consultation request form.",
+      "trigger": "form_focus_first",
+      "properties": [
+        "form_id",
+        "source_intent"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "intent",
+      "conversion_level": "MICRO",
+      "experiment_related": false
+    },
+    {
+      "event_name": "form_validation_error",
+      "version": 1,
+      "category": "diagnostic",
+      "description": "Fired when a form submission attempt is blocked by input validation.",
+      "trigger": "submit_validation_failed",
+      "properties": [
+        "form_id",
+        "error_field_category"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "intent",
+      "conversion_level": "DIAGNOSTIC",
+      "experiment_related": false
+    },
+    {
+      "event_name": "consultation_submit_success",
+      "version": 1,
+      "category": "conversion",
+      "description": "Fired when a qualified strategy session request is successfully submitted and validated.",
+      "trigger": "form_submit_valid",
+      "properties": [
+        "form_id",
+        "qualification_tier"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "conversion",
+      "conversion_level": "MACRO",
+      "experiment_related": false
+    },
+    {
+      "event_name": "experiment_exposure",
+      "version": 1,
+      "category": "experiment",
+      "description": "Fired once when a visitor qualifies for and actively renders an experimental variant.",
+      "trigger": "variant_rendered",
+      "properties": [
+        "experiment_id",
+        "variant_id"
+      ],
+      "pii_allowed": false,
+      "funnel_stage": "orientation",
+      "conversion_level": "DIAGNOSTIC",
+      "experiment_related": true
+    }
+  ]
+}
