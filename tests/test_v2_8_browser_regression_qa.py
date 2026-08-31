@@ -299,6 +299,79 @@ try:
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
 
+# J'. engine lifecycle failures -> BLOCKED evidence, never an unhandled traceback
+class _FailingBrowserEngine:
+    name = "synthetic-browser"
+    supports_real_browser = True
+
+    def __init__(self, phase):
+        self.phase = phase
+        self.stopped = False
+
+    def available(self):
+        return True
+
+    def start(self):
+        if self.phase == "start":
+            raise RuntimeError("synthetic browser executable is unavailable")
+
+    def stop(self):
+        self.stopped = True
+
+    def observe(self, *args, **kwargs):
+        raise RuntimeError("synthetic browser launch failed")
+
+
+def _write_failure_plan(folder):
+    plan_path = os.path.join(folder, "plan.json")
+    with io.open(plan_path, "w", encoding="utf-8") as fh:
+        json.dump({"environment": "local", "repo_root": WORKSPACE,
+                   "browsers": {"smoke": ["synthetic"]}, "viewports": {"smoke": [390]},
+                   "routes": [{"path": "synthetic", "viewports": [390]}]}, fh)
+    return plan_path
+
+
+tmp = tempfile.mkdtemp(prefix="wd-v2_8-engine-failure-")
+original_loader = bqa_runner.load_engine
+fake = None
+try:
+    def _fake_loader(*args, **kwargs):
+        return fake
+
+    bqa_runner.load_engine = _fake_loader
+
+    start_dir = os.path.join(tmp, "start")
+    os.makedirs(start_dir)
+    fake = _FailingBrowserEngine("start")
+    start_rc = bqa_runner.run(_write_failure_plan(start_dir), "synthetic", os.path.join(start_dir, "ev"),
+                              "smoke", 0, FIXTURES)
+    start_ev = sorted(f for f in os.listdir(os.path.join(start_dir, "ev"))
+                      if f.endswith(".evidence.json"))[-1]
+    start_man = json.load(io.open(os.path.join(start_dir, "ev", start_ev), encoding="utf-8"))
+    check(start_rc != 0 and start_man["overall"] == "BLOCKED",
+          "J'. engine.start failure writes BLOCKED evidence and nonzero exit")
+    check(fake.stopped, "J'. engine.stop runs after partial engine startup")
+
+    observe_dir = os.path.join(tmp, "observe")
+    os.makedirs(observe_dir)
+    fake = _FailingBrowserEngine("observe")
+    observe_rc = bqa_runner.run(_write_failure_plan(observe_dir), "synthetic",
+                                os.path.join(observe_dir, "ev"), "smoke", 0, FIXTURES)
+    observe_ev = sorted(f for f in os.listdir(os.path.join(observe_dir, "ev"))
+                        if f.endswith(".evidence.json"))[-1]
+    observe_man = json.load(io.open(os.path.join(observe_dir, "ev", observe_ev), encoding="utf-8"))
+    observe_findings = observe_man["findings"]
+    check(observe_rc != 0 and observe_man["overall"] == "BLOCKED"
+          and observe_man["blocked_reason"].startswith("BLOCKED_ENVIRONMENT: engine.observe()"),
+          "J'. engine.observe failure writes BLOCKED evidence instead of crashing")
+    check(any(f["check_id"] == "engine.observe" and f["verdict"] == BLOCKED
+              for f in observe_findings),
+          "J'. blocked observation is represented in the evidence findings")
+    check(fake.stopped, "J'. engine.stop runs after observation failure")
+finally:
+    bqa_runner.load_engine = original_loader
+    shutil.rmtree(tmp, ignore_errors=True)
+
 # K. local verification never sets production_verified
 tmp = tempfile.mkdtemp(prefix="wd-v2_8-local-")
 try:

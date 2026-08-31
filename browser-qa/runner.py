@@ -85,28 +85,45 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
     flaky_tests: List[str] = []
     blocked_reason = None
 
-    if not engine.available():
-        blocked_reason = "BROWSER_QA_ENGINE '%s' unavailable in this environment" % engine_name
+    try:
+        available = engine.available()
+    except Exception as exc:  # noqa: BLE001
+        blocked_reason = _blocked_reason("engine.available()", exc)
+    else:
+        if not available:
+            blocked_reason = "BLOCKED_ENVIRONMENT: BROWSER_QA_ENGINE '%s' unavailable in this environment" % engine_name
 
     if blocked_reason is None:
         try:
             engine.start()
         except Exception as exc:  # noqa: BLE001
-            blocked_reason = "engine.start() failed: %s" % exc
+            blocked_reason = _blocked_reason("engine.start()", exc)
 
     jobs = _matrix(plan, mode)
-    if blocked_reason is None:
-        try:
+    try:
+        if blocked_reason is None:
             for job in jobs:
-                _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_tests)
-        finally:
+                if blocked_reason is not None:
+                    _append_blocked_job(findings_json, verdict_counts, job, blocked_reason)
+                    continue
+                try:
+                    job_blocked_reason = _run_job(
+                        engine, plan, job, retries, findings_json, verdict_counts, flaky_tests)
+                except Exception as exc:  # noqa: BLE001
+                    job_blocked_reason = _blocked_reason("browser QA job", exc)
+                    _append_blocked_job(findings_json, verdict_counts, job, job_blocked_reason,
+                                        check_id="engine.runtime")
+                if job_blocked_reason is not None:
+                    blocked_reason = job_blocked_reason
+        else:
+            for job in jobs:
+                _append_blocked_job(findings_json, verdict_counts, job, blocked_reason)
+    finally:
+        try:
             engine.stop()
-    else:
-        for job in jobs:
-            verdict_counts[BLOCKED] += 1
-            findings_json.append({"check_id": "engine.availability", "verdict": BLOCKED,
-                                  "route": job["route"], "viewport": job["viewport"],
-                                  "requirement_source": "BROWSER_QA_PLAN", "detail": blocked_reason})
+        except Exception as exc:  # noqa: BLE001
+            stop_reason = _blocked_reason("engine.stop()", exc)
+            blocked_reason = "%s; %s" % (blocked_reason, stop_reason) if blocked_reason else stop_reason
 
     integrity = guard.verify()
     is_production = plan.get("environment") == "production" or \
@@ -188,9 +205,18 @@ def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_te
     never an unconditional PASS. A check that fails every attempt is FAIL."""
     attempts: List[Dict[str, Any]] = []
     for attempt in range(retries + 1):
-        obs = engine.observe(job["route"], job["viewport"],
-                             reduced_motion=job["reduced_motion"], browser=job["browser"],
-                             interactions=job.get("interactions"))
+        try:
+            obs = engine.observe(job["route"], job["viewport"],
+                                 reduced_motion=job["reduced_motion"], browser=job["browser"],
+                                 interactions=job.get("interactions"))
+        except Exception as exc:  # noqa: BLE001
+            detail = _blocked_reason("engine.observe()", exc)
+            rec = _mk("engine.observe", "Browser observation is available", BLOCKED,
+                       "BROWSER_QA_PLAN", job, detail=detail)
+            rec["attempts"] = attempt + 1
+            verdict_counts[BLOCKED] += 1
+            findings_json.append(rec)
+            return detail
         fx_flaky = (obs.raw or {}).get("flaky")
         if fx_flaky:
             phase = "first_run" if attempt == 0 else "retry"
@@ -218,6 +244,21 @@ def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_te
         rec["attempts"] = len(attempts)
         verdict_counts[v] += 1
         findings_json.append(rec)
+    return None
+
+
+def _blocked_reason(operation: str, exc: Exception) -> str:
+    detail = str(exc).strip().splitlines()[0] if str(exc).strip() else exc.__class__.__name__
+    return "BLOCKED_ENVIRONMENT: %s failed: %s" % (operation, detail)
+
+
+def _append_blocked_job(findings_json, verdict_counts, job, detail, check_id="engine.availability"):
+    verdict_counts[BLOCKED] += 1
+    findings_json.append({"check_id": check_id, "verdict": BLOCKED,
+                          "route": job["route"], "viewport": job["viewport"],
+                          "browser": job["browser"],
+                          "reduced_motion": job.get("reduced_motion", False),
+                          "requirement_source": "BROWSER_QA_PLAN", "detail": detail})
 
 
 def _to_dict(f, job):
