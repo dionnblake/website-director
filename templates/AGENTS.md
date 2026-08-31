@@ -51,6 +51,10 @@ Capability #9 localization and internationalization planning artifacts.
   contracts, verification evidence, exceptions, and the single
   `application.complete` readiness flag. They never activate every module,
   contain credentials, perform live payments, deploy, or create a sixth lock.
+- Browser QA templates may declare `runtime_observations` requirements for
+  real-browser form and mobile-navigation evidence. Required observations are
+  fail-closed and local form exercise is limited to safely intercepted
+  same-origin requests; templates do not authorize production side effects.
 - Historical templates may be referenced by compatibility records but must not
   be silently regenerated or promoted to current.
 

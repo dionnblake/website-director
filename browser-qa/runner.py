@@ -26,7 +26,8 @@ if _HERE not in sys.path:
     sys.path.insert(0, _HERE)
 
 from assertions import evaluate  # noqa: E402
-from engine.base import BLOCKED, FAIL, FLAKY, NOT_APPLICABLE, PASS, load_engine  # noqa: E402
+from engine.base import (BLOCKED, FAIL, FLAKY, NOT_APPLICABLE, PASS,
+                         TEST_ENVIRONMENT_NOISE, load_engine)  # noqa: E402
 from guards.frozen_integrity_guard import FrozenIntegrityGuard  # noqa: E402
 
 DEFAULT_VIEWPORTS = {
@@ -77,12 +78,16 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
         engine_config["localization"] = plan["localization"]
     if plan.get("application") and "application" not in engine_config:
         engine_config["application"] = plan["application"]
+    for observation_key in ("runtime_observations", "observations"):
+        if plan.get(observation_key) and observation_key not in engine_config:
+            engine_config[observation_key] = plan[observation_key]
     engine = load_engine(engine_name, project_root, engine_config)
     run_id = "bqa-%s" % time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     started = time.time()
     findings_json: List[Dict[str, Any]] = []
     verdict_counts: Counter = Counter()
     flaky_tests: List[str] = []
+    observations_json: List[Dict[str, Any]] = []
     blocked_reason = None
 
     try:
@@ -104,20 +109,23 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
         if blocked_reason is None:
             for job in jobs:
                 if blocked_reason is not None:
-                    _append_blocked_job(findings_json, verdict_counts, job, blocked_reason)
+                    _append_blocked_job(findings_json, verdict_counts, job, blocked_reason,
+                                        observations_json=observations_json)
                     continue
                 try:
                     job_blocked_reason = _run_job(
-                        engine, plan, job, retries, findings_json, verdict_counts, flaky_tests)
+                        engine, plan, job, retries, findings_json, verdict_counts, flaky_tests,
+                        observations_json)
                 except Exception as exc:  # noqa: BLE001
                     job_blocked_reason = _blocked_reason("browser QA job", exc)
                     _append_blocked_job(findings_json, verdict_counts, job, job_blocked_reason,
-                                        check_id="engine.runtime")
+                                        check_id="engine.runtime", observations_json=observations_json)
                 if job_blocked_reason is not None:
                     blocked_reason = job_blocked_reason
         else:
             for job in jobs:
-                _append_blocked_job(findings_json, verdict_counts, job, blocked_reason)
+                _append_blocked_job(findings_json, verdict_counts, job, blocked_reason,
+                                    observations_json=observations_json)
     finally:
         try:
             engine.stop()
@@ -146,8 +154,10 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
         "frozen_fixture_integrity": "PASS" if integrity.ok else "FAIL",
         "frozen_integrity_detail": integrity.summary(),
         "blocked_reason": blocked_reason,
+        "observations": observations_json,
         "findings": findings_json,
-        "overall": ("PASS" if passed else "BLOCKED" if blocked_reason
+        "overall": ("PASS" if passed else "BLOCKED"
+                    if blocked_reason or verdict_counts[BLOCKED]
                     else "FLAKY" if verdict_counts[FLAKY] else "FAIL"),
     }
 
@@ -200,7 +210,8 @@ def _propose_a11y_state(manifest, engine, is_production):
     }
 
 
-def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_tests):
+def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_tests,
+             observations_json=None):
     """Bounded flake policy (protocol sec 21): FAIL then PASS on retry == FLAKY,
     never an unconditional PASS. A check that fails every attempt is FAIL."""
     attempts: List[Dict[str, Any]] = []
@@ -216,7 +227,11 @@ def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_te
             rec["attempts"] = attempt + 1
             verdict_counts[BLOCKED] += 1
             findings_json.append(rec)
+            if observations_json is not None:
+                observations_json.append(_blocked_observation_snapshot(job, detail, attempt + 1))
             return detail
+        if observations_json is not None:
+            observations_json.append(_observation_snapshot(obs, job, attempt + 1))
         fx_flaky = (obs.raw or {}).get("flaky")
         if fx_flaky:
             phase = "first_run" if attempt == 0 else "retry"
@@ -252,13 +267,70 @@ def _blocked_reason(operation: str, exc: Exception) -> str:
     return "BLOCKED_ENVIRONMENT: %s failed: %s" % (operation, detail)
 
 
-def _append_blocked_job(findings_json, verdict_counts, job, detail, check_id="engine.availability"):
+def _append_blocked_job(findings_json, verdict_counts, job, detail, check_id="engine.availability",
+                        observations_json=None):
     verdict_counts[BLOCKED] += 1
     findings_json.append({"check_id": check_id, "verdict": BLOCKED,
                           "route": job["route"], "viewport": job["viewport"],
                           "browser": job["browser"],
                           "reduced_motion": job.get("reduced_motion", False),
                           "requirement_source": "BROWSER_QA_PLAN", "detail": detail})
+    if observations_json is not None:
+        observations_json.append(_blocked_observation_snapshot(job, detail, 1))
+
+
+def _observation_snapshot(obs, job, attempt):
+    all_console_errors = [m.text for m in obs.console if m.level == "error"]
+    bad_console = [m.text for m in obs.console
+                   if m.level == "error" and m.classification != TEST_ENVIRONMENT_NOISE]
+    bad_network = [n.url for n in obs.network if not n.ok and not n.blocked_allowed]
+    responsive_status = "NOT_RUN"
+    if obs.layout is not None:
+        responsive_status = "FAIL" if obs.layout.has_horizontal_overflow else "PASS"
+    keyboard_status = "NOT_RUN"
+    if obs.keyboard is not None:
+        keyboard_status = "PASS" if all((
+            obs.keyboard.primary_nav_reachable, obs.keyboard.visible_focus_ring,
+            obs.keyboard.menu_toggle_operable, obs.keyboard.no_keyboard_trap,
+            obs.keyboard.primary_cta_reachable)) else "FAIL"
+    accessibility_status = "NOT_RUN"
+    if obs.a11y is not None:
+        accessibility_status = ("PASS" if obs.a11y.engine_status == "RAN"
+                                and not obs.a11y.violations else obs.a11y.engine_status)
+    return {
+        "route": job["route"], "viewport": job["viewport"], "browser": job["browser"],
+        "reduced_motion": job.get("reduced_motion", False), "engine": obs.engine,
+        "engine_identity": (obs.raw or {}).get("engine_identity", obs.engine),
+        "engine_version": (obs.raw or {}).get("engine_version", "unknown"),
+        "attempt": attempt, "form_observations": [f.raw for f in obs.forms if f.raw]
+        or (obs.raw or {}).get("form_observations", []),
+        "mobile_nav_observation": (obs.raw or {}).get("mobile_nav_observation", {}),
+        "analytics_events": [{"name": e.name, "params": e.params, "count": e.count,
+                              "trigger": e.trigger} for e in obs.analytics_events],
+        "console_status": "FAIL" if bad_console else "PASS",
+        "console_errors": all_console_errors,
+        "console_environment_noise": [m.text for m in obs.console
+                                       if m.level == "error"
+                                       and m.classification == TEST_ENVIRONMENT_NOISE],
+        "network_status": "FAIL" if bad_network else "PASS",
+        "responsive_status": responsive_status,
+        "keyboard_status": keyboard_status,
+        "accessibility_status": accessibility_status,
+        "screenshot_evidence_ref": obs.render_signature or None,
+        "result": "OBSERVATION_EMITTED",
+        "observation_status": (obs.raw or {}).get("observation_status", "EMITTED"),
+    }
+
+
+def _blocked_observation_snapshot(job, detail, attempt):
+    return {
+        "route": job["route"], "viewport": job["viewport"], "browser": job["browser"],
+        "reduced_motion": job.get("reduced_motion", False), "engine": "unavailable",
+        "attempt": attempt, "form_observations": "BLOCKED_OBSERVATION_MISSING",
+        "mobile_nav_observation": "BLOCKED_OBSERVATION_MISSING",
+        "analytics_events": [], "observation_status": "BLOCKED_ENVIRONMENT",
+        "blocked_reason": detail,
+    }
 
 
 def _to_dict(f, job):

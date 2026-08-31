@@ -19,6 +19,12 @@
   "reduced_motion_all_routes": true,
   "perf_thresholds": { "lcp_ms": 2500, "cls": 0.1, "inp_ms": 200 },
 
+  "runtime_observations": {
+    "$source": "browser QA plan — required runtime facts are never inferred from source markup",
+    "forms": { "required": false, "exercise": false },
+    "mobile_navigation": { "required": false, "require_route_change_close": false }
+  },
+
   "measurement": {
     "$source": "measurement-plan.md / analytics-event-manifest.json — do NOT invent events here",
     "expected_events": [

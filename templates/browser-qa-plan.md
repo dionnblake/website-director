@@ -23,6 +23,17 @@
 | Mobile nav | all | open → route-change → close | opens; closes on route change; Escape closes; body scroll locked |
 | Contact form | `/contact` | invalid submit → server-reject → success | visible error; **no** success state or success event on reject |
 
+### 3.1 Runtime observation coverage
+
+- Set `runtime_observations.forms.required` to `true` when the route requires
+  form behavior evidence. Set `exercise` to `true` only for a local or
+  synthetic same-origin form whose non-GET request can be safely intercepted.
+- Set `runtime_observations.mobile_navigation.required` to `true` when mobile
+  navigation behavior is required. Set `require_route_change_close` when the
+  route-change close behavior is part of the contract.
+- A required observation that the selected engine does not emit is `BLOCKED`,
+  never an omitted check or a green `UNKNOWN`.
+
 ## 4. Measurement assertions (from `measurement-plan.md` — do not invent events)
 
 | Event | Route(s) | Trigger | Required params | Fires once |

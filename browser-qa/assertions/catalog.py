@@ -36,6 +36,109 @@ def _route_cfg(plan: Dict[str, Any], route: str) -> Dict[str, Any]:
     return {}
 
 
+def _runtime_observation_cfg(plan: Dict[str, Any], route: str, kind: str) -> Dict[str, Any]:
+    """Return the explicit runtime-observation requirement for one route.
+
+    ``runtime_observations`` is the canonical V2.15 hardening block.  The
+    compact ``observations`` spelling is accepted for hand-authored plans, and
+    route-local values override plan defaults.  No requirement is inferred
+    when the plan is silent, preserving older manifests.
+    """
+    route_cfg = _route_cfg(plan, route)
+    merged: Dict[str, Any] = {}
+    for owner in (plan, route_cfg):
+        for container_name in ("runtime_observations", "observations"):
+            container = owner.get(container_name, {})
+            if not isinstance(container, dict):
+                continue
+            value = container.get(kind)
+            if isinstance(value, dict):
+                merged.update(value)
+            elif isinstance(value, bool):
+                merged["required"] = value
+        # These aliases keep the requirement readable in small route plans.
+        # They are only consulted when the canonical block did not provide a
+        # value for the same key.
+        alias_names = ("mobile_nav",) if kind == "mobile_navigation" else ("forms",)
+        for alias in alias_names:
+            value = owner.get(alias)
+            if isinstance(value, dict):
+                for key, item in value.items():
+                    merged.setdefault(key, item)
+            elif isinstance(value, bool):
+                merged.setdefault("required", value)
+    return merged
+
+
+def _blocked_observation(check_id, title, obs, detail, evidence):
+    return Finding(check_id=check_id, title=title, verdict=BLOCKED,
+                   requirement_source="BROWSER_QA_PLAN", route=obs.route,
+                   viewport=obs.viewport, browser=obs.browser,
+                   detail=detail, method="BROWSER_EXECUTED", evidence=evidence)
+
+
+def _observation_evidence(obs, key, fallback=None):
+    value = (obs.raw or {}).get(key, fallback)
+    return {key: value, "engine": obs.engine, "browser": obs.browser,
+            "viewport": obs.viewport}
+
+
+def check_observation_coverage(obs, plan):
+    """Fail closed when a required plan fact was not emitted by the engine."""
+    out = []
+    forms_cfg = _runtime_observation_cfg(plan, obs.route, "forms")
+    if forms_cfg.get("required") is True:
+        missing_forms = not obs.forms
+        missing_keys = []
+        form_keys = {
+            "FORM_FOUND", "FORM_ID_OR_SELECTOR", "REQUIRED_CONTROLS_FOUND",
+            "LABEL_ASSOCIATION_STATUS", "SUBMIT_CONTROL_FOUND", "VALIDATION_TRIGGERED",
+            "INVALID_SUBMISSION_BLOCKED", "ERROR_STATE_VISIBLE_OR_PROGRAMMATIC",
+            "VALID_SUBMISSION_PATH_OBSERVED", "NAVIGATION_OR_SIDE_EFFECT_ATTEMPTED",
+            "NETWORK_REQUEST_OBSERVED", "CONSOLE_ERROR_DURING_FORM_FLOW",
+        }
+        if not missing_forms:
+            for form in obs.forms:
+                raw = form.raw if isinstance(form.raw, dict) else {}
+                missing_keys.extend(sorted(form_keys - set(raw)))
+                if raw.get("FORM_FOUND") is not True:
+                    missing_keys.append("FORM_FOUND=true")
+            missing_forms = bool(missing_keys)
+        if missing_forms:
+            out.append(_blocked_observation(
+                "form.observation-coverage", "Required form observation was emitted",
+                obs, "BLOCKED_OBSERVATION_MISSING: required form evidence is missing or incomplete",
+                {**_observation_evidence(obs, "form_observations", []),
+                 "missing_keys": sorted(set(missing_keys))}))
+
+    nav_cfg = _runtime_observation_cfg(plan, obs.route, "mobile_navigation")
+    if obs.viewport <= 767 and nav_cfg.get("required") is True:
+        nav_evidence = (obs.raw or {}).get("mobile_nav_observation") or {}
+        nav_keys = {
+            "NAV_TRIGGER_FOUND", "NAV_INITIAL_STATE", "TRIGGER_ACTIVATED",
+            "NAV_OPEN_STATE", "MENU_VISIBLE", "KEYBOARD_OPERATION",
+            "ESCAPE_CLOSE_BEHAVIOR", "NAV_CLOSE_STATE", "DESTINATION_LINKS_AVAILABLE",
+            "BODY_SCROLL_STATE", "CONSOLE_ERRORS", "INTERACTION_BLOCKAGE",
+        }
+        missing_keys = sorted(nav_keys - set(nav_evidence))
+        if (obs.nav_open_after_toggle is None or not nav_evidence
+                or missing_keys or nav_evidence.get("NAV_TRIGGER_FOUND") is not True):
+            out.append(_blocked_observation(
+                "nav.mobile-observation-coverage",
+                "Required mobile-navigation observation was emitted", obs,
+                "BLOCKED_OBSERVATION_MISSING: mobile navigation toggle result is unset",
+                {**_observation_evidence(obs, "mobile_nav_observation", {}),
+                 "missing_keys": missing_keys}))
+        elif nav_cfg.get("require_route_change_close") is True \
+                and obs.nav_closed_after_route_change is None:
+            out.append(_blocked_observation(
+                "nav.mobile-route-close-coverage",
+                "Required mobile route-close observation was emitted", obs,
+                "BLOCKED_OBSERVATION_MISSING: route-change close result is unset",
+                _observation_evidence(obs, "mobile_nav_observation", {})))
+    return out or None
+
+
 # ===========================================================================
 # 7. RESPONSIVE INVARIANTS
 # ===========================================================================
@@ -103,10 +206,18 @@ def check_broken_internal_links(obs, plan):
 
 
 def check_mobile_nav(obs, plan):
-    if obs.viewport > 767 or obs.nav_open_after_toggle is None:
+    cfg = _runtime_observation_cfg(plan, obs.route, "mobile_navigation")
+    if obs.viewport > 767:
+        return None
+    if obs.nav_open_after_toggle is None:
+        if cfg.get("required") is False:
+            return _F("nav.mobile-not-required", "Mobile navigation is not required on this route",
+                      True, "BROWSER_QA_PLAN", obs, na=True,
+                      evidence=_observation_evidence(obs, "mobile_nav_observation", {}))
         return None
     out = [_F("nav.mobile-opens", "Mobile navigation opens on toggle", bool(obs.nav_open_after_toggle),
-              "PAGE_EXPERIENCE_SPEC", obs)]
+              "PAGE_EXPERIENCE_SPEC", obs,
+              evidence=_observation_evidence(obs, "mobile_nav_observation", {}))]
     if obs.nav_closed_after_route_change is not None:
         out.append(_F("nav.mobile-closes-on-route", "Mobile navigation closes on route change",
                       bool(obs.nav_closed_after_route_change), "PAGE_EXPERIENCE_SPEC", obs))
@@ -184,28 +295,38 @@ def check_assets(obs, plan):
 # ===========================================================================
 def check_forms(obs, plan):
     out = []
+    cfg = _runtime_observation_cfg(plan, obs.route, "forms")
+    if not obs.forms and cfg.get("required") is False:
+        return _F("form.not-required", "No form is required on this route", True,
+                  "BROWSER_QA_PLAN", obs, na=True,
+                  evidence=_observation_evidence(obs, "form_observations", []))
     for f in obs.forms:
         cid = "form.%s" % f.form_ref
+        evidence = {"form_observation": f.raw or (obs.raw or {}).get("form_observations", [])}
         out.append(_F(cid + ".labels", "Form '%s' fields have labels" % f.form_ref,
-                      f.fields_have_labels, "PRODUCTION_CHECKLIST", obs))
+                      f.fields_have_labels, "PRODUCTION_CHECKLIST", obs, evidence=evidence))
         out.append(_F(cid + ".invalid-error", "Form '%s' shows a visible error on invalid submit"
                       % f.form_ref, f.invalid_shows_error and f.error_message_visible,
-                      "PRODUCTION_CHECKLIST", obs))
+                      "PRODUCTION_CHECKLIST", obs, evidence=evidence))
         out.append(_F(cid + ".dup-submit", "Form '%s' prevents duplicate submit" % f.form_ref,
-                      f.duplicate_submit_prevented, "PRODUCTION_CHECKLIST", obs))
+                      f.duplicate_submit_prevented, "PRODUCTION_CHECKLIST", obs,
+                      evidence=evidence))
         out.append(_F(cid + ".success-state", "Form '%s' shows success only on real success"
                       % f.form_ref,
                       f.success_state_on_success and not f.success_state_on_server_reject,
                       "SECURITY_PRIVACY_REVIEW", obs,
-                      detail="server_reject_shows_success=%s" % f.success_state_on_server_reject))
+                      detail="server_reject_shows_success=%s" % f.success_state_on_server_reject,
+                      evidence=evidence))
         out.append(_F(cid + ".no-false-conversion",
                       "Form '%s' emits NO success conversion event on server reject" % f.form_ref,
-                      not f.success_event_on_server_reject, "MEASUREMENT_PLAN", obs))
+                      not f.success_event_on_server_reject, "MEASUREMENT_PLAN", obs,
+                      evidence=evidence))
         out.append(_F(cid + ".keyboard", "Form '%s' is keyboard submittable" % f.form_ref,
-                      f.keyboard_submittable, "PRODUCTION_CHECKLIST", obs))
+                      f.keyboard_submittable, "PRODUCTION_CHECKLIST", obs,
+                      evidence=evidence))
         if not f.consent_gate_respected:
             out.append(_F(cid + ".consent", "Form '%s' respects consent dependency" % f.form_ref,
-                          False, "SECURITY_PRIVACY_REVIEW", obs))
+                          False, "SECURITY_PRIVACY_REVIEW", obs, evidence=evidence))
     return out or None
 
 
@@ -877,6 +998,7 @@ ALL_CHECKS = [
     check_clipped_and_zero_targets,
     check_placeholder_hash_links,
     check_broken_internal_links,
+    check_observation_coverage,
     check_mobile_nav,
     check_console_clean,
     check_network,

@@ -95,6 +95,10 @@ class FormState:
     keyboard_submittable: bool = True
     focus_moves_on_error: bool = True
     consent_gate_respected: bool = True
+    # Browser-observable detail kept beside the stable boolean contract.  The
+    # simulation engine may label this as synthetic; the Playwright adapter
+    # records the actual DOM and interaction facts it observed.
+    raw: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass

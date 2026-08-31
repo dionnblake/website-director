@@ -54,6 +54,13 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   authoritative purchase events are consumed through the same runner only for
   activated modules. Missing observations block. The harness never creates a
   live user, attempts a live payment, or sets `application.complete`.
+- **Runtime form/mobile observations (V2.15 hardening):** the existing
+  `PageObservation` model is populated by actual Playwright DOM interaction for
+  forms and mobile navigation. `runtime_observations.forms.required` and
+  `runtime_observations.mobile_navigation.required` are fail-closed coverage
+  requirements; missing facts are `BLOCKED`. Form exercise is limited to local
+  or synthetic same-origin requests intercepted by the adapter. Evidence keeps
+  `SIMULATION` and `REAL_BROWSER` identities distinct.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

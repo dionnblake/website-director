@@ -24,7 +24,8 @@ FIXTURES = os.path.join(BQA, "fixtures")
 sys.path.insert(0, BQA)
 
 from assertions import evaluate                                    # noqa: E402
-from engine.base import BLOCKED, FAIL, FLAKY, NOT_APPLICABLE, PASS, load_engine  # noqa: E402
+from engine.base import (BLOCKED, FAIL, FLAKY, NOT_APPLICABLE, PASS, FormState,
+                         KeyboardTrace, PageObservation, load_engine)  # noqa: E402
 from guards.frozen_integrity_guard import FrozenIntegrityGuard     # noqa: E402
 import runner as bqa_runner                                        # noqa: E402
 
@@ -413,6 +414,174 @@ check(not bad, "Clean reference fixture yields zero FAIL/BLOCKED (%s)"
 
 # ===========================================================================
 # 3. Final frozen-corpus invariant
+# ===========================================================================
+
+# ===========================================================================
+# 3. V2.15 Playwright observation-gap regression controls (A-J)
+# ===========================================================================
+def _observation_plan(*, forms_required=None, nav_required=None, close_required=False):
+    runtime = {}
+    if forms_required is not None:
+        runtime["forms"] = {"required": forms_required}
+    if nav_required is not None:
+        runtime["mobile_navigation"] = {
+            "required": nav_required, "require_route_change_close": close_required}
+    return {"environment": "local", "routes": [{"path": "direct-observation"}],
+            "runtime_observations": runtime}
+
+
+def _direct_observation(viewport=390, *, forms=None, nav_open=None, nav_closed=None,
+                        keyboard=None):
+    return PageObservation(
+        route="direct-observation", viewport=viewport, engine="playwright", browser="chromium",
+        forms=forms or [], nav_open_after_toggle=nav_open,
+        nav_closed_after_route_change=nav_closed, keyboard=keyboard,
+        raw={"form_observations": [f.raw for f in (forms or []) if f.raw],
+             "mobile_nav_observation": {
+                 "NAV_TRIGGER_FOUND": nav_open is not None,
+                 "NAV_INITIAL_STATE": {}, "TRIGGER_ACTIVATED": nav_open is not None,
+                 "NAV_OPEN_STATE": {"menu_visible": nav_open},
+                 "MENU_VISIBLE": nav_open, "KEYBOARD_OPERATION": {},
+                 "ESCAPE_CLOSE_BEHAVIOR": {}, "NAV_CLOSE_STATE": {"closed": nav_closed},
+                 "DESTINATION_LINKS_AVAILABLE": [], "BODY_SCROLL_STATE": {},
+                 "CONSOLE_ERRORS": [], "INTERACTION_BLOCKAGE": None}},
+    )
+
+
+good_form = FormState(
+    form_ref="contact", fields_have_labels=True, invalid_shows_error=True,
+    error_message_visible=True, submit_disabled_while_pending=True,
+    duplicate_submit_prevented=True, success_state_on_success=True,
+    success_state_on_server_reject=False, success_event_on_server_reject=False,
+    keyboard_submittable=True, focus_moves_on_error=True,
+    raw={"FORM_FOUND": True, "FORM_ID_OR_SELECTOR": "#contact",
+         "REQUIRED_CONTROLS_FOUND": True, "LABEL_ASSOCIATION_STATUS": "PASS",
+         "SUBMIT_CONTROL_FOUND": True, "VALIDATION_TRIGGERED": True,
+         "INVALID_SUBMISSION_BLOCKED": True, "ERROR_STATE_VISIBLE_OR_PROGRAMMATIC": True,
+         "VALID_SUBMISSION_PATH_OBSERVED": True,
+         "NAVIGATION_OR_SIDE_EFFECT_ATTEMPTED": True,
+         "NETWORK_REQUEST_OBSERVED": True, "CONSOLE_ERROR_DURING_FORM_FLOW": []},
+)
+
+# A. Playwright form observation missing: no false PASS.
+f = evaluate(_direct_observation(), _observation_plan(forms_required=True))
+check(any(x.verdict == BLOCKED and x.check_id == "form.observation-coverage"
+          and "BLOCKED_OBSERVATION_MISSING" in x.detail for x in f)
+      and not any(x.check_id.startswith("form.") and x.verdict == PASS for x in f),
+      "A. Missing Playwright form observation -> no false PASS (BLOCKED)")
+
+# B. A required form exists but no normalized evidence is explicitly blocked.
+missing_form_evidence = FormState(form_ref="contact", fields_have_labels=True)
+f = evaluate(_direct_observation(forms=[missing_form_evidence]),
+             _observation_plan(forms_required=True))
+check(any(x.verdict == BLOCKED and x.check_id == "form.observation-coverage" for x in f),
+      "B. Required form exists but form evidence is missing -> BLOCKED")
+
+# C. Complete normalized form evidence produces form assertion passes.
+f = evaluate(_direct_observation(forms=[good_form]), _observation_plan(forms_required=True))
+form_findings = [x for x in f if x.check_id.startswith("form.contact.")]
+check(form_findings and all(x.verdict == PASS for x in form_findings),
+      "C. Real form observation is complete and valid -> PASS")
+
+# D. Broken validation and error exposure are deterministic failures.
+validation_not_triggered = FormState(
+    form_ref="validation", fields_have_labels=True, invalid_shows_error=False,
+    error_message_visible=False, duplicate_submit_prevented=True,
+    success_state_on_success=True, keyboard_submittable=True,
+    raw={"FORM_FOUND": True, "FORM_ID_OR_SELECTOR": "#validation",
+         "REQUIRED_CONTROLS_FOUND": True, "LABEL_ASSOCIATION_STATUS": "PASS",
+         "SUBMIT_CONTROL_FOUND": True, "VALIDATION_TRIGGERED": False,
+         "INVALID_SUBMISSION_BLOCKED": False, "ERROR_STATE_VISIBLE_OR_PROGRAMMATIC": False,
+         "VALID_SUBMISSION_PATH_OBSERVED": True,
+         "NAVIGATION_OR_SIDE_EFFECT_ATTEMPTED": False, "NETWORK_REQUEST_OBSERVED": False,
+         "CONSOLE_ERROR_DURING_FORM_FLOW": []},
+)
+error_not_exposed = FormState(
+    form_ref="error", fields_have_labels=True, invalid_shows_error=False,
+    error_message_visible=False, duplicate_submit_prevented=True,
+    success_state_on_success=True, keyboard_submittable=True,
+    raw={"FORM_FOUND": True, "FORM_ID_OR_SELECTOR": "#error",
+         "REQUIRED_CONTROLS_FOUND": True, "LABEL_ASSOCIATION_STATUS": "PASS",
+         "SUBMIT_CONTROL_FOUND": True, "VALIDATION_TRIGGERED": True,
+         "INVALID_SUBMISSION_BLOCKED": True, "ERROR_STATE_VISIBLE_OR_PROGRAMMATIC": False,
+         "VALID_SUBMISSION_PATH_OBSERVED": True,
+         "NAVIGATION_OR_SIDE_EFFECT_ATTEMPTED": False, "NETWORK_REQUEST_OBSERVED": False,
+         "CONSOLE_ERROR_DURING_FORM_FLOW": []},
+)
+f = evaluate(_direct_observation(forms=[validation_not_triggered, error_not_exposed]),
+             _observation_plan(forms_required=True))
+check(any(x.check_id == "form.validation.invalid-error" and x.verdict == FAIL for x in f)
+      and any(x.check_id == "form.error.invalid-error" and x.verdict == FAIL for x in f),
+      "D. Form validation not triggered and error not exposed -> FAIL")
+
+# E. Mobile navigation observation missing: no false PASS.
+f = evaluate(_direct_observation(), _observation_plan(nav_required=True, close_required=True))
+check(any(x.verdict == BLOCKED and x.check_id == "nav.mobile-observation-coverage"
+          and "BLOCKED_OBSERVATION_MISSING" in x.detail for x in f)
+      and not any(x.check_id == "nav.mobile-opens" and x.verdict == PASS for x in f),
+      "E. Missing mobile navigation observation -> no false PASS (BLOCKED)")
+
+# F. A discovered trigger that does not open the menu is a real failure, not a pass.
+f = evaluate(_direct_observation(nav_open=False, nav_closed=False),
+             _observation_plan(nav_required=True, close_required=True))
+check(any(x.check_id == "nav.mobile-opens" and x.verdict == FAIL for x in f),
+      "F. Mobile trigger/menu does not open -> FAIL")
+
+# G. A menu that opens but cannot be keyboard operated is a failure.
+f = evaluate(_direct_observation(nav_open=True, nav_closed=True,
+                                 keyboard=KeyboardTrace(menu_toggle_operable=False)),
+             _observation_plan(nav_required=True, close_required=True))
+check(any(x.check_id == "keyboard.menu-operable" and x.verdict == FAIL for x in f),
+      "G. Mobile navigation keyboard operation failure -> FAIL")
+
+# H. Correct real-browser-shaped mobile facts produce the expected navigation passes.
+f = evaluate(_direct_observation(nav_open=True, nav_closed=True),
+             _observation_plan(nav_required=True, close_required=True))
+mobile = [x for x in f if x.check_id.startswith("nav.mobile-")]
+check(mobile and all(x.verdict == PASS for x in mobile),
+      "H. Correct mobile navigation open/close observations -> PASS")
+
+# I. A route with an explicit no-form contract is NOT_APPLICABLE, not an accidental pass.
+f = evaluate(_direct_observation(), _observation_plan(forms_required=False))
+check(any(x.check_id == "form.not-required" and x.verdict == NOT_APPLICABLE for x in f),
+      "I. Route explicitly without a form -> NOT_APPLICABLE")
+
+# J. Desktop navigation cannot manufacture a mobile PASS without mobile observation.
+f = evaluate(_direct_observation(1440), _observation_plan(nav_required=True, close_required=True))
+check(not any(x.check_id == "nav.mobile-opens" and x.verdict == PASS for x in f),
+      "J. Desktop navigation does not create a mobile PASS")
+
+# Supplemental negative control: a required route-close observation remains blocked when absent.
+f = evaluate(_direct_observation(nav_open=True),
+             _observation_plan(nav_required=True, close_required=True))
+check(any(x.check_id == "nav.mobile-route-close-coverage" and x.verdict == BLOCKED for x in f),
+      "Required mobile route-close observation missing -> BLOCKED")
+
+# Supplemental evidence control: the runner persists observations and keeps an incomplete run blocked.
+tmp = tempfile.mkdtemp(prefix="wd-v2_15-observation-gap-")
+try:
+    plan_path = os.path.join(tmp, "plan.json")
+    with io.open(plan_path, "w", encoding="utf-8") as fh:
+        json.dump({"environment": "local", "repo_root": WORKSPACE,
+                   "browsers": {"smoke": ["simulation"]}, "viewports": {"smoke": [390]},
+                   "runtime_observations": {
+                       "forms": {"required": True},
+                       "mobile_navigation": {"required": True, "require_route_change_close": True}},
+                   "routes": [{"path": "a_responsive_overflow", "viewports": [390]}]}, fh)
+    evidence_dir = os.path.join(tmp, "evidence")
+    rc = bqa_runner.run(plan_path, "simulation", evidence_dir, "smoke", 0, FIXTURES)
+    ev = sorted(name for name in os.listdir(evidence_dir) if name.endswith(".evidence.json"))[-1]
+    manifest = json.load(io.open(os.path.join(evidence_dir, ev), encoding="utf-8"))
+    check(rc != 0 and manifest["overall"] == "BLOCKED"
+          and manifest["observations"]
+          and "form_observations" in manifest["observations"][0]
+          and "mobile_nav_observation" in manifest["observations"][0],
+          "Runner persists required observations and cannot overall PASS")
+finally:
+    shutil.rmtree(tmp, ignore_errors=True)
+
+# ===========================================================================
+# 4. Final frozen-corpus invariant
 # ===========================================================================
 final = guard.verify()
 check(final.ok, "FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (%s)" % final.summary())

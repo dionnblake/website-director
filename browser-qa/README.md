@@ -63,6 +63,17 @@ The runner exits non-zero on any `FAIL`, `BLOCKED`, `FLAKY`, or frozen-fixture
 mutation, and prints the `browser_qa{}` block to apply to `site-profile.json`
 (it never writes the profile itself).
 
+For routes whose interaction behavior is release-critical, declare the
+`runtime_observations` block from the manifest template. `forms.required` and
+`mobile_navigation.required` make the corresponding `PageObservation` facts
+mandatory; missing facts are `BLOCKED`. Set `forms.exercise` only for a local
+or synthetic same-origin form, where the Playwright adapter intercepts the
+request and uses disposable values. The evidence manifest includes the raw
+form and mobile-navigation observations plus engine, viewport, console,
+network, keyboard, accessibility, and screenshot references. `simulation`
+remains explicitly labeled `SIMULATION`; only Playwright emits
+`REAL_BROWSER` evidence.
+
 ## Add an engine
 
 Implement `BrowserQAEngine.observe()` in a new module and register it in

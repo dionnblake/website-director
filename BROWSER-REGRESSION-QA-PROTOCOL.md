@@ -132,6 +132,34 @@ Verified where applicable: internal links resolve · current route loads · no p
 
 Navigation rules are **owned by** `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`. Browser QA executes and checks the browser-observable portion; it defines no competing navigation rules.
 
+### 8.1 V2.15 runtime observation coverage
+
+The existing `PageObservation` contract is the single normalized evidence
+shape for both engines. A plan may declare:
+
+```json
+"runtime_observations": {
+  "forms": { "required": true, "exercise": true },
+  "mobile_navigation": { "required": true, "require_route_change_close": true }
+}
+```
+
+When declared, the corresponding real-browser evidence is mandatory. Form
+evidence records DOM labels and required controls, native validation, invalid
+submission blocking, safe intercepted request/rejection/success behavior,
+side-effect attempts, network requests, and form-flow console errors. Mobile
+evidence records the trigger, initial/open/close states, menu visibility,
+keyboard and Escape behavior, safe route-change behavior, body/document
+overflow, destination links, and interaction blockage. The Playwright adapter
+uses actual DOM interaction; it never submits an external or production form.
+
+If a required observation is not emitted, the assertion catalogue returns
+`BLOCKED_OBSERVATION_MISSING`. A route with no form is `NOT_APPLICABLE` only
+when the plan explicitly marks forms as not required. Desktop navigation does
+not satisfy a mobile-navigation requirement. The runner persists these raw
+observations per engine, route, viewport, and attempt; `SIMULATION` evidence
+never establishes `REAL_BROWSER` verification.
+
 ---
 
 ## 9. Console & page-error capture

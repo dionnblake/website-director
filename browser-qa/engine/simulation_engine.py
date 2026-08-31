@@ -118,6 +118,8 @@ class SimulationEngine(BrowserQAEngine):
 
         obs = PageObservation(route=route, viewport=viewport, engine=self.name,
                               browser=browser, reduced_motion=reduced_motion)
+        obs.raw["engine_identity"] = "SIMULATION"
+        obs.raw["engine_version"] = "synthetic-fixture"
         obs.final_url = fx.get("final_url", route)
         obs.title = fx.get("title", "")
 
@@ -183,6 +185,20 @@ class SimulationEngine(BrowserQAEngine):
         nav_fx = fx.get("nav", {})
         obs.nav_open_after_toggle = nav_fx.get("open_after_toggle")
         obs.nav_closed_after_route_change = nav_fx.get("closed_after_route_change")
+        obs.raw["mobile_nav_observation"] = {
+            "status": "SYNTHETIC_FIXTURE",
+            "NAV_TRIGGER_FOUND": bool(nav_fx),
+            "NAV_INITIAL_STATE": nav_fx.get("initial_state", {}),
+            "TRIGGER_ACTIVATED": obs.nav_open_after_toggle is not None,
+            "NAV_OPEN_STATE": {"open_after_toggle": obs.nav_open_after_toggle},
+            "MENU_VISIBLE": bool(obs.nav_open_after_toggle),
+            "KEYBOARD_OPERATION": {"fixture": True},
+            "ESCAPE_CLOSE_BEHAVIOR": {"fixture": True},
+            "NAV_CLOSE_STATE": {"closed_after_route_change": obs.nav_closed_after_route_change},
+            "DESTINATION_LINKS_AVAILABLE": nav_fx.get("destination_links", []),
+            "BODY_SCROLL_STATE": nav_fx.get("body_scroll_state", {}),
+            "INTERACTION_BLOCKAGE": None,
+        }
 
         # -- reduced motion -----------------------------------
         rm_fx = fx.get("reduced_motion", {})
@@ -203,6 +219,24 @@ class SimulationEngine(BrowserQAEngine):
         # -- forms -------------------------------------------
         for f in fx.get("forms", []):
             sr = f.get("server_reject", {})
+            form_raw = {
+                "FORM_FOUND": True,
+                "FORM_ID_OR_SELECTOR": f.get("form_ref", "form"),
+                "REQUIRED_CONTROLS_FOUND": f.get("required_controls_found", True),
+                "LABEL_ASSOCIATION_STATUS": "PASS" if f.get("fields_have_labels", True) else "FAIL",
+                "SUBMIT_CONTROL_FOUND": f.get("submit_control_found", True),
+                "VALIDATION_TRIGGERED": f.get("validation_triggered", True),
+                "INVALID_SUBMISSION_BLOCKED": f.get("invalid_submission_blocked", True),
+                "ERROR_STATE_VISIBLE_OR_PROGRAMMATIC": sr.get(
+                    "error_visible", f.get("error_message_visible", True)),
+                "VALID_SUBMISSION_PATH_OBSERVED": f.get("success_state_on_success", True),
+                "NAVIGATION_OR_SIDE_EFFECT_ATTEMPTED": bool(sr),
+                "NETWORK_REQUEST_OBSERVED": bool(sr),
+                "CONSOLE_ERROR_DURING_FORM_FLOW": [],
+                "status": "SYNTHETIC_FIXTURE",
+                "engine": "simulation",
+                "synthetic_interception": False,
+            }
             obs.forms.append(FormState(
                 form_ref=f.get("form_ref", "form"),
                 fields_have_labels=f.get("fields_have_labels", True),
@@ -216,6 +250,7 @@ class SimulationEngine(BrowserQAEngine):
                 keyboard_submittable=f.get("keyboard_submittable", True),
                 focus_moves_on_error=f.get("focus_moves_on_error", True),
                 consent_gate_respected=f.get("consent_gate_respected", True),
+                raw=form_raw,
             ))
 
         # -- keyboard --------------------------------------
@@ -248,6 +283,9 @@ class SimulationEngine(BrowserQAEngine):
             obs.analytics_events.append(AnalyticsEvent(
                 name=e.get("name", ""), params=e.get("params", {}),
                 count=int(e.get("count", 1)), trigger=e.get("trigger")))
+
+        obs.raw["form_observations"] = [f.raw for f in obs.forms]
+        obs.raw["observation_status"] = "EMITTED"
 
         # -- perf ---------------------------------------
         p = fx.get("perf", {})
