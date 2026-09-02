@@ -183,6 +183,25 @@ platform, source_url, query, retrieved_at, upstream SHA256, and
 REFERENCE_ONLY boundary. This protocol does not reimplement or replace the
 bounded adapter.
 
+### 5.1 Owner-selected inspiration records (V2.15 additive)
+
+An owner-selected reference is recorded inside the existing `research{}`
+state, using `templates/inspiration-source-registry.json` and
+`templates/inspiration-board.md`. Preserve the raw owner request and add:
+
+`OWNER_SELECTED_REFERENCE`, `SOURCE`, `URL`, `ASSIGNED_DIMENSION`,
+`PATTERN_TO_LEARN`, `OWNER_REQUESTED_ELEMENT`, `WHAT_NOT_TO_COPY`,
+`REFERENCE_GRADE`, `LICENSE_STATUS`, `IMPLEMENTATION_RISK`,
+`ACCESSIBILITY_RISK`, `PRODUCTION_PLAUSIBILITY`, and
+`REFERENCE_ONLY_STATUS`.
+
+Study is not reuse. If source code, prompts, media, or other material is to be
+incorporated, the record must carry `LICENSE_CHECK_REQUIRED = true`, a
+resolved license status, `PROVENANCE_REF`, `STACK_ADAPTATION`, and
+`DESIGN_SYSTEM_ADAPTATION`. Without those records, the reference remains
+`REFERENCE_ONLY` and production reuse is blocked. A source framework never
+dictates the project's selected framework.
+
 ## 6. Asset provenance contract
 
 Each important or production asset records:

@@ -323,6 +323,40 @@ PHASE 10.5  DETERMINISTIC BROWSER QA  →  [BROWSER_QA_PASS]  →  PHASE 11.5  Q
 
 ---
 
+### 4.17 Rendered visual evidence hard stop (V2.15 additive)
+
+`NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`.
+
+The Gauntlet may not issue `GAUNTLET_PASS` from source inspection, HTML
+structure, CSS inspection, deterministic tests, builder self-assessment, or
+textual reasoning alone. Step 1 must ingest the Browser QA real-browser
+receipt set for the applicable candidate:
+
+`DESKTOP_FULL_PAGE`, `DESKTOP_HERO`, `DESKTOP_MID_PAGE`,
+`DESKTOP_PRIMARY_CONVERSION`, `MOBILE_FULL_PAGE`, `MOBILE_HERO`,
+`MOBILE_NAV_OPEN`, `PRIMARY_INTERACTIVE_STATE`, and
+`REDUCED_MOTION_STATE`, plus any declared form, modal, drawer, hover, or
+cinematic mid-scroll states.
+
+The report records the run/build identity, route, viewport, browser, capture
+state, screenshot path, and screenshot SHA-256 for every surface. The critic
+must inspect the actual screenshots, rendered DOM, rendered CSS, approved
+design direction, approved design system, owner intent, and assigned
+Reference Bars. `BUILDER != CRITIC` is a hard requirement: the critic uses a
+fresh context identifier that is not the builder context.
+
+After a targeted repair, the builder must re-render and emit a new screenshot
+set with a newer revision and build identity. Stale pre-repair screenshots do
+not support a pass. A capped or incomplete loop remains
+`GAUNTLET_CAP_REACHED`, `GAUNTLET_BLOCKED`, `GAUNTLET_FAIL`, or
+`GAUNTLET_LOCKED_CHANGE_REQUIRED` as applicable; it is never promoted to
+`GAUNTLET_PASS`.
+
+This contract extends the existing Browser QA and Gauntlet authorities. It
+creates no new critic, site-profile state, readiness gate, or owner lock.
+
+---
+
 ## 5. Conversion Context & Visitor Psychology
 
 The Website Gauntlet grounds its conversion and trust evaluations in the project's commercial objectives. These fields are captured during Discovery / Positioning and recorded in `site-profile.json`:
@@ -380,7 +414,7 @@ The Gauntlet operates in a structured 7-step cycle:
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ STEP 1: CAPTURE ARTIFACT STATE                                           │
-│         Capture DOM, screenshots (1440px desktop + 390px mobile), CSS.   │
+│         Capture the required real-browser screenshot set, DOM, and CSS.  │
 │                                                                          │
 │ STEP 2: LOAD APPROVED REFERENCE BARS                                     │
 │         Fetch reference benchmarks and isolate assigned dimensions.      │
@@ -399,7 +433,7 @@ The Gauntlet operates in a structured 7-step cycle:
 │         - If repair requires changing locked token: Issue CHANGE REQUEST.│
 │                                                                          │
 │ STEP 7: RE-CAPTURE & RE-EVALUATE                                         │
-│         Re-evaluate repaired artifact under fresh critic context.        │
+│         Re-render, capture new receipts, and use fresh critic context.   │
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 

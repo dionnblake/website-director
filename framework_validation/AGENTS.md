@@ -7,12 +7,16 @@ Own the deterministic Website Director self-validation library and its
 the additive V2.11.1 adapter suite, the V2.12 Capability 7 provenance suite,
 the V2.13 Capability #8 content-operations suite, the V2.14 Capability #9
 localization and internationalization suite, and the V2.15 conditional
-Capability #10 application architecture suite.
+Capability #10 application architecture suite. It also owns the
+provider-neutral cinematic/inspiration and rendered-visual evidence helpers
+used by the bounded V2.15 regression suite.
 
 ## Ownership
 
 `validator.py` owns validation rules, findings, reports, suite execution, and
-read-only mutation evidence. `__main__.py` owns the module entrypoint.
+read-only mutation evidence. `cinematic_inspiration.py` owns pure registry,
+owner-reference, provider-neutrality, and rendered-visual receipt checks.
+`__main__.py` owns the module entrypoint.
 
 ## Local Contracts
 
@@ -41,6 +45,13 @@ read-only mutation evidence. `__main__.py` owns the module entrypoint.
   authorization, data, commerce, payment, booking, upload, UGC, integration,
   and high-risk contracts. Its sole readiness flag is `application.complete`,
   it adds no owner lock, and it never calls an application or payment provider.
+- Cinematic production intelligence remains provider/model-neutral. Inspiration
+  records default to `REFERENCE_ONLY`; source reuse requires license,
+  provenance, stack-adaptation, and design-system-adaptation evidence.
+- Rendered visual validation derives status from real-browser screenshot paths
+  and SHA-256 receipts for the required surface set. Source-only, incomplete,
+  stale-after-repair, simulation-only, or critic-without-fresh-input evidence
+  is blocked.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
 
 ## Work Guidance
@@ -51,7 +62,8 @@ special cases that turn invalid evidence into a pass.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, then run
+Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
+`python -m unittest tests.test_cinematic_inspiration`, then run
 `python -m framework_validation --run-suites`. Inspect both generated reports
 and the final mutation evidence.
 

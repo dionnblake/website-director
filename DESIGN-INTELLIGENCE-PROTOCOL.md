@@ -72,7 +72,7 @@ To preserve clarity, Website Director strictly separates the roles of its integr
 │    (Impeccable)           │ hardened against edge cases, and free of AI slop?"     │
 ├───────────────────────────┼────────────────────────────────────────────────────────┤
 │ 5. Website Gauntlet       │ "Does the rendered artifact beat the approved          │
-│    (RoboNuggets)          │ dimensional Reference Bars under adversarial critique?"│
+│    (existing WD subsystem)│ dimensional Reference Bars under adversarial critique?"│
 └───────────────────────────┴────────────────────────────────────────────────────────┘
 ```
 

@@ -23,6 +23,12 @@
 
 Website Director may write design direction concepts and rationale, but every viable candidate direction presented to the owner must be backed by a bounded, browser-rendered visual prototype.
 
+`NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`. A direction cannot be
+presented as visually verified from source inspection, HTML/CSS inspection,
+deterministic tests, builder self-assessment, or prose alone. The prototype
+package must point to actual browser-rendered screenshots for its claimed
+surfaces and preserve the build identity used to capture them.
+
 ---
 
 ## 2. Visual Prototype Definition & Boundaries
@@ -58,6 +64,16 @@ Each prototype direction must represent a complete, polished slice containing:
 - Explicitly ban Lorem Ipsum filler.
 - **Absolute Factual Integrity:** Never fabricate testimonials, metrics, client logos, certifications, awards, or product capabilities (DESIGN-CONSTITUTION.md §7.7).
 - If placeholder facts are unavoidable, mark them visibly as placeholders (e.g., [Metric to be verified]).
+
+### 3.1 Render receipt requirements
+
+Where the prototype is applicable to a production candidate, its visual
+evidence set includes at least `DESKTOP_FULL_PAGE`, `DESKTOP_HERO`,
+`DESKTOP_MID_PAGE`, `DESKTOP_PRIMARY_CONVERSION`, `MOBILE_FULL_PAGE`,
+`MOBILE_HERO`, `MOBILE_NAV_OPEN`, `PRIMARY_INTERACTIVE_STATE`, and
+`REDUCED_MOTION_STATE`. Each receipt identifies the route, viewport, browser,
+capture state, screenshot path, and SHA-256. A missing or stale receipt keeps
+the prototype in review or blocked status and cannot support a visual PASS.
 
 ---
 

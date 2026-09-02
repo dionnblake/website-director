@@ -231,6 +231,36 @@ remain `NOT_REQUIRED` when their stories do not require stateful behavior.
   its existing runner; missing evidence and unavailable providers remain
   `BLOCKED`.
 
+### V2.15 Additive Enhancement (Cinematic Production Intelligence and Inspiration)
+
+This additive enhancement keeps Website Director V2.15 intact while making
+cinematic production, inspiration selection, and visual proof operational.
+
+- **Owner-selectable inspiration registry:** `INSPIRATION-SOURCES.md` and
+  `templates/inspiration-source-registry.json` register 21st.dev, Godly,
+  Awwwards, MotionSites, and preserved research channels. Sources default to
+  `REFERENCE_ONLY`; Awwwards continues to use its existing authority.
+- **Reference interpretation:** `templates/inspiration-board.md` records the
+  owner's requested source, relevance, assigned dimension, transferable
+  pattern, adaptation, and non-copy boundary. Reuse additionally requires
+  verified licensing, provenance, stack adaptation, and design-system
+  adaptation.
+- **Provider-neutral production intelligence:**
+  `CINEMATIC-INTEGRATION-PROTOCOL.md` and `templates/cinematic-brief.md` cover
+  creative-director loops, design packages, shot laws, bounded render
+  strategies, cost preflight, cheap gates, segment approval, fallback, and
+  provenance without binding a model, asset provider, host, or deployment
+  service.
+- **Rendered visual hard stop:** required visual claims derive only from a
+  complete real-browser screenshot receipt set. Receipts persist a path,
+  SHA-256, engine identity, viewport, capture mode, route, and attempt; repair
+  rounds require recapture and a fresh independent critic. Source-only,
+  simulation-only, DOM/CSS-only, and stale receipts remain blocked.
+- **Verification:** `tests/test_cinematic_inspiration.py` proves registry
+  presence, owner selection, reference-only and licensing boundaries,
+  provider neutrality, rendered evidence, critic freshness, repair recapture,
+  five-lock preservation, and zero frozen-project mutations.
+
 ---
 
 ---

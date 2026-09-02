@@ -26,6 +26,16 @@ frozen-integrity controls.
 synthetic A-AV application, authentication, authorization, commerce, payment,
 booking, upload, UGC, integration, high-risk, provider-outage, and
 frozen-integrity controls.
+`test_client_intake.py` owns the dependency-free Client Website Intake route,
+contract, raw/derived artifact separation, server validation, and sample
+fixture checks. It uses an ephemeral local server and temporary submission
+directory only.
+`test_alpha_leverage_pilot.py` owns the dependency-free Alpha Leverage local
+candidate checks, including intake traceability, static content boundaries,
+loopback serving, security headers, and accessibility hooks.
+`test_cinematic_inspiration.py` owns the bounded V2.15 source-registry,
+owner-reference, model-neutrality, rendered-screenshot, fresh-critic,
+repair-recapture, five-lock, and frozen-integrity controls.
 
 ## Local Contracts
 
@@ -50,6 +60,16 @@ frozen-integrity controls.
 - The Application Architecture suite uses synthetic behavior and observation
   fixtures only. It never creates users, charges cards, calls providers,
   sends email, publishes, deploys, or modifies projects/.
+- The Client Intake suite uses a temporary local HTTP server and temporary
+  artifact directory. It never submits personal data to an external service,
+  modifies `projects/`, or treats localhost evidence as production proof.
+- The Alpha Leverage candidate suite uses a temporary local HTTP server only.
+  It never modifies `projects/`, configures GoHighLevel, collects real
+  prospect data, or treats localhost evidence as production proof.
+- The cinematic/inspiration suite uses synthetic owner records and screenshot
+  receipts only. It never calls source sites, models, asset providers, or
+  deployment services, and it never treats source-only or simulation evidence
+  as rendered visual proof.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
@@ -62,8 +82,9 @@ fixtures read-only and distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, then run all
-registered suites through `python -m framework_validation --run-suites`.
+Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
+`python -m unittest tests.test_cinematic_inspiration`, then run all registered
+suites through `python -m framework_validation --run-suites`.
 
 ## Child DOX Index
 

@@ -19,6 +19,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
 - `frozen-projects.json` owns the protected historical inventory.
 - `test-suites.json` owns discoverable isolated test commands.
 - `validation-manifest.json` owns source roots and report destinations.
+- `inspiration-source-registry.schema.json` owns the bounded owner-selectable
+  inspiration-source record shape. The current registry template is
+  `templates/inspiration-source-registry.json`; it remains reference-only and
+  does not duplicate the Awwwards authority.
 - framework-validation-report.schema.json owns report shape.
 - evidence-ledger.schema.json owns the cross-cutting claims, sources,
   testimonials, certifications, research-reference, and asset evidence shape.
@@ -57,6 +61,8 @@ validation-manifest contracts for Website Director Capability 6, the additive
   locks; the exact five-lock invariant remains authoritative.
 - Registry references must resolve or carry an explicit historical status and
   replacement policy.
+- Inspiration sources must record a stable source identity, canonical URL,
+  bounded role, reference-only default, and reuse/provenance conditions.
 
 ## Work Guidance
 

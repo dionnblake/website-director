@@ -89,6 +89,9 @@
       "Swiss minimalist design journals"
     ],
     "deep_recon_targets": [],
+    "inspiration_registry_ref": "templates/inspiration-source-registry.json",
+    "owner_selected_references": [],
+    "owner_reference_selection_status": "NOT_SELECTED",
     "exception": {
       "applied": false,
       "reason": null

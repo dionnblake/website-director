@@ -90,6 +90,29 @@ Every "allowed to fail" entry needs a justification and must assert the site sta
 - **Threshold:** exact / `[documented tolerance + reason]`
 - Baseline updates require an owner note here. A diff is evidence of change, not automatically a defect.
 
+### 8.1 Rendered visual evidence contract
+
+`NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`.
+For an applicable production candidate, populate the machine manifest's
+`visual_evidence` block and capture the following with a real browser:
+
+`DESKTOP_FULL_PAGE`, `DESKTOP_HERO`, `DESKTOP_MID_PAGE`,
+`DESKTOP_PRIMARY_CONVERSION`, `MOBILE_FULL_PAGE`, `MOBILE_HERO`,
+`MOBILE_NAV_OPEN`, `PRIMARY_INTERACTIVE_STATE`, and
+`REDUCED_MOTION_STATE`.
+
+Each receipt names the surface, route, viewport, browser, capture state, build
+identity, timestamp, screenshot path, and SHA-256. A short render hash,
+source inspection, HTML/CSS inspection, deterministic simulation, or builder
+assertion is not a screenshot receipt. Simulation can exercise assertions but
+cannot satisfy this contract.
+
+The Gauntlet consumes the receipt set and additionally records a fresh critic
+context that inspected the actual screenshots, rendered DOM, rendered CSS,
+approved design direction, approved design system, owner intent, and assigned
+Reference Bars. After any repair, the builder must re-render and emit a newer
+screenshot set before fresh re-evaluation. Stale screenshots are rejected.
+
 ## 9. Dynamic content stability (§19)
 
 | Dynamic element | Determinism strategy |
@@ -101,7 +124,7 @@ Every "allowed to fail" entry needs a justification and must assert the site sta
 
 - Evidence directory: `[<project>/evidence/browser-qa]`
 - Run: `python browser-qa/runner.py --plan <project>/browser-qa-manifest.json --engine playwright --mode smoke`
-- Committed artifacts: the machine evidence manifest + the nominated baseline set only.
+- Committed artifacts: the machine evidence manifest + the nominated baseline set only. Rendered screenshot, DOM, and CSS receipts remain in the evidence directory unless a project explicitly nominates a retained set.
 
 ## 11. Result
 
@@ -112,6 +135,7 @@ Every "allowed to fail" entry needs a justification and must assert the site sta
 | smoke / responsive / console / network | |
 | form / measurement / security_privacy / application / reduced_motion / keyboard_smoke | |
 | `visual_regression_status` | `NOT_RUN` |
+| `visual_evidence.status` | `BLOCKED` until the required real-browser screenshot set exists |
 | `frozen_fixture_integrity` | `UNVERIFIED` |
 | `flaky_tests` | `[]` |
 | `implementation_verified` (local, real browser) | `false` |

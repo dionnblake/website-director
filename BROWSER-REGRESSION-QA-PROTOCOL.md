@@ -287,6 +287,33 @@ transfer remains owned by V2.5 Handoff.
 
 ---
 
+## 11.4 Rendered visual evidence contract (V2.15 additive)
+
+`NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`.
+
+For an applicable production candidate, the manifest's `visual_evidence`
+block declares a required render set. The canonical minimum is:
+
+`DESKTOP_FULL_PAGE`, `DESKTOP_HERO`, `DESKTOP_MID_PAGE`,
+`DESKTOP_PRIMARY_CONVERSION`, `MOBILE_FULL_PAGE`, `MOBILE_HERO`,
+`MOBILE_NAV_OPEN`, `PRIMARY_INTERACTIVE_STATE`, and
+`REDUCED_MOTION_STATE`.
+
+Each named surface is a separate browser job. Its evidence receipt must carry
+the route, viewport, browser, capture state, run/build identity, timestamp,
+and a persisted screenshot path plus SHA-256. A short render signature,
+source inspection, HTML structure, CSS inspection, deterministic simulation,
+or builder self-assessment cannot satisfy the receipt. The Playwright adapter
+may also persist the rendered DOM and CSS used by the independent Gauntlet
+critic. The simulation engine is intentionally unable to satisfy this
+production visual contract.
+
+The aggregate receipt is `BLOCKED` when any required surface is missing or is
+not marked as an actual real-browser render. This is evidence metadata in the
+Browser QA run, not a second site-profile completion state.
+
+---
+
 ## 12. Test isolation & the Frozen Project Integrity Guard
 
 **Hard invariant.** Browser and QA tests:
@@ -330,6 +357,12 @@ Consumes canonical `security_privacy{}`. Verified where browser-observable: HTTP
 
 Every run exercises `prefers-reduced-motion: reduce`. Verified: motion-heavy behaviours disable/reduce as specified · essential content stays visible · no content permanently hidden awaiting animation · fallback visuals exist · navigation stays functional · scroll-driven sequences do not block content · Rive / GSAP / Three.js / transition systems honour the canonical motion policy. Evidence (screenshots) captured.
 
+For a required cinematic render set, `REDUCED_MOTION_STATE` is a named
+real-browser receipt. A cinematic video or frame sequence must also record its
+poster, complete-without-video behavior, and the meaning-preserving static
+fallback. Moving backgrounds are reviewed at their worst frame for contrast
+and `FLICK_TEST` behavior; a clean source scan does not establish either.
+
 ---
 
 ## 16. Keyboard smoke QA — and the V2.9 accessibility assertion group
@@ -352,6 +385,13 @@ verification remains owned by Launch Operations.
 ## 17. Visual screenshot evidence
 
 Deterministic screenshots for selected critical surfaces: full page · hero · navigation open · form states · modal states · mobile · desktop · reduced motion · error/success states.
+
+For applicable production candidates, the minimum named set is the one in
+§11.4. Additional relevant states include `FORM_ERROR`, `FORM_SUCCESS`,
+`MODAL_OPEN`, `DRAWER_OPEN`, `MENU_OPEN`, `HOVER_STATE`,
+`CINEMATIC_MID_SCROLL`, and `CINEMATIC_SETTLE_FRAME`. A surface is not
+complete until the real browser emits a persisted receipt. The runner's
+`visual_evidence` record lists missing or non-real surfaces explicitly.
 
 **Deterministic file names**, e.g. `home__desktop_1440.png`, `home__mobile_390.png`, `nav__mobile_390__open.png`, `contact__desktop__validation-error.png`, `home__desktop__reduced-motion.png`.
 
@@ -458,6 +498,11 @@ A local browser test does **not** prove production DNS, CDN behaviour, productio
 ## 25. Evidence manifest
 
 Every run writes `<evidence>/<run_id>.evidence.json` and `<run_id>.summary.md` containing where applicable: run ID · timestamp · git SHA · environment · browser/version · route · viewport · test · result · screenshot · console findings · network findings · visual diff · trace · failure reason. Machine-readable JSON plus a human summary. Evidence is reproducible.
+
+When `visual_evidence.required` is true, the manifest also contains the
+named-surface receipt set, capture mode, screenshot path, screenshot SHA-256,
+and, when available, rendered DOM/CSS paths. The runner derives the visual
+evidence status from these receipts. It never trusts a hand-written `PASS`.
 
 ---
 

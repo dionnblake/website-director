@@ -337,6 +337,22 @@ class BrowserQAEngine:
                 ) -> PageObservation:
         raise NotImplementedError
 
+    def observe_surface(self, route: str, viewport: int, *, reduced_motion: bool = False,
+                        browser: str = "chromium", interactions: Optional[List[Dict[str, Any]]] = None,
+                        capture: str = "VIEWPORT",
+                        ) -> PageObservation:
+        """Observe a named visual surface without breaking older engines.
+
+        ``capture`` is an optional rendering hint.  Existing third-party or
+        test engines inherit this compatibility method and continue to use
+        their ordinary ``observe`` implementation; the Playwright adapter
+        overrides it to support full-page receipts.
+        """
+
+        del capture
+        return self.observe(route, viewport, reduced_motion=reduced_motion,
+                            browser=browser, interactions=interactions)
+
     def __enter__(self):
         self.start()
         return self

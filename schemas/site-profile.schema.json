@@ -81,6 +81,15 @@
         "production_verified": { "type": "boolean" },
         "implementation_evidence_ref": { "type": "string" },
         "production_evidence_ref": { "type": "string" },
+        "inspiration_registry_ref": { "type": "string" },
+        "owner_selected_references": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "owner_reference_selection_status": {
+          "type": "string",
+          "enum": ["NOT_SELECTED", "IN_PROGRESS", "COMPLETE", "BLOCKED"]
+        },
         "exception": { "$ref": "#/$defs/exception" }
       },
       "additionalProperties": true

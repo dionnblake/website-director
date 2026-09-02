@@ -310,8 +310,16 @@ class PlaywrightEngine(BrowserQAEngine):
         return "file://" + os.path.join(self.project_root, route.lstrip("/\\"))
 
     # -- observation ------------------------------------------------
+    def observe_surface(self, route: str, viewport: int, *, reduced_motion: bool = False,
+                        browser: str = "chromium", interactions: Optional[List[Dict[str, Any]]] = None,
+                        capture: str = "VIEWPORT",
+                        ) -> PageObservation:
+        return self.observe(route, viewport, reduced_motion=reduced_motion,
+                            browser=browser, interactions=interactions, capture=capture)
+
     def observe(self, route: str, viewport: int, *, reduced_motion: bool = False,
                 browser: str = "chromium", interactions: Optional[List[Dict[str, Any]]] = None,
+                capture: str = "VIEWPORT",
                 ) -> PageObservation:
         assert self._pw is not None, "PlaywrightEngine.start() was not called"
         btype = {"chromium": self._pw.chromium, "firefox": self._pw.firefox,
@@ -444,9 +452,22 @@ class PlaywrightEngine(BrowserQAEngine):
             obs.perf = PerfSample(lcp_ms=perf.get("lcp"), cls=perf.get("cls"),
                                   measurement_kind="SYNTHETIC")
 
-            shot = page.screenshot(full_page=False)
+            shot = page.screenshot(full_page=str(capture).upper() == "FULL_PAGE")
             obs.render_signature = __import__("hashlib").sha256(shot).hexdigest()[:16]
             obs.raw["screenshot_bytes"] = shot
+            obs.raw["render_capture"] = str(capture).upper()
+            if (self.config or {}).get("capture_render_artifacts"):
+                obs.raw["rendered_dom"] = page.content()
+                obs.raw["rendered_css"] = page.evaluate(
+                    """() => [...document.styleSheets].map(sheet => {
+                        try {
+                            return [...sheet.cssRules].map(rule => rule.cssText)
+                                .join(String.fromCharCode(10));
+                        } catch (error) {
+                            return '/* stylesheet inaccessible: ' + (sheet.href || 'inline') + ' */';
+                        }
+                    }).join(String.fromCharCode(10))"""
+                )
 
             obs.keyboard = _keyboard_trace(page)
 

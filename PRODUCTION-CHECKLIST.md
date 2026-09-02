@@ -452,6 +452,8 @@ Verified against `templates/browser-qa-plan.md` / `browser-qa-manifest.json` und
 ### 5.4.3 Visual Regression
 - [ ] `browser_qa.visual_regression_status` is `"MATCH"`, or every `"DIFF_DETECTED"` surface is owner-reviewed and the baseline update is authorised in `browser-qa-manifest.json`.
 - [ ] No baseline was silently overwritten; masks are narrow and justified.
+- [ ] When `visual_evidence.required = true`, the evidence manifest contains the complete named render set from a real browser, including persisted screenshot paths, SHA-256 identities, engine identity, viewport, capture mode, route, and attempt for every required surface. Source-only, simulation-only, DOM/CSS-only, render-signature-only, or prose evidence is blocked.
+- [ ] If any repair was made, the screenshot set is newer than the repair revision/build and the independent critic receipt is fresh; stale captures do not support a visual PASS.
 
 ### 5.4.4 Local vs. Production
 - [ ] `browser_qa.implementation_verified` set only on real-browser evidence against a local/staging build.
@@ -502,6 +504,8 @@ Verified against `templates/accessibility-review.md` / `accessibility-test-manif
 - [ ] **Adversarial Critic Sign-Off:** Phase 11.5 Website Gauntlet report generated (`templates/website-gauntlet-report.md`).
 - [ ] **Subsystem Status Verified:** `site-profile.json` → `gauntlet.status` is `GAUNTLET_PASS`, owner-accepted `GAUNTLET_CAP_REACHED`, or documented `GAUNTLET_EXCEPTION_APPLIED`.
 - [ ] **Builder/Critic Separation Maintained:** Evaluators inspected actual rendered output in fresh context against named Reference Bars.
+- [ ] **Rendered Evidence Hard Stop:** A Gauntlet visual PASS is backed by the current complete real-browser screenshot set plus actual rendered DOM/CSS receipts. A source inspection, simulation, hash-only, or stale screenshot cannot pass.
+- [ ] **Repair Recapture:** Every repair round has a newer screenshot set and a fresh critic receipt before the next verdict; the builder and critic contexts remain distinct.
 - [ ] **Lock Invariant Preserved:** No locked tokens or decisions were mutated during refinement without explicit Owner Change Authorization.
 - [ ] **Residual Defects Triaged:** Any non-blocking residual defects logged and escalated to Owner review.
 

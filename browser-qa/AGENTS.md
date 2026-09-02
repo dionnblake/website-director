@@ -61,6 +61,14 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   requirements; missing facts are `BLOCKED`. Form exercise is limited to local
   or synthetic same-origin requests intercepted by the adapter. Evidence keeps
   `SIMULATION` and `REAL_BROWSER` identities distinct.
+- **Rendered visual evidence (V2.15):** a manifest with `visual_evidence.required`
+  runs the named render set through `observe_surface()`, persists real-browser
+  screenshot receipts under the run evidence directory, and records the path,
+  SHA-256, engine identity, viewport, capture mode, route, and attempt. A
+  source inspection, render signature, HTML/CSS read, simulation, or prose
+  claim never satisfies a required visual surface. Repair rounds require a
+  newer capture set and fresh critic inputs before a visual PASS can be
+  derived.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

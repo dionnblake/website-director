@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/inspiration-source-registry.schema.json",
+  "title": "Website Director inspiration source registry",
+  "description": "A bounded, reference-only registry for owner-selected inspiration and dimensional benchmark assignment.",
+  "type": "object",
+  "required": ["$schema", "registry_version", "status", "owner_selection_contract", "sources"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "registry_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "const": "REFERENCE_ONLY" },
+    "owner_selection_contract": { "$ref": "#/$defs/owner_selection_contract" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["source_id", "url", "role", "reference_only_default"],
+      "properties": {
+        "source_id": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+        "url": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "reference_only_default": { "const": true },
+        "authority_ref": { "type": "string" },
+        "duplicate_authority": { "type": "boolean" },
+        "allowed_patterns": { "type": "array", "items": { "type": "string" } },
+        "category_targets": { "type": "array", "items": { "type": "string" } },
+        "source_reuse_requires": { "type": "array", "items": { "type": "string" } },
+        "proprietary_prompt_policy": { "type": "string" },
+        "premium_material_default": { "type": "string", "enum": ["REFERENCE_ONLY"] },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "owner_selection_contract": {
+      "type": "object",
+      "required": ["required_input_fields", "required_interpretation_fields", "default_reference_status", "reuse_policy"],
+      "properties": {
+        "required_input_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 7
+        },
+        "required_interpretation_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 14
+        },
+        "default_reference_status": { "const": "REFERENCE_ONLY" },
+        "reuse_policy": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

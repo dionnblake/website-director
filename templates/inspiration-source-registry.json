@@ -1,0 +1,158 @@
+{
+  "$schema": "../schemas/inspiration-source-registry.schema.json",
+  "registry_version": "1.0.0",
+  "status": "REFERENCE_ONLY",
+  "owner_selection_contract": {
+    "required_input_fields": [
+      "SOURCE",
+      "REFERENCE_URL",
+      "REFERENCE_TYPE",
+      "ELEMENT_OR_SECTION",
+      "WHAT_I_LIKE",
+      "WHAT_I_DO_NOT_WANT",
+      "WHY_IS_THIS_RELEVANT"
+    ],
+    "required_interpretation_fields": [
+      "OWNER_SELECTED_REFERENCE",
+      "SOURCE",
+      "URL",
+      "ASSIGNED_DIMENSION",
+      "PATTERN_TO_LEARN",
+      "OWNER_REQUESTED_ELEMENT",
+      "WHY_IS_THIS_RELEVANT",
+      "WHAT_NOT_TO_COPY",
+      "REFERENCE_GRADE",
+      "LICENSE_STATUS",
+      "IMPLEMENTATION_RISK",
+      "ACCESSIBILITY_RISK",
+      "PRODUCTION_PLAUSIBILITY",
+      "REFERENCE_ONLY_STATUS"
+    ],
+    "default_reference_status": "REFERENCE_ONLY",
+    "reuse_policy": [
+      "VERIFY_LICENSE",
+      "RECORD_PROVENANCE",
+      "ADAPT_TO_PROJECT_STACK",
+      "ADAPT_TO_DESIGN_SYSTEM",
+      "OWNER_AUTHORIZATION_BEFORE_SOURCE_REUSE"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "21ST_DEV",
+      "url": "https://21st.dev/",
+      "role": "COMPONENT_PATTERN_LIBRARY",
+      "reference_only_default": true,
+      "allowed_patterns": [
+        "heroes",
+        "backgrounds",
+        "navigation",
+        "ctas",
+        "forms",
+        "galleries",
+        "scroll_patterns",
+        "shaders",
+        "text_effects",
+        "micro_interactions",
+        "section_composition"
+      ],
+      "source_reuse_requires": [
+        "VERIFY_LICENSE",
+        "RECORD_PROVENANCE",
+        "ADAPT_TO_PROJECT_STACK",
+        "ADAPT_TO_DESIGN_SYSTEM"
+      ],
+      "notes": "A component's source framework is not an instruction to force that framework on the project. Extract the mechanic when another stack is selected."
+    },
+    {
+      "source_id": "GODLY",
+      "url": "https://godly.design/",
+      "role": "CURATED_SITE_AND_SECTION_DISCOVERY",
+      "reference_only_default": true,
+      "allowed_patterns": [
+        "trending_sites",
+        "hero_ideas",
+        "navigation",
+        "cta_treatment",
+        "footer_treatment",
+        "visual_atmosphere",
+        "layout_rhythm",
+        "cross_industry_inspiration"
+      ]
+    },
+    {
+      "source_id": "AWWWARDS",
+      "url": "https://www.awwwards.com/",
+      "role": "WORLD_CLASS_DIMENSIONAL_REFERENCE_BAR",
+      "reference_only_default": true,
+      "authority_ref": "AWWWARDS-SHOWCASE-INTELLIGENCE.md",
+      "duplicate_authority": false,
+      "category_targets": [
+        "architecture",
+        "hospitality",
+        "fashion",
+        "ecommerce",
+        "animated_sites",
+        "scrolling",
+        "GSAP",
+        "WebGL",
+        "3D",
+        "interaction_design"
+      ],
+      "notes": "Awwwards is an existing benchmark authority, not a second integration or a composition to clone."
+    },
+    {
+      "source_id": "MOTIONSITES",
+      "url": "https://motionsites.ai/",
+      "role": "MOTION_PATTERN_AND_BACKGROUND_LIBRARY",
+      "reference_only_default": true,
+      "premium_material_default": "REFERENCE_ONLY",
+      "proprietary_prompt_policy": "DO_NOT_COPY",
+      "allowed_patterns": [
+        "animated_backgrounds",
+        "hero_motion",
+        "layering",
+        "transition_concepts",
+        "cinematic_atmosphere",
+        "prompt_structure_study",
+        "interaction_concepts"
+      ],
+      "notes": "Premium or unavailable prompts and proprietary material remain reference-only unless the owner supplies authorized source material."
+    },
+    {
+      "source_id": "LANDBOOK",
+      "url": "https://land-book.com/",
+      "role": "LANDING_PAGE_STRUCTURE_DISCOVERY",
+      "reference_only_default": true,
+      "authority_ref": "RESEARCH-SOURCES.md"
+    },
+    {
+      "source_id": "DESIGN_INSPIRATION_MCP",
+      "url": "integrations/design-inspiration/ADAPTER.md",
+      "role": "BOUNDED_DISCOVERY_TRANSPORT",
+      "reference_only_default": true,
+      "authority_ref": "RESEARCH-SOURCES.md"
+    },
+    {
+      "source_id": "INDUSTRY_LANDSCAPE",
+      "url": "templates/competitor-landscape.md",
+      "role": "CATEGORY_EXPECTATION_RESEARCH",
+      "reference_only_default": true,
+      "authority_ref": "RESEARCH-SOURCES.md"
+    },
+    {
+      "source_id": "CROSS_INDUSTRY",
+      "url": "templates/inspiration-board.md",
+      "role": "ASPIRATIONAL_PATTERN_RESEARCH",
+      "reference_only_default": true,
+      "authority_ref": "RESEARCH-SOURCES.md"
+    },
+    {
+      "source_id": "REFERENCE_RECON",
+      "url": "REFERENCE-RECON-PROTOCOL.md",
+      "role": "DEEP_REFERENCE_RECONNAISSANCE",
+      "reference_only_default": true,
+      "authority_ref": "RESEARCH-SOURCES.md"
+    }
+  ]
+}

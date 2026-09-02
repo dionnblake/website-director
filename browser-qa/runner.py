@@ -24,11 +24,16 @@ from typing import Any, Dict, List
 _HERE = os.path.dirname(os.path.abspath(__file__))
 if _HERE not in sys.path:
     sys.path.insert(0, _HERE)
+_REPO_ROOT = os.path.dirname(_HERE)
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
 
 from assertions import evaluate  # noqa: E402
 from engine.base import (BLOCKED, FAIL, FLAKY, NOT_APPLICABLE, PASS,
                          TEST_ENVIRONMENT_NOISE, load_engine)  # noqa: E402
 from guards.frozen_integrity_guard import FrozenIntegrityGuard  # noqa: E402
+from framework_validation.cinematic_inspiration import (  # noqa: E402
+    build_rendered_visual_evidence, required_surface_ids)
 
 DEFAULT_VIEWPORTS = {
     "smoke": [390, 768, 1440],
@@ -58,6 +63,48 @@ def _matrix(plan: Dict[str, Any], mode: str) -> List[Dict[str, Any]]:
             if route.get("reduced_motion") or plan.get("reduced_motion_all_routes"):
                 jobs.append({"route": path, "viewport": vp, "browser": browsers[0],
                              "reduced_motion": True, "interactions": route.get("interactions")})
+
+    # A required visual review gets explicit, named surface jobs.  This keeps
+    # the ordinary route matrix backward-compatible while making it impossible
+    # to claim the required render set from an unlabeled screenshot hash.
+    visual_cfg = plan.get("visual_evidence", {})
+    if isinstance(visual_cfg, dict) and visual_cfg.get("required") is True:
+        route_defaults = {
+            (route.get("path") or route.get("route")): route
+            for route in plan.get("routes", []) if isinstance(route, dict)
+        }
+        first_route = next(iter(route_defaults), "/")
+        raw_surfaces = visual_cfg.get("required_surfaces") or visual_cfg.get("required_render_set")
+        if isinstance(raw_surfaces, dict):
+            raw_surfaces = raw_surfaces.get("surfaces") or raw_surfaces.get("items")
+        if not isinstance(raw_surfaces, list):
+            raw_surfaces = list(required_surface_ids(visual_cfg))
+        seen = set()
+        for item in raw_surfaces:
+            if isinstance(item, str):
+                surface_id = item
+                item = {}
+            elif isinstance(item, dict):
+                surface_id = item.get("surface_id") or item.get("id")
+            else:
+                continue
+            if not surface_id or surface_id in seen:
+                continue
+            seen.add(surface_id)
+            default_mobile = "MOBILE_" in surface_id
+            default_reduced = surface_id == "REDUCED_MOTION_STATE"
+            default_capture = "FULL_PAGE" if surface_id.endswith("FULL_PAGE") else "VIEWPORT"
+            route = item.get("route") or item.get("path") or first_route
+            route_cfg = route_defaults.get(route, {})
+            jobs.append({
+                "route": route,
+                "viewport": int(item.get("viewport", 390 if default_mobile else 1440)),
+                "browser": item.get("browser", browsers[0]),
+                "reduced_motion": bool(item.get("reduced_motion", default_reduced)),
+                "interactions": item.get("interactions", route_cfg.get("interactions", [])),
+                "surface_id": surface_id,
+                "capture": str(item.get("capture", default_capture)).upper(),
+            })
     return jobs
 
 
@@ -72,6 +119,13 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
     guard.snapshot()
 
     engine_config = dict(plan.get("engine_config", {}))
+    visual_cfg = plan.get("visual_evidence", {})
+    visual_required = isinstance(visual_cfg, dict) and visual_cfg.get("required") is True
+    if visual_required:
+        # The Playwright adapter keeps these artifacts in memory until the
+        # runner writes them to the designated evidence directory.  Simulation
+        # remains a dry-run engine and therefore emits no real receipts.
+        engine_config["capture_render_artifacts"] = True
     # Runtime specialist checks consume their canonical plan blocks through the
     # same engine. They do not create a second runner or a second state owner.
     if plan.get("localization") and "localization" not in engine_config:
@@ -115,7 +169,8 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
                 try:
                     job_blocked_reason = _run_job(
                         engine, plan, job, retries, findings_json, verdict_counts, flaky_tests,
-                        observations_json)
+                        observations_json, evidence_dir=evidence_dir, run_id=run_id,
+                        persist_render_artifacts=visual_required)
                 except Exception as exc:  # noqa: BLE001
                     job_blocked_reason = _blocked_reason("browser QA job", exc)
                     _append_blocked_job(findings_json, verdict_counts, job, job_blocked_reason,
@@ -136,13 +191,42 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
     integrity = guard.verify()
     is_production = plan.get("environment") == "production" or \
         any(str(r.get("path", "")).startswith("https://") for r in plan.get("routes", []))
+    git_sha = _git_sha(repo_root)
+    if visual_required:
+        visual_evidence = build_rendered_visual_evidence(
+            visual_cfg, observations_json, run_id=run_id, git_sha=git_sha)
+        for issue in visual_evidence["issues"]:
+            code = issue["code"]
+            verdict_counts[BLOCKED] += 1
+            findings_json.append({
+                "check_id": "visual.evidence." + code.lower(),
+                "title": code,
+                "verdict": BLOCKED,
+                "requirement_source": "BROWSER_QA_PLAN",
+                "owning_spec": "BROWSER-REGRESSION-QA-PROTOCOL.md",
+                "route": "__visual_evidence__",
+                "viewport": 0,
+                "browser": engine.name,
+                "reduced_motion": False,
+                "method": "VISUAL_COMPARISON",
+                "detail": issue["detail"],
+                "evidence": {"code": code, "required_surfaces": visual_evidence["required_surfaces"]},
+            })
+    else:
+        visual_evidence = {
+            "required": False,
+            "status": "NOT_REQUIRED",
+            "required_surfaces": [],
+            "captured_surfaces": [],
+            "issues": [],
+        }
 
     passed = (verdict_counts[FAIL] == 0 and verdict_counts[BLOCKED] == 0
               and verdict_counts[FLAKY] == 0 and integrity.ok and blocked_reason is None)
     manifest = {
         "run_id": run_id,
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "git_sha": _git_sha(repo_root),
+        "git_sha": git_sha,
         "environment": "production" if is_production else "local",
         "engine": engine.name,
         "engine_real_browser": engine.supports_real_browser,
@@ -154,6 +238,7 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
         "frozen_fixture_integrity": "PASS" if integrity.ok else "FAIL",
         "frozen_integrity_detail": integrity.summary(),
         "blocked_reason": blocked_reason,
+        "visual_evidence": visual_evidence,
         "observations": observations_json,
         "findings": findings_json,
         "overall": ("PASS" if passed else "BLOCKED"
@@ -211,15 +296,24 @@ def _propose_a11y_state(manifest, engine, is_production):
 
 
 def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_tests,
-             observations_json=None):
+             observations_json=None, evidence_dir=None, run_id=None,
+             persist_render_artifacts=False):
     """Bounded flake policy (protocol sec 21): FAIL then PASS on retry == FLAKY,
     never an unconditional PASS. A check that fails every attempt is FAIL."""
     attempts: List[Dict[str, Any]] = []
     for attempt in range(retries + 1):
         try:
-            obs = engine.observe(job["route"], job["viewport"],
-                                 reduced_motion=job["reduced_motion"], browser=job["browser"],
-                                 interactions=job.get("interactions"))
+            if job.get("surface_id"):
+                obs = engine.observe_surface(
+                    job["route"], job["viewport"],
+                    reduced_motion=job["reduced_motion"], browser=job["browser"],
+                    interactions=job.get("interactions"),
+                    capture=job.get("capture", "VIEWPORT"),
+                )
+            else:
+                obs = engine.observe(job["route"], job["viewport"],
+                                     reduced_motion=job["reduced_motion"], browser=job["browser"],
+                                     interactions=job.get("interactions"))
         except Exception as exc:  # noqa: BLE001
             detail = _blocked_reason("engine.observe()", exc)
             rec = _mk("engine.observe", "Browser observation is available", BLOCKED,
@@ -231,7 +325,9 @@ def _run_job(engine, plan, job, retries, findings_json, verdict_counts, flaky_te
                 observations_json.append(_blocked_observation_snapshot(job, detail, attempt + 1))
             return detail
         if observations_json is not None:
-            observations_json.append(_observation_snapshot(obs, job, attempt + 1))
+            observations_json.append(_observation_snapshot(
+                obs, job, attempt + 1, evidence_dir=evidence_dir, run_id=run_id,
+                persist_render_artifacts=persist_render_artifacts))
         fx_flaky = (obs.raw or {}).get("flaky")
         if fx_flaky:
             phase = "first_run" if attempt == 0 else "retry"
@@ -279,7 +375,54 @@ def _append_blocked_job(findings_json, verdict_counts, job, detail, check_id="en
         observations_json.append(_blocked_observation_snapshot(job, detail, 1))
 
 
-def _observation_snapshot(obs, job, attempt):
+def _safe_filename(value):
+    return "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in str(value))
+
+
+def _persist_render_artifacts(obs, job, attempt, evidence_dir=None, run_id=None,
+                              persist_render_artifacts=False):
+    if not persist_render_artifacts or not evidence_dir:
+        return {}
+    raw = obs.raw or {}
+    shot = raw.get("screenshot_bytes")
+    if not isinstance(shot, (bytes, bytearray)):
+        return {
+            "actual_rendered": False,
+            "engine_identity": raw.get("engine_identity", obs.engine),
+            "render_capture": raw.get("render_capture", job.get("capture", "VIEWPORT")),
+        }
+    surface = _safe_filename(job.get("surface_id") or "%s_%s" % (job["route"], job["viewport"]))
+    stem = "%s__%s__attempt-%d" % (_safe_filename(run_id or "render"), surface, attempt)
+    render_dir = os.path.join(evidence_dir, "rendered")
+    os.makedirs(render_dir, exist_ok=True)
+    shot_path = os.path.join(render_dir, stem + ".png")
+    with open(shot_path, "wb") as fh:
+        fh.write(bytes(shot))
+
+    import hashlib
+    result = {
+        "actual_rendered": str(raw.get("engine_identity", "")).upper() == "REAL_BROWSER",
+        "engine_identity": raw.get("engine_identity", obs.engine),
+        "render_capture": raw.get("render_capture", job.get("capture", "VIEWPORT")),
+        "screenshot_path": os.path.relpath(shot_path, evidence_dir).replace("\\", "/"),
+        "screenshot_sha256": hashlib.sha256(bytes(shot)).hexdigest(),
+    }
+    for key, suffix in (("rendered_dom", ".html"), ("rendered_css", ".css")):
+        content = raw.get(key)
+        if not isinstance(content, str) or not content.strip():
+            continue
+        path = os.path.join(render_dir, stem + suffix)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(content)
+        result[key + "_path"] = os.path.relpath(path, evidence_dir).replace("\\", "/")
+    return result
+
+
+def _observation_snapshot(obs, job, attempt, evidence_dir=None, run_id=None,
+                          persist_render_artifacts=False):
+    render_receipt = _persist_render_artifacts(
+        obs, job, attempt, evidence_dir=evidence_dir, run_id=run_id,
+        persist_render_artifacts=persist_render_artifacts)
     all_console_errors = [m.text for m in obs.console if m.level == "error"]
     bad_console = [m.text for m in obs.console
                    if m.level == "error" and m.classification != TEST_ENVIRONMENT_NOISE]
@@ -299,6 +442,8 @@ def _observation_snapshot(obs, job, attempt):
                                 and not obs.a11y.violations else obs.a11y.engine_status)
     return {
         "route": job["route"], "viewport": job["viewport"], "browser": job["browser"],
+        "surface_id": job.get("surface_id"),
+        "render_capture": render_receipt.get("render_capture", job.get("capture")),
         "reduced_motion": job.get("reduced_motion", False), "engine": obs.engine,
         "engine_identity": (obs.raw or {}).get("engine_identity", obs.engine),
         "engine_version": (obs.raw or {}).get("engine_version", "unknown"),
@@ -316,7 +461,12 @@ def _observation_snapshot(obs, job, attempt):
         "responsive_status": responsive_status,
         "keyboard_status": keyboard_status,
         "accessibility_status": accessibility_status,
-        "screenshot_evidence_ref": obs.render_signature or None,
+        "screenshot_evidence_ref": render_receipt.get("screenshot_path") or obs.render_signature or None,
+        "actual_rendered": render_receipt.get("actual_rendered", False),
+        "screenshot_path": render_receipt.get("screenshot_path"),
+        "screenshot_sha256": render_receipt.get("screenshot_sha256"),
+        "rendered_dom_path": render_receipt.get("rendered_dom_path"),
+        "rendered_css_path": render_receipt.get("rendered_css_path"),
         "result": "OBSERVATION_EMITTED",
         "observation_status": (obs.raw or {}).get("observation_status", "EMITTED"),
     }
@@ -325,10 +475,13 @@ def _observation_snapshot(obs, job, attempt):
 def _blocked_observation_snapshot(job, detail, attempt):
     return {
         "route": job["route"], "viewport": job["viewport"], "browser": job["browser"],
+        "surface_id": job.get("surface_id"),
+        "render_capture": job.get("capture"),
         "reduced_motion": job.get("reduced_motion", False), "engine": "unavailable",
         "attempt": attempt, "form_observations": "BLOCKED_OBSERVATION_MISSING",
         "mobile_nav_observation": "BLOCKED_OBSERVATION_MISSING",
         "analytics_events": [], "observation_status": "BLOCKED_ENVIRONMENT",
+        "actual_rendered": False, "screenshot_path": None, "screenshot_sha256": None,
         "blocked_reason": detail,
     }
 

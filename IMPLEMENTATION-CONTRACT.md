@@ -219,6 +219,28 @@ Once `assets.status` reaches `"production_ready"` (`ASSET-DIRECTOR-PROTOCOL.md` 
 - **Accessibility:** Populate `alt` attributes strictly according to the asset's accessibility classification in `asset-manifest.json` (`INFORMATIVE`, `DECORATIVE`, `FUNCTIONAL`, `COMPLEX`). Never leave `alt` undefined or keyword-stuffed.
 - **Format Delivery:** Serve modern formats (`.avif` primary with `.webp` / `.png` fallback).
 
+## 2.4 Builder Cinematic and Rendered-Evidence Requirements (V2.15)
+
+When a cinematic journey is selected, the builder consumes the approved
+`cinematic-brief.md` and `motion-direction.md`. The builder must not choose a
+media strategy from personal or tool defaults. `DENSE_KEYFRAME_VIDEO_SCRUB`
+and `CANVAS_FRAME_SEQUENCE` are both valid only when the brief records the
+choice and Browser QA proves the measured behavior.
+
+For applicable production candidates, the builder must expose the named
+`visual_evidence` surfaces in `templates/browser-qa-manifest.json` and keep
+the semantic content complete without media. Posters, mobile and
+reduced-motion fallbacks, text-safe zones, ending rest, seek coalescing,
+delta-gated DOM updates, compositor isolation, and teardown must be
+implemented where the selected strategy requires them.
+
+The builder may create the initial render evidence, but it is never the sole
+visual authority. `NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS` and
+`BUILDER != CRITIC`: the Gauntlet must inspect the actual screenshot set,
+rendered DOM, rendered CSS, approved direction, design system, owner intent,
+and assigned Reference Bars in a fresh context. Any repair requires a new
+render and new screenshots; stale pre-repair evidence cannot support a pass.
+
 ---
 
 ## 2.4 Builder Immersive 3D Requirements (V2.1)

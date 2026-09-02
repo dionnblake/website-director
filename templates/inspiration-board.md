@@ -4,6 +4,7 @@
 > **Status:** DRAFT | APPROVED
 > **Stage:** Visual Research Director — Step 3 (Landbook + Design Inspiration MCP + Cross-Industry, `RESEARCH-SOURCES.md` §3–4)
 > **Rule:** Organized by design purpose, not a link dump. Every entry earns its place with a stated reason.
+> **Registry:** `templates/inspiration-source-registry.json` — all sources default to `REFERENCE_ONLY`.
 
 ---
 
@@ -77,12 +78,61 @@ progressive filtering).
 - **5 Strong References:** [List]
 - **2–3 Deep Recon Targets:** [List] — **Reason each was escalated:** [Specific finding worth forensic study]
 
----
+## 4. Owner-Selected Reference Record
 
-## 4. Board Sign-Off
+Use this record when the owner brings a URL or names a specific source idea.
+It extends the existing `research{}` state; it is not a new lock or readiness
+flag. Preserve the owner's raw request before translating it into the
+interpretation fields.
+
+### 4.1 Owner request
+
+```yaml
+SOURCE: [21ST_DEV | GODLY | AWWWARDS | MOTIONSITES | LANDBOOK | OTHER_REGISTERED_SOURCE]
+REFERENCE_URL: [Exact URL]
+REFERENCE_TYPE: [component | site | section | motion | background | interaction | reference_bar]
+ELEMENT_OR_SECTION: [Exact element, section, or behavior]
+WHAT_I_LIKE: [Owner's words]
+WHAT_I_DO_NOT_WANT: [Owner's boundary]
+WHY_IS_THIS_RELEVANT: [Specific relationship to this client and goal]
+```
+
+### 4.2 Website Director interpretation
+
+```yaml
+OWNER_SELECTED_REFERENCE: true
+SOURCE: [Registry SOURCE_ID]
+URL: [Exact URL]
+ASSIGNED_DIMENSION: [Typography | Hero | Layout | Motion | Interaction | Mobile | Conversion | Atmosphere | Other]
+PATTERN_TO_LEARN: [Transferable principle, not source composition]
+OWNER_REQUESTED_ELEMENT: [Requested behavior or element]
+WHY_IS_THIS_RELEVANT: [Specific relationship to this client and goal]
+WHAT_NOT_TO_COPY: [Copy, colors, type, assets, composition, or distinctive treatment]
+REFERENCE_GRADE: [A | B | C | D | UNASSESSED]
+LICENSE_STATUS: [NOT_REQUIRED_STUDY_ONLY | REVIEW_REQUIRED | VERIFIED | BLOCKED]
+IMPLEMENTATION_RISK: [LOW | MEDIUM | HIGH | UNASSESSED]
+ACCESSIBILITY_RISK: [NONE_OBSERVED | LOW | MEDIUM | HIGH | UNASSESSED]
+PRODUCTION_PLAUSIBILITY: [HIGH | MEDIUM | LOW | UNASSESSED]
+REFERENCE_ONLY_STATUS: true
+WHY_IS_THIS_RELEVANT: [Specific relationship to this client and goal]
+WHAT_SPECIFICALLY_WORKS: [Observed mechanic]
+TRANSFERABLE_PRINCIPLE: [Mechanic expressed in neutral terms]
+BRAND_ADAPTATION: [How the principle changes for this brand and locked system]
+IMPLEMENTATION_MODE: STUDY_ONLY
+```
+
+If `IMPLEMENTATION_MODE` becomes `SOURCE_REUSE`, set
+`LICENSE_CHECK_REQUIRED: true`, record `PROVENANCE_REF`,
+`STACK_ADAPTATION`, and `DESIGN_SYSTEM_ADAPTATION`, and do not proceed unless
+`LICENSE_STATUS: VERIFIED`. Never force a source component's framework onto a
+project. A source selected only because “it looks cool” is rejected.
+
+## 5. Board Sign-Off
 - [ ] Every entry has a stated "Why Selected" tied to this client, not general visual appeal.
 - [ ] MCP entries carry Platform, Query, Grade, Pattern to Learn, What Not To Copy, Production Plausibility, Accessibility Risk, and Implementation Risk.
 - [ ] Every MCP image URL remains `REFERENCE_ONLY` and no MCP result is treated as a production asset or implementation token.
 - [ ] Cross-industry entries carry an explicit strategic relationship (§2).
 - [ ] Deep-recon shortlist named (§3).
+- [ ] Owner-selected records preserve raw input and complete the interpretation contract (§4).
+- [ ] Any source reuse has verified license and provenance evidence; study-only references remain `REFERENCE_ONLY`.
 - [ ] Ready to feed `templates/reference-deconstruction.md` and `templates/research-synthesis.md`.
