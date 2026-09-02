@@ -61,6 +61,12 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   requirements; missing facts are `BLOCKED`. Form exercise is limited to local
   or synthetic same-origin requests intercepted by the adapter. Evidence keeps
   `SIMULATION` and `REAL_BROWSER` identities distinct.
+- **Runtime motion observations (owner-intent hardening):** the existing
+  `PageObservation` model may emit named motion sequence samples through the
+  same engine. A required Level 2/3 motion plan must receive meaningful state
+  change observations from `REAL_BROWSER`; source animation libraries, CSS
+  declarations, screenshots, and simulation facts are insufficient. Generic
+  fade/translate-only sequences do not satisfy the diversity guard.
 - **Rendered visual evidence (V2.15):** a manifest with `visual_evidence.required`
   runs the named render set through `observe_surface()`, persists real-browser
   screenshot receipts under the run evidence directory, and records the path,

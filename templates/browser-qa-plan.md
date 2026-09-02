@@ -33,6 +33,11 @@
   route-change close behavior is part of the contract.
 - A required observation that the selected engine does not emit is `BLOCKED`,
   never an omitted check or a green `UNKNOWN`.
+- For an explicit Level 2/3 motion requirement, declare
+  `runtime_observations.motion.required: true`, the minimum level, and named
+  `sequences`. The real-browser adapter records state samples and measured
+  geometry/opacity/transform/scroll changes. Missing, simulation-only, or
+  unchanged motion is `BLOCKED` or `FAIL`, never a PASS.
 
 ## 4. Measurement assertions (from `measurement-plan.md` — do not invent events)
 

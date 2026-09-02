@@ -43,6 +43,17 @@
 - **Cheap Gate:** [Low-cost local or synthetic checks completed before expensive generation]
 - **Failure / Repair Notes:** [`CINEMATIC_FAILURE_KNOWLEDGE` — loading, keyframes, timing, legibility, mobile, or environment]
 
+### 4.1 Owner-required sequence trace
+
+| Sequence ID | Owner requirement / approved direction | Implementation location | Runtime evidence receipt | Meaningful state change | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [ID] | [owner-intent or motion-direction reference] | [file/module/selector] | [browser QA run and receipt] | [measured PASS / FAIL / BLOCKED] | [PASS / FAIL / BLOCKED] |
+
+Level 2/3 completion requires every promised sequence to be represented. A
+static screenshot, GSAP/CSS declaration, or simulation result is not a runtime
+receipt. See `FRAMEWORK-VALIDATION-PROTOCOL.md` for the authority and
+compliance audit.
+
 ---
 
 ## 5. Render Strategy Decision

@@ -12,6 +12,13 @@
 - **Rationale:** [Why this level, evaluated against `MOTION-DIRECTION-PROTOCOL.md` §4 — business, audience, content, performance, mobile, accessibility, conversion, technical architecture]
 - **Research Input:** [Reference to `research-synthesis.md` §7/§10 if research informed this — or "N/A, research exception applied per `site-profile.json` → research.exception" for bounded/exception projects]
 
+### 1.1 Owner-intent authority
+- **Owner-Intent Contract:** [Path to the current owner-intent artifact]
+- **Explicit Owner Minimum:** [`MOTION_LEVEL_0` | `MOTION_LEVEL_1` | `MOTION_LEVEL_2` | `MOTION_LEVEL_3` — record the owner requirement before applying heuristics]
+- **Heuristic Level:** [Starting hypothesis from §4]
+- **Downgrade Approval:** [Not applicable | explicit owner approval reference]
+- **Compliance Status:** [`PASS` | `FAIL` | `BLOCKED_WITH_EXPLANATION`]
+
 ---
 
 ## 2. Motion Manifesto
@@ -49,6 +56,15 @@
 - **Ending Rest Measurement:** [Readable settle duration and evidence reference]
 - **Video Controls:** [Dense keyframes, Blob loading, rAF smoothing, seek coalescing, delta-gated DOM updates, compositor isolation]
 - **Complete Without Video:** [Semantic fallback and meaning-preservation behavior]
+
+### 4.2 Implementation and runtime trace (required for Level 2–3)
+
+| Sequence ID | Approved brief reference | Implementation location | Runtime evidence reference | Meaningful state change | Browser identity |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [ID] | [brief section] | [file/module/selector] | [run/receipt] | [PASS / FAIL / BLOCKED] | `REAL_BROWSER` |
+
+Every promised sequence must have all three links. Source imports, CSS
+keyframes, screenshots, and simulation output do not replace runtime proof.
 
 ---
 

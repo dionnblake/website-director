@@ -1,0 +1,119 @@
+{
+  "$schema": "../schemas/owner-intent.schema.json",
+  "contract_id": "alpha-starts-now-current-owner-intent",
+  "project_name": "Alpha Starts Now",
+  "status": "CURRENT",
+  "authority_precedence": [
+    "CURRENT_OWNER_INSTRUCTION",
+    "CURRENT_APPROVED_BRAND_PROJECT_CONTRACT",
+    "LOCKED_BUSINESS_AUDIENCE_CONVERSION_PROJECT_TRUTH",
+    "LOCKED_DESIGN_AND_MOTION_DECISIONS",
+    "WEBSITE_DIRECTOR_SPECIALIST_INTELLIGENCE",
+    "REFERENCE_INSPIRATION_INTELLIGENCE",
+    "HISTORICAL_PROJECT_MATERIAL",
+    "DEFAULTS_HEURISTICS"
+  ],
+  "requirements": [
+    {
+      "id": "brand.primary.navy-blue",
+      "target": "brand.primary",
+      "domain": "brand",
+      "class": "REQUIRED",
+      "requirement": "NAVY BLUE is the current primary brand color.",
+      "values": { "role": "PRIMARY", "token": "ASN_NAVY", "name": "NAVY BLUE" },
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_AND_FUTURE_NON_FROZEN_WORK",
+      "authority": "CURRENT_OWNER_INSTRUCTION",
+      "rationale": "The current owner brand contract is authoritative over historical palettes and references."
+    },
+    {
+      "id": "brand.accent.yellow",
+      "target": "brand.accent",
+      "domain": "brand",
+      "class": "REQUIRED",
+      "requirement": "YELLOW is the current accent brand color.",
+      "values": { "role": "ACCENT", "token": "ASN_YELLOW", "name": "YELLOW" },
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_AND_FUTURE_NON_FROZEN_WORK",
+      "authority": "CURRENT_OWNER_INSTRUCTION"
+    },
+    {
+      "id": "brand.supporting-neutrals",
+      "target": "brand.supporting_neutrals",
+      "domain": "brand",
+      "class": "OPTIONAL",
+      "requirement": "White and restrained light/dark neutrals may support contrast and accessibility.",
+      "values": ["white", "restrained light neutrals", "restrained dark neutrals"],
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_AND_FUTURE_NON_FROZEN_WORK",
+      "authority": "CURRENT_OWNER_INSTRUCTION"
+    },
+    {
+      "id": "brand.legacy-colors-not-authority",
+      "target": "brand.current_palette",
+      "domain": "brand",
+      "class": "PROHIBITED",
+      "requirement": "Historical orange, burnt orange, peach, amber, beige, dominant cream, black/silver/white primary palettes, and older orange/blue combinations must not redefine the current brand.",
+      "values": ["orange", "burnt orange", "peach", "amber", "beige", "cream", "black/silver/white primary", "orange/blue"],
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_BRAND_DIRECTION",
+      "authority": "CURRENT_OWNER_INSTRUCTION"
+    },
+    {
+      "id": "motion.owner-cinematic",
+      "target": "motion.level",
+      "domain": "motion",
+      "class": "REQUIRED",
+      "requirement": "The owner-required Alpha Starts Now direction is cinematic, animation-heavy, and sequence-driven.",
+      "values": { "minimum_motion_level": "MOTION_LEVEL_3", "required_sequences": true },
+      "minimum_motion_level": "MOTION_LEVEL_3",
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_CANDIDATE",
+      "authority": "CURRENT_OWNER_INSTRUCTION",
+      "rationale": "Heuristic subtle motion cannot silently downgrade an explicit cinematic requirement."
+    },
+    {
+      "id": "reference.translation-boundary",
+      "target": "reference.translation",
+      "domain": "reference",
+      "class": "REQUIRED",
+      "requirement": "Reference websites may influence composition, movement, typography, interaction, pacing, spatial design, and section transitions, but may not redefine the Alpha Starts Now palette or identity.",
+      "values": { "reference_only": true, "client_translation_trace": true },
+      "source": "CURRENT_OWNER_INSTRUCTION",
+      "currentness": "CURRENT",
+      "scope": "ALPHA_STARTS_NOW_CURRENT_WORK",
+      "authority": "CURRENT_OWNER_INSTRUCTION"
+    }
+  ],
+  "current_brand": {
+    "primary": { "token": "ASN_NAVY", "name": "NAVY BLUE", "role": "PRIMARY" },
+    "accent": { "token": "ASN_YELLOW", "name": "YELLOW", "role": "ACCENT" },
+    "supporting_neutrals": ["white", "restrained light neutrals", "restrained dark neutrals"],
+    "forbidden_dominant_hues": ["orange", "burnt orange", "peach", "amber", "beige", "cream"],
+    "exact_values_approved": false,
+    "notes": "Semantic tokens are authoritative until the owner approves exact values. Frozen historical projects remain immutable."
+  },
+  "historical_evidence": [
+    {
+      "id": "asn-historical-orange-blue",
+      "direction": { "primary": "orange", "secondary": "blue" },
+      "classification": "SUPERSEDED",
+      "authority": "HISTORICAL_PROJECT_MATERIAL",
+      "currentness": "SUPERSEDED",
+      "notes": "Comparison-only historical material; never current brand authority."
+    },
+    {
+      "id": "asn-reference-cream-peach",
+      "direction": { "palette": ["cream", "peach"] },
+      "classification": "NON_AUTHORITATIVE",
+      "authority": "HISTORICAL_PROJECT_MATERIAL",
+      "currentness": "HISTORICAL",
+      "notes": "Reference or historical visual direction cannot override the current owner contract."
+    }
+  ]
+}

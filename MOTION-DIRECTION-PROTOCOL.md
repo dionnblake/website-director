@@ -57,6 +57,13 @@ Before selecting a level, evaluate against:
 
 **The most technologically impressive option is not automatically the correct option.** A plumbing company and an architecture studio can both legitimately justify different levels from the same framework — that divergence is the proof the framework is working, not an inconsistency to fix. See `examples/V1.1-VALIDATION-SIMULATIONS.md` for worked contrasts.
 
+These are starting hypotheses only. An explicit current owner requirement for
+cinematic, immersive, animation-heavy, or scroll-driven motion takes precedence
+over this heuristic and resolves to `MOTION_LEVEL_3`. It cannot be silently
+downgraded to Level 1. Any approved downgrade must be explicit and recorded
+with the owner-intent compliance evidence described in
+`FRAMEWORK-VALIDATION-PROTOCOL.md`.
+
 ---
 
 ## 5. Cinematic Hero Decision Framework
@@ -120,6 +127,11 @@ The lock covers, and `templates/motion-direction.md` must document:
 Every project, regardless of motion level, must implement the `prefers-reduced-motion` reset already specified in `design-system.md` §13. For Level 2–3 projects specifically:
 - Where motion communicates information (a scroll-driven reveal sequencing content, a sticky narrative), the reduced-motion fallback must preserve **equivalent meaning** through static layout — never hide content inside an animation state with no static equivalent.
 - Keyboard and screen-reader workflows must remain fully intact regardless of motion level; motion must never be the only path to content or navigation.
+
+For Level 2 and Level 3, policy completion additionally requires a named
+sequence trace from this direction to its implementation location and a
+meaningful `REAL_BROWSER` runtime state change. Source-only animation claims,
+GSAP or CSS presence, and static screenshots are not motion evidence.
 
 **This protocol owns the motion *policy*.** `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` (Phase 6.9) and the Phase 10.5 reduced-motion assertion **consume** it — they verify that the policy holds (no content trapped behind motion, no meaning only in animation, autoplay > 5s pausable, no strobing), they do not create a competing motion policy. A reduced-motion content-trap detected in Phase 10.5 is the same finding whether reported under `MOTION_SPEC` or `ACCESSIBILITY_REVIEW`.
 

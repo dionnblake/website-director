@@ -16,6 +16,10 @@ used by the bounded V2.15 regression suite.
 `validator.py` owns validation rules, findings, reports, suite execution, and
 read-only mutation evidence. `cinematic_inspiration.py` owns pure registry,
 owner-reference, provider-neutrality, and rendered-visual receipt checks.
+`owner_intent.py` owns the provider-neutral normalization, authority
+precedence, historical/reference boundary, brand-token, contradiction,
+motion-trace, and owner-compliance helpers. It does not own site state or a
+new owner lock.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -53,6 +57,19 @@ owner-reference, provider-neutrality, and rendered-visual receipt checks.
   stale-after-repair, simulation-only, or critic-without-fresh-input evidence
   is blocked.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
+- Owner requirements are normalized with explicit class, source, currentness,
+  scope, and authority metadata. Current owner instructions supersede
+  historical project material and reference inspiration; unresolved same-tier
+  contradictions fail closed.
+- Brand validation is semantic and role/dominance-aware. It permits approved
+  shades, derivatives, accessibility neutrals, and opacity/gradient variants,
+  while rejecting unrelated dominant hues. The Alpha Starts Now current
+  owner-intent artifact records navy blue primary and yellow accent without
+  inventing exact values.
+- Explicit cinematic, immersive, animation-heavy, or scroll-driven owner
+  intent resolves to `MOTION_LEVEL_3` and cannot be silently downgraded. Level
+  2/3 implementation requires a brief-to-location-to-real-browser runtime
+  evidence trace and meaningful sequence diversity.
 
 ## Work Guidance
 

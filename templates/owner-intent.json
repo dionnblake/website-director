@@ -1,0 +1,26 @@
+{
+  "$schema": "../schemas/owner-intent.schema.json",
+  "contract_id": "project-owner-intent",
+  "project_name": "Project Name",
+  "status": "CURRENT",
+  "authority_precedence": [
+    "CURRENT_OWNER_INSTRUCTION",
+    "CURRENT_APPROVED_BRAND_PROJECT_CONTRACT",
+    "LOCKED_BUSINESS_AUDIENCE_CONVERSION_PROJECT_TRUTH",
+    "LOCKED_DESIGN_AND_MOTION_DECISIONS",
+    "WEBSITE_DIRECTOR_SPECIALIST_INTELLIGENCE",
+    "REFERENCE_INSPIRATION_INTELLIGENCE",
+    "HISTORICAL_PROJECT_MATERIAL",
+    "DEFAULTS_HEURISTICS"
+  ],
+  "requirements": [],
+  "current_brand": {
+    "primary": { "token": "PRIMARY_TOKEN", "name": "approved primary" },
+    "accent": { "token": "ACCENT_TOKEN", "name": "approved accent" },
+    "supporting_neutrals": ["white", "restrained light/dark neutrals"],
+    "forbidden_dominant_hues": [],
+    "exact_values_approved": false,
+    "notes": "Record semantic brand roles first. Add exact values only when the owner has approved them."
+  },
+  "historical_evidence": []
+}

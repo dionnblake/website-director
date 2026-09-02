@@ -13,6 +13,37 @@ import re
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
+try:
+    from .owner_intent import (
+        AUTHORITY_PRECEDENCE,
+        audit_owner_requirement_compliance,
+        classify_historical_brand_direction,
+        classify_reference_signal,
+        detect_contradictions,
+        normalize_owner_requirements,
+        resolve_authority_conflicts,
+        resolve_motion_requirement,
+        validate_brand_tokens,
+        validate_motion_implementation_trace,
+        validate_owner_intent_contract,
+        validate_reference_translation_trace,
+    )
+except ImportError:  # pragma: no cover - supports direct legacy module loading
+    from owner_intent import (
+        AUTHORITY_PRECEDENCE,
+        audit_owner_requirement_compliance,
+        classify_historical_brand_direction,
+        classify_reference_signal,
+        detect_contradictions,
+        normalize_owner_requirements,
+        resolve_authority_conflicts,
+        resolve_motion_requirement,
+        validate_brand_tokens,
+        validate_motion_implementation_trace,
+        validate_owner_intent_contract,
+        validate_reference_translation_trace,
+    )
+
 
 REQUIRED_REGISTRY_SOURCES = {
     "21ST_DEV": ("https://21st.dev/", "COMPONENT_PATTERN_LIBRARY"),
@@ -258,6 +289,13 @@ def validate_owner_selected_reference(
             if not _nonempty(_get(reference, field)):
                 _append_issue(issues, "LICENSE_CHECK_REQUIRED_FOR_SOURCE_REUSE",
                               f"source reuse requires {field}")
+    # The source registry remains the owner-reference authority, while the
+    # shared owner-intent helper enforces the reference-to-client translation
+    # boundary whenever a record claims implementation.  Study-only records
+    # remain valid because the helper only requires a trace for implemented
+    # transferable signals and rejects implemented brand-specific signals.
+    for issue in validate_reference_translation_trace(reference).get("issues", []):
+        _append_issue(issues, issue["code"], issue["detail"])
     return issues
 
 

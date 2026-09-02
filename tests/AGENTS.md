@@ -36,6 +36,10 @@ loopback serving, security headers, and accessibility hooks.
 `test_cinematic_inspiration.py` owns the bounded V2.15 source-registry,
 owner-reference, model-neutrality, rendered-screenshot, fresh-critic,
 repair-recapture, five-lock, and frozen-integrity controls.
+`test_owner_intent_enforcement.py` owns the deterministic owner-authority,
+current-versus-historical brand, reference-boundary, contradiction,
+motion-level, motion-trace, runtime-engine, generic-fade, neutral-color,
+frozen-integrity, and disposable static-fixture controls.
 
 ## Local Contracts
 
@@ -70,6 +74,10 @@ repair-recapture, five-lock, and frozen-integrity controls.
   receipts only. It never calls source sites, models, asset providers, or
   deployment services, and it never treats source-only or simulation evidence
   as rendered visual proof.
+- The owner-intent suite uses synthetic records and a disposable fixture only.
+  It never rebuilds Alpha Starts Now, mutates frozen pilots, calls reference
+  providers, or treats a screenshot-only/static or simulation result as
+  Level 2/3 runtime motion proof.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.

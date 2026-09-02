@@ -444,7 +444,26 @@ class SimulationEngine(BrowserQAEngine):
                 raw=dict(app),
             )
 
-        obs.raw = {"fixture_dir": fixture_dir, "fixture": fx, "flaky": fx.get("flaky")}
+        # Synthetic motion facts are intentionally labeled as SIMULATION. The
+        # assertion catalogue may inspect them for deterministic negative
+        # controls, but they can never satisfy a Level 2/3 real-browser gate.
+        motion_fx = fx.get("motion", {})
+        if isinstance(motion_fx, dict):
+            rows = motion_fx.get("motion_observations", motion_fx.get("sequences", []))
+            if isinstance(rows, list):
+                obs.motion_observations = [dict(row) for row in rows if isinstance(row, dict)]
+            obs.raw["motion_observations"] = obs.motion_observations
+            obs.raw["motion_runtime"] = {
+                "engine_identity": "SIMULATION",
+                "runtime_observed": bool(obs.motion_observations),
+                "synthetic": True,
+            }
+        obs.raw["rendered_colors"] = fx.get("rendered_colors", [])
+
+        # Preserve the engine identity/version written at observation start.
+        # Replacing raw here previously erased those fields and weakened the
+        # distinction between synthetic and real runtime evidence.
+        obs.raw.update({"fixture_dir": fixture_dir, "fixture": fx, "flaky": fx.get("flaky")})
         return obs
 
 

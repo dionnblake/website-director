@@ -14,6 +14,12 @@
 
 **What Website Director never triggers:** Stages 2–5 (foundation setup, component-spec generation for parallel-agent rebuilding, distributed build, assembly/visual-diff QA against the original). These stages exist to reconstruct the target site. Website Director has no reconstruction goal.
 
+Recon findings are reference evidence only. Before any implementation,
+classify each signal as `TRANSFERABLE_PRINCIPLE`,
+`BRAND_SPECIFIC_DO_NOT_TRANSFER`, `OPTIONAL_INTERPRETATION`, or `REJECTED`,
+then preserve the source-signal to principle to client-interpretation to
+implementation trace defined in `FRAMEWORK-VALIDATION-PROTOCOL.md`.
+
 This distinction is enforced through a single operating mode:
 
 ```

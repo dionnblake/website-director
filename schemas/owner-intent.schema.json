@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://website-director.local/schemas/owner-intent.schema.json",
+  "title": "Website Director owner-intent contract",
+  "description": "Machine-readable owner constraints. This artifact does not create a state, gate, or owner lock.",
+  "type": "object",
+  "required": ["$schema", "contract_id", "project_name", "status", "authority_precedence", "requirements"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "contract_id": { "type": "string", "minLength": 1 },
+    "project_name": { "type": "string", "minLength": 1 },
+    "status": { "const": "CURRENT" },
+    "authority_precedence": {
+      "type": "array",
+      "minItems": 8,
+      "items": { "type": "string" }
+    },
+    "requirements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/requirement" }
+    },
+    "current_brand": { "$ref": "#/$defs/current_brand" },
+    "historical_evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/historical_record" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "required": ["id", "domain", "class", "requirement", "source", "currentness", "scope", "authority"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "target": { "type": "string" },
+        "domain": { "type": "string", "minLength": 1 },
+        "class": { "enum": ["REQUIRED", "PROHIBITED", "PREFERRED", "OPTIONAL"] },
+        "requirement": {},
+        "values": {},
+        "source": { "type": "string", "minLength": 1 },
+        "currentness": { "enum": ["CURRENT", "HISTORICAL", "REFERENCE_ONLY", "SUPERSEDED"] },
+        "recency": { "enum": ["CURRENT", "HISTORICAL", "REFERENCE_ONLY", "SUPERSEDED"] },
+        "scope": { "type": "string", "minLength": 1 },
+        "authority": { "type": "string", "minLength": 1 },
+        "minimum_motion_level": { "enum": ["MOTION_LEVEL_0", "MOTION_LEVEL_1", "MOTION_LEVEL_2", "MOTION_LEVEL_3"] },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "current_brand": {
+      "type": "object",
+      "required": ["primary", "accent"],
+      "properties": {
+        "primary": {},
+        "accent": {},
+        "supporting_neutrals": { "type": "array", "items": { "type": "string" } },
+        "forbidden_dominant_hues": { "type": "array", "items": { "type": "string" } },
+        "exact_values_approved": { "type": "boolean" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "historical_record": {
+      "type": "object",
+      "required": ["id", "classification", "authority", "currentness"],
+      "properties": {
+        "id": { "type": "string" },
+        "direction": {},
+        "classification": { "enum": ["LEGACY", "SUPERSEDED", "NON_AUTHORITATIVE"] },
+        "authority": { "const": "HISTORICAL_PROJECT_MATERIAL" },
+        "currentness": { "enum": ["HISTORICAL", "SUPERSEDED"] },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
