@@ -8,6 +8,7 @@
 > **V1.3 Note:** Phase 11 Design QA outputs feed directly into Phase 11.5 (Website Gauntlet Subsystem), which subjects candidate builds to independent, fresh-context adversarial critics and dimensional Reference Bars.
 > **V2.8 Note:** Phase 10.5 (Automated Browser & Regression QA, `BROWSER-REGRESSION-QA-PROTOCOL.md`) runs *before* this audit. Machine-verified defects — horizontal overflow, console/network errors, broken assets, form failure/success behaviour, measurement events, reduced motion, route integrity — are caught and evidenced there. This audit references the Phase 10.5 evidence manifest and does not re-derive those verdicts.
 > **V2.9 Note:** Deterministic accessibility verdicts against the WCAG 2.2 AA target (missing names, contrast, keyboard traps, reflow, text spacing, target size, form labels/errors, dialog mechanics, landmarks) also come from Phase 10.5 via `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`. §5.11 and the Gauntlet Accessibility Critic evaluate the *experiential* quality that deterministic rules miss — they do not re-run the engine.
+> **V2.15 Rendered Evidence Note:** `NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`. A score or visual-quality PASS requires the applicable real-browser screenshot set and a fresh-context critic review. Source inspection, HTML/CSS inspection, deterministic tests, builder self-assessment, and prose reasoning are supporting inputs only.
 
 ---
 
@@ -38,6 +39,21 @@ Before scoring the 100-point matrix or conducting qualitative critique, execute 
 - **Physics Audit:** Verify that easing curves snap to locked physics tokens; flag any `bounce-easing` curves.
 - **Browser Surfaces Audit:** Verify that `::selection`, custom scrollbars, carets, and focus rings are explicitly themed from tokens.
 - **Data Typography Audit:** Verify `font-variant-numeric: tabular-nums` on all metrics, stats, and pricing figures.
+
+### 1.2 Rendered visual evidence gate
+
+For an applicable production candidate, the review must link the named render
+set from `BROWSER-REGRESSION-QA-PROTOCOL.md` §11.4: desktop full page, hero,
+mid-page, primary conversion, mobile full page, mobile hero, mobile nav open,
+primary interactive state, and reduced-motion state. The screenshots must be
+captured from the same identified build being reviewed. If a repair occurred,
+the post-repair screenshot set must have a newer revision and build identity.
+
+The reviewer must inspect the actual screenshots, rendered DOM, rendered CSS,
+approved design direction, approved design system, owner intent, and assigned
+Reference Bars in a fresh context distinct from the builder. Missing, stale,
+source-only, or builder-only evidence blocks the visual score and the
+Gauntlet PASS; it cannot be repaired by changing wording or lowering the bar.
 
 ---
 
@@ -94,7 +110,7 @@ These four dimensions exist because V1.1 introduces two new failure modes V1 cou
 - **Fail condition:** Unjustified motion is present (fails the justification test), or the locked motion level does not match what actually shipped.
 
 ### 5.3 Cinematic Restraint
-- *Test Question (only applicable when the `cinematic-sites` specialist was engaged):* Does the cinematic functionality strengthen brand storytelling, or is it simply showing off the technology? Does the build stay inside `cinematic-brief.md`, or did the specialist's own creative defaults leak through (see `CINEMATIC-INTEGRATION-PROTOCOL.md` §3)?
+- *Test Question (only applicable when cinematic production was engaged):* Does the cinematic functionality strengthen brand storytelling, or is it simply showing off the technology? Does the build stay inside `cinematic-brief.md`, or did an adapter's creative defaults leak through (see `CINEMATIC-INTEGRATION-PROTOCOL.md` §3)?
 - **Fail condition:** Cinematic modules or hero treatment are present with no traceable tie to brand storytelling, or the build contradicts a value the brief explicitly specified (typography, composition, palette).
 
 ### 5.4 Originality & Anti-Homogenization

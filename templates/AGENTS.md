@@ -19,6 +19,9 @@ asset, and research-reference recording templates. framework-validation-review.m
 is the human review record template. localization-plan.md,
 localization-manifest.json, and locale-registry.json own the provider-neutral
 Capability #9 localization and internationalization planning artifacts.
+`inspiration-board.md` and `inspiration-source-registry.json` own the
+owner-selectable, reference-only inspiration intake and source registry used
+by cinematic and visual research work.
 
 ## Local Contracts
 
@@ -51,6 +54,10 @@ Capability #9 localization and internationalization planning artifacts.
   contracts, verification evidence, exceptions, and the single
   `application.complete` readiness flag. They never activate every module,
   contain credentials, perform live payments, deploy, or create a sixth lock.
+- Inspiration registry and board records are reference-only by default. An
+  owner-selected source must carry relevance, adaptation, and non-copy fields;
+  source reuse additionally requires verified license, provenance, stack, and
+  design-system evidence.
 - Browser QA templates may declare `runtime_observations` requirements for
   real-browser form and mobile-navigation evidence. Required observations are
   fail-closed and local form exercise is limited to safely intercepted

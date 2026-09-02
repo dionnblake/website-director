@@ -25,6 +25,26 @@
     "mobile_navigation": { "required": false, "require_route_change_close": false }
   },
 
+  "visual_evidence": {
+    "$source": "BROWSER-REGRESSION-QA-PROTOCOL.md §§15–18 and WEBSITE-GAUNTLET-PROTOCOL.md",
+    "required": true,
+    "render_engine": "REAL_BROWSER_REQUIRED",
+    "required_surfaces": [
+      { "surface_id": "DESKTOP_FULL_PAGE", "route": "/", "viewport": 1440, "capture": "FULL_PAGE", "interactions": [] },
+      { "surface_id": "DESKTOP_HERO", "route": "/", "viewport": 1440, "capture": "VIEWPORT", "interactions": [] },
+      { "surface_id": "DESKTOP_MID_PAGE", "route": "/", "viewport": 1440, "capture": "VIEWPORT", "interactions": [{ "action": "scroll_to", "selector": "[data-qa=mid-page-anchor]" }] },
+      { "surface_id": "DESKTOP_PRIMARY_CONVERSION", "route": "/", "viewport": 1440, "capture": "VIEWPORT", "interactions": [{ "action": "scroll_to", "selector": "[data-qa=primary-cta]" }] },
+      { "surface_id": "MOBILE_FULL_PAGE", "route": "/", "viewport": 390, "capture": "FULL_PAGE", "interactions": [] },
+      { "surface_id": "MOBILE_HERO", "route": "/", "viewport": 390, "capture": "VIEWPORT", "interactions": [] },
+      { "surface_id": "MOBILE_NAV_OPEN", "route": "/", "viewport": 390, "capture": "VIEWPORT", "interactions": [{ "action": "click", "selector": "[data-qa=mobile-nav-toggle]" }] },
+      { "surface_id": "PRIMARY_INTERACTIVE_STATE", "route": "/", "viewport": 1440, "capture": "VIEWPORT", "interactions": [{ "action": "click", "selector": "[data-qa=primary-interactive]" }] },
+      { "surface_id": "REDUCED_MOTION_STATE", "route": "/", "viewport": 1440, "reduced_motion": true, "capture": "VIEWPORT", "interactions": [] }
+    ],
+    "fresh_critic_required": true,
+    "recapture_after_repair": true,
+    "evidence_directory": "evidence/browser-qa/rendered"
+  },
+
   "measurement": {
     "$source": "measurement-plan.md / analytics-event-manifest.json — do NOT invent events here",
     "expected_events": [

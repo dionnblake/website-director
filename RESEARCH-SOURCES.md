@@ -1,7 +1,7 @@
 # RESEARCH SOURCES: VISUAL INTELLIGENCE ACQUISITION CHANNELS
 
-> **Version:** 1.2.0
-> **Status:** Mandatory Operating Standard (V1.1 Extension; V2.11.1 adapter additive)
+> **Version:** 1.3.0
+> **Status:** Mandatory Operating Standard (V1.1 Extension; V2.11.1 adapter and V2.15 cinematic intelligence additive)
 > **Purpose:** Define what each research channel is for, what it may never be used for, and what provenance every finding must carry.
 
 ---
@@ -31,6 +31,31 @@ replacement for a channel. Awwwards research is mandatory for
 channel may be skipped only under the bounded exception defined in
 `VISUAL-RESEARCH-PROTOCOL.md` §5, and the skip must be recorded in
 `site-profile.json` → `research.exception`, never applied silently.
+
+### 1.1 Inspiration Source Registry (V2.15 additive)
+
+`templates/inspiration-source-registry.json` is the bounded registry for
+owner-selected inspiration. It formalizes four useful discovery roles without
+creating a new research authority, state, phase, gate, or lock:
+
+| Source ID | Role | Use |
+| :--- | :--- | :--- |
+| `21ST_DEV` | `COMPONENT_PATTERN_LIBRARY` | Study component mechanics and interaction ideas. Source reuse requires license, provenance, stack, and design-system checks. |
+| `GODLY` | `CURATED_SITE_AND_SECTION_DISCOVERY` | Widen site and section candidates, including cross-industry atmosphere and rhythm. |
+| `AWWWARDS` | `WORLD_CLASS_DIMENSIONAL_REFERENCE_BAR` | Use the existing `AWWWARDS-SHOWCASE-INTELLIGENCE.md` authority and assign explicit benchmark dimensions. |
+| `MOTIONSITES` | `MOTION_PATTERN_AND_BACKGROUND_LIBRARY` | Study motion, layering, and atmosphere; premium or unavailable material remains `REFERENCE_ONLY`. |
+
+`LANDBOOK`, `DESIGN_INSPIRATION_MCP`, `INDUSTRY_LANDSCAPE`,
+`CROSS_INDUSTRY`, and `REFERENCE_RECON` remain preserved entries in the same
+registry and keep their existing authorities. The registry is a research
+index, not a provider integration.
+
+An owner request is recorded in the existing `research{}` state as an
+`owner_selected_references` record. The record must preserve the raw source,
+URL, reference type, element or section, what the owner likes, and what the
+owner does not want, then add `PATTERN_TO_LEARN`, `ASSIGNED_DIMENSION`,
+`WHAT_NOT_TO_COPY`, relevance, risk, license, and provenance fields. A source
+selected only because it “looks cool” is not a valid research rationale.
 
 ---
 

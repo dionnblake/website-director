@@ -230,6 +230,29 @@ The Hero Asset carries the primary visual burden of the website. For PREMIUM and
 ### Signature Visual Asset (SIGNATURE_ASSET):
 For SHOWCASE projects, a Signature Visual Asset is mandatory. It must directly embody the SIGNATURE_ELEMENT declared in the Design Direction (e.g. an interactive 3D exploded view, a high-detail macro cross-section, a bespoke branded sculpture, or a custom dynamic SVG schematic).
 
+### Cinematic production intelligence (V2.15 additive)
+
+When a Cinematic Journey is applicable, Asset Director consumes the existing
+`cinematic-brief.md` rather than inventing a media direction. The production
+package must declare the shot or segment purpose, `PLAN_END_FRAME_FIRST`,
+negative-space and text-safe zones, the transition seam, mobile and
+reduced-motion fallback, and the evidence required for approval.
+
+- Run `SHOT_COST_PREFLIGHT` and the `CHEAP_GATE_BEFORE_EXPENSIVE_GENERATION`
+  before a paid or high-cost operation.
+- Require `SEGMENT_LEVEL_VIDEO_APPROVAL` before any segment enters the selected
+  build. Rejected segments remain rejected.
+- Keep `FFMPEG_SCRUB_RECIPES`, raw intermediates, and review assemblies outside
+  the deployable web asset directory.
+- Use `TAIL_TRIM_BEFORE_REROLL` when the core shot is sound but its ending is
+  not. Record the repair and new output hash.
+- Treat generated media as decorative or conceptual unless its factual status
+  is independently supported. Asset identity, source inputs, license, rights,
+  and provenance remain mandatory.
+
+No generation provider or model is required by Asset Director. An unavailable
+provider is `BLOCKED`, not a reason to fabricate an asset approval.
+
 ---
 
 ## 10. Photography Shot List (PHOTOGRAPHY_SHOT_LIST.md)

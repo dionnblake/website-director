@@ -1,7 +1,7 @@
 # MOTION DIRECTION PROTOCOL: HOW ALIVE SHOULD THIS SITE FEEL?
 
-> **Version:** 1.1.0
-> **Status:** Mandatory Operating Standard (V1.1 Extension)
+> **Version:** 1.2.0
+> **Status:** Mandatory Operating Standard (V1.1 Extension; V2.15 cinematic production intelligence additive)
 > **Rule:** Motion is an art-direction decision, made deliberately, every time — including the decision to use none.
 
 ---
@@ -74,6 +74,24 @@ When a hero treatment is being decided (any motion level, but especially relevan
 - 3D / WebGL hero
 
 Evaluate the same list as §4 (business, audience, desired emotion, content, performance, mobile, accessibility, conversion, technical architecture) before choosing. A scroll-driven canvas hero is a legitimate answer for a design studio and a wrong answer for a plumber, not because canvas heroes are inherently bad, but because the framework, applied honestly, produces different answers for different businesses.
+
+### 5.1 Cinematic render strategy decision
+
+For a scroll-linked hero or Cinematic Journey, record one of the following
+strategies in `motion-direction.md` and `cinematic-brief.md`:
+
+| Strategy | Decision rule |
+| :--- | :--- |
+| `DENSE_KEYFRAME_VIDEO_SCRUB` | Select only when a real-browser run proves dense-keyframe video scrubbing, scroll alignment, ending rest, mobile behavior, reduced motion, and performance within budget. |
+| `CANVAS_FRAME_SEQUENCE` | Select when exact frame synchronization or measured browser behavior makes a frame sequence the safer implementation. |
+
+The framework makes no global claim that video or canvas is superior. The
+record must name the rejected alternative, the evidence run, the measured
+reason, the poster, the mobile fallback, and the complete-without-video path.
+The implementation may use Blob loading, `requestAnimationFrame` smoothing,
+seek coalescing, delta-gated DOM updates, and compositor isolation when the
+selected strategy requires them. These are engineering techniques, not a
+creative override.
 
 ---
 

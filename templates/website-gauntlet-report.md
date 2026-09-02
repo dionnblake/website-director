@@ -21,6 +21,49 @@
 | **`Editorial Bar`** | [Reference Name] | `[URI / Artifact Path]` | [Rationale: specific scannability & cadence standard] |
 | **`Mobile Bar`** | [Reference Name] | `[URI / Artifact Path]` | [Rationale: specific mobile touch/typography standard] |
 
+## 1.1 Rendered visual evidence hard stop
+
+`NO_RENDERED_VISUAL_EVIDENCE = NO_VISUAL_QA_PASS`
+
+- **Browser QA Run ID:** `[run id]`
+- **Build Identity / Git SHA:** `[identity]`
+- **Screenshot Set Revision:** `[0]`
+- **Required Surfaces:** `DESKTOP_FULL_PAGE`, `DESKTOP_HERO`, `DESKTOP_MID_PAGE`, `DESKTOP_PRIMARY_CONVERSION`, `MOBILE_FULL_PAGE`, `MOBILE_HERO`, `MOBILE_NAV_OPEN`, `PRIMARY_INTERACTIVE_STATE`, `REDUCED_MOTION_STATE`
+- **Receipt Status:** `[PASS | BLOCKED | FAIL]`
+
+| Surface | Route | Viewport | Browser | Capture State | Screenshot Path | SHA-256 |
+| :--- | :--- | :---: | :--- | :--- | :--- | :--- |
+| `DESKTOP_FULL_PAGE` | `/` | 1440 | Chromium | `FULL_PAGE` | `[evidence ref]` | `[hash]` |
+| `DESKTOP_HERO` | `/` | 1440 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `DESKTOP_MID_PAGE` | `/` | 1440 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `DESKTOP_PRIMARY_CONVERSION` | `/` | 1440 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `MOBILE_FULL_PAGE` | `/` | 390 | Chromium | `FULL_PAGE` | `[evidence ref]` | `[hash]` |
+| `MOBILE_HERO` | `/` | 390 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `MOBILE_NAV_OPEN` | `/` | 390 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `PRIMARY_INTERACTIVE_STATE` | `/` | 1440 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+| `REDUCED_MOTION_STATE` | `/` | 1440 | Chromium | `VIEWPORT` | `[evidence ref]` | `[hash]` |
+
+### 1.2 Fresh critic receipt
+
+- **Builder Context ID:** `[builder context]`
+- **Fresh Critic Context ID:** `[different critic context]`
+- **Actual Screenshots Inspected:** `[true / false]`
+- **Actual Rendered DOM Ref:** `[artifact path]`
+- **Actual Rendered CSS Ref:** `[artifact path]`
+- **Approved Design Direction Inspected:** `[true / false]`
+- **Approved Design System Inspected:** `[true / false]`
+- **Owner Intent Inspected:** `[true / false]`
+- **Assigned Reference Bars Inspected:** `[true / false]`
+
+### 1.3 Repair recapture receipt
+
+- **Repairs Applied:** `[none / list with revisions]`
+- **Pre-Repair Build Identity:** `[identity]`
+- **Post-Repair Build Identity:** `[identity]`
+- **New Screenshot Set Revision:** `[revision greater than repair revision]`
+- **Fresh Re-Evaluation Run / Context:** `[run and context]`
+- **Stale Screenshot Check:** `[PASS | BLOCKED]`
+
 ---
 
 ## 2. Round-by-Round Execution Trace

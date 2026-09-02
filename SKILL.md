@@ -134,6 +134,7 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ### PHASE 3: Visual Research (Visual Research Director)
 - Consult [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md) and [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md).
+- Consult [INSPIRATION-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/INSPIRATION-SOURCES.md) and `templates/inspiration-source-registry.json` when the owner requests a specific source or visual reference. Keep every discovery result `REFERENCE_ONLY` until the owner-selected interpretation, provenance, rights, and adaptation record is complete.
 - Optionally prepare the bounded unified Design Inspiration MCP request through `integrations/design-inspiration/` for Dribbble, Behance, Awwwards, Mobbin, and Pinterest discovery. A missing `SERPER_API_KEY` is `BLOCKED_CREDENTIAL_MISSING`, not a pass or a reason to invent evidence.
 - Run the existing research channels (Industry Landscape, Landbook, Cross-Industry, Awwwards, the unified Design Inspiration MCP, and JCodesMore Recon on the shortlisted 2–3 deep-recon targets only) through progressive filtering.
 - Deep reconnaissance on shortlisted targets uses [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md) in `RESEARCH_ONLY_MODE` exclusively — never the JCodesMore default cloning pipeline.
@@ -376,7 +377,8 @@ An agent running Website Director must advance strictly through these phases. Do
 - **GSAP Implementation Specification:**
   - If `MOTION_LEVEL = LEVEL_0` (static) or CSS transitions suffice: set `site-profile.json` → `motion.gsap_required = false`. No GSAP runtime dependency is added to the project.
   - If `MOTION_LEVEL >= LEVEL_1` and JavaScript motion is required: set `site-profile.json` → `motion.gsap_required = true` and generate [templates/motion-implementation-spec.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/motion-implementation-spec.md) drawing canonical implementation patterns from the official GSAP Skills Engine (`intelligence/gsap-skills/engine/query.py`).
-- **If, and only if,** Level 2–3 genuinely calls for the Robonuggets `cinematic-sites` specialist's specific capabilities (AI-generated hero animation, scroll-driven canvas frames, Cinematic Modules), consult [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md), set `site-profile.json` → `motion.cinematic_specialist_required = true`, and generate [templates/cinematic-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/cinematic-brief.md) as the binding contract the specialist executes. Obtain explicit owner cost authorization before any paid generation call. On completion, set `motion.cinematic_brief_complete = true`.
+- **If, and only if,** Level 2–3 genuinely calls for cinematic production, consult [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md), set `site-profile.json` → `motion.cinematic_specialist_required = true`, and generate [templates/cinematic-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/cinematic-brief.md) as the provider/model-neutral contract for the logical builder, critic, research, asset-generation, and deployment roles. Choose the bounded `DENSE_KEYFRAME_VIDEO_SCRUB` or `CANVAS_FRAME_SEQUENCE` strategy from measured browser constraints. Obtain explicit owner cost authorization before any paid generation call. On completion, set `motion.cinematic_brief_complete = true`.
+- **Production intelligence controls:** Apply the Creative Director Loop, Design Package, shot laws, ending-first planning, negative-space and boundary-crossing rules, chained journey continuity, cost preflight, cheap gate, segment approval, and provenance fields in the cinematic brief. A provider or model is replaceable; the brief and rendered evidence are the contract.
 - **ENGAGE LOCK 5:** Update `site-profile.json` → `locks.motion_direction_locked = true`. If a cinematic specialist was required, `motion.cinematic_brief_complete` must already be `true`.
 
 ---
@@ -475,7 +477,7 @@ An agent running Website Director must advance strictly through these phases. Do
   - Vue/Svelte/Vanilla: Use `gsap.context()` with mandatory unmount cleanup (`ctx.revert()`).
   - Accessibility: Wrap choreography in `gsap.matchMedia()` providing explicit `(prefers-reduced-motion: reduce)` fallbacks.
   - Performance: Animate only compositor transforms (`xPercent`, `yPercent`, `scale`, `rotation`) and `autoAlpha`; layout property animations are strictly banned.
-- If a cinematic specialist was engaged, it executes strictly within `cinematic-brief.md` — see `CINEMATIC-INTEGRATION-PROTOCOL.md` §3.
+- If cinematic production was engaged, the implementation executes strictly within `cinematic-brief.md` — see `CINEMATIC-INTEGRATION-PROTOCOL.md` §3. Any generated or sourced media remains provenance-gated and provider-neutral.
 - If a design collision occurs, follow the **Spec-First Change Procedure** in [IMPLEMENTATION-CONTRACT.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMPLEMENTATION-CONTRACT.md).
 
 ---
@@ -484,6 +486,7 @@ An agent running Website Director must advance strictly through these phases. Do
 - Consult [BROWSER-REGRESSION-QA-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/BROWSER-REGRESSION-QA-PROTOCOL.md).
 - **Precondition:** Phase 10 build is complete. Browser QA is a post-build verification capability — it never runs against draft markup.
 - **Core Standard:** Website Director evolves from *"the agent says it checked the browser"* to `REQUIREMENT → MACHINE-EXECUTED BROWSER TEST → EVIDENCE ARTIFACT → PASS / FAIL / FLAKY / BLOCKED / NOT_APPLICABLE → REGRESSION BASELINE`.
+- **Rendered visual hard stop:** when `visual_evidence.required = true`, the run must persist a complete named screenshot set from a real browser with path, SHA-256, engine identity, viewport, capture mode, route, and attempt. A source-only inspection, render signature, simulation run, DOM/CSS read, or prose assertion cannot produce a visual PASS. After any repair, recapture and fresh independent critic evidence are required.
 - **Derivation Rule (Do Not Re-Interview / Do Not Re-Author):** Build the plan from `information-architecture.md`, `content-plan.md`, `design-system.md`, `motion-direction.md`, `measurement-plan.md`, `analytics-event-manifest.json`, `security-privacy-review.md`, `page-experience-brief.md`, and `site-profile.json`. Browser QA **consumes** the measurement plan and security/privacy review — it invents no events and re-authors no requirements.
 - **Execution Workflow:**
   - Compile [templates/browser-qa-plan.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/browser-qa-plan.md) and [templates/browser-qa-manifest.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/browser-qa-manifest.json).
@@ -514,6 +517,7 @@ An agent running Website Director must advance strictly through these phases. Do
 ### PHASE 11.5: Website Gauntlet Subsystem Execution
 - Consult [WEBSITE-GAUNTLET-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/WEBSITE-GAUNTLET-PROTOCOL.md).
 - Enforce the non-negotiable **`BUILDER != CRITIC`** separation invariant. Evaluators run in fresh context inspecting actual rendered artifacts against named, fetchable **Reference Bars**.
+- The Gauntlet may report `GAUNTLET_PASS` only when Browser QA has supplied the complete current rendered screenshot set and the critic receipt identifies the actual DOM/CSS inputs, approved direction/system, owner intent, and assigned Reference Bars. A repair invalidates the prior visual receipt until recapture and fresh critique are recorded.
 - Dispatch specialized dimensional critics (`Craft`, `Brand`, `Conversion`, `Trust`, `Motion`, `AI-Slop`, `Accessibility`, `Reference`), empowered by Impeccable detectors, and run the lightweight `Simulated Audience Panel`.
 - Isolate the single largest defect (`BIGGEST_REMAINING_GAP`) and execute targeted, localized repairs.
 - **Lock Protection:** If remediating a gap requires changing a locked token or decision, halt repair and issue a structured `LOCKED_CHANGE_REQUIRED` Change Request for Owner Review. Never mutate locks silently.
@@ -572,6 +576,7 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Creative Briefing** | [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md) | `creative-intent-contract.md`, `project-brief.md`, `positioning.md` |
 | **SEO Intelligence** | [SEO-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SEO-INTELLIGENCE-PROTOCOL.md) | `seo-business-context.md`, `keyword-research.md`, `seo-competitive-landscape.md`, `keyword-map.md`, `seo-content-briefs.md` |
 | **Visual Research** | [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md), [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md), [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md), `integrations/design-inspiration/ADAPTER.md` | `research-brief.md`, `competitor-landscape.md`, `inspiration-board.md`, `reference-deconstruction.md`, `research-synthesis.md` |
+| **Inspiration Sources** | [INSPIRATION-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/INSPIRATION-SOURCES.md), `schemas/inspiration-source-registry.schema.json` | `inspiration-source-registry.json`, owner-selected records in `inspiration-board.md` |
 | **Design Intelligence** | [DESIGN-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-INTELLIGENCE-PROTOCOL.md) | `design-intelligence.md` |
 | **Showcase Benchmarking** | [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md) | `inspiration-board.md`, `visual-prototype-review.md` |
 | **Visual Direction** | [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md), [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) | `reference-analysis.md`, `design-direction.md` |
@@ -579,12 +584,13 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Architecture** | [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) | `information-architecture.md`, `content-plan.md` |
 | **Design System** | [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md) | `design-system.md` |
 | **Motion Direction** | [MOTION-DIRECTION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/MOTION-DIRECTION-PROTOCOL.md), [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md) | `motion-direction.md`, `cinematic-brief.md` |
+| **Cinematic Production Intelligence** | [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md), [ASSET-DIRECTOR-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/ASSET-DIRECTOR-PROTOCOL.md) | `cinematic-brief.md`, rendered evidence receipts |
 | **Motion Engineering** | [GSAP-IMPLEMENTATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/GSAP-IMPLEMENTATION-PROTOCOL.md) | `motion-implementation-spec.md` |
 | **Page Experience** | [PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md) | `page-experience-brief.md` |
 | **Conversion & Analytics Intelligence** | [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md) | `measurement-plan.md`, `analytics-event-manifest.json`, `experiment-brief.md` |
 | **Security, Privacy & Compliance** | [SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md) | `security-privacy-review.md`, `security-privacy-register.json` |
 | **Implementation** | [IMPLEMENTATION-CONTRACT.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/IMPLEMENTATION-CONTRACT.md) | `implementation-contract.md` |
-| **Browser & Regression QA** | [BROWSER-REGRESSION-QA-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/BROWSER-REGRESSION-QA-PROTOCOL.md) | `browser-qa-plan.md`, `browser-qa-manifest.json`, `browser-qa/` harness, `evidence/browser-qa/` |
+| **Browser & Regression QA** | [BROWSER-REGRESSION-QA-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/BROWSER-REGRESSION-QA-PROTOCOL.md) | `browser-qa-plan.md`, `browser-qa-manifest.json`, `browser-qa/` harness, named rendered screenshot receipts in `evidence/browser-qa/` |
 | **Accessibility Intelligence** | [ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md) | `accessibility-review.md`, `accessibility-test-manifest.json`, `browser-qa/` accessibility assertions, `evidence/accessibility/` |
 | **Launch & Post-Launch Operations** | [LAUNCH-OPERATIONS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/LAUNCH-OPERATIONS-PROTOCOL.md) | `launch-plan.md`, `launch-evidence-manifest.json`, `launch-ops/validator.py`, `browser-qa/` (`environment=production`), `evidence/launch/` |
 | **Content Operations & CMS Architecture** | [CONTENT-OPERATIONS-CMS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONTENT-OPERATIONS-CMS-PROTOCOL.md) | `content-model.md`, `content-model.json`, `cms-decision.md`, `content-ops/validator.py` |
@@ -847,6 +853,17 @@ APPLICATION-COMMERCE-AUTH-PROTOCOL.md, application/validator.py, the
 application.complete state, and the [APPLICATION_ARCHITECTURE_READY]
 readiness gate. It does not add an owner lock or authorize providers,
 credentials, live users, payments, deployment, or production verification.
+
+The V2.15 cinematic/inspiration enhancement is additive to those authorities.
+`INSPIRATION-SOURCES.md` and `templates/inspiration-source-registry.json`
+provide owner-selectable, `REFERENCE_ONLY` sources; source reuse remains
+blocked until license, provenance, stack, and design-system adaptation are
+recorded. `CINEMATIC-INTEGRATION-PROTOCOL.md` and
+`templates/cinematic-brief.md` provide model/provider-neutral production
+intelligence and bounded render strategy. Required visual claims are derived
+only from a complete real-browser screenshot receipt set; source-only,
+simulation-only, signature-only, stale-after-repair, or prose evidence cannot
+pass, and repairs require recapture plus a fresh independent critic.
 
 ## 5.19 Design Inspiration MCP Boundary (V2.11.1)
 

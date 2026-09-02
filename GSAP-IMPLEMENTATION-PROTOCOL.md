@@ -207,6 +207,27 @@ Desktop motion sequences do not blindly execute on mobile. The Motion Implementa
 - **Desktop:** Full scroll scrub / pinning / multi-card stagger.
 - **Mobile ($\le 768\text{px}$):** Simplified viewport trigger, zero heavy pinning, reduced stagger duration, touch-optimized swipe.
 
+### 4.4 Cinematic Journey synchronization (V2.15 additive)
+
+When GSAP coordinates a Cinematic Journey, it consumes the render strategy
+selected by Motion Direction. It does not decide whether video or canvas is
+correct. The implementation must:
+
+- measure `SCROLL_MOTION_ALIGNMENT` at start, mid-scroll, and settle states;
+- use a delta-time-normalized `requestAnimationFrame` smoothing loop where a
+  media scrubber needs interpolation;
+- use `SEEK_COALESCING` so rapid scroll input leaves only the latest needed seek;
+- use `DELTA_GATED_DOM_UPDATES` for text and metadata instead of writing on
+  every frame without a value change;
+- isolate composited media layers and bound `will-change` to active motion;
+- expose poster, mobile, reduced-motion, and `COMPLETE_WITHOUT_VIDEO` paths;
+- remove listeners, timelines, object URLs, and scroll triggers on teardown.
+
+The browser evidence manifest, not source inspection, decides whether the
+chosen strategy is stable enough for a visual-quality review. A failed scrub,
+flicker, or unreadable moving background is recorded as a defect and is not
+hidden by a static code scan.
+
 ---
 
 ## 5. Plugin Governance & Smooth Scroll Policy

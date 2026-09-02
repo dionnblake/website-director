@@ -67,6 +67,8 @@ When the user requests a durable behavior change, record it here or in the relev
 ## Child DOX Index
 
 - [provenance/](provenance): Capability 7 Evidence, Claim and Asset Provenance boundary. Owns the canonical evidence ledger, source and rights traceability, attribution, hash identity, risk classification, and deterministic validator. It does not own Asset Director readiness, Security & Privacy disclosure, or production deployment.
+- [schemas/](schemas): Canonical machine-readable schemas, registries, compatibility records, validation manifests, and the exact five-lock contract. It owns the bounded inspiration-source registry schema without creating a new state, gate, or lock.
+- [framework_validation/](framework_validation): Standard-library deterministic framework self-validation, including the bounded cinematic/inspiration and rendered-visual evidence helpers. It does not call providers, mutate frozen projects, or replace Website Director authorities.
 
 - [intelligence/frontend-design/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/intelligence/frontend-design): Anthropic Frontend Design Distinctiveness Discipline (subject grounding, hero thesis, structural meaning, signature element, boldness budget, and evaluation helper `engine/evaluate.py`).
 - [intelligence/gsap-skills/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/intelligence/gsap-skills): Official GreenSock GSAP Motion Implementation Engine (8 official skills: `core`, `timeline`, `scrolltrigger`, `plugins`, `utils`, `react`, `frameworks`, `performance`, recipes, and query adapter `engine/query.py`).
@@ -80,6 +82,7 @@ When the user requests a durable behavior change, record it here or in the relev
 - [examples/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/examples): Reference documentation, the AetherDB worked example, V1.1 validation simulations, V1.3 Gauntlet validation suite (`GAUNTLET-INTEGRATION-VALIDATION.md`), V1.3.1 Impeccable validation suite (`IMPECCABLE-INTEGRATION-VALIDATION.md`), V1.4 Design Intelligence validation suite (`UIUX-INTELLIGENCE-VALIDATION.md`), V1.5 GSAP validation suite (`GSAP-INTEGRATION-VALIDATION.md`), V1.6 Frontend Design validation suite (`FRONTEND-DESIGN-INTEGRATION-VALIDATION.md`), V1.8 Creative Briefing validation suite (`CREATIVE-BRIEFING-INTEGRATION-VALIDATION.md`), V1.9 Visual Prototype validation suite (`VISUAL-PROTOTYPE-INTEGRATION-VALIDATION.md`), V2.0 Asset Director validation suite (`ASSET-DIRECTOR-INTEGRATION-VALIDATION.md`), V2.1 Immersive Web validation suite (`IMMERSIVE-WEB-INTEGRATION-VALIDATION.md`), V2.6 Conversion & Analytics validation suite (`CONVERSION-ANALYTICS-INTEGRATION-VALIDATION.md`), V2.7 Security, Privacy & Compliance validation suite (`SECURITY-PRIVACY-COMPLIANCE-INTEGRATION-VALIDATION.md`), V2.8 Browser & Regression QA validation suite (`BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md`), V2.9 Accessibility Intelligence validation suite (`ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md`), V2.10 Launch & Post-Launch Operations validation suite (`LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md`), V2.13 Content Operations and CMS Architecture validation suite (`CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md`), V2.14 Localization and Internationalization validation suite (`LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md`), V2.15 Conditional Application Architecture validation suite (`APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md`), and `test_runner.py` (V2.0–V2.15 protocol/template/pilot invariant harness, including neutral `content_ops{}`/`localization{}`/`application{}`/`provenance{}` state and no-sixth-lock assertions).
 - [tests/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/tests): Automated framework assertion suites run directly with `python tests/<file>.py` (exit 0 = pass). Covers V2.5 Client CMS & Handoff (`test_v2_5_client_handoff.py` — repaired under V2.8 to run all mutable CMS operations in a disposable temp copy under the frozen-integrity guard), V2.5.1 Signature Choreography, V2.7 Security/Privacy/Compliance, V2.8 Browser & Regression QA (`test_v2_8_browser_regression_qa.py` — repo invariants + scenario A–L negative controls), V2.9 Accessibility Intelligence (`test_v2_9_accessibility.py` — repo invariants + scenario A–R accessibility negative controls), V2.10 Launch & Post-Launch Operations (`test_v2_10_launch_operations.py` — repo invariants + state-machine + scenario A–R launch negative controls), V2.12 Evidence & Asset Provenance (`test_v2_12_evidence_asset_provenance.py` — A–V synthetic evidence, rights, hash, reference, and frozen-integrity controls plus W–AK fail-closed regression edges), V2.13 Content Operations & CMS (`test_v2_13_content_operations.py` — A–V synthetic content, editorial, CMS, provenance, redirect, and frozen-integrity controls), V2.14 Localization & Internationalization (`test_v2_14_localization.py` — A–AF locale, route, fallback, translation, formatting, RTL, SEO, provenance, handoff, and frozen-integrity controls), and V2.15 Application Architecture (`test_v2_15_application_architecture.py` — A–AV conditional application, authentication, authorization, commerce, payment, booking, upload, UGC, integration, provider, and frozen-integrity controls). **A suite must not mutate anything under `projects/`** — frozen certification pilots are read-only fixtures; every suite wraps itself in `browser-qa/guards/frozen_integrity_guard.py`.
 - [browser-qa/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/browser-qa): Reusable, framework-level Phase 10.5 Browser & Regression QA harness (V2.15). Replaceable `BROWSER_QA_ENGINE` (`engine/` — `playwright` real + `simulation` deterministic), requirement-traced assertion catalogue (`assertions/`), frozen-project integrity guard (`guards/`), manifest-driven runner (`runner.py`), config (`config/`), and synthetic negative-control fixtures (`fixtures/`). Policy is canonical (`../BROWSER-REGRESSION-QA-PROTOCOL.md`); the engine is swappable. V2.9 adds the accessibility assertion group (`assertions/catalog.py` `check_accessibility`, source `ACCESSIBILITY_REVIEW`) and a replaceable axe-core hook in `engine/playwright_engine.py` (`vendor/axe.min.js`, git-ignored). V2.10 reuses this harness unchanged for Phase 12.25 Production Browser QA via the manifest's `"environment": "production"` — no second runner. V2.13 content behavior, V2.14 localization behavior, and V2.15 application behavior (`check_content`, `check_localization`, `check_application`) are consumed through the same harness; no second content, localization, or application runner. See `browser-qa/AGENTS.md`, `../ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, `../LAUNCH-OPERATIONS-PROTOCOL.md`, and `../APPLICATION-COMMERCE-AUTH-PROTOCOL.md`.
+- [V2.15 cinematic proof](framework_validation/cinematic_inspiration.py): Rendered visual claims require named real-browser screenshot receipts with persisted paths, SHA-256 identity, and fresh post-repair review. Source-only, simulation-only, and stale captures cannot pass.
 - [projects/alpha-starts-now/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/projects/alpha-starts-now): Working state and specification artifacts for the Alpha Starts Now pilot. **Frozen V1 baseline — do not modify under any V1.1/V1.2/V1.3/V1.4/V1.5/V1.6/V1.7/V1.8/V1.9/V2.0/V2.1 maintenance task.**
 - [projects/alpha-starts-now-v1-1/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/projects/alpha-starts-now-v1-1): Working state, visual research intelligence, token specifications, Information Architecture, Content Plan, Design System, Motion Direction, and production redesign for **Alpha Starts Now (V1.1 Production Redesign)**. Status: **`CLOSED_OWNER_APPROVED_LOCAL_CANDIDATE`** (Test Result: 98/100 PASS; Owner Approved AS-IS; Release Worktree Staged & Frozen; Production Deployment Deferred by Owner Decision).
 - [projects/v1-1-architecture-pilot/](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/projects/v1-1-architecture-pilot): Working state, visual research intelligence, token specifications, and build implementation for the **VALENTIN & HESSE Architects** real-world pilot under Website Director V1.1. Status: **`V1_1_ARCHITECTURE_PILOT_VALIDATED`** (Independent QA 94/100 PASS; Cleared all 4 V1.1 supplemental gates; P1 responsive fix applied; Frozen baseline).
@@ -187,6 +190,38 @@ Browser QA, Launch Operations, or V2.5 Handoff authority.
    V2.5 Handoff remain their own authorities. Application readiness never
    authorizes provider setup, live users, payments, publishing, deployment, or
    production verification.
+
+### Cinematic Production Intelligence, Inspiration and Rendered Proof (V2.15 - Additive)
+
+These rules are additive. They do not create Capability #11, a V2.16 phase, a
+new state object, a sixth owner lock, or a replacement for the existing Visual
+Research, Motion, Asset Director, Browser QA, Visual Prototype, or Gauntlet
+authorities.
+
+1. **Use the bounded source registry.** `INSPIRATION-SOURCES.md` and
+   `templates/inspiration-source-registry.json` define owner-selectable
+   sources and their bounded roles. Awwwards remains governed by
+   `AWWWARDS-SHOWCASE-INTELLIGENCE.md`; no duplicate authority is created.
+2. **Keep references reference-only.** Owner-selected inspiration records must
+   state the URL, relevance, assigned dimension, transferable pattern, and
+   non-copy boundary. Reusing source material requires verified license,
+   provenance, project-stack adaptation, and design-system adaptation.
+3. **Keep production intelligence neutral.** Cinematic briefs route logical
+   roles such as `BUILDER_AGENT`, `CRITIC_AGENT`, and
+   `ASSET_GENERATION_PROVIDER` without binding a model, vendor, hosting
+   platform, or deployment service. A missing provider is a planning blocker,
+   not permission to invent evidence or a hidden dependency.
+4. **Rendered visual proof is fail-closed.** When visual evidence is required,
+   a PASS is derived only from fresh real-browser screenshot receipts for the
+   named surface set, with persisted paths, SHA-256 identity, engine identity,
+   viewport, capture mode, route, and attempt. Source-only, simulation-only,
+   prose, DOM/CSS-only, or render-signature-only evidence cannot PASS.
+5. **Repairs require re-proof.** A Gauntlet critic is independent from the
+   builder and must inspect fresh screenshot/DOM/CSS receipts plus the locked
+   direction, design system, owner intent, and reference bars. Any repair
+   requires a newer screenshot set and a fresh critic receipt. Exactly five
+   owner locks remain immutable, and all runs preserve frozen-project
+   integrity.
 
 ### Conversion & Analytics Governance (V2.6 — Additive)
 

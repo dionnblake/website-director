@@ -41,6 +41,15 @@
 - **Reduced-Motion Behavior:** [Static equivalent preserving meaning, per `MOTION-DIRECTION-PROTOCOL.md` §7]
 - **Performance Constraints:** [Asset budget, frame count, preload strategy — see `PRODUCTION-CHECKLIST.md` §4]
 
+### 4.1 Cinematic render strategy (when a cinematic journey is applicable)
+- **Selected Strategy:** `DENSE_KEYFRAME_VIDEO_SCRUB` | `CANVAS_FRAME_SEQUENCE` | `STATIC_HERO_DESIGN`
+- **Rejected Alternative:** [Strategy and measured reason]
+- **Browser Evidence Run:** [Run ID / `NOT_RUN`]
+- **Scroll-Motion Alignment:** [Start, mid-scroll, and settle observations]
+- **Ending Rest Measurement:** [Readable settle duration and evidence reference]
+- **Video Controls:** [Dense keyframes, Blob loading, rAF smoothing, seek coalescing, delta-gated DOM updates, compositor isolation]
+- **Complete Without Video:** [Semantic fallback and meaning-preservation behavior]
+
 ---
 
 ## 5. Cinematic Specialist (only if `motion.cinematic_specialist_required: true`)
