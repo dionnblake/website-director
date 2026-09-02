@@ -102,6 +102,8 @@
     "templates/application-architecture-plan.md",
     "templates/application-architecture-review.md",
     "templates/application-module-registry.json",
+    "templates/owner-intent.json",
+    "templates/alpha-starts-now-owner-intent.json",
     "templates/seo-business-context.md",
     "templates/seo-competitive-landscape.md",
     "templates/seo-content-briefs.md",

@@ -73,6 +73,9 @@ form and mobile-navigation observations plus engine, viewport, console,
 network, keyboard, accessibility, and screenshot references. `simulation`
 remains explicitly labeled `SIMULATION`; only Playwright emits
 `REAL_BROWSER` evidence.
+For owner-required Level 2/3 motion, the same evidence manifest also records
+named motion observations and measured state changes. A screenshot, source
+animation declaration, or simulation row cannot establish runtime motion.
 
 ## Add an engine
 

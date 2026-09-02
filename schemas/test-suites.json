@@ -260,6 +260,35 @@
       "order_independent": true
     },
     {
+      "id": "owner_intent_brand_motion_enforcement",
+      "label": "Owner intent authority, brand truth, and runtime motion enforcement controls",
+      "status": "ACTIVE",
+      "command": ["python", "-m", "unittest", "tests.test_owner_intent_enforcement"],
+      "paths": [
+        "tests/test_owner_intent_enforcement.py",
+        "framework_validation/owner_intent.py",
+        "framework_validation/validator.py",
+        "browser-qa/assertions/catalog.py",
+        "browser-qa/engine/base.py",
+        "browser-qa/engine/simulation_engine.py",
+        "browser-qa/engine/playwright_engine.py",
+        "browser-qa/runner.py",
+        "schemas/owner-intent.schema.json",
+        "templates/owner-intent.json",
+        "templates/alpha-starts-now-owner-intent.json"
+      ],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
+    },
+    {
       "id": "examples_test_runner",
       "label": "Historical examples test runner",
       "status": "ACTIVE",

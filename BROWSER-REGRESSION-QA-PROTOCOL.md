@@ -160,6 +160,20 @@ not satisfy a mobile-navigation requirement. The runner persists these raw
 observations per engine, route, viewport, and attempt; `SIMULATION` evidence
 never establishes `REAL_BROWSER` verification.
 
+### 8.2 Owner-required runtime motion coverage
+
+The existing Browser QA runner consumes an optional
+`runtime_observations.motion` block for explicit Level 2/3 motion
+requirements. It emits named sequence samples through the same
+`PageObservation` model and records engine identity, initial and settled
+state, measured geometry/opacity/transform/scroll deltas, changed properties,
+and the sequence family. A required Level 2/3 result is `BLOCKED` when samples
+are missing or the engine is not `REAL_BROWSER`, and it is `FAIL` when no
+meaningful state change or no motion-family diversity is observed. Generic
+fade/translate-only reveals do not satisfy the diversity guard. The runner
+never infers motion from source imports, CSS keyframes, ScrollTrigger
+presence, screenshots, or prose.
+
 ---
 
 ## 9. Console & page-error capture

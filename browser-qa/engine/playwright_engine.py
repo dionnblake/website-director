@@ -51,6 +51,79 @@ except Exception:  # noqa: BLE001
 _SECRET_TOKENS = ("AKIA", "sk_live_", "ghp_", "-----BEGIN", "AIza", "xoxb-", "service_account")
 
 
+_MOTION_SNAPSHOT_JS = r"""
+(selectors) => {
+    const wanted = Array.isArray(selectors) && selectors.length
+        ? selectors : ['[data-motion]', '[data-animate]', '[data-qa-motion]'];
+    const nodes = [];
+    const seen = new Set();
+    for (const selector of wanted) {
+        try {
+            for (const element of document.querySelectorAll(selector)) {
+                if (!seen.has(element)) { seen.add(element); nodes.push(element); }
+            }
+        } catch (_) { /* a bad optional selector is recorded by the row */ }
+    }
+    const state = nodes.map((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return {
+            index,
+            selector: wanted[index] || '',
+            x: Number(rect.x.toFixed(3)), y: Number(rect.y.toFixed(3)),
+            width: Number(rect.width.toFixed(3)), height: Number(rect.height.toFixed(3)),
+            opacity: Number(style.opacity), transform: style.transform,
+            visibility: style.visibility, display: style.display,
+            animation_name: style.animationName,
+            transition_property: style.transitionProperty
+        };
+    });
+    const animations = typeof document.getAnimations === 'function'
+        ? document.getAnimations({subtree: true}).map(animation => ({
+            play_state: animation.playState,
+            name: animation.animationName || '',
+            current_time: animation.currentTime
+        })) : [];
+    return {scroll_x: Number(scrollX.toFixed(3)), scroll_y: Number(scrollY.toFixed(3)),
+            nodes: state, animations};
+}
+"""
+
+
+_RENDERED_COLORS_JS = r"""
+() => {
+    const colors = [];
+    const add = (value, role, areaRatio, token) => {
+        if (!value || value === 'transparent' || value === 'rgba(0, 0, 0, 0)') return;
+        colors.push({value, role: role || 'rendered', area_ratio: areaRatio || 0,
+                     material: Boolean(role && /primary|accent|brand|dominant/i.test(role)),
+                     token: token || ''});
+    };
+    const viewportArea = Math.max(1, innerWidth * innerHeight);
+    for (const element of document.querySelectorAll('*')) {
+        const rect = element.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) continue;
+        const style = getComputedStyle(element);
+        const role = element.getAttribute('data-brand-role')
+            || element.getAttribute('data-qa-brand-role') || '';
+        const ratio = Math.min(1, (rect.width * rect.height) / viewportArea);
+        add(style.backgroundColor, role || 'background', ratio);
+        if (role) {
+            add(style.color, role + '-text', 0);
+            add(style.borderTopColor, role + '-border', 0);
+        }
+    }
+    const root = getComputedStyle(document.documentElement);
+    for (let i = 0; i < root.length; i++) {
+        const token = root.item(i);
+        if (!/^--/.test(token) || !/(color|primary|accent|brand|navy|yellow)/i.test(token)) continue;
+        add(root.getPropertyValue(token).trim(), 'token', 0, token);
+    }
+    return colors;
+}
+"""
+
+
 _FORM_DISCOVERY_JS = r"""
 () => {
     const visible = el => {
@@ -360,6 +433,18 @@ class PlaywrightEngine(BrowserQAEngine):
             for step in (interactions or []):
                 _apply_interaction(page, step)
 
+            # Motion is measured from browser state samples, never inferred
+            # from a GSAP import, CSS keyframe, or screenshot claim.
+            obs.motion_observations = self._observe_motion(page, route)
+            obs.raw["motion_observations"] = obs.motion_observations
+            obs.raw["motion_runtime"] = {
+                "engine_identity": "REAL_BROWSER",
+                "runtime_observed": bool(obs.motion_observations),
+                "synthetic": False,
+            }
+            if (self.config or {}).get("owner_intent") or (self.config or {}).get("brand_runtime"):
+                obs.raw["rendered_colors"] = page.evaluate(_RENDERED_COLORS_JS)
+
             # These are runtime interactions, not source or fixture claims.
             # The raw records are retained in the evidence manifest so a
             # release review can see exactly what the real browser observed.
@@ -485,6 +570,93 @@ class PlaywrightEngine(BrowserQAEngine):
             b.close()
         return obs
 
+    def _observe_motion(self, page, route: str) -> List[Dict[str, Any]]:
+        """Capture named motion state changes in the real browser.
+
+        Motion exercise is opt-in through the existing runtime-observation
+        block. The adapter only emits measurements; policy and owner-level
+        interpretation remain in the assertion/framework validators.
+        """
+
+        cfg = self._runtime_observation_cfg("motion")
+        if not cfg.get("required") and not cfg.get("exercise"):
+            return []
+        raw_sequences = cfg.get("sequences") or cfg.get("required_sequences") or cfg.get("promised_sequences")
+        if not isinstance(raw_sequences, list) or not raw_sequences:
+            raw_sequences = [{
+                "sequence_id": "runtime-motion",
+                "selectors": cfg.get("selectors", []),
+                "action": cfg.get("action"),
+                "family": cfg.get("family", "RUNTIME_STATE_CHANGE"),
+            }]
+        interval_ms = max(20, int(cfg.get("sample_interval_ms", 80)))
+        sample_count = max(2, min(8, int(cfg.get("sample_count", 3))))
+        rows: List[Dict[str, Any]] = []
+        for index, raw_sequence in enumerate(raw_sequences):
+            sequence = raw_sequence if isinstance(raw_sequence, dict) else {"sequence_id": str(raw_sequence)}
+            sequence_id = sequence.get("sequence_id") or sequence.get("id") or "sequence-%d" % (index + 1)
+            selectors = sequence.get("selectors") or cfg.get("selectors") or []
+            if isinstance(selectors, str):
+                selectors = [selectors]
+            before = page.evaluate(_MOTION_SNAPSHOT_JS, list(selectors))
+            action = sequence.get("action")
+            if isinstance(action, dict):
+                _apply_interaction(page, action)
+            elif isinstance(action, str):
+                _apply_interaction(page, {"action": action, "selector": sequence.get("selector", "")})
+            samples = [before]
+            for sample_index in range(sample_count):
+                page.wait_for_timeout(interval_ms if sample_index or not action else max(20, interval_ms // 2))
+                samples.append(page.evaluate(_MOTION_SNAPSHOT_JS, list(selectors)))
+            after = samples[-1]
+            measured = page.evaluate(
+                """([before, after]) => {
+                    const beforeNodes = before.nodes || [], afterNodes = after.nodes || [];
+                    const count = Math.max(beforeNodes.length, afterNodes.length);
+                    const changed = [];
+                    let geometry = 0, opacity = 0, transform = 0;
+                    for (let i = 0; i < count; i++) {
+                        const a = beforeNodes[i] || {}, b = afterNodes[i] || {};
+                        const dx = Math.max(Math.abs((a.x || 0) - (b.x || 0)),
+                            Math.abs((a.y || 0) - (b.y || 0)),
+                            Math.abs((a.width || 0) - (b.width || 0)),
+                            Math.abs((a.height || 0) - (b.height || 0)));
+                        const od = Math.abs((a.opacity == null ? 1 : a.opacity)
+                            - (b.opacity == null ? 1 : b.opacity));
+                        const td = a.transform === b.transform ? 0 : 1;
+                        geometry = Math.max(geometry, dx); opacity = Math.max(opacity, od);
+                        transform = Math.max(transform, td);
+                        if (dx > 0.5) changed.push('geometry');
+                        if (od > 0.01) changed.push('opacity');
+                        if (td) changed.push('transform');
+                        if (a.visibility !== b.visibility || a.display !== b.display) changed.push('visibility');
+                    }
+                    const scroll = Math.abs((before.scroll_y || 0) - (after.scroll_y || 0));
+                    if (scroll > 0.5) changed.push('scroll');
+                    return {state_changed: Boolean(changed.length), changed_properties: [...new Set(changed)],
+                        max_geometry_delta: geometry, max_opacity_delta: opacity,
+                        max_transform_delta: transform, scroll_delta: scroll,
+                        meaningful_state_change: geometry > 0.5 || opacity > 0.01 || transform > 0 || scroll > 0.5};
+                }""", [before, after])
+            rows.append({
+                "sequence_id": str(sequence_id),
+                "route": route,
+                "family": sequence.get("family") or sequence.get("animation_family") or
+                          ("SCROLL_DRIVEN" if isinstance(action, dict) and action.get("action") == "scroll_to" else "RUNTIME_STATE_CHANGE"),
+                "runtime_observed": True,
+                "engine_identity": "REAL_BROWSER",
+                "initial_state": before,
+                "settled_state": after,
+                "sample_count": len(samples),
+                "samples": samples,
+                "animation_names": sorted({str(item.get("name", "")) for sample in samples
+                                             for item in sample.get("animations", []) if item.get("name")}),
+                "implementation_ref": sequence.get("implementation_ref") or sequence.get("location"),
+                "runtime_evidence_ref": "REAL_BROWSER:%s" % sequence_id,
+                **measured,
+            })
+        return rows
+
     def _runtime_observation_cfg(self, kind: str) -> Dict[str, Any]:
         """Read the explicit runtime-observation exercise settings."""
         for container_name in ("runtime_observations", "observations"):
@@ -497,6 +669,8 @@ class PlaywrightEngine(BrowserQAEngine):
             if isinstance(value, bool):
                 return {"required": value}
         alias = "mobile_nav" if kind == "mobile_navigation" else "forms"
+        if kind == "motion":
+            alias = "motion"
         value = (self.config or {}).get(alias, {})
         if isinstance(value, dict):
             return value
@@ -1155,6 +1329,10 @@ def _apply_interaction(page, step: Dict[str, Any]) -> None:
         page.fill(step["selector"], step.get("value", ""))
     elif action == "wait_for":
         page.wait_for_selector(step["selector"], state=step.get("state", "visible"))
+    elif action == "wait":
+        page.wait_for_timeout(max(0, int(step.get("ms", step.get("timeout_ms", 0)))))
+    elif action == "hover":
+        page.hover(step["selector"])
     elif action == "scroll_to":
         page.eval_on_selector(step["selector"], "el => el.scrollIntoView()")
 

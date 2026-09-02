@@ -38,6 +38,12 @@ Under Website Director V1.8, Phase 3 Visual Research must NEVER execute before `
 
 Website Director reads the synthesis, weighs it against `DESIGN-ARCHETYPES.md` and the client's actual positioning, and makes the design-direction call itself.
 
+All research recommendations remain subordinate to the current owner-intent
+contract. Authority precedence, current-versus-historical classification, and
+the four reference-signal classes are defined once in
+`FRAMEWORK-VALIDATION-PROTOCOL.md`; research may supply evidence and
+transferable principles but cannot redefine brand or locked project truth.
+
 ---
 
 ## 3. The Research Pipeline

@@ -25,6 +25,11 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Callable, Iterable, Mapping, Optional, Sequence
 from urllib.parse import unquote, urlsplit
 
+try:
+    from .owner_intent import validate_owner_intent_contract
+except ImportError:  # pragma: no cover - supports direct legacy module loading
+    from owner_intent import validate_owner_intent_contract
+
 
 CANONICAL_LOCKS = (
     "design_direction_locked",
@@ -1173,6 +1178,49 @@ def _check_application_architecture(ctx: ValidationContext) -> None:
         )
 
 
+def _check_owner_intent_contract(ctx: ValidationContext) -> None:
+    """Validate the current owner-intent artifact without creating new state."""
+
+    relative = "templates/alpha-starts-now-owner-intent.json"
+    contract = ctx.read_json(relative)
+    if not isinstance(contract, dict):
+        ctx.check(
+            "OWNER_INTENT_CONTRACT_VALID",
+            "invariants",
+            False,
+            "the current Alpha Starts Now owner-intent contract is missing or invalid",
+            file=relative,
+            location="root",
+            expected="current owner contract object",
+            observed=contract,
+        )
+        return
+    try:
+        result = validate_owner_intent_contract(contract)
+    except Exception as exc:  # noqa: BLE001 - contract failures stay visible
+        ctx.check(
+            "OWNER_INTENT_CONTRACT_VALID",
+            "invariants",
+            False,
+            f"owner-intent validator could not evaluate the current contract: {exc}",
+            file=relative,
+            location="root",
+            expected="deterministic owner-intent validation",
+            observed=str(exc),
+        )
+        return
+    ctx.check(
+        "OWNER_INTENT_CONTRACT_VALID",
+        "invariants",
+        result.get("status") == "PASS",
+        "current Alpha Starts Now owner-intent contract carries explicit authority, brand, and motion constraints",
+        file=relative,
+        location="root",
+        expected="CURRENT contract with canonical authority precedence, navy-blue/yellow brand, and required motion",
+        observed=result,
+    )
+
+
 def _check_protocols_gates_phases(ctx: ValidationContext) -> None:
     protocol_rel = str(ctx.manifest.get("canonical_protocol_registry"))
     gate_rel = str(ctx.manifest.get("canonical_gate_registry"))
@@ -1821,7 +1869,7 @@ def _check_impact(ctx: ValidationContext) -> None:
     impacts = set()
     for path in paths:
         lower = path.lower().replace("\\", "/")
-        if lower.startswith("schemas/") or lower.startswith("content-ops/") or lower.startswith("localization/") or lower.startswith("application/") or "framework-validation" in lower or lower in {"framework-version.json", "framework_validation/validator.py"}:
+        if lower.startswith("schemas/") or lower.startswith("content-ops/") or lower.startswith("localization/") or lower.startswith("application/") or lower.startswith("framework_validation/") or "framework-validation" in lower or lower in {"framework-version.json"}:
             impacts.add("CORE_GOVERNANCE")
         elif lower.startswith("browser-qa/"):
             impacts.add("BROWSER_QA")
@@ -2193,6 +2241,7 @@ def validate_repository(
     _check_protocols_gates_phases(ctx)
     _check_state_ownership(ctx)
     _check_application_architecture(ctx)
+    _check_owner_intent_contract(ctx)
     _check_template_references(ctx)
     _check_markdown_references(ctx)
     _check_python(ctx)

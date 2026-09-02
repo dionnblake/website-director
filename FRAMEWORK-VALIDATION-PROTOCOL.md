@@ -82,6 +82,55 @@ rewriting historical project material or introducing external side effects.
   `application.complete` state are the conditional Capability #10 application
   architecture authorities. They add no owner lock and require no provider
   account.
+- [templates/owner-intent.json](templates/owner-intent.json) defines the
+  provider-neutral owner-constraint shape, and
+  [templates/alpha-starts-now-owner-intent.json](templates/alpha-starts-now-owner-intent.json)
+  records the current Alpha Starts Now owner contract. The deterministic
+  [framework_validation/owner_intent.py](framework_validation/owner_intent.py)
+  helper enforces these boundaries without creating a state, gate, or sixth
+  owner lock.
+
+## Owner intent and authority precedence
+
+Owner direction is normalized before creative direction or implementation.
+Every normalized constraint retains its requirement class (`REQUIRED`,
+`PROHIBITED`, `PREFERRED`, or `OPTIONAL`), source, currentness/recency, scope,
+and authority. The canonical precedence is:
+
+1. `CURRENT_OWNER_INSTRUCTION`
+2. `CURRENT_APPROVED_BRAND_PROJECT_CONTRACT`
+3. `LOCKED_BUSINESS_AUDIENCE_CONVERSION_PROJECT_TRUTH`
+4. `LOCKED_DESIGN_AND_MOTION_DECISIONS`
+5. `WEBSITE_DIRECTOR_SPECIALIST_INTELLIGENCE`
+6. `REFERENCE_INSPIRATION_INTELLIGENCE`
+7. `HISTORICAL_PROJECT_MATERIAL`
+8. `DEFAULTS_HEURISTICS`
+
+When values conflict, the higher current authority wins. Historical material
+is classified as `LEGACY` or `SUPERSEDED`, and reference material is
+`NON_AUTHORITATIVE`; neither may be averaged into current direction. A
+same-tier incompatible conflict is unresolved and fails closed before
+implementation. Reference signals must be classified as
+`TRANSFERABLE_PRINCIPLE`, `BRAND_SPECIFIC_DO_NOT_TRANSFER`,
+`OPTIONAL_INTERPRETATION`, or `REJECTED`. Any implemented transferable signal
+requires a trace from source signal to transferable principle to
+client-specific interpretation to implementation location.
+
+Brand validation compares the current contract with implementation and
+rendered color roles using semantic tokens, dominance, and accessibility
+context. Approved shades, tints, opacity/gradient derivatives, white, and
+restrained neutrals remain permitted. An unrelated dominant hue fails. Exact
+hex values are never invented when only semantic owner roles are approved.
+
+Explicit owner language such as cinematic, immersive, animation-heavy, or
+scroll-driven resolves to `MOTION_LEVEL_3` and cannot silently fall back to a
+heuristic Level 1. Level 2 and Level 3 work requires a brief-to-implementation
+location-to-runtime evidence trace. Browser QA must observe meaningful named
+sequence state changes in a `REAL_BROWSER`; imports, CSS declarations,
+screenshots, or simulation facts do not establish motion. Before a completion
+claim, `audit_owner_requirement_compliance()` compares every required and
+prohibited constraint with locked decisions, implementation receipts, and
+runtime evidence. Missing evidence is `BLOCKED_WITH_EXPLANATION`, not a pass.
 
 ## Invariants
 

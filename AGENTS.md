@@ -223,6 +223,27 @@ authorities.
    owner locks remain immutable, and all runs preserve frozen-project
    integrity.
 
+### Alpha Starts Now Brand Color Authority (Owner Contract — 2026-09-02)
+
+For current and future non-frozen Alpha Starts Now work, the authoritative
+brand palette is **navy blue as primary** and **yellow as accent**. White and
+restrained light/dark neutrals may support contrast and accessibility.
+The machine-readable current owner contract is
+`templates/alpha-starts-now-owner-intent.json`; its semantic tokens are
+`ASN_NAVY` and `ASN_YELLOW` and it intentionally does not invent exact hex
+values. The authority precedence and enforcement behavior are canonical in
+`FRAMEWORK-VALIDATION-PROTOCOL.md` and
+`framework_validation/owner_intent.py`.
+Historical Alpha Starts Now palettes are comparison-only and must not be used
+to infer current brand colors. Orange, burnt orange, peach, amber, beige,
+dominant cream, black/silver/white primary palettes, and older orange/blue
+combinations are not current brand authority. Reference websites may inform
+composition, movement, typography, interaction, pacing, spatial design, and
+section transitions, but may not redefine the Alpha Starts Now palette. Any
+proposed palette change requires explicit owner approval. Frozen historical
+projects remain immutable; this contract governs active and future work and
+does not retroactively re-gate those artifacts.
+
 ### Conversion & Analytics Governance (V2.6 — Additive)
 
 These rules are additive. They do not replace any existing Website Director governance.

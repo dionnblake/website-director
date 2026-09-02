@@ -310,6 +310,7 @@ class PageObservation:
     a11y: Optional[AccessibilityObservation] = None
     localization: Optional[LocalizationObservation] = None
     application: Optional[ApplicationObservation] = None
+    motion_observations: List[Dict[str, Any]] = field(default_factory=list)
     raw: Dict[str, Any] = field(default_factory=dict)
 
 

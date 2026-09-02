@@ -56,10 +56,17 @@ def _runtime_observation_cfg(plan: Dict[str, Any], route: str, kind: str) -> Dic
                 merged.update(value)
             elif isinstance(value, bool):
                 merged["required"] = value
+        if kind == "motion":
+            value = owner.get("motion")
+            if isinstance(value, dict):
+                merged.update(value)
+            elif isinstance(value, bool):
+                merged["required"] = value
         # These aliases keep the requirement readable in small route plans.
         # They are only consulted when the canonical block did not provide a
         # value for the same key.
-        alias_names = ("mobile_nav",) if kind == "mobile_navigation" else ("forms",)
+        alias_names = (("mobile_nav",) if kind == "mobile_navigation"
+                       else ("motion",) if kind == "motion" else ("forms",))
         for alias in alias_names:
             value = owner.get(alias)
             if isinstance(value, dict):
@@ -440,6 +447,124 @@ def check_reduced_motion(obs, plan):
         out.append(_F("motion.reduced-nav-operable", "Navigation operable under reduced motion",
                       obs.keyboard.primary_nav_reachable, "MOTION_SPEC", obs))
     return out
+
+
+# ===========================================================================
+# 15A. OWNER-REQUIRED RUNTIME MOTION
+# ===========================================================================
+def check_brand_tokens(obs, plan):
+    """Check computed rendered brand roles when a plan supplies owner intent."""
+
+    owner_contract = plan.get("owner_intent")
+    if not isinstance(owner_contract, dict):
+        return None
+    rendered = (obs.raw or {}).get("rendered_colors", [])
+    if not rendered:
+        return [_blocked_observation(
+            "brand.observation-coverage",
+            "Rendered brand color observations are available", obs,
+            "BLOCKED_OBSERVATION_MISSING: owner brand validation has no computed rendered colors",
+            _observation_evidence(obs, "rendered_colors", []))]
+    from framework_validation.owner_intent import validate_brand_tokens
+    implementation = plan.get("brand_implementation", plan.get("implementation_tokens", {}))
+    result = validate_brand_tokens(
+        owner_contract,
+        implementation if isinstance(implementation, dict) else {},
+        {"rendered_colors": rendered},
+    )
+    return _F("brand.current-palette", "Rendered brand roles comply with current owner intent",
+              result.get("status") == "PASS", "LOCKED_SPEC", obs,
+              detail="; ".join(item.get("detail", "") for item in result.get("issues", [])),
+              owning_spec="templates/owner-intent.json",
+              evidence={"rendered_colors": rendered, "brand_result": result})
+
+
+# ===========================================================================
+# 15B. OWNER-REQUIRED RUNTIME MOTION
+# ===========================================================================
+def check_motion(obs, plan):
+    """Check the runtime half of an explicit Level 2/3 motion contract.
+
+    Source declarations, GSAP imports, CSS keyframes, and screenshot hashes do
+    not establish motion. The engine must emit named browser state samples.
+    """
+
+    cfg = _runtime_observation_cfg(plan, obs.route, "motion")
+    if not cfg.get("required") and not cfg.get("exercise"):
+        return None
+    rows = list(getattr(obs, "motion_observations", []) or
+                (obs.raw or {}).get("motion_observations", []) or [])
+    evidence = _observation_evidence(obs, "motion_observations", rows)
+    if cfg.get("required") is True and not rows:
+        return [_blocked_observation(
+            "motion.observation-coverage",
+            "Required runtime motion observation was emitted", obs,
+            "BLOCKED_OBSERVATION_MISSING: required motion state samples are missing",
+            evidence)]
+
+    identity = str((obs.raw or {}).get("engine_identity", obs.engine)).upper()
+    required_level = cfg.get("minimum_motion_level", cfg.get("required_level", cfg.get("motion_level")))
+    if required_level is None and plan.get("owner_intent"):
+        try:
+            from framework_validation.owner_intent import resolve_motion_requirement
+            resolved = resolve_motion_requirement(plan["owner_intent"], heuristic_level="MOTION_LEVEL_1")
+            required_level = resolved.get("owner_required_level") or resolved.get("execution_level")
+        except Exception:  # noqa: BLE001 - missing optional owner contract stays fail-closed below
+            required_level = None
+    if required_level is None and cfg.get("required") is True:
+        # A required motion exercise without a declared level is at least a
+        # Level 2 runtime obligation; do not let an omitted field weaken it.
+        required_level = "MOTION_LEVEL_2"
+    level_match = re.search(r"(?i)(?:MOTION[ _-]*)?LEVEL[ _-]*([0-3])", str(required_level or ""))
+    level = int(level_match.group(1)) if level_match else 0
+    out = []
+    if level >= 2 and identity != "REAL_BROWSER":
+        out.append(_blocked_observation(
+            "motion.real-browser-runtime", "Level 2/3 motion uses a real browser runtime", obs,
+            "BLOCKED_RUNTIME_MOTION_ENGINE: simulation/source evidence cannot satisfy motion",
+            {**evidence, "engine_identity": identity, "required_level": required_level}))
+    elif level >= 2:
+        out.append(_F("motion.real-browser-runtime", "Level 2/3 motion uses a real browser runtime",
+                      True, "MOTION_SPEC", obs, evidence=evidence))
+
+    meaningful = [row for row in rows if row.get("meaningful_state_change") is True
+                  or row.get("state_changed") is True
+                  or row.get("observed_state_change") is True
+                  or row.get("changed_properties")
+                  or any(float(row.get(key, 0) or 0) > 0.01
+                         for key in ("max_geometry_delta", "max_opacity_delta", "scroll_delta")
+                         if isinstance(row.get(key, 0), (int, float)))]
+    if level >= 2:
+        out.append(_F("motion.runtime-state-change", "Runtime motion produces meaningful state change",
+                      bool(meaningful), "MOTION_SPEC", obs,
+                      detail="observed=%d/%d" % (len(meaningful), len(rows)), evidence=evidence))
+
+    promised = cfg.get("sequences") or cfg.get("required_sequences") or cfg.get("promised_sequences") or []
+    if isinstance(promised, dict):
+        promised = promised.get("items", promised.get("sequences", []))
+    promised_ids = []
+    for index, item in enumerate(promised if isinstance(promised, list) else []):
+        if isinstance(item, dict):
+            promised_ids.append(str(item.get("sequence_id") or item.get("id") or item.get("name") or "sequence-%d" % (index + 1)))
+        else:
+            promised_ids.append(str(item))
+    observed_ids = {str(row.get("sequence_id") or row.get("id")) for row in rows}
+    missing = [item for item in promised_ids if item not in observed_ids]
+    if level >= 2 and promised_ids:
+        out.append(_F("motion.sequence-coverage", "Named motion sequences are observed at runtime",
+                      not missing, "MOTION_SPEC", obs,
+                      detail="missing=%s" % missing, evidence={**evidence, "promised": promised_ids,
+                                                               "observed": sorted(observed_ids)}))
+
+    families = [str(row.get("family", row.get("animation_family", ""))).upper()
+                for row in rows]
+    if level >= 2 and families:
+        generic = [family for family in families if re.search(
+            r"(?:FADE|REVEAL|OPACITY|TRANSLATE[_ -]?Y|GENERIC)", family)]
+        out.append(_F("motion.generic-fade-diversity", "Motion uses more than generic fade/translate reveals",
+                      len(generic) != len(families), "MOTION_SPEC", obs,
+                      detail="families=%s" % families, evidence=evidence))
+    return out or None
 
 
 # ===========================================================================
@@ -1007,6 +1132,8 @@ ALL_CHECKS = [
     check_measurement,
     check_security_privacy,
     check_reduced_motion,
+    check_brand_tokens,
+    check_motion,
     check_keyboard,
     check_visual_regression,
     check_perf,

@@ -22,6 +22,11 @@ Capability #9 localization and internationalization planning artifacts.
 `inspiration-board.md` and `inspiration-source-registry.json` own the
 owner-selectable, reference-only inspiration intake and source registry used
 by cinematic and visual research work.
+`owner-intent.json` defines the neutral machine-readable owner constraint
+shape. `alpha-starts-now-owner-intent.json` is the current Alpha Starts Now
+owner-contract artifact: navy blue is primary, yellow is accent, historical
+orange-family directions are non-authoritative, and explicit cinematic intent
+requires Level 3 evidence. It does not create a site state or sixth lock.
 
 ## Local Contracts
 
@@ -64,6 +69,11 @@ by cinematic and visual research work.
   same-origin requests; templates do not authorize production side effects.
 - Historical templates may be referenced by compatibility records but must not
   be silently regenerated or promoted to current.
+- Owner-intent records must retain requirement class, source, currentness,
+  scope, and authority. Reference signals require a source-to-principle-to-
+  client-interpretation-to-implementation trace; references cannot redefine a
+  current brand contract. Exact brand values are not to be invented when the
+  owner has approved only semantic roles.
 
 ## Work Guidance
 

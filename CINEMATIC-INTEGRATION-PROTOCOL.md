@@ -166,6 +166,13 @@ The implementation adapter stops when the brief is incomplete. It does not
 fill a creative gap with a house style, force a framework because a reference
 used it, or treat a source image, prompt, or video as licensed by observation.
 
+The brief also carries the owner-intent enforcement trace for every promised
+sequence: approved direction, implementation location, and fresh runtime
+receipt. A cinematic brief without those Level 2/3 links is incomplete. The
+authority ordering, current-versus-historical rule, and reference translation
+classes are canonical in `FRAMEWORK-VALIDATION-PROTOCOL.md` and are not
+redefined here.
+
 ---
 
 ## 6. Cost Boundary and Provider Neutrality

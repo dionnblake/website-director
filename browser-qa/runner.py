@@ -132,6 +132,12 @@ def run(plan_path: str, engine_name: str, evidence_dir: str, mode: str,
         engine_config["localization"] = plan["localization"]
     if plan.get("application") and "application" not in engine_config:
         engine_config["application"] = plan["application"]
+    if plan.get("motion") and "motion" not in engine_config:
+        engine_config["motion"] = plan["motion"]
+    if plan.get("owner_intent") and "owner_intent" not in engine_config:
+        engine_config["owner_intent"] = plan["owner_intent"]
+    if plan.get("brand_runtime") and "brand_runtime" not in engine_config:
+        engine_config["brand_runtime"] = plan["brand_runtime"]
     for observation_key in ("runtime_observations", "observations"):
         if plan.get(observation_key) and observation_key not in engine_config:
             engine_config[observation_key] = plan[observation_key]
@@ -452,6 +458,9 @@ def _observation_snapshot(obs, job, attempt, evidence_dir=None, run_id=None,
         "mobile_nav_observation": (obs.raw or {}).get("mobile_nav_observation", {}),
         "analytics_events": [{"name": e.name, "params": e.params, "count": e.count,
                               "trigger": e.trigger} for e in obs.analytics_events],
+        "motion_observations": list(getattr(obs, "motion_observations", []) or
+                                     (obs.raw or {}).get("motion_observations", [])),
+        "rendered_colors": (obs.raw or {}).get("rendered_colors", []),
         "console_status": "FAIL" if bad_console else "PASS",
         "console_errors": all_console_errors,
         "console_environment_noise": [m.text for m in obs.console
@@ -480,6 +489,7 @@ def _blocked_observation_snapshot(job, detail, attempt):
         "reduced_motion": job.get("reduced_motion", False), "engine": "unavailable",
         "attempt": attempt, "form_observations": "BLOCKED_OBSERVATION_MISSING",
         "mobile_nav_observation": "BLOCKED_OBSERVATION_MISSING",
+        "motion_observations": "BLOCKED_OBSERVATION_MISSING",
         "analytics_events": [], "observation_status": "BLOCKED_ENVIRONMENT",
         "actual_rendered": False, "screenshot_path": None, "screenshot_sha256": None,
         "blocked_reason": detail,

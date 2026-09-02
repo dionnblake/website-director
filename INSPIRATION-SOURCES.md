@@ -40,3 +40,7 @@ replaceable adapters: `RESEARCH_AGENT`, `BUILDER_AGENT`, `CRITIC_AGENT`,
 
 Website Director still owns the design direction, five owner locks, and all
 quality gates. Inspiration does not create a new lock or readiness state.
+The current owner-intent contract remains authoritative over every reference:
+reference palettes, typography, copy, and branded identity cannot redefine a
+current client brand. Use `FRAMEWORK-VALIDATION-PROTOCOL.md` for the single
+authority ordering and translation-trace rule.

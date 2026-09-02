@@ -22,7 +22,14 @@
   "runtime_observations": {
     "$source": "browser QA plan — required runtime facts are never inferred from source markup",
     "forms": { "required": false, "exercise": false },
-    "mobile_navigation": { "required": false, "require_route_change_close": false }
+    "mobile_navigation": { "required": false, "require_route_change_close": false },
+    "motion": {
+      "required": false,
+      "minimum_motion_level": "MOTION_LEVEL_1",
+      "sequences": [],
+      "sample_interval_ms": 80,
+      "sample_count": 3
+    }
   },
 
   "visual_evidence": {
