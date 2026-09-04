@@ -10,6 +10,9 @@
 ## 1. Selected Prototype Provenance & Blending Formula
 - **Selected Prototype Direction:** `[projects/[project]/prototypes/direction-XX/]` (`visual_prototypes.owner_selected_direction`)
 - **Owner Visual Selection Confirmed:** `YES` (`visual_prototypes.owner_selection_confirmed: true`)
+- **Selected Direction Expanded to Full Homepage:** `YES | NO` (`artifact_kind = FULL_HOMEPAGE` or `SELECTED_DIRECTION_PLUS_COMPLETE_HOMEPAGE`)
+- **Homepage Visual Approval Evidence:** `visual_prototypes.homepage_visual_approved = true | false` (bounded evidence field; not a new gate or owner lock)
+- **Homepage Approval Record:** `[owner review ID / evidence path / NOT_APPROVED]`
 - **Primary Archetype (60%):** [e.g., Modernist / Technical / Editorial / Luxury]
 - **Secondary Modifier (30%):** [e.g., Industrial / Architectural / Boutique]
 - **Kinetic / Accent Flavor (10%):** [e.g., Cinematic / Playful / Experimental]
@@ -64,6 +67,8 @@
 ## 6. Design Lock Declaration
 - [ ] Visual prototype slice generated and rendered in browser (`projects/[project]/prototypes/`).
 - [ ] Owner has visually reviewed rendered desktop & mobile prototypes and explicitly selected this direction (`visual_prototypes.owner_selection_confirmed = true`).
+- [ ] The selected direction has been expanded into a complete rendered homepage before the Design System is derived.
+- [ ] Owner has explicitly approved the rendered desktop and mobile full homepage (`visual_prototypes.homepage_visual_approved = true`); approval is not inferred from silence, prose, builder output, or critic output.
 - [ ] Archetype blend aligns with market positioning and audience expectations.
 - [ ] Two-pass distinctiveness and trend contamination critiques completed and signed off.
 - [ ] Ready to lock `DESIGN_DIRECTION_LOCKED` (`locks.design_direction_locked = true`) in `site-profile.json`.

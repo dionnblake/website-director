@@ -43,6 +43,29 @@ Implementation may NOT commence until all five gates in `site-profile.json` → 
 
 ---
 
+## 2.1 Design-first production entry (V2.15 bounded flow)
+
+The five locks remain necessary but are not the only evidence required to
+start the full production implementation. The implementation contract must
+also point to a complete Business Understanding Pack, captured owner intent,
+identified required assets, interpreted owner references, a real-browser
+desktop/mobile full-homepage review, explicit owner approval recorded under
+`visual_prototypes.homepage_visual_approved`, and a Design System derived from
+that approved homepage.
+
+Missing evidence is `BLOCKED`. A bounded prototype may exist before this
+entry point, but prototype code is not permission to begin the full build.
+Remaining pages inherit the approved homepage system. Components are
+downstream choices selected for stack fit, licensing, accessibility,
+performance, maintainability, fidelity, and risk. No particular component
+library, framework, Figma workflow, CodeStitch workflow, or model is
+mandatory, and none may determine visual direction.
+
+The owner may `APPROVE`, `REVISE`, or `HYBRIDIZE` the homepage. Builder or
+internal-critic output cannot set the owner approval field.
+
+---
+
 ## 2.0 Builder Content Operations Requirements (V2.13)
 
 When a project uses Capability #8, implementation consumes the validated

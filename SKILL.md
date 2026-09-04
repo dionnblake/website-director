@@ -103,6 +103,27 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ## 3. Step-by-Step Agent Execution Instructions
 
+### BOUNDED DESIGN-FIRST PRODUCTION FLOW (V2.15 additive, no new phase)
+
+Every Website Director run must preserve these operating invariants:
+
+```text
+UNDERSTANDING_PRECEDES_DESIGN
+DESIGN_PRECEDES_IMPLEMENTATION
+OWNER_SEES_RENDERED_DESIGN_BEFORE_FULL_BUILD
+APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM
+```
+
+The flow is: understand the business, design before implementation, show the
+owner a real rendered homepage, record explicit visual approval, derive the
+Design System from that homepage, implement the remaining site, run the
+existing Browser QA, then run the existing qualitative Website Gauntlet. This
+is an operating overlay on the existing phases, not a new capability, version,
+readiness gate, or owner lock.
+New or deliberately reopened non-frozen work uses this overlay; historical
+profiles and frozen pilots remain valid and are not retrofitted by a framework
+upgrade alone.
+
 ### PHASE 1: Creative Briefing Room & Adaptive Discovery Execution
 - Consult [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md).
 - **Rule 1 (Creative Director Persona):** Interview the client as an expert creative director. Never ask clients technical design questions (grid systems, border radiuses, GSAP plugins, typography scales, CSS frameworks).
@@ -111,6 +132,9 @@ An agent running Website Director must advance strictly through these phases. Do
 - **Rule 4 (Ambition & Dimensions):** Calibrate `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`), `VISUAL_INTENSITY` (`RESTRAINED` to `EXTREME`), `MOTION_APPETITE`, and `EXPERIMENTATION_TOLERANCE`.
 - **Rule 5 (Assumption & Epistemic Tracking):** Categorize facts into `OWNER_STATED`, `WEBSITE_DIRECTOR_INFERRED`, `RESEARCH_TO_VALIDATE`, and `UNRESOLVED`.
 - **Rule 6 (The Read-Back & Confirmation Gate):** When confidence is `HIGH`, compile [templates/creative-intent-contract.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/creative-intent-contract.md) and present a 2-3 paragraph synthesis to the owner ending with: *"Did I understand the assignment correctly?"*
+- **Business Understanding Pack:** Complete the canonical [templates/project-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/project-brief.md) as the Business Understanding Pack before visual direction work. It must cover business, target customer, primary customer problem, services, boundaries, differentiator, owner origin story, client voice, brand personality, conversion goals, objections, trust, proof, preferences, anti-preferences, owner references, assets, brand guidelines, non-negotiables, and unknown/unverified facts.
+- **Discovery modes:** Record exactly one of `QUESTIONNAIRE_ONLY`, `QUESTIONNAIRE_PLUS_TRANSCRIPT`, `TRANSCRIPT_LED_DISCOVERY`, or `OWNER_SUPPLIED_DISCOVERY_NOTES`. A transcript is optional. When supplied, extract near-verbatim language, common terms, brand register, stories, service explanations, and owner priorities. Conversational claims remain unverified until independently evidenced.
+- **Factual integrity:** Never manufacture generic marketing copy, testimonials, statistics, credentials, awards, or other proof to fill an incomplete pack. Use `UNKNOWN`, `NOT_PROVIDED`, or `UNVERIFIED`.
 - **ENGAGE GATE BRIEF:** Update `site-profile.json` $\rightarrow$ `creative_intent.confirmed = true` and `creative_intent.status = "confirmed"`. External visual research (Phase 3) and SEO (Phase 2.5) must NOT begin until this gate engages or explicit owner authorization is given.
 - Synthesize responses into [templates/project-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/project-brief.md) and [templates/positioning.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/positioning.md).
 
@@ -190,6 +214,8 @@ An agent running Website Director must advance strictly through these phases. Do
 - **Rule (No Prose-Only Selection):** The owner must NEVER select a direction from prose alone. Build bounded, high-fidelity browser prototypes in `projects/[project]/prototypes/direction-XX/`.
 - **Required Prototype Anatomy:** Global Nav/Header, Complete Hero (`HERO_THESIS`), Representative Content Section, Signature Element (`SIGNATURE_ELEMENT`), Action CTA, and Responsive Mobile (390px) evidence.
 - **Motion Proof Policy:** Implement hero choreography, 1 scroll interaction, and CTA micro-physics to prove `MOTION_CHARACTER` without implementing the full production motion suite.
+- **Design-first homepage policy:** `PREMIUM` and `SHOWCASE` require `FULL_HOMEPAGE_VISUAL_DESIGN_REQUIRED = TRUE`; `EXPERIMENTAL` follows the same rule unless a bounded disposable-artifact exception is recorded. `STANDARD` requires one strong full homepage, or a selected direction followed by a complete homepage, before production implementation. A hero-only or prose-only artifact cannot define the site.
+- **Full homepage review:** After the owner selects or hybridizes a direction, expand it into a complete rendered homepage covering the applicable navigation, hero, value proposition, offers, proof/trust, differentiation, process, media language, authentic testimonial treatment, objections, CTA progression, FAQ, final CTA, footer, and responsive mobile behavior. Show real typography, spacing, grid, imagery, color, geometry, motion, rhythm, density, and conversion hierarchy. Explicitly record `HOMEPAGE_LOWER_HALF_QUALITY` and `CLIENT_VOICE_FIDELITY`; generic filler, unsupported proof, and copy that does not sound like the client fail review.
 - **Portfolio Art Director Critic:** Run the 11-question studio-grade craft critique for SHOWCASE projects.
 - Compile [templates/visual-prototype-review.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/visual-prototype-review.md).
 - **ENGAGE GATE PROTO (The Visual Selection Hard Stop):**
@@ -197,8 +223,10 @@ An agent running Website Director must advance strictly through these phases. Do
   - **STOP.** Present prototypes and comparison package to the owner.
   - Await explicit owner choice (`DIRECTION_1`, `DIRECTION_2`, `DIRECTION_3`, revision, or hybridization).
 - **ENGAGE LOCK 1 (Design Direction Lock Sequence):**
-  - After owner selection, record `visual_prototypes.owner_selected_direction = "direction-XX"` and `visual_prototypes.owner_selection_confirmed = true`.
-  - Synthesize final [templates/design-direction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-direction.md) from the chosen prototype.
+   - After owner selection, record `visual_prototypes.owner_selected_direction = "direction-XX"` and `visual_prototypes.owner_selection_confirmed = true`.
+   - Expand the selected direction into the full rendered homepage and present real-browser desktop/mobile review captures before the Design System is derived or the full production build begins.
+   - Record `visual_prototypes.homepage_visual_approved = true` only after an explicit owner `APPROVE` action. This is bounded evidence under the existing `visual_prototypes{}` authority, not a new state, gate, phase, or owner lock. `REVISE` and `HYBRIDIZE` return to design review; silence never approves.
+   - Synthesize final [templates/design-direction.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-direction.md) from the chosen prototype.
   - Present Design Direction Lock package and obtain explicit lock approval.
   - Update `site-profile.json` → `locks.design_direction_locked = true`.
 
@@ -364,6 +392,7 @@ An agent running Website Director must advance strictly through these phases. Do
 ### PHASE 7: Design System Token Architecture
 - Consult [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md).
 - **Precondition:** `accessibility.complete` must be `true` (or a recorded exception) — §14 of `templates/design-system.md` consumes the Phase 6.9 requirements (contrast-safe token pairs, focus tokens, minimum interactive geometry, colour-independent state semantics, text-spacing resilience) before Lock 4 engages. `provenance.complete` must also be true (or carry a recorded prototype/exception boundary) so token and production decisions consume the evidence ledger.
+- **Design-first precondition:** The selected direction must have a complete rendered homepage review and explicit owner approval recorded under `visual_prototypes.homepage_visual_approved = true`. Derive the Design System from that approved homepage; do not reinterpret its visual language or let components, a library, a framework, or a model choose it.
 - Fill out all 14 token sub-systems in [templates/design-system.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/design-system.md).
 - Map CSS variables for colors (60/30/10 rule), mathematical type scale, 8-point spacing, geometry, shadows, motion tokens (§13 — consumed by Phase 8), and accessibility.
 - **ENGAGE LOCK 4:** Update `site-profile.json` → `locks.design_system_locked = true`.
@@ -463,6 +492,7 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ### PHASE 9: Implementation Contract Issuance
 - Verify that all five locks evaluate to `true` in [templates/site-profile.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/site-profile.json).
+- Verify the bounded design-first production evidence: Business Understanding Pack complete, owner intent captured, required assets identified, references interpreted, full homepage rendered and reviewed, `visual_prototypes.homepage_visual_approved = true` from explicit owner action, and Design System derived and ready. Missing evidence blocks production implementation.
 - Generate [templates/implementation-contract.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/implementation-contract.md) binding the coding phase, including:
   - Builder SEO Requirements (`IMPLEMENTATION-CONTRACT.md` §2.1) drawn from `keyword-map.md` and `seo-content-briefs.md`.
   - Motion Engineering Requirements (`IMPLEMENTATION-CONTRACT.md` §2.2) drawn from `motion-implementation-spec.md` (official GSAP lifecycle, `@gsap/react`, `useGSAP()`, `ScrollTrigger`, and `matchMedia` reduced-motion rules).
@@ -471,7 +501,8 @@ An agent running Website Director must advance strictly through these phases. Do
 ---
 
 ### PHASE 10: Build Execution
-- The coding agent writes the codebase (HTML/CSS/JS, React, Next.js, Astro, Vue, or Svelte) strictly consuming the locked design tokens, locked copy, and locked motion implementation spec.
+- The coding agent writes the remaining codebase (HTML/CSS/JS, React, Next.js, Astro, Vue, or Svelte) strictly consuming the approved homepage-derived design system, locked IA/copy, locked design direction, and locked motion implementation spec. Prototype code may prove a direction; it is not permission to start the full production build.
+- Remaining pages inherit the approved homepage's visual personality, palette, typography, spacing, button/card language, image treatment, motion, and conversion hierarchy. Do not restamp a generic template or invent a new visual language below the homepage.
 - If `motion.gsap_required = true`, enforce official GreenSock implementation standards:
   - React/Next.js: Use `@gsap/react` with `useGSAP({ scope: containerRef })`.
   - Vue/Svelte/Vanilla: Use `gsap.context()` with mandatory unmount cleanup (`ctx.revert()`).
@@ -581,6 +612,7 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Showcase Benchmarking** | [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md) | `inspiration-board.md`, `visual-prototype-review.md` |
 | **Visual Direction** | [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md), [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) | `reference-analysis.md`, `design-direction.md` |
 | **Visual Prototypes** | [VISUAL-PROTOTYPE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-PROTOTYPE-PROTOCOL.md) | `visual-prototype-review.md`, `prototypes/direction-XX/` |
+| **Design-First Production Flow** | [DESIGN-FIRST-PRODUCTION-FLOW.md](DESIGN-FIRST-PRODUCTION-FLOW.md) | Business Understanding Pack in `project-brief.md`, full homepage review evidence, `visual_prototypes.homepage_visual_approved` |
 | **Architecture** | [DESIGN-CONSTITUTION.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-CONSTITUTION.md) | `information-architecture.md`, `content-plan.md` |
 | **Design System** | [DESIGN-SYSTEM-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-SYSTEM-PROTOCOL.md) | `design-system.md` |
 | **Motion Direction** | [MOTION-DIRECTION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/MOTION-DIRECTION-PROTOCOL.md), [CINEMATIC-INTEGRATION-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CINEMATIC-INTEGRATION-PROTOCOL.md) | `motion-direction.md`, `cinematic-brief.md` |
@@ -661,6 +693,7 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - `visual_prototypes.status` values: `"not_required"`, `"pending"`, `"generating"`, `"ready_for_owner_review"`, `"selected"`, `"blocked"`.
 - `visual_prototypes.direction_count`: Integer (`1`, `2`, `3`). Exactly 3 required for `CREATIVE_AMBITION = SHOWCASE`.
 - `visual_prototypes.owner_selected_direction`: String naming chosen direction (e.g., `"direction-01"`).
+- **Bounded full-homepage evidence:** `visual_prototypes.homepage_visual_approved` may record explicit owner approval of the selected direction's complete rendered homepage after desktop and mobile review. It is evidence under this existing object, not a separate lifecycle state, readiness gate, phase, or owner lock. Approval is never inferred from silence, prose, builder output, or critic output.
 - **Strict Lock Separation:** `visual_prototypes{}` contains NO lock boolean. The sole authoritative Design Direction lock remains `locks.design_direction_locked`. Prototype selection is NOT an automatic lock.
 
 ### 5.10 Single-Source-of-Truth Rule for `awwwards` Showcase Research (V1.9)

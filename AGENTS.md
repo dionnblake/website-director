@@ -223,6 +223,21 @@ authorities.
    owner locks remain immutable, and all runs preserve frozen-project
    integrity.
 
+### Design-First Production Flow (V2.15 bounded operating overlay)
+
+The repository's canonical design-first flow is documented in
+`DESIGN-FIRST-PRODUCTION-FLOW.md`. It requires business understanding before
+visual design, a complete rendered homepage before full production
+implementation, explicit owner review before Design System derivation, and
+inheritance of the approved homepage system by the remaining pages.
+
+The flow may record
+`visual_prototypes.homepage_visual_approved` under the existing Visual
+Prototype object as approval evidence. It creates no new phase, readiness
+gate, state authority, or owner lock. The exact five owner locks remain the
+only owner locks. Browser QA remains the behavior authority and the Website
+Gauntlet remains the post-QA qualitative authority.
+
 ### Alpha Starts Now Brand Color Authority (Owner Contract — 2026-09-02)
 
 For current and future non-frozen Alpha Starts Now work, the authoritative

@@ -27,6 +27,11 @@ shape. `alpha-starts-now-owner-intent.json` is the current Alpha Starts Now
 owner-contract artifact: navy blue is primary, yellow is accent, historical
 orange-family directions are non-authoritative, and explicit cinematic intent
 requires Level 3 evidence. It does not create a site state or sixth lock.
+`project-brief.md` is the canonical Business Understanding Pack. It records
+business truth, owner language, conversion intent, references, asset intent,
+non-negotiables, and unknown or unverified facts before visual direction work.
+The full-homepage approval evidence is recorded under the existing
+`visual_prototypes` authority and is not a new template-owned lock.
 
 ## Local Contracts
 
@@ -74,6 +79,10 @@ requires Level 3 evidence. It does not create a site state or sixth lock.
   client-interpretation-to-implementation trace; references cannot redefine a
   current brand contract. Exact brand values are not to be invented when the
   owner has approved only semantic roles.
+- Business Understanding Pack fields must not be silently omitted or filled
+  with fabricated proof. Discovery transcripts are optional; extracted voice
+  records must remain traceable to supplied language. The Design System
+  template must cite the approved rendered homepage as its source.
 
 ## Work Guidance
 

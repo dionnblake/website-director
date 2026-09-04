@@ -41,7 +41,7 @@ A **Visual Prototype** is:
 | It IS | It IS NOT |
 | :--- | :--- |
 | A high-fidelity, browser-rendered slice of the proposed art direction | A wireframe, moodboard, or Figma-style gray box |
-| Polished enough to judge typography, palette, hero, and visual craft | A complete website or sitemap build |
+| Polished enough to judge typography, palette, hero, and visual craft | A complete production website or sitemap build |
 | Responsive proof demonstrating desktop (1440px) and mobile (390px) behavior | A production candidate |
 | A decision aid prior to Design Direction Lock | An automatic Design Direction Lock |
 | An isolated experimental artifact (PROTOTYPE_STATUS = EXPERIMENTAL_VISUAL_DIRECTION) | Production deployment authorization |
@@ -64,6 +64,31 @@ Each prototype direction must represent a complete, polished slice containing:
 - Explicitly ban Lorem Ipsum filler.
 - **Absolute Factual Integrity:** Never fabricate testimonials, metrics, client logos, certifications, awards, or product capabilities (DESIGN-CONSTITUTION.md §7.7).
 - If placeholder facts are unavoidable, mark them visibly as placeholders (e.g., [Metric to be verified]).
+
+### 3.2 Design-first homepage expansion (V2.15 additive)
+
+The bounded slice remains the direction-comparison artifact. After the owner
+selects or hybridizes a direction, the selected direction must be expanded
+into a complete browser-rendered homepage before the Design System is derived
+or the full production build begins. This homepage is still an isolated
+design-review artifact, not a production deployment.
+
+- `PREMIUM` and `SHOWCASE` require `FULL_HOMEPAGE_VISUAL_DESIGN_REQUIRED = TRUE`.
+- `EXPERIMENTAL` requires the same unless a bounded disposable-artifact
+  exception is recorded with a reason.
+- `STANDARD` requires one strong full homepage, or a selected direction
+  followed by a complete homepage.
+- Review the applicable navigation, hero, value proposition, offers, proof
+  and trust, differentiation, process, media language, authentic testimonial
+  treatment, objections, CTA progression, FAQ, final CTA, footer, and mobile
+  behavior. Inspect real typography, spacing, grid, imagery, color, geometry,
+  motion, rhythm, density, and conversion hierarchy.
+- Record `HOMEPAGE_LOWER_HALF_QUALITY` and `CLIENT_VOICE_FIDELITY`. Generic
+  filler below an elite hero, unsupported proof, and generic copy fail review.
+- Record `visual_prototypes.homepage_visual_approved = true` only after the
+  owner explicitly chooses `APPROVE` against desktop and mobile full-homepage
+  captures. This is evidence under the existing `visual_prototypes{}` object,
+  not a new state, gate, phase, or owner lock.
 
 ### 3.1 Render receipt requirements
 
@@ -249,6 +274,11 @@ For each direction:
 2. **Request Revisions:** Owner requests specific aesthetic or compositional adjustments on a direction.
 3. **Request Hybridization:** Owner requests combining specific elements (e.g., "Direction 1 typography with Direction 3 hero layout"). Website Director produces a reconciled direction prototype for re-review.
 
+After selection or hybridization, present the selected direction as a complete
+homepage in a real browser at desktop and mobile widths. The owner may
+`APPROVE`, `REVISE`, or `HYBRIDIZE`; silence never approves. Internal critics
+may recommend changes but cannot set owner approval.
+
 ---
 
 ## 10. Design Direction Lock Transition Protocol
@@ -258,6 +288,10 @@ Once the owner explicitly selects or confirms a visual direction:
 1. Record isual_prototypes.owner_selected_direction = "direction-XX".
 2. Record isual_prototypes.owner_selection_confirmed = true.
 3. Synthesize the final 	emplates/design-direction.md from the selected prototype.
-4. Present the formal Design Direction Lock confirmation package.
-5. Obtain explicit owner confirmation for the lock.
-6. Only then set site-profile.json → locks.design_direction_locked = true.
+4. Expand the selected direction into the complete rendered homepage and
+   present its desktop/mobile review package.
+5. Record the explicit owner approval under the existing
+   `visual_prototypes.homepage_visual_approved` evidence field.
+6. Present the formal Design Direction Lock confirmation package.
+7. Obtain explicit owner confirmation for the lock.
+8. Only then set site-profile.json → locks.design_direction_locked = true.

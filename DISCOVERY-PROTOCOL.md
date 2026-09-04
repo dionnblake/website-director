@@ -16,6 +16,29 @@
 4. **Adaptive Context-Driven Questioning:** Respond specifically to what the client actually said. When an adjective is ambiguous (e.g., "premium", "flashy", "masculine"), generate context-specific distinctions rather than generic questions.
 5. **No Research Before Confirmed Intent:** External visual research (Phase 3) and SEO discovery (Phase 2.5) must NEVER begin until understanding confidence is `HIGH`, the Creative Intent Contract is synthesized, the Read-Back summary is presented, and the owner explicitly confirms: *"Did I understand the assignment correctly?"*
 
+### 1.1 Business Understanding Pack (V2.15 bounded flow)
+
+The existing `templates/project-brief.md` is the single canonical Business
+Understanding Pack. Complete its semantic fields before visual direction work:
+business, target customer, primary customer problem, services, boundaries,
+differentiator, owner origin story, client voice, brand personality, primary
+and secondary conversions, objections, trust requirements, available proof,
+design and anti-preferences, owner references, owner and required assets,
+reference-only assets, brand guidelines, non-negotiables, and unknown or
+unverified facts.
+
+Record one explicit discovery mode:
+`QUESTIONNAIRE_ONLY`, `QUESTIONNAIRE_PLUS_TRANSCRIPT`,
+`TRANSCRIPT_LED_DISCOVERY`, or `OWNER_SUPPLIED_DISCOVERY_NOTES`. A transcript
+is optional. When supplied, retain near-verbatim language, recurring terms,
+brand register, important stories, service explanations, and owner priorities.
+Conversational claims remain conversational evidence and require independent
+verification before they become production claims.
+
+Missing facts remain `UNKNOWN`, `NOT_PROVIDED`, or `UNVERIFIED`. The discovery
+process must not manufacture generic copy, testimonials, statistics,
+credentials, awards, or other proof to make the pack appear complete.
+
 ---
 
 ## 2. The Four Anchor Questions

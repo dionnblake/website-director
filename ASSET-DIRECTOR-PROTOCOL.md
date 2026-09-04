@@ -135,6 +135,22 @@ Asset Director categorizes assets into explicit functional roles:
 6. **Information Graphics:** ILLUSTRATION, DIAGRAM, INFOGRAPHIC, SVG_ARTWORK, ICON
 7. **Support Media:** POSTER_FRAME, COMMERCE_ASSET, DECORATIVE_MEDIA
 
+### 5.1 Design-first asset intent classification (V2.15 bounded flow)
+
+For the full homepage review and its production handoff, record the intent of
+each referenced visual as exactly one of:
+
+- `REQUIRED_ASSET` — the approved design depends on this asset; source,
+  rights, accessibility, crop, and provenance must be resolved before release.
+- `REFERENCE_INSPIRATION_ONLY` — a research or owner reference used to learn a
+  principle; it is not a production asset and must never be promoted or ship
+  implicitly.
+- `SUPPORTING_MATERIAL` — useful context or optional material that does not
+  become factual proof or silently change the approved visual direction.
+
+This classification extends Asset Director's existing taxonomy and provenance
+authority. It does not create an asset lock or replace the evidence ledger.
+
 ---
 
 ## 6. Primary Visual Language & The Generation Bible

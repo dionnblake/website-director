@@ -40,6 +40,10 @@ repair-recapture, five-lock, and frozen-integrity controls.
 current-versus-historical brand, reference-boundary, contradiction,
 motion-level, motion-trace, runtime-engine, generic-fade, neutral-color,
 frozen-integrity, and disposable static-fixture controls.
+`test_design_first_production_flow.py` owns the bounded Business Understanding
+Pack, optional discovery/transcript, ambition, full-homepage, lower-half,
+client-voice, owner-approval, derivation, component, inspiration, asset,
+Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
 
 ## Local Contracts
 
@@ -78,6 +82,10 @@ frozen-integrity, and disposable static-fixture controls.
   It never rebuilds Alpha Starts Now, mutates frozen pilots, calls reference
   providers, or treats a screenshot-only/static or simulation result as
   Level 2/3 runtime motion proof.
+- The design-first suite uses synthetic business/design records and the
+  existing inspiration registry only. It never requires a transcript, model,
+  provider, browser, deployment, production credential, or mutation under
+  `projects/`.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.

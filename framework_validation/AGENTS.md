@@ -20,6 +20,11 @@ owner-reference, provider-neutrality, and rendered-visual receipt checks.
 precedence, historical/reference boundary, brand-token, contradiction,
 motion-trace, and owner-compliance helpers. It does not own site state or a
 new owner lock.
+`design_first_flow.py` owns the bounded business-understanding, optional
+discovery/transcript, full-homepage review, explicit owner-approval,
+homepage-to-Design-System derivation, component-routing, asset-intent, and
+downstream-authority helpers. It does not create a phase, gate, state writer,
+provider dependency, browser runner, or owner lock.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -70,6 +75,10 @@ new owner lock.
   intent resolves to `MOTION_LEVEL_3` and cannot be silently downgraded. Level
   2/3 implementation requires a brief-to-location-to-real-browser runtime
   evidence trace and meaningful sequence diversity.
+- The design-first flow keeps the Business Understanding Pack canonical at
+  `templates/project-brief.md`, keeps transcript extraction optional, requires
+  real desktop/mobile homepage evidence and explicit owner approval before
+  full production, and derives rather than reinterprets the Design System.
 
 ## Work Guidance
 

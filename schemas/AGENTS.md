@@ -19,6 +19,8 @@ validation-manifest contracts for Website Director Capability 6, the additive
 - `frozen-projects.json` owns the protected historical inventory.
 - `test-suites.json` owns discoverable isolated test commands.
 - `validation-manifest.json` owns source roots and report destinations.
+  The bounded design-first production-flow suite is registered there without
+  creating a new lifecycle phase, gate, state authority, or owner lock.
 - `inspiration-source-registry.schema.json` owns the bounded owner-selectable
   inspiration-source record shape. The current registry template is
   `templates/inspiration-source-registry.json`; it remains reference-only and

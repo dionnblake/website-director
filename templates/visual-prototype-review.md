@@ -233,6 +233,31 @@ For each direction:
 2. **Request Revisions:** Owner requests specific aesthetic or compositional adjustments on a direction.
 3. **Request Hybridization:** Owner requests combining specific elements (e.g., "Direction 1 typography with Direction 3 hero layout"). Website Director produces a reconciled direction prototype for re-review.
 
+### 9.1 Selected Direction → Full Homepage Review
+
+Selection of a bounded direction is not approval of a full website. After the
+owner selects or hybridizes a direction, expand the selected direction into a
+complete browser-rendered homepage before deriving the Design System or
+starting the full production build.
+
+- **Required review surfaces:** `DESKTOP_FULL_HOMEPAGE` and
+  `MOBILE_FULL_HOMEPAGE`, with applicable interactive and reduced-motion
+  states.
+- **Required content:** navigation, hero, value proposition, offers, proof and
+  trust, differentiation, process, media language, authentic testimonial
+  treatment where applicable, objections, CTA progression, FAQ, final CTA,
+  footer, and responsive mobile behavior.
+- **Required visual evidence:** real typography, spacing, grid, color,
+  imagery, geometry, motion, rhythm, density, and conversion hierarchy. No
+  Lorem Ipsum, fake proof, or generic filler below an elite hero.
+- **Bounded approval record:** record
+  `visual_prototypes.homepage_visual_approved = true` only after an explicit
+  owner `APPROVE` action tied to the rendered review. This is an evidence
+  field under the existing Visual Prototype authority, not a new gate, phase,
+  or owner lock.
+- Internal critics may recommend revision, rejection, or improvement. They
+  cannot set the owner approval field.
+
 ---
 
 ## 10. Design Direction Lock Transition Protocol
@@ -242,6 +267,10 @@ Once the owner explicitly selects or confirms a visual direction:
 1. Record isual_prototypes.owner_selected_direction = "direction-XX".
 2. Record isual_prototypes.owner_selection_confirmed = true.
 3. Synthesize the final 	emplates/design-direction.md from the selected prototype.
-4. Present the formal Design Direction Lock confirmation package.
-5. Obtain explicit owner confirmation for the lock.
-6. Only then set site-profile.json → locks.design_direction_locked = true.
+4. Expand the selected direction into the complete rendered homepage and
+   present its desktop/mobile review package.
+5. Record the explicit owner homepage approval under the existing
+   `visual_prototypes.homepage_visual_approved` evidence field.
+6. Present the formal Design Direction Lock confirmation package.
+7. Obtain explicit owner confirmation for the lock.
+8. Only then set site-profile.json → locks.design_direction_locked = true.

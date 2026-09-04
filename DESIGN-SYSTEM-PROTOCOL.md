@@ -13,6 +13,20 @@ No implementation agent may write a single line of CSS, Tailwind utility class, 
 
 The design system specification is organized into 14 explicit sub-systems.
 
+### 1.1 Approved homepage derivation (V2.15 bounded flow)
+
+Before Lock 4, the selected direction must have a complete browser-rendered
+homepage reviewed at desktop and mobile widths and explicit owner approval
+recorded under the existing `visual_prototypes.homepage_visual_approved`
+evidence field. The Design System then formalizes the approved homepage's
+typography, color, spacing, grid, geometry, imagery, controls, navigation,
+motion, responsive, and accessibility language. It must not reinterpret the
+approved aesthetic. Components, libraries, frameworks, and models remain
+downstream implementation choices and cannot become the design authority.
+
+This is a precondition within the existing Design System authority, not a new
+phase, readiness gate, or owner lock.
+
 ---
 
 ## 2. The 14 Sub-Systems

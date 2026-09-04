@@ -85,6 +85,26 @@ The reviewer must explicitly answer the following 7 diagnostic questions with a 
 6. **POSITIONING:** Does the perceived visual quality match or exceed the pricing tier and market authority of the company?
 7. **AI DETECTION:** Does the website trigger subconscious "AI template" cues (e.g., generic pill tags, floating dashboard UI, fake statistics)?
 
+### 3.1 Design-first homepage checks
+
+For the bounded pre-build homepage review, answer these two questions before
+the Design System is derived:
+
+1. **`HOMEPAGE_LOWER_HALF_QUALITY`:** Does the lower half carry the same
+   subject-specific hierarchy, proof treatment, media quality, and craft as
+   the hero, or does it collapse into generic feature cards, filler copy,
+   empty boxes, or a repeated template loop? `GENERIC`, `FILLER`,
+   `PLACEHOLDER`, and `HERO_ONLY` are fail conditions.
+2. **`CLIENT_VOICE_FIDELITY`:** Does the copy sound like this client, using
+   the language and register captured in the Business Understanding Pack or
+   supplied discovery notes rather than generic marketing language? Record
+   the owner-language evidence used. A transcript is optional, and a
+   conversational claim remains unverified until separately evidenced.
+
+These checks are qualitative evidence inputs. They do not create a new phase,
+readiness gate, or owner lock. Browser QA remains the behavior authority and
+the Website Gauntlet remains the post-QA qualitative authority.
+
 ---
 
 ## 4. The "More Expensive" Action Directive

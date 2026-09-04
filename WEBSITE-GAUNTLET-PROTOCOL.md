@@ -345,6 +345,12 @@ design direction, approved design system, owner intent, and assigned
 Reference Bars. `BUILDER != CRITIC` is a hard requirement: the critic uses a
 fresh context identifier that is not the builder context.
 
+The qualitative review explicitly records `HOMEPAGE_LOWER_HALF_QUALITY` and
+`CLIENT_VOICE_FIDELITY`. An elite hero followed by generic lower sections,
+unsupported proof, or copy that does not sound like the client is a defect,
+not an acceptable template tradeoff. These findings use the existing
+`gauntlet{}` record and do not create a new critic, state, gate, or lock.
+
 After a targeted repair, the builder must re-render and emit a new screenshot
 set with a newer revision and build identity. Stale pre-repair screenshots do
 not support a pass. A capped or incomplete loop remains
