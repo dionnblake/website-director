@@ -19,6 +19,7 @@ from framework_validation.design_first_flow import (  # noqa: E402
     DESIGN_SIGNALS,
     DESIGN_SYSTEM_DERIVATION_FIELDS,
     DISCOVERY_MODES,
+    FIGMA_IN_DESIGN_FIRST_FLOW,
     FULL_HOMEPAGE_SECTIONS,
     HOMEPAGE_REVIEW_SURFACES,
     OPERATING_FLOW,
@@ -307,16 +308,21 @@ class DesignFirstProductionFlowTests(unittest.TestCase):
         valid = {
             "DESIGN_AUTHORITY": "DESIGN_SYSTEM",
             "COMPONENT_SOURCE": "CodeStitch",
-            "FIGMA_REQUIRED": False,
             "MODEL_REQUIRED": False,
             "FRAMEWORK_REQUIRED": False,
         }
-        self.assertTrue(validate_component_routing(valid)["ok"])
+        result = validate_component_routing(valid)
+        self.assertTrue(result["ok"])
+        self.assertFalse(FIGMA_IN_DESIGN_FIRST_FLOW)
+        self.assertFalse(result["figma_in_design_first_flow"])
         broken = dict(valid)
         broken["DESIGN_AUTHORITY"] = "COMPONENT_LIBRARY"
         result = validate_component_routing(broken)
         self.assertFalse(result["ok"])
         self.assertIn("COMPONENT_LIBRARY_NOT_AUTHORITY", issue_codes(result))
+        external = dict(valid)
+        external["DESIGN_AUTHORITY"] = "EXTERNAL_DESIGN_APPLICATION"
+        self.assertIn("COMPONENT_AUTHORITY_MISSING", issue_codes(validate_component_routing(external)))
 
     def test_existing_inspiration_architecture_is_consumed_as_reference_only(self) -> None:
         registry = json.loads((ROOT / "templates" / "inspiration-source-registry.json").read_text(encoding="utf-8"))
@@ -375,9 +381,15 @@ class DesignFirstProductionFlowTests(unittest.TestCase):
     def test_contract_artifacts_are_documented_without_new_state_or_lock(self) -> None:
         flow_doc = (ROOT / "DESIGN-FIRST-PRODUCTION-FLOW.md").read_text(encoding="utf-8")
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        implementation_contract = (ROOT / "IMPLEMENTATION-CONTRACT.md").read_text(encoding="utf-8")
+        visual_prototype_protocol = (ROOT / "VISUAL-PROTOTYPE-PROTOCOL.md").read_text(encoding="utf-8")
+        visual_prototype_template = (ROOT / "templates" / "visual-prototype-review.md").read_text(encoding="utf-8")
         state_registry = (ROOT / "schemas" / "state-ownership.json").read_text(encoding="utf-8")
         self.assertIn("UNDERSTANDING_PRECEDES_DESIGN", flow_doc)
         self.assertIn("APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM", skill)
+        self.assertIn("FIGMA_IN_DESIGN_FIRST_FLOW = NO", flow_doc)
+        for text in (implementation_contract, visual_prototype_protocol, visual_prototype_template):
+            self.assertNotIn("figma", text.lower())
         self.assertIn("homepage_visual_approved", skill)
         self.assertNotIn('"homepage_visual_approved"', state_registry)
         self.assertNotIn("V2.16", flow_doc + skill)

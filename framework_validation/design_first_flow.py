@@ -29,6 +29,8 @@ DISCOVERY_MODES = (
 
 CREATIVE_AMBITIONS = ("STANDARD", "PREMIUM", "SHOWCASE", "EXPERIMENTAL")
 
+FIGMA_IN_DESIGN_FIRST_FLOW = False
+
 OPERATING_FLOW = (
     "UNDERSTAND_BUSINESS",
     "DESIGN_BEFORE_IMPLEMENTATION",
@@ -583,14 +585,19 @@ def validate_component_routing(router: Mapping[str, Any]) -> dict[str, Any]:
         return _result("BLOCKED", [_issue("COMPONENT_AUTHORITY_MISSING", "component routing must identify its upstream design authority")])
     issues: list[dict[str, str]] = []
     authority = _normalise_name(_get(router, "DESIGN_AUTHORITY", _get(router, "DIRECTION_AUTHORITY", "")))
-    if authority in {"COMPONENT_LIBRARY", "LIBRARY", "CODESTITCH", "FIGMA"} or _truthy(_get(router, "LIBRARY_DETERMINES_DIRECTION")):
+    if authority in {"COMPONENT_LIBRARY", "LIBRARY", "CODESTITCH"} or _truthy(_get(router, "LIBRARY_DETERMINES_DIRECTION")):
         issues.append(_issue("COMPONENT_LIBRARY_NOT_AUTHORITY", "a component library may supply primitives but cannot determine visual direction"))
     elif authority not in {"APPROVED_HOMEPAGE", "DESIGN_SYSTEM", "OWNER_APPROVED_DESIGN"}:
         issues.append(_issue("COMPONENT_AUTHORITY_MISSING", "components must consume the approved homepage or derived design system"))
-    for field in ("FIGMA_REQUIRED", "CODESTITCH_REQUIRED", "MODEL_REQUIRED", "FRAMEWORK_REQUIRED"):
+    for field in ("CODESTITCH_REQUIRED", "MODEL_REQUIRED", "FRAMEWORK_REQUIRED"):
         if _truthy(_get(router, field)):
             issues.append(_issue("COMPONENT_ROUTING_NOT_MANDATORY", f"{field} cannot be a mandatory Website Director dependency"))
-    return _result("FAIL" if any(item["code"] == "COMPONENT_LIBRARY_NOT_AUTHORITY" for item in issues) else ("BLOCKED" if issues else "PASS"), issues, authority=authority)
+    return _result(
+        "FAIL" if any(item["code"] == "COMPONENT_LIBRARY_NOT_AUTHORITY" for item in issues) else ("BLOCKED" if issues else "PASS"),
+        issues,
+        authority=authority,
+        figma_in_design_first_flow=FIGMA_IN_DESIGN_FIRST_FLOW,
+    )
 
 
 def validate_inspiration_records(records: Sequence[Mapping[str, Any]], registry: Mapping[str, Any] | None = None) -> dict[str, Any]:
@@ -690,6 +697,7 @@ __all__ = [
     "DESIGN_SYSTEM_DERIVATION_FIELDS",
     "DISCOVERY_MODES",
     "FULL_HOMEPAGE_SECTIONS",
+    "FIGMA_IN_DESIGN_FIRST_FLOW",
     "HOMEPAGE_REVIEW_SURFACES",
     "OPERATING_FLOW",
     "OPERATING_INVARIANTS",

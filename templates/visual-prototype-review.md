@@ -34,7 +34,7 @@ A **Visual Prototype** is:
 
 | It IS | It IS NOT |
 | :--- | :--- |
-| A high-fidelity, browser-rendered slice of the proposed art direction | A wireframe, moodboard, or Figma-style gray box |
+| A high-fidelity, browser-rendered slice of the proposed art direction | A wireframe, moodboard, or gray-box approximation |
 | Polished enough to judge typography, palette, hero, and visual craft | A complete website or sitemap build |
 | Responsive proof demonstrating desktop (1440px) and mobile (390px) behavior | A production candidate |
 | A decision aid prior to Design Direction Lock | An automatic Design Direction Lock |

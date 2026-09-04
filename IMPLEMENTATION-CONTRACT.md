@@ -58,8 +58,10 @@ entry point, but prototype code is not permission to begin the full build.
 Remaining pages inherit the approved homepage system. Components are
 downstream choices selected for stack fit, licensing, accessibility,
 performance, maintainability, fidelity, and risk. No particular component
-library, framework, Figma workflow, CodeStitch workflow, or model is
-mandatory, and none may determine visual direction.
+library, external design application, or model is mandatory. Existing project
+components, internal primitives, 21st.dev, CodeStitch when appropriate,
+framework ecosystem components, and custom implementation are valid
+downstream sources, and none may determine visual direction.
 
 The owner may `APPROVE`, `REVISE`, or `HYBRIDIZE` the homepage. Builder or
 internal-critic output cannot set the owner approval field.

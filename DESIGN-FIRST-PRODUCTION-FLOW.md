@@ -16,6 +16,26 @@ This overlay applies to new or deliberately reopened non-frozen work.
 Historical profiles and frozen pilots remain valid and are not retrofitted by
 a framework upgrade alone.
 
+## Canonical design flow
+
+```text
+BUSINESS UNDERSTANDING
+→ RESEARCH / REFERENCES / ASSETS
+→ FULL HOMEPAGE BROWSER DESIGN
+→ REAL BROWSER RENDER
+→ DESKTOP + MOBILE SCREENSHOTS
+→ INTERNAL QA
+→ OWNER REVIEW
+→ OWNER APPROVAL
+→ DESIGN SYSTEM DERIVATION
+→ FULL SITE IMPLEMENTATION
+```
+
+`FIGMA_IN_DESIGN_FIRST_FLOW = NO`
+
+Website Director's own browser-rendered Visual Prototype system is the design
+authority for this flow.
+
 ## The flow in plain English
 
 1. **Understand the business.** Complete the existing
@@ -63,10 +83,12 @@ a framework upgrade alone.
    does not reinterpret it.
 9. **Implement the rest.** Remaining pages inherit the approved homepage
    system. Components are downstream implementation choices. Existing
-   primitives, 21st.dev, CodeStitch, Figma, custom code, or another suitable
-   source may be used when stack, license, accessibility, performance,
-   maintainability, fidelity, and risk support the choice. None is mandatory,
-   and no component library or model may determine the visual direction.
+   project components, internal primitives, 21st.dev, CodeStitch when
+   appropriate, framework ecosystem components, or custom implementation may
+   be used when stack, license, accessibility, performance, maintainability,
+   fidelity, and risk support the choice. No external design application is
+   required by this flow, and no implementation source may determine the
+   visual direction.
 10. **Verify behavior, then quality.** The existing Browser QA harness remains
     the behavior authority. It runs before the existing Website Gauntlet,
     which remains the fresh-context qualitative and visual authority. Real

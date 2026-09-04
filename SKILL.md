@@ -124,6 +124,12 @@ New or deliberately reopened non-frozen work uses this overlay; historical
 profiles and frozen pilots remain valid and are not retrofitted by a framework
 upgrade alone.
 
+The canonical design sequence inside that overlay is:
+`BUSINESS UNDERSTANDING` → `RESEARCH / REFERENCES / ASSETS` → `FULL HOMEPAGE
+BROWSER DESIGN` → `REAL BROWSER RENDER` → `DESKTOP + MOBILE SCREENSHOTS` →
+`INTERNAL QA` → `OWNER REVIEW` → `OWNER APPROVAL` → `DESIGN SYSTEM DERIVATION`
+→ `FULL SITE IMPLEMENTATION`.
+
 ### PHASE 1: Creative Briefing Room & Adaptive Discovery Execution
 - Consult [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md).
 - **Rule 1 (Creative Director Persona):** Interview the client as an expert creative director. Never ask clients technical design questions (grid systems, border radiuses, GSAP plugins, typography scales, CSS frameworks).
