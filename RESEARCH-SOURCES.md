@@ -10,6 +10,9 @@
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
+│ CHANNEL 0: CANONICAL LITERATURE — what are the design truths?   │
+│            (Library of Knowledge local RAG / Connector V1)     │
+├────────────────────────────────────────────────────────────────┤
 │ CHANNEL 1: INDUSTRY LANDSCAPE   — what does this market expect? │
 ├────────────────────────────────────────────────────────────────┤
 │ CHANNEL 2: LANDBOOK             — what should we study?         │
@@ -22,7 +25,19 @@
 └────────────────────────────────────────────────────────────────┘
 ```
 
-No channel is optional by default for ambitious projects. Awwwards research is mandatory for `CREATIVE_AMBITION = SHOWCASE` per `AWWWARDS-SHOWCASE-INTELLIGENCE.md`. A channel may be skipped only under the bounded exception defined in `VISUAL-RESEARCH-PROTOCOL.md` §5, and the skip must be recorded in `site-profile.json` → `research.exception`, never applied silently.
+No channel is optional by default for ambitious projects. Channel 0 (Library of Knowledge) provides grounding in foundational typography, grid systems, layout mathematics, and conversion psychology. Awwwards research is mandatory for `CREATIVE_AMBITION = SHOWCASE` per `AWWWARDS-SHOWCASE-INTELLIGENCE.md`. A channel may be skipped only under the bounded exception defined in `VISUAL-RESEARCH-PROTOCOL.md` §5, and the skip must be recorded in `site-profile.json` → `research.exception`, never applied silently.
+
+---
+
+## 1.5. Channel 0: Canonical Design & Typography Literature (Library of Knowledge)
+
+**What it is:** Grounding in published literature on grid systems, typography scales, layout geometry, gestalt psychology, accessibility standards, and conversion rate optimization (CRO) from the private Library of Knowledge (2,300+ volumes).
+
+**Role in the pipeline:** Channel 0 answers `WHAT ARE THE FOUNDATIONAL DESIGN TRUTHS?` — it provides mathematically and empirically sound principles before aesthetic decisions begin.
+
+**Hard rule:** Book principles guide proportional systems and typographic hierarchy; they never replace live client constraints or brand identity. All findings carry source IDs and page ordinals `[source_id:page]`.
+
+**Output:** Feeds typographic scales and grid definitions in `templates/design-constitution.md`.
 
 ---
 
