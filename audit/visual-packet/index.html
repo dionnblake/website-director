@@ -1,0 +1,134 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>ASN — Reference vs Render Comparison Packet</title>
+<style>
+  :root{--ink:#111820;--muted:#5d6875;--line:#d9d5cd;--bg:#f7f5f1;--warn:#8a1f11;--ok:#1c6b3f;}
+  *{box-sizing:border-box}
+  body{margin:0;padding:2rem 1.5rem 4rem;background:var(--bg);color:var(--ink);
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+       max-width:1180px;margin-inline:auto}
+  h1{font-size:1.5rem;margin:0 0 .25rem}
+  h2{font-size:1.05rem;margin:2.5rem 0 .5rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+  .sub{color:var(--muted);margin:0 0 1.5rem}
+  .note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--muted);
+        padding:.75rem 1rem;margin:1rem 0;font-size:14px}
+  .note.warn{border-left-color:var(--warn)}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+  @media(max-width:820px){.pair{grid-template-columns:1fr}}
+  figure{margin:0;background:#fff;border:1px solid var(--line);padding:.6rem}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:.5rem;line-height:1.45}
+  img{display:block;width:100%;height:auto}
+  .tall{max-height:520px;overflow-y:auto;border:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:1rem 0}
+  th,td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left;vertical-align:top}
+  th{background:#efece6;font-weight:600}
+  code{background:#efece6;padding:.1rem .3rem;border-radius:2px;font-size:12.5px}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;
+       padding:.15rem .45rem;border:1px solid var(--line);background:#fff;color:var(--muted)}
+  .tag.bad{color:var(--warn);border-color:#e0b5ae}
+  .tag.good{color:var(--ok);border-color:#aacdb8}
+</style>
+
+<h1>Alpha Starts Now — Reference vs Render</h1>
+<p class="sub">Comparison packet for the disconnect audit · build <code>ab91263</code> ·
+2026-09-06 · <strong>owner acceptance PENDING — this packet is not an approval</strong></p>
+
+<div class="note">
+  <strong>What this is.</strong> A side-by-side of the owner-approved visual direction references
+  against the project&rsquo;s own real-browser captures. All six images are byte-copies of existing
+  evidence — nothing here was regenerated, restaged, or synthesised for this audit.
+  <br><br>
+  <strong>Approval scope, quoted from the project&rsquo;s own <code>reference-manifest.json</code>:</strong>
+  <em>&ldquo;Visual direction preference only. No final copy approval, implementation acceptance,
+  baseline promotion, or deployment authorization is established by this package.&rdquo;</em>
+</div>
+
+<h2>1 · Desktop — approved direction vs shipped homepage</h2>
+<div class="pair">
+  <figure>
+    <img src="ASN-approved-direction-desktop.png" alt="Owner-approved desktop visual direction reference">
+    <figcaption><strong>APPROVED REFERENCE</strong> · 1442×899 ·
+      <code>sha256 56dfc0cf…</code><br>
+      Owner-selected concept art. Tactile field-manual collage: navy condensed display type, yellow
+      route, brutalist architectural plate, paper/tape material.</figcaption>
+  </figure>
+  <figure>
+    <div class="tall"><img src="homepage-desktop.png" alt="Shipped homepage, full page desktop capture"></div>
+    <figcaption><strong>SHIPPED BUILD</strong> · 1440×9781 · full-page capture (scroll the frame)<br>
+      Produced by the project&rsquo;s own QA scripts. Genuinely full-page — this project was
+      <em>not</em> affected by the viewport-capture defect (F5).</figcaption>
+  </figure>
+</div>
+
+<h2>2 · Mobile — approved direction vs shipped homepage</h2>
+<div class="pair">
+  <figure>
+    <img src="ASN-approved-direction-mobile.png" alt="Owner-approved mobile visual direction reference">
+    <figcaption><strong>APPROVED REFERENCE</strong> · 510×874 · <code>sha256 5ebff859…</code><br>
+      Mobile recomposition of the same grammar.</figcaption>
+  </figure>
+  <figure>
+    <div class="tall"><img src="homepage-mobile.png" alt="Shipped homepage, full page mobile capture"></div>
+    <figcaption><strong>SHIPPED BUILD</strong> · 390×14311 · full-page capture (scroll the frame)</figcaption>
+  </figure>
+</div>
+
+<h2>3 · Lower page — the region the design-first flow exists to protect</h2>
+<div class="pair">
+  <figure>
+    <img src="homepage-belowfold-1-desktop.png" alt="Shipped homepage below fold, section 1">
+    <figcaption><strong>BELOW FOLD 1</strong> · 1440×900 · shipped build</figcaption>
+  </figure>
+  <figure>
+    <img src="homepage-belowfold-2-desktop.png" alt="Shipped homepage below fold, section 2">
+    <figcaption><strong>BELOW FOLD 2</strong> · 1440×900 · shipped build</figcaption>
+  </figure>
+</div>
+<div class="note">
+  The lower sections carry the approved grammar rather than degrading into a generic component grid.
+  <strong>Static composition below the fold is not the failure this audit found</strong> — the failure
+  is that these sections were never <em>animated</em> as the owner contract required, and that no
+  check ever asked.
+</div>
+
+<h2>4 · Trace — where the approved direction survived, and where it stopped</h2>
+<table>
+  <tr><th>Dimension</th><th>Approved reference grammar</th><th>Shipped build — measured</th><th>Verdict</th></tr>
+  <tr><td>Display typography</td><td>Oversized condensed navy display type</td>
+      <td>Bebas Neue verified loading; <code>h1</code> @ 172.8px; canvas probe 587px vs Impact 769px</td>
+      <td><span class="tag good">Carried</span></td></tr>
+  <tr><td>Palette</td><td>Navy ink, yellow route, cream paper</td>
+      <td><code>--navy #0b1830</code>, <code>--yellow #ffc700</code> (56 uses), <code>--paper #f4efe6</code>; navy/ink ≈8.79M px² vs cream ≈7.24M px²</td>
+      <td><span class="tag good">Carried</span></td></tr>
+  <tr><td>Hero composition</td><td>Interlocked type over architectural plate, yellow route, taped cards</td>
+      <td>Present and faithful; hero asset provenanced (<code>hero-brutalist-ascent.jpg</code>)</td>
+      <td><span class="tag good">Carried</span></td></tr>
+  <tr><td>Section grammar</td><td>7 sections, each with a distinct route meaning</td>
+      <td>8 sections, alternating paper/dark fields, matching the contract&rsquo;s translation table</td>
+      <td><span class="tag good">Carried</span></td></tr>
+  <tr><td><strong>Yellow route as a progression device</strong></td>
+      <td><strong>Connects stage → ritual → threshold → CTA</strong></td>
+      <td><strong>Rendered statically. 0 keyframes, 0 animations, no GSAP. One fade/translate reveal on 32 nodes.</strong></td>
+      <td><span class="tag bad">Stopped</span></td></tr>
+  <tr><td>Owner motion level</td><td><code>MOTION_LEVEL_3</code> — cinematic, animation-heavy, sequence-driven</td>
+      <td>3 runtime families, all CSS transitions: <code>all</code>, <code>opacity</code>, <code>transform</code></td>
+      <td><span class="tag bad">Stopped</span></td></tr>
+  <tr><td>Verification of the above</td><td>Owner contract is machine-checkable</td>
+      <td><code>brand.current-palette</code> ran <strong>0×</strong>; <code>motion.runtime-state-change</code> ran <strong>0×</strong>; overall <code>{'PASS': 3332}</code></td>
+      <td><span class="tag bad">Never ran</span></td></tr>
+</table>
+
+<div class="note warn">
+  <strong>The single visible gap.</strong> The approved reference is a <em>field manual with a route
+  running through it</em> — the route is the idea. In the shipped build that route is drawn but never
+  travelled. The owner&rsquo;s standing contract required <code>MOTION_LEVEL_3</code>; the project&rsquo;s
+  own <code>VISUAL-CONTRACT.md</code> reduced it to <em>&ldquo;transform/opacity reveals&hellip; no animation is
+  required to understand the content&rdquo;</em>; and because the build branch lacked the enforcement
+  modules and the QA manifest declared no <code>motion</code> or <code>owner_intent</code> block, nothing
+  compared the two. See <code>DISCONNECT-AUDIT.md</code> F1–F3.
+</div>
+
+<p class="sub" style="margin-top:2rem">
+  Captures 1–3 are the project&rsquo;s own evidence files, copied byte-for-byte.
+  No reference was scraped, cloned, re-fetched, or re-generated for this packet.
+</p>
