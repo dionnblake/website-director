@@ -363,6 +363,17 @@
       "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "Additive V2.15 Capability 10; conditional, provider-neutral, and does not add an owner lock or authorize deployment."
+    },
+    {
+      "id": "CLEAN_ROOM_CREATIVE",
+      "path": "CLEAN-ROOM-CREATIVE-PROTOCOL.md",
+      "status": "ACTIVE",
+      "domain": "clean-room-creative",
+      "phase": "4",
+      "state_owner": "visual_prototypes.clean_room_mode",
+      "supersedes": [],
+      "superseded_by": null,
+      "compatibility_pointer": "Additive clean-room creative mode enforcement layer preventing historical design contamination."
     }
   ]
 }

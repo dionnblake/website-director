@@ -340,6 +340,27 @@
       "external_writes": false,
       "production_credentials": false,
       "order_independent": true
+    },
+    {
+      "id": "clean_room_creative_mode",
+      "label": "Clean-Room Creative Mode quarantine, provenance, cheap gate, and morphology divergence controls",
+      "status": "ACTIVE",
+      "command": ["python", "-m", "unittest", "tests.test_clean_room_creative_mode"],
+      "paths": [
+        "tests/test_clean_room_creative_mode.py",
+        "framework_validation/clean_room.py",
+        "CLEAN-ROOM-CREATIVE-PROTOCOL.md"
+      ],
+      "required": true,
+      "tier": "CORE_FRAMEWORK_CI",
+      "platforms": ["ubuntu-latest", "windows-latest"],
+      "uses_temp_fixtures": true,
+      "temporary_browser_profiles": true,
+      "isolated_ports": true,
+      "persistent_daemon": false,
+      "external_writes": false,
+      "production_credentials": false,
+      "order_independent": true
     }
   ]
 }
