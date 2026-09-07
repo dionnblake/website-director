@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -39,13 +41,64 @@ from framework_validation.design_first_flow import (  # noqa: E402
     validate_owner_lock_contract,
     validate_production_gate,
 )
+from framework_validation.cinematic_inspiration import (  # noqa: E402
+    resolve_screenshot_receipt,
+    validate_rendered_visual_evidence,
+)
 from guards.frozen_integrity_guard import FrozenIntegrityGuard  # noqa: E402
+import runner as bqa_runner  # noqa: E402
 
 
 def issue_codes(result: object) -> set[str]:
     if isinstance(result, dict):
         result = result.get("issues", [])
     return {str(item["code"]) for item in result if isinstance(item, dict)}
+
+
+
+def write_homepage_receipts(root: Path) -> list[dict[str, object]]:
+    """Write real PNG bytes and return receipts that identify them.
+
+    Synthetic and disposable: these prove the evidence reader opens files and
+    recomputes digests.  They are never written into a project or an approval
+    record.
+    """
+    rendered = root / "rendered"
+    rendered.mkdir(parents=True, exist_ok=True)
+    receipts: list[dict[str, object]] = []
+    for index, surface in enumerate(HOMEPAGE_REVIEW_SURFACES):
+        width, height = (1440, 9781) if "DESKTOP" in surface else (390, 14311)
+        payload = _png_bytes(width, height, index)
+        path = rendered / (surface.lower() + ".png")
+        path.write_bytes(payload)
+        receipts.append({
+            "surface_id": surface,
+            "actual_rendered": True,
+            "engine_identity": "REAL_BROWSER",
+            "render_capture": "FULL_PAGE",
+            "screenshot_path": "rendered/" + path.name,
+            "screenshot_sha256": hashlib.sha256(payload).hexdigest(),
+            "capture_verification": {"verdict": "VERIFIED", "image_width": width,
+                                     "image_height": height, "document_height": height,
+                                     "issues": []},
+        })
+    return receipts
+
+
+def _png_bytes(width: int, height: int, salt: int) -> bytes:
+    """A minimal, structurally valid PNG header plus disposable padding."""
+    import struct
+    import zlib
+
+    def chunk(kind: bytes, payload: bytes) -> bytes:
+        return (struct.pack(">I", len(payload)) + kind + payload
+                + struct.pack(">I", zlib.crc32(kind + payload) & 0xFFFFFFFF))
+
+    header = struct.pack(">IIBBBBB", width, height, 8, 0, 0, 0, 0)
+    return (bytes([137, 80, 78, 71, 13, 10, 26, 10])
+            + chunk(b"IHDR", header)
+            + chunk(b"tEXt", b"disposable-test-fixture-%d" % salt)
+            + chunk(b"IEND", b""))
 
 
 def business_pack() -> dict[str, object]:
@@ -276,23 +329,152 @@ class DesignFirstProductionFlowTests(unittest.TestCase):
         self.assertIn("PROSE_ONLY_DIRECTION_REJECTED", issue_codes(validate_homepage_approval(prose)))
 
     def test_production_gate_requires_business_to_design_evidence_chain(self) -> None:
-        evidence = {
-            "BUSINESS_UNDERSTANDING_COMPLETE": True,
-            "OWNER_INTENT_CAPTURED": True,
-            "REQUIRED_ASSETS_IDENTIFIED": True,
-            "REFERENCES_INTERPRETED": True,
-            "HOMEPAGE_RENDERED_AND_REVIEWED": True,
-            "OWNER_APPROVAL_RECORDED": True,
-            "DESIGN_SYSTEM_DERIVED_AND_READY": True,
-            "HOMEPAGE_APPROVAL": homepage_approval(),
-        }
-        self.assertTrue(validate_production_gate(evidence)["ok"])
-        blocked = dict(evidence)
-        blocked["BUSINESS_UNDERSTANDING_COMPLETE"] = False
-        blocked["PRODUCTION_STARTED"] = True
-        result = validate_production_gate(blocked)
+        with tempfile.TemporaryDirectory(prefix="wd-gate-") as directory:
+            receipts = write_homepage_receipts(Path(directory))
+            evidence = {
+                "BUSINESS_UNDERSTANDING_COMPLETE": True,
+                "OWNER_INTENT_CAPTURED": True,
+                "REQUIRED_ASSETS_IDENTIFIED": True,
+                "REFERENCES_INTERPRETED": True,
+                "HOMEPAGE_RENDERED_AND_REVIEWED": True,
+                "OWNER_APPROVAL_RECORDED": True,
+                "DESIGN_SYSTEM_DERIVED_AND_READY": True,
+                "HOMEPAGE_APPROVAL": {**homepage_approval(), "RENDERED_SURFACES": receipts},
+            }
+            self.assertTrue(validate_production_gate(evidence, evidence_root=directory)["ok"])
+            blocked = dict(evidence)
+            blocked["BUSINESS_UNDERSTANDING_COMPLETE"] = False
+            blocked["PRODUCTION_STARTED"] = True
+            result = validate_production_gate(blocked, evidence_root=directory)
+            self.assertFalse(result["ok"])
+            self.assertIn("PRODUCTION_STARTED_BEFORE_HOMEPAGE_APPROVAL", issue_codes(result))
+
+    def test_bare_surface_names_cannot_authorize_production_entry(self) -> None:
+        """R4-C1: seven true flags plus named-but-unevidenced surfaces."""
+        evidence = {field: True for field in (
+            "BUSINESS_UNDERSTANDING_COMPLETE", "OWNER_INTENT_CAPTURED", "REQUIRED_ASSETS_IDENTIFIED",
+            "REFERENCES_INTERPRETED", "HOMEPAGE_RENDERED_AND_REVIEWED", "OWNER_APPROVAL_RECORDED",
+            "DESIGN_SYSTEM_DERIVED_AND_READY")}
+        evidence["HOMEPAGE_APPROVAL"] = homepage_approval()
+        result = validate_production_gate(evidence)
         self.assertFalse(result["ok"])
-        self.assertIn("PRODUCTION_STARTED_BEFORE_HOMEPAGE_APPROVAL", issue_codes(result))
+        self.assertFalse(result["can_start_production"])
+        self.assertIn("PRODUCTION_ENTRY_EVIDENCE_NOT_BOUND", issue_codes(result))
+        # The approval-shape validator keeps its documented behaviour.
+        self.assertTrue(validate_homepage_approval(homepage_approval())["ok"])
+
+    def test_underlying_design_failures_survive_true_flags(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="wd-gate-under-") as directory:
+            receipts = write_homepage_receipts(Path(directory))
+            broken_homepage = homepage_design()
+            broken_homepage["SECTIONS"] = {}
+            evidence = {field: True for field in (
+                "BUSINESS_UNDERSTANDING_COMPLETE", "OWNER_INTENT_CAPTURED", "REQUIRED_ASSETS_IDENTIFIED",
+                "REFERENCES_INTERPRETED", "HOMEPAGE_RENDERED_AND_REVIEWED", "OWNER_APPROVAL_RECORDED",
+                "DESIGN_SYSTEM_DERIVED_AND_READY")}
+            evidence["HOMEPAGE_APPROVAL"] = {**homepage_approval(), "RENDERED_SURFACES": receipts}
+            evidence["HOMEPAGE_DESIGN"] = broken_homepage
+            evidence["DESIGN_SYSTEM"] = {**design_system(), "HOMEPAGE_SOURCE": "COMPONENT_LIBRARY"}
+            result = validate_production_gate(evidence, evidence_root=directory)
+            self.assertFalse(result["ok"])
+            self.assertIn("FULL_HOMEPAGE_SECTIONS_INCOMPLETE", issue_codes(result))
+            self.assertIn("DESIGN_SYSTEM_SOURCE_NOT_APPROVED_HOMEPAGE", issue_codes(result))
+            self.assertEqual(result["underlying_status"]["HOMEPAGE_DESIGN"], "BLOCKED")
+
+    def test_missing_files_wrong_digests_and_wrong_build_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="wd-gate-evidence-") as directory:
+            root = Path(directory)
+            receipts = write_homepage_receipts(root)
+            base = {field: True for field in (
+                "BUSINESS_UNDERSTANDING_COMPLETE", "OWNER_INTENT_CAPTURED", "REQUIRED_ASSETS_IDENTIFIED",
+                "REFERENCES_INTERPRETED", "HOMEPAGE_RENDERED_AND_REVIEWED", "OWNER_APPROVAL_RECORDED",
+                "DESIGN_SYSTEM_DERIVED_AND_READY")}
+
+            nonexistent = copy.deepcopy(receipts)
+            nonexistent[0]["screenshot_path"] = "rendered/not-written.png"
+            result = validate_production_gate(
+                {**base, "HOMEPAGE_APPROVAL": {**homepage_approval(), "RENDERED_SURFACES": nonexistent}},
+                evidence_root=directory)
+            self.assertIn("PRODUCTION_ENTRY_EVIDENCE_NOT_BOUND", issue_codes(result))
+            self.assertTrue(any("SCREENSHOT_FILE_MISSING" in item["message"]
+                                for item in result["issues"]))
+
+            wrong_digest = copy.deepcopy(receipts)
+            wrong_digest[1]["screenshot_sha256"] = "0" * 64
+            result = validate_production_gate(
+                {**base, "HOMEPAGE_APPROVAL": {**homepage_approval(), "RENDERED_SURFACES": wrong_digest}},
+                evidence_root=directory)
+            self.assertTrue(any("SCREENSHOT_DIGEST_MISMATCH" in item["message"]
+                                for item in result["issues"]))
+
+            outside = copy.deepcopy(receipts)
+            outside[0]["screenshot_path"] = "../escaped.png"
+            result = validate_production_gate(
+                {**base, "HOMEPAGE_APPROVAL": {**homepage_approval(), "RENDERED_SURFACES": outside}},
+                evidence_root=directory)
+            self.assertTrue(any("SCREENSHOT_PATH_OUT_OF_SCOPE" in item["message"]
+                                or "SCREENSHOT_FILE_MISSING" in item["message"]
+                                for item in result["issues"]))
+
+            approval = {**homepage_approval(), "RENDERED_SURFACES": receipts,
+                        "PROJECT": "other-project", "BUILD_ID": "build-a"}
+            result = validate_production_gate(
+                {**base, "HOMEPAGE_APPROVAL": approval}, evidence_root=directory,
+                expected_project="alpha-starts-now", expected_build="build-b")
+            messages = " ".join(item["message"] for item in result["issues"])
+            self.assertIn("EVIDENCE_PROJECT_MISMATCH", messages)
+            self.assertIn("STALE_EVIDENCE_REJECTED", messages)
+
+    def test_real_files_and_consistent_receipts_pass_without_granting_approval(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="wd-gate-ok-") as directory:
+            receipts = write_homepage_receipts(Path(directory))
+            result = validate_rendered_visual_evidence(
+                {"screenshot_set": receipts, "build_id": "test-build"},
+                list(HOMEPAGE_REVIEW_SURFACES), evidence_root=directory,
+                expected_build="test-build")
+            self.assertEqual(result["status"], "PASS")
+            self.assertTrue(result["receipts_resolved_on_disk"])
+            # Valid hashes prove identity, never owner acceptance.
+            self.assertNotIn("OWNER_FINAL_ACCEPTANCE", result)
+            self.assertNotIn("owner_approved", result)
+
+    def test_both_full_page_conventions_capture_the_whole_page(self) -> None:
+        """R1 promoted: design-first homepage surfaces are not viewport crops."""
+        plan = {
+            "routes": [{"path": "/", "viewports": [1440]}],
+            "visual_evidence": {
+                "required": True,
+                "required_surfaces": list(HOMEPAGE_REVIEW_SURFACES)
+                + ["DESKTOP_FULL_PAGE", "MOBILE_FULL_PAGE", "DESKTOP_HERO"],
+            },
+        }
+        captures = {job["surface_id"]: job["capture"]
+                    for job in bqa_runner._matrix(plan, "smoke") if job.get("surface_id")}
+        for surface in list(HOMEPAGE_REVIEW_SURFACES) + ["DESKTOP_FULL_PAGE", "MOBILE_FULL_PAGE"]:
+            self.assertEqual(captures[surface], "FULL_PAGE", surface)
+        self.assertEqual(captures["DESKTOP_HERO"], "VIEWPORT")
+
+    def test_viewport_override_on_a_whole_page_surface_is_rejected(self) -> None:
+        plan = {
+            "routes": [{"path": "/", "viewports": [1440]}],
+            "visual_evidence": {
+                "required": True,
+                "required_surfaces": [
+                    {"surface_id": "DESKTOP_FULL_HOMEPAGE", "capture": "VIEWPORT"},
+                    {"surface_id": "DESKTOP_HERO", "capture": "VIEWPORT"},
+                ],
+            },
+        }
+        jobs = {job["surface_id"]: job for job in bqa_runner._matrix(plan, "smoke")
+                if job.get("surface_id")}
+        self.assertEqual(jobs["DESKTOP_FULL_HOMEPAGE"]["capture"], "FULL_PAGE")
+        self.assertEqual(jobs["DESKTOP_FULL_HOMEPAGE"]["capture_override_rejected"], "VIEWPORT")
+        self.assertEqual(jobs["DESKTOP_HERO"]["capture"], "VIEWPORT")
+        self.assertIsNone(jobs["DESKTOP_HERO"]["capture_override_rejected"])
+        receipt = resolve_screenshot_receipt(
+            {"surface_id": "DESKTOP_FULL_HOMEPAGE", "screenshot_path": "x.png",
+             "screenshot_sha256": "0" * 64, "render_capture": "VIEWPORT"}, ".")
+        self.assertIn("CAPTURE_LABEL_CONFLICT", issue_codes(receipt))
 
     def test_design_system_is_derived_from_approved_homepage(self) -> None:
         self.assertTrue(validate_design_system_derivation(design_system())["ok"])

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Static tall control</title>
+<style>
+  :root { --navy: #0b1830; --yellow: #ffc700; --paper: #f4efe6; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--navy);
+         font-family: Georgia, "Times New Roman", serif; }
+  header, footer { padding: 24px; background: var(--navy); color: var(--paper); }
+  nav a { color: var(--yellow); margin-right: 16px; }
+  section { min-height: 1100px; padding: 64px 32px; border-bottom: 1px solid #ccc; }
+  section:nth-child(even) { background: #fbf8f2; }
+  h1 { font-size: 64px; margin: 0 0 24px; }
+  h2 { font-size: 40px; margin: 0 0 16px; }
+  /* Declared transitions that only ever fire on hover: the page never animates
+     of its own accord, which is the point of this control. */
+  .plate { display: block; width: 320px; height: 220px; background: var(--navy);
+           transition: transform 180ms ease; }
+  .plate:hover { transform: translateY(-4px); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); }
+</style>
+</head>
+<body>
+<header>
+  <nav><a href="#s1">Start</a><a href="#s8">Join</a></nav>
+</header>
+<main>
+  <section id="s1" data-motion="hero"><h1>A tall static page</h1>
+    <p>Nothing on this page animates. It is only long enough to scroll.</p>
+    <span class="plate" data-motion="hero-plate"></span></section>
+  <section id="s2" data-motion="thesis"><h2>Thesis</h2><p>Static text.</p></section>
+  <section id="s3" data-motion="rituals"><h2>Rituals</h2><p>Static text.</p>
+    <canvas id="scene" data-motion="canvas-scene" width="640" height="360"></canvas></section>
+  <section id="s4" data-motion="path"><h2>Path</h2><p>Static text.</p></section>
+  <section id="s5" data-motion="values"><h2>Values</h2><p>Static text.</p></section>
+  <section id="s6" data-motion="vitality"><h2>Vitality</h2><p>Static text.</p></section>
+  <section id="s7" data-motion="notes"><h2>Notes</h2><p>Static text.</p></section>
+  <section id="s8" data-motion="join"><h2>Join</h2>
+    <button type="button">Primary call to action</button></section>
+</main>
+<footer><p>Static control fixture. Disposable.</p></footer>
+</body>
+</html>

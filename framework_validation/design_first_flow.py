@@ -525,8 +525,22 @@ def validate_homepage_approval(approval: Mapping[str, Any]) -> dict[str, Any]:
     return _result("FAIL" if status == "FAIL" else status, issues, missing_surfaces=missing_surfaces, approved_by=approved_by)
 
 
-def validate_production_gate(evidence: Mapping[str, Any]) -> dict[str, Any]:
-    """Block full production implementation until all design-first evidence exists."""
+def validate_production_gate(
+    evidence: Mapping[str, Any],
+    *,
+    evidence_root: Any = None,
+    expected_project: Any = None,
+    expected_build: Any = None,
+) -> dict[str, Any]:
+    """Block full production implementation until all design-first evidence exists.
+
+    Readiness is derived from the underlying business, homepage, derivation and
+    approval results, not from seven booleans.  Any of those artifacts that the
+    caller supplies is validated here, and a failure in one cannot be overridden
+    by a true flag beside it.  The owner approval must also bind to the exact
+    rendered artifact set that was reviewed: bare surface names carry no
+    evidence and cannot authorize production entry.
+    """
 
     required = (
         "BUSINESS_UNDERSTANDING_COMPLETE",
@@ -551,10 +565,53 @@ def validate_production_gate(evidence: Mapping[str, Any]) -> dict[str, Any]:
         approval_result = validate_homepage_approval(approval)
         issues.extend(approval_result["issues"])
 
+    # The underlying design-first results, not the flags that summarize them.
+    underlying = {
+        "BUSINESS_UNDERSTANDING": lambda value: validate_business_understanding(value),
+        "HOMEPAGE_DESIGN": lambda value: validate_homepage_design(
+            _get(evidence, "CREATIVE_AMBITION", "PREMIUM"), value),
+        "DESIGN_SYSTEM": lambda value: validate_design_system_derivation(value),
+    }
+    underlying_status: dict[str, str] = {}
+    for name, validator in underlying.items():
+        artifact = _get(evidence, name)
+        if not isinstance(artifact, Mapping):
+            continue
+        result = validator(artifact)
+        underlying_status[name] = str(result.get("status"))
+        issues.extend(result["issues"])
+
+    # Owner approval must bind to the artifact set that was actually reviewed.
+    binding = None
+    if isinstance(approval, Mapping):
+        receipts = _get(approval, "SCREENSHOT_RECEIPTS", _get(approval, "RENDERED_SURFACES"))
+        receipts = [item for item in receipts if isinstance(item, Mapping)] if isinstance(receipts, list) else []
+        if not receipts:
+            issues.append(_issue(
+                "PRODUCTION_ENTRY_EVIDENCE_NOT_BOUND",
+                "owner approval lists surface names but no rendered screenshot receipts; "
+                "a name is not evidence of the artifact the owner reviewed"))
+        else:
+            from .cinematic_inspiration import validate_rendered_visual_evidence
+
+            binding = validate_rendered_visual_evidence(
+                {"screenshot_set": receipts,
+                 "project": _get(approval, "PROJECT", _get(evidence, "PROJECT")),
+                 "build_id": _get(approval, "BUILD_ID", _get(evidence, "BUILD_ID"))},
+                list(HOMEPAGE_REVIEW_SURFACES),
+                evidence_root=evidence_root,
+                expected_project=expected_project,
+                expected_build=expected_build,
+            )
+            for item in binding["issues"]:
+                issues.append(_issue("PRODUCTION_ENTRY_EVIDENCE_NOT_BOUND",
+                                     "%s: %s" % (item["code"], item["detail"])))
+
     if _truthy(_get(evidence, "PRODUCTION_STARTED")) and missing:
         issues.append(_issue("PRODUCTION_STARTED_BEFORE_HOMEPAGE_APPROVAL", "production implementation started before the design-first gate passed"))
     status = "FAIL" if any(item["code"].startswith("OWNER_APPROVAL_CANNOT") or item["code"].startswith("PROSE_ONLY") for item in issues) else ("BLOCKED" if issues else "PASS")
-    return _result(status, issues, missing_fields=missing, can_start_production=not issues)
+    return _result(status, issues, missing_fields=missing, underlying_status=underlying_status,
+                   evidence_binding=binding, can_start_production=not issues)
 
 
 def validate_design_system_derivation(design_system: Mapping[str, Any]) -> dict[str, Any]:

@@ -1,0 +1,4223 @@
+{
+ "run_id": "bqa-20260907T070246Z",
+ "timestamp": "2026-09-07T07:03:07Z",
+ "git_sha": "d732a0ec657746ca8a738377cfe636c8318aae2f",
+ "environment": "local",
+ "engine": "playwright",
+ "engine_real_browser": true,
+ "mode": "smoke",
+ "matrix_jobs": 2,
+ "duration_s": 20.38,
+ "verdict_counts": {
+  "PASS": 27,
+  "FAIL": 14,
+  "BLOCKED": 7
+ },
+ "flaky_tests": [],
+ "frozen_fixture_integrity": "PASS",
+ "frozen_integrity_detail": "FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged)",
+ "blocked_reason": null,
+ "build_identity": {
+  "git_sha": "d732a0ec657746ca8a738377cfe636c8318aae2f",
+  "working_tree_dirty": true,
+  "content_paths": [
+   "browser-qa-manifest.json",
+   "index.html"
+  ],
+  "content_sha256": "d7925c5ad201b46ef029081d2ea2921ef379732e3f72adaf6ef14741c3c27de1",
+  "content_file_count": 2,
+  "build_id": "d7925c5ad201b46ef029081d2ea2921ef379732e3f72adaf6ef14741c3c27de1"
+ },
+ "loaded_harness": {
+  "status": "PASS",
+  "modules": [
+   {
+    "module": "assertions.catalog",
+    "status": "LOADED",
+    "path": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\browser-qa\\assertions\\catalog.py",
+    "sha256": "eda784f36453635713e559977e54b6d36d162ff1ba970367df5305f8f95f7427"
+   },
+   {
+    "module": "framework_validation.owner_intent",
+    "status": "LOADED",
+    "path": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\framework_validation\\owner_intent.py",
+    "sha256": "b9e5388eb6d1bb16cbba2ad99064fdc3e6d51f78524b4ff9a29acfc2626c1107"
+   },
+   {
+    "module": "framework_validation.cinematic_inspiration",
+    "status": "LOADED",
+    "path": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\framework_validation\\cinematic_inspiration.py",
+    "sha256": "6472d939285619cd4d73cc8ee11634b74d987c55fd882154d3bc2077619f0094"
+   }
+  ],
+  "missing_checks": [],
+  "unregistered_checks": [],
+  "missing_modules": [],
+  "python": "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "import_paths": [
+   "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1",
+   "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\browser-qa",
+   "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313\\python313.zip",
+   "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313\\DLLs",
+   "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313\\Lib",
+   "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313",
+   "C:\\Users\\ALPHA\\AppData\\Roaming\\Python\\Python313\\site-packages",
+   "C:\\Users\\ALPHA\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages"
+  ]
+ },
+ "owner_requirement_compliance": {
+  "status": "FAIL",
+  "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+  "coverage": {
+   "motion": "REQUIRED",
+   "brand": "REQUIRED",
+   "visual_evidence": "REQUIRED"
+  },
+  "requirements": [
+   {
+    "id": "brand.primary.navy-blue",
+    "class": "REQUIRED",
+    "status": "BLOCKED_WITH_EXPLANATION",
+    "detail": "brand evidence is missing or failed"
+   },
+   {
+    "id": "brand.accent.yellow",
+    "class": "REQUIRED",
+    "status": "BLOCKED_WITH_EXPLANATION",
+    "detail": "brand evidence is missing or failed"
+   },
+   {
+    "id": "brand.legacy-colors-not-authority",
+    "class": "PROHIBITED",
+    "status": "SATISFIED",
+    "detail": "prohibited value not observed"
+   },
+   {
+    "id": "motion.owner-cinematic",
+    "class": "REQUIRED",
+    "status": "BLOCKED_WITH_EXPLANATION",
+    "detail": "motion compliance evidence is incomplete or failed"
+   },
+   {
+    "id": "reference.translation-boundary",
+    "class": "REQUIRED",
+    "status": "BLOCKED_WITH_EXPLANATION",
+    "detail": "reference translation evidence is missing or failed"
+   }
+  ],
+  "issues": [
+   {
+    "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+    "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)",
+    "blocking": false
+   },
+   {
+    "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+    "detail": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+    "blocking": false
+   },
+   {
+    "code": "MOTION_BRIEF_SEQUENCES_MISSING",
+    "detail": "Level 2/3 motion has no named promised sequences",
+    "blocking": true
+   },
+   {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "detail": "brand.primary.navy-blue: brand evidence is missing or failed",
+    "blocking": true
+   },
+   {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "detail": "brand.accent.yellow: brand evidence is missing or failed",
+    "blocking": true
+   },
+   {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "detail": "motion.owner-cinematic: motion compliance evidence is incomplete or failed",
+    "blocking": true
+   },
+   {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "detail": "reference.translation-boundary: reference translation evidence is missing or failed",
+    "blocking": true
+   }
+  ],
+  "motion": {
+   "status": "PASS",
+   "owner_required_level": "MOTION_LEVEL_3",
+   "heuristic_level": "MOTION_LEVEL_1",
+   "recommended_level": "MOTION_LEVEL_3",
+   "execution_level": "MOTION_LEVEL_3",
+   "owner_requirement_ids": [
+    "motion.owner-cinematic"
+   ],
+   "downgrade_blocked": false,
+   "approved_downgrade": false,
+   "issues": []
+  },
+  "motion_trace_status": "FAIL",
+  "brand_status": "FAIL",
+  "runtime_motion_rows": 9
+ },
+ "visual_evidence": {
+  "required": false,
+  "status": "NOT_REQUIRED",
+  "required_surfaces": [],
+  "captured_surfaces": [],
+  "issues": []
+ },
+ "observations": [
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": false,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 1,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  },
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": false,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 2,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  },
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": false,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 3,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  },
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": true,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 1,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  },
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": true,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 2,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  },
+  {
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "surface_id": null,
+   "render_capture": null,
+   "reduced_motion": true,
+   "engine": "playwright",
+   "engine_identity": "REAL_BROWSER",
+   "engine_version": "152.0.7977.77",
+   "attempt": 3,
+   "form_observations": [],
+   "mobile_nav_observation": {
+    "status": "NOT_APPLICABLE",
+    "viewport": 1440,
+    "NAV_TRIGGER_FOUND": false,
+    "TRIGGER_ACTIVATED": false,
+    "MENU_VISIBLE": false,
+    "NAV_CLOSE_STATE": {},
+    "CONSOLE_ERRORS": []
+   },
+   "analytics_events": [],
+   "motion_observations": [
+    {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    },
+    {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false,
+     "_trimmed": "raw per-sample node snapshots omitted from the review copy"
+    }
+   ],
+   "rendered_colors": [
+    {
+     "value": "rgb(244, 239, 230)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.07333333333333333,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.05432098765432099,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(251, 248, 242)",
+     "role": "background",
+     "area_ratio": 1,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(240, 240, 240)",
+     "role": "background",
+     "area_ratio": 0.002359567901234568,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "rgb(11, 24, 48)",
+     "role": "background",
+     "area_ratio": 0.10888888888888888,
+     "material": false,
+     "token": ""
+    },
+    {
+     "value": "#0b1830",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--navy"
+    },
+    {
+     "value": "#ffc700",
+     "role": "token",
+     "area_ratio": 0,
+     "material": false,
+     "token": "--yellow"
+    }
+   ],
+   "console_status": "FAIL",
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+   ],
+   "console_environment_noise": [],
+   "network_status": "PASS",
+   "responsive_status": "PASS",
+   "keyboard_status": "PASS",
+   "accessibility_status": "NOT_RUN",
+   "screenshot_evidence_ref": "2e9f2bbd1134e652",
+   "actual_rendered": false,
+   "screenshot_path": null,
+   "screenshot_sha256": null,
+   "capture_verification": null,
+   "capture_override_rejected": null,
+   "rendered_dom_path": null,
+   "rendered_css_path": null,
+   "result": "OBSERVATION_EMITTED",
+   "observation_status": "EMITTED"
+  }
+ ],
+ "findings": [
+  {
+   "check_id": "responsive.horizontal-overflow",
+   "title": "No horizontal overflow at 1440px",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "LOCKED_SPEC / design-system.md",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "scrollWidth=1440 clientWidth=1440 bodyWidth=1440",
+   "evidence": {
+    "scroll_width": 1440,
+    "client_width": 1440
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "responsive.primary-cta-hidden",
+   "title": "Primary CTA is visible at this viewport",
+   "verdict": "FAIL",
+   "requirement_source": "LOCKED_SPEC",
+   "owning_spec": "content-plan.md",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "nav.no-placeholder-links",
+   "title": "No unresolved '#' placeholder links",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "nav.internal-links-resolve",
+   "title": "Internal routes resolve (no 4xx/5xx documents)",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "[]",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "console.no-application-errors",
+   "title": "Console free of uncaught application errors",
+   "verdict": "FAIL",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "Failed to load resource: the server responded with a status of 404 (File not found)",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "network.no-failed-requests",
+   "title": "No unexplained 4xx/5xx or aborted requests",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "assets.integrity",
+   "title": "Asset integrity holds at 1440px",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "brand.current-palette",
+   "title": "Rendered brand roles comply with current owner intent",
+   "verdict": "FAIL",
+   "requirement_source": "LOCKED_SPEC",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors); unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+   "evidence": {
+    "rendered_colors": [
+     {
+      "value": "rgb(244, 239, 230)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.07333333333333333,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.05432098765432099,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(240, 240, 240)",
+      "role": "background",
+      "area_ratio": 0.002359567901234568,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.10888888888888888,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "#0b1830",
+      "role": "token",
+      "area_ratio": 0,
+      "material": false,
+      "token": "--navy"
+     },
+     {
+      "value": "#ffc700",
+      "role": "token",
+      "area_ratio": 0,
+      "material": false,
+      "token": "--yellow"
+     }
+    ],
+    "brand_result": {
+     "status": "FAIL",
+     "issues": [
+      {
+       "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+       "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)",
+       "blocking": false
+      },
+      {
+       "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+       "detail": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+       "blocking": false
+      }
+     ],
+     "findings": [
+      {
+       "value": "rgb(244, 239, 230)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      }
+     ],
+     "allowed_tokens": [
+      "asn navy",
+      "asn yellow",
+      "restrained dark neutrals",
+      "restrained light neutrals",
+      "white"
+     ],
+     "approved_families": [
+      "BLUE",
+      "YELLOW"
+     ]
+    },
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.real-browser-runtime",
+   "title": "Level 2/3 motion uses a real browser runtime",
+   "verdict": "PASS",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-coverage",
+   "title": "Promised motion sequence is observed at runtime [canvas-scene]",
+   "verdict": "PASS",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "sequence=canvas-scene",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-behavior",
+   "title": "Promised motion sequence produces a meaningful response [hero-intro]",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "sequence=hero-intro trigger=scroll_to response=[] stimulus_scroll=7766",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false,
+    "sequence_id": "hero-intro",
+    "row": {
+     "sequence_id": "hero-intro",
+     "route": "/index.html",
+     "family": "PARALLAX_MASK",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='hero']",
+      "[data-motion='hero-plate']"
+     ],
+     "target_count": 2,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s1",
+     "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 7766,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 7766,
+     "scroll_delta": 7766,
+     "state_changed": false,
+     "meaningful_state_change": false
+    }
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-states",
+   "title": "Promised motion sequence reaches its required states [hero-intro]",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "missing_states=['CHANGE']",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false,
+    "sequence_id": "hero-intro",
+    "observed_states": [
+     "START"
+    ]
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-behavior",
+   "title": "Promised motion sequence produces a meaningful response [route-progression]",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "sequence=route-progression trigger=scroll_to response=[] stimulus_scroll=0",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false,
+    "sequence_id": "route-progression",
+    "row": {
+     "sequence_id": "route-progression",
+     "route": "/index.html",
+     "family": "PINNED_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "[data-motion='path']"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": true,
+     "unsupported_reason": null,
+     "required_states": [
+      "START",
+      "CHANGE"
+     ],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#s4",
+     "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false
+    }
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-states",
+   "title": "Promised motion sequence reaches its required states [route-progression]",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "missing_states=['CHANGE']",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false,
+    "sequence_id": "route-progression",
+    "observed_states": [
+     "START"
+    ]
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.sequence-observation",
+   "title": "Promised motion sequence is observable by the available mechanism [canvas-scene]",
+   "verdict": "BLOCKED",
+   "requirement_source": "BROWSER_QA_PLAN",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "BLOCKED_OBSERVATION_UNSUPPORTED: OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false,
+    "sequence_id": "canvas-scene",
+    "row": {
+     "sequence_id": "canvas-scene",
+     "route": "/index.html",
+     "family": "SCENE_SCRUB",
+     "family_source": "DECLARED",
+     "runtime_observed": true,
+     "engine_identity": "REAL_BROWSER",
+     "selectors": [
+      "#scene"
+     ],
+     "target_count": 1,
+     "trigger": "scroll_to",
+     "trigger_applied": true,
+     "trigger_error": null,
+     "observation_supported": false,
+     "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+     "required_states": [],
+     "observed_states": [
+      "START"
+     ],
+     "sample_count": 5,
+     "animation_names": [],
+     "implementation_ref": "index.html#scene",
+     "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+     "changed_properties": [],
+     "max_geometry_delta": 0,
+     "max_opacity_delta": 0,
+     "max_transform_delta": 0,
+     "max_media_time_delta": 0,
+     "raw_viewport_geometry_delta": 0,
+     "pinned_target_count": 0,
+     "running_animation_count": 0,
+     "motion_state_changes": 0,
+     "unsupported_targets": [
+      "#scene"
+     ],
+     "stimulus_scroll_delta": 0,
+     "scroll_delta": 0,
+     "state_changed": false,
+     "meaningful_state_change": false
+    }
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.runtime-state-change",
+   "title": "Runtime motion produces meaningful state change",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "responding=0/3 promised sequences",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.generic-fade-diversity",
+   "title": "Motion uses more than generic fade/translate reveals",
+   "verdict": "FAIL",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "proven_families=[] declared=0/3",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.nav-reachable",
+   "title": "Primary navigation reachable by keyboard",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.visible-focus",
+   "title": "Visible focus indicator present",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.no-trap",
+   "title": "No obvious keyboard trap",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.cta-reachable",
+   "title": "Primary CTA reachable by keyboard",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "perf.lcp",
+   "title": "LCP within threshold (SYNTHETIC measurement)",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "lcp=5ms kind=SYNTHETIC",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "perf.cls",
+   "title": "CLS within threshold",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": false,
+   "method": "BROWSER_EXECUTED",
+   "detail": "cls=0.000",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "responsive.horizontal-overflow",
+   "title": "No horizontal overflow at 1440px",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "LOCKED_SPEC / design-system.md",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "scrollWidth=1440 clientWidth=1440 bodyWidth=1440",
+   "evidence": {
+    "scroll_width": 1440,
+    "client_width": 1440
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "responsive.primary-cta-hidden",
+   "title": "Primary CTA is visible at this viewport",
+   "verdict": "FAIL",
+   "requirement_source": "LOCKED_SPEC",
+   "owning_spec": "content-plan.md",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "nav.no-placeholder-links",
+   "title": "No unresolved '#' placeholder links",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "nav.internal-links-resolve",
+   "title": "Internal routes resolve (no 4xx/5xx documents)",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "[]",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "console.no-application-errors",
+   "title": "Console free of uncaught application errors",
+   "verdict": "FAIL",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "Failed to load resource: the server responded with a status of 404 (File not found)",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "network.no-failed-requests",
+   "title": "No unexplained 4xx/5xx or aborted requests",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "assets.integrity",
+   "title": "Asset integrity holds at 1440px",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.reduced-content-visible",
+   "title": "Essential content remains visible under prefers-reduced-motion",
+   "verdict": "PASS",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "[]",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.reduced-nav-operable",
+   "title": "Navigation operable under reduced motion",
+   "verdict": "PASS",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "brand.current-palette",
+   "title": "Rendered brand roles comply with current owner intent",
+   "verdict": "FAIL",
+   "requirement_source": "LOCKED_SPEC",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors); unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+   "evidence": {
+    "rendered_colors": [
+     {
+      "value": "rgb(244, 239, 230)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.07333333333333333,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.05432098765432099,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(251, 248, 242)",
+      "role": "background",
+      "area_ratio": 1,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(240, 240, 240)",
+      "role": "background",
+      "area_ratio": 0.002359567901234568,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "rgb(11, 24, 48)",
+      "role": "background",
+      "area_ratio": 0.10888888888888888,
+      "material": false,
+      "token": ""
+     },
+     {
+      "value": "#0b1830",
+      "role": "token",
+      "area_ratio": 0,
+      "material": false,
+      "token": "--navy"
+     },
+     {
+      "value": "#ffc700",
+      "role": "token",
+      "area_ratio": 0,
+      "material": false,
+      "token": "--yellow"
+     }
+    ],
+    "brand_result": {
+     "status": "FAIL",
+     "issues": [
+      {
+       "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+       "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)",
+       "blocking": false
+      },
+      {
+       "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+       "detail": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+       "blocking": false
+      }
+     ],
+     "findings": [
+      {
+       "value": "rgb(244, 239, 230)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      },
+      {
+       "value": "rgb(251, 248, 242)",
+       "family": "ORANGE",
+       "role": "background",
+       "source": "rendered.rendered_colors",
+       "reason": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)"
+      }
+     ],
+     "allowed_tokens": [
+      "asn navy",
+      "asn yellow",
+      "restrained dark neutrals",
+      "restrained light neutrals",
+      "white"
+     ],
+     "approved_families": [
+      "BLUE",
+      "YELLOW"
+     ]
+    },
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "motion.reduced-motion-counterpart",
+   "title": "Reduced-motion counterpart is judged as a usable equivalent, not as choreography",
+   "verdict": "PASS",
+   "requirement_source": "MOTION_SPEC",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "required choreography is verified by the normal-motion counterpart",
+   "evidence": {
+    "motion_observations": [
+     {
+      "sequence_id": "hero-intro",
+      "route": "/index.html",
+      "family": "PARALLAX_MASK",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='hero']",
+       "[data-motion='hero-plate']"
+      ],
+      "target_count": 2,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s1",
+      "runtime_evidence_ref": "REAL_BROWSER:hero-intro",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 7766,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 7766,
+      "scroll_delta": 7766,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "route-progression",
+      "route": "/index.html",
+      "family": "PINNED_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "[data-motion='path']"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": true,
+      "unsupported_reason": null,
+      "required_states": [
+       "START",
+       "CHANGE"
+      ],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#s4",
+      "runtime_evidence_ref": "REAL_BROWSER:route-progression",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     },
+     {
+      "sequence_id": "canvas-scene",
+      "route": "/index.html",
+      "family": "SCENE_SCRUB",
+      "family_source": "DECLARED",
+      "runtime_observed": true,
+      "engine_identity": "REAL_BROWSER",
+      "selectors": [
+       "#scene"
+      ],
+      "target_count": 1,
+      "trigger": "scroll_to",
+      "trigger_applied": true,
+      "trigger_error": null,
+      "observation_supported": false,
+      "unsupported_reason": "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for #scene; expose data-motion-state or a Web Animation to make it observable",
+      "required_states": [],
+      "observed_states": [
+       "START"
+      ],
+      "sample_count": 5,
+      "animation_names": [],
+      "implementation_ref": "index.html#scene",
+      "runtime_evidence_ref": "REAL_BROWSER:canvas-scene",
+      "changed_properties": [],
+      "max_geometry_delta": 0,
+      "max_opacity_delta": 0,
+      "max_transform_delta": 0,
+      "max_media_time_delta": 0,
+      "raw_viewport_geometry_delta": 0,
+      "pinned_target_count": 0,
+      "running_animation_count": 0,
+      "motion_state_changes": 0,
+      "unsupported_targets": [
+       "#scene"
+      ],
+      "stimulus_scroll_delta": 0,
+      "scroll_delta": 0,
+      "state_changed": false,
+      "meaningful_state_change": false
+     }
+    ],
+    "engine": "playwright",
+    "browser": "chromium",
+    "viewport": 1440,
+    "required_level": 3,
+    "required_level_source": "OWNER",
+    "owner_coverage": "REQUIRED",
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json",
+    "approved_downgrade": false
+   },
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.nav-reachable",
+   "title": "Primary navigation reachable by keyboard",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.visible-focus",
+   "title": "Visible focus indicator present",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.no-trap",
+   "title": "No obvious keyboard trap",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "keyboard.cta-reachable",
+   "title": "Primary CTA reachable by keyboard",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "perf.lcp",
+   "title": "LCP within threshold (SYNTHETIC measurement)",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "lcp=5ms kind=SYNTHETIC",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "perf.cls",
+   "title": "CLS within threshold",
+   "verdict": "PASS",
+   "requirement_source": "PRODUCTION_CHECKLIST",
+   "owning_spec": "",
+   "route": "/index.html",
+   "viewport": 1440,
+   "browser": "chromium",
+   "reduced_motion": true,
+   "method": "BROWSER_EXECUTED",
+   "detail": "cls=0.000",
+   "evidence": {},
+   "attempts": 3
+  },
+  {
+   "check_id": "owner.requirement.unapproved_dominant_brand_hue",
+   "title": "UNAPPROVED_DOMINANT_BRAND_HUE",
+   "verdict": "FAIL",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "unapproved dominant brand hue rgb(244, 239, 230) (role=background, source=rendered.rendered_colors)",
+   "evidence": {
+    "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.unapproved_dominant_brand_hue",
+   "title": "UNAPPROVED_DOMINANT_BRAND_HUE",
+   "verdict": "FAIL",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "unapproved dominant brand hue rgb(251, 248, 242) (role=background, source=rendered.rendered_colors)",
+   "evidence": {
+    "code": "UNAPPROVED_DOMINANT_BRAND_HUE",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.motion_brief_sequences_missing",
+   "title": "MOTION_BRIEF_SEQUENCES_MISSING",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "Level 2/3 motion has no named promised sequences",
+   "evidence": {
+    "code": "MOTION_BRIEF_SEQUENCES_MISSING",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.required_owner_constraint_unsatisfied",
+   "title": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "brand.primary.navy-blue: brand evidence is missing or failed",
+   "evidence": {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.required_owner_constraint_unsatisfied",
+   "title": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "brand.accent.yellow: brand evidence is missing or failed",
+   "evidence": {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.required_owner_constraint_unsatisfied",
+   "title": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "motion.owner-cinematic: motion compliance evidence is incomplete or failed",
+   "evidence": {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "owner.requirement.required_owner_constraint_unsatisfied",
+   "title": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__owner_requirements__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "REQUIREMENT_AUDIT",
+   "detail": "reference.translation-boundary: reference translation evidence is missing or failed",
+   "evidence": {
+    "code": "REQUIRED_OWNER_CONSTRAINT_UNSATISFIED",
+    "contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  },
+  {
+   "check_id": "visual.evidence.owner_required_review_not_declared",
+   "title": "OWNER_REQUIRED_VISUAL_EVIDENCE_NOT_DECLARED",
+   "verdict": "BLOCKED",
+   "requirement_source": "OWNER_INTENT",
+   "owning_spec": "templates/owner-intent.json",
+   "route": "__visual_evidence__",
+   "viewport": 0,
+   "browser": "playwright",
+   "reduced_motion": false,
+   "method": "VISUAL_COMPARISON",
+   "detail": "the current owner contract requires rendered visual evidence but the plan declares no visual_evidence block; no capture set is invented here",
+   "evidence": {
+    "owner_contract_source": "C:\\Users\\ALPHA\\Desktop\\VIBE CODING PROJECTS\\WEBSITE-DIRECTOR\\.claude\\worktrees\\website-director-repair-53f3d1\\templates\\alpha-starts-now-owner-intent.json"
+   }
+  }
+ ],
+ "overall": "BLOCKED",
+ "_review_copy_note": "Trimmed review copy: per-sample DOM snapshots removed. Full evidence retained at the run path recorded in REPAIR-REPORT.md."
+}

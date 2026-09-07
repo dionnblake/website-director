@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinematic positive control</title>
+<style>
+  :root { --navy: #0b1830; --yellow: #ffc700; --paper: #f4efe6; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--navy); color: var(--paper);
+         font-family: Georgia, "Times New Roman", serif; }
+  header, footer { padding: 24px; background: var(--navy); color: var(--paper); }
+  nav a { color: var(--yellow); margin-right: 16px; }
+  section { min-height: 1100px; padding: 64px 32px; }
+  h1 { font-size: 64px; margin: 0 0 24px; }
+  h2 { font-size: 40px; margin: 0 0 16px; }
+
+  /* Sequence 1 - hero-intro: a masked parallax reveal driven by scroll. */
+  #hero-subject { width: 480px; height: 320px; background: var(--yellow);
+                  will-change: transform, clip-path;
+                  clip-path: inset(0 0 60% 0); transform: translateY(0) scale(1); }
+
+  /* Sequence 2 - route-progression: a pinned scrub. The rail holds its
+     viewport position while its fill advances with scroll. */
+  #route-pin { position: sticky; top: 80px; width: 100%; height: 12px;
+               background: rgba(11,24,48,0.15); }
+  #route-fill { height: 100%; width: 0%; background: var(--yellow); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* The usable static equivalent: every state is its settled state. */
+    #hero-subject { clip-path: inset(0 0 0 0); transform: none; }
+    #route-fill { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header><nav><a href="#hero">Start</a><a href="#join">Join</a></nav></header>
+<main>
+  <section id="hero"><h1>Cinematic control</h1>
+    <div id="hero-subject" data-motion="hero-subject"></div></section>
+  <section id="route"><h2>Route</h2>
+    <div id="route-pin" data-motion="route-pin"><div id="route-fill"></div></div>
+    <p>The rail above stays pinned while its fill advances.</p></section>
+  <section id="middle"><h2>Middle</h2><p>Body copy.</p></section>
+  <section id="join"><h2>Join</h2><button type="button">Primary call to action</button></section>
+</main>
+<footer><p>Cinematic control fixture. Disposable.</p></footer>
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) { return; }
+  var subject = document.getElementById("hero-subject");
+  var fill = document.getElementById("route-fill");
+  var pin = document.getElementById("route-pin");
+  function frame() {
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    var progress = Math.min(1, Math.max(0, scrollY / max));
+    // Masked parallax: the subject rises and unmasks as the page advances.
+    subject.style.transform = "translateY(" + (-140 * progress).toFixed(2) +
+                              "px) scale(" + (1 + 0.18 * progress).toFixed(3) + ")";
+    subject.style.clipPath = "inset(0 0 " + (60 - 60 * progress).toFixed(2) + "% 0)";
+    fill.style.width = (progress * 100).toFixed(2) + "%";
+    pin.setAttribute("data-motion-state", "progress-" + Math.round(progress * 10));
+  }
+  addEventListener("scroll", frame, {passive: true});
+  frame();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "$schema_note": "CANDIDATE-ONLY QA input. Not an owner approval record. Disposable.",
+  "environment": "local",
+  "project_name": "candidate-capture-control",
+  "protected_paths": [
+    "projects/"
+  ],
+  "repo_root": "C:/Users/ALPHA/Desktop/VIBE CODING PROJECTS/WEBSITE-DIRECTOR/.claude/worktrees/website-director-repair-53f3d1",
+  "browsers": {
+    "smoke": [
+      "chromium"
+    ],
+    "regression": [
+      "chromium"
+    ]
+  },
+  "viewports": {
+    "smoke": [
+      1440
+    ],
+    "regression": [
+      390,
+      1440
+    ]
+  },
+  "reduced_motion_all_routes": false,
+  "owner_intent_ref": "C:/Users/ALPHA/Desktop/VIBE CODING PROJECTS/WEBSITE-DIRECTOR/.claude/worktrees/website-director-repair-53f3d1/templates/alpha-starts-now-owner-intent.json",
+  "project_currentness": "CURRENT",
+  "engine_config": {
+    "browser_channel": "chrome",
+    "serve_dir": ".",
+    "run_axe": false
+  },
+  "perf_thresholds": {
+    "lcp_ms": 20000,
+    "cls": 1.0
+  },
+  "routes": [
+    {
+      "path": "/index.html",
+      "viewports": [
+        1440
+      ]
+    }
+  ],
+  "runtime_observations": {
+    "motion": {
+      "required": true,
+      "sample_count": 3,
+      "sequences": [
+        {
+          "sequence_id": "hero-intro",
+          "family": "PARALLAX_MASK",
+          "selectors": [
+            "#hero-subject"
+          ],
+          "action": {
+            "action": "scroll_to",
+            "selector": "#middle"
+          },
+          "required_states": [
+            "START",
+            "CHANGE"
+          ],
+          "implementation_ref": "index.html#hero-subject"
+        },
+        {
+          "sequence_id": "route-progression",
+          "family": "PINNED_SCRUB",
+          "selectors": [
+            "#route-pin",
+            "#route-fill"
+          ],
+          "action": {
+            "action": "scroll_to",
+            "selector": "#join"
+          },
+          "required_states": [
+            "START",
+            "CHANGE"
+          ],
+          "implementation_ref": "index.html#route-pin"
+        }
+      ]
+    }
+  },
+  "visual_evidence": {
+    "required": true,
+    "required_surfaces": [
+      {
+        "surface_id": "DESKTOP_FULL_HOMEPAGE",
+        "route": "/index.html",
+        "capture": "VIEWPORT"
+      },
+      {
+        "surface_id": "MOBILE_FULL_HOMEPAGE",
+        "route": "/index.html"
+      },
+      {
+        "surface_id": "DESKTOP_FULL_PAGE",
+        "route": "/index.html"
+      },
+      {
+        "surface_id": "DESKTOP_HERO",
+        "route": "/index.html"
+      }
+    ]
+  }
+}

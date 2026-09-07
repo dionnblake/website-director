@@ -330,6 +330,9 @@ def validate_provider_neutral_documents(paths: Iterable[str | Path]) -> list[dic
     return issues
 
 
+_WHOLE_PAGE_SUFFIXES = ("FULL_PAGE", "FULL_HOMEPAGE")
+
+
 def _screenshot_items(evidence: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     raw = evidence.get("screenshot_set", evidence.get("screenshots", []))
     if isinstance(raw, Mapping):
@@ -338,6 +341,12 @@ def _screenshot_items(evidence: Mapping[str, Any]) -> list[Mapping[str, Any]]:
 
 
 def _actual_screenshot(item: Mapping[str, Any]) -> bool:
+    """Metadata shape only.
+
+    This stays a pure helper for unit tests and for callers that hold no
+    evidence root.  Identity of the bytes is established by
+    :func:`resolve_screenshot_receipt`, which the real acceptance boundary uses.
+    """
     digest = str(item.get("screenshot_sha256", ""))
     return (
         item.get("actual_rendered") is True
@@ -347,17 +356,97 @@ def _actual_screenshot(item: Mapping[str, Any]) -> bool:
     )
 
 
+def resolve_screenshot_receipt(
+    item: Mapping[str, Any],
+    evidence_root: str | Path,
+) -> dict[str, Any]:
+    """Open the claimed file, recompute its digest, and check its scope.
+
+    A receipt is an assertion about bytes.  This reads the bytes.  It adds no
+    cryptographic infrastructure beyond the SHA-256 the runner already writes.
+    """
+    import hashlib
+
+    issues: list[dict[str, str]] = []
+    surface_id = str(item.get("surface_id") or "")
+    relative = str(item.get("screenshot_path") or "")
+    root = Path(str(evidence_root)).resolve()
+    resolved: Path | None = None
+    size = None
+    if not relative:
+        _append_issue(issues, "SCREENSHOT_FILE_MISSING", "%s: receipt carries no screenshot path" % surface_id)
+    else:
+        candidate = Path(relative)
+        resolved = (candidate if candidate.is_absolute() else root / candidate)
+        try:
+            resolved = resolved.resolve()
+        except OSError:
+            resolved = None
+        if resolved is None:
+            _append_issue(issues, "SCREENSHOT_FILE_MISSING", "%s: %s cannot be resolved" % (surface_id, relative))
+        elif root not in resolved.parents and resolved != root:
+            _append_issue(issues, "SCREENSHOT_PATH_OUT_OF_SCOPE",
+                          "%s: %s resolves outside the evidence root %s" % (surface_id, relative, root))
+        elif not resolved.is_file():
+            _append_issue(issues, "SCREENSHOT_FILE_MISSING",
+                          "%s: %s does not exist" % (surface_id, resolved))
+        else:
+            try:
+                payload = resolved.read_bytes()
+            except OSError as exc:
+                _append_issue(issues, "SCREENSHOT_FILE_UNREADABLE", "%s: %s (%s)" % (surface_id, resolved, exc))
+            else:
+                size = len(payload)
+                actual = hashlib.sha256(payload).hexdigest()
+                claimed = str(item.get("screenshot_sha256", "")).lower()
+                if actual != claimed:
+                    _append_issue(issues, "SCREENSHOT_DIGEST_MISMATCH",
+                                  "%s: recomputed %s does not match the receipt %s"
+                                  % (surface_id, actual[:16], (claimed or "<empty>")[:16]))
+
+    claims_whole_page = surface_id.upper().endswith(_WHOLE_PAGE_SUFFIXES)
+    capture = str(item.get("render_capture", "")).upper()
+    if claims_whole_page and capture and capture != "FULL_PAGE":
+        _append_issue(issues, "CAPTURE_LABEL_CONFLICT",
+                      "%s claims the whole page but was captured as %s" % (surface_id, capture))
+    verification = item.get("capture_verification")
+    if isinstance(verification, Mapping):
+        if str(verification.get("verdict", "")).upper() == "FAIL":
+            _append_issue(issues, "FULL_PAGE_CAPTURE_INSUFFICIENT",
+                          "%s: %s" % (surface_id, "; ".join(str(code) for code in verification.get("issues", []))))
+        elif claims_whole_page and str(verification.get("verdict", "")).upper() == "NOT_VERIFIED":
+            _append_issue(issues, "FULL_PAGE_CAPTURE_NOT_VERIFIED",
+                          "%s: capture dimensions could not be verified against the document height" % surface_id)
+    elif claims_whole_page:
+        _append_issue(issues, "FULL_PAGE_CAPTURE_NOT_VERIFIED",
+                      "%s: no capture verification accompanies a whole-page claim" % surface_id)
+    if item.get("capture_override_rejected"):
+        _append_issue(issues, "CAPTURE_LABEL_CONFLICT",
+                      "%s supplied a %s capture override for a whole-page surface"
+                      % (surface_id, item["capture_override_rejected"]))
+    return {"status": "PASS" if not issues else "BLOCKED", "surface_id": surface_id,
+            "resolved_path": str(resolved) if resolved else None, "bytes": size, "issues": issues}
+
+
 def validate_rendered_visual_evidence(
     evidence: Mapping[str, Any],
     required_surfaces: Sequence[str] | None = None,
     *,
     require_critic: bool = False,
+    evidence_root: str | Path | None = None,
+    expected_project: str | None = None,
+    expected_build: str | None = None,
 ) -> dict[str, Any]:
     """Validate screenshot receipts and, optionally, the Gauntlet critic loop.
 
     The function never trusts a claimed PASS.  It derives PASS from the
     receipts, which is what lets negative controls reject source-only or stale
     visual reviews.
+
+    When ``evidence_root`` is supplied - which is what the runner and the
+    production-entry boundary do - every receipt is resolved on disk and its
+    digest recomputed.  Without a root the check stays a metadata-shape check,
+    and callers must not present that as proof the files exist.
     """
 
     required = list(required_surfaces or required_surface_ids(evidence))
@@ -386,6 +475,36 @@ def validate_rendered_visual_evidence(
         if invalid:
             detail.append("not-real-browser=" + ",".join(invalid))
         _append_issue(issues, "MISSING_SCREENSHOT_SET_REJECTED", "; ".join(detail))
+
+    resolution: list[dict[str, Any]] = []
+    root = evidence_root if evidence_root is not None else evidence.get("evidence_root")
+    if root:
+        for surface_id in required:
+            item = latest.get(surface_id)
+            if item is None:
+                continue
+            receipt = resolve_screenshot_receipt(item, root)
+            resolution.append(receipt)
+            issues.extend(receipt["issues"])
+        for item in screenshots:
+            if not item.get("surface_id") and _actual_screenshot(item):
+                receipt = resolve_screenshot_receipt(item, root)
+                resolution.append(receipt)
+                issues.extend(receipt["issues"])
+
+    declared_project = evidence.get("project") or evidence.get("project_name")
+    if expected_project and declared_project and str(declared_project) != str(expected_project):
+        _append_issue(issues, "EVIDENCE_PROJECT_MISMATCH",
+                      "evidence identifies project %r, not %r" % (declared_project, expected_project))
+    declared_build = (evidence.get("build_id") or evidence.get("current_build_sha")
+                      or evidence.get("build_sha"))
+    if expected_build and declared_build and str(declared_build) != str(expected_build):
+        _append_issue(issues, "STALE_EVIDENCE_REJECTED",
+                      "evidence identifies build %r, not the reviewed build %r"
+                      % (declared_build, expected_build))
+    if expected_build and not declared_build:
+        _append_issue(issues, "EVIDENCE_BUILD_IDENTITY_MISSING",
+                      "the receipt set does not identify the build it reviewed")
 
     if require_critic:
         critic = evidence.get("critic", evidence.get("critic_input", {}))
@@ -443,13 +562,16 @@ def validate_rendered_visual_evidence(
         "required_surfaces": required,
         "captured_surfaces": sorted({str(item.get("surface_id")) for item in actual
                                       if item.get("surface_id")}),
+        "resolved_receipts": resolution,
+        "receipts_resolved_on_disk": bool(root),
         "issues": issues,
     }
 
 
 def build_rendered_visual_evidence(
     config: Mapping[str, Any], observations: Iterable[Mapping[str, Any]],
-    *, run_id: str, git_sha: str
+    *, run_id: str, git_sha: str, build_identity: Mapping[str, Any] | None = None,
+    evidence_root: str | Path | None = None,
 ) -> dict[str, Any]:
     """Build a manifest receipt from runner observations and derive its status."""
 
@@ -463,15 +585,22 @@ def build_rendered_visual_evidence(
         if previous is None or _int_or_zero(observation.get("attempt", 0)) >= _int_or_zero(previous.get("attempt", 0)):
             ordered[str(surface_id)] = observation
     screenshots = [dict(ordered[surface_id]) for surface_id in required if surface_id in ordered]
+    identity = dict(build_identity or {})
     receipt = {
         "required": True,
         "required_surfaces": required,
         "browser_run_id": run_id,
         "build_sha": git_sha,
+        # A HEAD sha cannot identify a dirty working tree, so the reviewed bytes
+        # carry their own identity alongside it.
+        "build_id": identity.get("build_id") or git_sha,
+        "build_identity": identity,
         "screenshot_set_revision": 0,
         "screenshot_set": screenshots,
     }
-    result = validate_rendered_visual_evidence(receipt, required)
+    result = validate_rendered_visual_evidence(receipt, required, evidence_root=evidence_root)
     receipt.update({"status": result["status"], "captured_surfaces": result["captured_surfaces"],
+                    "resolved_receipts": result.get("resolved_receipts", []),
+                    "receipts_resolved_on_disk": result.get("receipts_resolved_on_disk", False),
                     "issues": result["issues"]})
     return receipt

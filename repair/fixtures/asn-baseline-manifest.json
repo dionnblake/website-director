@@ -1,0 +1,52 @@
+{
+  "$schema_note": "CANDIDATE-ONLY baseline: the project's shipped manifest, unmodified except for the browser channel.",
+  "project_name": "Alpha Starts Now visual-first production candidate",
+  "environment": "local",
+  "protected_paths": [
+    "projects/"
+  ],
+  "engine_config": {
+    "serve_dir": "site",
+    "base_url": "",
+    "run_axe": false,
+    "browser_channel": "chrome"
+  },
+  "viewports": {
+    "smoke": [
+      1440
+    ],
+    "regression": [
+      390,
+      1440
+    ]
+  },
+  "browsers": {
+    "smoke": [
+      "chromium"
+    ],
+    "regression": [
+      "chromium"
+    ]
+  },
+  "reduced_motion_all_routes": true,
+  "perf_thresholds": {
+    "lcp_ms": 2500,
+    "cls": 0.1,
+    "inp_ms": 200
+  },
+  "console_ignore": [],
+  "allowed_third_party_failures": [],
+  "routes": [
+    {
+      "path": "/index.html",
+      "name": "Home",
+      "reduced_motion": true,
+      "critical_hero_asset": "hero-brutalist-ascent.jpg",
+      "intentional_hash_links": [
+        "Read the Route"
+      ],
+      "interactions": []
+    }
+  ],
+  "repo_root": "C:/Users/ALPHA/Desktop/VIBE CODING PROJECTS/WEBSITE-DIRECTOR/.claude/worktrees/website-director-repair-53f3d1"
+}

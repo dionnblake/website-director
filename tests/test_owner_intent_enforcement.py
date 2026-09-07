@@ -6,9 +6,11 @@ without rebuilding or modifying any Website Director pilot.
 
 from __future__ import annotations
 
+import contextlib
 import json
 import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
 
@@ -18,19 +20,22 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "browser-qa"))
 
 from assertions import evaluate  # noqa: E402
-from engine.base import BLOCKED, FAIL, PASS, load_engine  # noqa: E402
+from engine.base import BLOCKED, FAIL, PASS, PageObservation, load_engine  # noqa: E402
 from framework_validation.owner_intent import (  # noqa: E402
     AUTHORITY_PRECEDENCE,
     audit_owner_requirement_compliance,
     detect_contradictions,
+    resolve_approved_motion_downgrade,
     resolve_authority_conflicts,
     resolve_motion_requirement,
+    resolve_owner_authority,
     validate_brand_tokens,
     validate_motion_implementation_trace,
     validate_owner_intent_contract,
     validate_reference_translation_trace,
 )
 from guards.frozen_integrity_guard import FrozenIntegrityGuard  # noqa: E402
+import runner as bqa_runner  # noqa: E402
 
 
 OWNER_CONTRACT = ROOT / "templates" / "alpha-starts-now-owner-intent.json"
@@ -81,6 +86,88 @@ def cinematic_motion_fixture() -> tuple[dict[str, object], dict[str, object], di
         ],
     }
     return brief, implementation, runtime
+
+
+
+@contextlib.contextmanager
+def static_fixture():
+    """A disposable static page with no motion of any kind."""
+    with tempfile.TemporaryDirectory(prefix="website-director-static-") as directory:
+        fixture = Path(directory)
+        (fixture / "index.html").write_text(
+            "<!doctype html><html><body><main>Static page</main></body></html>", encoding="utf-8")
+        (fixture / "qa-fixture.json").write_text(json.dumps({"title": "Static fixture"}),
+                                                 encoding="utf-8")
+        yield fixture
+
+
+def motion_observation(rows, *, engine="playwright", identity="REAL_BROWSER",
+                       reduced_motion=False, route="."):
+    return PageObservation(
+        route=route, viewport=1440, engine=engine, browser="chromium",
+        reduced_motion=reduced_motion, motion_observations=list(rows),
+        raw={"motion_observations": list(rows), "engine_identity": identity},
+    )
+
+
+def scroll_only_row(sequence_id="hero-intro", *, family=None, scroll=6156.0):
+    """A tall static page that merely scrolled.
+
+    Every flag a naive reader might accept is present and truthful about the
+    stimulus; nothing about the element itself changed.
+    """
+    row = {
+        "sequence_id": sequence_id,
+        "engine_identity": "REAL_BROWSER",
+        "runtime_observed": True,
+        "observation_supported": True,
+        "target_count": 12,
+        "trigger": "scroll_to",
+        "trigger_applied": True,
+        "changed_properties": [],
+        "max_geometry_delta": 0.0,
+        "max_opacity_delta": 0.0,
+        "max_transform_delta": 0.0,
+        "max_media_time_delta": 0.0,
+        "raw_viewport_geometry_delta": scroll,
+        "stimulus_scroll_delta": scroll,
+        "scroll_delta": scroll,
+        "state_changed": False,
+        "meaningful_state_change": False,
+        "motion_state_changes": 0,
+        "observed_states": ["START"],
+        "family_source": "MEASURED",
+        "family": family or "MEASURED_NONE",
+        "runtime_evidence_ref": "REAL_BROWSER:%s" % sequence_id,
+    }
+    return row
+
+
+def responding_row(sequence_id="hero-intro", *, family="PARALLAX_MASK"):
+    return {
+        "sequence_id": sequence_id,
+        "engine_identity": "REAL_BROWSER",
+        "runtime_observed": True,
+        "observation_supported": True,
+        "target_count": 3,
+        "trigger": "scroll_to",
+        "trigger_applied": True,
+        "changed_properties": ["transform", "clip"],
+        "max_geometry_delta": 42.0,
+        "max_opacity_delta": 0.0,
+        "max_transform_delta": 1.0,
+        "max_media_time_delta": 0.0,
+        "raw_viewport_geometry_delta": 900.0,
+        "stimulus_scroll_delta": 900.0,
+        "scroll_delta": 900.0,
+        "state_changed": True,
+        "meaningful_state_change": True,
+        "motion_state_changes": 0,
+        "observed_states": ["START", "CHANGE", "SETTLE"],
+        "family_source": "DECLARED",
+        "family": family,
+        "runtime_evidence_ref": "REAL_BROWSER:%s" % sequence_id,
+    }
 
 
 class OwnerIntentEnforcementTests(unittest.TestCase):
@@ -299,6 +386,159 @@ class OwnerIntentEnforcementTests(unittest.TestCase):
         ])
         self.assertEqual(result["status"], FAIL)
         self.assertTrue(result["contradictions"])
+
+    # ------------------------------------------------------------------
+    # Candidate repair controls: owner requirements reach the boundary.
+    # Every owner/approval record below is synthetic, TEST_ONLY, and is
+    # never written into a project or an approval history.
+    # ------------------------------------------------------------------
+    def test_stale_or_mixed_loaded_harness_is_detected_before_verification(self) -> None:
+        healthy = bqa_runner.harness_identity({})
+        self.assertEqual(healthy["status"], "PASS")
+        self.assertTrue(all(item["sha256"] for item in healthy["modules"]
+                            if item["status"] == "LOADED" and item["path"]))
+        stale = types.SimpleNamespace(
+            __name__="stale.catalog", __file__=None, ALL_CHECKS=[],
+            check_observation_coverage=lambda obs, plan: None,
+            check_reduced_motion=lambda obs, plan: None,
+            check_forms=lambda obs, plan: None,
+            check_accessibility=lambda obs, plan: None,
+        )
+        result = bqa_runner.harness_identity({}, catalog_module=stale)
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("check_motion", result["missing_checks"])
+        self.assertIn("check_brand_tokens", result["missing_checks"])
+        mixed = types.SimpleNamespace(
+            __name__="mixed.catalog", __file__=None,
+            ALL_CHECKS=[],
+            **{name: (lambda obs, plan: None) for name in bqa_runner.REQUIRED_CHECK_FUNCTIONS})
+        mixed_result = bqa_runner.harness_identity({}, catalog_module=mixed)
+        self.assertEqual(mixed_result["status"], "PASS")
+        design_first = bqa_runner.harness_identity(
+            {"visual_evidence": {"required_surfaces": ["DESKTOP_FULL_HOMEPAGE"]}})
+        self.assertIn("framework_validation.design_first_flow",
+                      [item["module"] for item in design_first["modules"]])
+
+    def test_current_level_three_with_omitted_motion_block_is_never_none_or_pass(self) -> None:
+        for plan in (
+            {"routes": [{"path": "."}], "owner_intent": load_owner_contract()},
+            {"routes": [{"path": "."}], "owner_intent_ref": str(OWNER_CONTRACT),
+             "project_currentness": "CURRENT"},
+        ):
+            with static_fixture() as fixture:
+                observation = load_engine("simulation", str(fixture)).observe(".", 1440)
+                findings = evaluate(observation, plan)
+            motion = {finding.check_id: finding.verdict for finding in findings
+                      if finding.check_id.startswith("motion.")}
+            self.assertIn("motion.observation-coverage", motion)
+            self.assertEqual(motion["motion.observation-coverage"], BLOCKED)
+            self.assertNotIn(PASS, set(motion.values()))
+
+    def test_removing_the_owner_block_cannot_remove_project_requirements(self) -> None:
+        # The manifest carries no owner_intent, motion, runtime_observations or
+        # visual_evidence block - only the fact that this is a current candidate.
+        authority = resolve_owner_authority(
+            {"project_currentness": "CURRENT", "owner_intent_ref": str(OWNER_CONTRACT)})
+        self.assertEqual(authority["status"], "PASS")
+        self.assertEqual(authority["coverage"]["motion"], "REQUIRED")
+        self.assertEqual(authority["coverage"]["visual_evidence"], "REQUIRED")
+        self.assertEqual(authority["motion"]["required_level"], "MOTION_LEVEL_3")
+        # A current candidate that names no contract at all blocks; it does not
+        # quietly become "no owner level".
+        unresolved = resolve_owner_authority({"project_currentness": "CURRENT"})
+        self.assertEqual(unresolved["status"], "BLOCKED")
+        self.assertIn("OWNER_CONTRACT_NOT_RESOLVED", str(unresolved["blocked_reason"]))
+        # A silent legacy manifest still infers nothing.
+        self.assertEqual(resolve_owner_authority({"routes": []})["status"], "NOT_DECLARED")
+
+    def test_lower_plan_level_cannot_downgrade_a_required_owner_level(self) -> None:
+        plan = {
+            "routes": [{"path": "."}],
+            "owner_intent": load_owner_contract(),
+            "runtime_observations": {"motion": {
+                "required": True, "minimum_motion_level": "MOTION_LEVEL_1",
+                "sequences": [{"sequence_id": "hero-intro"}]}},
+        }
+        observation = motion_observation([scroll_only_row("hero-intro")])
+        findings = {finding.check_id: finding for finding in evaluate(observation, plan)}
+        # At the plan's own MOTION_LEVEL_1 none of these Level 2/3 checks would
+        # exist at all; the owner level is what put them on the run.
+        self.assertEqual(findings["motion.real-browser-runtime"].evidence["required_level"], 3)
+        self.assertEqual(findings["motion.real-browser-runtime"].evidence["required_level_source"], "OWNER")
+        self.assertEqual(findings["motion.runtime-state-change"].verdict, FAIL)
+        # A simulation engine cannot satisfy the raised level either.
+        simulated = motion_observation([scroll_only_row("hero-intro")],
+                                       engine="simulation", identity="SIMULATION")
+        simulated_findings = {finding.check_id: finding.verdict
+                              for finding in evaluate(simulated, plan)}
+        self.assertEqual(simulated_findings["motion.real-browser-runtime"], BLOCKED)
+
+    def test_contract_resolution_error_blocks_instead_of_downgrading(self) -> None:
+        plan = {"routes": [{"path": "."}], "owner_intent_ref": "does/not/exist.json"}
+        observation = motion_observation([])
+        verdicts = {finding.check_id: finding.verdict for finding in evaluate(observation, plan)}
+        self.assertEqual(verdicts["motion.owner-authority"], BLOCKED)
+        self.assertEqual(verdicts["brand.owner-authority"], BLOCKED)
+        malformed = resolve_owner_authority({"owner_intent": "not-an-object"})
+        self.assertEqual(malformed["status"], "BLOCKED")
+        self.assertIn("OWNER_CONTRACT_MALFORMED", str(malformed["blocked_reason"]))
+
+    def test_historical_scope_preserves_documented_compatibility(self) -> None:
+        plan = {"routes": [{"path": "."}], "owner_intent": load_owner_contract(),
+                "project_currentness": "HISTORICAL"}
+        authority = resolve_owner_authority(plan)
+        self.assertEqual(authority["status"], "HISTORICAL")
+        self.assertEqual(authority["coverage"], {"motion": "NOT_REQUIRED", "brand": "NOT_REQUIRED",
+                                                 "visual_evidence": "NOT_REQUIRED"})
+        observation = motion_observation([])
+        self.assertFalse([finding for finding in evaluate(observation, plan)
+                          if finding.check_id.startswith(("motion.", "brand."))])
+
+    def test_only_a_genuine_owner_downgrade_record_is_honoured(self) -> None:
+        approved = {
+            "approved_downgrade": True,
+            "approved_by": "OWNER",
+            "owner_event_ref": "TEST_ONLY-synthetic-owner-event-001",
+            "scope": "ALPHA_STARTS_NOW_CURRENT_CANDIDATE",
+        }
+        authority = resolve_owner_authority(
+            {"owner_intent": load_owner_contract(),
+             "locked_decisions": {"heuristic_motion_level": "MOTION_LEVEL_1",
+                                  "approved_motion_downgrade": approved}})
+        self.assertTrue(authority["motion"]["approved_downgrade"])
+        self.assertEqual(authority["motion"]["execution_level"], "MOTION_LEVEL_1")
+        self.assertEqual(authority["motion"]["required_level"], "MOTION_LEVEL_3")
+
+        for fabricated in (
+            {"approved_downgrade": True},
+            {"approved_downgrade": True, "approved_by": "INTERNAL_CRITIC",
+             "owner_event_ref": "TEST_ONLY-x"},
+            {"approved_downgrade": True, "approved_by": "OWNER",
+             "owner_event_ref": "TEST_ONLY-x", "scope": "A_DIFFERENT_PROJECT"},
+        ):
+            result = resolve_approved_motion_downgrade(
+                {"locked_decisions": {"approved_motion_downgrade": fabricated}},
+                None, "ALPHA_STARTS_NOW_CURRENT_CANDIDATE")
+            self.assertFalse(result["approved"])
+            self.assertTrue(result["issues"])
+        blocked = resolve_owner_authority(
+            {"owner_intent": load_owner_contract(),
+             "motion": {"approved_downgrade": True}})
+        self.assertEqual(blocked["status"], "BLOCKED")
+
+    def test_preferred_or_optional_motion_never_becomes_required(self) -> None:
+        contract = load_owner_contract()
+        for requirement_class, expected in (("PREFERRED", "OPTIONAL"), ("OPTIONAL", "OPTIONAL")):
+            softened = json.loads(json.dumps(contract))
+            for item in softened["requirements"]:
+                if item["id"] == "motion.owner-cinematic":
+                    item["class"] = requirement_class
+            authority = resolve_owner_authority({"owner_intent": softened})
+            self.assertEqual(authority["coverage"]["motion"], expected)
+            plan = {"routes": [{"path": "."}], "owner_intent": softened}
+            observation = motion_observation([])
+            self.assertFalse([finding for finding in evaluate(observation, plan)
+                              if finding.check_id.startswith("motion.")])
 
 
 if __name__ == "__main__":

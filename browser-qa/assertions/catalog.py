@@ -77,6 +77,12 @@ def _runtime_observation_cfg(plan: Dict[str, Any], route: str, kind: str) -> Dic
     return merged
 
 
+
+def _level_number(value) -> Optional[int]:
+    match = re.search(r"(?i)(?:MOTION[ _-]*)?LEVEL[ _-]*([0-3])", str(value or ""))
+    return int(match.group(1)) if match else None
+
+
 def _blocked_observation(check_id, title, obs, detail, evidence):
     return Finding(check_id=check_id, title=title, verdict=BLOCKED,
                    requirement_source="BROWSER_QA_PLAN", route=obs.route,
@@ -452,14 +458,162 @@ def check_reduced_motion(obs, plan):
 # ===========================================================================
 # 15A. OWNER-REQUIRED RUNTIME MOTION
 # ===========================================================================
-def check_brand_tokens(obs, plan):
-    """Check computed rendered brand roles when a plan supplies owner intent."""
+_AUTHORITY_CACHE: Dict[str, Dict[str, Any]] = {}
+_AUTHORITY_PLAN_KEYS = ("owner_intent", "owner_contract", "owner_authority", "owner_intent_ref",
+                        "owner_contract_ref", "contract_ref", "owner_intent_path",
+                        "owner_contract_path", "project_currentness", "owner_scope_currentness",
+                        "locked_decisions", "motion", "runtime_observations", "plan_dir",
+                        "project_root")
+_EMPTY_COVERAGE = {"motion": "NOT_REQUIRED", "brand": "NOT_REQUIRED", "visual_evidence": "NOT_REQUIRED"}
 
-    owner_contract = plan.get("owner_intent")
-    if not isinstance(owner_contract, dict):
+# Only these properties are a *response*.  Scrolling is the stimulus, so it is
+# absent by construction, and an unrecognised label cannot stand in for one.
+_MOTION_RESPONSE_PROPERTIES = frozenset(
+    {"geometry", "opacity", "transform", "visibility", "clip", "filter", "motion_state", "media_time"})
+_MOTION_RESPONSE_DELTAS = ("max_geometry_delta", "max_opacity_delta",
+                           "max_transform_delta", "max_media_time_delta")
+_GENERIC_FAMILY_RE = re.compile(r"(?:FADE|REVEAL|OPACITY|TRANSLATE[_ -]?Y|GENERIC)")
+
+
+
+_DECLARED_CURRENTNESS = frozenset(
+    {"CURRENT", "REOPENED", "HISTORICAL", "REFERENCE_ONLY", "SUPERSEDED"})
+
+
+def _declares_owner_authority(plan: Dict[str, Any]) -> bool:
+    """Cheap, dependency-free test for an explicit owner-authority claim."""
+    for name in ("owner_intent", "owner_contract", "owner_authority", "owner_intent_ref",
+                 "owner_contract_ref", "contract_ref", "owner_intent_path", "owner_contract_path"):
+        if plan.get(name) is not None:
+            return True
+    for name in ("project_currentness", "owner_scope_currentness"):
+        value = str(plan.get(name) or "").strip().upper().replace(" ", "_").replace("-", "_")
+        if value in _DECLARED_CURRENTNESS:
+            return True
+    return False
+
+
+def owner_authority(plan: Dict[str, Any]) -> Dict[str, Any]:
+    """Resolve the plan's current owner authority once, then reuse it.
+
+    Every consumer in this module reads the same profile, so requirement
+    precedence is normalized in one place rather than re-implemented per check.
+    """
+    import json
+
+    plan = plan if isinstance(plan, dict) else {}
+    try:
+        key = json.dumps({name: plan.get(name) for name in _AUTHORITY_PLAN_KEYS},
+                         sort_keys=True, default=str)
+    except (TypeError, ValueError):
+        key = repr(sorted(plan.keys()))
+    cached = _AUTHORITY_CACHE.get(key)
+    if cached is not None:
+        return cached
+    if not _declares_owner_authority(plan):
+        # A silent plan claims no current owner authority, so nothing is
+        # inferred and no framework module is required to say so.  The loaded
+        # harness itself is proven separately, at the runner entry point.
+        resolved = {"status": "NOT_DECLARED", "declared": False, "contract": None,
+                    "contract_source": "", "currentness": None,
+                    "coverage": dict(_EMPTY_COVERAGE), "motion": {}, "brand": {},
+                    "normalized_requirements": [], "issues": [], "blocked_reason": None}
+        _AUTHORITY_CACHE[key] = resolved
+        return resolved
+    try:
+        from framework_validation.owner_intent import resolve_owner_authority
+        resolved = resolve_owner_authority(
+            plan, base_dir=plan.get("plan_dir") or plan.get("project_root"),
+            locked_decisions=plan.get("locked_decisions"))
+    except Exception as exc:  # noqa: BLE001 - a resolution error blocks; it never means "no owner level"
+        resolved = {"status": "BLOCKED", "declared": True, "contract": None, "contract_source": "",
+                    "currentness": None, "coverage": dict(_EMPTY_COVERAGE), "motion": {}, "brand": {},
+                    "normalized_requirements": [], "issues": [],
+                    "blocked_reason": "OWNER_CONTRACT_RESOLUTION_FAILED: %s: %s" % (type(exc).__name__, exc)}
+    _AUTHORITY_CACHE[key] = resolved
+    return resolved
+
+
+def _authority_block_finding(check_id, title, obs, authority):
+    return _blocked_observation(
+        check_id, title, obs,
+        "BLOCKED_OWNER_CONTRACT_UNRESOLVED: %s" % authority.get("blocked_reason"),
+        {"owner_contract_source": authority.get("contract_source"),
+         "owner_contract_issues": authority.get("issues", []),
+         "engine": obs.engine, "viewport": obs.viewport})
+
+
+def _motion_response_observed(row: Dict[str, Any]) -> bool:
+    """True only when the element/scene answered, never when the page scrolled."""
+    if row.get("observation_supported") is False:
+        return False
+    properties = row.get("changed_properties")
+    if isinstance(properties, (list, tuple, set)):
+        if any(str(item) in _MOTION_RESPONSE_PROPERTIES for item in properties):
+            return True
+    for key in _MOTION_RESPONSE_DELTAS:
+        value = row.get(key, 0)
+        if isinstance(value, (int, float)):
+            try:
+                if abs(float(value)) > 0.01:
+                    return True
+            except (TypeError, ValueError):
+                pass
+    try:
+        if int(row.get("motion_state_changes", 0) or 0) > 0:
+            return True
+    except (TypeError, ValueError):
+        pass
+    return False
+
+
+def _proven_family(row: Dict[str, Any]) -> Optional[str]:
+    """Return a family only when it was declared *and* actually observed.
+
+    An adapter-derived or absent label describes the measurement, not a motion
+    family, so it can never establish cinematic diversity.
+    """
+    if str(row.get("family_source", "")).upper() != "DECLARED":
+        return None
+    family = str(row.get("family") or "").upper().replace(" ", "_").replace("-", "_")
+    if not family or family in {"UNKNOWN", "RUNTIME_STATE_CHANGE", "SCROLL_DRIVEN", "MEASURED_NONE"}:
+        return None
+    return family if _motion_response_observed(row) else None
+
+
+def _promised_sequences(cfg: Dict[str, Any], authority: Dict[str, Any]) -> List[Dict[str, Any]]:
+    promised = cfg.get("sequences") or cfg.get("required_sequences") or cfg.get("promised_sequences") or []
+    if isinstance(promised, dict):
+        promised = promised.get("items", promised.get("sequences", []))
+    if not isinstance(promised, list) or not promised:
+        promised = authority.get("motion", {}).get("named_sequences") or []
+    output = []
+    for index, item in enumerate(promised if isinstance(promised, list) else []):
+        if isinstance(item, dict):
+            output.append({**item, "sequence_id": str(
+                item.get("sequence_id") or item.get("id") or item.get("name") or "sequence-%d" % (index + 1))})
+        elif isinstance(item, bool):
+            continue
+        else:
+            output.append({"sequence_id": str(item)})
+    return output
+
+
+def check_brand_tokens(obs, plan):
+    """Check computed rendered brand roles against the current owner contract."""
+
+    authority = owner_authority(plan)
+    if authority.get("status") == "BLOCKED":
+        return [_authority_block_finding(
+            "brand.owner-authority", "Current owner brand authority resolves", obs, authority)]
+    owner_contract = authority.get("contract")
+    coverage = authority.get("coverage", _EMPTY_COVERAGE).get("brand", "NOT_REQUIRED")
+    if not isinstance(owner_contract, dict) or coverage == "NOT_REQUIRED":
         return None
     rendered = (obs.raw or {}).get("rendered_colors", [])
     if not rendered:
+        if coverage != "REQUIRED":
+            return None
         return [_blocked_observation(
             "brand.observation-coverage",
             "Rendered brand color observations are available", obs,
@@ -476,7 +630,8 @@ def check_brand_tokens(obs, plan):
               result.get("status") == "PASS", "LOCKED_SPEC", obs,
               detail="; ".join(item.get("detail", "") for item in result.get("issues", [])),
               owning_spec="templates/owner-intent.json",
-              evidence={"rendered_colors": rendered, "brand_result": result})
+              evidence={"rendered_colors": rendered, "brand_result": result,
+                        "owner_contract_source": authority.get("contract_source")})
 
 
 # ===========================================================================
@@ -485,17 +640,68 @@ def check_brand_tokens(obs, plan):
 def check_motion(obs, plan):
     """Check the runtime half of an explicit Level 2/3 motion contract.
 
-    Source declarations, GSAP imports, CSS keyframes, and screenshot hashes do
-    not establish motion. The engine must emit named browser state samples.
+    Source declarations, GSAP imports, CSS keyframes, ``document.getAnimations``
+    returning an object, and screenshot hashes do not establish motion.  The
+    engine must emit named browser state samples in which the promised element
+    or scene answered its trigger.  Scroll position is the stimulus and proves
+    nothing on its own.
     """
 
     cfg = _runtime_observation_cfg(plan, obs.route, "motion")
-    if not cfg.get("required") and not cfg.get("exercise"):
+    authority = owner_authority(plan)
+    if authority.get("status") == "BLOCKED":
+        return [_authority_block_finding(
+            "motion.owner-authority", "Current owner motion authority resolves", obs, authority)]
+
+    coverage = authority.get("coverage", _EMPTY_COVERAGE).get("motion", "NOT_REQUIRED")
+    plan_required = bool(cfg.get("required") or cfg.get("exercise"))
+    # A silent plan with no current owner authority still infers nothing, which
+    # is what keeps historical and legacy manifests working unchanged.
+    if not plan_required and coverage == "NOT_REQUIRED":
         return None
+
+    owner_motion = authority.get("motion", {})
+    owner_level = _level_number(owner_motion.get("required_level"))
+    plan_level = _level_number(cfg.get("minimum_motion_level",
+                                       cfg.get("required_level", cfg.get("motion_level"))))
+    if plan_required and plan_level is None:
+        # A required motion exercise without a declared level is at least a
+        # Level 2 runtime obligation; do not let an omitted field weaken it.
+        plan_level = 2
+    level = plan_level or 0
+    level_source = "PLAN"
+    if coverage == "REQUIRED":
+        if owner_level is None:
+            return [_blocked_observation(
+                "motion.owner-authority", "Current owner motion authority resolves a level", obs,
+                "BLOCKED_OWNER_MOTION_LEVEL_UNRESOLVED: the current owner contract carries a REQUIRED "
+                "motion constraint with no resolvable motion level",
+                {"owner_contract_source": authority.get("contract_source"),
+                 "requirement_ids": owner_motion.get("requirement_ids", [])})]
+        if owner_level > level:
+            # A lower plan-local or route-local setting cannot override a
+            # REQUIRED current owner level.
+            level, level_source = owner_level, "OWNER"
+
     rows = list(getattr(obs, "motion_observations", []) or
                 (obs.raw or {}).get("motion_observations", []) or [])
-    evidence = _observation_evidence(obs, "motion_observations", rows)
-    if cfg.get("required") is True and not rows:
+    evidence = {**_observation_evidence(obs, "motion_observations", rows),
+                "required_level": level, "required_level_source": level_source,
+                "owner_coverage": coverage,
+                "owner_contract_source": authority.get("contract_source"),
+                "approved_downgrade": bool(owner_motion.get("approved_downgrade"))}
+
+    if obs.reduced_motion:
+        # The reduced-motion counterpart verifies the usable equivalent.  A
+        # correct static fallback is the expected result here, not a failure.
+        return [_F("motion.reduced-motion-counterpart",
+                   "Reduced-motion counterpart is judged as a usable equivalent, not as choreography",
+                   True, "MOTION_SPEC", obs,
+                   detail="required choreography is verified by the normal-motion counterpart",
+                   evidence=evidence)]
+
+    required = plan_required or coverage == "REQUIRED"
+    if required and not rows:
         return [_blocked_observation(
             "motion.observation-coverage",
             "Required runtime motion observation was emitted", obs,
@@ -503,67 +709,95 @@ def check_motion(obs, plan):
             evidence)]
 
     identity = str((obs.raw or {}).get("engine_identity", obs.engine)).upper()
-    required_level = cfg.get("minimum_motion_level", cfg.get("required_level", cfg.get("motion_level")))
-    if required_level is None and plan.get("owner_intent"):
-        try:
-            from framework_validation.owner_intent import resolve_motion_requirement
-            resolved = resolve_motion_requirement(plan["owner_intent"], heuristic_level="MOTION_LEVEL_1")
-            required_level = resolved.get("owner_required_level") or resolved.get("execution_level")
-        except Exception:  # noqa: BLE001 - missing optional owner contract stays fail-closed below
-            required_level = None
-    if required_level is None and cfg.get("required") is True:
-        # A required motion exercise without a declared level is at least a
-        # Level 2 runtime obligation; do not let an omitted field weaken it.
-        required_level = "MOTION_LEVEL_2"
-    level_match = re.search(r"(?i)(?:MOTION[ _-]*)?LEVEL[ _-]*([0-3])", str(required_level or ""))
-    level = int(level_match.group(1)) if level_match else 0
     out = []
     if level >= 2 and identity != "REAL_BROWSER":
         out.append(_blocked_observation(
             "motion.real-browser-runtime", "Level 2/3 motion uses a real browser runtime", obs,
             "BLOCKED_RUNTIME_MOTION_ENGINE: simulation/source evidence cannot satisfy motion",
-            {**evidence, "engine_identity": identity, "required_level": required_level}))
+            {**evidence, "engine_identity": identity}))
     elif level >= 2:
         out.append(_F("motion.real-browser-runtime", "Level 2/3 motion uses a real browser runtime",
                       True, "MOTION_SPEC", obs, evidence=evidence))
 
-    meaningful = [row for row in rows if row.get("meaningful_state_change") is True
-                  or row.get("state_changed") is True
-                  or row.get("observed_state_change") is True
-                  or row.get("changed_properties")
-                  or any(float(row.get(key, 0) or 0) > 0.01
-                         for key in ("max_geometry_delta", "max_opacity_delta", "scroll_delta")
-                         if isinstance(row.get(key, 0), (int, float)))]
+    promised = _promised_sequences(cfg, authority)
+    rows_by_id = {str(row.get("sequence_id") or row.get("id")): row for row in rows}
+    sequence_ok: List[bool] = []
+
+    if level >= 2 and not promised and owner_motion.get("required_sequences"):
+        out.append(_blocked_observation(
+            "motion.sequence-inventory",
+            "Owner-required motion sequences are named before they are verified", obs,
+            "BLOCKED_SEQUENCE_INVENTORY_MISSING: the current owner contract requires named sequences "
+            "but neither the plan nor the contract declares any; a sequence list is not invented here",
+            evidence))
+
+    for item in promised:
+        sequence_id = item["sequence_id"]
+        row = rows_by_id.get(sequence_id)
+        title_suffix = " [%s]" % sequence_id
+        if row is None:
+            sequence_ok.append(False)
+            out.append(_F("motion.sequence-coverage",
+                          "Promised motion sequence is observed at runtime" + title_suffix,
+                          False, "MOTION_SPEC", obs,
+                          detail="sequence=%s not present in runtime observations" % sequence_id,
+                          evidence={**evidence, "observed": sorted(rows_by_id)}))
+            continue
+        out.append(_F("motion.sequence-coverage",
+                      "Promised motion sequence is observed at runtime" + title_suffix,
+                      True, "MOTION_SPEC", obs, detail="sequence=%s" % sequence_id, evidence=evidence))
+        if row.get("observation_supported") is False:
+            sequence_ok.append(False)
+            out.append(_blocked_observation(
+                "motion.sequence-observation",
+                "Promised motion sequence is observable by the available mechanism" + title_suffix, obs,
+                "BLOCKED_OBSERVATION_UNSUPPORTED: %s" % row.get("unsupported_reason"),
+                {**evidence, "sequence_id": sequence_id, "row": row}))
+            continue
+        responded = _motion_response_observed(row)
+        sequence_ok.append(responded)
+        out.append(_F("motion.sequence-behavior",
+                      "Promised motion sequence produces a meaningful response" + title_suffix,
+                      responded, "MOTION_SPEC", obs,
+                      detail="sequence=%s trigger=%s response=%s stimulus_scroll=%s" % (
+                          sequence_id, row.get("trigger"),
+                          sorted(set(row.get("changed_properties") or []) & _MOTION_RESPONSE_PROPERTIES),
+                          row.get("stimulus_scroll_delta", row.get("scroll_delta"))),
+                      evidence={**evidence, "sequence_id": sequence_id, "row": row}))
+        required_states = [str(state).upper() for state in
+                           (item.get("required_states") or row.get("required_states") or [])]
+        if required_states:
+            observed_states = {str(state).upper() for state in (row.get("observed_states") or [])}
+            missing_states = [state for state in required_states if state not in observed_states]
+            out.append(_F("motion.sequence-states",
+                          "Promised motion sequence reaches its required states" + title_suffix,
+                          not missing_states, "MOTION_SPEC", obs,
+                          detail="missing_states=%s" % missing_states,
+                          evidence={**evidence, "sequence_id": sequence_id,
+                                    "observed_states": sorted(observed_states)}))
+
     if level >= 2:
-        out.append(_F("motion.runtime-state-change", "Runtime motion produces meaningful state change",
-                      bool(meaningful), "MOTION_SPEC", obs,
-                      detail="observed=%d/%d" % (len(meaningful), len(rows)), evidence=evidence))
-
-    promised = cfg.get("sequences") or cfg.get("required_sequences") or cfg.get("promised_sequences") or []
-    if isinstance(promised, dict):
-        promised = promised.get("items", promised.get("sequences", []))
-    promised_ids = []
-    for index, item in enumerate(promised if isinstance(promised, list) else []):
-        if isinstance(item, dict):
-            promised_ids.append(str(item.get("sequence_id") or item.get("id") or item.get("name") or "sequence-%d" % (index + 1)))
+        # One functioning sequence must not hide a stationary or unobserved one.
+        if promised:
+            aggregate = bool(sequence_ok) and all(sequence_ok)
+            detail = "responding=%d/%d promised sequences" % (sum(1 for ok in sequence_ok if ok), len(promised))
         else:
-            promised_ids.append(str(item))
-    observed_ids = {str(row.get("sequence_id") or row.get("id")) for row in rows}
-    missing = [item for item in promised_ids if item not in observed_ids]
-    if level >= 2 and promised_ids:
-        out.append(_F("motion.sequence-coverage", "Named motion sequences are observed at runtime",
-                      not missing, "MOTION_SPEC", obs,
-                      detail="missing=%s" % missing, evidence={**evidence, "promised": promised_ids,
-                                                               "observed": sorted(observed_ids)}))
+            responding = [row for row in rows if _motion_response_observed(row)]
+            aggregate = bool(responding)
+            detail = "responding=%d/%d observations" % (len(responding), len(rows))
+        out.append(_F("motion.runtime-state-change", "Runtime motion produces meaningful state change",
+                      aggregate, "MOTION_SPEC", obs, detail=detail, evidence=evidence))
 
-    families = [str(row.get("family", row.get("animation_family", ""))).upper()
-                for row in rows]
-    if level >= 2 and families:
-        generic = [family for family in families if re.search(
-            r"(?:FADE|REVEAL|OPACITY|TRANSLATE[_ -]?Y|GENERIC)", family)]
-        out.append(_F("motion.generic-fade-diversity", "Motion uses more than generic fade/translate reveals",
-                      len(generic) != len(families), "MOTION_SPEC", obs,
-                      detail="families=%s" % families, evidence=evidence))
+        families = [_proven_family(row) for row in rows]
+        if rows:
+            distinct = [family for family in families if family and not _GENERIC_FAMILY_RE.search(family)]
+            out.append(_F("motion.generic-fade-diversity",
+                          "Motion uses more than generic fade/translate reveals",
+                          bool(distinct), "MOTION_SPEC", obs,
+                          detail="proven_families=%s declared=%d/%d" % (
+                              sorted({family for family in families if family}),
+                              sum(1 for family in families if family), len(families)),
+                          evidence=evidence))
     return out or None
 
 
