@@ -13,14 +13,21 @@ Validates:
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 from typing import Any, Dict, List
 
 from framework_validation.clean_room import (
     CleanRoomManifest,
+    CleanRoomExecutionAdapters,
+    CleanRoomExecutionRequest,
+    EXECUTION_STAGE_SEQUENCE,
     HistoricalQuarantineGuard,
+    execute_clean_room_workflow,
     evaluate_morphology_divergence,
     enforce_cheap_concept_gate,
     prepare_blind_critic_package,
+    run_synthetic_clean_room,
+    validate_pre_generation_scope,
     verify_reference_provenance,
 )
 
@@ -34,6 +41,11 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
 
     def test_unauthorized_historical_path_blocked(self) -> None:
         result = self.guard.check_input_path("projects/alpha-starts-now-flagship-proof/assets/hero-dawn-man.jpg")
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertEqual(result["violation"], "CLEAN_ROOM_INPUT_VIOLATION")
+
+    def test_absolute_historical_path_blocked(self) -> None:
+        result = self.guard.check_input_path(r"C:\workspace\projects\previous-generated-direction\index.html")
         self.assertEqual(result["status"], "BLOCKED")
         self.assertEqual(result["violation"], "CLEAN_ROOM_INPUT_VIOLATION")
 
@@ -188,6 +200,233 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         self.assertIsNone(pkg["builder_commentary"])
         self.assertIsNone(pkg["self_awarded_scores"])
         self.assertIsNone(pkg["previous_asn_screenshots"])
+
+    def test_execution_wires_required_stages_and_stops_for_owner_selection(self) -> None:
+        events: List[str] = []
+        vectors = (
+            "HERO_SILHOUETTE",
+            "SECTION_GEOMETRY",
+            "TWO_COLUMN_REPETITION",
+            "CARD_CONTAINER_DENSITY",
+            "MEDIA_DOMINANCE",
+            "TYPOGRAPHIC_SILHOUETTE",
+            "WHITESPACE_DENSITY",
+            "PAGE_RHYTHM",
+            "SIGNATURE_DEVICE",
+            "CTA_MORPHOLOGY",
+        )
+        candidate_morphology = {vector: f"CANDIDATE_{vector}" for vector in vectors}
+        baseline_morphology = {vector: f"BASELINE_{vector}" for vector in vectors}
+        manifest = CleanRoomManifest(
+            business_understanding_ref="synthetic/project-brief.md",
+            owner_intent_ref="synthetic/creative-intent-contract.md",
+            conversion_requirements_ref="synthetic/measurement-plan.md",
+            content_truth_ref="synthetic/content-plan.md",
+            external_references=[
+                {
+                    "reference_id": "EXT_01",
+                    "classification": "EXTERNAL_GOLD_STANDARD",
+                    "url": "https://example.test/reference",
+                }
+            ],
+        )
+
+        def generate(_manifest: CleanRoomManifest) -> Dict[str, Any]:
+            events.append("generate_concepts")
+            return {
+                "concepts": [
+                    {"concept_id": "A", "built_surfaces": ["desktop_hero", "signature_device"]},
+                    {"concept_id": "B", "built_surfaces": ["desktop_hero", "signature_device"]},
+                    {"concept_id": "C", "built_surfaces": ["desktop_hero", "signature_device"]},
+                ]
+            }
+
+        def render(_package: Dict[str, Any]) -> Dict[str, Any]:
+            events.append("render_candidate")
+            return {
+                "candidate_screenshot": "synthetic://candidate.png",
+                "morphology": candidate_morphology,
+            }
+
+        def load_baseline(path: str) -> Dict[str, Any]:
+            self.assertEqual(events, ["generate_concepts", "render_candidate"])
+            self.assertEqual(path, "projects/historical-negative-baseline")
+            events.append("load_negative_baseline")
+            return {"morphology": baseline_morphology}
+
+        def critic(package: Dict[str, Any]) -> Dict[str, Any]:
+            events.append("run_blind_critic")
+            self.assertIsNone(package["html_source"])
+            self.assertIsNone(package["previous_asn_screenshots"])
+            return {"status": "PASS", "review_id": "synthetic-review"}
+
+        request = CleanRoomExecutionRequest(
+            manifest=manifest,
+            adapters=CleanRoomExecutionAdapters(generate, render, load_baseline, critic),
+            negative_baseline_path="projects/historical-negative-baseline",
+            business_brief="Synthetic business brief.",
+            brand_brief="Synthetic brand brief.",
+            positive_input_paths=("synthetic/project-brief.md",),
+            external_reference_screenshots=("synthetic://external-reference.png",),
+            run_id="test-clean-room-execution",
+        )
+
+        result = execute_clean_room_workflow(request)
+
+        self.assertEqual(result["status"], "PASS")
+        self.assertEqual(result["workflow_status"], "OWNER_CONCEPT_SELECTION_PENDING")
+        self.assertEqual(result["owner_concept_selection"], "PENDING")
+        self.assertEqual(result["stage_sequence"], list(EXECUTION_STAGE_SEQUENCE))
+        self.assertEqual(
+            events,
+            ["generate_concepts", "render_candidate", "load_negative_baseline", "run_blind_critic"],
+        )
+        self.assertTrue(result["controls"]["negative_baseline_read_after_render"])
+        self.assertFalse(result["controls"]["negative_baseline_read_before_render"])
+        self.assertFalse(result["controls"]["asn_generation_attempted"])
+        self.assertEqual(result["controls"]["project_files_written"], 0)
+
+    def test_execution_blocks_historical_positive_input_before_any_adapter_runs(self) -> None:
+        events: List[str] = []
+
+        def unexpected(*_args: Any) -> Dict[str, Any]:
+            events.append("unexpected")
+            raise AssertionError("adapter must not run after a positive historical-input block")
+
+        request = CleanRoomExecutionRequest(
+            manifest=CleanRoomManifest(
+                external_references=[
+                    {
+                        "reference_id": "EXT_01",
+                        "classification": "EXTERNAL_GOLD_STANDARD",
+                        "url": "https://example.test/reference",
+                    }
+                ]
+            ),
+            adapters=CleanRoomExecutionAdapters(unexpected, unexpected, unexpected, unexpected),
+            negative_baseline_path="projects/historical-negative-baseline",
+            business_brief="Synthetic business brief.",
+            brand_brief="Synthetic brand brief.",
+            positive_input_paths=("projects/previous-generated-direction/index.html",),
+        )
+
+        result = execute_clean_room_workflow(request)
+
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertEqual(result["workflow_status"], "INPUT_PREFLIGHT_BLOCKED")
+        self.assertEqual(result["failure"], "CLEAN_ROOM_INPUT_VIOLATION")
+        self.assertEqual(events, [])
+
+    def test_pre_generation_scope_blocks_forbidden_surface_before_builder(self) -> None:
+        events: List[str] = []
+
+        def unexpected(*_args: Any) -> Dict[str, Any]:
+            events.append("builder")
+            raise AssertionError("builder must not run for a forbidden pre-generation surface")
+
+        scope = {
+            "allowed_surfaces": ["DESKTOP_HERO", "SIGNATURE_DEVICE", "FULL_HOMEPAGE"],
+            "concepts": [
+                {"concept_id": "A", "allowed_surfaces": ["DESKTOP_HERO", "SIGNATURE_DEVICE"]},
+                {"concept_id": "B", "allowed_surfaces": ["DESKTOP_HERO", "SIGNATURE_DEVICE"]},
+                {"concept_id": "C", "allowed_surfaces": ["DESKTOP_HERO", "SIGNATURE_DEVICE"]},
+            ],
+        }
+        self.assertEqual(validate_pre_generation_scope(scope)["status"], "FAIL")
+        request = CleanRoomExecutionRequest(
+            manifest=CleanRoomManifest(
+                business_understanding_ref="synthetic/brief.json",
+                owner_intent_ref="synthetic/intent.json",
+                external_references=[
+                    {
+                        "reference_id": "EXT_01",
+                        "classification": "EXTERNAL_GOLD_STANDARD",
+                        "url": "https://example.test/reference",
+                    }
+                ],
+            ),
+            adapters=CleanRoomExecutionAdapters(unexpected, unexpected, unexpected, unexpected),
+            negative_baseline_path="projects/historical-negative-baseline",
+            business_brief="Synthetic business brief.",
+            brand_brief="Synthetic brand brief.",
+            concept_scope=scope,
+        )
+
+        result = execute_clean_room_workflow(request)
+
+        self.assertEqual(result["status"], "FAIL")
+        self.assertEqual(result["workflow_status"], "PRE_GENERATION_SCOPE_FAILED")
+        self.assertEqual(events, [])
+        self.assertFalse(result["pre_generation_scope"].get("builder_task_emitted", False))
+
+    def test_synthetic_end_to_end_entrypoint_is_not_a_validator_only(self) -> None:
+        result = run_synthetic_clean_room("test-synthetic-end-to-end")
+
+        self.assertEqual(result["status"], "PASS")
+        self.assertTrue(result["synthetic"])
+        self.assertEqual(
+            result["adapter_events"],
+            ["generate_concepts", "render_candidate", "load_negative_baseline", "run_blind_critic"],
+        )
+        self.assertEqual(result["workflow_status"], "FULL_HOMEPAGE_AUTHORIZED")
+        self.assertEqual(result["controls"]["staged_input_file_count"], 7)
+        self.assertEqual(result["controls"]["staged_historical_output_files"], 0)
+        self.assertEqual(result["controls"]["generator_package_historical_sentinels"], 0)
+        self.assertEqual(result["controls"]["blind_critic_sentinel_leaks"], 0)
+        self.assertEqual(result["controls"]["negative_baseline_access_before_render"], "BLOCKED")
+        self.assertTrue(result["controls"]["negative_baseline_read_after_render"])
+        self.assertEqual(result["pre_generation_scope"]["status"], "PASS")
+        self.assertEqual(result["post_generation_scope_verification"]["status"], "PASS")
+        self.assertEqual(result["owner_selection"]["before_full_homepage_design"], "BLOCKED")
+        self.assertEqual(result["owner_selection"]["after_full_homepage_design"], "AUTHORIZED")
+        self.assertEqual(result["owner_selection"]["new_owner_lock_created"], False)
+        self.assertEqual(result["render_derived_morphology"]["status"], "PASS_DIVERGENCE")
+        self.assertEqual(
+            result["rendered_fixture_comparisons"]["SEMANTIC_RENAME_RENDER_FIXTURE"]["status"],
+            "FAIL_DIVERGENCE",
+        )
+        self.assertEqual(
+            result["rendered_fixture_comparisons"]["GENUINE_DIVERGENCE_RENDER_FIXTURE"]["status"],
+            "PASS_DIVERGENCE",
+        )
+
+        stage_root = Path(result["stage_root"])
+        for directory in (
+            "manifest",
+            "business",
+            "brand",
+            "approved-assets",
+            "external-references",
+            "candidate-output",
+            "evidence",
+        ):
+            self.assertTrue((stage_root / directory).is_dir(), directory)
+        for historical_path in (
+            "historical-project/old-site.html",
+            "historical-project/old-style.css",
+            "historical-project/old-hero.jpg",
+            "historical-project/rejected-screenshot.png",
+        ):
+            self.assertFalse((stage_root / historical_path).exists(), historical_path)
+
+        package_text = (stage_root / "manifest" / "concept-generation-package.json").read_text(encoding="utf-8")
+        inventory_text = (stage_root / "evidence" / "staged-input-inventory.json").read_text(encoding="utf-8")
+        audit_by_path = {
+            item["source_path"]: item["status"] for item in result["requested_input_audit"]
+        }
+        self.assertEqual(audit_by_path["historical-project/old-site.html"], "BLOCKED")
+        self.assertEqual(audit_by_path["historical-project/old-style.css"], "BLOCKED")
+        self.assertEqual(audit_by_path["historical-project/old-hero.jpg"], "BLOCKED")
+        self.assertEqual(audit_by_path["historical-project/rejected-screenshot.png"], "BLOCKED")
+        self.assertEqual(audit_by_path["brand/allowed-logo.svg"], "PASS")
+        self.assertEqual(audit_by_path["external-references/reference-01.png"], "PASS")
+        self.assertEqual(audit_by_path["external-references/reference-02.png"], "PASS")
+        for sentinel in ("NEVER_SHOW_THIS_TO_GENERATOR", "old-two-column-card", "old-hero.jpg"):
+            self.assertNotIn(sentinel, package_text)
+            self.assertNotIn(sentinel, inventory_text)
+        self.assertNotIn("SECRET_BUILDER_SCORE", str(result["blind_critic_package"]))
+        self.assertNotIn("cinematic-masterpiece", str(result["blind_critic_package"]))
+        self.assertFalse(result["controls"]["asn_generation_attempted"])
 
 
 if __name__ == "__main__":

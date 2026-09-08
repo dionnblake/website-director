@@ -430,6 +430,98 @@ _NAV_STATE_JS = r"""
 """
 
 
+_CLEAN_ROOM_MORPHOLOGY_JS = r"""
+() => {
+    const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return !element.hidden && style.display !== 'none'
+            && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+    };
+    const rect = element => {
+        const value = element.getBoundingClientRect();
+        return {x: Number(value.x.toFixed(3)), y: Number(value.y.toFixed(3)),
+                width: Number(value.width.toFixed(3)), height: Number(value.height.toFixed(3))};
+    };
+    const mediaSelector = 'img, picture, video, figure, [role="img"]';
+    const sections = [...document.querySelectorAll('main > section, section')]
+        .filter(visible).map((section, index) => {
+            const sectionRect = section.getBoundingClientRect();
+            const children = [...section.children].filter(visible);
+            const columns = children.filter(child => {
+                const childRect = child.getBoundingClientRect();
+                return childRect.width < sectionRect.width * 0.8
+                    && childRect.width > 0;
+            });
+            const sectionMedia = [...section.querySelectorAll(mediaSelector)].filter(visible);
+            const style = getComputedStyle(section);
+            const borderCount = [...section.querySelectorAll('article, div, figure, section')]
+                .filter(visible).filter(element => {
+                    const computed = getComputedStyle(element);
+                    return parseFloat(computed.borderTopWidth) > 0
+                        || parseFloat(computed.borderRightWidth) > 0
+                        || parseFloat(computed.borderBottomWidth) > 0
+                        || parseFloat(computed.borderLeftWidth) > 0;
+                }).length;
+            const mediaArea = sectionMedia.reduce((total, element) => {
+                const value = element.getBoundingClientRect();
+                return total + (value.width * value.height);
+            }, 0);
+            const firstColumn = columns[0] && columns[0].getBoundingClientRect();
+            const firstMedia = sectionMedia[0] && sectionMedia[0].getBoundingClientRect();
+            const mediaOnRight = firstMedia
+                ? firstMedia.x + firstMedia.width / 2 > sectionRect.x + sectionRect.width / 2
+                : null;
+            return {
+                index, ...rect(section), column_count: columns.length,
+                column_alignment: mediaOnRight !== null
+                    ? (mediaOnRight ? 'RIGHT' : 'LEFT')
+                    : (firstColumn && firstColumn.x < sectionRect.x + sectionRect.width / 2
+                        ? 'LEFT' : 'RIGHT'),
+                media_count: sectionMedia.length, media_area: mediaArea,
+                border_count: borderCount, display: style.display
+            };
+        });
+    const hero = sections[0] || {};
+    const allMedia = [...document.querySelectorAll(mediaSelector)].filter(visible);
+    const mediaArea = allMedia.reduce((total, element) => {
+        const value = element.getBoundingClientRect();
+        return total + (value.width * value.height);
+    }, 0);
+    const pageArea = Math.max(1, innerWidth * document.documentElement.scrollHeight);
+    const containers = [...document.querySelectorAll('main article, main section, main div, main figure')]
+        .filter(visible).filter(element => {
+            const style = getComputedStyle(element);
+            return parseFloat(style.borderTopWidth) > 0 || parseFloat(style.borderRightWidth) > 0
+                || parseFloat(style.borderBottomWidth) > 0 || parseFloat(style.borderLeftWidth) > 0;
+        });
+    const roundShapes = [...document.querySelectorAll('main *')].filter(visible).filter(element => {
+        const value = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return value.width > 20 && value.height > 20 && Math.abs(value.width - value.height) < 12
+            && style.borderRadius !== '0px' && style.borderRadius !== '0%';
+    });
+    const ctaCandidates = [...document.querySelectorAll('main a, main button')].filter(visible);
+    const cta = ctaCandidates.length ? rect(ctaCandidates[0]) : {};
+    const heading = document.querySelector('main h1, main h2, h1, h2');
+    const headingStyle = heading ? getComputedStyle(heading) : {};
+    const gaps = sections.slice(1).map((section, index) => {
+        const previous = sections[index];
+        return Math.max(0, section.y - (previous.y + previous.height));
+    });
+    return {
+        evidence_kind: 'BROWSER_LAYOUT', viewport_width: innerWidth,
+        viewport_height: innerHeight, document_height: document.documentElement.scrollHeight,
+        hero, sections, media_area_ratio: mediaArea / pageArea,
+        bordered_container_count: containers.length, round_shape_count: roundShapes.length,
+        average_section_gap: gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0,
+        cta, heading_font_family: headingStyle.fontFamily || ''
+    };
+}
+"""
+
+
 class PlaywrightEngine(BrowserQAEngine):
     name = "playwright"
     supports_real_browser = True
@@ -701,6 +793,8 @@ class PlaywrightEngine(BrowserQAEngine):
                         && img.naturalWidth > 0).length
                 })""")
             obs.raw["page_metrics"] = page_metrics
+            if (self.config or {}).get("capture_morphology_evidence"):
+                obs.raw["rendered_morphology_evidence"] = page.evaluate(_CLEAN_ROOM_MORPHOLOGY_JS)
             if (self.config or {}).get("capture_render_artifacts"):
                 obs.raw["rendered_dom"] = page.content()
                 obs.raw["rendered_css"] = page.evaluate(

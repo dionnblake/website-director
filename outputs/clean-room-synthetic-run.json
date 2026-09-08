@@ -1,0 +1,958 @@
+{
+  "adapter_events": [
+    "generate_concepts",
+    "render_candidate",
+    "load_negative_baseline",
+    "run_blind_critic"
+  ],
+  "blind_critic_package": {
+    "actual_css_ref": "candidate-output/candidate-rendered.css",
+    "actual_rendered_dom_ref": "candidate-output/candidate-rendered.html",
+    "actual_screenshots": [
+      "candidate-output/candidate.png"
+    ],
+    "brand_brief": "Synthetic owner intent for clean-room execution.",
+    "builder_commentary": null,
+    "business_brief": "Synthetic business understanding for clean-room execution.",
+    "candidate_screenshot": "candidate-output/candidate.png",
+    "class_names": null,
+    "critic_authority": "WEBSITE-GAUNTLET-PROTOCOL.md",
+    "css_source": null,
+    "direction_name": null,
+    "external_reference_screenshots": [
+      "external-references/reference-01.png",
+      "external-references/reference-02.png"
+    ],
+    "html_source": null,
+    "morphology_evidence": {
+      "average_section_gap": 179.99974999999995,
+      "bordered_container_count": 1,
+      "cta": {
+        "height": 47,
+        "width": 188,
+        "x": 129.594,
+        "y": 6252.375
+      },
+      "document_height": 6459,
+      "evidence_kind": "BROWSER_LAYOUT",
+      "heading_font_family": "Consolas, monospace",
+      "hero": {
+        "border_count": 1,
+        "column_alignment": "LEFT",
+        "column_count": 2,
+        "display": "grid",
+        "height": 720,
+        "index": 0,
+        "media_area": 0,
+        "media_count": 0,
+        "width": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "media_area_ratio": 0.35953277941201767,
+      "round_shape_count": 1,
+      "sections": [
+        {
+          "border_count": 1,
+          "column_alignment": "LEFT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 720,
+          "index": 0,
+          "media_area": 0,
+          "media_count": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 1,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 900
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 2,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 2317.094
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 3,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 3734.188
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1308.094,
+          "index": 4,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 5151.281
+        }
+      ],
+      "viewport_height": 900,
+      "viewport_width": 1440
+    },
+    "previous_asn_screenshots": null,
+    "programmatic_gauntlet_entrypoint": "ABSENT",
+    "self_awarded_scores": null
+  },
+  "blind_critic_result": {
+    "dimensions": {
+      "HERO_COMPOSITION": "PASS",
+      "SIGNATURE_VISUAL_DEVICE": "PASS",
+      "VISUAL_DISTINCTIVENESS": "PASS"
+    },
+    "review_id": "synthetic-blind-critic-01",
+    "sentinel_leaks": [],
+    "status": "PASS"
+  },
+  "candidate_render": {
+    "candidate_screenshot": "candidate-output/candidate.png",
+    "candidate_screenshot_sha256": "e13d92c8fd2d74e6bd8ffb28ce3d233695bd2d9ddee42396fe1308face7b3e4f",
+    "morphology": {
+      "source": "BROWSER_LAYOUT_EVIDENCE"
+    },
+    "rendered_css_ref": "candidate-output/candidate-rendered.css",
+    "rendered_dom_ref": "candidate-output/candidate-rendered.html",
+    "rendered_morphology_evidence": {
+      "average_section_gap": 179.99974999999995,
+      "bordered_container_count": 1,
+      "cta": {
+        "height": 47,
+        "width": 188,
+        "x": 129.594,
+        "y": 6252.375
+      },
+      "document_height": 6459,
+      "evidence_kind": "BROWSER_LAYOUT",
+      "heading_font_family": "Consolas, monospace",
+      "hero": {
+        "border_count": 1,
+        "column_alignment": "LEFT",
+        "column_count": 2,
+        "display": "grid",
+        "height": 720,
+        "index": 0,
+        "media_area": 0,
+        "media_count": 0,
+        "width": 1440,
+        "x": 0,
+        "y": 0
+      },
+      "media_area_ratio": 0.35953277941201767,
+      "round_shape_count": 1,
+      "sections": [
+        {
+          "border_count": 1,
+          "column_alignment": "LEFT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 720,
+          "index": 0,
+          "media_area": 0,
+          "media_count": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 1,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 900
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 2,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 2317.094
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1237.094,
+          "index": 3,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 3734.188
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 1,
+          "display": "block",
+          "height": 1308.094,
+          "index": 4,
+          "media_area": 836000,
+          "media_count": 1,
+          "width": 1440,
+          "x": 0,
+          "y": 5151.281
+        }
+      ],
+      "viewport_height": 900,
+      "viewport_width": 1440
+    }
+  },
+  "completion_note": "owner selected a rendered concept; full homepage progression is now authorized",
+  "concept_gate": {
+    "owner_concept_selection_required": true,
+    "scope": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+    "status": "PASS"
+  },
+  "controls": {
+    "asn_generation_attempted": false,
+    "blind_critic_sentinel_leaks": 0,
+    "generator_package_historical_sentinels": 0,
+    "historical_positive_inputs_read": false,
+    "negative_baseline_access_before_render": "BLOCKED",
+    "negative_baseline_read_after_render": true,
+    "negative_baseline_read_before_render": false,
+    "production_side_effects": false,
+    "project_files_written": 0,
+    "staged_historical_output_files": 0,
+    "staged_input_file_count": 7
+  },
+  "full_homepage_design": "AUTHORIZED",
+  "generator_package": {
+    "allowed_asset_list": [
+      {
+        "asset_id": "ALLOWED_LOGO",
+        "authorization_basis": "OWNER_ALLOWLIST_ITEM",
+        "classification": "OWNER_APPROVED_BRAND_ASSET",
+        "staged_path": "approved-assets/allowed-logo.svg"
+      }
+    ],
+    "approved_brand_constants": {},
+    "brand_brief": "Synthetic owner intent for clean-room execution.",
+    "business_brief": "Synthetic business understanding for clean-room execution.",
+    "concept_request": {
+      "allowed_surfaces": [
+        "DESKTOP_HERO",
+        "SIGNATURE_DEVICE"
+      ],
+      "before_owner_selection": "BLOCKED",
+      "concepts": [
+        {
+          "allowed_surfaces": [
+            "DESKTOP_HERO",
+            "SIGNATURE_DEVICE"
+          ],
+          "concept_id": "concept-a"
+        },
+        {
+          "allowed_surfaces": [
+            "DESKTOP_HERO",
+            "SIGNATURE_DEVICE"
+          ],
+          "concept_id": "concept-b"
+        },
+        {
+          "allowed_surfaces": [
+            "DESKTOP_HERO",
+            "SIGNATURE_DEVICE"
+          ],
+          "concept_id": "concept-c"
+        }
+      ]
+    },
+    "generation_instruction": "CLEAN_ROOM_MODE: use only the staged creative workspace. Generate exactly three bounded concept candidates, each limited to DESKTOP_HERO and SIGNATURE_DEVICE. Do not inspect repository, project, review-workspace, or prior generated output paths. Stop after candidate rendering and blind critique for owner concept selection.",
+    "mode": "CLEAN_ROOM",
+    "positive_reference_list": [
+      {
+        "classification": "EXTERNAL_GOLD_STANDARD",
+        "reference_id": "EXT_SYNTHETIC_01",
+        "staged_path": "external-references/reference-01.png",
+        "url": "https://example.test/clean-room-reference-01"
+      },
+      {
+        "classification": "OWNER_SUPPLIED_EXTERNAL_REFERENCE",
+        "reference_id": "EXT_SYNTHETIC_02",
+        "staged_path": "external-references/reference-02.png",
+        "url": "https://example.test/clean-room-reference-02"
+      }
+    ],
+    "run_id": "synthetic-clean-room-run",
+    "staged_workspace": {
+      "approved_assets": "approved-assets/",
+      "brand": "brand/",
+      "business": "business/",
+      "candidate_output": "candidate-output/",
+      "evidence": "evidence/",
+      "external_references": "external-references/",
+      "manifest": "manifest/clean-room-manifest.json"
+    }
+  },
+  "mode": "CLEAN_ROOM",
+  "negative_baseline": {
+    "morphology": {},
+    "path": "historical-project/old-site.html",
+    "rendered_morphology_evidence": {
+      "average_section_gap": 0,
+      "bordered_container_count": 5,
+      "cta": {
+        "height": 46,
+        "width": 107,
+        "x": 229,
+        "y": 2011.813
+      },
+      "document_height": 2210,
+      "evidence_kind": "BROWSER_LAYOUT",
+      "heading_font_family": "Georgia, serif",
+      "hero": {
+        "border_count": 0,
+        "column_alignment": "RIGHT",
+        "column_count": 2,
+        "display": "grid",
+        "height": 650,
+        "index": 0,
+        "media_area": 59101,
+        "media_count": 2,
+        "width": 1100,
+        "x": 170,
+        "y": 0
+      },
+      "media_area_ratio": 0.1314822146807441,
+      "round_shape_count": 0,
+      "sections": [
+        {
+          "border_count": 0,
+          "column_alignment": "RIGHT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 650,
+          "index": 0,
+          "media_area": 59101,
+          "media_count": 2,
+          "width": 1100,
+          "x": 170,
+          "y": 0
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 390,
+          "index": 1,
+          "media_area": 89832,
+          "media_count": 1,
+          "width": 1100,
+          "x": 170,
+          "y": 650
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "RIGHT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 390,
+          "index": 2,
+          "media_area": 89832,
+          "media_count": 1,
+          "width": 1100,
+          "x": 170,
+          "y": 1040
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "LEFT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 390,
+          "index": 3,
+          "media_area": 89832,
+          "media_count": 1,
+          "width": 1100,
+          "x": 170,
+          "y": 1430
+        },
+        {
+          "border_count": 0,
+          "column_alignment": "RIGHT",
+          "column_count": 2,
+          "display": "grid",
+          "height": 390,
+          "index": 4,
+          "media_area": 89832,
+          "media_count": 1,
+          "width": 1100,
+          "x": 170,
+          "y": 1820
+        }
+      ],
+      "viewport_height": 900,
+      "viewport_width": 1440
+    },
+    "role": "NEGATIVE_BASELINE_ONLY"
+  },
+  "owner_concept_selection": "CONFIRMED",
+  "owner_selection": {
+    "after_full_homepage_design": "AUTHORIZED",
+    "approved_by": "OWNER",
+    "before_full_homepage_design": "BLOCKED",
+    "new_owner_lock_created": false,
+    "owner_action": "SELECT",
+    "owner_selected_direction": "concept-a",
+    "state_location": "visual_prototypes.owner_selection_confirmed",
+    "status": "PASS"
+  },
+  "post_generation_scope_verification": {
+    "owner_concept_selection_required": true,
+    "scope": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+    "status": "PASS"
+  },
+  "pre_generation_scope": {
+    "allowed_surfaces": [
+      "DESKTOP_HERO",
+      "SIGNATURE_DEVICE"
+    ],
+    "builder_task_authorized": true,
+    "builder_task_emitted": true,
+    "concept_count": 3,
+    "scope": "DESKTOP_HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+    "status": "PASS"
+  },
+  "programmatic_gauntlet_entrypoint": "ABSENT",
+  "receipt_version": "1.0.0",
+  "reference_provenance": {
+    "status": "PASS",
+    "valid_references_count": 2
+  },
+  "render_derived_morphology": {
+    "baseline": {
+      "evidence_kind": "BROWSER_LAYOUT",
+      "measurements": {
+        "average_section_gap": 0.0,
+        "bordered_container_count": 5.0,
+        "document_height": 2210.0,
+        "media_area_ratio": 0.1314822146807441,
+        "round_shape_count": 0.0,
+        "section_count": 5,
+        "viewport_height": 900.0,
+        "viewport_width": 1440.0
+      },
+      "status": "PASS",
+      "vectors": {
+        "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+        "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+        "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
+        "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
+        "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+        "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
+        "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
+        "TWO_COLUMN_REPETITION": true,
+        "TYPOGRAPHIC_SILHOUETTE": "SERIF",
+        "WHITESPACE_DENSITY": "COMPACT"
+      }
+    },
+    "candidate": {
+      "evidence_kind": "BROWSER_LAYOUT",
+      "measurements": {
+        "average_section_gap": 179.99974999999995,
+        "bordered_container_count": 1.0,
+        "document_height": 6459.0,
+        "media_area_ratio": 0.35953277941201767,
+        "round_shape_count": 1.0,
+        "section_count": 5,
+        "viewport_height": 900.0,
+        "viewport_width": 1440.0
+      },
+      "status": "PASS",
+      "vectors": {
+        "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+        "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+        "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
+        "MEDIA_DOMINANCE": "FULL_VIEWPORT_CANVAS",
+        "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+        "SECTION_GEOMETRY": "SINGLE_COLUMN_NARRATIVE",
+        "SIGNATURE_DEVICE": "ROUND_FOCAL_DEVICE",
+        "TWO_COLUMN_REPETITION": false,
+        "TYPOGRAPHIC_SILHOUETTE": "MONO",
+        "WHITESPACE_DENSITY": "EXPANSIVE"
+      }
+    },
+    "divergence": "RENDER_DERIVED_MORPHOLOGY_PASS",
+    "failures": [
+      "CARD_CONTAINER_DENSITY",
+      "PAGE_RHYTHM",
+      "CTA_MORPHOLOGY"
+    ],
+    "semantic_labels_used": false,
+    "status": "PASS_DIVERGENCE",
+    "vector_results": {
+      "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
+      "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
+      "HERO_SILHOUETTE": "DIVERGENT",
+      "MEDIA_DOMINANCE": "DIVERGENT",
+      "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
+      "SECTION_GEOMETRY": "DIVERGENT",
+      "SIGNATURE_DEVICE": "DIVERGENT",
+      "TWO_COLUMN_REPETITION": "DIVERGENT",
+      "TYPOGRAPHIC_SILHOUETTE": "DIVERGENT",
+      "WHITESPACE_DENSITY": "DIVERGENT"
+    }
+  },
+  "rendered_fixture_comparisons": {
+    "GENUINE_DIVERGENCE_RENDER_FIXTURE": {
+      "baseline": {
+        "evidence_kind": "BROWSER_LAYOUT",
+        "measurements": {
+          "average_section_gap": 0.0,
+          "bordered_container_count": 5.0,
+          "document_height": 2210.0,
+          "media_area_ratio": 0.1314822146807441,
+          "round_shape_count": 0.0,
+          "section_count": 5,
+          "viewport_height": 900.0,
+          "viewport_width": 1440.0
+        },
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
+          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
+          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
+          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
+          "TWO_COLUMN_REPETITION": true,
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
+          "WHITESPACE_DENSITY": "COMPACT"
+        }
+      },
+      "candidate": {
+        "evidence_kind": "BROWSER_LAYOUT",
+        "measurements": {
+          "average_section_gap": 179.99974999999995,
+          "bordered_container_count": 1.0,
+          "document_height": 6459.0,
+          "media_area_ratio": 0.35953277941201767,
+          "round_shape_count": 1.0,
+          "section_count": 5,
+          "viewport_height": 900.0,
+          "viewport_width": 1440.0
+        },
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+          "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
+          "MEDIA_DOMINANCE": "FULL_VIEWPORT_CANVAS",
+          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+          "SECTION_GEOMETRY": "SINGLE_COLUMN_NARRATIVE",
+          "SIGNATURE_DEVICE": "ROUND_FOCAL_DEVICE",
+          "TWO_COLUMN_REPETITION": false,
+          "TYPOGRAPHIC_SILHOUETTE": "MONO",
+          "WHITESPACE_DENSITY": "EXPANSIVE"
+        }
+      },
+      "divergence": "RENDER_DERIVED_MORPHOLOGY_PASS",
+      "failures": [
+        "CARD_CONTAINER_DENSITY",
+        "PAGE_RHYTHM",
+        "CTA_MORPHOLOGY"
+      ],
+      "semantic_labels_used": false,
+      "status": "PASS_DIVERGENCE",
+      "vector_results": {
+        "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
+        "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
+        "HERO_SILHOUETTE": "DIVERGENT",
+        "MEDIA_DOMINANCE": "DIVERGENT",
+        "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
+        "SECTION_GEOMETRY": "DIVERGENT",
+        "SIGNATURE_DEVICE": "DIVERGENT",
+        "TWO_COLUMN_REPETITION": "DIVERGENT",
+        "TYPOGRAPHIC_SILHOUETTE": "DIVERGENT",
+        "WHITESPACE_DENSITY": "DIVERGENT"
+      }
+    },
+    "SEMANTIC_RENAME_RENDER_FIXTURE": {
+      "baseline": {
+        "evidence_kind": "BROWSER_LAYOUT",
+        "measurements": {
+          "average_section_gap": 0.0,
+          "bordered_container_count": 5.0,
+          "document_height": 2210.0,
+          "media_area_ratio": 0.1314822146807441,
+          "round_shape_count": 0.0,
+          "section_count": 5,
+          "viewport_height": 900.0,
+          "viewport_width": 1440.0
+        },
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
+          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
+          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
+          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
+          "TWO_COLUMN_REPETITION": true,
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
+          "WHITESPACE_DENSITY": "COMPACT"
+        }
+      },
+      "candidate": {
+        "evidence_kind": "BROWSER_LAYOUT",
+        "measurements": {
+          "average_section_gap": 0.0002500000000509317,
+          "bordered_container_count": 5.0,
+          "document_height": 2080.0,
+          "media_area_ratio": 0.09954988398103633,
+          "round_shape_count": 0.0,
+          "section_count": 5,
+          "viewport_height": 900.0,
+          "viewport_width": 1440.0
+        },
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
+          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
+          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
+          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
+          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
+          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
+          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
+          "TWO_COLUMN_REPETITION": true,
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
+          "WHITESPACE_DENSITY": "COMPACT"
+        }
+      },
+      "divergence": "RENDER_DERIVED_MORPHOLOGY_FAIL",
+      "failures": [
+        "HERO_SILHOUETTE",
+        "SECTION_GEOMETRY",
+        "TWO_COLUMN_REPETITION",
+        "CARD_CONTAINER_DENSITY",
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE",
+        "WHITESPACE_DENSITY",
+        "PAGE_RHYTHM",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
+      "semantic_labels_used": false,
+      "status": "FAIL_DIVERGENCE",
+      "vector_results": {
+        "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
+        "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
+        "HERO_SILHOUETTE": "MATCHES_HISTORICAL_BASELINE",
+        "MEDIA_DOMINANCE": "MATCHES_HISTORICAL_BASELINE",
+        "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
+        "SECTION_GEOMETRY": "MATCHES_HISTORICAL_BASELINE",
+        "SIGNATURE_DEVICE": "MATCHES_HISTORICAL_BASELINE",
+        "TWO_COLUMN_REPETITION": "MATCHES_HISTORICAL_BASELINE",
+        "TYPOGRAPHIC_SILHOUETTE": "MATCHES_HISTORICAL_BASELINE",
+        "WHITESPACE_DENSITY": "MATCHES_HISTORICAL_BASELINE"
+      }
+    }
+  },
+  "requested_input_audit": [
+    {
+      "path": "historical-project/old-site.html",
+      "reason": "Historical output at 'historical-project/old-site.html' is structurally quarantined from concept generation.",
+      "source_path": "historical-project/old-site.html",
+      "status": "BLOCKED",
+      "violation": "CLEAN_ROOM_INPUT_VIOLATION"
+    },
+    {
+      "path": "historical-project/old-style.css",
+      "reason": "Historical output at 'historical-project/old-style.css' is structurally quarantined from concept generation.",
+      "source_path": "historical-project/old-style.css",
+      "status": "BLOCKED",
+      "violation": "CLEAN_ROOM_INPUT_VIOLATION"
+    },
+    {
+      "path": "historical-project/old-hero.jpg",
+      "reason": "Historical output at 'historical-project/old-hero.jpg' is structurally quarantined from concept generation.",
+      "source_path": "historical-project/old-hero.jpg",
+      "status": "BLOCKED",
+      "violation": "CLEAN_ROOM_INPUT_VIOLATION"
+    },
+    {
+      "path": "historical-project/rejected-screenshot.png",
+      "reason": "Historical output at 'historical-project/rejected-screenshot.png' is structurally quarantined from concept generation.",
+      "source_path": "historical-project/rejected-screenshot.png",
+      "status": "BLOCKED",
+      "violation": "CLEAN_ROOM_INPUT_VIOLATION"
+    },
+    {
+      "path": "brand/allowed-logo.svg",
+      "source_path": "brand/allowed-logo.svg",
+      "status": "PASS"
+    },
+    {
+      "path": "external-references/reference-01.png",
+      "source_path": "external-references/reference-01.png",
+      "status": "PASS"
+    },
+    {
+      "path": "external-references/reference-02.png",
+      "source_path": "external-references/reference-02.png",
+      "status": "PASS"
+    },
+    {
+      "path": "business/brief.json",
+      "source_path": "business/brief.json",
+      "status": "PASS"
+    }
+  ],
+  "run_id": "synthetic-clean-room-run",
+  "runtime_entrypoint": "framework_validation.clean_room.prepare_clean_room_concept_run",
+  "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run",
+  "stage_sequence": [
+    "INPUT_PREFLIGHT",
+    "REFERENCE_PROVENANCE",
+    "STAGED_CREATIVE_WORKSPACE",
+    "PRE_GENERATION_SCOPE",
+    "NEGATIVE_BASELINE_PRE_RENDER",
+    "CONCEPT_GENERATION",
+    "CHEAP_CONCEPT_GATE",
+    "CANDIDATE_RENDER",
+    "NEGATIVE_BASELINE_ACCESS",
+    "NEGATIVE_BASELINE_LOAD",
+    "RENDER_DERIVED_MORPHOLOGY",
+    "BLIND_CRITIC_PACKAGE",
+    "BLIND_CRITIC",
+    "OWNER_CONCEPT_SELECTION_GATE"
+  ],
+  "staged_input_inventory": [
+    {
+      "authorization_basis": "CURRENT_BUSINESS_UNDERSTANDING",
+      "classification": "BUSINESS_BRIEF",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "bbc2658c688d9b98421526b89f645de9fe1debf8df7893bc26fa1d80f766834b",
+      "source_path": "business/brief.json",
+      "staged_path": "business/brief.json"
+    },
+    {
+      "authorization_basis": "CURRENT_OWNER_INTENT",
+      "classification": "OWNER_INTENT",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "1d26584b132803c131cac6f4e6d2c5e17e0f0d3941fdf51759d43f510fa1a5d0",
+      "source_path": "business/owner-intent.json",
+      "staged_path": "brand/owner-intent.json"
+    },
+    {
+      "authorization_basis": "CURRENT_MEASUREMENT_PLAN",
+      "classification": "CONVERSION_REQUIREMENTS",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "affbb16194a1f6b1fc0c65e022833c93e8685d5e386af7ab11ea92ea7ae6c4c2",
+      "source_path": "business/measurement.json",
+      "staged_path": "business/measurement.json"
+    },
+    {
+      "authorization_basis": "CURRENT_CONTENT_TRUTH",
+      "classification": "CONTENT_TRUTH",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "47ec5531d466f1557a0e06576bf6225e968f8ff9680b243a80e8054c273f6313",
+      "source_path": "business/content.json",
+      "staged_path": "business/content.json"
+    },
+    {
+      "authorization_basis": "OWNER_ALLOWLIST_ITEM",
+      "classification": "OWNER_APPROVED_BRAND_ASSET",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "f59ee577cafaa8eb6da51f677e68b446a5bd3d7969bf07087a1b3cc0294e3edf",
+      "source_path": "brand/allowed-logo.svg",
+      "staged_path": "approved-assets/allowed-logo.svg"
+    },
+    {
+      "authorization_basis": "REFERENCE_PROVENANCE_EXT_SYNTHETIC_01",
+      "classification": "EXTERNAL_GOLD_STANDARD",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "990bcad6d86b2422e7e6d1f1e160c6fe131bb6e1f82196f4d82b32afe56af3f6",
+      "source_path": "external-references/reference-01.png",
+      "staged_path": "external-references/reference-01.png"
+    },
+    {
+      "authorization_basis": "REFERENCE_PROVENANCE_EXT_SYNTHETIC_02",
+      "classification": "OWNER_SUPPLIED_EXTERNAL_REFERENCE",
+      "run_id": "synthetic-clean-room-run",
+      "sha256": "990bcad6d86b2422e7e6d1f1e160c6fe131bb6e1f82196f4d82b32afe56af3f6",
+      "source_path": "external-references/reference-02.png",
+      "staged_path": "external-references/reference-02.png"
+    }
+  ],
+  "stages": [
+    {
+      "detail": "manifest and declared positive inputs passed the historical quarantine boundary",
+      "evidence": {
+        "allowlisted_asset_count": 1,
+        "positive_input_count": 9
+      },
+      "id": "INPUT_PREFLIGHT",
+      "status": "PASS"
+    },
+    {
+      "detail": "positive references have accepted provenance",
+      "evidence": {
+        "valid_references_count": 2
+      },
+      "id": "REFERENCE_PROVENANCE",
+      "status": "PASS"
+    },
+    {
+      "detail": "validated inputs staged into the clean-room creative pack",
+      "evidence": {
+        "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run",
+        "staged_historical_output_files": 0,
+        "staged_input_file_count": 7
+      },
+      "id": "STAGED_CREATIVE_WORKSPACE",
+      "status": "PASS"
+    },
+    {
+      "detail": "three concept builder tasks limited to hero and signature device",
+      "evidence": {
+        "allowed_surfaces": [
+          "DESKTOP_HERO",
+          "SIGNATURE_DEVICE"
+        ],
+        "builder_task_emitted": false
+      },
+      "id": "PRE_GENERATION_SCOPE",
+      "status": "PASS"
+    },
+    {
+      "detail": "historical baseline access probe was blocked before candidate render; no baseline read occurred",
+      "evidence": {
+        "access_result": "BLOCKED",
+        "read_performed": false
+      },
+      "id": "NEGATIVE_BASELINE_PRE_RENDER",
+      "status": "PASS"
+    },
+    {
+      "detail": "concept adapter returned a bounded candidate package",
+      "evidence": {
+        "concept_count": 3
+      },
+      "id": "CONCEPT_GENERATION",
+      "status": "PASS"
+    },
+    {
+      "detail": "three hero-plus-signature-device concepts accepted",
+      "evidence": {
+        "scope": "HERO_PLUS_SIGNATURE_DEVICE_ONLY"
+      },
+      "id": "CHEAP_CONCEPT_GATE",
+      "status": "PASS"
+    },
+    {
+      "detail": "candidate hero and signature device rendered",
+      "evidence": {
+        "candidate_screenshot": "candidate-output/candidate.png"
+      },
+      "id": "CANDIDATE_RENDER",
+      "status": "PASS"
+    },
+    {
+      "detail": "negative baseline access opened after candidate render",
+      "evidence": {
+        "path": "historical-project/old-site.html",
+        "role": "NEGATIVE_BASELINE_ONLY"
+      },
+      "id": "NEGATIVE_BASELINE_ACCESS",
+      "status": "PASS"
+    },
+    {
+      "detail": "historical output was loaded only as a negative baseline",
+      "evidence": {
+        "role": "NEGATIVE_BASELINE_ONLY"
+      },
+      "id": "NEGATIVE_BASELINE_LOAD",
+      "status": "PASS"
+    },
+    {
+      "detail": "RENDER_DERIVED_MORPHOLOGY_PASS",
+      "evidence": {
+        "failures": [
+          "CARD_CONTAINER_DENSITY",
+          "PAGE_RHYTHM",
+          "CTA_MORPHOLOGY"
+        ],
+        "semantic_labels_used": false
+      },
+      "id": "RENDER_DERIVED_MORPHOLOGY",
+      "status": "PASS_DIVERGENCE"
+    },
+    {
+      "detail": "critic package contains rendered evidence and briefs only",
+      "evidence": {
+        "implementation_source_excluded": true,
+        "sentinel_leaks": 0
+      },
+      "id": "BLIND_CRITIC_PACKAGE",
+      "status": "PASS"
+    },
+    {
+      "detail": "existing Website Gauntlet authority package completed",
+      "evidence": {},
+      "id": "BLIND_CRITIC",
+      "status": "PASS"
+    },
+    {
+      "detail": "existing visual-prototype owner authority evaluated",
+      "evidence": {
+        "after_full_homepage_design": "AUTHORIZED",
+        "before_full_homepage_design": "BLOCKED"
+      },
+      "id": "OWNER_CONCEPT_SELECTION_GATE",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "synthetic": true,
+  "workflow_status": "FULL_HOMEPAGE_AUTHORIZED"
+}

@@ -192,3 +192,72 @@ Post-render comparison evaluates physical layout geometry against historical neg
 
 Semantic component renaming (e.g., renaming a `card` to a `cinematic chapter`) while keeping identical geometry triggers:
 `MORPHOLOGY_DIVERGENCE = FAIL`.
+
+---
+
+## 10. Execution contract
+
+The canonical runtime boundary is
+`framework_validation.clean_room.prepare_clean_room_concept_run`. The
+compatibility names `execute_clean_room_workflow` and
+`run_clean_room_creative_mode` delegate to that same boundary. It is an
+execution coordinator, not a report-only validator. It accepts a
+`CleanRoomExecutionRequest` and four provider-neutral adapters plus an
+optional stage-ready callback:
+
+1. `generate_concepts(manifest)` returns the three cheap concepts after the
+   staged package and pre-generation scope pass.
+2. `render_candidate(concept_package)` returns a candidate screenshot and,
+   for real proof, browser-derived DOM/CSS/layout evidence.
+3. `load_negative_baseline(path)` is callable only after candidate rendering
+   and receives no builder or positive-reference context.
+4. `run_blind_critic(package)` receives the stripped rendered-evidence package
+   from §8. There is no programmatic Gauntlet entrypoint in the repository;
+   the adapter hands off to the existing Website Gauntlet critic authority
+   without creating a second critic.
+
+The boundary creates one fresh ignored runtime pack at
+`.clean-room-runs/<run_id>/` with `manifest/`, `business/`, `brand/`,
+`approved-assets/`, `external-references/`, `candidate-output/`, and
+`evidence/`. Only manifest-declared, allowlisted files are copied. The staged
+inventory records `run_id`, `source_path`, `staged_path`, `classification`,
+`sha256`, and `authorization_basis`; historical staged output must remain zero.
+
+The coordinator executes these stages in order:
+
+```text
+INPUT_PREFLIGHT → REFERENCE_PROVENANCE → STAGED_CREATIVE_WORKSPACE
+→ PRE_GENERATION_SCOPE → NEGATIVE_BASELINE_PRE_RENDER
+→ CONCEPT_GENERATION → CHEAP_CONCEPT_GATE → CANDIDATE_RENDER
+→ NEGATIVE_BASELINE_ACCESS → NEGATIVE_BASELINE_LOAD
+→ RENDER_DERIVED_MORPHOLOGY → BLIND_CRITIC_PACKAGE → BLIND_CRITIC
+→ OWNER_CONCEPT_SELECTION_GATE
+```
+
+The pre-generation request is exactly three concepts limited to
+`DESKTOP_HERO` and `SIGNATURE_DEVICE`; full homepage, mobile full page,
+footer, multi-route, full browser QA, and motion certification surfaces fail
+before the builder callback. Browser-derived morphology uses measured layout
+facts, not class names or caller-declared divergence labels. The receipt
+records pre-render baseline blocking, post-render baseline role, package
+sentinels, critic leaks, owner state, project-write count, and production side
+effects. Without a valid existing
+`visual_prototypes.owner_selection_confirmed` event, full homepage progression
+remains `BLOCKED`; a valid owner selection changes it to `AUTHORIZED` without
+creating a new lock.
+
+The deterministic local proof is runnable with:
+
+```text
+python -m framework_validation.clean_room --synthetic
+```
+
+The proof uses synthetic adapters and the existing Playwright engine. It does
+not call a provider, inspect a historical project before render, modify a
+frozen project, generate ASN, publish, deploy, or write under `projects/`.
+Framework isolation is `STAGED_WORKSPACE_ONLY`; the operating system sandbox
+is `NONE`, so unrestricted agent path access remains a risk. The operational
+mitigation is to launch the creative task from the staged workspace with an
+explicit no-repository-source instruction. Provider-specific adapters remain
+outside this framework boundary and must preserve the same ordering and
+receipt contract.

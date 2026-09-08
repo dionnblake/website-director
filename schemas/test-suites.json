@@ -343,12 +343,15 @@
     },
     {
       "id": "clean_room_creative_mode",
-      "label": "Clean-Room Creative Mode quarantine, provenance, cheap gate, and morphology divergence controls",
+      "label": "Clean-Room Creative Mode quarantine, staged runtime, browser morphology, ordered execution, synthetic proof, and owner-gate controls",
       "status": "ACTIVE",
       "command": ["python", "-m", "unittest", "tests.test_clean_room_creative_mode"],
       "paths": [
         "tests/test_clean_room_creative_mode.py",
         "framework_validation/clean_room.py",
+        "framework_validation/rendered_morphology.py",
+        "browser-qa/engine/playwright_engine.py",
+        "browser-qa/engine/base.py",
         "CLEAN-ROOM-CREATIVE-PROTOCOL.md"
       ],
       "required": true,

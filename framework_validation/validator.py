@@ -63,7 +63,7 @@ MARKER_VERSION_RE = re.compile(
 )
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))[^)]*\)")
 HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
-SOURCE_IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache"}
+SOURCE_IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", ".clean-room-runs"}
 REPORT_RUNTIME_PREFIX = "framework-validation/reports/runtime/"
 REPORT_CERTIFICATION_PREFIX = "framework-validation/reports/"
 RUNTIME_SOURCE_PREFIXES = (REPORT_RUNTIME_PREFIX, "browser-qa/evidence/")

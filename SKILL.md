@@ -216,6 +216,35 @@ BROWSER DESIGN` → `REAL BROWSER RENDER` → `DESKTOP + MOBILE SCREENSHOTS` →
 ---
 
 ### PHASE 4.5: High-Fidelity Visual Prototypes & Owner Selection Gate
+- **CLEAN_ROOM execution boundary:** When `CREATIVE_MODE = CLEAN_ROOM`, execute
+  `framework_validation.clean_room.prepare_clean_room_concept_run` before any
+  creative reference or asset gathering. Use only the generated
+  `.clean-room-runs/<run_id>/` staged workspace and the package emitted by that
+  boundary; do not manually inspect `projects/`, `review-workspaces/`, or prior
+  generated output during generation. The boundary copies only manifest-
+  declared inputs, blocks historical positive paths, and records the staged
+  inventory and hashes.
+- The clean-room pre-generation request must contain exactly three concepts,
+  each limited to `DESKTOP_HERO` and `SIGNATURE_DEVICE`. Do not emit full
+  homepage, mobile full-page, footer, multi-route, full-browser-QA, or motion-
+  certification work before the cheap concept gate. Render the bounded
+  candidate, then use the existing Website Gauntlet critic authority with a
+  stripped package containing rendered evidence only. Historical output may be
+  opened only after rendering as a negative baseline for browser-derived
+  morphology.
+- Stop at the existing `visual_prototypes.owner_selection_confirmed` authority.
+  Do not add an approval mechanism or owner lock. Full homepage progression is
+  `BLOCKED` until a valid owner selection event makes it `AUTHORIZED`.
+- The framework provides staged context isolation, not an OS sandbox:
+  `FRAMEWORK_CREATIVE_CONTEXT_ISOLATION = STAGED_WORKSPACE_ONLY`,
+  `OS_FILESYSTEM_SANDBOX = NONE`, and
+  `UNRESTRICTED_AGENT_PATH_ACCESS_RISK = PRESENT`. Mitigate the remaining
+  process-level risk by launching the creative task from the staged workspace
+  with an explicit no-repository-source instruction.
+- These `CLEAN_ROOM` rules govern the prototype path and stop condition below:
+  do not enter the normal `projects/[project]/prototypes/` or full-homepage
+  expansion instructions until the existing owner-selection event authorizes
+  that progression.
 - Consult [VISUAL-PROTOTYPE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-PROTOTYPE-PROTOCOL.md).
 - **Rule (No Prose-Only Selection):** The owner must NEVER select a direction from prose alone. Build bounded, high-fidelity browser prototypes in `projects/[project]/prototypes/direction-XX/`.
 - **Required Prototype Anatomy:** Global Nav/Header, Complete Hero (`HERO_THESIS`), Representative Content Section, Signature Element (`SIGNATURE_ELEMENT`), Action CTA, and Responsive Mobile (390px) evidence.
