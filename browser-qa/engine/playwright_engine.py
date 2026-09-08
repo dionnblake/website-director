@@ -450,6 +450,64 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
             area: cleanNumber(value.width * value.height)
         };
     };
+    const clippedRect = (value, bounds) => {
+        const left = Math.max(value.x, bounds.x), top = Math.max(value.y, bounds.y);
+        const right = Math.min(value.x + value.width, bounds.x + bounds.width);
+        const bottom = Math.min(value.y + value.height, bounds.y + bounds.height);
+        return right > left && bottom > top
+            ? {x: left, y: top, width: right - left, height: bottom - top} : null;
+    };
+    const unionArea = (rectangles, bounds) => {
+        const clipped = rectangles.map(value => clippedRect(value, bounds)).filter(Boolean);
+        if (!clipped.length) return 0;
+        const xs = [...new Set(clipped.flatMap(value => [value.x, value.x + value.width]))].sort((a, b) => a - b);
+        let area = 0;
+        for (let index = 0; index < xs.length - 1; index += 1) {
+            const left = xs[index], right = xs[index + 1];
+            if (right <= left) continue;
+            const intervals = clipped
+                .filter(value => value.x < right && value.x + value.width > left)
+                .map(value => [value.y, value.y + value.height])
+                .sort((a, b) => a[0] - b[0]);
+            if (!intervals.length) continue;
+            let [top, bottom] = intervals[0], covered = 0;
+            for (const [nextTop, nextBottom] of intervals.slice(1)) {
+                if (nextTop <= bottom) bottom = Math.max(bottom, nextBottom);
+                else { covered += bottom - top; top = nextTop; bottom = nextBottom; }
+            }
+            area += (right - left) * (covered + bottom - top);
+        }
+        return cleanNumber(area);
+    };
+    const hasOwnText = element => [...element.childNodes].some(node =>
+        node.nodeType === Node.TEXT_NODE && String(node.textContent || '').trim()
+    );
+    const meaningfulRectsWithin = element => {
+        const rectangles = [];
+        for (const item of [...element.querySelectorAll('*')].filter(visible)) {
+            const style = getComputedStyle(item), value = box(item);
+            const replaced = item.matches('img, video, canvas, svg, iframe, input, textarea, select, button, [role="img"]');
+            const background = style.backgroundImage !== 'none'
+                || !['transparent', 'rgba(0, 0, 0, 0)'].includes(style.backgroundColor);
+            if (replaced || background || hasOwnText(item)) rectangles.push(value);
+            const borders = [
+                ['top', parseFloat(style.borderTopWidth)], ['right', parseFloat(style.borderRightWidth)],
+                ['bottom', parseFloat(style.borderBottomWidth)], ['left', parseFloat(style.borderLeftWidth)]
+            ];
+            for (const [side, thickness] of borders) {
+                if (!(thickness > 0)) continue;
+                if (side === 'top') rectangles.push({x: value.x, y: value.y, width: value.width, height: thickness});
+                if (side === 'right') rectangles.push({x: value.x + value.width - thickness, y: value.y, width: thickness, height: value.height});
+                if (side === 'bottom') rectangles.push({x: value.x, y: value.y + value.height - thickness, width: value.width, height: thickness});
+                if (side === 'left') rectangles.push({x: value.x, y: value.y, width: thickness, height: value.height});
+            }
+        }
+        return rectangles;
+    };
+    const occupiedAreaWithin = element => {
+        const bounds = box(element);
+        return unionArea(meaningfulRectsWithin(element), bounds);
+    };
     const computed = element => {
         const style = getComputedStyle(element);
         return {
@@ -493,11 +551,10 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
     }
     const mediaAreaWithin = element => {
         if (!element) return 0;
-        let total = 0;
-        for (const visual of uniqueVisualElements) {
-            if (element === visual || element.contains(visual)) total += box(visual).area;
-        }
-        return cleanNumber(total);
+        const rectangles = uniqueVisualElements
+            .filter(visual => element === visual || element.contains(visual))
+            .map(box);
+        return unionArea(rectangles, box(element));
     };
     const columnFacts = (element, children) => {
         if (!children.length) return {count: 0, alignment: 'NONE'};
@@ -516,7 +573,7 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
         const children = childrenOf(surface);
         const value = box(surface);
         const columns = columnFacts(surface, children);
-        const occupiedArea = Math.min(value.area, children.reduce((sum, child) => sum + box(child).area, 0));
+        const occupiedArea = occupiedAreaWithin(surface);
         return {
             index, ...value, ...computed(surface),
             child_regions: children.map(region), major_child_count: children.length,
@@ -558,9 +615,7 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
         const dominant = signatureChildren.slice().sort((a, b) => box(b).area - box(a).area)[0] || signatureElement;
         const value = box(signatureElement);
         const dominantBox = box(dominant);
-        const occupiedArea = signatureChildren.length
-            ? Math.min(value.area, signatureChildren.reduce((sum, child) => sum + box(child).area, 0))
-            : value.area;
+        const occupiedArea = occupiedAreaWithin(signatureElement);
         let orientation = 'CENTRAL';
         if (signatureChildren.length >= 2) {
             const first = box(signatureChildren[0]), last = box(signatureChildren[signatureChildren.length - 1]);
@@ -631,7 +686,7 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
     const occupiedAreaRatio = surfaceOccupancies.length
         ? surfaceOccupancies.reduce((sum, value) => sum + value, 0) / surfaceOccupancies.length : null;
     const heroArea = heroElement ? box(heroElement).area : 0;
-    const heroOccupied = heroChildren.reduce((sum, child) => sum + box(child).area, 0);
+    const heroOccupied = heroElement ? occupiedAreaWithin(heroElement) : 0;
     let majorRegionGapRatio = 0;
     if (heroChildren.length >= 2) {
         const ordered = heroChildren.map(box).sort((a, b) => a.x - b.x || a.y - b.y);
@@ -646,6 +701,10 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
     const documentWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth);
     const documentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, innerHeight);
     const documentArea = documentWidth * documentHeight;
+    const documentMediaArea = unionArea(
+        mediaElements.map(item => ({x: item.doc_x, y: item.doc_y, width: item.width, height: item.height})),
+        {x: 0, y: 0, width: documentWidth, height: documentHeight}
+    );
     return {
         evidence_kind: 'BROWSER_LAYOUT', measurement_schema_version: '2.0', evaluation_stage: stage,
         viewport: {width: innerWidth, height: innerHeight, area: innerWidth * innerHeight},
@@ -669,7 +728,7 @@ _CLEAN_ROOM_MORPHOLOGY_JS = r"""
             'whitespace.internal_occupancy', 'signature_device.target_region', 'cta.geometry_and_alignment'
         ],
         viewport_width: innerWidth, viewport_height: innerHeight, document_height: documentHeight,
-        media_area_ratio: cleanNumber(mediaElements.reduce((sum, item) => sum + item.area, 0) / Math.max(1, documentArea)),
+        media_area_ratio: cleanNumber(documentMediaArea / Math.max(1, documentArea)),
         bordered_container_count: borderedContainers.length,
         average_section_gap: surfaces.length > 1
             ? cleanNumber(surfaces.slice(1).reduce((sum, item) => sum + item.gap_before, 0) / (surfaces.length - 1)) : 0,

@@ -80,7 +80,9 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   This versioned evidence includes viewport/document dimensions; hero,
   surface, child, media, bordered-container, heading, signature-device, and CTA
   rectangles; computed layout and typography; and normalized internal
-  occupancy. An explicit selector may locate a preserved signature-device
+  occupancy. Occupancy uses clipped geometric union of meaningful visible
+  content, so nested or overlapping boxes and unpainted full-size wrappers do
+  not multiply coverage. An explicit selector may locate a preserved signature-device
   region, but selector text, class names, builder labels, and caller-declared
   divergence flags are never scoring evidence. Missing scan facts remain
   incomplete. The clean-room path remains an adapter of this existing engine,

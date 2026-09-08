@@ -93,6 +93,52 @@ def _valid_rect(value: Any) -> bool:
     )
 
 
+def _rect_union_area(rectangles: Sequence[Mapping[str, Any]], width: float, height: float) -> float:
+    """Return clipped union area so nested or overlapping boxes count once."""
+
+    clipped: list[tuple[float, float, float, float]] = []
+    for rectangle in rectangles:
+        x = _number(rectangle.get("doc_x"))
+        y = _number(rectangle.get("doc_y"))
+        if x is None:
+            x = _number(rectangle.get("x"))
+        if y is None:
+            y = _number(rectangle.get("y"))
+        rect_width = _positive(rectangle, "width")
+        rect_height = _positive(rectangle, "height")
+        if x is None or y is None or rect_width is None or rect_height is None:
+            continue
+        left, top = max(0.0, x), max(0.0, y)
+        right, bottom = min(width, x + rect_width), min(height, y + rect_height)
+        if right > left and bottom > top:
+            clipped.append((left, top, right, bottom))
+    if not clipped:
+        return 0.0
+
+    xs = sorted({coordinate for rectangle in clipped for coordinate in (rectangle[0], rectangle[2])})
+    area = 0.0
+    for left, right in zip(xs, xs[1:]):
+        if right <= left:
+            continue
+        intervals = sorted(
+            (top, bottom)
+            for rect_left, top, rect_right, bottom in clipped
+            if rect_left < right and rect_right > left
+        )
+        covered_height = 0.0
+        if intervals:
+            current_top, current_bottom = intervals[0]
+            for top, bottom in intervals[1:]:
+                if top <= current_bottom:
+                    current_bottom = max(current_bottom, bottom)
+                else:
+                    covered_height += current_bottom - current_top
+                    current_top, current_bottom = top, bottom
+            covered_height += current_bottom - current_top
+        area += (right - left) * covered_height
+    return area
+
+
 def _font_family_bucket(value: Any) -> str | None:
     family = str(value or "").strip().lower()
     if not family:
@@ -124,7 +170,10 @@ def applicable_vectors(evaluation_stage: Any) -> tuple[str, ...]:
 
 
 def _relative_distance(candidate: float, baseline: float) -> float:
-    scale = max(abs(candidate), abs(baseline), 1e-9)
+    # Most geometry ratios already live on a 0..1 scale. Keep that unit scale
+    # at the zero boundary so browser rounding noise cannot become maximum
+    # divergence; values above one retain proportional comparison.
+    scale = max(abs(candidate), abs(baseline), 1.0)
     return min(1.0, abs(candidate - baseline) / scale)
 
 
@@ -237,15 +286,16 @@ def _card_vector(evidence: Mapping[str, Any]) -> tuple[Dict[str, Any] | None, st
     containers = _records(evidence.get("bordered_containers"))
     document, viewport = _mapping(evidence.get("document")), _mapping(evidence.get("viewport"))
     scan = _mapping(evidence.get("scan_complete"))
+    doc_width, doc_height = _positive(document, "width"), _positive(document, "height")
     doc_area, viewport_area = _positive(document, "area"), _positive(viewport, "area")
-    if not sections or not doc_area or not viewport_area or scan.get("bordered_containers") is not True:
+    if not sections or not doc_width or not doc_height or not doc_area or not viewport_area or scan.get("bordered_containers") is not True:
         return None, None
     if not all(_valid_rect(item) for item in containers):
         return None, None
-    areas = [_positive(item, "width") * _positive(item, "height") for item in containers]  # type: ignore[operator]
+    union_area = _rect_union_area(containers, doc_width, doc_height)
     raw = {
         "bordered_containers_per_surface": len(containers) / len(sections),
-        "bordered_container_area_ratio": min(1.0, sum(areas) / doc_area),
+        "bordered_container_area_ratio": min(1.0, union_area / doc_area),
         "bordered_containers_per_viewport_area": len(containers) / max(1.0, doc_area / viewport_area),
     }
     density = raw["bordered_containers_per_surface"]
@@ -257,13 +307,14 @@ def _media_vector(evidence: Mapping[str, Any]) -> tuple[Dict[str, Any] | None, s
     media = _records(evidence.get("media_elements"))
     scan = _mapping(evidence.get("scan_complete"))
     document, hero, signature = _mapping(evidence.get("document")), _mapping(evidence.get("hero")), _mapping(evidence.get("signature_device"))
+    doc_width, doc_height = _positive(document, "width"), _positive(document, "height")
     doc_area = _positive(document, "area")
     hero_area = (_positive(hero, "width") or 0) * (_positive(hero, "height") or 0)
-    if not doc_area or hero_area <= 0 or scan.get("media") is not True:
+    if not doc_width or not doc_height or not doc_area or hero_area <= 0 or scan.get("media") is not True:
         return None, None
     if not all(_valid_rect(item) for item in media):
         return None, None
-    total = sum(_positive(item, "width") * _positive(item, "height") for item in media)  # type: ignore[operator]
+    total = _rect_union_area(media, doc_width, doc_height)
     hero_media = _number(hero.get("media_area"))
     signature_media = _number(signature.get("media_area")) if signature.get("target_found") is True else 0.0
     if hero_media is None or signature_media is None:

@@ -228,8 +228,9 @@ BROWSER DESIGN` → `REAL BROWSER RENDER` → `DESKTOP + MOBILE SCREENSHOTS` →
   each limited to `DESKTOP_HERO` and `SIGNATURE_DEVICE`. Do not emit full
   homepage, mobile full-page, footer, multi-route, full-browser-QA, or motion-
   certification work before the cheap concept gate. Render the bounded
-  candidate, then use the existing Website Gauntlet critic authority with a
-  stripped package containing rendered evidence only. Historical output may be
+  candidate, then use the existing Website Gauntlet critic authority with an
+  exact allowlist containing only candidate screenshots, staged external
+  reference screenshots, the business brief, and the brand brief. Historical output may be
   opened only after rendering as a negative baseline for browser-derived
   morphology.
 - At the cheap stage, morphology evaluates 7 applicable vectors and marks

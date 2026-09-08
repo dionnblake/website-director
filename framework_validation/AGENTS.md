@@ -38,7 +38,8 @@ owner-selection authority is consumed only at the final unlock boundary.
 `rendered_morphology.py` owns stage applicability, complete-evidence checks,
 normalized continuous vector comparison, and the 60 percent divergence rule.
 `morphology_recheck.py` owns evidence-only remeasurement of preserved renders,
-owner-review morphology reporting, and stripped critic-package preparation. It
+owner-review morphology reporting, immutable source-receipt linkage, complete
+creative-artifact hashing, and exact-allowlist critic-package preparation. It
 never invokes concept generation or a critic.
 `__main__.py` owns the module entrypoint.
 
@@ -65,6 +66,8 @@ never invokes concept generation or a critic.
   applicable evidence blocks, and verdicts use normalized measurements before
   labels. A preserved-render recheck may identify a signature region with an
   explicit selector, but selectors and class names are never scoring evidence.
+  Rechecks write a distinct hash-linked receipt and do not rewrite the original
+  execution receipt.
 - Runtime isolation is framework-level staged context only:
   `FRAMEWORK_CREATIVE_CONTEXT_ISOLATION = STAGED_WORKSPACE_ONLY`,
   `OS_FILESYSTEM_SANDBOX = NONE`, and

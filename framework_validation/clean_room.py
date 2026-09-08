@@ -277,30 +277,13 @@ def prepare_blind_critic_package(
     external_references: List[str],
     business_brief: str,
     brand_brief: str,
-    rendered_dom_ref: Optional[str] = None,
-    rendered_css_ref: Optional[str] = None,
-    morphology_evidence: Optional[Mapping[str, Any]] = None,
 ) -> Dict[str, Any]:
-    """Prepare a stripped, blind evaluation package for the Website Gauntlet critic."""
+    """Prepare the exact allow-listed Website Gauntlet critic inputs."""
     return {
-        "candidate_screenshot": candidate_screenshot,
+        "candidate_screenshots": [candidate_screenshot],
         "external_reference_screenshots": external_references,
         "business_brief": business_brief,
         "brand_brief": brand_brief,
-        "actual_screenshots": [candidate_screenshot],
-        "actual_rendered_dom_ref": rendered_dom_ref,
-        "actual_css_ref": rendered_css_ref,
-        "morphology_evidence": dict(morphology_evidence or {}),
-        "critic_authority": "WEBSITE-GAUNTLET-PROTOCOL.md",
-        "programmatic_gauntlet_entrypoint": PROGRAMMATIC_GAUNTLET_ENTRYPOINT,
-        # Explicitly excluded fields to guarantee blind review
-        "html_source": None,
-        "css_source": None,
-        "class_names": None,
-        "direction_name": None,
-        "builder_commentary": None,
-        "self_awarded_scores": None,
-        "previous_asn_screenshots": None,
     }
 
 
@@ -1181,46 +1164,33 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
         "rendered_morphology_evidence": dict(baseline_evidence or {}),
     }
 
-    if candidate_evidence or baseline_evidence:
-        if not candidate_evidence or not baseline_evidence:
-            _record_execution_stage(receipt, "RENDER_DERIVED_MORPHOLOGY", "BLOCKED", "both candidate and baseline browser layout evidence are required")
-            return _finish_execution(receipt, "BLOCKED", "RENDER_DERIVED_MORPHOLOGY_BLOCKED", "RENDERED_BROWSER_LAYOUT_EVIDENCE_INCOMPLETE")
-        divergence = compare_rendered_morphology(
-            candidate_evidence,
-            baseline_evidence,
-            evaluation_stage=concept_gate.get("scope"),
-        )
-        receipt["render_derived_morphology"] = divergence
-        _record_execution_stage(
-            receipt, "RENDER_DERIVED_MORPHOLOGY", str(divergence.get("status")),
-            str(divergence.get("divergence")),
-            semantic_labels_used=divergence.get("semantic_labels_used", False),
-            failures=divergence.get("failures", []),
-        )
-        if divergence.get("status") != "PASS_DIVERGENCE":
-            blocked = divergence.get("status") == "BLOCKED_INSUFFICIENT_EVIDENCE"
-            return _finish_execution(
-                receipt,
-                "BLOCKED" if blocked else "FAIL",
-                "RENDER_DERIVED_MORPHOLOGY_BLOCKED" if blocked else "RENDER_DERIVED_MORPHOLOGY_FAILED",
-                str(divergence.get("divergence")),
-            )
-    else:
-        divergence = evaluate_morphology_divergence(dict(candidate_morphology or {}), dict(baseline_morphology or {}))
+    if not candidate_evidence or not baseline_evidence:
         receipt["render_derived_morphology"] = {
-            "status": "NOT_EVALUATED",
-            "reason": "RENDERED_BROWSER_LAYOUT_EVIDENCE_NOT_PROVIDED",
-            "declared_morphology_fallback": divergence,
+            "status": "BLOCKED_INSUFFICIENT_EVIDENCE",
+            "reason": "RENDERED_BROWSER_LAYOUT_EVIDENCE_INCOMPLETE",
         }
-        _record_execution_stage(receipt, "RENDER_DERIVED_MORPHOLOGY", "PASS", "legacy adapter supplied unit morphology; rendered evidence not provided")
-        if divergence.get("status") != "PASS":
-            blocked = divergence.get("status") == "BLOCKED_INSUFFICIENT_EVIDENCE"
-            return _finish_execution(
-                receipt,
-                "BLOCKED" if blocked else "FAIL",
-                "MORPHOLOGY_DIVERGENCE_BLOCKED" if blocked else "MORPHOLOGY_DIVERGENCE_FAILED",
-                str(divergence.get("divergence")),
-            )
+        _record_execution_stage(receipt, "RENDER_DERIVED_MORPHOLOGY", "BLOCKED", "both candidate and baseline browser layout evidence are required")
+        return _finish_execution(receipt, "BLOCKED", "RENDER_DERIVED_MORPHOLOGY_BLOCKED", "RENDERED_BROWSER_LAYOUT_EVIDENCE_INCOMPLETE")
+    divergence = compare_rendered_morphology(
+        candidate_evidence,
+        baseline_evidence,
+        evaluation_stage=concept_gate.get("scope"),
+    )
+    receipt["render_derived_morphology"] = divergence
+    _record_execution_stage(
+        receipt, "RENDER_DERIVED_MORPHOLOGY", str(divergence.get("status")),
+        str(divergence.get("divergence")),
+        semantic_labels_used=divergence.get("semantic_labels_used", False),
+        failures=divergence.get("failures", []),
+    )
+    if divergence.get("status") != "PASS_DIVERGENCE":
+        blocked = divergence.get("status") == "BLOCKED_INSUFFICIENT_EVIDENCE"
+        return _finish_execution(
+            receipt,
+            "BLOCKED" if blocked else "FAIL",
+            "RENDER_DERIVED_MORPHOLOGY_BLOCKED" if blocked else "RENDER_DERIVED_MORPHOLOGY_FAILED",
+            str(divergence.get("divergence")),
+        )
 
     fixture_comparisons = {}
     for key, label in (("semantic_rename_morphology_evidence", "SEMANTIC_RENAME_RENDER_FIXTURE"), ("genuine_divergence_morphology_evidence", "GENUINE_DIVERGENCE_RENDER_FIXTURE")):
@@ -1246,17 +1216,16 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
         external_references=positive_refs,
         business_brief=request.business_brief,
         brand_brief=request.brand_brief,
-        rendered_dom_ref=rendered.get("rendered_dom_ref"),
-        rendered_css_ref=rendered.get("rendered_css_ref"),
-        morphology_evidence=candidate_evidence,
     )
     sentinel_leaks = _sentinel_count(critic_package)
     receipt["controls"]["blind_critic_sentinel_leaks"] = sentinel_leaks
     receipt["blind_critic_package"] = critic_package
     _record_execution_stage(
         receipt, "BLIND_CRITIC_PACKAGE", "PASS" if sentinel_leaks == 0 else "BLOCKED",
-        "critic package contains rendered evidence and briefs only",
-        implementation_source_excluded=all(critic_package.get(key) is None for key in ("html_source", "css_source", "class_names", "direction_name", "builder_commentary", "self_awarded_scores", "previous_asn_screenshots")),
+        "critic package contains only allow-listed screenshots and briefs",
+        implementation_source_excluded=set(critic_package) == {
+            "candidate_screenshots", "external_reference_screenshots", "business_brief", "brand_brief"
+        },
         sentinel_leaks=sentinel_leaks,
     )
     if sentinel_leaks:
@@ -1314,7 +1283,7 @@ def _synthetic_genuine_candidate_html() -> str:
 body { margin: 0; background: #111; }
 main { width: 100%; }
 main > section { min-height: 720px; padding: 120px 9vw; display: block; }
-.hero { min-height: 720px; padding: 120px 9vw; background: #1e2522; display: grid; grid-template-columns: 1fr 320px; gap: 8vw; align-items: center; }
+.hero { min-height: 720px; padding: 72px 9vw; background: #1e2522; display: flex; flex-direction: column; gap: 64px; align-items: flex-start; justify-content: center; }
 .device { width: 760px; height: 120px; border: 2px solid #e3d17a; background: #384842; }
 .signature-surface { min-height: 720px; display: flex; align-items: center; justify-content: center; background: #101513; }
 .hero-visual { width: 280px; height: 280px; border-radius: 50%; background: #31463d; }

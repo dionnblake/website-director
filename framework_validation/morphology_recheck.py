@@ -27,6 +27,25 @@ def _write_json(path: Path, payload: Mapping[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def _creative_artifact_hashes(run_root: Path) -> Dict[str, str]:
+    """Hash every staged or generated creative artifact, excluding review/evidence outputs."""
+
+    hashes: Dict[str, str] = {}
+    excluded = {
+        "candidate-output/owner-review.html",
+        "candidate-output/owner-review.png",
+    }
+    for directory_name in ("approved-assets", "candidate-output"):
+        directory = run_root / directory_name
+        if not directory.is_dir():
+            continue
+        for path in sorted(item for item in directory.rglob("*") if item.is_file()):
+            relative = path.relative_to(run_root).as_posix()
+            if relative not in excluded:
+                hashes[relative] = _sha256(path)
+    return hashes
+
+
 def _capture_existing_render(
     html_path: Path,
     *,
@@ -162,21 +181,12 @@ def _blind_critic_package(
                 "external_reference_screenshots": references,
                 "business_brief": business_brief,
                 "brand_brief": brand_brief,
-                "rendered_morphology_evidence": results[concept_id].get("candidate_evidence"),
-                "morphology_verdict": results[concept_id].get("status"),
             }
         )
     package = {
         "package_kind": "BLIND_CRITIC_INPUT",
         "critic_execution": "NOT_EXECUTED",
         "concepts": concepts,
-        "html_source": None,
-        "css_source": None,
-        "class_names": None,
-        "direction_name": None,
-        "builder_commentary": None,
-        "self_awarded_scores": None,
-        "previous_asn_screenshots": None,
     }
     serialized = json.dumps(package, sort_keys=True)
     leaks = [sentinel for sentinel in BLIND_CRITIC_SENTINELS if sentinel in serialized]
@@ -202,6 +212,7 @@ def recheck_existing_clean_room_run(
     resolved_candidates = {key: path.resolve() for key, path in candidates.items()}
     for path in resolved_candidates.values():
         path.relative_to(run_root)
+    creative_artifacts_before = _creative_artifact_hashes(run_root)
     creative_hashes_before = {key: _sha256(path) for key, path in resolved_candidates.items()}
 
     baseline_evidence = _capture_existing_render(
@@ -227,7 +238,8 @@ def recheck_existing_clean_room_run(
         }
 
     creative_hashes_after = {key: _sha256(path) for key, path in resolved_candidates.items()}
-    if creative_hashes_after != creative_hashes_before:
+    creative_artifacts_after = _creative_artifact_hashes(run_root)
+    if creative_hashes_after != creative_hashes_before or creative_artifacts_after != creative_artifacts_before:
         raise RuntimeError("CREATIVE_FILES_CHANGED_DURING_EVIDENCE_RECAPTURE")
     output = {
         "evaluation_stage": evaluation_stage,
@@ -245,6 +257,7 @@ def recheck_existing_clean_room_run(
     update_owner_review_report(run_root / "candidate-output" / "owner-review.html", results)
 
     receipt_path = evidence_root / "clean-room-execution-receipt.json"
+    source_receipt_sha256 = _sha256(receipt_path)
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     package = _blind_critic_package(run_root, results, receipt)
     package_path = evidence_root / "blind-critic-package.json"
@@ -252,6 +265,69 @@ def recheck_existing_clean_room_run(
         _write_json(package_path, package)
     elif package_path.exists():
         package_path.unlink()
+
+    evaluation_complete = output["evidence_schema_complete"] and all(
+        result.get("status") in {"PASS_DIVERGENCE", "FAIL_DIVERGENCE"}
+        for result in results.values()
+    )
+    workflow_status = "OWNER_CONCEPT_SELECTION_PENDING" if package is not None and evaluation_complete else "RENDER_DERIVED_MORPHOLOGY_FAILED"
+    recheck_receipt_path = evidence_root / "morphology-recheck-receipt.json"
+    recheck_receipt = {
+        "receipt_kind": "EVIDENCE_ONLY_MORPHOLOGY_RECHECK",
+        "run_id": run_root.name,
+        "source_execution_receipt": {
+            "path": "evidence/clean-room-execution-receipt.json",
+            "sha256": source_receipt_sha256,
+            "status": receipt.get("status"),
+            "workflow_status": receipt.get("workflow_status"),
+        },
+        "evaluation_stage": evaluation_stage,
+        "evidence_schema_complete": output["evidence_schema_complete"],
+        "generation_invoked": False,
+        "new_concept_generation": 0,
+        "baseline": {
+            "path": str(baseline_path),
+            "sha256": output["baseline_evidence_sha256"],
+            "selector": baseline_selector,
+            "role": "NEGATIVE_BASELINE_ONLY",
+        },
+        "candidate_selectors": dict(candidate_selectors),
+        "creative_artifacts_before": creative_artifacts_before,
+        "creative_artifacts_after": creative_artifacts_after,
+        "creative_artifacts_changed": [],
+        "creative_files_changed": 0,
+        "results": {
+            concept_id: {
+                "status": result.get("status"),
+                "divergence_ratio": result.get("divergence_ratio"),
+                "divergent_vectors": result.get("divergent_vectors", []),
+                "matching_vectors": result.get("matching_vectors", []),
+                "not_applicable_vectors": result.get("not_applicable_vectors", []),
+                "insufficient_evidence_vectors": result.get("insufficient_evidence_vectors", []),
+                "candidate_sha256": result.get("candidate_sha256"),
+            }
+            for concept_id, result in results.items()
+        },
+        "evidence": {
+            "morphology_divergence": {
+                "path": "evidence/morphology-divergence.json",
+                "sha256": _sha256(evidence_root / "morphology-divergence.json"),
+            },
+            "blind_critic_package": {
+                "path": "evidence/blind-critic-package.json",
+                "sha256": _sha256(package_path),
+            } if package is not None else None,
+            "owner_review": {
+                "path": "candidate-output/owner-review.html",
+                "sha256": _sha256(run_root / "candidate-output" / "owner-review.html"),
+            },
+        },
+        "status": "PASS" if evaluation_complete else "BLOCKED",
+        "workflow_status": workflow_status,
+        "blind_critic_package_prepared": package is not None,
+        "gauntlet_execution_mode": "NOT_EXECUTED",
+    }
+    _write_json(recheck_receipt_path, recheck_receipt)
 
     final_status_path = evidence_root / "final-status.json"
     final_status = json.loads(final_status_path.read_text(encoding="utf-8"))
@@ -267,8 +343,12 @@ def recheck_existing_clean_room_run(
             "NEW_CONCEPT_GENERATION": 0,
             "OWNER_CONCEPT_SELECTION": "PENDING",
             "FULL_HOMEPAGE_DESIGN": "BLOCKED",
-            "RUNTIME_STATUS": "PASS" if all(result.get("status") == "PASS_DIVERGENCE" for result in results.values()) else "FAIL",
-            "WORKFLOW_STATUS": "OWNER_CONCEPT_SELECTION_PENDING" if package is not None else "RENDER_DERIVED_MORPHOLOGY_FAILED",
+            "MORPHOLOGY_RECHECK_RECEIPT": "evidence/morphology-recheck-receipt.json",
+            "MORPHOLOGY_RECHECK_RECEIPT_SHA256": _sha256(recheck_receipt_path),
+            "SOURCE_EXECUTION_RECEIPT_STATUS": receipt.get("status"),
+            "SOURCE_EXECUTION_WORKFLOW_STATUS": receipt.get("workflow_status"),
+            "RUNTIME_STATUS": "PASS" if evaluation_complete else "BLOCKED",
+            "WORKFLOW_STATUS": workflow_status,
         }
     )
     _write_json(final_status_path, final_status)

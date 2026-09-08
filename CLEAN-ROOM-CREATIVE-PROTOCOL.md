@@ -219,12 +219,19 @@ homepage is authorized and enough repeated page grammar exists.
   distance before canonical reporting labels. Each applicable result retains
   candidate measurements, baseline measurements, distance/similarity, labels,
   and the vector verdict.
+- Normalized values retain a stable unit scale at zero, and geometric coverage
+  uses clipped rectangle union so rounding noise, nested containers,
+  overlapping regions, and unpainted full-size wrappers cannot inflate a
+  distance or occupied-area result.
 - `PASS_DIVERGENCE` requires at least 60 percent of the applicable, sufficiently
   evidenced vectors to be divergent. At the cheap stage this is five of seven.
 - Rechecking preserved renders uses
   `python -m framework_validation.morphology_recheck`. It may refresh evidence,
   the owner-review morphology rows, and a stripped blind-critic input package,
-  but it never calls the concept generator or executes the Gauntlet.
+  but it never calls the concept generator or executes the Gauntlet. The
+  recheck hashes all staged/generated creative artifacts except review and
+  evidence outputs, preserves the source execution receipt unchanged, and
+  writes a distinct hash-linked morphology recheck receipt.
 
 ---
 
@@ -244,8 +251,9 @@ optional stage-ready callback:
    for real proof, browser-derived DOM/CSS/layout evidence.
 3. `load_negative_baseline(path)` is callable only after candidate rendering
    and receives no builder or positive-reference context.
-4. `run_blind_critic(package)` receives the stripped rendered-evidence package
-   from §8. There is no programmatic Gauntlet entrypoint in the repository;
+4. `run_blind_critic(package)` receives the exact screenshot-and-brief package
+   from §8, with no evaluator verdict or measurement payload. There is no
+   programmatic Gauntlet entrypoint in the repository;
    the adapter hands off to the existing Website Gauntlet critic authority
    without creating a second critic.
 

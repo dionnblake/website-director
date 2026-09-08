@@ -13,10 +13,12 @@ Validates:
 from __future__ import annotations
 
 import copy
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from typing import Any, Dict, List
+from unittest.mock import patch
 
 from framework_validation.clean_room import (
     CleanRoomManifest,
@@ -39,7 +41,13 @@ from framework_validation.rendered_morphology import (
     compare_rendered_morphology,
     extract_rendered_morphology,
 )
-from framework_validation.morphology_recheck import update_owner_review_report
+from framework_validation.morphology_recheck import (
+    _blind_critic_package,
+    _capture_existing_render,
+    _creative_artifact_hashes,
+    recheck_existing_clean_room_run,
+    update_owner_review_report,
+)
 
 
 def _generic_morphology_evidence(
@@ -570,6 +578,221 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         self.assertEqual(shared_cta_result["status"], "PASS_DIVERGENCE")
         self.assertGreaterEqual(shared_cta_result["divergence_ratio"], 0.60)
 
+    def test_zero_baseline_uses_a_stable_numeric_scale(self) -> None:
+        baseline = _generic_morphology_evidence()
+        baseline["whitespace"]["major_region_gap_ratio"] = 0.0
+        candidate = copy.deepcopy(baseline)
+        candidate["whitespace"]["major_region_gap_ratio"] = 1e-9
+
+        result = compare_rendered_morphology(candidate, baseline)
+        whitespace = result["vector_results"]["WHITESPACE_DENSITY"]
+
+        self.assertEqual(whitespace["VECTOR_VERDICT"], "MATCHES_HISTORICAL_BASELINE")
+        self.assertLess(whitespace["NORMALIZED_DISTANCE_OR_SIMILARITY"]["distance"], 1e-6)
+
+    def test_bordered_container_density_uses_union_area_for_nested_rectangles(self) -> None:
+        evidence = _generic_morphology_evidence()
+        evidence["bordered_containers"] = [
+            {
+                "x": 0, "y": 0, "width": 1440, "height": 750,
+                "border_widths": {"top": "1px", "right": "1px", "bottom": "1px", "left": "1px"},
+            },
+            {
+                "x": 100, "y": 100, "width": 600, "height": 300,
+                "border_widths": {"top": "1px", "right": "1px", "bottom": "1px", "left": "1px"},
+            },
+        ]
+
+        extracted = extract_rendered_morphology(evidence)
+        raw = extracted["raw_measurements"]["CARD_CONTAINER_DENSITY"]
+
+        self.assertAlmostEqual(raw["bordered_container_area_ratio"], 0.5)
+
+    def test_media_dominance_uses_union_area_for_overlapping_rectangles(self) -> None:
+        evidence = _generic_morphology_evidence(media_area_ratio=0)
+        evidence["media_elements"] = [
+            {"x": 0, "y": 0, "width": 1440, "height": 750, "media_kind": "CSS_BACKGROUND_IMAGE"},
+            {"x": 100, "y": 100, "width": 600, "height": 300, "media_kind": "SVG"},
+        ]
+        evidence["hero"]["media_area"] = 0
+        evidence["signature_device"]["media_area"] = 0
+
+        extracted = extract_rendered_morphology(evidence)
+        raw = extracted["raw_measurements"]["MEDIA_DOMINANCE"]
+
+        self.assertAlmostEqual(raw["document_media_area_ratio"], 0.5)
+
+    def test_browser_occupancy_ignores_full_size_layout_wrappers(self) -> None:
+        sparse = """<!doctype html><style>
+          * { box-sizing: border-box } body { margin: 0 }
+          section { position: relative; width: 100vw; height: 700px }
+          .wrapper { position: absolute; inset: 0 }
+          .content { position: absolute; left: 40px; top: 40px; width: 100px; height: 100px; background: red }
+        </style><main><section data-clean-room-surface="hero"><div class="wrapper"><div class="content"></div></div></section></main>"""
+        dense = """<!doctype html><style>
+          * { box-sizing: border-box } body { margin: 0 }
+          section { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: 100vw; height: 700px }
+          .panel { background: red }
+        </style><main><section data-clean-room-surface="hero"><div class="panel"></div><div class="panel"></div></section></main>"""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            sparse_path, dense_path = root / "sparse.html", root / "dense.html"
+            sparse_path.write_text(sparse, encoding="utf-8")
+            dense_path.write_text(dense, encoding="utf-8")
+            sparse_evidence = _capture_existing_render(
+                sparse_path,
+                evaluation_stage="HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+                signature_device_selector=None,
+                viewport=1440,
+            )
+            dense_evidence = _capture_existing_render(
+                dense_path,
+                evaluation_stage="HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+                signature_device_selector=None,
+                viewport=1440,
+            )
+
+        self.assertLess(sparse_evidence["whitespace"]["hero_occupied_area_ratio"], 0.05)
+        self.assertGreater(dense_evidence["whitespace"]["hero_occupied_area_ratio"], 0.95)
+
+    def test_browser_media_occupancy_unions_background_and_nested_visual(self) -> None:
+        html = """<!doctype html><style>
+          * { box-sizing: border-box } body { margin: 0 }
+          section { width: 100vw; height: 900px }
+          .media { width: 720px; height: 900px; background-image: linear-gradient(red, blue) }
+          svg { display: block; width: 100%; height: 100% }
+        </style><main><section data-clean-room-surface="hero"><div class="media" role="img"><svg viewBox="0 0 10 10"><rect width="10" height="10"/></svg></div></section></main>"""
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "overlapping-media.html"
+            path.write_text(html, encoding="utf-8")
+            evidence = _capture_existing_render(
+                path,
+                evaluation_stage="HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+                signature_device_selector=None,
+                viewport=1440,
+            )
+
+        self.assertAlmostEqual(evidence["media_area_ratio"], 0.5)
+        self.assertAlmostEqual(evidence["hero"]["media_area"] / evidence["hero"]["area"], 0.5)
+
+    def test_recheck_blind_package_uses_an_exact_input_allowlist(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            run_root = Path(temporary)
+            (run_root / "evidence").mkdir()
+            (run_root / "candidate-output").mkdir()
+            (run_root / "external-references").mkdir()
+            for relative in ("candidate-output/a-hero.png", "candidate-output/a-signature.png", "external-references/ref.png"):
+                path = run_root / relative
+                path.write_bytes(relative.encode("utf-8"))
+            (run_root / "evidence" / "rendered-concept-inventory.json").write_text(
+                json.dumps({"concepts": [{
+                    "concept_id": "CONCEPT_A",
+                    "hero": "candidate-output/a-hero.png",
+                    "signature_device": "candidate-output/a-signature.png",
+                }]}),
+                encoding="utf-8",
+            )
+            package = _blind_critic_package(
+                run_root,
+                {"CONCEPT_A": {
+                    "status": "PASS_DIVERGENCE",
+                    "candidate_evidence": {"secret_measurement": 1},
+                }},
+                {"generator_package": {"business_brief": "Business", "brand_brief": "Brand"}},
+            )
+
+        self.assertEqual(set(package or {}), {"package_kind", "critic_execution", "concepts"})
+        self.assertEqual(
+            set((package or {})["concepts"][0]),
+            {"concept_id", "candidate_screenshots", "external_reference_screenshots", "business_brief", "brand_brief"},
+        )
+        self.assertNotIn("secret_measurement", json.dumps(package))
+        self.assertNotIn("PASS_DIVERGENCE", json.dumps(package))
+
+    def test_recheck_persists_distinct_receipt_and_hashes_all_creative_artifacts(self) -> None:
+        baseline = _generic_morphology_evidence()
+        candidate = _generic_morphology_evidence(
+            surface_count=2,
+            container_count=7,
+            media_area_ratio=0.38,
+            font_family="Arial, Helvetica, sans-serif",
+            occupied_area_ratio=0.20,
+            hero_width=1440,
+            hero_height=820,
+            hero_axis="VERTICAL",
+            signature_width=120,
+            signature_height=680,
+            signature_orientation="VERTICAL",
+            cta_x=620,
+            cta_y=160,
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            run_root = Path(temporary)
+            for directory in ("approved-assets", "candidate-output", "evidence", "external-references"):
+                (run_root / directory).mkdir()
+            files = {
+                "approved-assets/logo.png": b"logo-source",
+                "candidate-output/logo.png": b"logo-copy",
+                "candidate-output/concept-a.html": b"<main>A</main>",
+                "candidate-output/concept-a-hero.png": b"hero",
+                "candidate-output/concept-a-signature.png": b"signature",
+                "candidate-output/concept-index.json": b"{}",
+                "candidate-output/owner-review.html": (
+                    b'<section class="concept"><h2>CONCEPT A</h2><dl>'
+                    b'<dt>MORPHOLOGY DIVERGENCE =</dt><dd>OLD</dd></dl></section>'
+                ),
+                "external-references/ref.png": b"reference",
+            }
+            for relative, content in files.items():
+                (run_root / relative).write_bytes(content)
+            (run_root / "evidence" / "rendered-concept-inventory.json").write_text(
+                json.dumps({"concepts": [{
+                    "concept_id": "CONCEPT_A",
+                    "hero": "candidate-output/concept-a-hero.png",
+                    "signature_device": "candidate-output/concept-a-signature.png",
+                }]}),
+                encoding="utf-8",
+            )
+            original_receipt = {
+                "status": "FAIL",
+                "workflow_status": "RENDER_DERIVED_MORPHOLOGY_FAILED",
+                "generator_package": {"business_brief": "Business", "brand_brief": "Brand"},
+            }
+            receipt_path = run_root / "evidence" / "clean-room-execution-receipt.json"
+            receipt_path.write_text(json.dumps(original_receipt), encoding="utf-8")
+            original_receipt_bytes = receipt_path.read_bytes()
+            (run_root / "evidence" / "final-status.json").write_text("{}", encoding="utf-8")
+            baseline_path = run_root / "baseline.html"
+            baseline_path.write_text("<main>baseline</main>", encoding="utf-8")
+
+            creative_before = _creative_artifact_hashes(run_root)
+            with patch(
+                "framework_validation.morphology_recheck._capture_existing_render",
+                side_effect=[baseline, candidate],
+            ):
+                recheck_existing_clean_room_run(
+                    run_root=run_root,
+                    baseline_path=baseline_path,
+                    candidates={"CONCEPT_A": run_root / "candidate-output" / "concept-a.html"},
+                    candidate_selectors={"CONCEPT_A": ".device"},
+                )
+
+            recheck_receipt_path = run_root / "evidence" / "morphology-recheck-receipt.json"
+            recheck_receipt = json.loads(recheck_receipt_path.read_text(encoding="utf-8"))
+            final_status = json.loads((run_root / "evidence" / "final-status.json").read_text(encoding="utf-8"))
+            source_receipt_after = receipt_path.read_bytes()
+
+        self.assertEqual(source_receipt_after, original_receipt_bytes)
+        self.assertEqual(recheck_receipt["source_execution_receipt"]["status"], "FAIL")
+        self.assertEqual(recheck_receipt["creative_artifacts_before"], creative_before)
+        self.assertEqual(recheck_receipt["creative_artifacts_before"], recheck_receipt["creative_artifacts_after"])
+        self.assertIn("candidate-output/concept-a-hero.png", creative_before)
+        self.assertIn("candidate-output/logo.png", creative_before)
+        self.assertIn("approved-assets/logo.png", creative_before)
+        self.assertNotIn("candidate-output/owner-review.html", creative_before)
+        self.assertEqual(final_status["MORPHOLOGY_RECHECK_RECEIPT"], "evidence/morphology-recheck-receipt.json")
+        self.assertEqual(final_status["RUNTIME_STATUS"], "PASS")
+
     def test_generic_candidates_share_one_complete_evidence_schema(self) -> None:
         concepts = [
             _generic_morphology_evidence(media_area_ratio=ratio)
@@ -664,13 +887,10 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             business_brief="Business Brief Content",
             brand_brief="Brand Brief Content"
         )
-        self.assertIsNone(pkg["html_source"])
-        self.assertIsNone(pkg["css_source"])
-        self.assertIsNone(pkg["class_names"])
-        self.assertIsNone(pkg["direction_name"])
-        self.assertIsNone(pkg["builder_commentary"])
-        self.assertIsNone(pkg["self_awarded_scores"])
-        self.assertIsNone(pkg["previous_asn_screenshots"])
+        self.assertEqual(
+            set(pkg),
+            {"candidate_screenshots", "external_reference_screenshots", "business_brief", "brand_brief"},
+        )
 
     def test_execution_wires_required_stages_and_stops_for_owner_selection(self) -> None:
         events: List[str] = []
@@ -688,6 +908,22 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         )
         candidate_morphology = {vector: f"CANDIDATE_{vector}" for vector in vectors}
         baseline_morphology = {vector: f"BASELINE_{vector}" for vector in vectors}
+        baseline_evidence = _generic_morphology_evidence()
+        candidate_evidence = _generic_morphology_evidence(
+            surface_count=2,
+            container_count=7,
+            media_area_ratio=0.38,
+            font_family="Arial, Helvetica, sans-serif",
+            occupied_area_ratio=0.20,
+            hero_width=1440,
+            hero_height=820,
+            hero_axis="VERTICAL",
+            signature_width=120,
+            signature_height=680,
+            signature_orientation="VERTICAL",
+            cta_x=620,
+            cta_y=160,
+        )
         manifest = CleanRoomManifest(
             business_understanding_ref="synthetic/project-brief.md",
             owner_intent_ref="synthetic/creative-intent-contract.md",
@@ -717,18 +953,24 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             return {
                 "candidate_screenshot": "synthetic://candidate.png",
                 "morphology": candidate_morphology,
+                "rendered_morphology_evidence": candidate_evidence,
             }
 
         def load_baseline(path: str) -> Dict[str, Any]:
             self.assertEqual(events, ["generate_concepts", "render_candidate"])
             self.assertEqual(path, "projects/historical-negative-baseline")
             events.append("load_negative_baseline")
-            return {"morphology": baseline_morphology}
+            return {
+                "morphology": baseline_morphology,
+                "rendered_morphology_evidence": baseline_evidence,
+            }
 
         def critic(package: Dict[str, Any]) -> Dict[str, Any]:
             events.append("run_blind_critic")
-            self.assertIsNone(package["html_source"])
-            self.assertIsNone(package["previous_asn_screenshots"])
+            self.assertEqual(
+                set(package),
+                {"candidate_screenshots", "external_reference_screenshots", "business_brief", "brand_brief"},
+            )
             return {"status": "PASS", "review_id": "synthetic-review"}
 
         request = CleanRoomExecutionRequest(
@@ -756,6 +998,63 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         self.assertFalse(result["controls"]["negative_baseline_read_before_render"])
         self.assertFalse(result["controls"]["asn_generation_attempted"])
         self.assertEqual(result["controls"]["project_files_written"], 0)
+
+    def test_execution_blocks_declared_morphology_without_browser_evidence(self) -> None:
+        events: List[str] = []
+        declared_candidate = {vector: f"CANDIDATE_{vector}" for vector in MORPHOLOGY_VECTOR_IDS}
+        declared_baseline = {vector: f"BASELINE_{vector}" for vector in MORPHOLOGY_VECTOR_IDS}
+        manifest = CleanRoomManifest(
+            business_understanding_ref="synthetic/project-brief.md",
+            owner_intent_ref="synthetic/creative-intent-contract.md",
+            conversion_requirements_ref="synthetic/measurement-plan.md",
+            content_truth_ref="synthetic/content-plan.md",
+            external_references=[
+                {
+                    "reference_id": "EXT_01",
+                    "classification": "EXTERNAL_GOLD_STANDARD",
+                    "url": "https://example.test/reference",
+                }
+            ],
+        )
+
+        def generate(_manifest: CleanRoomManifest) -> Dict[str, Any]:
+            events.append("generate_concepts")
+            return {
+                "concepts": [
+                    {"concept_id": letter, "built_surfaces": ["desktop_hero", "signature_device"]}
+                    for letter in "ABC"
+                ]
+            }
+
+        def render(_package: Dict[str, Any]) -> Dict[str, Any]:
+            events.append("render_candidate")
+            return {"candidate_screenshot": "synthetic://candidate.png", "morphology": declared_candidate}
+
+        def load_baseline(_path: str) -> Dict[str, Any]:
+            events.append("load_negative_baseline")
+            return {"morphology": declared_baseline}
+
+        def critic(_package: Dict[str, Any]) -> Dict[str, Any]:
+            events.append("run_blind_critic")
+            return {"status": "PASS"}
+
+        result = execute_clean_room_workflow(
+            CleanRoomExecutionRequest(
+                manifest=manifest,
+                adapters=CleanRoomExecutionAdapters(generate, render, load_baseline, critic),
+                negative_baseline_path="projects/historical-negative-baseline",
+                business_brief="Synthetic business brief.",
+                brand_brief="Synthetic brand brief.",
+                positive_input_paths=("synthetic/project-brief.md",),
+                external_reference_screenshots=("synthetic://external-reference.png",),
+                run_id="test-clean-room-missing-browser-evidence",
+            )
+        )
+
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertEqual(result["workflow_status"], "RENDER_DERIVED_MORPHOLOGY_BLOCKED")
+        self.assertEqual(result["failure"], "RENDERED_BROWSER_LAYOUT_EVIDENCE_INCOMPLETE")
+        self.assertNotIn("run_blind_critic", events)
 
     def test_execution_blocks_historical_positive_input_before_any_adapter_runs(self) -> None:
         events: List[str] = []

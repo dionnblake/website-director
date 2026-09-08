@@ -51,6 +51,9 @@ owner-selection unlock, and zero-side-effect synthetic end-to-end controls. It
 also owns the 7/3 stage split, per-vector missing-evidence blocks, normalized
 continuous comparison, generic clone/divergence fixtures, evidence-schema
 parity, and evidence-only owner-review refresh controls.
+It also owns zero-boundary distance calibration, clipped union-area coverage,
+real-browser sparse-wrapper occupancy, exact blind-package allowlisting,
+complete creative-artifact hashing, and immutable recheck-receipt linkage.
 
 ## Local Contracts
 
@@ -101,6 +104,8 @@ parity, and evidence-only owner-review refresh controls.
   critic receives no implementation source or builder secrets, morphology is
   derived from browser layout rather than labels, and the existing owner
   selection authority unlocks full-homepage progression without a new lock.
+- Blind critic packages contain only candidate screenshots, staged external
+  reference screenshots, the business brief, and the brand brief.
 - Morphology fixtures remain business-neutral. Do not tune thresholds or
   expected verdicts to Alpha Starts Now artifacts.
 - Each required failure mode must prove a real validator signal, not merely a
