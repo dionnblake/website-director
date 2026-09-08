@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence
 
 from .rendered_morphology import compare_rendered_morphology
+from .design_first_flow import route_modules
 
 QUARANTINED_PATH_PREFIXES = (
     "projects/",
@@ -370,7 +371,7 @@ def evaluate_morphology_divergence(
     }
 
 
-CleanRoomConceptGenerator = Callable[[CleanRoomManifest], Mapping[str, Any]]
+CleanRoomConceptGenerator = Callable[[Mapping[str, Any]], Mapping[str, Any]]
 CleanRoomCandidateRenderer = Callable[[Mapping[str, Any]], Mapping[str, Any]]
 CleanRoomBaselineLoader = Callable[[str], Mapping[str, Any]]
 CleanRoomBlindCritic = Callable[[Mapping[str, Any]], Mapping[str, Any]]
@@ -823,6 +824,20 @@ def _build_generation_package(
 ) -> Dict[str, Any]:
     inventory = [item for item in stage.get("inventory", []) if isinstance(item, Mapping)]
     by_source = {str(item.get("source_path")): item for item in inventory}
+    screenshot_paths = []
+    for source in request.external_reference_screenshots:
+        item = by_source.get(str(source), {})
+        staged = str(item.get("staged_path", ""))
+        if not staged.startswith("external-references/"):
+            raise ValueError("EXTERNAL_SCREENSHOT_NOT_STAGED")
+        path = Path(str(stage["stage_root"])) / staged
+        header = path.read_bytes()[:12]
+        if not (header.startswith(b"\x89PNG\r\n\x1a\n") or header.startswith(b"\xff\xd8\xff")
+                or (header.startswith(b"RIFF") and header[8:12] == b"WEBP")):
+            raise ValueError("EXTERNAL_SCREENSHOT_IMAGE_REQUIRED")
+        screenshot_paths.append(staged)
+    if not screenshot_paths:
+        raise ValueError("EXTERNAL_SCREENSHOTS_REQUIRED")
     positive_references = []
     for reference in manifest.external_references:
         if not isinstance(reference, Mapping):
@@ -854,6 +869,7 @@ def _build_generation_package(
         "run_id": stage.get("run_id"),
         "mode": manifest.mode,
         "staged_workspace": {
+            "root": str(stage["stage_root"]),
             "manifest": "manifest/clean-room-manifest.json",
             "business": "business/",
             "brand": "brand/",
@@ -867,9 +883,14 @@ def _build_generation_package(
         "approved_brand_constants": dict(manifest.brand_constants),
         "allowed_asset_list": allowed_assets,
         "positive_reference_list": positive_references,
+        "external_reference_screenshots": screenshot_paths,
         "concept_request": dict(scope),
+        "creative_authority": "DIRECT_REFERENCE_BUILDER",
+        "active_specialists": [],
         "generation_instruction": (
             "CLEAN_ROOM_MODE: use only the staged creative workspace. "
+            "Use the actual staged external reference screenshots directly. "
+            "No other creative specialist or morphology feedback is active. "
             "Generate exactly three bounded concept candidates, each limited to "
             "DESKTOP_HERO and SIGNATURE_DEVICE. Do not inspect repository, project, "
             "review-workspace, or prior generated output paths. Stop after candidate "
@@ -1062,6 +1083,13 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
         return _finish_execution(receipt, "BLOCKED", "NEGATIVE_BASELINE_PRE_RENDER_BLOCKED", "NEGATIVE_BASELINE_NOT_QUARANTINED")
 
     try:
+        activation = route_modules("DIRECTION", ["DIRECT_REFERENCE_BUILDER"], {
+            "business_brief_available": bool(request.business_brief and request.brand_brief),
+            "clean_room_ready": stage.get("status") == "PASS",
+            "external_screenshots_ready": provenance.get("status") == "PASS",
+        })
+        if activation["status"] != "PASS":
+            return _finish_execution(receipt, "BLOCKED", "DIRECTION_ACTIVATION_BLOCKED", str(activation["issues"]))
         generator_package = _build_generation_package(request, manifest, stage, scope)
     except (OSError, TypeError, ValueError) as exc:
         _record_execution_stage(receipt, "PRE_GENERATION_SCOPE", "BLOCKED", _adapter_error(exc))
@@ -1074,7 +1102,7 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
     try:
         if request.adapters.on_stage_ready:
             request.adapters.on_stage_ready(str(stage["stage_root"]), generator_package)
-        concept_package = request.adapters.generate_concepts(manifest)
+        concept_package = request.adapters.generate_concepts(generator_package)
     except Exception as exc:  # noqa: BLE001 - provider-neutral boundary must fail closed
         _record_execution_stage(receipt, "CONCEPT_GENERATION", "BLOCKED", "concept adapter raised", error=_adapter_error(exc))
         return _finish_execution(receipt, "BLOCKED", "CONCEPT_GENERATION_BLOCKED", "CLEAN_ROOM_CONCEPT_ADAPTER_ERROR")
@@ -1388,7 +1416,7 @@ class _SyntheticCleanRoomAdapters:
         finally:
             engine.stop()
 
-    def generate_concepts(self, manifest: CleanRoomManifest) -> Mapping[str, Any]:
+    def generate_concepts(self, package: Mapping[str, Any]) -> Mapping[str, Any]:
         self.events.append("generate_concepts")
         return {
             "concepts": [

@@ -1,4 +1,22 @@
 {
+  "semantics": {
+    "contract": "Existing state authority and evidence vocabulary; no additional state fields or writers",
+    "owner_locks_source": "framework_validation/validator.py:CANONICAL_LOCKS",
+    "verdict_vocabulary_source": "browser-qa/engine/base.py:VERDICTS",
+    "evidence_taxonomy_source": "IMPECCABLE-ENGINE-PROTOCOL.md section 2; BROWSER-REGRESSION-QA-PROTOCOL.md section 21",
+    "launch_transitions_source": "launch-ops/validator.py:STATE_TRANSITIONS",
+    "complete": "Domain-owned completion only; never implies implementation_verified or production_verified",
+    "implementation_verified": "Evidence from actual implementation in named environment; simulation cannot set this",
+    "production_verified": "Evidence from the known deployed release on its production surface",
+    "baseline_default": "UNKNOWN",
+    "flaky_is_pass": false,
+    "unavailable_engine_verdict": "BLOCKED",
+    "prohibited_claims": [
+      "GDPR COMPLIANT",
+      "WCAG COMPLIANT",
+      "ADA COMPLIANT"
+    ]
+  },
   "registry_version": "1.0.0",
   "description": "One writable authority per current framework state concept. Historical aliases remain readable but cannot become current authority.",
   "states": [

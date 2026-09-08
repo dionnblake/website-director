@@ -8,9 +8,13 @@ historical material as permission to regenerate it.
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import ModuleType
+from unittest.mock import patch
 
 from framework_validation import validator
 
@@ -277,6 +281,58 @@ class FrameworkValidationTests(unittest.TestCase):
                 legacy_versions=["2.10.0", "2.11.0", "2.11.1"],
             ),
         )
+
+    def test_direction_import_does_not_activate_launch_authority(self) -> None:
+        script = """
+import sys
+from pathlib import Path
+executed = []
+def track_execution(event, args):
+    if event == "exec":
+        executed.append(Path(args[0].co_filename).as_posix())
+sys.addaudithook(track_execution)
+import framework_validation.design_first_flow
+from framework_validation import validator
+assert not any(path.endswith("launch-ops/validator.py") for path in executed), executed
+assert validator._launch_authority.cache_info().currsize == 0
+from framework_validation.validator import LAUNCH_STATUSES, LAUNCH_TRANSITIONS
+assert any(path.endswith("launch-ops/validator.py") for path in executed), executed
+assert LAUNCH_STATUSES is validator._launch_authority().LAUNCH_STATUSES
+assert LAUNCH_TRANSITIONS is validator._launch_authority().STATE_TRANSITIONS
+assert validator.validate_transition_path(["NOT_EVALUATED", "PLANNING"])
+"""
+        result = subprocess.run([sys.executable, "-c", script], cwd=ROOT,
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_launch_transition_authority_is_shared(self) -> None:
+        authority = validator._launch_authority()
+        self.assertIs(validator.LAUNCH_STATUSES, authority.LAUNCH_STATUSES)
+        self.assertIs(validator.LAUNCH_TRANSITIONS, authority.STATE_TRANSITIONS)
+        for source in (*authority.LAUNCH_STATUSES, "UNKNOWN"):
+            for target in (*authority.LAUNCH_STATUSES, "UNKNOWN"):
+                with self.subTest(source=source, target=target):
+                    expected = authority.validate_transition(source, target).verdict == authority.PASS
+                    self.assertEqual(validator.validate_transition_path([source, target]), expected)
+        self.assertFalse(validator.validate_transition_path([]))
+
+    def test_launch_authority_import_preserves_module_isolation(self) -> None:
+        generic = ModuleType("validator")
+        prior = ModuleType("_website_director_launch_authority")
+        with patch.dict(sys.modules, {"validator": generic, prior.__name__: prior}):
+            authority = validator._load_launch_authority()
+            self.assertIs(sys.modules["validator"], generic)
+            self.assertIs(sys.modules[prior.__name__], prior)
+            self.assertIsNot(authority, prior)
+            self.assertEqual(authority.validate_transition("NOT_EVALUATED", "STABILIZED").verdict, "FAIL")
+        with patch.dict(sys.modules, {prior.__name__: None}):
+            validator._load_launch_authority()
+            self.assertIn(prior.__name__, sys.modules)
+            self.assertIsNone(sys.modules[prior.__name__])
+        with patch.dict(sys.modules):
+            sys.modules.pop(prior.__name__, None)
+            validator._load_launch_authority()
+            self.assertNotIn(prior.__name__, sys.modules)
 
     def test_invalid_state_transition_is_rejected(self) -> None:
         self.assertFalse(validator.validate_transition_path(["NOT_EVALUATED", "STABILIZED"]))

@@ -6,6 +6,10 @@
 
 ---
 
+FEATURE_FREEZE = ACTIVE on refactor/kernel. No website or ASN generation during refactor.
+The version catalog below describes available implementation, not automatic activation.
+Its historical phase/activation instructions are superseded by SKILL.md's activation table.
+
 ## 1. What Is Website Director?
 
 **Website Director** is a deterministic design governance skill and operating methodology. It bridges the gap between commercial strategy and frontend engineering.
@@ -267,106 +271,14 @@ cinematic production, inspiration selection, and visual proof operational.
 
 ## 2. The Core Architecture
 
-```
-BUSINESS INPUT
-      │
-      ▼
-PHASE 1: CREATIVE BRIEFING ROOM (Stages A-G)
-      ├─► [GATE BRIEF: CREATIVE_INTENT_CONFIRMED] (readiness gate)
-      │
-      ▼
-PHASE 2: POSITIONING & ANTI-BRAND BOUNDARIES
-      │
-      ▼
-PHASE 2.5: SEO INTELLIGENCE (SEO Intelligence Director)
-      ├─► [GATE SEO: SEO_COMPLETE] (readiness gate, not an approval lock)
-      │
-      ▼
-PHASE 3: VISUAL RESEARCH (Visual Research Director)
-      ├─► [GATE 0: RESEARCH_COMPLETE] (readiness gate, not an approval lock)
-      │
-      ▼
-PHASE 3.5: DESIGN INTELLIGENCE CANDIDATE SYNTHESIS (UI/UX Pro Max)
-      ├─► [GATE INTEL: DESIGN_INTELLIGENCE_COMPLETE] (readiness gate)
-      │
-      ▼
-PHASE 3.75: AWWWARDS SHOWCASE BENCHMARKING (SHOWCASE Tier Intelligence)
-      │
-      ▼
-PHASE 4: TWO-PASS DESIGN SYNTHESIS & DIRECTION FORMULATION (Pass 1 & Pass 2)
-      │
-      ▼
-PHASE 4.5: HIGH-FIDELITY VISUAL PROTOTYPES & OWNER COMPARISON GATE
-      ├─► [GATE PROTO: VISUAL_PROTOTYPES_OWNER_REVIEW_READY]
-      ├─► [OWNER VISUALLY SELECTS DIRECTION]
-      ├─► [LOCK 1: DESIGN_DIRECTION_LOCKED]
-      │
-      ▼
-PHASE 5: INFORMATION ARCHITECTURE & SECTION MORPHOLOGY
-      ├─► [LOCK 2: INFORMATION_ARCHITECTURE_LOCKED]
-      │
-      ▼
-PHASE 6: CONTENT STRATEGY, UX WRITING & COPYWRITING
-      ├─► [LOCK 3: CONTENT_STRUCTURE_LOCKED]
-      │
-      ▼
-PHASE 6.25: CONTENT OPERATIONS & CMS ARCHITECTURE
-      ├─► [GATE CONTENT: CONTENT_OPERATIONS_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.35: LOCALIZATION & INTERNATIONALIZATION INTELLIGENCE
-      ├─► [GATE LOCALIZATION: LOCALIZATION_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE
-      ├─► [GATE MEASUREMENT: CONVERSION_MEASUREMENT_COMPLETE] (readiness gate)
-      │
-      ▼
-PHASE 6.75: SECURITY, PRIVACY & COMPLIANCE INTELLIGENCE
-      ├─► [GATE SECURITY: SECURITY_PRIVACY_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.9: ACCESSIBILITY INTELLIGENCE
-      ├─► [GATE ACCESSIBILITY: ACCESSIBILITY_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.95: EVIDENCE & ASSET PROVENANCE
-      ├─► [GATE PROVENANCE: EVIDENCE_PROVENANCE_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.99: CONDITIONAL APPLICATION, COMMERCE & AUTHENTICATION ARCHITECTURE
-      ├─► [GATE APPLICATION: APPLICATION_ARCHITECTURE_READY] (readiness gate)
-      │
-      ▼
-PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE
-      ├─► [LOCK 4: DESIGN_SYSTEM_LOCKED]
-      │
-      ▼
-PHASE 8: MOTION DIRECTION & GSAP IMPLEMENTATION SPEC
-      ├─► [LOCK 5: MOTION_DIRECTION_LOCKED]
-      │
-      ▼
-PHASE 9: IMPLEMENTATION CONTRACT ISSUANCE
-      │
-      ▼
-PHASE 10: BUILD EXECUTION (Strict Token/Spec Consumption & Scoped Lifecycle)
-      │
-      ▼
-PHASE 11: 100-POINT DESIGN QA & IMPECCABLE PRE-SCAN
-      │
-      ▼
-PHASE 11.5: WEBSITE GAUNTLET ADVERSARIAL REFINEMENT LOOP (Builder != Critic)
-      ├─► [GATE GAUNTLET: GAUNTLET_PASS]
-      │
-      ▼
-PHASE 12: PRODUCTION PRE-FLIGHT CHECKLIST
-      │
-      ▼
-PRODUCTION-READY CODEBASE (Zero AI Slop, Subject-Grounded, Distinctive & Verified)
-```
+BRIEF → DIRECTION → IA → CONTENT → BUILD → VERIFY → LAUNCH
 
-
----
+The resident contract and sole activation table are [SKILL.md](SKILL.md).
+Default DIRECTION uses only the clean-room direct-reference builder and three
+desktop hero/signature concepts, then stops for owner selection. BUILD expands
+the selected concept to the owner-reviewed homepage before full-site implementation.
+Five owner locks remain. Specialist details load only for explicit bounded work.
+Decimal phases in the historical catalog are internal identifiers, not a second lifecycle.
 
 ## 3. Reference Mode vs. Original Mode
 

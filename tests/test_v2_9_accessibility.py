@@ -160,10 +160,10 @@ check("check_accessibility" in cat and "ACCESSIBILITY_REVIEW" in cat,
 
 # ---- cross-document wiring -------------------------------------------------
 skill = read("SKILL.md")
-check("PHASE 6.9" in skill, "SKILL.md declares PHASE 6.9")
-check("[ACCESSIBILITY_READY]" in skill, "SKILL.md declares the ACCESSIBILITY_READY gate")
-check("GATE ACCESSIBILITY" in skill, "SKILL.md workflow diagram includes GATE ACCESSIBILITY")
-check("Single-Source-of-Truth Rule for `accessibility`" in skill, "SKILL.md documents the accessibility SoT rule")
+check("| ACCESSIBILITY |" in skill and "ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md" in skill, "Kernel explicitly routes ACCESSIBILITY to its owner")
+check("accessibility.complete" in read("ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md"), "Lazy module retains its canonical completion state")
+check("schemas/state-ownership.json" in skill, "Kernel consumes canonical state ownership")
+check("accessibility.complete" in read("schemas/state-ownership.json"), "State registry retains sole domain completion owner")
 check(ver_ge(skill), "SKILL.md version >= 2.9.0")
 check("Exactly 5 owner locks remain" in skill, "SKILL.md restates the five-lock invariant")
 

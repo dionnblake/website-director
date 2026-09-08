@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import argparse
 from decimal import Decimal, InvalidOperation
-from functools import total_ordering
+from functools import lru_cache, total_ordering
 import hashlib
 import importlib.util
 import json
@@ -68,42 +68,39 @@ REPORT_RUNTIME_PREFIX = "framework-validation/reports/runtime/"
 REPORT_CERTIFICATION_PREFIX = "framework-validation/reports/"
 RUNTIME_SOURCE_PREFIXES = (REPORT_RUNTIME_PREFIX, "browser-qa/evidence/")
 
-LAUNCH_STATUSES = (
-    "NOT_EVALUATED",
-    "PLANNING",
-    "BLOCKED",
-    "RELEASE_READY",
-    "AWAITING_DEPLOYMENT_AUTHORIZATION",
-    "DEPLOYMENT_AUTHORIZED",
-    "DEPLOYING",
-    "DEPLOYED",
-    "PRODUCTION_VERIFICATION_RUNNING",
-    "PRODUCTION_VERIFICATION_FAILED",
-    "PRODUCTION_VERIFIED",
-    "POST_LAUNCH_MONITORING",
-    "STABILIZED",
-    "ROLLBACK_REQUIRED",
-    "ROLLED_BACK",
-    "EXCEPTION_APPLIED",
-)
-LAUNCH_TRANSITIONS: dict[str, tuple[str, ...]] = {
-    "NOT_EVALUATED": ("PLANNING", "EXCEPTION_APPLIED"),
-    "PLANNING": ("PLANNING", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "BLOCKED": ("PLANNING", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "RELEASE_READY": ("AWAITING_DEPLOYMENT_AUTHORIZATION", "BLOCKED", "PLANNING", "EXCEPTION_APPLIED"),
-    "AWAITING_DEPLOYMENT_AUTHORIZATION": ("DEPLOYMENT_AUTHORIZED", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "DEPLOYMENT_AUTHORIZED": ("DEPLOYING", "BLOCKED", "EXCEPTION_APPLIED"),
-    "DEPLOYING": ("DEPLOYED", "PRODUCTION_VERIFICATION_FAILED", "ROLLBACK_REQUIRED", "BLOCKED"),
-    "DEPLOYED": ("PRODUCTION_VERIFICATION_RUNNING", "ROLLBACK_REQUIRED", "BLOCKED"),
-    "PRODUCTION_VERIFICATION_RUNNING": ("PRODUCTION_VERIFIED", "PRODUCTION_VERIFICATION_FAILED", "ROLLBACK_REQUIRED"),
-    "PRODUCTION_VERIFICATION_FAILED": ("PRODUCTION_VERIFICATION_RUNNING", "ROLLBACK_REQUIRED", "BLOCKED", "DEPLOYMENT_AUTHORIZED"),
-    "PRODUCTION_VERIFIED": ("POST_LAUNCH_MONITORING", "ROLLBACK_REQUIRED"),
-    "POST_LAUNCH_MONITORING": ("STABILIZED", "ROLLBACK_REQUIRED", "PRODUCTION_VERIFICATION_RUNNING"),
-    "STABILIZED": ("STABILIZED", "ROLLBACK_REQUIRED"),
-    "ROLLBACK_REQUIRED": ("ROLLED_BACK", "BLOCKED"),
-    "ROLLED_BACK": ("PLANNING", "RELEASE_READY", "BLOCKED", "EXCEPTION_APPLIED"),
-    "EXCEPTION_APPLIED": ("EXCEPTION_APPLIED", "PLANNING"),
-}
+def _load_launch_authority():
+    """Load the owning launch validator without touching generic module imports."""
+    path = Path(__file__).resolve().parents[1] / "launch-ops" / "validator.py"
+    spec = importlib.util.spec_from_file_location("_website_director_launch_authority", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load canonical launch authority: {path}")
+    module = importlib.util.module_from_spec(spec)
+    missing = object()
+    previous = sys.modules.get(spec.name, missing)
+    try:
+        # Dataclasses resolves postponed annotations through sys.modules.
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+    finally:
+        if previous is missing:
+            sys.modules.pop(spec.name, None)
+        else:
+            sys.modules[spec.name] = previous
+    return module
+
+
+@lru_cache(maxsize=1)
+def _launch_authority():
+    return _load_launch_authority()
+
+
+def __getattr__(name: str):
+    # Legacy exports resolve on explicit access; importing the kernel stays lazy.
+    if name == "LAUNCH_STATUSES":
+        return _launch_authority().LAUNCH_STATUSES
+    if name == "LAUNCH_TRANSITIONS":
+        return _launch_authority().STATE_TRANSITIONS
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 @total_ordering
@@ -304,16 +301,9 @@ def validate_owner_locks(profile: Mapping[str, Any], current: bool = True) -> li
 
 
 def _validate_transition_path(path: Sequence[str]) -> Optional[str]:
-    if not path:
-        return "empty transition path"
-    for source, target in zip(path, path[1:]):
-        if source not in LAUNCH_STATUSES:
-            return f"unknown source status {source!r}"
-        if target not in LAUNCH_STATUSES:
-            return f"unknown target status {target!r}"
-        if target not in LAUNCH_TRANSITIONS.get(source, ()):
-            return f"illegal transition {source} -> {target}"
-    return None
+    authority = _launch_authority()
+    finding = authority.validate_transition_path(list(path))
+    return None if finding.verdict == authority.PASS else finding.detail
 
 
 def validate_transition_path(path: Sequence[str]) -> bool:
@@ -389,7 +379,7 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
     launch_ops = profile.get("launch_ops")
     if isinstance(launch_ops, dict):
         status = launch_ops.get("status")
-        if status is not None and status not in LAUNCH_STATUSES:
+        if status is not None and status not in _launch_authority().LAUNCH_STATUSES:
             records.append(("LAUNCH_STATUS_ENUM", f"launch_ops.status {status!r} is not canonical"))
         history = launch_ops.get("status_history") or launch_ops.get("transition_history")
         if history:

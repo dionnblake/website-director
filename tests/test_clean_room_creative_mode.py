@@ -13,6 +13,7 @@ Validates:
 from __future__ import annotations
 
 import copy
+from dataclasses import replace
 import json
 import tempfile
 import unittest
@@ -892,6 +893,40 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             {"candidate_screenshots", "external_reference_screenshots", "business_brief", "brand_brief"},
         )
 
+    def _add_staged_reference(self, request):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        source = root / "source"
+        source.mkdir()
+        (source / "reference.png").write_bytes(bytes.fromhex(
+            "89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c489"
+            "0000000d49444154789c6360f8cf00000004000101a2b4ddbd0000000049454e44ae426082"))
+        request.manifest.staged_inputs.append({
+            "source_path": "reference.png", "staged_path": "external-references/reference.png",
+            "classification": "EXTERNAL_GOLD_STANDARD", "authorization_basis": "SYNTHETIC_TEST_REFERENCE"})
+        return replace(request, source_root=str(source), run_root=str(root / "runs"),
+                       external_reference_screenshots=("reference.png",))
+
+    def test_missing_or_non_image_reference_blocks_before_builder(self):
+        for invalid in ("missing", "not_image"):
+            events = []
+            callback = lambda _: events.append("called")
+            request = CleanRoomExecutionRequest(
+                manifest=CleanRoomManifest(external_references=[{
+                    "reference_id": "REF", "classification": "EXTERNAL_GOLD_STANDARD"}]),
+                adapters=CleanRoomExecutionAdapters(callback, callback, callback, callback),
+                negative_baseline_path="projects/history", business_brief="Fixture business",
+                brand_brief="Fixture owner intent")
+            request = self._add_staged_reference(request)
+            if invalid == "missing":
+                request = replace(request, external_reference_screenshots=())
+            else:
+                (Path(request.source_root) / "reference.png").write_text("URL or prose is not a screenshot")
+            result = execute_clean_room_workflow(request)
+            self.assertEqual(result["workflow_status"], "GENERATOR_PACKAGE_BLOCKED")
+            self.assertEqual(events, [])
+
     def test_execution_wires_required_stages_and_stops_for_owner_selection(self) -> None:
         events: List[str] = []
         vectors = (
@@ -938,8 +973,12 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             ],
         )
 
-        def generate(_manifest: CleanRoomManifest) -> Dict[str, Any]:
+        def generate(package: Dict[str, Any]) -> Dict[str, Any]:
             events.append("generate_concepts")
+            self.assertEqual(package["creative_authority"], "DIRECT_REFERENCE_BUILDER")
+            self.assertEqual(package["active_specialists"], [])
+            image = Path(package["staged_workspace"]["root"]) / package["external_reference_screenshots"][0]
+            self.assertTrue(image.read_bytes().startswith(b"\x89PNG"))
             return {
                 "concepts": [
                     {"concept_id": "A", "built_surfaces": ["desktop_hero", "signature_device"]},
@@ -984,7 +1023,7 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             run_id="test-clean-room-execution",
         )
 
-        result = execute_clean_room_workflow(request)
+        result = execute_clean_room_workflow(self._add_staged_reference(request))
 
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(result["workflow_status"], "OWNER_CONCEPT_SELECTION_PENDING")
@@ -1017,8 +1056,12 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             ],
         )
 
-        def generate(_manifest: CleanRoomManifest) -> Dict[str, Any]:
+        def generate(package: Dict[str, Any]) -> Dict[str, Any]:
             events.append("generate_concepts")
+            self.assertEqual(package["creative_authority"], "DIRECT_REFERENCE_BUILDER")
+            self.assertEqual(package["active_specialists"], [])
+            image = Path(package["staged_workspace"]["root"]) / package["external_reference_screenshots"][0]
+            self.assertTrue(image.read_bytes().startswith(b"\x89PNG"))
             return {
                 "concepts": [
                     {"concept_id": letter, "built_surfaces": ["desktop_hero", "signature_device"]}
@@ -1039,7 +1082,7 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
             return {"status": "PASS"}
 
         result = execute_clean_room_workflow(
-            CleanRoomExecutionRequest(
+            self._add_staged_reference(CleanRoomExecutionRequest(
                 manifest=manifest,
                 adapters=CleanRoomExecutionAdapters(generate, render, load_baseline, critic),
                 negative_baseline_path="projects/historical-negative-baseline",
@@ -1048,7 +1091,7 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
                 positive_input_paths=("synthetic/project-brief.md",),
                 external_reference_screenshots=("synthetic://external-reference.png",),
                 run_id="test-clean-room-missing-browser-evidence",
-            )
+            ))
         )
 
         self.assertEqual(result["status"], "BLOCKED")

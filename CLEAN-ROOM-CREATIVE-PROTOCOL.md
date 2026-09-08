@@ -7,6 +7,17 @@
 
 ---
 
+## Kernel activation boundary
+
+SKILL.md owns the sole activation table. Initial DIRECTION is the
+DIRECT_REFERENCE_BUILDER alone: three desktop hero plus signature-device concepts.
+The builder receives actual staged external reference screenshots, business brief,
+owner intent, and approved brand constants/assets. No other specialist instructions,
+analytics/SEO design guidance, or morphology feedback enter its active package.
+Morphology and blind critique remain post-render in separate context. Existing
+decimal numbers below identify internal activities only. This protocol is loaded
+by the controller; only the allowlisted generation package reaches the builder.
+
 ## 1. Core Operating Principles
 
 1. **STRUCTURAL QUARANTINE**: Prompt instructions alone are insufficient to prevent historical contamination. Unapproved historical generated output is structurally inaccessible to the concept generation engine.
@@ -26,7 +37,7 @@ When `CREATIVE_MODE = CLEAN_ROOM`, concept generation receives ONLY the clean-ro
 - Current Owner Intent Contract (`creative-intent-contract.md`)
 - Current Approved Brand Constants
 - Owner-Allowlisted Reusable Assets
-- Current Conversion Requirements (`measurement-plan.md`)
+- Business conversion goals as owner facts, without analytics design guidance
 - Current Factual Content
 - External Design References / Owner-Supplied External References
 - Explicit Owner Non-Negotiables
@@ -245,7 +256,12 @@ execution coordinator, not a report-only validator. It accepts a
 `CleanRoomExecutionRequest` and four provider-neutral adapters plus an
 optional stage-ready callback:
 
-1. `generate_concepts(manifest)` returns the three cheap concepts after the
+The generator receives the bounded pack directly, including the staged workspace root
+and actual staged external screenshot paths. on_stage_ready is optional notification
+only; it is never the required input channel. Manifest-only adapters must migrate
+to this bounded mapping. No repository root or historical paths enter the pack.
+
+1. `generate_concepts(generator_package)` returns the three cheap concepts after the
    staged package and pre-generation scope pass.
 2. `render_candidate(concept_package)` returns a candidate screenshot and,
    for real proof, browser-derived DOM/CSS/layout evidence.

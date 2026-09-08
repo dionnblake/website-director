@@ -8,6 +8,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -40,6 +41,8 @@ from framework_validation.design_first_flow import (  # noqa: E402
     validate_operating_flow,
     validate_owner_lock_contract,
     validate_production_gate,
+    route_modules,
+    module_activation_table,
 )
 from framework_validation.cinematic_inspiration import (  # noqa: E402
     resolve_screenshot_receipt,
@@ -576,6 +579,67 @@ class DesignFirstProductionFlowTests(unittest.TestCase):
         self.assertNotIn('"homepage_visual_approved"', state_registry)
         self.assertNotIn("V2.16", flow_doc + skill)
         self.assertNotIn("Capability #11", flow_doc + skill)
+
+
+class KernelActivationTests(unittest.TestCase):
+    def test_malformed_activation_contract_blocks_without_loading_module(self):
+        original_read = Path.read_text
+        skill = original_read(ROOT / "SKILL.md", encoding="utf-8")
+        for broken in (skill.replace("| MODULE | GATE |", "| MODULE | WRONG |"),
+                       skill.replace("GSAP-IMPLEMENTATION-PROTOCOL.md", "missing-owner.md")):
+            def read(path, *args, **kwargs):
+                return broken if path.name == "SKILL.md" else original_read(path, *args, **kwargs)
+            with patch.object(Path, "read_text", autospec=True, side_effect=read):
+                result = route_modules("BUILD", ["GSAP"], {})
+            self.assertEqual(result["status"], "BLOCKED")
+            self.assertEqual(result["modules"], [])
+            self.assertEqual(result["issues"][0]["code"], "ACTIVATION_CONTRACT_UNAVAILABLE")
+
+    def test_exact_lifecycle_and_inactive_default(self):
+        self.assertEqual(OPERATING_FLOW, ("BRIEF", "DIRECTION", "IA", "CONTENT", "BUILD", "VERIFY", "LAUNCH"))
+        for gate in OPERATING_FLOW:
+            result = route_modules(gate, [], {})
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["modules"], [])
+
+    def test_initial_direction_allows_only_direct_reference_builder(self):
+        table = module_activation_table()
+        facts = {fact: True for row in table.values() for fact in row["ACTIVATION_PREDICATE"].split(" & ")}
+        result = route_modules("DIRECTION", ["DIRECT_REFERENCE_BUILDER"], facts)
+        self.assertEqual(result["status"], "PASS")
+        for name in table:
+            if name == "DIRECT_REFERENCE_BUILDER":
+                continue
+            result = route_modules("DIRECTION", ["DIRECT_REFERENCE_BUILDER", name], facts)
+            self.assertEqual(result["status"], "BLOCKED", name)
+            self.assertEqual(result["modules"], [])
+
+    def test_motion_engines_are_mutually_exclusive(self):
+        facts = dict(direction_selected=True, motion_approved=True, gsap_required=True, rive_required=True)
+        for name in ("GSAP", "RIVE"):
+            self.assertEqual(route_modules("BUILD", [name], facts)["status"], "PASS")
+        self.assertEqual(route_modules("BUILD", ["GSAP", "RIVE"], facts)["status"], "BLOCKED")
+
+    def test_missing_false_string_and_unknown_requests_fail_closed(self):
+        for facts in ({}, {"direction_selected": True, "custom_assets_required": "true"},
+                      {"direction_selected": True, "custom_assets_required": False}):
+            self.assertEqual(route_modules("BUILD", ["ASSET_DIRECTOR"], facts)["status"], "BLOCKED")
+        for gate, names in (("8.5", []), ("BUILD", ["UNKNOWN"]), ("BUILD", "GSAP"), ("BUILD", [1])):
+            self.assertEqual(route_modules(gate, names, {})["status"], "BLOCKED")
+
+    def test_post_render_and_launch_modules_cannot_enter_build(self):
+        facts = dict(rendered_evidence_ready=True, browser_qa_completed=True,
+                     verification_complete=True, release_identity_known=True)
+        for name in ("GAUNTLET", "LAUNCH_AUTHORITY", "BROWSER_QA"):
+            self.assertEqual(route_modules("BUILD", [name], facts)["status"], "BLOCKED")
+        self.assertEqual(route_modules("VERIFY", ["GAUNTLET"], facts)["status"], "PASS")
+        self.assertEqual(route_modules("LAUNCH", ["LAUNCH_AUTHORITY"], facts)["status"], "PASS")
+
+    def test_context_does_not_retain_previous_activation(self):
+        self.assertEqual(route_modules("BUILD", ["ASSET_DIRECTOR"],
+                        dict(direction_selected=True, custom_assets_required=True))["status"], "PASS")
+        self.assertEqual(route_modules("BUILD", [], {})["modules"], [])
+        self.assertEqual(route_modules("BUILD", ["ASSET_DIRECTOR"], {})["status"], "BLOCKED")
 
 
 if __name__ == "__main__":

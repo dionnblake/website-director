@@ -1,4 +1,6 @@
 {
+  "lifecycle": ["BRIEF", "DIRECTION", "IA", "CONTENT", "BUILD", "VERIFY", "LAUNCH"],
+  "phase_role": "INTERNAL_ACTIVITIES_ONLY",
   "registry_version": "1.0.0",
   "phases": [
     {
@@ -7,6 +9,7 @@
       "protocol": "FRAMEWORK_VALIDATION",
       "gate": "FRAMEWORK_VALIDATION_PASS",
       "preconditions": [],
+      "lifecycle_gate": "VERIFY",
       "status": "ACTIVE"
     },
     {
@@ -15,6 +18,7 @@
       "protocol": "DISCOVERY",
       "gate": "CREATIVE_INTENT_CONFIRMED",
       "preconditions": [],
+      "lifecycle_gate": "BRIEF",
       "status": "HISTORICAL"
     },
     {
@@ -23,6 +27,7 @@
       "protocol": "WEBSITE_DIRECTOR_CORE",
       "gate": null,
       "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "lifecycle_gate": "BRIEF",
       "status": "HISTORICAL"
     },
     {
@@ -31,6 +36,7 @@
       "protocol": "SEO_INTELLIGENCE",
       "gate": "SEO_COMPLETE",
       "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "lifecycle_gate": "IA",
       "status": "HISTORICAL"
     },
     {
@@ -39,6 +45,7 @@
       "protocol": "VISUAL_RESEARCH",
       "gate": "RESEARCH_COMPLETE",
       "preconditions": ["CREATIVE_INTENT_CONFIRMED"],
+      "lifecycle_gate": "BRIEF",
       "status": "HISTORICAL"
     },
     {
@@ -47,6 +54,7 @@
       "protocol": "DESIGN_INTELLIGENCE",
       "gate": "DESIGN_INTELLIGENCE_COMPLETE",
       "preconditions": ["RESEARCH_COMPLETE"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -55,6 +63,7 @@
       "protocol": "AWWWARDS_SHOWCASE",
       "gate": null,
       "preconditions": ["RESEARCH_COMPLETE"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -63,6 +72,7 @@
       "protocol": "VISUAL_DIRECTION",
       "gate": "DESIGN_DIRECTION_LOCKED",
       "preconditions": ["DESIGN_INTELLIGENCE_COMPLETE"],
+      "lifecycle_gate": "DIRECTION",
       "status": "HISTORICAL"
     },
     {
@@ -71,6 +81,7 @@
       "protocol": "VISUAL_PROTOTYPE",
       "gate": "VISUAL_PROTOTYPES_OWNER_READY",
       "preconditions": ["DESIGN_INTELLIGENCE_COMPLETE"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -79,6 +90,7 @@
       "protocol": "INFORMATION_ARCHITECTURE",
       "gate": "INFORMATION_ARCHITECTURE_LOCKED",
       "preconditions": ["DESIGN_DIRECTION_LOCKED"],
+      "lifecycle_gate": "IA",
       "status": "HISTORICAL"
     },
     {
@@ -87,6 +99,7 @@
       "protocol": "CONTENT_STRUCTURE",
       "gate": "CONTENT_STRUCTURE_LOCKED",
       "preconditions": ["INFORMATION_ARCHITECTURE_LOCKED"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -95,6 +108,7 @@
       "protocol": "CONTENT_OPERATIONS_CMS",
       "gate": "CONTENT_OPERATIONS_READY",
       "preconditions": ["CONTENT_STRUCTURE_LOCKED"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -103,6 +117,7 @@
       "protocol": "LOCALIZATION_INTERNATIONALIZATION",
       "gate": "LOCALIZATION_READY",
       "preconditions": ["CONTENT_OPERATIONS_READY"],
+      "lifecycle_gate": "CONTENT",
       "status": "ACTIVE"
     },
     {
@@ -111,6 +126,7 @@
       "protocol": "CONVERSION_ANALYTICS",
       "gate": "CONVERSION_MEASUREMENT_COMPLETE",
       "preconditions": ["CONTENT_OPERATIONS_READY"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -119,6 +135,7 @@
       "protocol": "SECURITY_PRIVACY",
       "gate": "SECURITY_PRIVACY_READY",
       "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -127,6 +144,7 @@
       "protocol": "ACCESSIBILITY",
       "gate": "ACCESSIBILITY_READY",
       "preconditions": ["SECURITY_PRIVACY_READY"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -135,6 +153,7 @@
       "protocol": "EVIDENCE_PROVENANCE",
       "gate": "EVIDENCE_PROVENANCE_READY",
       "preconditions": ["ACCESSIBILITY_READY"],
+      "lifecycle_gate": "CONTENT",
       "status": "HISTORICAL"
     },
     {
@@ -143,6 +162,7 @@
       "protocol": "APPLICATION_COMMERCE_AUTH",
       "gate": "APPLICATION_ARCHITECTURE_READY",
       "preconditions": ["CONTENT_OPERATIONS_READY", "LOCALIZATION_READY", "EVIDENCE_PROVENANCE_READY"],
+      "lifecycle_gate": "CONTENT",
       "status": "ACTIVE"
     },
     {
@@ -151,6 +171,7 @@
       "protocol": "DESIGN_SYSTEM",
       "gate": "DESIGN_SYSTEM_LOCKED",
       "preconditions": ["ACCESSIBILITY_READY", "EVIDENCE_PROVENANCE_READY"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -159,6 +180,7 @@
       "protocol": "MOTION_DIRECTION",
       "gate": "MOTION_DIRECTION_LOCKED",
       "preconditions": ["DESIGN_SYSTEM_LOCKED"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -167,6 +189,7 @@
       "protocol": "ASSET_DIRECTOR",
       "gate": "ASSET_DIRECTION_READY",
       "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -175,6 +198,7 @@
       "protocol": "IMMERSIVE_WEB",
       "gate": "IMMERSIVE_IMPLEMENTATION_READY",
       "preconditions": ["ASSET_DIRECTION_READY"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -183,6 +207,7 @@
       "protocol": "RIVE",
       "gate": "RIVE_IMPLEMENTATION_READY",
       "preconditions": ["ASSET_DIRECTION_READY"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -191,6 +216,7 @@
       "protocol": "PAGE_EXPERIENCE",
       "gate": "TRANSITION_READY",
       "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -199,6 +225,7 @@
       "protocol": "CRO_ANALYTICS",
       "gate": "CRO_MEASUREMENT_READY",
       "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -207,6 +234,7 @@
       "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": null,
       "preconditions": ["MOTION_DIRECTION_LOCKED"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -215,6 +243,7 @@
       "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": null,
       "preconditions": ["IMPLEMENTATION_CONTRACT"],
+      "lifecycle_gate": "BUILD",
       "status": "HISTORICAL"
     },
     {
@@ -223,6 +252,7 @@
       "protocol": "BROWSER_QA",
       "gate": "BROWSER_QA_PASS",
       "preconditions": ["IMPLEMENTATION_CONTRACT"],
+      "lifecycle_gate": "VERIFY",
       "status": "HISTORICAL"
     },
     {
@@ -231,6 +261,7 @@
       "protocol": "DESIGN_QA",
       "gate": null,
       "preconditions": ["BROWSER_QA_PASS"],
+      "lifecycle_gate": "VERIFY",
       "status": "HISTORICAL"
     },
     {
@@ -239,6 +270,7 @@
       "protocol": "GAUNTLET",
       "gate": "GAUNTLET_PASS",
       "preconditions": ["BROWSER_QA_PASS"],
+      "lifecycle_gate": "VERIFY",
       "status": "HISTORICAL"
     },
     {
@@ -247,6 +279,7 @@
       "protocol": "PRODUCTION_PREFLIGHT",
       "gate": null,
       "preconditions": ["GAUNTLET_PASS"],
+      "lifecycle_gate": "LAUNCH",
       "status": "HISTORICAL"
     },
     {
@@ -255,6 +288,7 @@
       "protocol": "LAUNCH_OPERATIONS",
       "gate": "RELEASE_READY",
       "preconditions": ["GAUNTLET_PASS"],
+      "lifecycle_gate": "LAUNCH",
       "status": "HISTORICAL"
     },
     {
@@ -263,6 +297,7 @@
       "protocol": "CLIENT_CMS_HANDOFF",
       "gate": "CLIENT_HANDOFF_READY",
       "preconditions": ["RELEASE_READY"],
+      "lifecycle_gate": "LAUNCH",
       "status": "HISTORICAL"
     }
   ]

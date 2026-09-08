@@ -1,0 +1,25 @@
+{
+  "base": "5e4122e79e3ac44f0b86c1a28c21fa0502ca6ffa",
+  "counts": {
+    "FROZEN_INVENTORY_CANONICAL_COUNT": 465,
+    "FROZEN_INTEGRITY_GUARD_COUNT": 465,
+    "FROZEN_INVENTORY_TEST_COUNT": 465
+  },
+  "sources": {
+    "canonical": "schemas/frozen-projects.json /inventory/protected_file_count",
+    "guard": "browser-qa/guards/frozen_integrity_guard.py FrozenIntegrityGuard._iter_protected_files",
+    "test": "tests/test_v2_11_framework_validation.py FrameworkValidationTests.test_frozen_inventory_matches_checked_out_corpus; projects/**/*.is_file",
+    "tracked": "git ls-files projects; git ls-tree -r HEAD projects"
+  },
+  "reported_465_ne_800": "NOT_REPRODUCED in any of 8 current worktrees. Historical source of 800 is unavailable; do not assign a cause without evidence.",
+  "findings": {
+    "tracked_corpus": 465,
+    "untracked_project_files": 0,
+    "ignored_project_files": 0,
+    "registry_drift": false,
+    "clean_checkout_contamination": false,
+    "test_guard_scope_difference": "Test counts every file; guard excludes documented runtime directory names. No such files exist in the tested corpus."
+  },
+  "expected_count_changed": false,
+  "guard_result": "FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged)"
+}

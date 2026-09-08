@@ -66,6 +66,8 @@ When the user requests a durable behavior change, record it here or in the relev
 
 ## Child DOX Index
 
+- [outputs/kernel-refactor/](outputs/kernel-refactor/AGENTS.md): Reduction inventories, certification and preservation-only worktree evidence.
+
 - [provenance/](provenance): Capability 7 Evidence, Claim and Asset Provenance boundary. Owns the canonical evidence ledger, source and rights traceability, attribution, hash identity, risk classification, and deterministic validator. It does not own Asset Director readiness, Security & Privacy disclosure, or production deployment.
 - [schemas/](schemas): Canonical machine-readable schemas, registries, compatibility records, validation manifests, and the exact five-lock contract. It owns the bounded inspiration-source registry schema without creating a new state, gate, or lock.
 - [framework_validation/](framework_validation): Standard-library deterministic framework self-validation, bounded cinematic/inspiration and rendered-visual evidence helpers, and the provider-neutral Clean-Room Creative Mode execution coordinator with staged workspaces, stage-aware continuous browser morphology, and evidence-only preserved-render rechecks. It does not call providers, generate ASN, mutate frozen projects, or replace Website Director authorities.
@@ -105,256 +107,48 @@ When the user requests a durable behavior change, record it here or in the relev
 
 # WEBSITE-DIRECTOR
 
-Website Director is the authoritative design governance system. It maintains deterministic progressive discovery, adaptive creative briefing (`DISCOVERY-PROTOCOL.md`), mandatory SEO/competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking (`AWWWARDS-SHOWCASE-INTELLIGENCE.md`), design intelligence candidate synthesis (`DESIGN-INTELLIGENCE-PROTOCOL.md`), subject-grounded distinctiveness discipline (`DESIGN-CONSTITUTION.md` §7), archetype synthesis, pre-lock high-fidelity visual prototypes (`VISUAL-PROTOTYPE-PROTOCOL.md`), owner visual direction selection, token specifications, 5-gate lock control (including deliberate motion direction), authoritative art direction & visual asset production (`ASSET-DIRECTOR-PROTOCOL.md`), immersive WebGL / Three.js specialist architecture (`IMMERSIVE-WEB-PROTOCOL.md`), interactive vector motion & state machines (`RIVE-INTERACTIVE-MOTION-PROTOCOL.md`), page experience & route continuity (`PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`), deterministic conversion measurement, KPI hierarchy, CTA-to-event traceability, attribution & UTM governance, affiliate measurement integrity, and privacy-preserving analytics architecture (`CONVERSION-ANALYTICS-PROTOCOL.md`), production risk governance covering site risk classification, data inventory, data minimization, secret custody, form/auth/payment safeguards, security headers, transport, dependency and third-party script accountability, consent classification and truthful disclosure (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`), official GSAP motion engineering (`GSAP-IMPLEMENTATION-PROTOCOL.md`), implementation contracts, deterministic Impeccable quality scans (`IMPECCABLE-ENGINE-PROTOCOL.md`), reference-grounded adversarial Gauntlet refinement loops (`WEBSITE-GAUNTLET-PROTOCOL.md`), and one canonical launch authority separating release candidate / deployed / production-verified / stabilised, requiring explicit per-release owner deployment authorization, and verifying a known release identity on the production surface (`LAUNCH-OPERATIONS-PROTOCOL.md`). See [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SKILL.md) for the full operating manual and the single-source-of-truth rules governing `creative_intent{}`, `research{}`, `visual_prototypes{}`, `assets{}`, `immersive{}`, `rive{}`, `page_experience{}`, `measurement{}`, `security_privacy{}`, `accessibility{}`, `browser_qa{}`, `launch_ops{}`, `motion{}`, `seo{}`, `design_intelligence{}`, and `gauntlet{}` state.
+**Version:** 2.15.0
+Website Director owns design governance and exactly five owner locks.
+The protocol catalog is available on demand via schemas/protocols.json.
+SKILL.md controls lifecycle and activation; module documents own their bounded behavior.
 
-**Version:** 2.15.0 (Additive to V2.14.0, V2.13.0, V2.12.0, V2.11.1, V2.11.0, V2.10, V2.9, V2.8, V2.7, V2.6, V2.5.1, V2.5, V2.4, V2.3, V2.2, V2.1, V2.0, V1.9, V1.8, V1.7, V1.6, V1.5, V1.4, V1.3.1, V1.3, V1.2, V1.1, and V1). V2.15 integrates conditional Capability 10 Application, Commerce, and Authentication Architecture at Phase 6.99 without adding a sixth owner lock. It is activated only by explicit behavior and user stories.
-**System Status:** **`WEBSITE_DIRECTOR_CAPABILITY_10_APPLICATION_ARCHITECTURE_COMPLETE`**
+## Resident governance and activation
 
-Historical version record: V2.7 integrates the Security, Privacy & Compliance Intelligence Subsystem; V2.13 preserves that additive compatibility contract.
+FEATURE_FREEZE = ACTIVE. refactor/kernel is reduction only; no new capability,
+specialist, protocol, readiness gate, design engine, or feature version.
+Website and ASN generation are frozen for this task. No production changes.
+The seven top-level gates are BRIEF, DIRECTION, IA, CONTENT, BUILD, VERIFY, LAUNCH.
+SKILL.md is the resident operating kernel and owns the only activation table.
+Do not preload README history, protocols, specialist skill manuals, or frozen pilots.
+Decimal phases are internal activities. Child ownership does not imply activation.
+Exactly five owner locks remain; schemas/state-ownership.json owns state semantics.
+No evidence means no verification. complete is not implementation_verified, which
+is not production_verified. Unknown baseline and unavailable engines fail closed.
+BrowserQAEngine.observe() and FrozenIntegrityGuard remain mandatory contracts.
 
-Capability 8 is implemented as a provider-neutral content architecture
-subsystem. Its `[CONTENT_OPERATIONS_READY]` readiness gate and
-`content_ops.complete` state are separate from the V2.5 handoff authority and
-do not authorize provider installation, autonomous publishing, deployment, or
-production changes. Capability 9 adds a provider-neutral localization and
-internationalization subsystem at Phase 6.35 with the `[LOCALIZATION_READY]`
-readiness gate and `localization.complete` state. Capability 10 is implemented
-as a conditional, provider-neutral application architecture subsystem at
-Phase 6.99 with the `[APPLICATION_ARCHITECTURE_READY]` readiness gate and
-`application.complete` state. It does not own deployment, provider accounts,
-credentials, live users, live payments, or production verification.
+### Accessibility Intelligence Governance
 
-### Localization & Internationalization Governance (V2.14 - Additive)
+ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md owns component requirements and manual
+versus automated evidence. Never infer WCAG or ADA compliance from automated checks.
 
-These rules are additive. They do not replace the existing SEO, Content
-Operations, Accessibility, Security & Privacy, Measurement, Provenance,
-Browser QA, Launch Operations, or V2.5 Handoff authorities.
+### Security, Privacy & Compliance Governance
 
-1. **Execute Phase 6.35 when required.** Assess localization after Content
-   Operations (6.25) and before Measurement (6.5). NOT_REQUIRED is valid for
-   an evidence-backed English-only site; requirement is never inferred from
-   IP, browser language, ethnicity, company name, or stereotype.
-2. **One state and one gate.** localization.complete is the only readiness
-   flag for LOCALIZATION_READY. No parallel i18n/l10n/translation state and
-   no localization, language, translation, or i18n owner lock may be created.
-3. **Required locale contracts are explicit.** Record one source locale, one
-   default locale, BCP 47-style locale identifiers, route strategy, default
-   URL policy, coverage, fallback, direction, review ownership, and SEO status.
-4. **Translation is review-gated.** Machine translation is draft material.
-   Human or explicitly authorized review is required before publication;
-   legal translation is never automatically legally approved. Stale source
-   variants remain stale until re-reviewed.
-5. **Engineering is locale-aware.** Use semantic UI IDs, safe interpolation,
-   plural categories, locale-aware formatting, explicit currency, unit rules,
-   RTL/logical CSS, script/font provenance, expansion tests, and localized
-   SEO/accessibility behavior.
-6. **Adjacent authorities remain owners.** Localization consumes V2.13
-   content models and V2.12 provenance, preserves slugs/redirects, reuses
-   measurement event names with a locale parameter, extends the existing
-   Browser QA runner, and transfers durable operations through V2.5 Handoff.
-7. **No external side effects.** No provider account, translation API, live
-   analytics property, production credential, publish, deploy, DNS change, or
-   production verification is performed by this capability. Launch Operations
-   owns production verification.
-8. **Compatibility and stop boundary.** Historical profiles and frozen pilots
-   may omit localization state and are not retrofitted. Capability #10
-   Ecommerce, Authentication, and Application Architecture is a separate
-   conditional capability governed by `APPLICATION-COMMERCE-AUTH-PROTOCOL.md`.
+SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md owns safeguards, disclosure and data
+boundaries. It cannot grant legal compliance or consequential-action approval.
 
-### Conditional Application, Commerce and Authentication Governance (V2.15 - Additive)
+### Launch & Post-Launch Operations Governance
 
-These rules are additive. They do not replace SEO, Content Operations,
-Localization, Measurement, Security and Privacy, Accessibility, Provenance,
-Browser QA, Launch Operations, or V2.5 Handoff authority.
+LAUNCH-OPERATIONS-PROTOCOL.md and launch-ops/validator.py own release facts and
+the canonical transition graph. RELEASE_READY does not authorize deployment.
+Owner authorization is required for push, merge, deploy, DNS and production actions.
+This refactor request authorizes a certified commit and push, then stop without merge.
 
-1. **Execute Phase 6.99 when required.** Assess actual behavior and user
-   stories after the preceding planning authorities and before Design System
-   and implementation. Static marketing and public content sites remain
-   `NOT_REQUIRED` when they have no stateful application behavior.
-2. **One conditional state and one gate.** `application.complete` is the sole
-   readiness flag for `[APPLICATION_ARCHITECTURE_READY]`. Do not create
-   `auth.complete`, `commerce.complete`, `payments.complete`,
-   `application_locked`, or an application owner lock. Exactly five owner
-   locks remain.
-3. **Modules are opt-in.** Activate only the module records justified by
-   explicit stories and include their dependency closure. Do not activate the
-   complete registry automatically.
-4. **Provider-neutral and fail-closed.** Passwords, sessions, server-side
-   authorization, object access, pricing, payment confirmation, order state,
-   signed/idempotent webhooks, entitlements, bookings, uploads, UGC,
-   transactional email, integrations, secrets, and high-risk operations have
-   explicit controls. Unknown or unavailable providers are `BLOCKED`.
-5. **Adjacent authorities remain owners.** Security and Privacy owns sensitive
-   data and legal-review boundaries; Measurement owns events; Localization,
-   Content Operations, Provenance, Accessibility, Browser QA, Launch Ops, and
-   V2.5 Handoff remain their own authorities. Application readiness never
-   authorizes provider setup, live users, payments, publishing, deployment, or
-   production verification.
+## Refactor evidence ownership
 
-### Cinematic Production Intelligence, Inspiration and Rendered Proof (V2.15 - Additive)
-
-These rules are additive. They do not create Capability #11, a V2.16 phase, a
-new state object, a sixth owner lock, or a replacement for the existing Visual
-Research, Motion, Asset Director, Browser QA, Visual Prototype, or Gauntlet
-authorities.
-
-1. **Use the bounded source registry.** `INSPIRATION-SOURCES.md` and
-   `templates/inspiration-source-registry.json` define owner-selectable
-   sources and their bounded roles. Awwwards remains governed by
-   `AWWWARDS-SHOWCASE-INTELLIGENCE.md`; no duplicate authority is created.
-2. **Keep references reference-only.** Owner-selected inspiration records must
-   state the URL, relevance, assigned dimension, transferable pattern, and
-   non-copy boundary. Reusing source material requires verified license,
-   provenance, project-stack adaptation, and design-system adaptation.
-3. **Keep production intelligence neutral.** Cinematic briefs route logical
-   roles such as `BUILDER_AGENT`, `CRITIC_AGENT`, and
-   `ASSET_GENERATION_PROVIDER` without binding a model, vendor, hosting
-   platform, or deployment service. A missing provider is a planning blocker,
-   not permission to invent evidence or a hidden dependency.
-4. **Rendered visual proof is fail-closed.** When visual evidence is required,
-   a PASS is derived only from fresh real-browser screenshot receipts for the
-   named surface set, with persisted paths, SHA-256 identity, engine identity,
-   viewport, capture mode, route, and attempt. Source-only, simulation-only,
-   prose, DOM/CSS-only, or render-signature-only evidence cannot PASS.
-5. **Repairs require re-proof.** A Gauntlet critic is independent from the
-   builder and must inspect fresh screenshot/DOM/CSS receipts plus the locked
-   direction, design system, owner intent, and reference bars. Any repair
-   requires a newer screenshot set and a fresh critic receipt. Exactly five
-   owner locks remain immutable, and all runs preserve frozen-project
-   integrity.
-
-### Design-First Production Flow (V2.15 bounded operating overlay)
-
-The repository's canonical design-first flow is documented in
-`DESIGN-FIRST-PRODUCTION-FLOW.md`. It requires business understanding before
-visual design, a complete rendered homepage before full production
-implementation, explicit owner review before Design System derivation, and
-inheritance of the approved homepage system by the remaining pages.
-
-The flow may record
-`visual_prototypes.homepage_visual_approved` under the existing Visual
-Prototype object as approval evidence. It creates no new phase, readiness
-gate, state authority, or owner lock. The exact five owner locks remain the
-only owner locks. Browser QA remains the behavior authority and the Website
-Gauntlet remains the post-QA qualitative authority.
-
-### Alpha Starts Now Brand Color Authority (Owner Contract — 2026-09-02)
-
-For current and future non-frozen Alpha Starts Now work, the authoritative
-brand palette is **navy blue as primary** and **yellow as accent**. White and
-restrained light/dark neutrals may support contrast and accessibility.
-The machine-readable current owner contract is
-`templates/alpha-starts-now-owner-intent.json`; its semantic tokens are
-`ASN_NAVY` and `ASN_YELLOW` and it intentionally does not invent exact hex
-values. The authority precedence and enforcement behavior are canonical in
-`FRAMEWORK-VALIDATION-PROTOCOL.md` and
-`framework_validation/owner_intent.py`.
-Historical Alpha Starts Now palettes are comparison-only and must not be used
-to infer current brand colors. Orange, burnt orange, peach, amber, beige,
-dominant cream, black/silver/white primary palettes, and older orange/blue
-combinations are not current brand authority. Reference websites may inform
-composition, movement, typography, interaction, pacing, spatial design, and
-section transitions, but may not redefine the Alpha Starts Now palette. Any
-proposed palette change requires explicit owner approval. Frozen historical
-projects remain immutable; this contract governs active and future work and
-does not retroactively re-gate those artifacts.
-
-### Conversion & Analytics Governance (V2.6 — Additive)
-
-These rules are additive. They do not replace any existing Website Director governance.
-
-1. **Execute Phase 6.5.** After `locks.content_structure_locked` engages and before Phase 7 (Design System), agents MUST run Phase 6.5 per `CONVERSION-ANALYTICS-PROTOCOL.md` and populate `templates/measurement-plan.md`.
-2. **Do not skip measurement on commercial builds.** A commercial, public-facing website may never silently proceed without a measurement plan. Absence of an analytics provider is `measurement.mode = "blocked"` with a stated `blocked_reason` — it is not an exception and it is not a reason to skip the phase.
-3. **Do not fabricate conversion data.** Baselines, conversion rates, industry benchmarks, attribution chains, and downstream revenue are never invented. Unknown is `UNKNOWN`; unassessed is `UNASSESSED`. Cited external claims require a source recorded in the plan's Provenance section.
-4. **Do not invent analytics implementation success.** `measurement.complete` means a plan exists. It never means analytics was observed working. Only browser + network evidence sets `measurement.implementation_verified`; only owner-supplied production evidence sets `measurement.production_verified`. Never set either by inference.
-5. **Do not expose analytics secrets.** No API keys, tokens, or service-account credentials are written to the repository, the measurement plan, or generated project source.
-6. **Respect existing owner locks.** Measurement never silently mutates approved IA, locked copy, CTA wording, design tokens, or motion direction. A structural conflict HALTS and produces a locked-change request for owner decision.
-7. **Distinguish planning from production verification.** These three states are permanently distinct and must be reported separately in QA, the production checklist, and client handoff. A blocked integration is reported as blocked, never as passing.
-8. **No external side effects.** Agents never create analytics properties, modify GTM containers or advertising accounts, install pixels on live sites, deploy, publish, transmit production analytics data, or use owner credentials.
-9. **Single completion flag.** `measurement.complete` is the only authoritative readiness flag for `[CONVERSION_MEASUREMENT_COMPLETE]`. Never create a second, independently-writable measurement completion flag. Legacy `cro{}` is grandfathered and read-only.
-10. **Five owner locks remain.** `[CONVERSION_MEASUREMENT_COMPLETE]` is a readiness gate, not a sixth lock.
-
-### Security, Privacy & Compliance Governance (V2.7 — Additive)
-
-These rules are additive. They do not replace any existing Website Director governance.
-
-1. **Execute Phase 6.75.** After Phase 6.5 produces `measurement{}` state and before Phase 7 (Design System), agents MUST run Phase 6.75 per `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` and populate `templates/security-privacy-review.md`.
-2. **Never certify legal compliance.** Agents must NEVER output `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED`. Permitted: `REQUIREMENTS REVIEWED`, `TECHNICAL CONTROLS IMPLEMENTED`, `KNOWN GAPS DOCUMENTED`, `LEGAL REVIEW REQUIRED`, `COMPLIANCE_NOT_CERTIFIED`. `security_privacy.compliance_certified` is permanently `false`.
-3. **Requirements derive from actual functionality.** Never impose ecommerce, authentication, or payment obligations on a static brochure site; never treat an authenticated application as a brochure site.
-4. **Never guess applicable law.** Jurisdiction is never inferred from an IP address or assumed geography. Where applicability cannot be reliably determined, `OWNER_OR_COUNSEL_REVIEW_REQUIRED` is the correct outcome.
-5. **Escalate sensitive data.** Health, biometric, government-identifier, highly sensitive financial, and children's data escalate automatically to `SPECIALIST_REVIEW_REQUIRED`. Never self-certify.
-6. **No secrets, ever.** No API keys, tokens, OAuth secrets, database credentials, or service-account material in client-side source, source control, examples, logs, screenshots, or any artifact. `.env.example` holds names and placeholders only. Never request a real credential.
-7. **No unexplained third-party scripts.** Every production third-party runtime script requires a purpose, a page scope, and a consent dependency in the approved inventory.
-8. **Privacy beats conversion; locks beat both.** Consent beats silent tracking, disclosure beats layout, minimization beats speculative marketing fields. A safeguard requiring a locked change HALTS and produces a locked-change request.
-9. **Distinguish specification from verification.** `security_privacy.complete` means requirements are specified. Only build inspection plus browser/network evidence sets `implementation_verified`; only production evidence sets `production_verified`. Never set either by inference.
-10. **Single completion flag.** `security_privacy.complete` is the only authoritative readiness flag for `[SECURITY_PRIVACY_READY]`. Never create a second security/privacy completion flag. `measurement{}` remains canonical for measurement — do not create a second analytics model.
-11. **Five owner locks remain.** `[SECURITY_PRIVACY_READY]` is a readiness gate, not a sixth lock.
-12. **No external side effects.** Never modify live websites, deploy, create analytics properties, configure consent platforms, change DNS, touch payment accounts, create legal documents in external systems, contact attorneys, use production credentials, transmit personal data, or run intrusive testing against external systems.
-
-### Browser & Regression QA Governance (V2.8 — Additive)
-
-These rules are additive. They do not replace any existing Website Director governance.
-
-1. **Execute Phase 10.5.** After the Phase 10 build and before Phase 11, agents MUST run machine-executed browser verification per `BROWSER-REGRESSION-QA-PROTOCOL.md`, populate `templates/browser-qa-plan.md` / `browser-qa-manifest.json`, and run `browser-qa/runner.py`.
-2. **Machine evidence, not assertion.** Where a requirement can be verified by machine (overflow, console, network, broken assets, form failure/success, measurement events, reduced motion, route integrity, browser-observable security), the sign-off requires the Phase 10.5 evidence manifest.
-3. **The engine is replaceable; the policy is canonical.** `BROWSER_QA_ENGINE` (`playwright` real / `simulation` deterministic / a future adapter) is swappable behind `BrowserQAEngine.observe()`. The assertion catalogue, plan/manifest templates, state object, flake policy, evidence schema, and baseline governance are canonical.
-4. **Never mutate frozen fixtures.** Every run wraps itself in `browser-qa/guards/frozen_integrity_guard.py`. `FROZEN_FIXTURE_MUTATION = FAIL`; a later restore does not launder it into a PASS. A passing test that changed a frozen file is a failed QA architecture. **Suites and the harness must not write anything under `projects/`.**
-5. **Unavailable ≠ pass; flaky ≠ pass.** A missing engine or unreachable site is `BLOCKED` with a reason. Fail-then-pass on bounded retry is `FLAKY`, recorded in `browser_qa.flaky_tests`, never promoted to `PASS`.
-6. **Local ≠ production.** `browser_qa.complete` ≠ `implementation_verified` (real browser, local build) ≠ `production_verified` (real production URL). A localhost run never sets `production_verified`; the `simulation` engine sets neither.
-7. **Consume, don't duplicate.** Browser QA consumes `measurement{}` and `security_privacy{}` and reuses Impeccable's static findings. It invents no events, re-authors no requirements, and adds no duplicate static detector — it owns only the runtime-observable half (`BROWSER_EXECUTED`).
-8. **No silent baseline updates, no broad ignores, no masked defects.** A visual diff is reported; a baseline change requires recorded owner authorisation. Every console/network ignore is a justified, owned, expiring manifest entry.
-9. **Single completion flag.** `browser_qa.complete` is the only authoritative readiness flag for `[BROWSER_QA_PASS]`. Never create a second browser-QA completion flag.
-10. **Five owner locks remain.** `[BROWSER_QA_PASS]` is a verification gate, not a sixth lock. `browser_qa{}` contains no lock boolean.
-11. **Feeds the Gauntlet, does not merge with it.** Phase 11.5 does not begin until `browser_qa.complete` is `true` (or recorded `blocked`/`exception`). No new Gauntlet critic and no second state machine.
-12. **No external side effects.** No browsing/testing arbitrary external sites, no real form submissions, no email, no real analytics events, no deploys, no production mutation, no destructive security testing. Framework validation uses local synthetic fixtures only.
-
-### Accessibility Intelligence Governance (V2.9 — Additive)
-
-These rules are additive. They do not replace any existing Website Director governance.
-
-1. **Execute Phase 6.9.** After Phase 6.75 and before Phase 7 (Design System), agents MUST run Phase 6.9 per `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, populate `templates/accessibility-review.md` / `accessibility-test-manifest.json`, and set `accessibility.complete`.
-2. **One authority.** Accessibility rules scattered across the production checklist, QA rubric, Gauntlet Accessibility Critic, Impeccable contrast/target detectors, browser-QA keyboard smoke, security consent rules, and the design system are **reconciled** into this authority — never duplicated, never given a second completion flag.
-3. **Default technical target: WCAG 2.2 AA** for applicable public production sites. This is a design/verification target.
-4. **Never claim legal accessibility compliance.** Agents must NEVER output `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, `WCAG COMPLIANT`, `SECTION 508 COMPLIANT`, or `EN 301 549 COMPLIANT`. Permitted evidence-based wording: `WCAG 2.2 AA TARGET TESTS PASSED`, `MANUAL REVIEW COMPLETED`, `KNOWN ACCESSIBILITY GAPS = NONE OBSERVED`, `BLOCKED_SCREEN_READER_ENVIRONMENT`.
-5. **Four distinct states.** `requirements_defined` ≠ `automated_verified` ≠ `manual_verified` ≠ `production_verified`; `screen_reader_verified` is separate again. `accessibility.complete = true` means the *spec* is implementable, never that the build passed testing.
-6. **Requirements derive from real functionality.** Do not impose dialog, drag, media, or authentication criteria on a project that has none.
-7. **Consume, don't duplicate.** Impeccable owns the contrast math; `MOTION-DIRECTION-PROTOCOL.md` owns the motion policy; `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` owns consent-requirement determination. Accessibility owns interaction accessibility and re-authors none of them.
-8. **Extend V2.8 Browser QA — no separate runner.** The accessibility assertion group lives in `browser-qa/assertions/catalog.py` (source `ACCESSIBILITY_REVIEW`), gated on the plan's `accessibility` block. One runner, one evidence system, one `FrozenIntegrityGuard`. No second post-build state machine.
-9. **Replaceable engine.** `axe-core` (recommended) is an implementation engine, not the policy authority. Record name + version. An unavailable engine ⇒ `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE`, never PASS. Zero automated violations never establishes WCAG conformance.
-10. **Screen-reader honesty.** No screen-reader environment ⇒ `BLOCKED_SCREEN_READER_ENVIRONMENT`, never PASS. An engine-clean run with a failing manual keyboard review is not a full PASS.
-11. **`44×44` vs `24×24` kept distinct.** Preserve Website Director's ergonomic `44 × 44 px` where already approved; the WCAG 2.2 AA floor `24 × 24 px` is a separate, weaker criterion. Both recorded.
-12. **Precedence.** Accessibility and safety override SEO and conversion. A locked visual/IA/copy/motion decision that fails a required accessibility check produces an **owner change request** — never a silent degradation in either direction. Security↔accessibility conflicts escalate to an explicit owner decision.
-13. **Five owner locks remain.** `[ACCESSIBILITY_READY]` is a readiness gate, not a sixth lock. `accessibility{}` contains no lock boolean. The Gauntlet Accessibility Critic is preserved and enriched — **no new critic**.
-14. **No external side effects.** No deploy, no production mutation, no testing arbitrary external sites, no real form submissions, no personal data, no consent-platform changes, no intrusive tooling against third-party systems, no push/merge without owner authorisation. Local and synthetic fixtures only.
-
-### Launch & Post-Launch Operations Governance (V2.10 — Additive)
-
-These rules are additive. They do not replace any existing Website Director governance.
-
-1. **Execute Phase 12.25.** After Phase 12 pre-flight and before Phase 12.5 handoff, agents run Phase 12.25 per `LAUNCH-OPERATIONS-PROTOCOL.md`, populate `templates/launch-plan.md` / `launch-evidence-manifest.json`, and set `launch_ops.complete`.
-2. **One canonical launch authority.** Release/deployment/launch logic previously implied in `PRODUCTION-CHECKLIST.md` §9–§10, the V2.5 release runbook, and historical `projects/` conventions is **reconciled** here — never duplicated, never given a second completion flag.
-3. **Four permanently distinct facts.** `launch_ops.complete` (plan done) ≠ `launch_ops.deployed` ≠ the six `launch_ops.production_*_verified` flags ≠ `launch_ops.stabilization_complete`. `launch_ops.complete = true` never means deployed, production verified, or stable.
-4. **`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`.** Deployment is an external side effect. Website Director **never deploys, pushes, merges, alters DNS, or configures SSL.** Deployment authorization is an explicit per-release owner act (or a recorded durable policy) — never inferred from passing QA, a completed build, an approved design, "looks good", a prior project, or a previous release.
-5. **Verify a known release identity on the production surface.** `deployed_sha` matches `release_sha`, or `DEPLOYED_IDENTITY = UNVERIFIED` and the check is `BLOCKED`. A localhost or staging evidence manifest sets **no** `production_*_verified` flag. Never mark staging as production.
-6. **Deterministic state machine.** `launch_ops.status` moves only along `launch-ops/validator.py` → `STATE_TRANSITIONS`. Impossible jumps (`NOT_EVALUATED → STABILIZED`, `RELEASE_READY → PRODUCTION_VERIFIED`) are rejected.
-7. **Consume, don't duplicate.** Production Browser QA is the V2.8 harness in `environment = "production"` mode — no second runner. Production verification writes the canonical `accessibility.production_verified` / `security_privacy.production_verified` / `measurement.production_verified` fields. V2.5 `CLIENT-CMS-HANDOFF-PROTOCOL.md` owns long-term operations; Launch Operations hands its record into Phase 12.5 intake (§13) and sets `handoff_transferred`.
-8. **Rollback discipline.** A rollback plan (`rollback_ready`) exists before authorization where practical; `rollback_tested` is a separate stronger flag; concrete triggers (`SEV0`/`SEV1` → `ROLLBACK_REQUIRED`) — never "rollback if something looks bad". No destructive production rollback in this task.
-9. **Post-launch is protocol, not a daemon.** A site-class-sized observation window with an incident checklist (`SEV0`–`SEV3`, append-only `known_incidents[]`). No background monitoring is run. CRO optimization decisions stay out of Launch Operations.
-10. **Owning specs / locks always win.** A production repair needing a change to IA, copy, tokens, motion, or to accessibility / measurement / security-privacy / SEO requirements HALTs (`status = "BLOCKED"`) and routes back with an Owner Change Request. No invisible production-only fixes.
-11. **Single completion flag; five owner locks remain.** `launch_ops.complete` is the only authoritative readiness flag for `[RELEASE_READY]`. `launch_ops{}` contains no lock boolean. `[RELEASE_READY]` is a readiness gate, not a sixth lock.
-12. **No external side effects.** Never deploy, push, merge, alter DNS, modify hosting, configure SSL, create monitoring services, submit production forms, send email, generate real leads or conversions, modify Search Console / analytics / consent platforms, access customer data, use production credentials, or perform rollback on a live system. Framework validation uses in-memory synthetic fixtures only.
-
-### Validated Pilots
-- **Alpha Starts Now:** Operating under `MODE = ORIGINAL_MODE`, pre-V1.1 (`schema_version` absent, four locks only). Status: **`WEBSITE_DIRECTOR_V1_PILOT_VALIDATED`** (Independent Retest 95/100 PASS; Design System V1 Frozen; Awaiting Owner Visual Review & Live Serverless Email Endpoint for Commercial Launch). This record is frozen and must not be edited or re-gated retroactively by V1.1/V1.2/V1.3/V1.4/V1.8/V1.9 tooling.
-- **Alpha Starts Now (V1.6 Flagship Candidate):** Operating under `schema_version = 1.6.0` with full 5-gate lock sequence, SEO strategy, UI/UX Pro Max intelligence, owner-approved **Cinematic Midnight Alpha** art direction, GSAP Level 2 motion, and Gauntlet validation. Status: **`ALPHA_STARTS_NOW_V1_6_FLAGSHIP_OWNER_REVIEW_READY`** (Independent QA 98/100 PASS; Gauntlet 98/100 PASS; Fifth distinct visual family proven; Complete & Ready for Review).
-- **Alpha Starts Now (Clean-Room Reset Candidate):** Operating under `schema_version = 1.6.0` executing Option 2 (The Raw Atelier / Obsidian Manifesto), full 5-gate lock sequence, 0px brutalist tokens, interactive Discipline Calibration Engine, GSAP Level 2 motion, and Gauntlet validation. Status: **`ALPHA_STARTS_NOW_CLEAN_ROOM_CANDIDATE_VALIDATED`** (Independent QA 97/100 PASS; 8-Critic Gauntlet PASS; Ready for Owner Visual Review).
-- **Valentin & Hesse Architects:** Operating under `schema_version = 1.1.0` with full 5-gate lock sequence and Visual Research Director intelligence. Status: **`V1_1_ARCHITECTURE_PILOT_VALIDATED`** (Independent QA 94/100 PASS; Zero ASN homogenization; P1 responsive header fix applied; Frozen baseline).
-- **Kreisler & Voss Motorenwerke:** Operating under `schema_version = 1.1.0` with Motion Level 3, Landbook discovery, JCodesMore forensic recon, and cinematic brief. Status: **`V1_1_AUTOMOTIVE_PILOT_VALIDATED`** (Independent QA 92/100 PASS; Zero homogenization; All 10 capability targets proven).
-- **Sölvik Fjord Retreat & Thermal Sanctuary:** Operating under `schema_version = 1.1.0` with Motion Level 3, Landbook provenance audit, deep DOM recon, and bespoke concierge drawer. Status: **`V1_1_HOSPITALITY_PILOT_VALIDATED`** (Independent QA 95/100 PASS; Fourth distinct visual family proven; Complete & Validated).
-- **Kestrel & Rowe Chronométrie Navale:** Operating under `schema_version = 1.6.0` with full 5-gate lock sequence, SEO intelligence, UI/UX Pro Max intelligence, Anthropic Two-Pass synthesis, official GSAP Level 2 motion, Impeccable scan, and Gauntlet Loop. Status: **`WEBSITE_DIRECTOR_V1_6_FRESH_END_TO_END_PILOT_VALIDATED`** (Independent QA 96/100 PASS; Gauntlet PASS against 3 Reference Bars; Complete & Validated).
-- **ARC//FORGE Advanced Fabrication:** Operating under `schema_version = 2.5.1` with pinned horizontal scrollytelling (`PAT-01`), scroll-driven assembly (`PAT-04`), mobile reflow, reduced motion fallback, and Motion Lock 5 integration. Status: **`WEBSITE_DIRECTOR_V2_5_1_SIGNATURE_SCROLL_SPATIAL_CHOREOGRAPHY_LIBRARY_CERTIFIED`** (Independent QA PASS; 56/56 Validation Cases PASS; Complete & Validated).
-- **Morrow & Vale Architecture and Industrial Design:** Operating under schema_version = 2.5.0 with full synthetic CMS, 9 handoff documents, 301 slug redirect registry, SHA-256 backup/restore proof, zero secrets, and full client independence. Status: **WEBSITE_DIRECTOR_V2_5_CLIENT_CMS_HANDOFF_SYSTEM_CERTIFIED** (Independent QA PASS; 42/42 Validation Cases PASS; Complete & Validated).
-- **Thalassa Batho-Systems (V1.9 Real-Browser Certification Pilot):** Operating under `schema_version = 1.9.0` (`CREATIVE_AMBITION = SHOWCASE`, `DIRECTION_COUNT = 3`, 3 real Chromium-rendered visual prototypes, 10 divergence vectors, Portfolio Art Director audit, Asset limitation recorded). Status: **`VISUAL_PROTOTYPES_OWNER_REVIEW_READY`** (Real-Browser QA PASS; Hard Stop Enforced; Terminal Lock 1 False).
+outputs/kernel-refactor/ owns inventories, before/after metrics, certification and
+the preservation-only worktree plan. work/kernel-refactor/ holds disposable helpers;
+remove them after certification. Keep the isolated worktree for review after push.
+No pruning or deletion of other worktrees, branches, or evidence is authorized.
 
 ## Framework self-validation contract
 

@@ -10,6 +10,8 @@ state writer.
 from __future__ import annotations
 
 import re
+import json
+from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 try:
@@ -31,7 +33,7 @@ CREATIVE_AMBITIONS = ("STANDARD", "PREMIUM", "SHOWCASE", "EXPERIMENTAL")
 
 FIGMA_IN_DESIGN_FIRST_FLOW = False
 
-OPERATING_FLOW = (
+BUILD_ACTIVITIES = (
     "UNDERSTAND_BUSINESS",
     "DESIGN_BEFORE_IMPLEMENTATION",
     "OWNER_SEES_RENDERED_HOMEPAGE",
@@ -41,6 +43,79 @@ OPERATING_FLOW = (
     "BROWSER_QA",
     "VISUAL_GAUNTLET",
 )
+
+
+def lifecycle_gates() -> tuple[str, ...]:
+    """Read the canonical top-level lifecycle; BUILD_ACTIVITIES is internal work."""
+    registry = Path(__file__).resolve().parents[1] / "schemas" / "phases.json"
+    return tuple(json.loads(registry.read_text(encoding="utf-8"))["lifecycle"])
+
+
+OPERATING_FLOW = lifecycle_gates()
+
+
+def module_activation_table() -> dict[str, dict[str, str]]:
+    """Read the one kernel table without loading specialist instructions."""
+    text = (Path(__file__).resolve().parents[1] / "SKILL.md").read_text(encoding="utf-8")
+    table = text.split("<!-- ACTIVATION_TABLE -->", 1)[1].split("<!-- /ACTIVATION_TABLE -->", 1)[0]
+    lines = [line for line in table.splitlines() if line.startswith("| ")]
+    columns = [value.strip() for value in lines[0].strip("|").split("|")]
+    if columns != ["MODULE", "GATE", "ACTIVATION_PREDICATE", "MUTUAL_EXCLUSIONS", "INPUT CONTRACT",
+                   "OUTPUT CONTRACT", "UNLOAD CONDITION", "DOCUMENT"]:
+        raise ValueError("INVALID_ACTIVATION_COLUMNS")
+    result = {}
+    for line in lines[2:]:
+        values = [value.strip() for value in line.strip("|").split("|")]
+        if len(values) != len(columns) or values[0] in result:
+            raise ValueError("INVALID_ACTIVATION_TABLE")
+        result[values[0]] = dict(zip(columns, values))
+        if not all(values) or not set(values[1].split(",")).issubset(lifecycle_gates()):
+            raise ValueError("INVALID_ACTIVATION_ROW")
+        document = Path(values[-1])
+        if document.is_absolute() or ".." in document.parts or not (Path(__file__).resolve().parents[1] / document).is_file():
+            raise ValueError("ACTIVATION_DOCUMENT_UNAVAILABLE")
+    if not result:
+        raise ValueError("EMPTY_ACTIVATION_TABLE")
+    return result
+
+
+def route_modules(gate: str, requested: Sequence[str], facts: Mapping[str, Any]) -> dict[str, Any]:
+    """Resolve one bounded context; no imports, execution, sticky state or approvals.
+
+    The caller supplies evidence-backed facts and explicitly requested modules.
+    Empty requests remain inactive. Failed predicates return no module documents.
+    """
+    try:
+        gates, table = lifecycle_gates(), module_activation_table()
+    except (OSError, KeyError, IndexError, ValueError) as exc:
+        return _result("BLOCKED", [_issue("ACTIVATION_CONTRACT_UNAVAILABLE", str(exc))], modules=[])
+    issues = []
+    if gate not in gates:
+        issues.append(_issue("UNKNOWN_LIFECYCLE_GATE", str(gate)))
+    if isinstance(requested, str) or not isinstance(requested, (list, tuple)) or not isinstance(facts, Mapping):
+        return _result("BLOCKED", [_issue("INVALID_ACTIVATION_REQUEST", "Use module names and boolean facts")], modules=[])
+    if any(not isinstance(name, str) for name in requested):
+        return _result("BLOCKED", [_issue("INVALID_ACTIVATION_REQUEST", "Module names must be strings")], modules=[])
+    selected = set(requested)
+    if len(selected) != len(requested):
+        issues.append(_issue("DUPLICATE_MODULE_REQUEST", "A module may be requested once"))
+    for name in requested:
+        row = table.get(name)
+        if row is None:
+            issues.append(_issue("UNKNOWN_MODULE", name))
+            continue
+        if gate not in row["GATE"].split(","):
+            issues.append(_issue("MODULE_GATE_MISMATCH", name))
+        for fact in row["ACTIVATION_PREDICATE"].split(" & "):
+            if facts.get(fact) is not True:
+                issues.append(_issue("MODULE_PREDICATE_UNPROVEN", name + ": " + fact))
+        exclusions = set(row["MUTUAL_EXCLUSIONS"].split(","))
+        if ("ALL_OTHER_MODULES" in exclusions and len(selected) > 1) or exclusions & selected:
+            issues.append(_issue("MUTUALLY_EXCLUSIVE_MODULES", name))
+    if issues:
+        return _result("BLOCKED", issues, modules=[])
+    return _result("PASS", modules=[table[name] for name in requested], gate=gate,
+                   unload="Discard this context at its output handoff; reroute the next context")
 
 OPERATING_INVARIANTS = (
     "UNDERSTANDING_PRECEDES_DESIGN",

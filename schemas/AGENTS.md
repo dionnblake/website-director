@@ -83,3 +83,10 @@ state/gate/phase registries.
 ## Child DOX Index
 
 - None.
+
+## Kernel reduction contract
+
+phases.json owns exactly seven top-level lifecycle gates; decimal phase entries
+are internal activities. SKILL.md owns the only activation table. state-ownership.json
+links existing verdict, evidence and launch authorities and defines completion
+versus implementation and production verification semantics, without new state writers.

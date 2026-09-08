@@ -16,7 +16,11 @@ point.
 ## Ownership
 
 `validator.py` owns validation rules, findings, reports, suite execution, and
-read-only mutation evidence. `cinematic_inspiration.py` owns pure registry,
+read-only mutation evidence. Launch status and transition checks consume the
+canonical `launch-ops/validator.py` authority through a lazy isolated import.
+Direction imports do not activate launch code; explicit transition checks or
+legacy constant access load the owning authority without a second graph.
+`cinematic_inspiration.py` owns pure registry,
 owner-reference, provider-neutrality, and rendered-visual receipt checks.
 `owner_intent.py` owns the provider-neutral normalization, authority
 precedence, historical/reference boundary, brand-token, contradiction,
@@ -136,3 +140,11 @@ and the final mutation evidence.
 ## Child DOX Index
 
 - None.
+
+## Kernel routing
+
+design_first_flow.py reads the sole SKILL.md activation table and phases.json lifecycle.
+Routing is explicit, stateless, fail-closed, and never imports specialists or invokes
+providers. clean_room.py checks this route before sending its bounded generation pack
+to the direct-reference builder. Only the output pack, not this controller context,
+reaches generation. Initial Direction contains no specialist guidance.

@@ -1,0 +1,11 @@
+{
+  "paths": [],
+  "reason": "Existing regression suites retained runtime evidence. Preserve per task no-evidence-deletion instruction; cleanup requires separate evidence-retention assessment.",
+  "in_workspace_runtime": [
+    ".clean-room-runs/",
+    "framework-validation/reports/runtime/",
+    "framework-validation/reports/2.15.0-certification.json"
+  ],
+  "isolated_worktree": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\refactor-kernel",
+  "worktree_retention": "Owner review after push. No pruning authorized."
+}

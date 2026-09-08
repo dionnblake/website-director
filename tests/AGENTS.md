@@ -128,3 +128,10 @@ synthetic proof with `python -m framework_validation.clean_room --synthetic`.
 ## Child DOX Index
 
 - None.
+
+## Kernel reduction coverage
+
+The existing design-first suite also checks seven-gate routing, inactive defaults,
+strict predicates, exclusion conflicts, and post-render-only module activation.
+Historical phase-wording probes now assert lazy routing and canonical protocol/state
+ownership. Behavioral negative controls remain intact; no failed check is waived.

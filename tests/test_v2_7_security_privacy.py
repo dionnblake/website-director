@@ -242,17 +242,16 @@ check(all(s['client_exposed'] is False for s in register['secrets']['required_se
 # 9. Cross-document wiring
 # ---------------------------------------------------------------------------
 skill = read('SKILL.md')
-check('PHASE 6.75' in skill, 'SKILL.md declares PHASE 6.75')
-check('[SECURITY_PRIVACY_READY]' in skill, 'SKILL.md declares the SECURITY_PRIVACY_READY gate')
-check('GATE SECURITY' in skill, 'SKILL.md workflow diagram includes GATE SECURITY')
-check('5.14 Single-Source-of-Truth Rule for `security_privacy` State' in skill,
-      'SKILL.md documents the security_privacy source-of-truth rule')
-check('security-privacy-review.md' in skill, 'SKILL.md references the working template')
+check("| SECURITY_PRIVACY |" in skill and "SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md" in skill, "Kernel explicitly routes SECURITY_PRIVACY to its owner")
+check("security_privacy.complete" in read("SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md"), "Lazy module retains its canonical completion state")
+check("schemas/state-ownership.json" in skill, "Kernel consumes canonical state ownership")
+check("security_privacy.complete" in read("schemas/state-ownership.json"), "State registry retains sole domain completion owner")
+check('security-privacy-review.md' in read('SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md'), 'Security/privacy owner references its working template')
 check('Exactly 5 owner locks remain' in skill, 'SKILL.md restates the five-lock invariant')
 _sm = re.search(r'^> \*\*Version:\*\* (\d+\.\d+\.\d+)', skill, re.M)
 check(_sm and _ver_at_least(_sm.group(1)), 'SKILL.md version is >= 2.7.0')
-check('PHASE 6.75' in skill and '[SECURITY_PRIVACY_READY]' in skill,
-      'SKILL.md still declares the V2.7 phase and gate')
+check('[SECURITY_PRIVACY_READY]' in read('SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md'),
+      'Security/privacy owner retains its internal readiness gate')
 
 contract = read('IMPLEMENTATION-CONTRACT.md')
 check('## 2.6 Builder Security & Privacy Requirements (V2.7)' in contract,
@@ -304,10 +303,10 @@ check('SECURITY_PRIVACY_READY` (Gate Security)' in readme, 'README lists the Gat
 check('security-privacy-review.md' in readme, 'README repository structure lists the template')
 
 agents = read('AGENTS.md')
-check('Security, Privacy & Compliance Governance (V2.7 — Additive)' in agents,
+check('Security, Privacy & Compliance Governance' in agents,
       'AGENTS.md adds V2.7 governance rules')
-check('V2.7 integrates the Security, Privacy & Compliance Intelligence Subsystem' in agents,
-      'AGENTS.md version history still records the V2.7 subsystem')
+check('SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md' in agents,
+      'AGENTS.md points to the canonical security/privacy owner')
 check(_ver_at_least(re.search(r'\*\*Version:\*\* (\d+\.\d+\.\d+)', agents).group(1)),
       'AGENTS.md version is >= 2.7.0')
 

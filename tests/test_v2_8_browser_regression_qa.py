@@ -149,10 +149,10 @@ check(owners.count("browser_qa") == 1, "Exactly one browser_qa completion flag i
 
 # cross-document wiring
 skill = read("SKILL.md")
-check("PHASE 10.5" in skill, "SKILL.md declares PHASE 10.5")
-check("[BROWSER_QA_PASS]" in skill, "SKILL.md declares the BROWSER_QA_PASS gate")
-check("GATE BROWSER" in skill, "SKILL.md workflow diagram includes GATE BROWSER")
-check("Single-Source-of-Truth Rule for `browser_qa`" in skill, "SKILL.md documents the browser_qa SoT rule")
+check("| BROWSER_QA |" in skill and "BROWSER-REGRESSION-QA-PROTOCOL.md" in skill, "Kernel explicitly routes BROWSER_QA to its owner")
+check("browser_qa.complete" in read("BROWSER-REGRESSION-QA-PROTOCOL.md"), "Lazy module retains its canonical completion state")
+check("schemas/state-ownership.json" in skill, "Kernel consumes canonical state ownership")
+check("browser_qa.complete" in read("schemas/state-ownership.json"), "State registry retains sole domain completion owner")
 
 
 def _ver_ge(text, lo=(2, 8, 0), prefix=r"> \*\*Version:\*\* "):
@@ -190,7 +190,7 @@ readme = read("README.md")
 check("V2.8" in readme and "Browser" in readme, "README documents the V2.8 subsystem")
 agents = read("AGENTS.md")
 check(_ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version is >= 2.8.0")
-check("Browser & Regression QA Governance (V2.8" in agents, "AGENTS.md adds V2.8 governance rules")
+check("BrowserQAEngine.observe()" in agents and "FrozenIntegrityGuard" in agents, "AGENTS.md adds V2.8 governance rules")
 
 # no secrets introduced
 SECRET = re.compile(r"AKIA[0-9A-Z]{16}|sk_live_[0-9a-zA-Z]{16,}|ghp_[0-9A-Za-z]{30,}|"

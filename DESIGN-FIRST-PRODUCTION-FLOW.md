@@ -16,7 +16,14 @@ This overlay applies to new or deliberately reopened non-frozen work.
 Historical profiles and frozen pilots remain valid and are not retrofitted by
 a framework upgrade alone.
 
-## Canonical design flow
+## Internal BUILD design expansion
+
+The top-level lifecycle and activation authority are SKILL.md. Initial DIRECTION
+uses three clean-room desktop hero plus signature-device concepts from actual
+external screenshots, then owner selection. No creative specialist is loaded.
+The following sequence is selected-direction expansion inside BUILD, not an
+additional top-level lifecycle. SEO and other implementation guidance load only
+through the activation table after initial concept generation.
 
 ```text
 BUSINESS UNDERSTANDING

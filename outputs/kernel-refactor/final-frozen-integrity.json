@@ -1,0 +1,6 @@
+{
+  "result": "FROZEN_FIXTURE_INTEGRITY = PASS (465 files unchanged)",
+  "canonical_test": "PASS",
+  "canonical_count": 465,
+  "same_paths_and_sha256_as_baseline": true
+}

@@ -168,10 +168,10 @@ check("browser-qa/runner.py" and 'environment' in read("browser-qa", "runner.py"
 
 # ---- cross-document wiring --------------------------------------------
 skill = read("SKILL.md")
-check("PHASE 12.25" in skill, "SKILL.md declares PHASE 12.25")
-check("[RELEASE_READY]" in skill, "SKILL.md declares the RELEASE_READY gate")
-check("GATE LAUNCH" in skill, "SKILL.md workflow diagram includes GATE LAUNCH")
-check("Single-Source-of-Truth Rule for `launch_ops`" in skill, "SKILL.md documents the launch_ops SoT rule")
+check("| LAUNCH_AUTHORITY |" in skill and "LAUNCH-OPERATIONS-PROTOCOL.md" in skill, "Kernel explicitly routes LAUNCH_AUTHORITY to its owner")
+check("launch_ops.complete" in read("LAUNCH-OPERATIONS-PROTOCOL.md"), "Lazy module retains its canonical completion state")
+check("schemas/state-ownership.json" in skill, "Kernel consumes canonical state ownership")
+check("launch_ops.complete" in read("schemas/state-ownership.json"), "State registry retains sole domain completion owner")
 check(ver_ge(skill), "SKILL.md version >= 2.10.0")
 check("RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED" in skill, "SKILL.md restates the authorization boundary")
 check("Exactly 5 owner locks remain immutable" in skill, "SKILL.md restates the five-lock invariant")
