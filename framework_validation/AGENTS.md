@@ -35,6 +35,11 @@ proof. `prepare_clean_room_concept_run` is the canonical runtime boundary;
 compatibility aliases delegate to it. It does not call providers, generate
 ASN, write under `projects/`, or add a state, gate, or owner lock. Existing
 owner-selection authority is consumed only at the final unlock boundary.
+`rendered_morphology.py` owns stage applicability, complete-evidence checks,
+normalized continuous vector comparison, and the 60 percent divergence rule.
+`morphology_recheck.py` owns evidence-only remeasurement of preserved renders,
+owner-review morphology reporting, and stripped critic-package preparation. It
+never invokes concept generation or a critic.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -55,6 +60,11 @@ owner-selection authority is consumed only at the final unlock boundary.
   builder callback, derives morphology from the existing browser engine, and
   stops at `OWNER_CONCEPT_SELECTION_PENDING` unless the existing
   `visual_prototypes.owner_selection_confirmed` event is valid.
+- At `HERO_PLUS_SIGNATURE_DEVICE_ONLY`, exactly seven morphology vectors are
+  applicable and three repeated-page vectors are `NOT_APPLICABLE`. Incomplete
+  applicable evidence blocks, and verdicts use normalized measurements before
+  labels. A preserved-render recheck may identify a signature region with an
+  explicit selector, but selectors and class names are never scoring evidence.
 - Runtime isolation is framework-level staged context only:
   `FRAMEWORK_CREATIVE_CONTEXT_ISOLATION = STAGED_WORKSPACE_ONLY`,
   `OS_FILESYSTEM_SANDBOX = NONE`, and

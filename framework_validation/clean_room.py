@@ -308,7 +308,12 @@ def evaluate_morphology_divergence(
     candidate_morphology: Dict[str, Any],
     historical_baseline_morphology: Dict[str, Any]
 ) -> Dict[str, Any]:
-    """Evaluate whether candidate geometry genuinely diverges from historical negative baseline."""
+    """Evaluate complete legacy declarations; missing values fail closed.
+
+    New browser-derived evaluations use :func:`compare_rendered_morphology`.
+    This compatibility path cannot normalize geometry, but it must never turn
+    absent declarations into either similarity or divergence evidence.
+    """
     divergence_vectors = [
         "HERO_SILHOUETTE",
         "SECTION_GEOMETRY",
@@ -321,6 +326,33 @@ def evaluate_morphology_divergence(
         "SIGNATURE_DEVICE",
         "CTA_MORPHOLOGY",
     ]
+
+    def meaningful(value: Any) -> bool:
+        if value is None:
+            return False
+        if isinstance(value, str):
+            return bool(value.strip())
+        if isinstance(value, (list, tuple, dict, set)):
+            return bool(value)
+        return True
+
+    insufficient = [
+        vector for vector in divergence_vectors
+        if not meaningful(candidate_morphology.get(vector))
+        or not meaningful(historical_baseline_morphology.get(vector))
+    ]
+    if insufficient:
+        return {
+            "status": "BLOCKED_INSUFFICIENT_EVIDENCE",
+            "divergence": "MORPHOLOGY_DIVERGENCE_BLOCKED_INSUFFICIENT_EVIDENCE",
+            "insufficient_evidence_vectors": insufficient,
+            "failures": [],
+            "semantic_rename_detected": bool(candidate_morphology.get("semantic_rename_only", False)),
+            "vector_results": {
+                vector: "INSUFFICIENT_EVIDENCE" if vector in insufficient else "NOT_EVALUATED"
+                for vector in divergence_vectors
+            },
+        }
 
     vector_results = {}
     failures = []
@@ -1153,7 +1185,11 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
         if not candidate_evidence or not baseline_evidence:
             _record_execution_stage(receipt, "RENDER_DERIVED_MORPHOLOGY", "BLOCKED", "both candidate and baseline browser layout evidence are required")
             return _finish_execution(receipt, "BLOCKED", "RENDER_DERIVED_MORPHOLOGY_BLOCKED", "RENDERED_BROWSER_LAYOUT_EVIDENCE_INCOMPLETE")
-        divergence = compare_rendered_morphology(candidate_evidence, baseline_evidence)
+        divergence = compare_rendered_morphology(
+            candidate_evidence,
+            baseline_evidence,
+            evaluation_stage=concept_gate.get("scope"),
+        )
         receipt["render_derived_morphology"] = divergence
         _record_execution_stage(
             receipt, "RENDER_DERIVED_MORPHOLOGY", str(divergence.get("status")),
@@ -1162,7 +1198,13 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
             failures=divergence.get("failures", []),
         )
         if divergence.get("status") != "PASS_DIVERGENCE":
-            return _finish_execution(receipt, "FAIL", "RENDER_DERIVED_MORPHOLOGY_FAILED", str(divergence.get("divergence")))
+            blocked = divergence.get("status") == "BLOCKED_INSUFFICIENT_EVIDENCE"
+            return _finish_execution(
+                receipt,
+                "BLOCKED" if blocked else "FAIL",
+                "RENDER_DERIVED_MORPHOLOGY_BLOCKED" if blocked else "RENDER_DERIVED_MORPHOLOGY_FAILED",
+                str(divergence.get("divergence")),
+            )
     else:
         divergence = evaluate_morphology_divergence(dict(candidate_morphology or {}), dict(baseline_morphology or {}))
         receipt["render_derived_morphology"] = {
@@ -1172,13 +1214,23 @@ def prepare_clean_room_concept_run(request: CleanRoomExecutionRequest) -> Dict[s
         }
         _record_execution_stage(receipt, "RENDER_DERIVED_MORPHOLOGY", "PASS", "legacy adapter supplied unit morphology; rendered evidence not provided")
         if divergence.get("status") != "PASS":
-            return _finish_execution(receipt, "FAIL", "MORPHOLOGY_DIVERGENCE_FAILED", str(divergence.get("divergence")))
+            blocked = divergence.get("status") == "BLOCKED_INSUFFICIENT_EVIDENCE"
+            return _finish_execution(
+                receipt,
+                "BLOCKED" if blocked else "FAIL",
+                "MORPHOLOGY_DIVERGENCE_BLOCKED" if blocked else "MORPHOLOGY_DIVERGENCE_FAILED",
+                str(divergence.get("divergence")),
+            )
 
     fixture_comparisons = {}
     for key, label in (("semantic_rename_morphology_evidence", "SEMANTIC_RENAME_RENDER_FIXTURE"), ("genuine_divergence_morphology_evidence", "GENUINE_DIVERGENCE_RENDER_FIXTURE")):
         fixture_evidence = _mapping_value(rendered, key)
         if fixture_evidence and baseline_evidence:
-            fixture_comparisons[label] = compare_rendered_morphology(fixture_evidence, baseline_evidence)
+            fixture_comparisons[label] = compare_rendered_morphology(
+                fixture_evidence,
+                baseline_evidence,
+                evaluation_stage=concept_gate.get("scope"),
+            )
     if fixture_comparisons:
         receipt["rendered_fixture_comparisons"] = fixture_comparisons
 
@@ -1261,22 +1313,18 @@ def _synthetic_genuine_candidate_html() -> str:
 * { box-sizing: border-box; }
 body { margin: 0; background: #111; }
 main { width: 100%; }
-main > section { min-height: 460px; padding: 160px 9vw; display: block; }
-main > section:not(:last-child) { margin-bottom: 180px; }
+main > section { min-height: 720px; padding: 120px 9vw; display: block; }
 .hero { min-height: 720px; padding: 120px 9vw; background: #1e2522; display: grid; grid-template-columns: 1fr 320px; gap: 8vw; align-items: center; }
-.device { width: 280px; height: 280px; border-radius: 50%; border: 2px solid #e3d17a; background: #384842; }
-.chapter-content { max-width: 1100px; }
-figure { margin: 48px 0 0; height: 760px; background: #31463d; }
+.device { width: 760px; height: 120px; border: 2px solid #e3d17a; background: #384842; }
+.signature-surface { min-height: 720px; display: flex; align-items: center; justify-content: center; background: #101513; }
+.hero-visual { width: 280px; height: 280px; border-radius: 50%; background: #31463d; }
 .cta { display: inline-block; margin-top: 24px; padding: 14px 22px; color: #111; background: #e3d17a; }
 h1 { font-size: 64px; line-height: .95; margin: 0 0 30px; }
 h2 { font-size: 32px; }
 </style>
 <main>
-  <section class="hero"><div><h1>Calibrate the next move.</h1><p>Evidence-led transformation for demanding systems.</p></div><div class="device" aria-label="signature device"></div></section>
-  <section><div class="chapter-content"><h2>Signal</h2><p>Read the conditions before deciding.</p><figure></figure></div></section>
-  <section><div class="chapter-content"><h2>Sequence</h2><p>Turn the signal into a deliberate sequence.</p><figure></figure></div></section>
-  <section><div class="chapter-content"><h2>Commit</h2><p>Make the next action visible and precise.</p><figure></figure></div></section>
-  <section><div class="chapter-content"><h2>Review</h2><p>Keep the next decision observable.</p><figure></figure><a class="cta" href="#contact">Start the review</a></div></section>
+  <section class="hero"><div><h1>Calibrate the next move.</h1><p>Evidence-led transformation for demanding systems.</p><a class="cta" data-clean-room-cta href="#contact">Start the review</a></div><div class="hero-visual" role="img" aria-label="abstract visual"></div></section>
+  <section class="signature-surface" data-clean-room-surface="signature-device"><div class="device" aria-label="signature device"></div></section>
 </main>"""
 
 
@@ -1288,7 +1336,7 @@ def _synthetic_semantic_clone_html() -> str:
 * { box-sizing: border-box; }
 body { margin: 0; background: #f5f1e8; }
 main { width: min(1100px, calc(100% - 80px)); margin: 0 auto; }
-main > section { min-height: 260px; padding: 64px 58px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; border: 1px solid #9b8b6e; }
+main > section { min-height: 520px; padding: 64px 58px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; border: 1px solid #9b8b6e; }
 .cinematic-chapter:first-child { min-height: 520px; display: grid; align-items: center; }
 .transformation-act { grid-column: 1; }
 .immersive-sequence { grid-column: 2; min-height: 150px; background: #d9d0bf; }
@@ -1299,11 +1347,8 @@ h1 { font-size: 52px; line-height: 1; margin: 0 0 24px; }
 h2 { font-size: 30px; }
 </style>
 <main>
-  <section class="cinematic-chapter"><div class="transformation-act"><h1>Calibrate the next move.</h1><p>Evidence-led transformation for demanding systems.</p></div><figure class="immersive-sequence"></figure></section>
-  <section class="cinematic-chapter"><div class="transformation-act"><h2>Signal</h2><p>Read the conditions before deciding.</p></div><figure class="immersive-sequence"></figure></section>
-  <section class="cinematic-chapter"><div class="transformation-act"><h2>Sequence</h2><p>Turn the signal into a deliberate sequence.</p></div><figure class="immersive-sequence"></figure></section>
-  <section class="cinematic-chapter"><div class="transformation-act"><h2>Commit</h2><p>Make the next action visible and precise.</p></div><figure class="immersive-sequence"></figure></section>
-  <section class="cinematic-chapter"><div class="transformation-act"><h2>Review</h2><p>Keep the next decision observable.</p><a class="command-module" href="#contact">Start the review</a></div><figure class="immersive-sequence"></figure></section>
+  <section class="cinematic-chapter"><div class="transformation-act"><h1>Calibrate the next move.</h1><p>Evidence-led transformation for demanding systems.</p><a class="command-module" data-clean-room-cta href="#contact">Start the review</a></div><figure class="immersive-sequence"></figure></section>
+  <section class="cinematic-chapter" data-clean-room-surface="signature-device"><div class="transformation-act"><h2>Signal</h2><p>Read the conditions before deciding.</p></div><figure class="immersive-sequence"></figure></section>
 </main>"""
 
 
@@ -1334,11 +1379,8 @@ main > section:nth-child(even) .old-media-panel { grid-column: 1; }
     (source_root / "historical-project" / "old-site.html").write_text("""<!doctype html>
 <meta charset="utf-8"><link rel="stylesheet" href="old-style.css">
 <main>
-  <section class="old-hero old-two-column-card"><div class="old-copy"><h1>Old direction</h1><p>NEVER_SHOW_THIS_TO_GENERATOR</p></div><figure class="old-media-panel"><img src="old-hero.jpg" alt="old hero"></figure></section>
-  <section class="old-two-column-card"><figure class="old-media-panel"></figure><div class="old-copy"><h2>Signal</h2><p>Previous generated material.</p></div></section>
-  <section class="old-two-column-card"><div class="old-copy"><h2>Sequence</h2><p>Previous generated material.</p></div><figure class="old-media-panel"></figure></section>
-  <section class="old-two-column-card"><figure class="old-media-panel"></figure><div class="old-copy"><h2>Commit</h2><p>Previous generated material.</p></div></section>
-  <section class="old-two-column-card"><div class="old-copy"><h2>Review</h2><p>Previous generated material.</p><a class="old-cta" href="#contact">Continue</a></div><figure class="old-media-panel"></figure></section>
+  <section class="old-hero old-two-column-card"><div class="old-copy"><h1>Old direction</h1><p>NEVER_SHOW_THIS_TO_GENERATOR</p><a class="old-cta" data-clean-room-cta href="#contact">Continue</a></div><figure class="old-media-panel"><img src="old-hero.jpg" alt="old hero"></figure></section>
+  <section class="old-two-column-card" data-clean-room-surface="signature-device"><figure class="old-media-panel"></figure><div class="old-copy"><h2>Signal</h2><p>Previous generated material.</p></div></section>
 </main>""", encoding="utf-8")
 class _SyntheticCleanRoomAdapters:
     """Deterministic adapters used by the local end-to-end proof command."""
@@ -1365,6 +1407,7 @@ class _SyntheticCleanRoomAdapters:
                 "serve_dir": serve_dir,
                 "capture_render_artifacts": True,
                 "capture_morphology_evidence": True,
+                "morphology_evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
             },
         )
         if not engine.available():

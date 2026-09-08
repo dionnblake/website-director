@@ -431,92 +431,249 @@ _NAV_STATE_JS = r"""
 
 
 _CLEAN_ROOM_MORPHOLOGY_JS = r"""
-() => {
+(context) => {
+    const stage = (context && context.evaluation_stage) || 'FULL_HOMEPAGE';
+    const cleanNumber = value => Number(Number(value).toFixed(6));
     const visible = element => {
         if (!element) return false;
         const style = getComputedStyle(element);
-        const rect = element.getBoundingClientRect();
-        return !element.hidden && style.display !== 'none'
-            && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+        const value = element.getBoundingClientRect();
+        return !element.hidden && style.display !== 'none' && style.visibility !== 'hidden'
+            && Number(style.opacity || 1) > 0 && value.width > 0 && value.height > 0;
     };
-    const rect = element => {
+    const box = element => {
         const value = element.getBoundingClientRect();
-        return {x: Number(value.x.toFixed(3)), y: Number(value.y.toFixed(3)),
-                width: Number(value.width.toFixed(3)), height: Number(value.height.toFixed(3))};
+        return {
+            x: cleanNumber(value.x), y: cleanNumber(value.y),
+            doc_x: cleanNumber(value.x + scrollX), doc_y: cleanNumber(value.y + scrollY),
+            width: cleanNumber(value.width), height: cleanNumber(value.height),
+            area: cleanNumber(value.width * value.height)
+        };
     };
-    const mediaSelector = 'img, picture, video, figure, [role="img"]';
-    const sections = [...document.querySelectorAll('main > section, section')]
-        .filter(visible).map((section, index) => {
-            const sectionRect = section.getBoundingClientRect();
-            const children = [...section.children].filter(visible);
-            const columns = children.filter(child => {
-                const childRect = child.getBoundingClientRect();
-                return childRect.width < sectionRect.width * 0.8
-                    && childRect.width > 0;
-            });
-            const sectionMedia = [...section.querySelectorAll(mediaSelector)].filter(visible);
-            const style = getComputedStyle(section);
-            const borderCount = [...section.querySelectorAll('article, div, figure, section')]
-                .filter(visible).filter(element => {
-                    const computed = getComputedStyle(element);
-                    return parseFloat(computed.borderTopWidth) > 0
-                        || parseFloat(computed.borderRightWidth) > 0
-                        || parseFloat(computed.borderBottomWidth) > 0
-                        || parseFloat(computed.borderLeftWidth) > 0;
-                }).length;
-            const mediaArea = sectionMedia.reduce((total, element) => {
-                const value = element.getBoundingClientRect();
-                return total + (value.width * value.height);
-            }, 0);
-            const firstColumn = columns[0] && columns[0].getBoundingClientRect();
-            const firstMedia = sectionMedia[0] && sectionMedia[0].getBoundingClientRect();
-            const mediaOnRight = firstMedia
-                ? firstMedia.x + firstMedia.width / 2 > sectionRect.x + sectionRect.width / 2
-                : null;
-            return {
-                index, ...rect(section), column_count: columns.length,
-                column_alignment: mediaOnRight !== null
-                    ? (mediaOnRight ? 'RIGHT' : 'LEFT')
-                    : (firstColumn && firstColumn.x < sectionRect.x + sectionRect.width / 2
-                        ? 'LEFT' : 'RIGHT'),
-                media_count: sectionMedia.length, media_area: mediaArea,
-                border_count: borderCount, display: style.display
-            };
-        });
-    const hero = sections[0] || {};
-    const allMedia = [...document.querySelectorAll(mediaSelector)].filter(visible);
-    const mediaArea = allMedia.reduce((total, element) => {
-        const value = element.getBoundingClientRect();
-        return total + (value.width * value.height);
-    }, 0);
-    const pageArea = Math.max(1, innerWidth * document.documentElement.scrollHeight);
-    const containers = [...document.querySelectorAll('main article, main section, main div, main figure')]
-        .filter(visible).filter(element => {
-            const style = getComputedStyle(element);
-            return parseFloat(style.borderTopWidth) > 0 || parseFloat(style.borderRightWidth) > 0
-                || parseFloat(style.borderBottomWidth) > 0 || parseFloat(style.borderLeftWidth) > 0;
-        });
-    const roundShapes = [...document.querySelectorAll('main *')].filter(visible).filter(element => {
-        const value = element.getBoundingClientRect();
+    const computed = element => {
         const style = getComputedStyle(element);
-        return value.width > 20 && value.height > 20 && Math.abs(value.width - value.height) < 12
-            && style.borderRadius !== '0px' && style.borderRadius !== '0%';
+        return {
+            display: style.display, position: style.position,
+            grid_template_columns: style.gridTemplateColumns,
+            grid_template_rows: style.gridTemplateRows,
+            flex_direction: style.flexDirection, gap: style.gap,
+            justify_content: style.justifyContent, align_items: style.alignItems
+        };
+    };
+    const childrenOf = element => [...element.children].filter(visible);
+    const region = element => ({...box(element), computed: computed(element)});
+    const main = document.querySelector('main') || document.body;
+    let surfaceElements = [...main.querySelectorAll(':scope > section')].filter(visible);
+    if (!surfaceElements.length) surfaceElements = [...main.querySelectorAll('section')].filter(visible);
+
+    const visualSelector = 'img, picture, video, canvas, svg, figure, [role="img"]';
+    const visualElements = [...main.querySelectorAll(visualSelector)].filter(visible).filter(element => {
+        const value = element.getBoundingClientRect();
+        if (value.width < 8 || value.height < 8 || value.width * value.height < 256) return false;
+        if (['PICTURE', 'FIGURE'].includes(element.tagName)
+                && [...element.querySelectorAll('img, video, canvas, svg, [role="img"]')].some(visible)) return false;
+        return true;
     });
-    const ctaCandidates = [...document.querySelectorAll('main a, main button')].filter(visible);
-    const cta = ctaCandidates.length ? rect(ctaCandidates[0]) : {};
-    const heading = document.querySelector('main h1, main h2, h1, h2');
-    const headingStyle = heading ? getComputedStyle(heading) : {};
-    const gaps = sections.slice(1).map((section, index) => {
-        const previous = sections[index];
-        return Math.max(0, section.y - (previous.y + previous.height));
+    const backgroundElements = [main, ...main.querySelectorAll('*')].filter(visible).filter(element => {
+        const value = element.getBoundingClientRect();
+        return getComputedStyle(element).backgroundImage !== 'none'
+            && value.width >= 16 && value.height >= 16 && value.width * value.height >= 1024;
     });
+    const seenVisuals = new Set();
+    const uniqueVisualElements = [];
+    const mediaElements = [];
+    for (const element of [...visualElements, ...backgroundElements]) {
+        if (seenVisuals.has(element)) continue;
+        seenVisuals.add(element);
+        uniqueVisualElements.push(element);
+        mediaElements.push({
+            ...box(element),
+            media_kind: backgroundElements.includes(element) ? 'CSS_BACKGROUND_IMAGE' : element.tagName.toUpperCase()
+        });
+    }
+    const mediaAreaWithin = element => {
+        if (!element) return 0;
+        let total = 0;
+        for (const visual of uniqueVisualElements) {
+            if (element === visual || element.contains(visual)) total += box(visual).area;
+        }
+        return cleanNumber(total);
+    };
+    const columnFacts = (element, children) => {
+        if (!children.length) return {count: 0, alignment: 'NONE'};
+        const parentBox = box(element);
+        const centers = children.map(child => box(child).x + box(child).width / 2);
+        const distinct = [...new Set(centers.map(value => Math.round(value / 12)))];
+        const count = distinct.length >= 2 && Math.max(...centers) - Math.min(...centers) > parentBox.width * 0.2
+            ? Math.min(distinct.length, children.length) : 1;
+        const firstVisual = visualElements.find(visual => element.contains(visual));
+        const alignment = firstVisual
+            ? (box(firstVisual).x + box(firstVisual).width / 2 > parentBox.x + parentBox.width / 2 ? 'RIGHT' : 'LEFT')
+            : (centers[0] > parentBox.x + parentBox.width / 2 ? 'RIGHT' : 'LEFT');
+        return {count, alignment};
+    };
+    const surfaces = surfaceElements.map((surface, index) => {
+        const children = childrenOf(surface);
+        const value = box(surface);
+        const columns = columnFacts(surface, children);
+        const occupiedArea = Math.min(value.area, children.reduce((sum, child) => sum + box(child).area, 0));
+        return {
+            index, ...value, ...computed(surface),
+            child_regions: children.map(region), major_child_count: children.length,
+            column_count: columns.count, column_alignment: columns.alignment,
+            media_count: [...seenVisuals].filter(item => surface.contains(item)).length,
+            media_area: mediaAreaWithin(surface),
+            occupied_area_ratio: cleanNumber(occupiedArea / Math.max(1, value.area)),
+            gap_before: 0
+        };
+    });
+    surfaces.forEach((surface, index) => {
+        if (index > 0) {
+            const previous = surfaces[index - 1];
+            surface.gap_before = cleanNumber(Math.max(0, surface.doc_y - (previous.doc_y + previous.height)));
+        }
+    });
+    const heroElement = document.querySelector('[data-clean-room-surface="hero"], [data-morphology-surface="hero"]')
+        || surfaceElements[0] || null;
+    const heroChildren = heroElement ? childrenOf(heroElement) : [];
+    const hero = heroElement ? {
+        ...box(heroElement), ...computed(heroElement),
+        major_children: heroChildren.map(region),
+        major_child_count: heroChildren.length,
+        column_count: columnFacts(heroElement, heroChildren).count,
+        media_area: mediaAreaWithin(heroElement)
+    } : {target_found: false};
+
+    const configuredSignatureSelector = context && context.signature_device_selector;
+    const configuredSignature = configuredSignatureSelector
+        ? document.querySelector(String(configuredSignatureSelector)) : null;
+    const explicitSignature = configuredSignature || document.querySelector(
+        '[data-clean-room-surface="signature-device"], [data-morphology-surface="signature-device"], [data-signature-device]'
+    );
+    const signatureElement = explicitSignature
+        || (String(stage).toUpperCase() === 'HERO_PLUS_SIGNATURE_DEVICE_ONLY' ? surfaceElements[1] : null);
+    let signatureDevice = {target_found: false};
+    if (signatureElement && visible(signatureElement)) {
+        const signatureChildren = childrenOf(signatureElement);
+        const dominant = signatureChildren.slice().sort((a, b) => box(b).area - box(a).area)[0] || signatureElement;
+        const value = box(signatureElement);
+        const dominantBox = box(dominant);
+        const occupiedArea = signatureChildren.length
+            ? Math.min(value.area, signatureChildren.reduce((sum, child) => sum + box(child).area, 0))
+            : value.area;
+        let orientation = 'CENTRAL';
+        if (signatureChildren.length >= 2) {
+            const first = box(signatureChildren[0]), last = box(signatureChildren[signatureChildren.length - 1]);
+            orientation = Math.abs(last.x - first.x) > Math.abs(last.y - first.y) ? 'HORIZONTAL' : 'VERTICAL';
+        } else if (dominantBox.width / Math.max(1, dominantBox.height) > 1.2) orientation = 'HORIZONTAL';
+        else if (dominantBox.height / Math.max(1, dominantBox.width) > 1.2) orientation = 'VERTICAL';
+        signatureDevice = {
+            target_found: true, source: explicitSignature ? 'EXPLICIT_SURFACE' : 'CHEAP_STAGE_SECOND_SURFACE',
+            ...value, ...computed(signatureElement), child_regions: signatureChildren.map(region),
+            dominant_child: region(dominant),
+            dominant_child_aspect_ratio: cleanNumber(dominantBox.width / Math.max(1, dominantBox.height)),
+            occupied_area_ratio: cleanNumber(occupiedArea / Math.max(1, value.area)),
+            media_area: mediaAreaWithin(signatureElement), structural_orientation: orientation
+        };
+    }
+
+    const borderedContainers = [...main.querySelectorAll('article, section, div, figure')].filter(visible).filter(element => {
+        const style = getComputedStyle(element);
+        return [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth]
+            .some(value => parseFloat(value) > 0);
+    }).map(element => ({...box(element), border_widths: {
+        top: getComputedStyle(element).borderTopWidth, right: getComputedStyle(element).borderRightWidth,
+        bottom: getComputedStyle(element).borderBottomWidth, left: getComputedStyle(element).borderLeftWidth
+    }}));
+
+    const headingElement = document.querySelector('main h1, main h2, h1, h2');
+    let heading = {target_found: false};
+    if (headingElement && visible(headingElement)) {
+        const style = getComputedStyle(headingElement);
+        const value = box(headingElement);
+        const fontSize = parseFloat(style.fontSize);
+        const lineHeight = style.lineHeight === 'normal' ? fontSize * 1.2 : parseFloat(style.lineHeight);
+        const letterSpacing = style.letterSpacing === 'normal' ? 0 : parseFloat(style.letterSpacing);
+        heading = {
+            target_found: true, rect: value, font_family: style.fontFamily,
+            font_size: cleanNumber(fontSize), line_height: cleanNumber(lineHeight),
+            letter_spacing: cleanNumber(letterSpacing),
+            line_count: Math.max(1, Math.round(value.height / Math.max(1, lineHeight)))
+        };
+    }
+
+    const cheapStage = String(stage).toUpperCase() === 'HERO_PLUS_SIGNATURE_DEVICE_ONLY';
+    const explicitCta = document.querySelector('[data-clean-room-cta]');
+    const heroCta = heroElement && heroElement.querySelector('a, button');
+    const ctaElement = cheapStage
+        ? (explicitCta && heroElement && heroElement.contains(explicitCta) ? explicitCta : heroCta)
+        : (explicitCta || heroCta || main.querySelector('a, button'));
+    let cta = {target_found: false};
+    if (ctaElement && visible(ctaElement) && heroElement) {
+        const value = box(ctaElement), heroBox = box(heroElement);
+        const center = value.x + value.width / 2;
+        const heroCenter = heroBox.x + heroBox.width / 2;
+        const nearLeft = Math.abs(value.x - heroBox.x) <= heroBox.width * 0.06;
+        const nearRight = Math.abs((value.x + value.width) - (heroBox.x + heroBox.width)) <= heroBox.width * 0.06;
+        const centered = Math.abs(center - heroCenter) <= heroBox.width * 0.08;
+        const alignment = centered ? 'CENTER' : (nearLeft ? 'LEFT' : (nearRight ? 'RIGHT' : 'INTERIOR'));
+        cta = {
+            target_found: true, source: explicitCta === ctaElement ? 'EXPLICIT_CTA' : 'HERO_ACTION',
+            within_hero: heroElement.contains(ctaElement), ...value,
+            x_hero_ratio: cleanNumber((value.x - heroBox.x) / Math.max(1, heroBox.width)),
+            y_hero_ratio: cleanNumber((value.y - heroBox.y) / Math.max(1, heroBox.height)),
+            alignment,
+            treatment: (nearLeft || nearRight) ? 'EDGE_ALIGNED' : (centered ? 'CENTERED' : 'CONTAINED')
+        };
+    }
+
+    const surfaceOccupancies = surfaces.map(item => item.occupied_area_ratio);
+    const occupiedAreaRatio = surfaceOccupancies.length
+        ? surfaceOccupancies.reduce((sum, value) => sum + value, 0) / surfaceOccupancies.length : null;
+    const heroArea = heroElement ? box(heroElement).area : 0;
+    const heroOccupied = heroChildren.reduce((sum, child) => sum + box(child).area, 0);
+    let majorRegionGapRatio = 0;
+    if (heroChildren.length >= 2) {
+        const ordered = heroChildren.map(box).sort((a, b) => a.x - b.x || a.y - b.y);
+        const gaps = ordered.slice(1).map((item, index) => {
+            const previous = ordered[index];
+            const horizontal = Math.max(0, item.x - (previous.x + previous.width));
+            const vertical = Math.max(0, item.y - (previous.y + previous.height));
+            return Math.max(horizontal / Math.max(1, hero.width), vertical / Math.max(1, hero.height));
+        });
+        majorRegionGapRatio = gaps.reduce((sum, value) => sum + value, 0) / gaps.length;
+    }
+    const documentWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, innerWidth);
+    const documentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, innerHeight);
+    const documentArea = documentWidth * documentHeight;
     return {
-        evidence_kind: 'BROWSER_LAYOUT', viewport_width: innerWidth,
-        viewport_height: innerHeight, document_height: document.documentElement.scrollHeight,
-        hero, sections, media_area_ratio: mediaArea / pageArea,
-        bordered_container_count: containers.length, round_shape_count: roundShapes.length,
-        average_section_gap: gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0,
-        cta, heading_font_family: headingStyle.fontFamily || ''
+        evidence_kind: 'BROWSER_LAYOUT', measurement_schema_version: '2.0', evaluation_stage: stage,
+        viewport: {width: innerWidth, height: innerHeight, area: innerWidth * innerHeight},
+        document: {width: documentWidth, height: documentHeight, area: documentArea},
+        hero, sections: surfaces, media_elements: mediaElements,
+        bordered_containers: borderedContainers, heading, signature_device: signatureDevice, cta,
+        whitespace: {
+            occupied_area_ratio: occupiedAreaRatio === null ? null : cleanNumber(occupiedAreaRatio),
+            negative_space_ratio: occupiedAreaRatio === null ? null : cleanNumber(1 - occupiedAreaRatio),
+            hero_occupied_area_ratio: heroArea > 0 ? cleanNumber(Math.min(1, heroOccupied / heroArea)) : null,
+            major_region_gap_ratio: cleanNumber(majorRegionGapRatio)
+        },
+        scan_complete: {
+            viewport: true, document: true, hero: Boolean(heroElement), sections: true,
+            media: true, bordered_containers: true, heading: Boolean(headingElement),
+            signature_device: Boolean(signatureElement), cta: Boolean(ctaElement)
+        },
+        measurement_schema: [
+            'viewport', 'document', 'hero', 'hero.major_children', 'sections', 'sections.child_regions',
+            'sections.computed_layout', 'media_elements', 'bordered_containers', 'heading.computed_style',
+            'whitespace.internal_occupancy', 'signature_device.target_region', 'cta.geometry_and_alignment'
+        ],
+        viewport_width: innerWidth, viewport_height: innerHeight, document_height: documentHeight,
+        media_area_ratio: cleanNumber(mediaElements.reduce((sum, item) => sum + item.area, 0) / Math.max(1, documentArea)),
+        bordered_container_count: borderedContainers.length,
+        average_section_gap: surfaces.length > 1
+            ? cleanNumber(surfaces.slice(1).reduce((sum, item) => sum + item.gap_before, 0) / (surfaces.length - 1)) : 0,
+        heading_font_family: heading.font_family || ''
     };
 }
 """
@@ -794,7 +951,18 @@ class PlaywrightEngine(BrowserQAEngine):
                 })""")
             obs.raw["page_metrics"] = page_metrics
             if (self.config or {}).get("capture_morphology_evidence"):
-                obs.raw["rendered_morphology_evidence"] = page.evaluate(_CLEAN_ROOM_MORPHOLOGY_JS)
+                obs.raw["rendered_morphology_evidence"] = page.evaluate(
+                    _CLEAN_ROOM_MORPHOLOGY_JS,
+                    {
+                        "evaluation_stage": (self.config or {}).get(
+                            "morphology_evaluation_stage",
+                            "FULL_HOMEPAGE",
+                        ),
+                        "signature_device_selector": (self.config or {}).get(
+                            "morphology_signature_device_selector"
+                        ),
+                    },
+                )
             if (self.config or {}).get("capture_render_artifacts"):
                 obs.raw["rendered_dom"] = page.content()
                 obs.raw["rendered_css"] = page.evaluate(

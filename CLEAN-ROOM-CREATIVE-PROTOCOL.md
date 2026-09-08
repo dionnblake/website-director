@@ -1,6 +1,6 @@
 # CLEAN-ROOM CREATIVE MODE PROTOCOL
 
-> **Version:** 2.11.0  
+> **Version:** 2.11.1
 > **Status:** Mandatory Operating Standard (Website Director Subsystem)  
 > **Governance:** Website Director Orchestration Rail ([SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SKILL.md) Phase 4 & Phase 4.5)  
 > **Mission:** Enforce structural clean-room boundaries around creative concept generation so historical generated output cannot contaminate fresh designs.
@@ -192,6 +192,39 @@ Post-render comparison evaluates physical layout geometry against historical neg
 
 Semantic component renaming (e.g., renaming a `card` to a `cinematic chapter`) while keeping identical geometry triggers:
 `MORPHOLOGY_DIVERGENCE = FAIL`.
+
+### Stage applicability
+
+At `HERO_PLUS_SIGNATURE_DEVICE_ONLY`, the denominator contains exactly seven
+vectors: hero silhouette, normalized card/container density, normalized media
+dominance, computed typography silhouette, internal whitespace occupancy, the
+designated signature-device region, and CTA morphology. `SECTION_GEOMETRY`,
+`TWO_COLUMN_REPETITION`, and `PAGE_RHYTHM` are `NOT_APPLICABLE`; they do not
+count as matches or divergences. All ten vectors become applicable when a full
+homepage is authorized and enough repeated page grammar exists.
+
+### Evidence and verdict contract
+
+- Every compared render uses the same browser-measurement schema: viewport and
+  document dimensions; hero, surface, child, media, bordered-container,
+  heading, signature-device, and CTA geometry; computed layout and typography;
+  and normalized internal occupancy.
+- A run may supply an explicit selector to identify a pre-existing signature
+  device for measurement. The selector only locates the region and never
+  becomes scoring evidence.
+- Missing, null, incomplete, or unconfirmed scan evidence for an applicable
+  vector is `INSUFFICIENT_EVIDENCE`. It blocks the overall verdict as
+  `BLOCKED_INSUFFICIENT_EVIDENCE`; missing evidence is never a match.
+- Vector verdicts are derived from raw normalized measurements and continuous
+  distance before canonical reporting labels. Each applicable result retains
+  candidate measurements, baseline measurements, distance/similarity, labels,
+  and the vector verdict.
+- `PASS_DIVERGENCE` requires at least 60 percent of the applicable, sufficiently
+  evidenced vectors to be divergent. At the cheap stage this is five of seven.
+- Rechecking preserved renders uses
+  `python -m framework_validation.morphology_recheck`. It may refresh evidence,
+  the owner-review morphology rows, and a stripped blind-critic input package,
+  but it never calls the concept generator or executes the Gauntlet.
 
 ---
 

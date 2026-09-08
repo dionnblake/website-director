@@ -25,101 +25,356 @@
     ],
     "html_source": null,
     "morphology_evidence": {
-      "average_section_gap": 179.99974999999995,
+      "average_section_gap": 0,
       "bordered_container_count": 1,
+      "bordered_containers": [
+        {
+          "area": 91200,
+          "border_widths": {
+            "bottom": "2px",
+            "left": "2px",
+            "right": "2px",
+            "top": "2px"
+          },
+          "doc_x": 340,
+          "doc_y": 1020,
+          "height": 120,
+          "width": 760,
+          "x": 340,
+          "y": 1020
+        }
+      ],
       "cta": {
+        "alignment": "INTERIOR",
+        "area": 8836,
+        "doc_x": 129.59375,
+        "doc_y": 441.796875,
         "height": 47,
+        "source": "EXPLICIT_CTA",
+        "target_found": true,
+        "treatment": "CONTAINED",
         "width": 188,
-        "x": 129.594,
-        "y": 6252.375
+        "within_hero": true,
+        "x": 129.59375,
+        "x_hero_ratio": 0.089996,
+        "y": 441.796875,
+        "y_hero_ratio": 0.613607
       },
-      "document_height": 6459,
+      "document": {
+        "area": 2073600,
+        "height": 1440,
+        "width": 1440
+      },
+      "document_height": 1440,
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
       "evidence_kind": "BROWSER_LAYOUT",
+      "heading": {
+        "font_family": "Consolas, monospace",
+        "font_size": 64,
+        "letter_spacing": 0,
+        "line_count": 2,
+        "line_height": 60.8,
+        "rect": {
+          "area": 90663.339844,
+          "doc_x": 129.59375,
+          "doc_y": 231.203125,
+          "height": 121.59375,
+          "width": 745.625,
+          "x": 129.59375,
+          "y": 231.203125
+        },
+        "target_found": true
+      },
       "heading_font_family": "Consolas, monospace",
       "hero": {
-        "border_count": 1,
-        "column_alignment": "LEFT",
+        "align_items": "center",
+        "area": 1036800,
         "column_count": 2,
         "display": "grid",
+        "doc_x": 0,
+        "doc_y": 0,
+        "flex_direction": "row",
+        "gap": "115.2px",
+        "grid_template_columns": "745.625px 320px",
+        "grid_template_rows": "480px",
         "height": 720,
-        "index": 0,
-        "media_area": 0,
-        "media_count": 0,
+        "justify_content": "normal",
+        "major_child_count": 2,
+        "major_children": [
+          {
+            "area": 192068.339844,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 129.59375,
+            "doc_y": 231.203125,
+            "height": 257.59375,
+            "width": 745.625,
+            "x": 129.59375,
+            "y": 231.203125
+          },
+          {
+            "area": 78400,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 990.40625,
+            "doc_y": 220,
+            "height": 280,
+            "width": 280,
+            "x": 990.40625,
+            "y": 220
+          }
+        ],
+        "media_area": 78400,
+        "position": "static",
         "width": 1440,
         "x": 0,
         "y": 0
       },
-      "media_area_ratio": 0.35953277941201767,
-      "round_shape_count": 1,
+      "measurement_schema": [
+        "viewport",
+        "document",
+        "hero",
+        "hero.major_children",
+        "sections",
+        "sections.child_regions",
+        "sections.computed_layout",
+        "media_elements",
+        "bordered_containers",
+        "heading.computed_style",
+        "whitespace.internal_occupancy",
+        "signature_device.target_region",
+        "cta.geometry_and_alignment"
+      ],
+      "measurement_schema_version": "2.0",
+      "media_area_ratio": 0.037809,
+      "media_elements": [
+        {
+          "area": 78400,
+          "doc_x": 990.40625,
+          "doc_y": 220,
+          "height": 280,
+          "media_kind": "DIV",
+          "width": 280,
+          "x": 990.40625,
+          "y": 220
+        }
+      ],
+      "scan_complete": {
+        "bordered_containers": true,
+        "cta": true,
+        "document": true,
+        "heading": true,
+        "hero": true,
+        "media": true,
+        "sections": true,
+        "signature_device": true,
+        "viewport": true
+      },
       "sections": [
         {
-          "border_count": 1,
-          "column_alignment": "LEFT",
+          "align_items": "center",
+          "area": 1036800,
+          "child_regions": [
+            {
+              "area": 192068.339844,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 129.59375,
+              "doc_y": 231.203125,
+              "height": 257.59375,
+              "width": 745.625,
+              "x": 129.59375,
+              "y": 231.203125
+            },
+            {
+              "area": 78400,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 990.40625,
+              "doc_y": 220,
+              "height": 280,
+              "width": 280,
+              "x": 990.40625,
+              "y": 220
+            }
+          ],
+          "column_alignment": "RIGHT",
           "column_count": 2,
           "display": "grid",
+          "doc_x": 0,
+          "doc_y": 0,
+          "flex_direction": "row",
+          "gap": "115.2px",
+          "gap_before": 0,
+          "grid_template_columns": "745.625px 320px",
+          "grid_template_rows": "480px",
           "height": 720,
           "index": 0,
-          "media_area": 0,
-          "media_count": 0,
+          "justify_content": "normal",
+          "major_child_count": 2,
+          "media_area": 78400,
+          "media_count": 1,
+          "occupied_area_ratio": 0.260868,
+          "position": "static",
           "width": 1440,
           "x": 0,
           "y": 0
         },
         {
-          "border_count": 0,
+          "align_items": "center",
+          "area": 1036800,
+          "child_regions": [
+            {
+              "area": 91200,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 340,
+              "doc_y": 1020,
+              "height": 120,
+              "width": 760,
+              "x": 340,
+              "y": 1020
+            }
+          ],
           "column_alignment": "LEFT",
           "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
+          "display": "flex",
+          "doc_x": 0,
+          "doc_y": 720,
+          "flex_direction": "row",
+          "gap": "normal",
+          "gap_before": 0,
+          "grid_template_columns": "none",
+          "grid_template_rows": "none",
+          "height": 720,
           "index": 1,
-          "media_area": 836000,
-          "media_count": 1,
+          "justify_content": "center",
+          "major_child_count": 1,
+          "media_area": 0,
+          "media_count": 0,
+          "occupied_area_ratio": 0.087963,
+          "position": "static",
           "width": 1440,
           "x": 0,
-          "y": 900
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
-          "index": 2,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 2317.094
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
-          "index": 3,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 3734.188
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1308.094,
-          "index": 4,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 5151.281
+          "y": 720
         }
       ],
+      "signature_device": {
+        "align_items": "center",
+        "area": 1036800,
+        "child_regions": [
+          {
+            "area": 91200,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 340,
+            "doc_y": 1020,
+            "height": 120,
+            "width": 760,
+            "x": 340,
+            "y": 1020
+          }
+        ],
+        "display": "flex",
+        "doc_x": 0,
+        "doc_y": 720,
+        "dominant_child": {
+          "area": 91200,
+          "computed": {
+            "align_items": "normal",
+            "display": "block",
+            "flex_direction": "row",
+            "gap": "normal",
+            "grid_template_columns": "none",
+            "grid_template_rows": "none",
+            "justify_content": "normal",
+            "position": "static"
+          },
+          "doc_x": 340,
+          "doc_y": 1020,
+          "height": 120,
+          "width": 760,
+          "x": 340,
+          "y": 1020
+        },
+        "dominant_child_aspect_ratio": 6.333333,
+        "flex_direction": "row",
+        "gap": "normal",
+        "grid_template_columns": "none",
+        "grid_template_rows": "none",
+        "height": 720,
+        "justify_content": "center",
+        "media_area": 0,
+        "occupied_area_ratio": 0.087963,
+        "position": "static",
+        "source": "EXPLICIT_SURFACE",
+        "structural_orientation": "HORIZONTAL",
+        "target_found": true,
+        "width": 1440,
+        "x": 0,
+        "y": 720
+      },
+      "viewport": {
+        "area": 1296000,
+        "height": 900,
+        "width": 1440
+      },
       "viewport_height": 900,
-      "viewport_width": 1440
+      "viewport_width": 1440,
+      "whitespace": {
+        "hero_occupied_area_ratio": 0.260868,
+        "major_region_gap_ratio": 0.079991,
+        "negative_space_ratio": 0.825584,
+        "occupied_area_ratio": 0.174416
+      }
     },
     "previous_asn_screenshots": null,
     "programmatic_gauntlet_entrypoint": "ABSENT",
@@ -137,108 +392,363 @@
   },
   "candidate_render": {
     "candidate_screenshot": "candidate-output/candidate.png",
-    "candidate_screenshot_sha256": "e13d92c8fd2d74e6bd8ffb28ce3d233695bd2d9ddee42396fe1308face7b3e4f",
+    "candidate_screenshot_sha256": "1197cb9cec73b83636bcd79ae48f408ed5a05742e5537445c346f5ff68be5f08",
     "morphology": {
       "source": "BROWSER_LAYOUT_EVIDENCE"
     },
     "rendered_css_ref": "candidate-output/candidate-rendered.css",
     "rendered_dom_ref": "candidate-output/candidate-rendered.html",
     "rendered_morphology_evidence": {
-      "average_section_gap": 179.99974999999995,
+      "average_section_gap": 0,
       "bordered_container_count": 1,
+      "bordered_containers": [
+        {
+          "area": 91200,
+          "border_widths": {
+            "bottom": "2px",
+            "left": "2px",
+            "right": "2px",
+            "top": "2px"
+          },
+          "doc_x": 340,
+          "doc_y": 1020,
+          "height": 120,
+          "width": 760,
+          "x": 340,
+          "y": 1020
+        }
+      ],
       "cta": {
+        "alignment": "INTERIOR",
+        "area": 8836,
+        "doc_x": 129.59375,
+        "doc_y": 441.796875,
         "height": 47,
+        "source": "EXPLICIT_CTA",
+        "target_found": true,
+        "treatment": "CONTAINED",
         "width": 188,
-        "x": 129.594,
-        "y": 6252.375
+        "within_hero": true,
+        "x": 129.59375,
+        "x_hero_ratio": 0.089996,
+        "y": 441.796875,
+        "y_hero_ratio": 0.613607
       },
-      "document_height": 6459,
+      "document": {
+        "area": 2073600,
+        "height": 1440,
+        "width": 1440
+      },
+      "document_height": 1440,
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
       "evidence_kind": "BROWSER_LAYOUT",
+      "heading": {
+        "font_family": "Consolas, monospace",
+        "font_size": 64,
+        "letter_spacing": 0,
+        "line_count": 2,
+        "line_height": 60.8,
+        "rect": {
+          "area": 90663.339844,
+          "doc_x": 129.59375,
+          "doc_y": 231.203125,
+          "height": 121.59375,
+          "width": 745.625,
+          "x": 129.59375,
+          "y": 231.203125
+        },
+        "target_found": true
+      },
       "heading_font_family": "Consolas, monospace",
       "hero": {
-        "border_count": 1,
-        "column_alignment": "LEFT",
+        "align_items": "center",
+        "area": 1036800,
         "column_count": 2,
         "display": "grid",
+        "doc_x": 0,
+        "doc_y": 0,
+        "flex_direction": "row",
+        "gap": "115.2px",
+        "grid_template_columns": "745.625px 320px",
+        "grid_template_rows": "480px",
         "height": 720,
-        "index": 0,
-        "media_area": 0,
-        "media_count": 0,
+        "justify_content": "normal",
+        "major_child_count": 2,
+        "major_children": [
+          {
+            "area": 192068.339844,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 129.59375,
+            "doc_y": 231.203125,
+            "height": 257.59375,
+            "width": 745.625,
+            "x": 129.59375,
+            "y": 231.203125
+          },
+          {
+            "area": 78400,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 990.40625,
+            "doc_y": 220,
+            "height": 280,
+            "width": 280,
+            "x": 990.40625,
+            "y": 220
+          }
+        ],
+        "media_area": 78400,
+        "position": "static",
         "width": 1440,
         "x": 0,
         "y": 0
       },
-      "media_area_ratio": 0.35953277941201767,
-      "round_shape_count": 1,
+      "measurement_schema": [
+        "viewport",
+        "document",
+        "hero",
+        "hero.major_children",
+        "sections",
+        "sections.child_regions",
+        "sections.computed_layout",
+        "media_elements",
+        "bordered_containers",
+        "heading.computed_style",
+        "whitespace.internal_occupancy",
+        "signature_device.target_region",
+        "cta.geometry_and_alignment"
+      ],
+      "measurement_schema_version": "2.0",
+      "media_area_ratio": 0.037809,
+      "media_elements": [
+        {
+          "area": 78400,
+          "doc_x": 990.40625,
+          "doc_y": 220,
+          "height": 280,
+          "media_kind": "DIV",
+          "width": 280,
+          "x": 990.40625,
+          "y": 220
+        }
+      ],
+      "scan_complete": {
+        "bordered_containers": true,
+        "cta": true,
+        "document": true,
+        "heading": true,
+        "hero": true,
+        "media": true,
+        "sections": true,
+        "signature_device": true,
+        "viewport": true
+      },
       "sections": [
         {
-          "border_count": 1,
-          "column_alignment": "LEFT",
+          "align_items": "center",
+          "area": 1036800,
+          "child_regions": [
+            {
+              "area": 192068.339844,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 129.59375,
+              "doc_y": 231.203125,
+              "height": 257.59375,
+              "width": 745.625,
+              "x": 129.59375,
+              "y": 231.203125
+            },
+            {
+              "area": 78400,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 990.40625,
+              "doc_y": 220,
+              "height": 280,
+              "width": 280,
+              "x": 990.40625,
+              "y": 220
+            }
+          ],
+          "column_alignment": "RIGHT",
           "column_count": 2,
           "display": "grid",
+          "doc_x": 0,
+          "doc_y": 0,
+          "flex_direction": "row",
+          "gap": "115.2px",
+          "gap_before": 0,
+          "grid_template_columns": "745.625px 320px",
+          "grid_template_rows": "480px",
           "height": 720,
           "index": 0,
-          "media_area": 0,
-          "media_count": 0,
+          "justify_content": "normal",
+          "major_child_count": 2,
+          "media_area": 78400,
+          "media_count": 1,
+          "occupied_area_ratio": 0.260868,
+          "position": "static",
           "width": 1440,
           "x": 0,
           "y": 0
         },
         {
-          "border_count": 0,
+          "align_items": "center",
+          "area": 1036800,
+          "child_regions": [
+            {
+              "area": 91200,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 340,
+              "doc_y": 1020,
+              "height": 120,
+              "width": 760,
+              "x": 340,
+              "y": 1020
+            }
+          ],
           "column_alignment": "LEFT",
           "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
+          "display": "flex",
+          "doc_x": 0,
+          "doc_y": 720,
+          "flex_direction": "row",
+          "gap": "normal",
+          "gap_before": 0,
+          "grid_template_columns": "none",
+          "grid_template_rows": "none",
+          "height": 720,
           "index": 1,
-          "media_area": 836000,
-          "media_count": 1,
+          "justify_content": "center",
+          "major_child_count": 1,
+          "media_area": 0,
+          "media_count": 0,
+          "occupied_area_ratio": 0.087963,
+          "position": "static",
           "width": 1440,
           "x": 0,
-          "y": 900
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
-          "index": 2,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 2317.094
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1237.094,
-          "index": 3,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 3734.188
-        },
-        {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 1,
-          "display": "block",
-          "height": 1308.094,
-          "index": 4,
-          "media_area": 836000,
-          "media_count": 1,
-          "width": 1440,
-          "x": 0,
-          "y": 5151.281
+          "y": 720
         }
       ],
+      "signature_device": {
+        "align_items": "center",
+        "area": 1036800,
+        "child_regions": [
+          {
+            "area": 91200,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 340,
+            "doc_y": 1020,
+            "height": 120,
+            "width": 760,
+            "x": 340,
+            "y": 1020
+          }
+        ],
+        "display": "flex",
+        "doc_x": 0,
+        "doc_y": 720,
+        "dominant_child": {
+          "area": 91200,
+          "computed": {
+            "align_items": "normal",
+            "display": "block",
+            "flex_direction": "row",
+            "gap": "normal",
+            "grid_template_columns": "none",
+            "grid_template_rows": "none",
+            "justify_content": "normal",
+            "position": "static"
+          },
+          "doc_x": 340,
+          "doc_y": 1020,
+          "height": 120,
+          "width": 760,
+          "x": 340,
+          "y": 1020
+        },
+        "dominant_child_aspect_ratio": 6.333333,
+        "flex_direction": "row",
+        "gap": "normal",
+        "grid_template_columns": "none",
+        "grid_template_rows": "none",
+        "height": 720,
+        "justify_content": "center",
+        "media_area": 0,
+        "occupied_area_ratio": 0.087963,
+        "position": "static",
+        "source": "EXPLICIT_SURFACE",
+        "structural_orientation": "HORIZONTAL",
+        "target_found": true,
+        "width": 1440,
+        "x": 0,
+        "y": 720
+      },
+      "viewport": {
+        "area": 1296000,
+        "height": 900,
+        "width": 1440
+      },
       "viewport_height": 900,
-      "viewport_width": 1440
+      "viewport_width": 1440,
+      "whitespace": {
+        "hero_occupied_area_ratio": 0.260868,
+        "major_region_gap_ratio": 0.079991,
+        "negative_space_ratio": 0.825584,
+        "occupied_area_ratio": 0.174416
+      }
     }
   },
   "completion_note": "owner selected a rendered concept; full homepage progression is now authorized",
@@ -319,7 +829,7 @@
         "url": "https://example.test/clean-room-reference-02"
       }
     ],
-    "run_id": "synthetic-clean-room-run",
+    "run_id": "synthetic-clean-room-run-9a2e7442",
     "staged_workspace": {
       "approved_assets": "approved-assets/",
       "brand": "brand/",
@@ -336,100 +846,408 @@
     "path": "historical-project/old-site.html",
     "rendered_morphology_evidence": {
       "average_section_gap": 0,
-      "bordered_container_count": 5,
-      "cta": {
-        "height": 46,
-        "width": 107,
-        "x": 229,
-        "y": 2011.813
-      },
-      "document_height": 2210,
-      "evidence_kind": "BROWSER_LAYOUT",
-      "heading_font_family": "Georgia, serif",
-      "hero": {
-        "border_count": 0,
-        "column_alignment": "RIGHT",
-        "column_count": 2,
-        "display": "grid",
-        "height": 650,
-        "index": 0,
-        "media_area": 59101,
-        "media_count": 2,
-        "width": 1100,
-        "x": 170,
-        "y": 0
-      },
-      "media_area_ratio": 0.1314822146807441,
-      "round_shape_count": 0,
-      "sections": [
+      "bordered_container_count": 2,
+      "bordered_containers": [
         {
-          "border_count": 0,
-          "column_alignment": "RIGHT",
-          "column_count": 2,
-          "display": "grid",
+          "area": 715000,
+          "border_widths": {
+            "bottom": "1px",
+            "left": "1px",
+            "right": "1px",
+            "top": "1px"
+          },
+          "doc_x": 170,
+          "doc_y": 0,
           "height": 650,
-          "index": 0,
-          "media_area": 59101,
-          "media_count": 2,
           "width": 1100,
           "x": 170,
           "y": 0
         },
         {
-          "border_count": 0,
-          "column_alignment": "LEFT",
-          "column_count": 2,
-          "display": "grid",
+          "area": 429000,
+          "border_widths": {
+            "bottom": "1px",
+            "left": "1px",
+            "right": "1px",
+            "top": "1px"
+          },
+          "doc_x": 170,
+          "doc_y": 650,
           "height": 390,
-          "index": 1,
-          "media_area": 89832,
-          "media_count": 1,
           "width": 1100,
           "x": 170,
           "y": 650
+        }
+      ],
+      "cta": {
+        "alignment": "LEFT",
+        "area": 4922,
+        "doc_x": 229,
+        "doc_y": 371.4375,
+        "height": 46,
+        "source": "EXPLICIT_CTA",
+        "target_found": true,
+        "treatment": "EDGE_ALIGNED",
+        "width": 107,
+        "within_hero": true,
+        "x": 229,
+        "x_hero_ratio": 0.053636,
+        "y": 371.4375,
+        "y_hero_ratio": 0.571442
+      },
+      "document": {
+        "area": 1497600,
+        "height": 1040,
+        "width": 1440
+      },
+      "document_height": 1040,
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+      "evidence_kind": "BROWSER_LAYOUT",
+      "heading": {
+        "font_family": "Georgia, serif",
+        "font_size": 32,
+        "letter_spacing": 0,
+        "line_count": 1,
+        "line_height": 38.4,
+        "rect": {
+          "area": 18012,
+          "doc_x": 229,
+          "doc_y": 254,
+          "height": 38,
+          "width": 474,
+          "x": 229,
+          "y": 254
         },
+        "target_found": true
+      },
+      "heading_font_family": "Georgia, serif",
+      "hero": {
+        "align_items": "center",
+        "area": 715000,
+        "column_count": 2,
+        "display": "grid",
+        "doc_x": 170,
+        "doc_y": 0,
+        "flex_direction": "row",
+        "gap": "34px",
+        "grid_template_columns": "474px 474px",
+        "grid_template_rows": "520px",
+        "height": 650,
+        "justify_content": "normal",
+        "major_child_count": 2,
+        "major_children": [
+          {
+            "area": 87630.75,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 229,
+            "doc_y": 232.5625,
+            "height": 184.875,
+            "width": 474,
+            "x": 229,
+            "y": 232.5625
+          },
+          {
+            "area": 59100,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 777,
+            "doc_y": 250,
+            "height": 150,
+            "width": 394,
+            "x": 777,
+            "y": 250
+          }
+        ],
+        "media_area": 0,
+        "position": "static",
+        "width": 1100,
+        "x": 170,
+        "y": 0
+      },
+      "measurement_schema": [
+        "viewport",
+        "document",
+        "hero",
+        "hero.major_children",
+        "sections",
+        "sections.child_regions",
+        "sections.computed_layout",
+        "media_elements",
+        "bordered_containers",
+        "heading.computed_style",
+        "whitespace.internal_occupancy",
+        "signature_device.target_region",
+        "cta.geometry_and_alignment"
+      ],
+      "measurement_schema_version": "2.0",
+      "media_area_ratio": 0.059984,
+      "media_elements": [
         {
-          "border_count": 0,
-          "column_alignment": "RIGHT",
-          "column_count": 2,
-          "display": "grid",
-          "height": 390,
-          "index": 2,
-          "media_area": 89832,
-          "media_count": 1,
-          "width": 1100,
-          "x": 170,
-          "y": 1040
-        },
+          "area": 89832,
+          "doc_x": 269,
+          "doc_y": 731,
+          "height": 228,
+          "media_kind": "FIGURE",
+          "width": 394,
+          "x": 269,
+          "y": 731
+        }
+      ],
+      "scan_complete": {
+        "bordered_containers": true,
+        "cta": true,
+        "document": true,
+        "heading": true,
+        "hero": true,
+        "media": true,
+        "sections": true,
+        "signature_device": true,
+        "viewport": true
+      },
+      "sections": [
         {
-          "border_count": 0,
+          "align_items": "center",
+          "area": 715000,
+          "child_regions": [
+            {
+              "area": 87630.75,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 229,
+              "doc_y": 232.5625,
+              "height": 184.875,
+              "width": 474,
+              "x": 229,
+              "y": 232.5625
+            },
+            {
+              "area": 59100,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 777,
+              "doc_y": 250,
+              "height": 150,
+              "width": 394,
+              "x": 777,
+              "y": 250
+            }
+          ],
           "column_alignment": "LEFT",
           "column_count": 2,
           "display": "grid",
-          "height": 390,
-          "index": 3,
-          "media_area": 89832,
-          "media_count": 1,
+          "doc_x": 170,
+          "doc_y": 0,
+          "flex_direction": "row",
+          "gap": "34px",
+          "gap_before": 0,
+          "grid_template_columns": "474px 474px",
+          "grid_template_rows": "520px",
+          "height": 650,
+          "index": 0,
+          "justify_content": "normal",
+          "major_child_count": 2,
+          "media_area": 0,
+          "media_count": 0,
+          "occupied_area_ratio": 0.205218,
+          "position": "static",
           "width": 1100,
           "x": 170,
-          "y": 1430
+          "y": 0
         },
         {
-          "border_count": 0,
-          "column_alignment": "RIGHT",
+          "align_items": "normal",
+          "area": 429000,
+          "child_regions": [
+            {
+              "area": 89832,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 269,
+              "doc_y": 731,
+              "height": 228,
+              "width": 394,
+              "x": 269,
+              "y": 731
+            },
+            {
+              "area": 123240,
+              "computed": {
+                "align_items": "normal",
+                "display": "block",
+                "flex_direction": "row",
+                "gap": "normal",
+                "grid_template_columns": "none",
+                "grid_template_rows": "none",
+                "justify_content": "normal",
+                "position": "static"
+              },
+              "doc_x": 737,
+              "doc_y": 715,
+              "height": 260,
+              "width": 474,
+              "x": 737,
+              "y": 715
+            }
+          ],
+          "column_alignment": "LEFT",
           "column_count": 2,
           "display": "grid",
+          "doc_x": 170,
+          "doc_y": 650,
+          "flex_direction": "row",
+          "gap": "34px",
+          "gap_before": 0,
+          "grid_template_columns": "474px 474px",
+          "grid_template_rows": "260px",
           "height": 390,
-          "index": 4,
+          "index": 1,
+          "justify_content": "normal",
+          "major_child_count": 2,
           "media_area": 89832,
           "media_count": 1,
+          "occupied_area_ratio": 0.496671,
+          "position": "static",
           "width": 1100,
           "x": 170,
-          "y": 1820
+          "y": 650
         }
       ],
+      "signature_device": {
+        "align_items": "normal",
+        "area": 429000,
+        "child_regions": [
+          {
+            "area": 89832,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 269,
+            "doc_y": 731,
+            "height": 228,
+            "width": 394,
+            "x": 269,
+            "y": 731
+          },
+          {
+            "area": 123240,
+            "computed": {
+              "align_items": "normal",
+              "display": "block",
+              "flex_direction": "row",
+              "gap": "normal",
+              "grid_template_columns": "none",
+              "grid_template_rows": "none",
+              "justify_content": "normal",
+              "position": "static"
+            },
+            "doc_x": 737,
+            "doc_y": 715,
+            "height": 260,
+            "width": 474,
+            "x": 737,
+            "y": 715
+          }
+        ],
+        "display": "grid",
+        "doc_x": 170,
+        "doc_y": 650,
+        "dominant_child": {
+          "area": 123240,
+          "computed": {
+            "align_items": "normal",
+            "display": "block",
+            "flex_direction": "row",
+            "gap": "normal",
+            "grid_template_columns": "none",
+            "grid_template_rows": "none",
+            "justify_content": "normal",
+            "position": "static"
+          },
+          "doc_x": 737,
+          "doc_y": 715,
+          "height": 260,
+          "width": 474,
+          "x": 737,
+          "y": 715
+        },
+        "dominant_child_aspect_ratio": 1.823077,
+        "flex_direction": "row",
+        "gap": "34px",
+        "grid_template_columns": "474px 474px",
+        "grid_template_rows": "260px",
+        "height": 390,
+        "justify_content": "normal",
+        "media_area": 89832,
+        "occupied_area_ratio": 0.496671,
+        "position": "static",
+        "source": "EXPLICIT_SURFACE",
+        "structural_orientation": "HORIZONTAL",
+        "target_found": true,
+        "width": 1100,
+        "x": 170,
+        "y": 650
+      },
+      "viewport": {
+        "area": 1296000,
+        "height": 900,
+        "width": 1440
+      },
       "viewport_height": 900,
-      "viewport_width": 1440
+      "viewport_width": 1440,
+      "whitespace": {
+        "hero_occupied_area_ratio": 0.205218,
+        "major_region_gap_ratio": 0.067273,
+        "negative_space_ratio": 0.649056,
+        "occupied_area_ratio": 0.350944
+      }
     },
     "role": "NEGATIVE_BASELINE_ONLY"
   },
@@ -467,232 +1285,1378 @@
     "valid_references_count": 2
   },
   "render_derived_morphology": {
+    "applicable_vector_count": 7,
+    "applicable_vectors": [
+      "HERO_SILHOUETTE",
+      "CARD_CONTAINER_DENSITY",
+      "MEDIA_DOMINANCE",
+      "TYPOGRAPHIC_SILHOUETTE",
+      "WHITESPACE_DENSITY",
+      "SIGNATURE_DEVICE",
+      "CTA_MORPHOLOGY"
+    ],
     "baseline": {
+      "applicable_vectors": [
+        "HERO_SILHOUETTE",
+        "CARD_CONTAINER_DENSITY",
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
       "evidence_kind": "BROWSER_LAYOUT",
-      "measurements": {
-        "average_section_gap": 0.0,
-        "bordered_container_count": 5.0,
-        "document_height": 2210.0,
-        "media_area_ratio": 0.1314822146807441,
-        "round_shape_count": 0.0,
-        "section_count": 5,
-        "viewport_height": 900.0,
-        "viewport_width": 1440.0
+      "evidence_schema_complete": true,
+      "insufficient_evidence_vectors": [],
+      "measurement_schema_version": "2.0",
+      "missing_evidence_fields": [],
+      "not_applicable_vectors": [
+        "SECTION_GEOMETRY",
+        "TWO_COLUMN_REPETITION",
+        "PAGE_RHYTHM"
+      ],
+      "raw_measurements": {
+        "CARD_CONTAINER_DENSITY": {
+          "bordered_container_area_ratio": 0.7638888888888888,
+          "bordered_containers_per_surface": 1.0,
+          "bordered_containers_per_viewport_area": 1.7307692307692308
+        },
+        "CTA_MORPHOLOGY": {
+          "alignment": "LEFT",
+          "height_hero_ratio": 0.07076923076923076,
+          "height_viewport_ratio": 0.051111111111111114,
+          "treatment": "EDGE_ALIGNED",
+          "width_hero_ratio": 0.09727272727272727,
+          "width_viewport_ratio": 0.07430555555555556,
+          "x_hero_ratio": 0.053636,
+          "x_viewport_ratio": 0.15902777777777777,
+          "y_hero_ratio": 0.571442,
+          "y_viewport_ratio": 0.41270833333333334
+        },
+        "HERO_SILHOUETTE": {
+          "aspect_ratio": 1.6923076923076923,
+          "dominant_child_area_ratio": 0.1225604895104895,
+          "height_ratio": 0.7222222222222222,
+          "layout_axis": "HORIZONTAL",
+          "major_child_count": 2.0,
+          "width_ratio": 0.7638888888888888,
+          "x_ratio": 0.11805555555555555,
+          "y_ratio": 0.0
+        },
+        "MEDIA_DOMINANCE": {
+          "document_media_area_ratio": 0.05998397435897436,
+          "hero_media_area_ratio": 0.0,
+          "signature_media_area_ratio": 0.2093986013986014
+        },
+        "SIGNATURE_DEVICE": {
+          "aspect_ratio": 2.8205128205128207,
+          "dominant_child_aspect_ratio": 1.823077,
+          "height_viewport_ratio": 0.43333333333333335,
+          "occupied_area_ratio": 0.496671,
+          "structural_orientation": "HORIZONTAL",
+          "width_viewport_ratio": 0.7638888888888888
+        },
+        "TYPOGRAPHIC_SILHOUETTE": {
+          "family_class": "SERIF",
+          "font_size_viewport_height_ratio": 0.035555555555555556,
+          "heading_height_viewport_ratio": 0.042222222222222223,
+          "heading_width_viewport_ratio": 0.32916666666666666,
+          "letter_spacing_em": 0.0,
+          "line_count": 1.0,
+          "line_height_font_size_ratio": 1.2
+        },
+        "WHITESPACE_DENSITY": {
+          "hero_occupied_area_ratio": 0.205218,
+          "major_region_gap_ratio": 0.067273,
+          "negative_space_ratio": 0.649056,
+          "occupied_area_ratio": 0.350944
+        }
       },
+      "reason": null,
       "status": "PASS",
       "vectors": {
-        "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-        "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-        "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
-        "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
-        "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-        "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
-        "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
-        "TWO_COLUMN_REPETITION": true,
-        "TYPOGRAPHIC_SILHOUETTE": "SERIF",
-        "WHITESPACE_DENSITY": "COMPACT"
-      }
-    },
-    "candidate": {
-      "evidence_kind": "BROWSER_LAYOUT",
-      "measurements": {
-        "average_section_gap": 179.99974999999995,
-        "bordered_container_count": 1.0,
-        "document_height": 6459.0,
-        "media_area_ratio": 0.35953277941201767,
-        "round_shape_count": 1.0,
-        "section_count": 5,
-        "viewport_height": 900.0,
-        "viewport_width": 1440.0
-      },
-      "status": "PASS",
-      "vectors": {
-        "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-        "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-        "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
-        "MEDIA_DOMINANCE": "FULL_VIEWPORT_CANVAS",
-        "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-        "SECTION_GEOMETRY": "SINGLE_COLUMN_NARRATIVE",
-        "SIGNATURE_DEVICE": "ROUND_FOCAL_DEVICE",
-        "TWO_COLUMN_REPETITION": false,
-        "TYPOGRAPHIC_SILHOUETTE": "MONO",
+        "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+        "CTA_MORPHOLOGY": "LEFT_EDGE_ALIGNED",
+        "HERO_SILHOUETTE": "SPLIT_HERO",
+        "MEDIA_DOMINANCE": "LIGHT_MEDIA",
+        "PAGE_RHYTHM": "NOT_APPLICABLE",
+        "SECTION_GEOMETRY": "NOT_APPLICABLE",
+        "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+        "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+        "TYPOGRAPHIC_SILHOUETTE": "SERIF_TEXTUAL",
         "WHITESPACE_DENSITY": "EXPANSIVE"
       }
     },
+    "candidate": {
+      "applicable_vectors": [
+        "HERO_SILHOUETTE",
+        "CARD_CONTAINER_DENSITY",
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+      "evidence_kind": "BROWSER_LAYOUT",
+      "evidence_schema_complete": true,
+      "insufficient_evidence_vectors": [],
+      "measurement_schema_version": "2.0",
+      "missing_evidence_fields": [],
+      "not_applicable_vectors": [
+        "SECTION_GEOMETRY",
+        "TWO_COLUMN_REPETITION",
+        "PAGE_RHYTHM"
+      ],
+      "raw_measurements": {
+        "CARD_CONTAINER_DENSITY": {
+          "bordered_container_area_ratio": 0.04398148148148148,
+          "bordered_containers_per_surface": 0.5,
+          "bordered_containers_per_viewport_area": 0.625
+        },
+        "CTA_MORPHOLOGY": {
+          "alignment": "INTERIOR",
+          "height_hero_ratio": 0.06527777777777778,
+          "height_viewport_ratio": 0.052222222222222225,
+          "treatment": "CONTAINED",
+          "width_hero_ratio": 0.13055555555555556,
+          "width_viewport_ratio": 0.13055555555555556,
+          "x_hero_ratio": 0.089996,
+          "x_viewport_ratio": 0.08999565972222222,
+          "y_hero_ratio": 0.613607,
+          "y_viewport_ratio": 0.4908854166666667
+        },
+        "HERO_SILHOUETTE": {
+          "aspect_ratio": 2.0,
+          "dominant_child_area_ratio": 0.18525109938633294,
+          "height_ratio": 0.8,
+          "layout_axis": "HORIZONTAL",
+          "major_child_count": 2.0,
+          "width_ratio": 1.0,
+          "x_ratio": 0.0,
+          "y_ratio": 0.0
+        },
+        "MEDIA_DOMINANCE": {
+          "document_media_area_ratio": 0.03780864197530864,
+          "hero_media_area_ratio": 0.07561728395061729,
+          "signature_media_area_ratio": 0.0
+        },
+        "SIGNATURE_DEVICE": {
+          "aspect_ratio": 2.0,
+          "dominant_child_aspect_ratio": 6.333333,
+          "height_viewport_ratio": 0.8,
+          "occupied_area_ratio": 0.087963,
+          "structural_orientation": "HORIZONTAL",
+          "width_viewport_ratio": 1.0
+        },
+        "TYPOGRAPHIC_SILHOUETTE": {
+          "family_class": "MONO",
+          "font_size_viewport_height_ratio": 0.07111111111111111,
+          "heading_height_viewport_ratio": 0.13510416666666666,
+          "heading_width_viewport_ratio": 0.5177951388888888,
+          "letter_spacing_em": 0.0,
+          "line_count": 2.0,
+          "line_height_font_size_ratio": 0.95
+        },
+        "WHITESPACE_DENSITY": {
+          "hero_occupied_area_ratio": 0.260868,
+          "major_region_gap_ratio": 0.079991,
+          "negative_space_ratio": 0.825584,
+          "occupied_area_ratio": 0.174416
+        }
+      },
+      "reason": null,
+      "status": "PASS",
+      "vectors": {
+        "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+        "CTA_MORPHOLOGY": "INTERIOR_CONTAINED",
+        "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
+        "MEDIA_DOMINANCE": "SPARSE_MEDIA",
+        "PAGE_RHYTHM": "NOT_APPLICABLE",
+        "SECTION_GEOMETRY": "NOT_APPLICABLE",
+        "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+        "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+        "TYPOGRAPHIC_SILHOUETTE": "MONO_DISPLAY",
+        "WHITESPACE_DENSITY": "EXPANSIVE"
+      }
+    },
+    "continuous_evidence_used": true,
     "divergence": "RENDER_DERIVED_MORPHOLOGY_PASS",
-    "failures": [
+    "divergence_ratio": 1.0,
+    "divergent_vector_count": 7,
+    "divergent_vectors": [
+      "HERO_SILHOUETTE",
       "CARD_CONTAINER_DENSITY",
-      "PAGE_RHYTHM",
+      "MEDIA_DOMINANCE",
+      "TYPOGRAPHIC_SILHOUETTE",
+      "WHITESPACE_DENSITY",
+      "SIGNATURE_DEVICE",
       "CTA_MORPHOLOGY"
     ],
+    "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+    "evidence_schema_complete": true,
+    "failures": [],
+    "insufficient_evidence_vectors": [],
+    "matching_vectors": [],
+    "not_applicable_vector_count": 3,
+    "not_applicable_vectors": [
+      "SECTION_GEOMETRY",
+      "TWO_COLUMN_REPETITION",
+      "PAGE_RHYTHM"
+    ],
+    "required_divergent_vector_count": 5,
     "semantic_labels_used": false,
     "status": "PASS_DIVERGENCE",
+    "substantial_divergence_required": 0.6,
+    "sufficiently_evidenced_vector_count": 7,
     "vector_results": {
-      "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
-      "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
+      "CARD_CONTAINER_DENSITY": {
+        "CANONICAL_LABEL": {
+          "baseline": "MODERATE_CONTAINMENT",
+          "candidate": "MODERATE_CONTAINMENT"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.693771,
+          "divergence_threshold": 0.15,
+          "similarity": 0.306229
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "bordered_container_area_ratio": 0.7638888888888888,
+          "bordered_containers_per_surface": 1.0,
+          "bordered_containers_per_viewport_area": 1.7307692307692308
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "bordered_container_area_ratio": 0.04398148148148148,
+          "bordered_containers_per_surface": 0.5,
+          "bordered_containers_per_viewport_area": 0.625
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "CTA_MORPHOLOGY": {
+        "CANONICAL_LABEL": {
+          "baseline": "LEFT_EDGE_ALIGNED",
+          "candidate": "INTERIOR_CONTAINED"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.385074,
+          "divergence_threshold": 0.18,
+          "similarity": 0.614926
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "alignment": "LEFT",
+          "height_hero_ratio": 0.07076923076923076,
+          "height_viewport_ratio": 0.051111111111111114,
+          "treatment": "EDGE_ALIGNED",
+          "width_hero_ratio": 0.09727272727272727,
+          "width_viewport_ratio": 0.07430555555555556,
+          "x_hero_ratio": 0.053636,
+          "x_viewport_ratio": 0.15902777777777777,
+          "y_hero_ratio": 0.571442,
+          "y_viewport_ratio": 0.41270833333333334
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "alignment": "INTERIOR",
+          "height_hero_ratio": 0.06527777777777778,
+          "height_viewport_ratio": 0.052222222222222225,
+          "treatment": "CONTAINED",
+          "width_hero_ratio": 0.13055555555555556,
+          "width_viewport_ratio": 0.13055555555555556,
+          "x_hero_ratio": 0.089996,
+          "x_viewport_ratio": 0.08999565972222222,
+          "y_hero_ratio": 0.613607,
+          "y_viewport_ratio": 0.4908854166666667
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "HERO_SILHOUETTE": {
+        "CANONICAL_LABEL": {
+          "baseline": "SPLIT_HERO",
+          "candidate": "FULL_BLEED_ASYMMETRIC"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.228199,
+          "divergence_threshold": 0.2,
+          "similarity": 0.771801
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "aspect_ratio": 1.6923076923076923,
+          "dominant_child_area_ratio": 0.1225604895104895,
+          "height_ratio": 0.7222222222222222,
+          "layout_axis": "HORIZONTAL",
+          "major_child_count": 2.0,
+          "width_ratio": 0.7638888888888888,
+          "x_ratio": 0.11805555555555555,
+          "y_ratio": 0.0
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "aspect_ratio": 2.0,
+          "dominant_child_area_ratio": 0.18525109938633294,
+          "height_ratio": 0.8,
+          "layout_axis": "HORIZONTAL",
+          "major_child_count": 2.0,
+          "width_ratio": 1.0,
+          "x_ratio": 0.0,
+          "y_ratio": 0.0
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "MEDIA_DOMINANCE": {
+        "CANONICAL_LABEL": {
+          "baseline": "LIGHT_MEDIA",
+          "candidate": "SPARSE_MEDIA"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.789896,
+          "divergence_threshold": 0.2,
+          "similarity": 0.210104
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "document_media_area_ratio": 0.05998397435897436,
+          "hero_media_area_ratio": 0.0,
+          "signature_media_area_ratio": 0.2093986013986014
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "document_media_area_ratio": 0.03780864197530864,
+          "hero_media_area_ratio": 0.07561728395061729,
+          "signature_media_area_ratio": 0.0
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "PAGE_RHYTHM": {
+        "CANONICAL_LABEL": "NOT_APPLICABLE",
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+        "RAW_BASELINE_MEASUREMENTS": null,
+        "RAW_CANDIDATE_MEASUREMENTS": null,
+        "VECTOR_VERDICT": "NOT_APPLICABLE"
+      },
+      "SECTION_GEOMETRY": {
+        "CANONICAL_LABEL": "NOT_APPLICABLE",
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+        "RAW_BASELINE_MEASUREMENTS": null,
+        "RAW_CANDIDATE_MEASUREMENTS": null,
+        "VECTOR_VERDICT": "NOT_APPLICABLE"
+      },
+      "SIGNATURE_DEVICE": {
+        "CANONICAL_LABEL": {
+          "baseline": "LINEAR_HORIZONTAL_HORIZONTAL",
+          "candidate": "LINEAR_HORIZONTAL_HORIZONTAL"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.420066,
+          "divergence_threshold": 0.2,
+          "similarity": 0.579934
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "aspect_ratio": 2.8205128205128207,
+          "dominant_child_aspect_ratio": 1.823077,
+          "height_viewport_ratio": 0.43333333333333335,
+          "occupied_area_ratio": 0.496671,
+          "structural_orientation": "HORIZONTAL",
+          "width_viewport_ratio": 0.7638888888888888
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "aspect_ratio": 2.0,
+          "dominant_child_aspect_ratio": 6.333333,
+          "height_viewport_ratio": 0.8,
+          "occupied_area_ratio": 0.087963,
+          "structural_orientation": "HORIZONTAL",
+          "width_viewport_ratio": 1.0
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "TWO_COLUMN_REPETITION": {
+        "CANONICAL_LABEL": "NOT_APPLICABLE",
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+        "RAW_BASELINE_MEASUREMENTS": null,
+        "RAW_CANDIDATE_MEASUREMENTS": null,
+        "VECTOR_VERDICT": "NOT_APPLICABLE"
+      },
+      "TYPOGRAPHIC_SILHOUETTE": {
+        "CANONICAL_LABEL": {
+          "baseline": "SERIF_TEXTUAL",
+          "candidate": "MONO_DISPLAY"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.46573,
+          "divergence_threshold": 0.2,
+          "similarity": 0.53427
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "family_class": "SERIF",
+          "font_size_viewport_height_ratio": 0.035555555555555556,
+          "heading_height_viewport_ratio": 0.042222222222222223,
+          "heading_width_viewport_ratio": 0.32916666666666666,
+          "letter_spacing_em": 0.0,
+          "line_count": 1.0,
+          "line_height_font_size_ratio": 1.2
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "family_class": "MONO",
+          "font_size_viewport_height_ratio": 0.07111111111111111,
+          "heading_height_viewport_ratio": 0.13510416666666666,
+          "heading_width_viewport_ratio": 0.5177951388888888,
+          "letter_spacing_em": 0.0,
+          "line_count": 2.0,
+          "line_height_font_size_ratio": 0.95
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      },
+      "WHITESPACE_DENSITY": {
+        "CANONICAL_LABEL": {
+          "baseline": "EXPANSIVE",
+          "candidate": "EXPANSIVE"
+        },
+        "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+          "distance": 0.272288,
+          "divergence_threshold": 0.18,
+          "similarity": 0.727712
+        },
+        "RAW_BASELINE_MEASUREMENTS": {
+          "hero_occupied_area_ratio": 0.205218,
+          "major_region_gap_ratio": 0.067273,
+          "negative_space_ratio": 0.649056,
+          "occupied_area_ratio": 0.350944
+        },
+        "RAW_CANDIDATE_MEASUREMENTS": {
+          "hero_occupied_area_ratio": 0.260868,
+          "major_region_gap_ratio": 0.079991,
+          "negative_space_ratio": 0.825584,
+          "occupied_area_ratio": 0.174416
+        },
+        "VECTOR_VERDICT": "DIVERGENT"
+      }
+    },
+    "vector_verdicts": {
+      "CARD_CONTAINER_DENSITY": "DIVERGENT",
+      "CTA_MORPHOLOGY": "DIVERGENT",
       "HERO_SILHOUETTE": "DIVERGENT",
       "MEDIA_DOMINANCE": "DIVERGENT",
-      "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
-      "SECTION_GEOMETRY": "DIVERGENT",
+      "PAGE_RHYTHM": "NOT_APPLICABLE",
+      "SECTION_GEOMETRY": "NOT_APPLICABLE",
       "SIGNATURE_DEVICE": "DIVERGENT",
-      "TWO_COLUMN_REPETITION": "DIVERGENT",
+      "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
       "TYPOGRAPHIC_SILHOUETTE": "DIVERGENT",
       "WHITESPACE_DENSITY": "DIVERGENT"
     }
   },
   "rendered_fixture_comparisons": {
     "GENUINE_DIVERGENCE_RENDER_FIXTURE": {
+      "applicable_vector_count": 7,
+      "applicable_vectors": [
+        "HERO_SILHOUETTE",
+        "CARD_CONTAINER_DENSITY",
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
       "baseline": {
+        "applicable_vectors": [
+          "HERO_SILHOUETTE",
+          "CARD_CONTAINER_DENSITY",
+          "MEDIA_DOMINANCE",
+          "TYPOGRAPHIC_SILHOUETTE",
+          "WHITESPACE_DENSITY",
+          "SIGNATURE_DEVICE",
+          "CTA_MORPHOLOGY"
+        ],
+        "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
         "evidence_kind": "BROWSER_LAYOUT",
-        "measurements": {
-          "average_section_gap": 0.0,
-          "bordered_container_count": 5.0,
-          "document_height": 2210.0,
-          "media_area_ratio": 0.1314822146807441,
-          "round_shape_count": 0.0,
-          "section_count": 5,
-          "viewport_height": 900.0,
-          "viewport_width": 1440.0
+        "evidence_schema_complete": true,
+        "insufficient_evidence_vectors": [],
+        "measurement_schema_version": "2.0",
+        "missing_evidence_fields": [],
+        "not_applicable_vectors": [
+          "SECTION_GEOMETRY",
+          "TWO_COLUMN_REPETITION",
+          "PAGE_RHYTHM"
+        ],
+        "raw_measurements": {
+          "CARD_CONTAINER_DENSITY": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "CTA_MORPHOLOGY": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.07076923076923076,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.09727272727272727,
+            "width_viewport_ratio": 0.07430555555555556,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.571442,
+            "y_viewport_ratio": 0.41270833333333334
+          },
+          "HERO_SILHOUETTE": {
+            "aspect_ratio": 1.6923076923076923,
+            "dominant_child_area_ratio": 0.1225604895104895,
+            "height_ratio": 0.7222222222222222,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "MEDIA_DOMINANCE": {
+            "document_media_area_ratio": 0.05998397435897436,
+            "hero_media_area_ratio": 0.0,
+            "signature_media_area_ratio": 0.2093986013986014
+          },
+          "SIGNATURE_DEVICE": {
+            "aspect_ratio": 2.8205128205128207,
+            "dominant_child_aspect_ratio": 1.823077,
+            "height_viewport_ratio": 0.43333333333333335,
+            "occupied_area_ratio": 0.496671,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "TYPOGRAPHIC_SILHOUETTE": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.035555555555555556,
+            "heading_height_viewport_ratio": 0.042222222222222223,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 1.0,
+            "line_height_font_size_ratio": 1.2
+          },
+          "WHITESPACE_DENSITY": {
+            "hero_occupied_area_ratio": 0.205218,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.649056,
+            "occupied_area_ratio": 0.350944
+          }
         },
+        "reason": null,
         "status": "PASS",
         "vectors": {
-          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
-          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
-          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
-          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
-          "TWO_COLUMN_REPETITION": true,
-          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
-          "WHITESPACE_DENSITY": "COMPACT"
-        }
-      },
-      "candidate": {
-        "evidence_kind": "BROWSER_LAYOUT",
-        "measurements": {
-          "average_section_gap": 179.99974999999995,
-          "bordered_container_count": 1.0,
-          "document_height": 6459.0,
-          "media_area_ratio": 0.35953277941201767,
-          "round_shape_count": 1.0,
-          "section_count": 5,
-          "viewport_height": 900.0,
-          "viewport_width": 1440.0
-        },
-        "status": "PASS",
-        "vectors": {
-          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-          "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
-          "MEDIA_DOMINANCE": "FULL_VIEWPORT_CANVAS",
-          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-          "SECTION_GEOMETRY": "SINGLE_COLUMN_NARRATIVE",
-          "SIGNATURE_DEVICE": "ROUND_FOCAL_DEVICE",
-          "TWO_COLUMN_REPETITION": false,
-          "TYPOGRAPHIC_SILHOUETTE": "MONO",
+          "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+          "CTA_MORPHOLOGY": "LEFT_EDGE_ALIGNED",
+          "HERO_SILHOUETTE": "SPLIT_HERO",
+          "MEDIA_DOMINANCE": "LIGHT_MEDIA",
+          "PAGE_RHYTHM": "NOT_APPLICABLE",
+          "SECTION_GEOMETRY": "NOT_APPLICABLE",
+          "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+          "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF_TEXTUAL",
           "WHITESPACE_DENSITY": "EXPANSIVE"
         }
       },
+      "candidate": {
+        "applicable_vectors": [
+          "HERO_SILHOUETTE",
+          "CARD_CONTAINER_DENSITY",
+          "MEDIA_DOMINANCE",
+          "TYPOGRAPHIC_SILHOUETTE",
+          "WHITESPACE_DENSITY",
+          "SIGNATURE_DEVICE",
+          "CTA_MORPHOLOGY"
+        ],
+        "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        "evidence_kind": "BROWSER_LAYOUT",
+        "evidence_schema_complete": true,
+        "insufficient_evidence_vectors": [],
+        "measurement_schema_version": "2.0",
+        "missing_evidence_fields": [],
+        "not_applicable_vectors": [
+          "SECTION_GEOMETRY",
+          "TWO_COLUMN_REPETITION",
+          "PAGE_RHYTHM"
+        ],
+        "raw_measurements": {
+          "CARD_CONTAINER_DENSITY": {
+            "bordered_container_area_ratio": 0.04398148148148148,
+            "bordered_containers_per_surface": 0.5,
+            "bordered_containers_per_viewport_area": 0.625
+          },
+          "CTA_MORPHOLOGY": {
+            "alignment": "INTERIOR",
+            "height_hero_ratio": 0.06527777777777778,
+            "height_viewport_ratio": 0.052222222222222225,
+            "treatment": "CONTAINED",
+            "width_hero_ratio": 0.13055555555555556,
+            "width_viewport_ratio": 0.13055555555555556,
+            "x_hero_ratio": 0.089996,
+            "x_viewport_ratio": 0.08999565972222222,
+            "y_hero_ratio": 0.613607,
+            "y_viewport_ratio": 0.4908854166666667
+          },
+          "HERO_SILHOUETTE": {
+            "aspect_ratio": 2.0,
+            "dominant_child_area_ratio": 0.18525109938633294,
+            "height_ratio": 0.8,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 1.0,
+            "x_ratio": 0.0,
+            "y_ratio": 0.0
+          },
+          "MEDIA_DOMINANCE": {
+            "document_media_area_ratio": 0.03780864197530864,
+            "hero_media_area_ratio": 0.07561728395061729,
+            "signature_media_area_ratio": 0.0
+          },
+          "SIGNATURE_DEVICE": {
+            "aspect_ratio": 2.0,
+            "dominant_child_aspect_ratio": 6.333333,
+            "height_viewport_ratio": 0.8,
+            "occupied_area_ratio": 0.087963,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 1.0
+          },
+          "TYPOGRAPHIC_SILHOUETTE": {
+            "family_class": "MONO",
+            "font_size_viewport_height_ratio": 0.07111111111111111,
+            "heading_height_viewport_ratio": 0.13510416666666666,
+            "heading_width_viewport_ratio": 0.5177951388888888,
+            "letter_spacing_em": 0.0,
+            "line_count": 2.0,
+            "line_height_font_size_ratio": 0.95
+          },
+          "WHITESPACE_DENSITY": {
+            "hero_occupied_area_ratio": 0.260868,
+            "major_region_gap_ratio": 0.079991,
+            "negative_space_ratio": 0.825584,
+            "occupied_area_ratio": 0.174416
+          }
+        },
+        "reason": null,
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+          "CTA_MORPHOLOGY": "INTERIOR_CONTAINED",
+          "HERO_SILHOUETTE": "FULL_BLEED_ASYMMETRIC",
+          "MEDIA_DOMINANCE": "SPARSE_MEDIA",
+          "PAGE_RHYTHM": "NOT_APPLICABLE",
+          "SECTION_GEOMETRY": "NOT_APPLICABLE",
+          "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+          "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+          "TYPOGRAPHIC_SILHOUETTE": "MONO_DISPLAY",
+          "WHITESPACE_DENSITY": "EXPANSIVE"
+        }
+      },
+      "continuous_evidence_used": true,
       "divergence": "RENDER_DERIVED_MORPHOLOGY_PASS",
-      "failures": [
+      "divergence_ratio": 1.0,
+      "divergent_vector_count": 7,
+      "divergent_vectors": [
+        "HERO_SILHOUETTE",
         "CARD_CONTAINER_DENSITY",
-        "PAGE_RHYTHM",
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
         "CTA_MORPHOLOGY"
       ],
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+      "evidence_schema_complete": true,
+      "failures": [],
+      "insufficient_evidence_vectors": [],
+      "matching_vectors": [],
+      "not_applicable_vector_count": 3,
+      "not_applicable_vectors": [
+        "SECTION_GEOMETRY",
+        "TWO_COLUMN_REPETITION",
+        "PAGE_RHYTHM"
+      ],
+      "required_divergent_vector_count": 5,
       "semantic_labels_used": false,
       "status": "PASS_DIVERGENCE",
+      "substantial_divergence_required": 0.6,
+      "sufficiently_evidenced_vector_count": 7,
       "vector_results": {
-        "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
-        "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
+        "CARD_CONTAINER_DENSITY": {
+          "CANONICAL_LABEL": {
+            "baseline": "MODERATE_CONTAINMENT",
+            "candidate": "MODERATE_CONTAINMENT"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.693771,
+            "divergence_threshold": 0.15,
+            "similarity": 0.306229
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "bordered_container_area_ratio": 0.04398148148148148,
+            "bordered_containers_per_surface": 0.5,
+            "bordered_containers_per_viewport_area": 0.625
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "CTA_MORPHOLOGY": {
+          "CANONICAL_LABEL": {
+            "baseline": "LEFT_EDGE_ALIGNED",
+            "candidate": "INTERIOR_CONTAINED"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.385074,
+            "divergence_threshold": 0.18,
+            "similarity": 0.614926
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.07076923076923076,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.09727272727272727,
+            "width_viewport_ratio": 0.07430555555555556,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.571442,
+            "y_viewport_ratio": 0.41270833333333334
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "alignment": "INTERIOR",
+            "height_hero_ratio": 0.06527777777777778,
+            "height_viewport_ratio": 0.052222222222222225,
+            "treatment": "CONTAINED",
+            "width_hero_ratio": 0.13055555555555556,
+            "width_viewport_ratio": 0.13055555555555556,
+            "x_hero_ratio": 0.089996,
+            "x_viewport_ratio": 0.08999565972222222,
+            "y_hero_ratio": 0.613607,
+            "y_viewport_ratio": 0.4908854166666667
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "HERO_SILHOUETTE": {
+          "CANONICAL_LABEL": {
+            "baseline": "SPLIT_HERO",
+            "candidate": "FULL_BLEED_ASYMMETRIC"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.228199,
+            "divergence_threshold": 0.2,
+            "similarity": 0.771801
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "aspect_ratio": 1.6923076923076923,
+            "dominant_child_area_ratio": 0.1225604895104895,
+            "height_ratio": 0.7222222222222222,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "aspect_ratio": 2.0,
+            "dominant_child_area_ratio": 0.18525109938633294,
+            "height_ratio": 0.8,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 1.0,
+            "x_ratio": 0.0,
+            "y_ratio": 0.0
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "MEDIA_DOMINANCE": {
+          "CANONICAL_LABEL": {
+            "baseline": "LIGHT_MEDIA",
+            "candidate": "SPARSE_MEDIA"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.789896,
+            "divergence_threshold": 0.2,
+            "similarity": 0.210104
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "document_media_area_ratio": 0.05998397435897436,
+            "hero_media_area_ratio": 0.0,
+            "signature_media_area_ratio": 0.2093986013986014
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "document_media_area_ratio": 0.03780864197530864,
+            "hero_media_area_ratio": 0.07561728395061729,
+            "signature_media_area_ratio": 0.0
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "PAGE_RHYTHM": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "SECTION_GEOMETRY": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "SIGNATURE_DEVICE": {
+          "CANONICAL_LABEL": {
+            "baseline": "LINEAR_HORIZONTAL_HORIZONTAL",
+            "candidate": "LINEAR_HORIZONTAL_HORIZONTAL"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.420066,
+            "divergence_threshold": 0.2,
+            "similarity": 0.579934
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "aspect_ratio": 2.8205128205128207,
+            "dominant_child_aspect_ratio": 1.823077,
+            "height_viewport_ratio": 0.43333333333333335,
+            "occupied_area_ratio": 0.496671,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "aspect_ratio": 2.0,
+            "dominant_child_aspect_ratio": 6.333333,
+            "height_viewport_ratio": 0.8,
+            "occupied_area_ratio": 0.087963,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 1.0
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "TWO_COLUMN_REPETITION": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "TYPOGRAPHIC_SILHOUETTE": {
+          "CANONICAL_LABEL": {
+            "baseline": "SERIF_TEXTUAL",
+            "candidate": "MONO_DISPLAY"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.46573,
+            "divergence_threshold": 0.2,
+            "similarity": 0.53427
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.035555555555555556,
+            "heading_height_viewport_ratio": 0.042222222222222223,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 1.0,
+            "line_height_font_size_ratio": 1.2
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "family_class": "MONO",
+            "font_size_viewport_height_ratio": 0.07111111111111111,
+            "heading_height_viewport_ratio": 0.13510416666666666,
+            "heading_width_viewport_ratio": 0.5177951388888888,
+            "letter_spacing_em": 0.0,
+            "line_count": 2.0,
+            "line_height_font_size_ratio": 0.95
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "WHITESPACE_DENSITY": {
+          "CANONICAL_LABEL": {
+            "baseline": "EXPANSIVE",
+            "candidate": "EXPANSIVE"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.272288,
+            "divergence_threshold": 0.18,
+            "similarity": 0.727712
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "hero_occupied_area_ratio": 0.205218,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.649056,
+            "occupied_area_ratio": 0.350944
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "hero_occupied_area_ratio": 0.260868,
+            "major_region_gap_ratio": 0.079991,
+            "negative_space_ratio": 0.825584,
+            "occupied_area_ratio": 0.174416
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        }
+      },
+      "vector_verdicts": {
+        "CARD_CONTAINER_DENSITY": "DIVERGENT",
+        "CTA_MORPHOLOGY": "DIVERGENT",
         "HERO_SILHOUETTE": "DIVERGENT",
         "MEDIA_DOMINANCE": "DIVERGENT",
-        "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
-        "SECTION_GEOMETRY": "DIVERGENT",
+        "PAGE_RHYTHM": "NOT_APPLICABLE",
+        "SECTION_GEOMETRY": "NOT_APPLICABLE",
         "SIGNATURE_DEVICE": "DIVERGENT",
-        "TWO_COLUMN_REPETITION": "DIVERGENT",
+        "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
         "TYPOGRAPHIC_SILHOUETTE": "DIVERGENT",
         "WHITESPACE_DENSITY": "DIVERGENT"
       }
     },
     "SEMANTIC_RENAME_RENDER_FIXTURE": {
-      "baseline": {
-        "evidence_kind": "BROWSER_LAYOUT",
-        "measurements": {
-          "average_section_gap": 0.0,
-          "bordered_container_count": 5.0,
-          "document_height": 2210.0,
-          "media_area_ratio": 0.1314822146807441,
-          "round_shape_count": 0.0,
-          "section_count": 5,
-          "viewport_height": 900.0,
-          "viewport_width": 1440.0
-        },
-        "status": "PASS",
-        "vectors": {
-          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
-          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
-          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
-          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
-          "TWO_COLUMN_REPETITION": true,
-          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
-          "WHITESPACE_DENSITY": "COMPACT"
-        }
-      },
-      "candidate": {
-        "evidence_kind": "BROWSER_LAYOUT",
-        "measurements": {
-          "average_section_gap": 0.0002500000000509317,
-          "bordered_container_count": 5.0,
-          "document_height": 2080.0,
-          "media_area_ratio": 0.09954988398103633,
-          "round_shape_count": 0.0,
-          "section_count": 5,
-          "viewport_height": 900.0,
-          "viewport_width": 1440.0
-        },
-        "status": "PASS",
-        "vectors": {
-          "CARD_CONTAINER_DENSITY": "OPEN_FIELD",
-          "CTA_MORPHOLOGY": "EDGE_ALIGNED_ACTION",
-          "HERO_SILHOUETTE": "CENTERED_SPLIT_HERO",
-          "MEDIA_DOMINANCE": "COMPACT_MEDIA_PANEL",
-          "PAGE_RHYTHM": "IRREGULAR_CHAPTERS",
-          "SECTION_GEOMETRY": "ALTERNATING_TWO_COLUMN",
-          "SIGNATURE_DEVICE": "NO_ROUND_FOCAL_DEVICE",
-          "TWO_COLUMN_REPETITION": true,
-          "TYPOGRAPHIC_SILHOUETTE": "SERIF",
-          "WHITESPACE_DENSITY": "COMPACT"
-        }
-      },
-      "divergence": "RENDER_DERIVED_MORPHOLOGY_FAIL",
-      "failures": [
+      "applicable_vector_count": 7,
+      "applicable_vectors": [
         "HERO_SILHOUETTE",
-        "SECTION_GEOMETRY",
-        "TWO_COLUMN_REPETITION",
         "CARD_CONTAINER_DENSITY",
         "MEDIA_DOMINANCE",
         "TYPOGRAPHIC_SILHOUETTE",
         "WHITESPACE_DENSITY",
-        "PAGE_RHYTHM",
         "SIGNATURE_DEVICE",
         "CTA_MORPHOLOGY"
       ],
+      "baseline": {
+        "applicable_vectors": [
+          "HERO_SILHOUETTE",
+          "CARD_CONTAINER_DENSITY",
+          "MEDIA_DOMINANCE",
+          "TYPOGRAPHIC_SILHOUETTE",
+          "WHITESPACE_DENSITY",
+          "SIGNATURE_DEVICE",
+          "CTA_MORPHOLOGY"
+        ],
+        "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        "evidence_kind": "BROWSER_LAYOUT",
+        "evidence_schema_complete": true,
+        "insufficient_evidence_vectors": [],
+        "measurement_schema_version": "2.0",
+        "missing_evidence_fields": [],
+        "not_applicable_vectors": [
+          "SECTION_GEOMETRY",
+          "TWO_COLUMN_REPETITION",
+          "PAGE_RHYTHM"
+        ],
+        "raw_measurements": {
+          "CARD_CONTAINER_DENSITY": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "CTA_MORPHOLOGY": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.07076923076923076,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.09727272727272727,
+            "width_viewport_ratio": 0.07430555555555556,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.571442,
+            "y_viewport_ratio": 0.41270833333333334
+          },
+          "HERO_SILHOUETTE": {
+            "aspect_ratio": 1.6923076923076923,
+            "dominant_child_area_ratio": 0.1225604895104895,
+            "height_ratio": 0.7222222222222222,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "MEDIA_DOMINANCE": {
+            "document_media_area_ratio": 0.05998397435897436,
+            "hero_media_area_ratio": 0.0,
+            "signature_media_area_ratio": 0.2093986013986014
+          },
+          "SIGNATURE_DEVICE": {
+            "aspect_ratio": 2.8205128205128207,
+            "dominant_child_aspect_ratio": 1.823077,
+            "height_viewport_ratio": 0.43333333333333335,
+            "occupied_area_ratio": 0.496671,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "TYPOGRAPHIC_SILHOUETTE": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.035555555555555556,
+            "heading_height_viewport_ratio": 0.042222222222222223,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 1.0,
+            "line_height_font_size_ratio": 1.2
+          },
+          "WHITESPACE_DENSITY": {
+            "hero_occupied_area_ratio": 0.205218,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.649056,
+            "occupied_area_ratio": 0.350944
+          }
+        },
+        "reason": null,
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+          "CTA_MORPHOLOGY": "LEFT_EDGE_ALIGNED",
+          "HERO_SILHOUETTE": "SPLIT_HERO",
+          "MEDIA_DOMINANCE": "LIGHT_MEDIA",
+          "PAGE_RHYTHM": "NOT_APPLICABLE",
+          "SECTION_GEOMETRY": "NOT_APPLICABLE",
+          "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+          "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF_TEXTUAL",
+          "WHITESPACE_DENSITY": "EXPANSIVE"
+        }
+      },
+      "candidate": {
+        "applicable_vectors": [
+          "HERO_SILHOUETTE",
+          "CARD_CONTAINER_DENSITY",
+          "MEDIA_DOMINANCE",
+          "TYPOGRAPHIC_SILHOUETTE",
+          "WHITESPACE_DENSITY",
+          "SIGNATURE_DEVICE",
+          "CTA_MORPHOLOGY"
+        ],
+        "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        "evidence_kind": "BROWSER_LAYOUT",
+        "evidence_schema_complete": true,
+        "insufficient_evidence_vectors": [],
+        "measurement_schema_version": "2.0",
+        "missing_evidence_fields": [],
+        "not_applicable_vectors": [
+          "SECTION_GEOMETRY",
+          "TWO_COLUMN_REPETITION",
+          "PAGE_RHYTHM"
+        ],
+        "raw_measurements": {
+          "CARD_CONTAINER_DENSITY": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "CTA_MORPHOLOGY": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.08846153846153847,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.14454545454545453,
+            "width_viewport_ratio": 0.11041666666666666,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.634615,
+            "y_viewport_ratio": 0.36666666666666664
+          },
+          "HERO_SILHOUETTE": {
+            "aspect_ratio": 2.1153846153846154,
+            "dominant_child_area_ratio": 0.19225174825174826,
+            "height_ratio": 0.5777777777777777,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "MEDIA_DOMINANCE": {
+            "document_media_area_ratio": 0.0861899664463141,
+            "hero_media_area_ratio": 0.10332167832167832,
+            "signature_media_area_ratio": 0.12233932473776224
+          },
+          "SIGNATURE_DEVICE": {
+            "aspect_ratio": 2.1153846153846154,
+            "dominant_child_aspect_ratio": 2.218351,
+            "height_viewport_ratio": 0.5777777777777777,
+            "occupied_area_ratio": 0.243649,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "TYPOGRAPHIC_SILHOUETTE": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.057777777777777775,
+            "heading_height_viewport_ratio": 0.11555555555555555,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 2.0,
+            "line_height_font_size_ratio": 1.0
+          },
+          "WHITESPACE_DENSITY": {
+            "hero_occupied_area_ratio": 0.295573,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.730389,
+            "occupied_area_ratio": 0.269611
+          }
+        },
+        "reason": null,
+        "status": "PASS",
+        "vectors": {
+          "CARD_CONTAINER_DENSITY": "MODERATE_CONTAINMENT",
+          "CTA_MORPHOLOGY": "LEFT_EDGE_ALIGNED",
+          "HERO_SILHOUETTE": "SPLIT_HERO",
+          "MEDIA_DOMINANCE": "LIGHT_MEDIA",
+          "PAGE_RHYTHM": "NOT_APPLICABLE",
+          "SECTION_GEOMETRY": "NOT_APPLICABLE",
+          "SIGNATURE_DEVICE": "LINEAR_HORIZONTAL_HORIZONTAL",
+          "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+          "TYPOGRAPHIC_SILHOUETTE": "SERIF_TEXTUAL",
+          "WHITESPACE_DENSITY": "EXPANSIVE"
+        }
+      },
+      "continuous_evidence_used": true,
+      "divergence": "RENDER_DERIVED_MORPHOLOGY_FAIL",
+      "divergence_ratio": 0.285714,
+      "divergent_vector_count": 2,
+      "divergent_vectors": [
+        "MEDIA_DOMINANCE",
+        "TYPOGRAPHIC_SILHOUETTE"
+      ],
+      "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+      "evidence_schema_complete": true,
+      "failures": [
+        "HERO_SILHOUETTE",
+        "CARD_CONTAINER_DENSITY",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
+      "insufficient_evidence_vectors": [],
+      "matching_vectors": [
+        "HERO_SILHOUETTE",
+        "CARD_CONTAINER_DENSITY",
+        "WHITESPACE_DENSITY",
+        "SIGNATURE_DEVICE",
+        "CTA_MORPHOLOGY"
+      ],
+      "not_applicable_vector_count": 3,
+      "not_applicable_vectors": [
+        "SECTION_GEOMETRY",
+        "TWO_COLUMN_REPETITION",
+        "PAGE_RHYTHM"
+      ],
+      "required_divergent_vector_count": 5,
       "semantic_labels_used": false,
       "status": "FAIL_DIVERGENCE",
+      "substantial_divergence_required": 0.6,
+      "sufficiently_evidenced_vector_count": 7,
       "vector_results": {
+        "CARD_CONTAINER_DENSITY": {
+          "CANONICAL_LABEL": {
+            "baseline": "MODERATE_CONTAINMENT",
+            "candidate": "MODERATE_CONTAINMENT"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.0,
+            "divergence_threshold": 0.15,
+            "similarity": 1.0
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "bordered_container_area_ratio": 0.7638888888888888,
+            "bordered_containers_per_surface": 1.0,
+            "bordered_containers_per_viewport_area": 1.7307692307692308
+          },
+          "VECTOR_VERDICT": "MATCHES_HISTORICAL_BASELINE"
+        },
+        "CTA_MORPHOLOGY": {
+          "CANONICAL_LABEL": {
+            "baseline": "LEFT_EDGE_ALIGNED",
+            "candidate": "LEFT_EDGE_ALIGNED"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.106519,
+            "divergence_threshold": 0.18,
+            "similarity": 0.893481
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.07076923076923076,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.09727272727272727,
+            "width_viewport_ratio": 0.07430555555555556,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.571442,
+            "y_viewport_ratio": 0.41270833333333334
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "alignment": "LEFT",
+            "height_hero_ratio": 0.08846153846153847,
+            "height_viewport_ratio": 0.051111111111111114,
+            "treatment": "EDGE_ALIGNED",
+            "width_hero_ratio": 0.14454545454545453,
+            "width_viewport_ratio": 0.11041666666666666,
+            "x_hero_ratio": 0.053636,
+            "x_viewport_ratio": 0.15902777777777777,
+            "y_hero_ratio": 0.634615,
+            "y_viewport_ratio": 0.36666666666666664
+          },
+          "VECTOR_VERDICT": "MATCHES_HISTORICAL_BASELINE"
+        },
+        "HERO_SILHOUETTE": {
+          "CANONICAL_LABEL": {
+            "baseline": "SPLIT_HERO",
+            "candidate": "SPLIT_HERO"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.095313,
+            "divergence_threshold": 0.2,
+            "similarity": 0.904687
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "aspect_ratio": 1.6923076923076923,
+            "dominant_child_area_ratio": 0.1225604895104895,
+            "height_ratio": 0.7222222222222222,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "aspect_ratio": 2.1153846153846154,
+            "dominant_child_area_ratio": 0.19225174825174826,
+            "height_ratio": 0.5777777777777777,
+            "layout_axis": "HORIZONTAL",
+            "major_child_count": 2.0,
+            "width_ratio": 0.7638888888888888,
+            "x_ratio": 0.11805555555555555,
+            "y_ratio": 0.0
+          },
+          "VECTOR_VERDICT": "MATCHES_HISTORICAL_BASELINE"
+        },
+        "MEDIA_DOMINANCE": {
+          "CANONICAL_LABEL": {
+            "baseline": "LIGHT_MEDIA",
+            "candidate": "LIGHT_MEDIA"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.573269,
+            "divergence_threshold": 0.2,
+            "similarity": 0.426731
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "document_media_area_ratio": 0.05998397435897436,
+            "hero_media_area_ratio": 0.0,
+            "signature_media_area_ratio": 0.2093986013986014
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "document_media_area_ratio": 0.0861899664463141,
+            "hero_media_area_ratio": 0.10332167832167832,
+            "signature_media_area_ratio": 0.12233932473776224
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "PAGE_RHYTHM": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "SECTION_GEOMETRY": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "SIGNATURE_DEVICE": {
+          "CANONICAL_LABEL": {
+            "baseline": "LINEAR_HORIZONTAL_HORIZONTAL",
+            "candidate": "LINEAR_HORIZONTAL_HORIZONTAL"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.197937,
+            "divergence_threshold": 0.2,
+            "similarity": 0.802063
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "aspect_ratio": 2.8205128205128207,
+            "dominant_child_aspect_ratio": 1.823077,
+            "height_viewport_ratio": 0.43333333333333335,
+            "occupied_area_ratio": 0.496671,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "aspect_ratio": 2.1153846153846154,
+            "dominant_child_aspect_ratio": 2.218351,
+            "height_viewport_ratio": 0.5777777777777777,
+            "occupied_area_ratio": 0.243649,
+            "structural_orientation": "HORIZONTAL",
+            "width_viewport_ratio": 0.7638888888888888
+          },
+          "VECTOR_VERDICT": "MATCHES_HISTORICAL_BASELINE"
+        },
+        "TWO_COLUMN_REPETITION": {
+          "CANONICAL_LABEL": "NOT_APPLICABLE",
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": null,
+          "RAW_BASELINE_MEASUREMENTS": null,
+          "RAW_CANDIDATE_MEASUREMENTS": null,
+          "VECTOR_VERDICT": "NOT_APPLICABLE"
+        },
+        "TYPOGRAPHIC_SILHOUETTE": {
+          "CANONICAL_LABEL": {
+            "baseline": "SERIF_TEXTUAL",
+            "candidate": "SERIF_TEXTUAL"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.240842,
+            "divergence_threshold": 0.2,
+            "similarity": 0.759158
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.035555555555555556,
+            "heading_height_viewport_ratio": 0.042222222222222223,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 1.0,
+            "line_height_font_size_ratio": 1.2
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "family_class": "SERIF",
+            "font_size_viewport_height_ratio": 0.057777777777777775,
+            "heading_height_viewport_ratio": 0.11555555555555555,
+            "heading_width_viewport_ratio": 0.32916666666666666,
+            "letter_spacing_em": 0.0,
+            "line_count": 2.0,
+            "line_height_font_size_ratio": 1.0
+          },
+          "VECTOR_VERDICT": "DIVERGENT"
+        },
+        "WHITESPACE_DENSITY": {
+          "CANONICAL_LABEL": {
+            "baseline": "EXPANSIVE",
+            "candidate": "EXPANSIVE"
+          },
+          "NORMALIZED_DISTANCE_OR_SIMILARITY": {
+            "distance": 0.162201,
+            "divergence_threshold": 0.18,
+            "similarity": 0.837799
+          },
+          "RAW_BASELINE_MEASUREMENTS": {
+            "hero_occupied_area_ratio": 0.205218,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.649056,
+            "occupied_area_ratio": 0.350944
+          },
+          "RAW_CANDIDATE_MEASUREMENTS": {
+            "hero_occupied_area_ratio": 0.295573,
+            "major_region_gap_ratio": 0.067273,
+            "negative_space_ratio": 0.730389,
+            "occupied_area_ratio": 0.269611
+          },
+          "VECTOR_VERDICT": "MATCHES_HISTORICAL_BASELINE"
+        }
+      },
+      "vector_verdicts": {
         "CARD_CONTAINER_DENSITY": "MATCHES_HISTORICAL_BASELINE",
         "CTA_MORPHOLOGY": "MATCHES_HISTORICAL_BASELINE",
         "HERO_SILHOUETTE": "MATCHES_HISTORICAL_BASELINE",
-        "MEDIA_DOMINANCE": "MATCHES_HISTORICAL_BASELINE",
-        "PAGE_RHYTHM": "MATCHES_HISTORICAL_BASELINE",
-        "SECTION_GEOMETRY": "MATCHES_HISTORICAL_BASELINE",
+        "MEDIA_DOMINANCE": "DIVERGENT",
+        "PAGE_RHYTHM": "NOT_APPLICABLE",
+        "SECTION_GEOMETRY": "NOT_APPLICABLE",
         "SIGNATURE_DEVICE": "MATCHES_HISTORICAL_BASELINE",
-        "TWO_COLUMN_REPETITION": "MATCHES_HISTORICAL_BASELINE",
-        "TYPOGRAPHIC_SILHOUETTE": "MATCHES_HISTORICAL_BASELINE",
+        "TWO_COLUMN_REPETITION": "NOT_APPLICABLE",
+        "TYPOGRAPHIC_SILHOUETTE": "DIVERGENT",
         "WHITESPACE_DENSITY": "MATCHES_HISTORICAL_BASELINE"
       }
     }
@@ -747,9 +2711,9 @@
       "status": "PASS"
     }
   ],
-  "run_id": "synthetic-clean-room-run",
+  "run_id": "synthetic-clean-room-run-9a2e7442",
   "runtime_entrypoint": "framework_validation.clean_room.prepare_clean_room_concept_run",
-  "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run",
+  "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run-9a2e7442",
   "stage_sequence": [
     "INPUT_PREFLIGHT",
     "REFERENCE_PROVENANCE",
@@ -770,7 +2734,7 @@
     {
       "authorization_basis": "CURRENT_BUSINESS_UNDERSTANDING",
       "classification": "BUSINESS_BRIEF",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "bbc2658c688d9b98421526b89f645de9fe1debf8df7893bc26fa1d80f766834b",
       "source_path": "business/brief.json",
       "staged_path": "business/brief.json"
@@ -778,7 +2742,7 @@
     {
       "authorization_basis": "CURRENT_OWNER_INTENT",
       "classification": "OWNER_INTENT",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "1d26584b132803c131cac6f4e6d2c5e17e0f0d3941fdf51759d43f510fa1a5d0",
       "source_path": "business/owner-intent.json",
       "staged_path": "brand/owner-intent.json"
@@ -786,7 +2750,7 @@
     {
       "authorization_basis": "CURRENT_MEASUREMENT_PLAN",
       "classification": "CONVERSION_REQUIREMENTS",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "affbb16194a1f6b1fc0c65e022833c93e8685d5e386af7ab11ea92ea7ae6c4c2",
       "source_path": "business/measurement.json",
       "staged_path": "business/measurement.json"
@@ -794,7 +2758,7 @@
     {
       "authorization_basis": "CURRENT_CONTENT_TRUTH",
       "classification": "CONTENT_TRUTH",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "47ec5531d466f1557a0e06576bf6225e968f8ff9680b243a80e8054c273f6313",
       "source_path": "business/content.json",
       "staged_path": "business/content.json"
@@ -802,7 +2766,7 @@
     {
       "authorization_basis": "OWNER_ALLOWLIST_ITEM",
       "classification": "OWNER_APPROVED_BRAND_ASSET",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "f59ee577cafaa8eb6da51f677e68b446a5bd3d7969bf07087a1b3cc0294e3edf",
       "source_path": "brand/allowed-logo.svg",
       "staged_path": "approved-assets/allowed-logo.svg"
@@ -810,7 +2774,7 @@
     {
       "authorization_basis": "REFERENCE_PROVENANCE_EXT_SYNTHETIC_01",
       "classification": "EXTERNAL_GOLD_STANDARD",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "990bcad6d86b2422e7e6d1f1e160c6fe131bb6e1f82196f4d82b32afe56af3f6",
       "source_path": "external-references/reference-01.png",
       "staged_path": "external-references/reference-01.png"
@@ -818,7 +2782,7 @@
     {
       "authorization_basis": "REFERENCE_PROVENANCE_EXT_SYNTHETIC_02",
       "classification": "OWNER_SUPPLIED_EXTERNAL_REFERENCE",
-      "run_id": "synthetic-clean-room-run",
+      "run_id": "synthetic-clean-room-run-9a2e7442",
       "sha256": "990bcad6d86b2422e7e6d1f1e160c6fe131bb6e1f82196f4d82b32afe56af3f6",
       "source_path": "external-references/reference-02.png",
       "staged_path": "external-references/reference-02.png"
@@ -845,7 +2809,7 @@
     {
       "detail": "validated inputs staged into the clean-room creative pack",
       "evidence": {
-        "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run",
+        "stage_root": "C:\\Users\\ALPHA\\Documents\\ChatGPT\\WEBSITE DIRECTOR\\work\\v2-11-clean-room-creative-mode\\.clean-room-runs\\synthetic-clean-room-run-9a2e7442",
         "staged_historical_output_files": 0,
         "staged_input_file_count": 7
       },
@@ -917,11 +2881,7 @@
     {
       "detail": "RENDER_DERIVED_MORPHOLOGY_PASS",
       "evidence": {
-        "failures": [
-          "CARD_CONTAINER_DENSITY",
-          "PAGE_RHYTHM",
-          "CTA_MORPHOLOGY"
-        ],
+        "failures": [],
         "semantic_labels_used": false
       },
       "id": "RENDER_DERIVED_MORPHOLOGY",

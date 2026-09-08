@@ -12,6 +12,8 @@ Validates:
 
 from __future__ import annotations
 
+import copy
+import tempfile
 import unittest
 from pathlib import Path
 from typing import Any, Dict, List
@@ -30,6 +32,184 @@ from framework_validation.clean_room import (
     validate_pre_generation_scope,
     verify_reference_provenance,
 )
+from framework_validation.rendered_morphology import (
+    CHEAP_CONCEPT_NOT_APPLICABLE_VECTOR_IDS,
+    CHEAP_CONCEPT_VECTOR_IDS,
+    MORPHOLOGY_VECTOR_IDS,
+    compare_rendered_morphology,
+    extract_rendered_morphology,
+)
+from framework_validation.morphology_recheck import update_owner_review_report
+
+
+def _generic_morphology_evidence(
+    *,
+    surface_count: int = 2,
+    container_count: int = 2,
+    media_area_ratio: float = 0.10,
+    font_family: str = "Georgia, serif",
+    occupied_area_ratio: float = 0.62,
+    hero_width: float = 1100,
+    hero_height: float = 560,
+    hero_axis: str = "HORIZONTAL",
+    signature_width: float = 420,
+    signature_height: float = 220,
+    signature_orientation: str = "HORIZONTAL",
+    cta_x: float = 80,
+    cta_y: float = 430,
+) -> Dict[str, Any]:
+    """Build complete, business-neutral cheap-concept browser evidence."""
+
+    viewport_width, viewport_height = 1440.0, 900.0
+    document_height = 1500.0
+    document_area = viewport_width * document_height
+    computed_layout = {
+        "display": "grid" if hero_axis == "HORIZONTAL" else "block",
+        "position": "static",
+        "grid_template_columns": "1fr 1fr" if hero_axis == "HORIZONTAL" else "none",
+        "grid_template_rows": "none",
+        "flex_direction": "row",
+        "gap": "24px",
+        "justify_content": "normal",
+        "align_items": "normal",
+    }
+    hero_children = (
+        [
+            {"x": 80, "y": 100, "width": 420, "height": 300, "computed": dict(computed_layout)},
+            {"x": 680, "y": 100, "width": 320, "height": 320, "computed": dict(computed_layout)},
+        ]
+        if hero_axis == "HORIZONTAL"
+        else [
+            {"x": 80, "y": 80, "width": 760, "height": 160, "computed": dict(computed_layout)},
+            {"x": 80, "y": 300, "width": 760, "height": 160, "computed": dict(computed_layout)},
+        ]
+    )
+    sections = [
+        {
+            "index": index,
+            "x": 0,
+            "y": index * (document_height / max(1, surface_count)),
+            "width": viewport_width,
+            "height": document_height / max(1, surface_count),
+            "display": "grid" if hero_axis == "HORIZONTAL" else "block",
+            "major_child_count": 2,
+            "column_count": 2 if hero_axis == "HORIZONTAL" else 1,
+            "column_alignment": "RIGHT" if index % 2 == 0 else "LEFT",
+            "gap_before": 0,
+            "position": "static",
+            "grid_template_columns": computed_layout["grid_template_columns"],
+            "grid_template_rows": "none",
+            "flex_direction": "row",
+            "gap": "24px",
+            "justify_content": "normal",
+            "align_items": "normal",
+            "child_regions": [
+                {
+                    "x": 80,
+                    "y": index * (document_height / max(1, surface_count)) + 80,
+                    "width": 640,
+                    "height": 240,
+                    "computed": dict(computed_layout),
+                }
+            ],
+        }
+        for index in range(surface_count)
+    ]
+    media_area = document_area * media_area_ratio
+    media_elements = [] if media_area == 0 else [
+        {"x": 0, "y": 0, "width": 1000, "height": media_area / 1000, "media_kind": "FIGURE"}
+    ]
+    return {
+        "evidence_kind": "BROWSER_LAYOUT",
+        "measurement_schema_version": "2.0",
+        "measurement_schema": [
+            "viewport", "document", "hero", "hero.major_children", "sections",
+            "sections.child_regions", "sections.computed_layout", "media_elements",
+            "bordered_containers", "heading.computed_style", "whitespace.internal_occupancy",
+            "signature_device.target_region", "cta.geometry_and_alignment",
+        ],
+        "evaluation_stage": "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        "viewport": {"width": viewport_width, "height": viewport_height, "area": viewport_width * viewport_height},
+        "document": {"width": viewport_width, "height": document_height, "area": document_area},
+        "hero": {
+            "x": 0,
+            "y": 0,
+            "width": hero_width,
+            "height": hero_height,
+            "major_children": hero_children,
+            "media_area": media_area * 0.45,
+            **computed_layout,
+        },
+        "sections": sections,
+        "bordered_containers": [
+            {
+                "x": 40 + index * 10,
+                "y": 80,
+                "width": 260,
+                "height": 120,
+                "border_widths": {"top": "1px", "right": "1px", "bottom": "1px", "left": "1px"},
+            }
+            for index in range(container_count)
+        ],
+        "media_elements": media_elements,
+        "heading": {
+            "target_found": True,
+            "rect": {"x": 80, "y": 100, "width": 620, "height": 120},
+            "font_family": font_family,
+            "font_size": 60,
+            "line_height": 66,
+            "letter_spacing": 0,
+            "line_count": 2,
+        },
+        "whitespace": {
+            "occupied_area_ratio": occupied_area_ratio,
+            "negative_space_ratio": 1 - occupied_area_ratio,
+            "hero_occupied_area_ratio": occupied_area_ratio * 0.9,
+            "major_region_gap_ratio": 0.12 if hero_axis == "HORIZONTAL" else 0.30,
+        },
+        "signature_device": {
+            "target_found": True,
+            "x": 120,
+            "y": 700,
+            "width": signature_width,
+            "height": signature_height,
+            "occupied_area_ratio": 0.70,
+            "dominant_child_aspect_ratio": signature_width / signature_height,
+            "dominant_child": {
+                "x": 140,
+                "y": 720,
+                "width": signature_width * 0.8,
+                "height": signature_height * 0.8,
+                "computed": dict(computed_layout),
+            },
+            "structural_orientation": signature_orientation,
+            "media_area": media_area * 0.2,
+        },
+        "cta": {
+            "target_found": True,
+            "source": "HERO_ACTION",
+            "within_hero": True,
+            "x": cta_x,
+            "y": cta_y,
+            "width": 180,
+            "height": 52,
+            "x_hero_ratio": cta_x / hero_width,
+            "y_hero_ratio": cta_y / hero_height,
+            "alignment": "LEFT" if cta_x < hero_width * 0.2 else "CENTER",
+            "treatment": "EDGE_ALIGNED" if cta_x < hero_width * 0.1 else "CENTERED",
+        },
+        "scan_complete": {
+            "viewport": True,
+            "document": True,
+            "hero": True,
+            "sections": True,
+            "media": True,
+            "bordered_containers": True,
+            "heading": True,
+            "signature_device": True,
+            "cta": True,
+        },
+    }
 
 
 class CleanRoomCreativeModeTests(unittest.TestCase):
@@ -185,6 +365,297 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         self.assertEqual(res["status"], "PASS")
         self.assertEqual(res["divergence"], "MORPHOLOGY_DIVERGENCE_PASS")
         self.assertFalse(res["semantic_rename_detected"])
+
+    def test_legacy_declared_morphology_missing_values_fail_closed(self) -> None:
+        baseline = {vector: f"BASELINE_{vector}" for vector in MORPHOLOGY_VECTOR_IDS}
+        candidate = {vector: f"CANDIDATE_{vector}" for vector in MORPHOLOGY_VECTOR_IDS}
+        candidate.pop("MEDIA_DOMINANCE")
+
+        result = evaluate_morphology_divergence(candidate, baseline)
+
+        self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+        self.assertEqual(result["vector_results"]["MEDIA_DOMINANCE"], "INSUFFICIENT_EVIDENCE")
+        self.assertNotIn("MATCHES_HISTORICAL_BASELINE", result["vector_results"].values())
+
+        for empty_value in ("", [], {}):
+            with self.subTest(empty_value=empty_value):
+                incomplete_candidate = dict(candidate)
+                incomplete_candidate["MEDIA_DOMINANCE"] = empty_value
+                incomplete_baseline = dict(baseline)
+                incomplete_baseline["MEDIA_DOMINANCE"] = empty_value
+                empty_result = evaluate_morphology_divergence(incomplete_candidate, incomplete_baseline)
+                self.assertEqual(empty_result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+                self.assertEqual(empty_result["vector_results"]["MEDIA_DOMINANCE"], "INSUFFICIENT_EVIDENCE")
+
+    def test_rendered_morphology_cheap_stage_uses_seven_of_ten_vectors(self) -> None:
+        result = compare_rendered_morphology(
+            _generic_morphology_evidence(),
+            _generic_morphology_evidence(),
+            "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        )
+        self.assertEqual(result["applicable_vectors"], list(CHEAP_CONCEPT_VECTOR_IDS))
+        self.assertEqual(result["not_applicable_vectors"], list(CHEAP_CONCEPT_NOT_APPLICABLE_VECTOR_IDS))
+        self.assertEqual(result["applicable_vector_count"], 7)
+        self.assertEqual(result["not_applicable_vector_count"], 3)
+        for vector in CHEAP_CONCEPT_NOT_APPLICABLE_VECTOR_IDS:
+            self.assertEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "NOT_APPLICABLE")
+
+    def test_rendered_morphology_rejects_mismatched_embedded_stage(self) -> None:
+        candidate = _generic_morphology_evidence()
+        baseline = _generic_morphology_evidence()
+        candidate["evaluation_stage"] = "FULL_HOMEPAGE"
+        candidate["cta"]["within_hero"] = False
+
+        result = compare_rendered_morphology(
+            candidate,
+            baseline,
+            "HERO_PLUS_SIGNATURE_DEVICE_ONLY",
+        )
+
+        self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+        self.assertIn("evaluation_stage:mismatch", result["candidate"]["missing_evidence_fields"])
+        self.assertIn("cta.within_hero", result["candidate"]["missing_evidence_fields"])
+
+    def test_full_homepage_repeated_grammar_vectors_fail_closed_on_missing_evidence(self) -> None:
+        baseline = _generic_morphology_evidence(surface_count=4)
+        baseline["evaluation_stage"] = "FULL_HOMEPAGE"
+        mutations = {
+            "SECTION_GEOMETRY": lambda item: item["sections"][0].pop("width"),
+            "TWO_COLUMN_REPETITION": lambda item: item["sections"][0].pop("column_count"),
+            "PAGE_RHYTHM": lambda item: item["sections"][1].pop("gap_before"),
+        }
+        complete = compare_rendered_morphology(baseline, baseline, "FULL_HOMEPAGE")
+        self.assertEqual(complete["status"], "FAIL_DIVERGENCE")
+        for vector, mutate in mutations.items():
+            with self.subTest(vector=vector):
+                candidate = copy.deepcopy(baseline)
+                mutate(candidate)
+                result = compare_rendered_morphology(candidate, baseline, "FULL_HOMEPAGE")
+                self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+                self.assertEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "INSUFFICIENT_EVIDENCE")
+
+    def test_rendered_morphology_missing_evidence_never_becomes_a_match(self) -> None:
+        mutators = {
+            "HERO_SILHOUETTE": lambda item: item["hero"].update({"major_children": []}),
+            "CARD_CONTAINER_DENSITY": lambda item: item["scan_complete"].update({"bordered_containers": False}),
+            "MEDIA_DOMINANCE": lambda item: item["scan_complete"].update({"media": False}),
+            "TYPOGRAPHIC_SILHOUETTE": lambda item: item["heading"].update({"font_family": None}),
+            "WHITESPACE_DENSITY": lambda item: item.update({"whitespace": {}}),
+            "SIGNATURE_DEVICE": lambda item: item["signature_device"].update({"target_found": False}),
+            "CTA_MORPHOLOGY": lambda item: item["cta"].update({"target_found": False}),
+        }
+        baseline = _generic_morphology_evidence()
+        for vector, mutate in mutators.items():
+            with self.subTest(vector=vector):
+                candidate = copy.deepcopy(baseline)
+                mutate(candidate)
+                result = compare_rendered_morphology(candidate, baseline)
+                self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+                self.assertIn(vector, result["insufficient_evidence_vectors"])
+                self.assertEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "INSUFFICIENT_EVIDENCE")
+                self.assertNotEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "MATCHES_HISTORICAL_BASELINE")
+
+        incomplete_scan = copy.deepcopy(baseline)
+        incomplete_scan["scan_complete"]["heading"] = False
+        incomplete_result = compare_rendered_morphology(incomplete_scan, baseline)
+        self.assertEqual(incomplete_result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+        self.assertIn("TYPOGRAPHIC_SILHOUETTE", incomplete_result["insufficient_evidence_vectors"])
+
+    def test_partial_geometry_records_fail_closed_for_every_applicable_family(self) -> None:
+        mutators = {
+            "HERO_SILHOUETTE": lambda item: item["hero"]["major_children"][0].pop("width"),
+            "CARD_CONTAINER_DENSITY": lambda item: item["bordered_containers"][0].pop("width"),
+            "MEDIA_DOMINANCE": lambda item: item["media_elements"][0].pop("width"),
+            "TYPOGRAPHIC_SILHOUETTE": lambda item: item["heading"]["rect"].pop("width"),
+            "WHITESPACE_DENSITY": lambda item: item["whitespace"].pop("hero_occupied_area_ratio"),
+            "SIGNATURE_DEVICE": lambda item: item["signature_device"]["dominant_child"].pop("width"),
+            "CTA_MORPHOLOGY": lambda item: item["cta"].pop("width"),
+        }
+        baseline = _generic_morphology_evidence()
+        for vector, mutate in mutators.items():
+            with self.subTest(vector=vector):
+                candidate = copy.deepcopy(baseline)
+                mutate(candidate)
+                result = compare_rendered_morphology(candidate, baseline)
+                self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+                self.assertEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "INSUFFICIENT_EVIDENCE")
+
+    def test_incomplete_persisted_schema_blocks_before_scoring(self) -> None:
+        baseline = _generic_morphology_evidence()
+        mutations = {
+            "document.width": lambda item: item["document"].pop("width"),
+            "sections[0].display": lambda item: item["sections"][0].pop("display"),
+            "sections[0].child_regions": lambda item: item["sections"][0].pop("child_regions"),
+        }
+        for missing_path, mutate in mutations.items():
+            with self.subTest(missing_path=missing_path):
+                candidate = copy.deepcopy(baseline)
+                mutate(candidate)
+                result = compare_rendered_morphology(candidate, baseline)
+                self.assertEqual(result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+                self.assertFalse(result["evidence_schema_complete"])
+                self.assertIn(missing_path, result["candidate"]["missing_evidence_fields"])
+
+    def test_typography_uses_computed_font_family_and_arial_is_sans(self) -> None:
+        evidence = _generic_morphology_evidence(font_family="Arial, Helvetica, sans-serif")
+        extracted = extract_rendered_morphology(evidence)
+        self.assertEqual(extracted["status"], "PASS")
+        self.assertEqual(extracted["raw_measurements"]["TYPOGRAPHIC_SILHOUETTE"]["family_class"], "SANS")
+        self.assertNotIn("SERIF", extracted["vectors"]["TYPOGRAPHIC_SILHOUETTE"])
+
+    def test_normalized_measurements_drive_card_media_whitespace_and_signature(self) -> None:
+        baseline = _generic_morphology_evidence(
+            surface_count=4,
+            container_count=4,
+            media_area_ratio=0.118,
+            occupied_area_ratio=0.75,
+            signature_width=240,
+            signature_height=240,
+            signature_orientation="CENTRAL",
+        )
+        candidate = _generic_morphology_evidence(
+            surface_count=2,
+            container_count=4,
+            media_area_ratio=0.012,
+            occupied_area_ratio=0.25,
+            signature_width=760,
+            signature_height=120,
+            signature_orientation="HORIZONTAL",
+        )
+        candidate["round_shape_count"] = 99
+        baseline["round_shape_count"] = 0
+        result = compare_rendered_morphology(candidate, baseline)
+        for vector in (
+            "CARD_CONTAINER_DENSITY",
+            "MEDIA_DOMINANCE",
+            "WHITESPACE_DENSITY",
+            "SIGNATURE_DEVICE",
+        ):
+            self.assertEqual(result["vector_results"][vector]["VECTOR_VERDICT"], "DIVERGENT", vector)
+            self.assertIsNotNone(result["vector_results"][vector]["NORMALIZED_DISTANCE_OR_SIMILARITY"])
+        self.assertNotIn("round_shape_count", result["vector_results"]["SIGNATURE_DEVICE"]["RAW_CANDIDATE_MEASUREMENTS"])
+
+    def test_generic_calibration_clone_divergence_missing_color_and_shared_cta(self) -> None:
+        baseline = _generic_morphology_evidence()
+        clone = copy.deepcopy(baseline)
+        color_only = copy.deepcopy(baseline)
+        color_only["unscored_visual_tokens"] = {"primary": "purple", "accent": "lime"}
+        genuine = _generic_morphology_evidence(
+            surface_count=2,
+            container_count=7,
+            media_area_ratio=0.38,
+            font_family="Arial, Helvetica, sans-serif",
+            occupied_area_ratio=0.20,
+            hero_width=1440,
+            hero_height=820,
+            hero_axis="VERTICAL",
+            signature_width=120,
+            signature_height=680,
+            signature_orientation="VERTICAL",
+            cta_x=620,
+            cta_y=160,
+        )
+        same_cta_otherwise_different = copy.deepcopy(genuine)
+        same_cta_otherwise_different["cta"] = copy.deepcopy(baseline["cta"])
+        missing = copy.deepcopy(genuine)
+        missing["signature_device"] = {"target_found": False}
+
+        self.assertEqual(compare_rendered_morphology(clone, baseline)["status"], "FAIL_DIVERGENCE")
+        self.assertEqual(compare_rendered_morphology(color_only, baseline)["status"], "FAIL_DIVERGENCE")
+        self.assertEqual(compare_rendered_morphology(genuine, baseline)["status"], "PASS_DIVERGENCE")
+        missing_result = compare_rendered_morphology(missing, baseline)
+        self.assertEqual(missing_result["status"], "BLOCKED_INSUFFICIENT_EVIDENCE")
+        shared_cta_result = compare_rendered_morphology(same_cta_otherwise_different, baseline)
+        self.assertEqual(shared_cta_result["vector_results"]["CTA_MORPHOLOGY"]["VECTOR_VERDICT"], "MATCHES_HISTORICAL_BASELINE")
+        self.assertEqual(shared_cta_result["status"], "PASS_DIVERGENCE")
+        self.assertGreaterEqual(shared_cta_result["divergence_ratio"], 0.60)
+
+    def test_generic_candidates_share_one_complete_evidence_schema(self) -> None:
+        concepts = [
+            _generic_morphology_evidence(media_area_ratio=ratio)
+            for ratio in (0.02, 0.08, 0.20)
+        ]
+        baseline = _generic_morphology_evidence()
+        for concept in concepts:
+            self.assertEqual(set(concept), set(baseline))
+            self.assertEqual(concept["measurement_schema"], baseline["measurement_schema"])
+            self.assertEqual(set(concept["viewport"]), set(baseline["viewport"]))
+            self.assertEqual(set(concept["document"]), set(baseline["document"]))
+            self.assertEqual(set(concept["heading"]), set(baseline["heading"]))
+            self.assertEqual(set(concept["signature_device"]), set(baseline["signature_device"]))
+            self.assertEqual(set(concept["cta"]), set(baseline["cta"]))
+            self.assertEqual(set(concept["sections"][0]), set(baseline["sections"][0]))
+            self.assertEqual(
+                set(concept["sections"][0]["child_regions"][0]),
+                set(baseline["sections"][0]["child_regions"][0]),
+            )
+            self.assertTrue(compare_rendered_morphology(concept, baseline)["evidence_schema_complete"])
+
+    def test_owner_review_recheck_updates_reporting_rows_only(self) -> None:
+        original = (
+            '<section class="concept"><h2>CONCEPT A</h2><dl>'
+            '<dt>MORPHOLOGY DIVERGENCE =</dt><dd>FAIL_DIVERGENCE; 4/10 vectors divergent</dd>'
+            '<dt>BIGGEST VISIBLE WEAKNESS =</dt><dd>Keep this exact weakness.</dd>'
+            '</dl></section>'
+        )
+        result = {
+            "CONCEPT_A": {
+                "status": "PASS_DIVERGENCE",
+                "divergence_ratio": 6 / 7,
+                "divergent_vectors": ["HERO_SILHOUETTE"],
+                "matching_vectors": ["CTA_MORPHOLOGY"],
+                "not_applicable_vectors": ["PAGE_RHYTHM"],
+            }
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            report = Path(temporary) / "owner-review.html"
+            report.write_text(original, encoding="utf-8")
+            update_owner_review_report(report, result)
+            update_owner_review_report(report, result)
+            updated = report.read_text(encoding="utf-8")
+        self.assertIn("MORPHOLOGY VERDICT =", updated)
+        self.assertIn("0.857", updated)
+        self.assertIn("Keep this exact weakness.", updated)
+        self.assertNotIn("4/10", updated)
+
+    def test_owner_review_recheck_keeps_distinct_concept_results_in_their_sections(self) -> None:
+        section = (
+            '<section class="concept"><h2>{name}</h2><dl>'
+            '<dt>MORPHOLOGY DIVERGENCE =</dt><dd>old</dd>'
+            '<dt>BIGGEST VISIBLE WEAKNESS =</dt><dd>{name} weakness.</dd>'
+            '</dl></section>'
+        )
+        original = "".join(section.format(name=f"CONCEPT {letter}") for letter in "ABC")
+        results = {
+            "CONCEPT_A": {
+                "status": "PASS_DIVERGENCE", "divergence_ratio": 1.0,
+                "divergent_vectors": ["HERO_SILHOUETTE"], "matching_vectors": [],
+                "not_applicable_vectors": ["PAGE_RHYTHM"],
+            },
+            "CONCEPT_B": {
+                "status": "PASS_DIVERGENCE", "divergence_ratio": 6 / 7,
+                "divergent_vectors": ["MEDIA_DOMINANCE"], "matching_vectors": ["CTA_MORPHOLOGY"],
+                "not_applicable_vectors": ["PAGE_RHYTHM"],
+            },
+            "CONCEPT_C": {
+                "status": "FAIL_DIVERGENCE", "divergence_ratio": 2 / 7,
+                "divergent_vectors": ["SIGNATURE_DEVICE"], "matching_vectors": ["WHITESPACE_DENSITY"],
+                "not_applicable_vectors": ["PAGE_RHYTHM"],
+            },
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            report = Path(temporary) / "owner-review.html"
+            report.write_text(original, encoding="utf-8")
+            update_owner_review_report(report, results)
+            updated = report.read_text(encoding="utf-8")
+        sections = updated.split('<section class="concept">')[1:]
+        self.assertIn("1.000", sections[0])
+        self.assertIn("NONE", sections[0])
+        self.assertIn("0.857", sections[1])
+        self.assertIn("CTA_MORPHOLOGY", sections[1])
+        self.assertIn("0.286", sections[2])
+        self.assertIn("WHITESPACE_DENSITY", sections[2])
+        self.assertIn("CONCEPT C weakness.", sections[2])
 
     def test_blind_critic_package_contains_no_implementation_source(self) -> None:
         pkg = prepare_blind_critic_package(
@@ -381,6 +852,18 @@ class CleanRoomCreativeModeTests(unittest.TestCase):
         self.assertEqual(result["owner_selection"]["after_full_homepage_design"], "AUTHORIZED")
         self.assertEqual(result["owner_selection"]["new_owner_lock_created"], False)
         self.assertEqual(result["render_derived_morphology"]["status"], "PASS_DIVERGENCE")
+        rendered_evidence = result["candidate_render"]["rendered_morphology_evidence"]
+        self.assertEqual(len(rendered_evidence["sections"]), 2)
+        self.assertEqual(rendered_evidence["signature_device"]["source"], "EXPLICIT_SURFACE")
+        self.assertTrue(rendered_evidence["cta"]["within_hero"])
+        self.assertIn(rendered_evidence["cta"]["source"], {"EXPLICIT_CTA", "HERO_ACTION"})
+        self.assertLessEqual(rendered_evidence["cta"]["y_hero_ratio"], 1.0)
+        self.assertEqual(len(rendered_evidence["media_elements"]), 1)
+        self.assertAlmostEqual(
+            rendered_evidence["hero"]["media_area"],
+            rendered_evidence["media_elements"][0]["area"],
+            places=5,
+        )
         self.assertEqual(
             result["rendered_fixture_comparisons"]["SEMANTIC_RENAME_RENDER_FIXTURE"]["status"],
             "FAIL_DIVERGENCE",

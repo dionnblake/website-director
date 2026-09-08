@@ -349,6 +349,7 @@
       "paths": [
         "tests/test_clean_room_creative_mode.py",
         "framework_validation/clean_room.py",
+        "framework_validation/morphology_recheck.py",
         "framework_validation/rendered_morphology.py",
         "browser-qa/engine/playwright_engine.py",
         "browser-qa/engine/base.py",

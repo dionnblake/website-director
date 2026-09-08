@@ -232,6 +232,13 @@ BROWSER DESIGN` → `REAL BROWSER RENDER` → `DESKTOP + MOBILE SCREENSHOTS` →
   stripped package containing rendered evidence only. Historical output may be
   opened only after rendering as a negative baseline for browser-derived
   morphology.
+- At the cheap stage, morphology evaluates 7 applicable vectors and marks
+  section geometry, two-column repetition, and page rhythm `NOT_APPLICABLE`.
+  Require complete versioned browser evidence for every applicable vector;
+  missing evidence blocks rather than matching. Compare normalized continuous
+  measurements before labels and require at least 60 percent divergence. Use
+  `python -m framework_validation.morphology_recheck` only to remeasure
+  preserved renders; it must not regenerate or creatively rerender them.
 - Stop at the existing `visual_prototypes.owner_selection_confirmed` authority.
   Do not add an approval mechanism or owner lock. Full homepage progression is
   `BLOCKED` until a valid owner selection event makes it `AUTHORIZED`.

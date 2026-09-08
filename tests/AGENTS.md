@@ -47,7 +47,10 @@ Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
 `test_clean_room_creative_mode.py` owns the Clean-Room Creative Mode
 quarantine, physical staged-workspace, provenance, pre-generation
 cheap-concept, ordered execution, browser-derived morphology, blind-critic,
-owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
+owner-selection unlock, and zero-side-effect synthetic end-to-end controls. It
+also owns the 7/3 stage split, per-vector missing-evidence blocks, normalized
+continuous comparison, generic clone/divergence fixtures, evidence-schema
+parity, and evidence-only owner-review refresh controls.
 
 ## Local Contracts
 
@@ -98,6 +101,8 @@ owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
   critic receives no implementation source or builder secrets, morphology is
   derived from browser layout rather than labels, and the existing owner
   selection authority unlocks full-homepage progression without a new lock.
+- Morphology fixtures remain business-neutral. Do not tune thresholds or
+  expected verdicts to Alpha Starts Now artifacts.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
