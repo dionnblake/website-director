@@ -94,24 +94,39 @@ When the user requests a durable behavior change, record it here or in the relev
 
 # WEBSITE-DIRECTOR
 
-Website Director is the authoritative design governance system. It maintains deterministic progressive discovery, adaptive creative briefing (`DISCOVERY-PROTOCOL.md`), mandatory SEO/competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking (`AWWWARDS-SHOWCASE-INTELLIGENCE.md`), design intelligence candidate synthesis (`DESIGN-INTELLIGENCE-PROTOCOL.md`), subject-grounded distinctiveness discipline (`DESIGN-CONSTITUTION.md` §7), archetype synthesis, pre-lock high-fidelity visual prototypes (`VISUAL-PROTOTYPE-PROTOCOL.md`), owner visual direction selection, token specifications, 5-gate lock control (including deliberate motion direction), authoritative art direction & visual asset production (`ASSET-DIRECTOR-PROTOCOL.md`), immersive WebGL / Three.js specialist architecture (`IMMERSIVE-WEB-PROTOCOL.md`), interactive vector motion & state machines (`RIVE-INTERACTIVE-MOTION-PROTOCOL.md`), page experience & route continuity (`PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`), deterministic conversion measurement, KPI hierarchy, CTA-to-event traceability, attribution & UTM governance, affiliate measurement integrity, and privacy-preserving analytics architecture (`CONVERSION-ANALYTICS-PROTOCOL.md`), production risk governance covering site risk classification, data inventory, data minimization, secret custody, form/auth/payment safeguards, security headers, transport, dependency and third-party script accountability, consent classification and truthful disclosure (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`), official GSAP motion engineering (`GSAP-IMPLEMENTATION-PROTOCOL.md`), implementation contracts, deterministic Impeccable quality scans (`IMPECCABLE-ENGINE-PROTOCOL.md`), reference-grounded adversarial Gauntlet refinement loops (`WEBSITE-GAUNTLET-PROTOCOL.md`), and one canonical launch authority separating release candidate / deployed / production-verified / stabilised, requiring explicit per-release owner deployment authorization, and verifying a known release identity on the production surface (`LAUNCH-OPERATIONS-PROTOCOL.md`). See [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SKILL.md) for the full operating manual and the single-source-of-truth rules governing `creative_intent{}`, `research{}`, `visual_prototypes{}`, `assets{}`, `immersive{}`, `rive{}`, `page_experience{}`, `measurement{}`, `security_privacy{}`, `accessibility{}`, `browser_qa{}`, `launch_ops{}`, `motion{}`, `seo{}`, `design_intelligence{}`, and `gauntlet{}` state.
+Website Director is the authoritative design-governance system. The active
+operator route is the seven-stage kernel:
 
-**Version:** 2.15.0 (Additive to V2.14.0, V2.13.0, V2.12.0, V2.11.1, V2.11.0, V2.10, V2.9, V2.8, V2.7, V2.6, V2.5.1, V2.5, V2.4, V2.3, V2.2, V2.1, V2.0, V1.9, V1.8, V1.7, V1.6, V1.5, V1.4, V1.3.1, V1.3, V1.2, V1.1, and V1). V2.15 integrates conditional Capability 10 Application, Commerce, and Authentication Architecture at Phase 6.99 without adding a sixth owner lock. It is activated only by explicit behavior and user stories.
+```text
+UNDERSTAND -> RESEARCH -> DESIGN -> ASSETS -> BUILD -> VERIFY -> RELEASE
+```
+
+`SKILL.md` is the canonical router. Each stage points to the existing
+specialist protocols, validators, templates, registries, and project
+artifacts; those authorities retain their own state, gates, evidence, and
+side-effect boundaries. The kernel is conceptual and creates no runtime,
+state object, readiness gate, registry, or owner lock.
+
+The five existing owner locks remain the only owner locks:
+`design_direction_locked`, `information_architecture_locked`,
+`content_structure_locked`, `design_system_locked`, and
+`motion_direction_locked`. Browser QA remains the deterministic behavior
+authority, Website Gauntlet remains the fresh qualitative critique authority,
+and Launch Operations remains the single release and production-state
+authority. `RELEASE_READY` never implies `DEPLOYMENT_AUTHORIZED`.
+
+**Version:** 2.15.0
 **System Status:** **`WEBSITE_DIRECTOR_CAPABILITY_10_APPLICATION_ARCHITECTURE_COMPLETE`**
 
-Historical version record: V2.7 integrates the Security, Privacy & Compliance Intelligence Subsystem; V2.13 preserves that additive compatibility contract.
+Compatibility note: capability-era identifiers remain in the specialist
+governance sections, schemas, historical profiles, and fixtures that consume
+them. They are not active top-level navigation and do not create a second
+workflow.
 
-Capability 8 is implemented as a provider-neutral content architecture
-subsystem. Its `[CONTENT_OPERATIONS_READY]` readiness gate and
-`content_ops.complete` state are separate from the V2.5 handoff authority and
-do not authorize provider installation, autonomous publishing, deployment, or
-production changes. Capability 9 adds a provider-neutral localization and
-internationalization subsystem at Phase 6.35 with the `[LOCALIZATION_READY]`
-readiness gate and `localization.complete` state. Capability 10 is implemented
-as a conditional, provider-neutral application architecture subsystem at
-Phase 6.99 with the `[APPLICATION_ARCHITECTURE_READY]` readiness gate and
-`application.complete` state. It does not own deployment, provider accounts,
-credentials, live users, live payments, or production verification.
+Content Operations, Localization, and Application Architecture remain
+provider-neutral specialist authorities. Their existing readiness flags and
+conditional behavior remain separate from V2.5 handoff, do not authorize
+provider installation or external side effects, and do not add an owner lock.
 
 ### Localization & Internationalization Governance (V2.14 - Additive)
 

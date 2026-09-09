@@ -9,7 +9,10 @@ compatibility, negative controls, isolation, and release evidence.
 
 `test_framework_validation.py` owns the Capability 6 regression, historical
 compatibility fixture, and negative-control suite registered in
-`schemas/test-suites.json`.
+`schemas/test-suites.json`. It also owns the seven-stage kernel routing table,
+one-primary-stage invariant, default-path boundaries, conditional dispatch,
+and deterministic agent-comprehension assertions. These are documentation and
+governance checks only; they create no kernel runtime state.
 `test_design_inspiration.py` owns the deterministic Capability 6.5 adapter,
 credential, provenance, originality, token, and frozen-integrity controls.
 `test_asset_provenance.py` owns Capability 7 synthetic evidence, claim, rights,

@@ -242,17 +242,18 @@ check(all(s['client_exposed'] is False for s in register['secrets']['required_se
 # 9. Cross-document wiring
 # ---------------------------------------------------------------------------
 skill = read('SKILL.md')
-check('PHASE 6.75' in skill, 'SKILL.md declares PHASE 6.75')
+check('## 3. DESIGN' in skill and 'SECURITY_PRIVACY_READY' in skill,
+      'SKILL.md routes security/privacy requirements through DESIGN')
 check('[SECURITY_PRIVACY_READY]' in skill, 'SKILL.md declares the SECURITY_PRIVACY_READY gate')
 check('GATE SECURITY' in skill, 'SKILL.md workflow diagram includes GATE SECURITY')
-check('5.14 Single-Source-of-Truth Rule for `security_privacy` State' in skill,
+check('Single-Source-of-Truth Rule for `security_privacy` State' in skill,
       'SKILL.md documents the security_privacy source-of-truth rule')
 check('security-privacy-review.md' in skill, 'SKILL.md references the working template')
 check('Exactly 5 owner locks remain' in skill, 'SKILL.md restates the five-lock invariant')
 _sm = re.search(r'^> \*\*Version:\*\* (\d+\.\d+\.\d+)', skill, re.M)
 check(_sm and _ver_at_least(_sm.group(1)), 'SKILL.md version is >= 2.7.0')
-check('PHASE 6.75' in skill and '[SECURITY_PRIVACY_READY]' in skill,
-      'SKILL.md still declares the V2.7 phase and gate')
+check('## 3. DESIGN' in skill and '[SECURITY_PRIVACY_READY]' in skill,
+      'SKILL.md declares the security/privacy design gate')
 
 contract = read('IMPLEMENTATION-CONTRACT.md')
 check('## 2.6 Builder Security & Privacy Requirements (V2.7)' in contract,
@@ -298,16 +299,14 @@ check('is the **only** authoritative readiness flag' in analytics and 'measureme
       'Measurement single-flag invariant preserved')
 
 readme = read('README.md')
-check('What V2.7 Adds (Security, Privacy & Compliance Intelligence)' in readme,
-      'README documents the V2.7 subsystem')
-check('SECURITY_PRIVACY_READY` (Gate Security)' in readme, 'README lists the Gate Security readiness gate')
+check('Security, Privacy & Compliance' in readme and 'security-privacy-review.md' in readme,
+      'README documents the security/privacy authority')
+check('SECURITY_PRIVACY_READY' in readme, 'README lists the security/privacy readiness gate')
 check('security-privacy-review.md' in readme, 'README repository structure lists the template')
 
 agents = read('AGENTS.md')
-check('Security, Privacy & Compliance Governance (V2.7 — Additive)' in agents,
-      'AGENTS.md adds V2.7 governance rules')
-check('V2.7 integrates the Security, Privacy & Compliance Intelligence Subsystem' in agents,
-      'AGENTS.md version history still records the V2.7 subsystem')
+check('Security, Privacy & Compliance Governance' in agents and 'security_privacy' in agents,
+      'AGENTS.md preserves security/privacy governance rules')
 check(_ver_at_least(re.search(r'\*\*Version:\*\* (\d+\.\d+\.\d+)', agents).group(1)),
       'AGENTS.md version is >= 2.7.0')
 

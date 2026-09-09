@@ -171,7 +171,8 @@ check("browser-qa/runner.py" and 'environment' in read("browser-qa", "runner.py"
 
 # ---- cross-document wiring --------------------------------------------
 skill = read("SKILL.md")
-check("PHASE 12.25" in skill, "SKILL.md declares PHASE 12.25")
+check("## 7. RELEASE" in skill and "Launch Operations" in skill,
+      "SKILL.md routes release work through the RELEASE stage")
 check("[RELEASE_READY]" in skill, "SKILL.md declares the RELEASE_READY gate")
 check("GATE LAUNCH" in skill, "SKILL.md workflow diagram includes GATE LAUNCH")
 check("Single-Source-of-Truth Rule for `launch_ops`" in skill, "SKILL.md documents the launch_ops SoT rule")
@@ -201,10 +202,12 @@ check("Launch Operations (V2.10) reuses this harness" in bqa,
       "Browser QA protocol notes the V2.10 production-mode reuse -- no second runner")
 
 readme = read("README.md")
-check("V2.10" in readme and "Launch" in readme, "README documents the V2.10 subsystem")
+check("Launch Operations" in readme and "DEPLOYMENT_AUTHORIZED" in readme,
+      "README documents the owner-controlled launch boundary")
 agents = read("AGENTS.md")
 check(ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version >= 2.10.0")
-check("Launch" in agents and "V2.10" in agents, "AGENTS.md adds V2.10 governance")
+check("Launch Operations" in agents and "DEPLOYMENT_AUTHORIZED" in agents,
+      "AGENTS.md preserves Launch Operations governance")
 
 # ---- no secrets --------------------------------------------------------
 SEC = re.compile(r"AKIA[0-9A-Z]{16}|sk_live_[0-9a-zA-Z]{16,}|ghp_[0-9A-Za-z]{30,}|"

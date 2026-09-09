@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 from framework_validation import validator
@@ -17,6 +18,97 @@ from framework_validation import validator
 
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT_VERSION = json.loads((ROOT / "framework-version.json").read_text(encoding="utf-8"))["version"]
+
+KERNEL_STAGES = (
+    "UNDERSTAND",
+    "RESEARCH",
+    "DESIGN",
+    "ASSETS",
+    "BUILD",
+    "VERIFY",
+    "RELEASE",
+)
+
+KERNEL_CAPABILITIES = (
+    "framework_validation",
+    "website_director_core",
+    "discovery_business_understanding",
+    "owner_intent",
+    "information_architecture",
+    "content_structure",
+    "seo",
+    "visual_research",
+    "external_inspiration_reference_research",
+    "design_inspiration_adapter",
+    "awwwards_showcase_benchmarking",
+    "design_intelligence",
+    "archetype_synthesis",
+    "visual_direction",
+    "visual_prototype",
+    "design_system",
+    "motion_direction",
+    "measurement_analytics",
+    "security_privacy",
+    "accessibility",
+    "asset_director",
+    "provenance",
+    "implementation_contract",
+    "build_execution",
+    "gsap_motion_engineering",
+    "cinematic_integration",
+    "signature_choreography",
+    "content_cms_operations",
+    "localization",
+    "application_commerce_auth",
+    "immersive_web",
+    "rive",
+    "page_experience",
+    "browser_qa",
+    "design_qa_impeccable",
+    "website_gauntlet",
+    "production_preflight",
+    "launch_operations",
+    "client_handoff",
+)
+
+ACTIVE_PROTOCOL_CAPABILITIES = {
+    "FRAMEWORK_VALIDATION": "framework_validation",
+    "WEBSITE_DIRECTOR_CORE": "website_director_core",
+    "DESIGN_INSPIRATION_ADAPTER": "design_inspiration_adapter",
+    "CONTENT_OPERATIONS_CMS": "content_cms_operations",
+    "LOCALIZATION_INTERNATIONALIZATION": "localization",
+    "EVIDENCE_PROVENANCE": "provenance",
+    "APPLICATION_COMMERCE_AUTH": "application_commerce_auth",
+}
+
+
+def _kernel_routing_rows() -> list[dict[str, str]]:
+    """Read the human-readable routing table without creating runtime state."""
+    text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    start_marker = "<!-- KERNEL_CAPABILITY_ROUTING_START -->"
+    end_marker = "<!-- KERNEL_CAPABILITY_ROUTING_END -->"
+    start = text.index(start_marker) + len(start_marker)
+    end = text.index(end_marker, start)
+    rows: list[dict[str, str]] = []
+    headers = (
+        "Capability",
+        "Current authority",
+        "Primary stage",
+        "Secondary dependencies",
+        "Required or conditional",
+        "Current state object",
+        "Current gate",
+        "Owner-lock interaction",
+        "Rationale",
+    )
+    for line in text[start:end].splitlines():
+        if not line.lstrip().startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) != len(headers) or cells[0] in {"Capability", ":---"}:
+            continue
+        rows.append(dict(zip(headers, cells)))
+    return rows
 
 
 def _load_json(relative: str) -> object:
@@ -53,6 +145,126 @@ class FrameworkValidationTests(unittest.TestCase):
         profile = _load_json("templates/site-profile.json")
         self.assertIsInstance(profile, dict)
         self.assertEqual(validator.validate_owner_locks(profile), [])
+
+    def test_seven_stage_kernel_routes_every_capability_once(self) -> None:
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        for number, stage in enumerate(KERNEL_STAGES, start=1):
+            self.assertEqual(skill.count(f"## {number}. {stage}"), 1)
+        self.assertNotRegex(skill, r"(?m)^#{1,6}\s+PHASE\s+\d")
+
+        rows = _kernel_routing_rows()
+        counts = Counter(row["Capability"] for row in rows)
+        self.assertEqual(counts, Counter(KERNEL_CAPABILITIES))
+        self.assertTrue(all(row["Primary stage"] in KERNEL_STAGES for row in rows))
+        protocols = _load_json("schemas/protocols.json")
+        for protocol in protocols["protocols"]:
+            if protocol.get("status") == "ACTIVE":
+                with self.subTest(protocol=protocol["id"]):
+                    self.assertIn(protocol["id"], ACTIVE_PROTOCOL_CAPABILITIES)
+                    self.assertIn(ACTIVE_PROTOCOL_CAPABILITIES[protocol["id"]], counts)
+
+        profile = _load_json("templates/site-profile.json")
+        self.assertEqual(
+            set(profile["locks"]),
+            {
+                "design_direction_locked",
+                "information_architecture_locked",
+                "content_structure_locked",
+                "design_system_locked",
+                "motion_direction_locked",
+            },
+        )
+        self.assertIn("OWNER_LOCK_COUNT = 5", skill)
+        for lock in profile["locks"]:
+            self.assertIn(f"| `{lock}` |", skill)
+        self.assertNotIn("homepage_visual_locked", skill)
+        self.assertNotRegex(skill, r"`kernel\.[^`]+`\s*=")
+
+    def test_kernel_preserves_default_path_and_authority_boundaries(self) -> None:
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        path = "UNDERSTAND -> RESEARCH -> DESIGN -> ASSETS -> BUILD -> VERIFY -> RELEASE"
+        self.assertGreaterEqual(skill.count(path), 2)
+        self.assertIn("DEFAULT_PATH_AUTHORITY_COUNT = 7", skill)
+        self.assertIn("GATE BROWSER", skill)
+        self.assertIn("[BROWSER_QA_PASS]", skill)
+        self.assertIn("GATE LAUNCH", skill)
+        self.assertIn("[RELEASE_READY]", skill)
+        self.assertIn("RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED", skill)
+        browser_position = skill.index("[BROWSER-REGRESSION-QA-PROTOCOL")
+        gauntlet_position = skill.index("[WEBSITE-GAUNTLET-PROTOCOL")
+        self.assertLess(browser_position, gauntlet_position)
+        self.assertIn("Browser QA must not become Gauntlet", skill)
+        self.assertIn("Gauntlet must not duplicate Browser QA", skill)
+        self.assertIn("BUILDER != CRITIC", skill)
+
+    def test_conditional_capabilities_use_existing_build_dispatch(self) -> None:
+        rows = {row["Capability"]: row for row in _kernel_routing_rows()}
+        for capability in (
+            "content_cms_operations",
+            "localization",
+            "application_commerce_auth",
+            "immersive_web",
+            "rive",
+            "cinematic_integration",
+            "page_experience",
+            "signature_choreography",
+        ):
+            with self.subTest(capability=capability):
+                self.assertEqual(rows[capability]["Primary stage"], "BUILD")
+                self.assertIn("Conditional", rows[capability]["Required or conditional"])
+
+        for relative in (
+            "schemas/protocols.json",
+            "schemas/gates.json",
+            "schemas/state-ownership.json",
+            "templates/site-profile.json",
+        ):
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertNotRegex(text, r'"kernel(?:[._])')
+
+    def test_agent_comprehension_routes_are_deterministic(self) -> None:
+        rows = {row["Capability"]: row for row in _kernel_routing_rows()}
+
+        visual_direction = rows["visual_prototype"]
+        self.assertEqual(visual_direction["Primary stage"], "DESIGN")
+        self.assertIn("VISUAL-PROTOTYPE-PROTOCOL.md", visual_direction["Current authority"])
+
+        auth = rows["application_commerce_auth"]
+        self.assertEqual(auth["Primary stage"], "BUILD")
+        self.assertIn("APPLICATION-COMMERCE-AUTH-PROTOCOL.md", auth["Current authority"])
+
+        keyboard_accessibility = rows["browser_qa"]
+        self.assertEqual(keyboard_accessibility["Primary stage"], "VERIFY")
+        self.assertIn("Accessibility", keyboard_accessibility["Secondary dependencies"])
+        self.assertIn("keyboard smoke", (ROOT / "SKILL.md").read_text(encoding="utf-8"))
+        self.assertEqual(rows["accessibility"]["Primary stage"], "DESIGN")
+
+        hero_image = rows["asset_director"]
+        self.assertEqual(hero_image["Primary stage"], "ASSETS")
+        self.assertIn("Provenance", hero_image["Secondary dependencies"])
+        self.assertEqual(rows["provenance"]["Primary stage"], "ASSETS")
+
+        production_release = rows["launch_operations"]
+        self.assertEqual(production_release["Primary stage"], "RELEASE")
+        self.assertIn("LAUNCH-OPERATIONS-PROTOCOL.md", production_release["Current authority"])
+
+        competitor_research = rows["visual_research"]
+        self.assertEqual(competitor_research["Primary stage"], "RESEARCH")
+        self.assertIn("VISUAL-RESEARCH-PROTOCOL.md", competitor_research["Current authority"])
+        reference_research = rows["external_inspiration_reference_research"]
+        self.assertEqual(reference_research["Primary stage"], "RESEARCH")
+        self.assertIn("REFERENCE", reference_research["Current authority"])
+
+        changed_brand_direction = rows["visual_direction"]
+        self.assertEqual(changed_brand_direction["Primary stage"], "DESIGN")
+        self.assertIn("owner change request", (ROOT / "SKILL.md").read_text(encoding="utf-8"))
+
+    def test_existing_registered_suite_count_remains_thirteen(self) -> None:
+        registry = _load_json("schemas/test-suites.json")
+        active = [entry for entry in registry["suites"] if entry.get("status") == "ACTIVE"]
+        self.assertEqual(len(active), 13)
+        self.assertEqual(len({entry["id"] for entry in active}), 13)
+        self.assertNotIn("kernel", json.dumps(registry).lower())
 
     def test_protected_inventory_matches_checked_out_projects(self) -> None:
         registry = _load_json("schemas/frozen-projects.json")

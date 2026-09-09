@@ -163,7 +163,8 @@ check("check_accessibility" in cat and "ACCESSIBILITY_REVIEW" in cat,
 
 # ---- cross-document wiring -------------------------------------------------
 skill = read("SKILL.md")
-check("PHASE 6.9" in skill, "SKILL.md declares PHASE 6.9")
+check("## 3. DESIGN" in skill and "ACCESSIBILITY_READY" in skill,
+      "SKILL.md routes accessibility requirements through DESIGN")
 check("[ACCESSIBILITY_READY]" in skill, "SKILL.md declares the ACCESSIBILITY_READY gate")
 check("GATE ACCESSIBILITY" in skill, "SKILL.md workflow diagram includes GATE ACCESSIBILITY")
 check("Single-Source-of-Truth Rule for `accessibility`" in skill, "SKILL.md documents the accessibility SoT rule")
@@ -192,10 +193,12 @@ check("V2.9" in gaunt and ("no new critic" in gaunt.lower() or "No new critic" i
       "Gauntlet adds no new accessibility critic for V2.9")
 
 readme = read("README.md")
-check("V2.9" in readme and "Accessibility" in readme, "README documents the V2.9 subsystem")
+check("Accessibility" in readme and "Browser & Regression QA" in readme,
+      "README documents accessibility within the existing verification boundary")
 agents = read("AGENTS.md")
 check(ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version >= 2.9.0")
-check("Accessibility" in agents and "V2.9" in agents, "AGENTS.md adds V2.9 governance")
+check("Accessibility" in agents and "Browser QA" in agents,
+      "AGENTS.md keeps accessibility and Browser QA governance connected")
 
 # ---- no secrets -----------------------------------------------------------
 SEC = re.compile(r"AKIA[0-9A-Z]{16}|sk_live_[0-9a-zA-Z]{16,}|ghp_[0-9A-Za-z]{30,}|"

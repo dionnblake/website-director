@@ -150,7 +150,8 @@ check(owners.count("browser_qa") == 1, "Exactly one browser_qa completion flag i
 
 # cross-document wiring
 skill = read("SKILL.md")
-check("PHASE 10.5" in skill, "SKILL.md declares PHASE 10.5")
+check("## 6. VERIFY" in skill and "Browser QA" in skill,
+      "SKILL.md routes Browser QA through the VERIFY stage")
 check("[BROWSER_QA_PASS]" in skill, "SKILL.md declares the BROWSER_QA_PASS gate")
 check("GATE BROWSER" in skill, "SKILL.md workflow diagram includes GATE BROWSER")
 check("Single-Source-of-Truth Rule for `browser_qa`" in skill, "SKILL.md documents the browser_qa SoT rule")
