@@ -76,7 +76,7 @@
     {
       "phase": "5",
       "name": "Information Architecture",
-      "protocol": "INFORMATION_ARCHITECTURE",
+      "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": "INFORMATION_ARCHITECTURE_LOCKED",
       "preconditions": ["DESIGN_DIRECTION_LOCKED"],
       "status": "HISTORICAL"
@@ -84,7 +84,7 @@
     {
       "phase": "6",
       "name": "Content Structure",
-      "protocol": "CONTENT_STRUCTURE",
+      "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": "CONTENT_STRUCTURE_LOCKED",
       "preconditions": ["INFORMATION_ARCHITECTURE_LOCKED"],
       "status": "HISTORICAL"

@@ -101,28 +101,6 @@
       "compatibility_pointer": "V2.10 parent lineage"
     },
     {
-      "id": "INFORMATION_ARCHITECTURE",
-      "path": "IMPLEMENTATION-CONTRACT.md",
-      "status": "HISTORICAL",
-      "domain": "information-architecture",
-      "phase": "5",
-      "state_owner": "locks.information_architecture_locked",
-      "supersedes": [],
-      "superseded_by": null,
-      "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
-      "id": "CONTENT_STRUCTURE",
-      "path": "IMPLEMENTATION-CONTRACT.md",
-      "status": "HISTORICAL",
-      "domain": "content-structure",
-      "phase": "6",
-      "state_owner": "locks.content_structure_locked",
-      "supersedes": [],
-      "superseded_by": null,
-      "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
       "id": "CONVERSION_ANALYTICS",
       "path": "CONVERSION-ANALYTICS-PROTOCOL.md",
       "status": "HISTORICAL",

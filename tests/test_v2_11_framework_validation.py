@@ -278,9 +278,6 @@ class FrameworkValidationTests(unittest.TestCase):
             ),
         )
 
-    def test_invalid_state_transition_is_rejected(self) -> None:
-        self.assertFalse(validator.validate_transition_path(["NOT_EVALUATED", "STABILIZED"]))
-
     def test_unknown_gate_owner_is_rejected(self) -> None:
         registry = {
             "gates": [

@@ -13,8 +13,10 @@ used by the bounded V2.15 regression suite.
 
 ## Ownership
 
-`validator.py` owns validation rules, findings, reports, suite execution, and
-read-only mutation evidence. `cinematic_inspiration.py` owns pure registry,
+`validator.py` owns framework validation rules, findings, reports, suite
+execution, and read-only mutation evidence. Launch-state status and transition
+rules remain canonical in `launch-ops/validator.py`; this package consumes that
+validator when checking site profiles. `cinematic_inspiration.py` owns pure registry,
 owner-reference, provider-neutrality, and rendered-visual receipt checks.
 `owner_intent.py` owns the provider-neutral normalization, authority
 precedence, historical/reference boundary, brand-token, contradiction,

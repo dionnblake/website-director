@@ -41,7 +41,7 @@ V2.6 closes the gap between commercial intent and measurable outcome. Website Di
 - **Anti-Fabrication Governance:** `BASELINE = UNKNOWN` where no baseline exists. No invented industry benchmarks. Evidence taxonomy (`OBSERVED` → `EVIDENCE_SUPPORTED` → `HYPOTHESIS` → `EXPERIMENT_CANDIDATE` → `PROVEN`) prevents a hypothesis being presented as fact.
 - **Three Distinct Verification States:** `measurement.complete` (a plan exists) ≠ `measurement.implementation_verified` (instrumentation proven in the build) ≠ `measurement.production_verified` (observed in production). Planning is never reported as production success.
 - **Blocked & Exception Modes:** An unselected analytics provider is honestly `blocked`, not skipped and not faked. Bounded exceptions exist for non-commercial surfaces only.
-- **Supersedes V2.4:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` is absorbed and retained as a pointer. `site-profile.json` → `measurement{}` replaces `cro{}` as the single authoritative state; `cro{}` is grandfathered read-only.
+- **V2.4 compatibility:** CRO analytics guidance is superseded; current projects use `measurement{}`, while historical `cro{}` state remains read-only.
 
 ### What V2.7 Adds (Security, Privacy & Compliance Intelligence)
 V2.7 closes the **production risk governance** gap. Website Director could already design, measure, and refine. It can now also determine: **what security, privacy, consent, data-handling, and disclosure obligations does this website actually create — and what must the build do about them?**

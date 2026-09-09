@@ -15,6 +15,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
   definition.
 - `protocols.json`, `gates.json`, `phases.json`, and `state-ownership.json` own
   lifecycle identity, gate classification, phase order, and state authority.
+- `IMPLEMENTATION_CONTRACT` is the single protocol-registry identity for the
+  shared historical implementation artifact used by phases 5, 6, and 9;
+  information-architecture and content-structure lock identities remain owned
+  by the phase and gate registries.
 - `compatibility.json` owns historical schema and deprecation policy.
 - `frozen-projects.json` owns the protected historical inventory.
 - `test-suites.json` owns discoverable isolated test commands.

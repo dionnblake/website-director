@@ -2,7 +2,7 @@
 
 > **Version:** 2.4.0  
 > **System Status:** `WEBSITE_DIRECTOR_V2_4_CRO_ANALYTICS_EXPERIMENTATION_SYSTEM_CERTIFIED`  
-> **Governance:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md`
+> **Governance:** `CONVERSION-ANALYTICS-PROTOCOL.md` (historical V2.4 semantics)
 
 ---
 
