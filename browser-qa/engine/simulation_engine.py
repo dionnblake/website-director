@@ -6,7 +6,7 @@ Materialises a ``PageObservation`` from a fixture directory:
     <fixture>/qa-fixture.json   -- declared observations, keyed by viewport
 
 This engine launches no browser and opens no socket. It exists so the
-framework's own negative-control validation (tests/test_v2_8_browser_regression_qa.py)
+framework's own negative-control validation (tests/test_browser_qa.py)
 runs anywhere with only the Python standard library, and so authors can dry-run
 a browser-qa plan before a real engine is available. It is NOT a substitute for
 real-browser verification of a generated project.

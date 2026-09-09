@@ -6,6 +6,13 @@
 
 ---
 
+## 0. Approved Homepage Derivation
+
+- **Homepage Source:** `APPROVED_HOMEPAGE` (`visual_prototypes.homepage_visual_approved = true`)
+- **Homepage Approval Reference:** [Owner review ID / rendered evidence path]
+- **Derivation Rule:** This document formalizes the approved homepage's typography, color, spacing, grid, geometry, imagery, component, responsive, accessibility, and motion language. It must not reinterpret or contradict that approved visual direction.
+- **Downstream Rule:** Remaining pages and components inherit this system. A component library, framework, model, or implementation convenience cannot redefine it.
+
 ## 1. Brand Posture & Theme Fundamentals
 - **Archetype Blend:** [e.g., 60% Modernist + 30% Technical + 10% Editorial]
 - **Theme Paradigm:** [Dark Mode Native / Light Mode Native / Dual Theme Toggle]
@@ -222,6 +229,9 @@
 ---
 
 ## 15. Design System Lock Gate
+- [ ] Approved full homepage is rendered, reviewed, and explicitly approved by the owner.
+- [ ] Homepage approval is recorded under the existing `visual_prototypes.homepage_visual_approved` evidence field.
+- [ ] Every token and subsystem above is traceable to the approved homepage; no aesthetic reinterpretation was introduced.
 - [ ] All 14 design system sub-systems validated and populated.
 - [ ] Zero ambiguous styling rules or unmapped tokens.
 - [ ] Ready to lock `DESIGN_SYSTEM_LOCKED` in `site-profile.json`.

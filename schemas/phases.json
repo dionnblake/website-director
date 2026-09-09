@@ -76,7 +76,7 @@
     {
       "phase": "5",
       "name": "Information Architecture",
-      "protocol": "INFORMATION_ARCHITECTURE",
+      "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": "INFORMATION_ARCHITECTURE_LOCKED",
       "preconditions": ["DESIGN_DIRECTION_LOCKED"],
       "status": "HISTORICAL"
@@ -84,7 +84,7 @@
     {
       "phase": "6",
       "name": "Content Structure",
-      "protocol": "CONTENT_STRUCTURE",
+      "protocol": "IMPLEMENTATION_CONTRACT",
       "gate": "CONTENT_STRUCTURE_LOCKED",
       "preconditions": ["INFORMATION_ARCHITECTURE_LOCKED"],
       "status": "HISTORICAL"
@@ -191,14 +191,6 @@
       "protocol": "PAGE_EXPERIENCE",
       "gate": "TRANSITION_READY",
       "preconditions": ["MOTION_DIRECTION_LOCKED"],
-      "status": "HISTORICAL"
-    },
-    {
-      "phase": "8.97",
-      "name": "CRO Analytics Compatibility Layer",
-      "protocol": "CRO_ANALYTICS",
-      "gate": "CRO_MEASUREMENT_READY",
-      "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
       "status": "HISTORICAL"
     },
     {

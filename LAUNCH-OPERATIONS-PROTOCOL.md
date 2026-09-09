@@ -720,7 +720,7 @@ ROLLBACK_REQUIRED → ROLLED_BACK → (PLANNING | RELEASE_READY)
 
 ## 49. Validation scenarios (negative controls)
 
-`tests/test_v2_10_launch_operations.py` and `examples/LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md` prove each scenario:
+`tests/test_release_and_handoff.py` and `examples/LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md` prove each scenario:
 
 | # | Scenario | Expected |
 | :-- | :--- | :--- |

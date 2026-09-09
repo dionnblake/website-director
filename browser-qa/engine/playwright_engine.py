@@ -57,23 +57,49 @@ _MOTION_SNAPSHOT_JS = r"""
         ? selectors : ['[data-motion]', '[data-animate]', '[data-qa-motion]'];
     const nodes = [];
     const seen = new Set();
+    const origin = [];
     for (const selector of wanted) {
         try {
             for (const element of document.querySelectorAll(selector)) {
-                if (!seen.has(element)) { seen.add(element); nodes.push(element); }
+                if (!seen.has(element)) { seen.add(element); nodes.push(element); origin.push(selector); }
             }
         } catch (_) { /* a bad optional selector is recorded by the row */ }
+    }
+    const running = new Map();
+    if (typeof document.getAnimations === 'function') {
+        for (const animation of document.getAnimations({subtree: true})) {
+            const target = animation.effect && animation.effect.target;
+            if (!target) continue;
+            running.set(target, (running.get(target) || 0) + (animation.playState === 'running' ? 1 : 0));
+        }
     }
     const state = nodes.map((element, index) => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
+        const tag = element.tagName.toLowerCase();
+        const media = (tag === 'video' || tag === 'audio') ? element : null;
         return {
             index,
-            selector: wanted[index] || '',
+            selector: origin[index] || '',
+            tag,
+            position: style.position,
             x: Number(rect.x.toFixed(3)), y: Number(rect.y.toFixed(3)),
             width: Number(rect.width.toFixed(3)), height: Number(rect.height.toFixed(3)),
+            // Document-space coordinates.  A static element keeps these constant
+            // while the page scrolls, so ordinary scrolling cannot masquerade as
+            // element movement.
+            doc_x: Number((rect.x + scrollX).toFixed(3)),
+            doc_y: Number((rect.y + scrollY).toFixed(3)),
             opacity: Number(style.opacity), transform: style.transform,
             visibility: style.visibility, display: style.display,
+            clip_path: style.clipPath, filter: style.filter,
+            // An explicit scene/canvas state hook is the supported way for
+            // non-DOM rendering to expose an observable state change.
+            motion_state: element.getAttribute('data-motion-state')
+                || element.getAttribute('data-qa-motion-state') || '',
+            media_time: media ? Number(media.currentTime.toFixed(3)) : null,
+            media_paused: media ? Boolean(media.paused) : null,
+            running_animations: running.get(element) || 0,
             animation_name: style.animationName,
             transition_property: style.transitionProperty
         };
@@ -85,7 +111,84 @@ _MOTION_SNAPSHOT_JS = r"""
             current_time: animation.currentTime
         })) : [];
     return {scroll_x: Number(scrollX.toFixed(3)), scroll_y: Number(scrollY.toFixed(3)),
+            document_height: document.documentElement.scrollHeight,
+            target_count: state.length,
             nodes: state, animations};
+}
+"""
+
+
+# The response comparison deliberately separates the stimulus (scrolling, an
+# input event) from the element/scene response.  Raw viewport displacement of a
+# static element is a consequence of scrolling the document, never evidence of
+# choreography, so it is excluded from every meaningfulness signal below.
+_MOTION_COMPARE_JS = r"""
+([before, after]) => {
+    const beforeNodes = before.nodes || [], afterNodes = after.nodes || [];
+    const count = Math.max(beforeNodes.length, afterNodes.length);
+    const changed = [];
+    let geometry = 0, opacity = 0, transform = 0, viewportGeometry = 0;
+    let mediaTime = 0, stateChanges = 0, pinned = 0, running = 0;
+    const unsupported = [];
+    for (let i = 0; i < count; i++) {
+        const a = beforeNodes[i] || {}, b = afterNodes[i] || {};
+        const isPinned = ['fixed', 'sticky'].indexOf(b.position || a.position) >= 0;
+        if (isPinned) pinned += 1;
+        const sizeDelta = Math.max(Math.abs((a.width || 0) - (b.width || 0)),
+                                   Math.abs((a.height || 0) - (b.height || 0)));
+        const viewportDelta = Math.max(Math.abs((a.x || 0) - (b.x || 0)),
+                                       Math.abs((a.y || 0) - (b.y || 0)));
+        const documentDelta = Math.max(Math.abs((a.doc_x || 0) - (b.doc_x || 0)),
+                                       Math.abs((a.doc_y || 0) - (b.doc_y || 0)));
+        // A pinned element answers scrolling by holding its viewport position,
+        // so its response is measured in the viewport frame.  Everything else
+        // is measured in document space, which cancels ancestor scrolling.
+        const responseDelta = Math.max(sizeDelta, isPinned ? viewportDelta : documentDelta);
+        const od = Math.abs((a.opacity == null ? 1 : a.opacity) - (b.opacity == null ? 1 : b.opacity));
+        const td = a.transform === b.transform ? 0 : 1;
+        geometry = Math.max(geometry, responseDelta);
+        viewportGeometry = Math.max(viewportGeometry, viewportDelta);
+        opacity = Math.max(opacity, od);
+        transform = Math.max(transform, td);
+        running = Math.max(running, b.running_animations || 0, a.running_animations || 0);
+        if (responseDelta > 0.5) changed.push('geometry');
+        if (od > 0.01) changed.push('opacity');
+        if (td) changed.push('transform');
+        if (a.visibility !== b.visibility || a.display !== b.display) changed.push('visibility');
+        if ((a.clip_path || '') !== (b.clip_path || '')) changed.push('clip');
+        if ((a.filter || '') !== (b.filter || '')) changed.push('filter');
+        if ((a.motion_state || '') !== (b.motion_state || '')) { changed.push('motion_state'); stateChanges += 1; }
+        if (a.media_time != null && b.media_time != null) {
+            const delta = Math.abs(a.media_time - b.media_time);
+            mediaTime = Math.max(mediaTime, delta);
+            if (delta > 0.01) changed.push('media_time');
+        }
+        // DOM geometry does not measure the pixels a canvas paints.  Say so
+        // instead of reporting a silent non-observation as "no motion".
+        if ((b.tag || a.tag) === 'canvas' && !(b.motion_state || a.motion_state)
+                && !(b.running_animations || a.running_animations)) {
+            unsupported.push(b.selector || a.selector || 'canvas');
+        }
+    }
+    const scroll = Math.abs((before.scroll_y || 0) - (after.scroll_y || 0));
+    const properties = [...new Set(changed)];
+    return {
+        changed_properties: properties,
+        max_geometry_delta: geometry,
+        max_opacity_delta: opacity,
+        max_transform_delta: transform,
+        max_media_time_delta: mediaTime,
+        raw_viewport_geometry_delta: viewportGeometry,
+        pinned_target_count: pinned,
+        running_animation_count: running,
+        motion_state_changes: stateChanges,
+        unsupported_targets: [...new Set(unsupported)],
+        // The stimulus is reported for context only.  It is never a response.
+        stimulus_scroll_delta: scroll,
+        scroll_delta: scroll,
+        state_changed: properties.length > 0,
+        meaningful_state_change: properties.length > 0
+    };
 }
 """
 
@@ -327,6 +430,98 @@ _NAV_STATE_JS = r"""
 """
 
 
+_CLEAN_ROOM_MORPHOLOGY_JS = r"""
+() => {
+    const visible = element => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return !element.hidden && style.display !== 'none'
+            && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+    };
+    const rect = element => {
+        const value = element.getBoundingClientRect();
+        return {x: Number(value.x.toFixed(3)), y: Number(value.y.toFixed(3)),
+                width: Number(value.width.toFixed(3)), height: Number(value.height.toFixed(3))};
+    };
+    const mediaSelector = 'img, picture, video, figure, [role="img"]';
+    const sections = [...document.querySelectorAll('main > section, section')]
+        .filter(visible).map((section, index) => {
+            const sectionRect = section.getBoundingClientRect();
+            const children = [...section.children].filter(visible);
+            const columns = children.filter(child => {
+                const childRect = child.getBoundingClientRect();
+                return childRect.width < sectionRect.width * 0.8
+                    && childRect.width > 0;
+            });
+            const sectionMedia = [...section.querySelectorAll(mediaSelector)].filter(visible);
+            const style = getComputedStyle(section);
+            const borderCount = [...section.querySelectorAll('article, div, figure, section')]
+                .filter(visible).filter(element => {
+                    const computed = getComputedStyle(element);
+                    return parseFloat(computed.borderTopWidth) > 0
+                        || parseFloat(computed.borderRightWidth) > 0
+                        || parseFloat(computed.borderBottomWidth) > 0
+                        || parseFloat(computed.borderLeftWidth) > 0;
+                }).length;
+            const mediaArea = sectionMedia.reduce((total, element) => {
+                const value = element.getBoundingClientRect();
+                return total + (value.width * value.height);
+            }, 0);
+            const firstColumn = columns[0] && columns[0].getBoundingClientRect();
+            const firstMedia = sectionMedia[0] && sectionMedia[0].getBoundingClientRect();
+            const mediaOnRight = firstMedia
+                ? firstMedia.x + firstMedia.width / 2 > sectionRect.x + sectionRect.width / 2
+                : null;
+            return {
+                index, ...rect(section), column_count: columns.length,
+                column_alignment: mediaOnRight !== null
+                    ? (mediaOnRight ? 'RIGHT' : 'LEFT')
+                    : (firstColumn && firstColumn.x < sectionRect.x + sectionRect.width / 2
+                        ? 'LEFT' : 'RIGHT'),
+                media_count: sectionMedia.length, media_area: mediaArea,
+                border_count: borderCount, display: style.display
+            };
+        });
+    const hero = sections[0] || {};
+    const allMedia = [...document.querySelectorAll(mediaSelector)].filter(visible);
+    const mediaArea = allMedia.reduce((total, element) => {
+        const value = element.getBoundingClientRect();
+        return total + (value.width * value.height);
+    }, 0);
+    const pageArea = Math.max(1, innerWidth * document.documentElement.scrollHeight);
+    const containers = [...document.querySelectorAll('main article, main section, main div, main figure')]
+        .filter(visible).filter(element => {
+            const style = getComputedStyle(element);
+            return parseFloat(style.borderTopWidth) > 0 || parseFloat(style.borderRightWidth) > 0
+                || parseFloat(style.borderBottomWidth) > 0 || parseFloat(style.borderLeftWidth) > 0;
+        });
+    const roundShapes = [...document.querySelectorAll('main *')].filter(visible).filter(element => {
+        const value = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return value.width > 20 && value.height > 20 && Math.abs(value.width - value.height) < 12
+            && style.borderRadius !== '0px' && style.borderRadius !== '0%';
+    });
+    const ctaCandidates = [...document.querySelectorAll('main a, main button')].filter(visible);
+    const cta = ctaCandidates.length ? rect(ctaCandidates[0]) : {};
+    const heading = document.querySelector('main h1, main h2, h1, h2');
+    const headingStyle = heading ? getComputedStyle(heading) : {};
+    const gaps = sections.slice(1).map((section, index) => {
+        const previous = sections[index];
+        return Math.max(0, section.y - (previous.y + previous.height));
+    });
+    return {
+        evidence_kind: 'BROWSER_LAYOUT', viewport_width: innerWidth,
+        viewport_height: innerHeight, document_height: document.documentElement.scrollHeight,
+        hero, sections, media_area_ratio: mediaArea / pageArea,
+        bordered_container_count: containers.length, round_shape_count: roundShapes.length,
+        average_section_gap: gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0,
+        cta, heading_font_family: headingStyle.fontFamily || ''
+    };
+}
+"""
+
+
 class PlaywrightEngine(BrowserQAEngine):
     name = "playwright"
     supports_real_browser = True
@@ -397,7 +592,17 @@ class PlaywrightEngine(BrowserQAEngine):
         assert self._pw is not None, "PlaywrightEngine.start() was not called"
         btype = {"chromium": self._pw.chromium, "firefox": self._pw.firefox,
                  "webkit": self._pw.webkit}[browser]
-        b = btype.launch(headless=True)
+        # An already-installed system browser is used when the plan names one.
+        # This keeps the adapter on existing dependencies instead of requiring a
+        # separate binary download; the default is unchanged.
+        launch_kwargs = {"headless": bool((self.config or {}).get("headless", True))}
+        channel = (self.config or {}).get("browser_channel")
+        executable = (self.config or {}).get("browser_executable_path")
+        if channel and browser == "chromium":
+            launch_kwargs["channel"] = str(channel)
+        if executable:
+            launch_kwargs["executable_path"] = str(executable)
+        b = btype.launch(**launch_kwargs)
         obs = PageObservation(route=route, viewport=viewport, engine=self.name,
                               browser=browser, reduced_motion=reduced_motion)
         obs.raw["engine_identity"] = "REAL_BROWSER"
@@ -537,10 +742,59 @@ class PlaywrightEngine(BrowserQAEngine):
             obs.perf = PerfSample(lcp_ms=perf.get("lcp"), cls=perf.get("cls"),
                                   measurement_kind="SYNTHETIC")
 
-            shot = page.screenshot(full_page=str(capture).upper() == "FULL_PAGE")
+            # A full-page claim is only honest once webfonts and in-viewport
+            # media have settled, so the capture is not a half-laid-out page.
+            capture_mode = str(capture).upper()
+            try:
+                page.evaluate("() => document.fonts && document.fonts.ready")
+                page.wait_for_load_state("networkidle")
+            except Exception:  # noqa: BLE001 - readiness is best-effort, never a silent failure
+                obs.raw["render_readiness"] = "PARTIAL"
+            else:
+                obs.raw["render_readiness"] = "FONTS_AND_NETWORK_IDLE"
+            if capture_mode == "FULL_PAGE":
+                # A whole-page review capture must give lazily loaded below-fold
+                # media its chance to load.  Without this pass the capture shows
+                # empty frames and the reader mistakes ordinary lazy loading for
+                # missing imagery.  Motion is already measured by this point.
+                page.evaluate(
+                    """async () => {
+                        const step = Math.max(200, innerHeight);
+                        for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+                            scrollTo(0, y);
+                            await new Promise(done => setTimeout(done, 60));
+                        }
+                        scrollTo(0, 0);
+                        await new Promise(done => setTimeout(done, 150));
+                    }""")
+                try:
+                    page.wait_for_load_state("networkidle")
+                except Exception:  # noqa: BLE001 - readiness is best-effort
+                    obs.raw["render_readiness"] = "PARTIAL"
+            shot = page.screenshot(full_page=capture_mode == "FULL_PAGE")
             obs.render_signature = __import__("hashlib").sha256(shot).hexdigest()[:16]
             obs.raw["screenshot_bytes"] = shot
-            obs.raw["render_capture"] = str(capture).upper()
+            obs.raw["render_capture"] = capture_mode
+            # Measured after the capture: a full-page screenshot scrolls the
+            # document, so image completeness read beforehand would report the
+            # ordinary lazy-loading of below-fold media as a capture defect.
+            page_metrics = page.evaluate(
+                """() => ({
+                    scroll_height: document.documentElement.scrollHeight,
+                    client_height: document.documentElement.clientHeight,
+                    client_width: document.documentElement.clientWidth,
+                    below_fold_elements: [...document.body.querySelectorAll('*')].filter(node => {
+                        const rect = node.getBoundingClientRect();
+                        return rect.height > 0 && rect.width > 0
+                            && (rect.top + scrollY) > document.documentElement.clientHeight;
+                    }).length,
+                    images_total: document.images.length,
+                    images_complete: [...document.images].filter(img => img.complete
+                        && img.naturalWidth > 0).length
+                })""")
+            obs.raw["page_metrics"] = page_metrics
+            if (self.config or {}).get("capture_morphology_evidence"):
+                obs.raw["rendered_morphology_evidence"] = page.evaluate(_CLEAN_ROOM_MORPHOLOGY_JS)
             if (self.config or {}).get("capture_render_artifacts"):
                 obs.raw["rendered_dom"] = page.content()
                 obs.raw["rendered_css"] = page.evaluate(
@@ -576,6 +830,16 @@ class PlaywrightEngine(BrowserQAEngine):
         Motion exercise is opt-in through the existing runtime-observation
         block. The adapter only emits measurements; policy and owner-level
         interpretation remain in the assertion/framework validators.
+
+        Three properties of the measurement matter downstream:
+
+        * the stimulus (scrolling, a click) is recorded separately from the
+          element/scene response, and only the response can prove choreography;
+        * a promised target that could not be found, triggered, or observed with
+          the available mechanism is reported as unobserved rather than as an
+          absence of motion;
+        * a family label is only claimed when the sequence declared one or the
+          adapter actually measured the property it names.
         """
 
         cfg = self._runtime_observation_cfg("motion")
@@ -587,7 +851,7 @@ class PlaywrightEngine(BrowserQAEngine):
                 "sequence_id": "runtime-motion",
                 "selectors": cfg.get("selectors", []),
                 "action": cfg.get("action"),
-                "family": cfg.get("family", "RUNTIME_STATE_CHANGE"),
+                "family": cfg.get("family"),
             }]
         interval_ms = max(20, int(cfg.get("sample_interval_ms", 80)))
         sample_count = max(2, min(8, int(cfg.get("sample_count", 3))))
@@ -595,60 +859,92 @@ class PlaywrightEngine(BrowserQAEngine):
         for index, raw_sequence in enumerate(raw_sequences):
             sequence = raw_sequence if isinstance(raw_sequence, dict) else {"sequence_id": str(raw_sequence)}
             sequence_id = sequence.get("sequence_id") or sequence.get("id") or "sequence-%d" % (index + 1)
-            selectors = sequence.get("selectors") or cfg.get("selectors") or []
+            selectors = sequence.get("selectors") or sequence.get("selector") or cfg.get("selectors") or []
             if isinstance(selectors, str):
                 selectors = [selectors]
             before = page.evaluate(_MOTION_SNAPSHOT_JS, list(selectors))
-            action = sequence.get("action")
-            if isinstance(action, dict):
-                _apply_interaction(page, action)
-            elif isinstance(action, str):
-                _apply_interaction(page, {"action": action, "selector": sequence.get("selector", "")})
+            target_count = int(before.get("target_count", 0) or 0)
+
+            action = sequence.get("action") or sequence.get("trigger")
+            trigger_name, trigger_applied, trigger_error = "NONE", None, None
+            if action is not None:
+                step = action if isinstance(action, dict) else {
+                    "action": str(action), "selector": sequence.get("selector", "")}
+                trigger_name = str(step.get("action") or action)
+                try:
+                    _apply_interaction(page, step)
+                    trigger_applied = True
+                except Exception as exc:  # noqa: BLE001 - an unapplied trigger is reported, not hidden
+                    trigger_applied = False
+                    trigger_error = "%s: %s" % (type(exc).__name__, exc)
+
             samples = [before]
             for sample_index in range(sample_count):
                 page.wait_for_timeout(interval_ms if sample_index or not action else max(20, interval_ms // 2))
                 samples.append(page.evaluate(_MOTION_SNAPSHOT_JS, list(selectors)))
             after = samples[-1]
-            measured = page.evaluate(
-                """([before, after]) => {
-                    const beforeNodes = before.nodes || [], afterNodes = after.nodes || [];
-                    const count = Math.max(beforeNodes.length, afterNodes.length);
-                    const changed = [];
-                    let geometry = 0, opacity = 0, transform = 0;
-                    for (let i = 0; i < count; i++) {
-                        const a = beforeNodes[i] || {}, b = afterNodes[i] || {};
-                        const dx = Math.max(Math.abs((a.x || 0) - (b.x || 0)),
-                            Math.abs((a.y || 0) - (b.y || 0)),
-                            Math.abs((a.width || 0) - (b.width || 0)),
-                            Math.abs((a.height || 0) - (b.height || 0)));
-                        const od = Math.abs((a.opacity == null ? 1 : a.opacity)
-                            - (b.opacity == null ? 1 : b.opacity));
-                        const td = a.transform === b.transform ? 0 : 1;
-                        geometry = Math.max(geometry, dx); opacity = Math.max(opacity, od);
-                        transform = Math.max(transform, td);
-                        if (dx > 0.5) changed.push('geometry');
-                        if (od > 0.01) changed.push('opacity');
-                        if (td) changed.push('transform');
-                        if (a.visibility !== b.visibility || a.display !== b.display) changed.push('visibility');
-                    }
-                    const scroll = Math.abs((before.scroll_y || 0) - (after.scroll_y || 0));
-                    if (scroll > 0.5) changed.push('scroll');
-                    return {state_changed: Boolean(changed.length), changed_properties: [...new Set(changed)],
-                        max_geometry_delta: geometry, max_opacity_delta: opacity,
-                        max_transform_delta: transform, scroll_delta: scroll,
-                        meaningful_state_change: geometry > 0.5 || opacity > 0.01 || transform > 0 || scroll > 0.5};
-                }""", [before, after])
+            measured = page.evaluate(_MOTION_COMPARE_JS, [before, after])
+            steps = [page.evaluate(_MOTION_COMPARE_JS, [samples[i], samples[i + 1]])
+                     for i in range(len(samples) - 1)]
+
+            observed_states = []
+            if target_count:
+                observed_states.append("START")
+            if any(step.get("changed_properties") for step in steps):
+                observed_states.append("CHANGE")
+            if measured.get("changed_properties") and steps and not steps[-1].get("changed_properties"):
+                observed_states.append("SETTLE")
+
+            unsupported = list(measured.get("unsupported_targets", []))
+            if not target_count:
+                supported, unsupported_reason = False, (
+                    "TARGET_NOT_FOUND: no element matched %s" % (list(selectors) or "the default motion selectors"))
+            elif trigger_applied is False:
+                supported, unsupported_reason = False, (
+                    "TRIGGER_NOT_APPLIED: %s (%s)" % (trigger_name, trigger_error))
+            elif unsupported:
+                supported, unsupported_reason = False, (
+                    "OBSERVATION_MECHANISM_UNSUPPORTED: DOM geometry does not measure canvas content for %s; "
+                    "expose data-motion-state or a Web Animation to make it observable" % ",".join(unsupported))
+            else:
+                supported, unsupported_reason = True, None
+
+            declared_family = sequence.get("family") or sequence.get("animation_family")
+            if declared_family:
+                family, family_source = str(declared_family), "DECLARED"
+            else:
+                properties = set(measured.get("changed_properties", []))
+                family = ("MEASURED_TRANSFORM" if "transform" in properties else
+                          "MEASURED_MEDIA_SCRUB" if "media_time" in properties else
+                          "MEASURED_MASK" if properties & {"clip", "filter"} else
+                          "MEASURED_STATE" if "motion_state" in properties else
+                          "MEASURED_GEOMETRY" if "geometry" in properties else
+                          "MEASURED_OPACITY" if "opacity" in properties else
+                          "MEASURED_VISIBILITY" if "visibility" in properties else
+                          "MEASURED_NONE")
+                family_source = "MEASURED"
+
             rows.append({
                 "sequence_id": str(sequence_id),
                 "route": route,
-                "family": sequence.get("family") or sequence.get("animation_family") or
-                          ("SCROLL_DRIVEN" if isinstance(action, dict) and action.get("action") == "scroll_to" else "RUNTIME_STATE_CHANGE"),
+                "family": family,
+                "family_source": family_source,
                 "runtime_observed": True,
                 "engine_identity": "REAL_BROWSER",
+                "selectors": list(selectors),
+                "target_count": target_count,
+                "trigger": trigger_name,
+                "trigger_applied": trigger_applied,
+                "trigger_error": trigger_error,
+                "observation_supported": supported,
+                "unsupported_reason": unsupported_reason,
+                "required_states": list(sequence.get("required_states", []) or []),
+                "observed_states": observed_states,
                 "initial_state": before,
                 "settled_state": after,
                 "sample_count": len(samples),
                 "samples": samples,
+                "step_measurements": steps,
                 "animation_names": sorted({str(item.get("name", "")) for sample in samples
                                              for item in sample.get("animations", []) if item.get("name")}),
                 "implementation_ref": sequence.get("implementation_ref") or sequence.get("location"),

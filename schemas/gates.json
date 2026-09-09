@@ -272,15 +272,6 @@
       "status": "HISTORICAL"
     },
     {
-      "name": "CRO_MEASUREMENT_READY",
-      "type": "READINESS",
-      "authoritative_state": "cro.measurement_ready",
-      "phase": "8.97",
-      "owner_protocol": "CRO_ANALYTICS",
-      "owner_artifact": "templates/experiment-brief.md",
-      "status": "HISTORICAL"
-    },
-    {
       "name": "BROWSER_QA_PASS",
       "type": "VERIFICATION",
       "authoritative_state": "browser_qa.complete",

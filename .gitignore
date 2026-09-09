@@ -51,6 +51,7 @@ axe.min.js
 .pytest_cache/
 .mypy_cache/
 .coverage
+.clean-room-runs/
 framework-validation/reports/runtime/*
 !framework-validation/reports/runtime/.gitkeep
 framework-validation/reports/2.13.0-certification.json

@@ -71,7 +71,7 @@ ID | Scenario Description                     | Canonical Evidence Level  | Resu
 ### CASE 03: SHOWCASE Project Requires 3 Distinct Visual Prototypes
 - **Context:** Thalassa Instruments Hadal Exploration (`CREATIVE_AMBITION = SHOWCASE`).
 - **Evidence Level:** `LIVE_PROJECT_VALIDATED`
-- **Execution:** Website Director enforces `direction_count = 3`. Generated 3 real browser-rendered prototypes in `projects/v1-9-visual-prototype-certification-pilot/prototypes/direction-01..03`.
+- **Execution:** Website Director enforces `direction_count = 3`. The compatibility fixture retains the three-direction evidence contract; archived rendered artifacts are recoverable from Git history.
 - **Result:** 3 full browser slices created and rendered. PASSED.
 
 ### CASE 04: Three Prototypes That Are Merely Style Variants Fail DIRECTION_DIVERGENCE
@@ -105,7 +105,7 @@ ID | Scenario Description                     | Canonical Evidence Level  | Resu
 - **Result:** Owner signal preserved as top priority. PASSED.
 
 ### CASE 09: Prototype Creation Does NOT Set Design Direction Lock
-- **Context:** Prototypes generated in `projects/v1-9-visual-prototype-certification-pilot/prototypes/`.
+- **Context:** Prototypes represented by the synthetic compatibility fixture; archived rendered artifacts are Git-history-only.
 - **Evidence Level:** `SCHEMA_VALIDATED`
 - **Execution:** Check `locks.design_direction_locked`.
 - **Result:** `locks.design_direction_locked` remains `false`. `visual_prototypes.status = "ready_for_owner_review"`. PASSED.
@@ -153,7 +153,7 @@ ID | Scenario Description                     | Canonical Evidence Level  | Resu
 - **Result:** Exactly 5 locks preserved. Zero duplicate lock fields. PASSED.
 
 ### CASE0017: Historical Projects Parse Without Mutation
-- **Context:** Parse pre-V1.9 pilots (`alpha-starts-now`, `v1-1-architecture-pilot`, `v1-6-marine-chronometry-pilot`, etc.).
+- **Context:** Parse pre-V1.9 compatibility profiles from `tests/fixtures/historical-profiles.json`.
 - **Evidence Level:** `EXECUTABLY_TESTED`
 - **Execution:** Python schema validation script checks all 8 historical profiles.
 - **Result:** 100% clean parse, zero schema crashes, zero retroactive mutations. PASSED.

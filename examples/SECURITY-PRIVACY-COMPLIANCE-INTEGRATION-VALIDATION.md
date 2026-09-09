@@ -360,7 +360,7 @@ Each scenario exercises one invariant of the subsystem against a synthetic proje
 
 ## Scenario K — Pre-Upgrade Frozen Project
 
-**Profile:** `projects/v2-4-cro-analytics-certification-pilot` — a frozen certification pilot at `schema_version = 2.4.0`, with no `security_privacy{}` object and no `measurement{}` object.
+**Profile:** Synthetic V2.4 compatibility fixture — a frozen schema at `schema_version = 2.4.0`, with no `security_privacy{}` object and no `measurement{}` object.
 
 **Subsystem execution:**
 

@@ -15,10 +15,18 @@ validation-manifest contracts for Website Director Capability 6, the additive
   definition.
 - `protocols.json`, `gates.json`, `phases.json`, and `state-ownership.json` own
   lifecycle identity, gate classification, phase order, and state authority.
+- `IMPLEMENTATION_CONTRACT` is the single protocol-registry identity for the
+  shared historical implementation artifact used by phases 5, 6, and 9;
+  information-architecture and content-structure lock identities remain owned
+  by the phase and gate registries.
 - `compatibility.json` owns historical schema and deprecation policy.
-- `frozen-projects.json` owns the protected historical inventory.
+- `frozen-projects.json` owns the active protected-project inventory. Historical
+  certification project recovery is proved by the Wave 3 external manifest and
+  Git history, not by a second in-checkout registry.
 - `test-suites.json` owns discoverable isolated test commands.
 - `validation-manifest.json` owns source roots and report destinations.
+  The bounded design-first operating-mode suite is registered there without
+  creating a new lifecycle phase, gate, state authority, or owner lock.
 - `inspiration-source-registry.schema.json` owns the bounded owner-selectable
   inspiration-source record shape. The current registry template is
   `templates/inspiration-source-registry.json`; it remains reference-only and
@@ -52,9 +60,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
   reference it but must not become competing version authorities.
 - The current owner-lock set is exactly five names and no registry may add a
   sixth lock.
-- Historical entries are explicit and non-authoritative. This corrected V2.11
-  checkout carries the complete certified V2.10 corpus; missing registered
-  artifacts are validation failures, not migration permission.
+- Historical compatibility entries are explicit and non-authoritative. The
+  protected registry contains only the five active Alpha Starts Now projects;
+  missing registered artifacts remain validation failures, not migration
+  permission.
 - Framework-validation state is external to the site profile.
 - The current framework version is 2.15.0. The content-operations,
   localization, application, and provenance readiness gates are not owner
@@ -71,7 +80,7 @@ validator, tests, protocol, and affected DOX when a durable contract changes.
 
 ## Verification
 
-Run `python -m unittest tests.test_v2_11_framework_validation` and
+Run `python -m unittest tests.test_framework_validation` and
 `python -m framework_validation --run-suites`. Validate every JSON file under
 the manifest's canonical roots, including evidence-ledger.schema.json,
 localization-manifest.schema.json, application-module-registry.schema.json,

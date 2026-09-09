@@ -101,35 +101,13 @@
       "compatibility_pointer": "V2.10 parent lineage"
     },
     {
-      "id": "INFORMATION_ARCHITECTURE",
-      "path": "IMPLEMENTATION-CONTRACT.md",
-      "status": "HISTORICAL",
-      "domain": "information-architecture",
-      "phase": "5",
-      "state_owner": "locks.information_architecture_locked",
-      "supersedes": [],
-      "superseded_by": null,
-      "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
-      "id": "CONTENT_STRUCTURE",
-      "path": "IMPLEMENTATION-CONTRACT.md",
-      "status": "HISTORICAL",
-      "domain": "content-structure",
-      "phase": "6",
-      "state_owner": "locks.content_structure_locked",
-      "supersedes": [],
-      "superseded_by": null,
-      "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
       "id": "CONVERSION_ANALYTICS",
       "path": "CONVERSION-ANALYTICS-PROTOCOL.md",
       "status": "HISTORICAL",
       "domain": "conversion-analytics",
       "phase": "6.5",
       "state_owner": "measurement.complete",
-      "supersedes": ["CRO_ANALYTICS"],
+      "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "V2.6 canonical state"
     },
@@ -220,17 +198,6 @@
       "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
-      "id": "CRO_ANALYTICS",
-      "path": "CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md",
-      "status": "SUPERSEDED",
-      "domain": "conversion-analytics",
-      "phase": "8.97",
-      "state_owner": "cro.complete",
-      "supersedes": [],
-      "superseded_by": "CONVERSION_ANALYTICS",
-      "compatibility_pointer": "Grandfathered V2.4 and V2.5 history only"
     },
     {
       "id": "IMPLEMENTATION_CONTRACT",

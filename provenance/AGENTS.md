@@ -39,7 +39,7 @@ Keep historical project artifacts readable and do not retrofit frozen pilots.
 
 ## Verification
 
-Run python tests/test_v2_12_evidence_asset_provenance.py, then
+Run python tests/test_asset_provenance.py, then
 python -m framework_validation. Tests use disposable synthetic fixtures and
 must leave projects/ unchanged.
 

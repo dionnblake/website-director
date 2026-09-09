@@ -4,7 +4,7 @@
 > **Schema Version:** 2.4.0  
 > **Experiment ID:** [experiment-id-slug]  
 > **Status:** `DRAFT` | `READY` | `RUNNING` | `PAUSED` | `COMPLETED` | `INVALIDATED`  
-> **Governance:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md`
+> **Governance:** `CONVERSION-ANALYTICS-PROTOCOL.md` (historical V2.4 template)
 
 ---
 

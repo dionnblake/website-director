@@ -3,7 +3,8 @@
 The validator checks framework governance artifacts, not generated website
 quality. It reads source files, runs only explicitly registered local suites,
 protects registered frozen projects with the V2.8 ``FrozenIntegrityGuard``,
-and writes reports only to the designated validation-report paths.
+delegates launch-state validation to ``launch-ops/validator.py``, and writes
+reports only to the designated validation-report paths.
 """
 
 from __future__ import annotations
@@ -63,47 +64,43 @@ MARKER_VERSION_RE = re.compile(
 )
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))[^)]*\)")
 HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*#*\s*$", re.MULTILINE)
-SOURCE_IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache"}
+SOURCE_IGNORED_DIRS = {".git", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", ".clean-room-runs"}
 REPORT_RUNTIME_PREFIX = "framework-validation/reports/runtime/"
 REPORT_CERTIFICATION_PREFIX = "framework-validation/reports/"
 RUNTIME_SOURCE_PREFIXES = (REPORT_RUNTIME_PREFIX, "browser-qa/evidence/")
 
-LAUNCH_STATUSES = (
-    "NOT_EVALUATED",
-    "PLANNING",
-    "BLOCKED",
-    "RELEASE_READY",
-    "AWAITING_DEPLOYMENT_AUTHORIZATION",
-    "DEPLOYMENT_AUTHORIZED",
-    "DEPLOYING",
-    "DEPLOYED",
-    "PRODUCTION_VERIFICATION_RUNNING",
-    "PRODUCTION_VERIFICATION_FAILED",
-    "PRODUCTION_VERIFIED",
-    "POST_LAUNCH_MONITORING",
-    "STABILIZED",
-    "ROLLBACK_REQUIRED",
-    "ROLLED_BACK",
-    "EXCEPTION_APPLIED",
-)
-LAUNCH_TRANSITIONS: dict[str, tuple[str, ...]] = {
-    "NOT_EVALUATED": ("PLANNING", "EXCEPTION_APPLIED"),
-    "PLANNING": ("PLANNING", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "BLOCKED": ("PLANNING", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "RELEASE_READY": ("AWAITING_DEPLOYMENT_AUTHORIZATION", "BLOCKED", "PLANNING", "EXCEPTION_APPLIED"),
-    "AWAITING_DEPLOYMENT_AUTHORIZATION": ("DEPLOYMENT_AUTHORIZED", "BLOCKED", "RELEASE_READY", "EXCEPTION_APPLIED"),
-    "DEPLOYMENT_AUTHORIZED": ("DEPLOYING", "BLOCKED", "EXCEPTION_APPLIED"),
-    "DEPLOYING": ("DEPLOYED", "PRODUCTION_VERIFICATION_FAILED", "ROLLBACK_REQUIRED", "BLOCKED"),
-    "DEPLOYED": ("PRODUCTION_VERIFICATION_RUNNING", "ROLLBACK_REQUIRED", "BLOCKED"),
-    "PRODUCTION_VERIFICATION_RUNNING": ("PRODUCTION_VERIFIED", "PRODUCTION_VERIFICATION_FAILED", "ROLLBACK_REQUIRED"),
-    "PRODUCTION_VERIFICATION_FAILED": ("PRODUCTION_VERIFICATION_RUNNING", "ROLLBACK_REQUIRED", "BLOCKED", "DEPLOYMENT_AUTHORIZED"),
-    "PRODUCTION_VERIFIED": ("POST_LAUNCH_MONITORING", "ROLLBACK_REQUIRED"),
-    "POST_LAUNCH_MONITORING": ("STABILIZED", "ROLLBACK_REQUIRED", "PRODUCTION_VERIFICATION_RUNNING"),
-    "STABILIZED": ("STABILIZED", "ROLLBACK_REQUIRED"),
-    "ROLLBACK_REQUIRED": ("ROLLED_BACK", "BLOCKED"),
-    "ROLLED_BACK": ("PLANNING", "RELEASE_READY", "BLOCKED", "EXCEPTION_APPLIED"),
-    "EXCEPTION_APPLIED": ("EXCEPTION_APPLIED", "PLANNING"),
-}
+
+def _load_launch_ops_validator() -> Optional[Any]:
+    """Load the canonical launch validator from its hyphenated package path."""
+
+    validator_path = Path(__file__).resolve().parents[1] / "launch-ops" / "validator.py"
+    spec = importlib.util.spec_from_file_location("website_director_launch_ops_validator", validator_path)
+    if spec is None or spec.loader is None:
+        return None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    try:
+        spec.loader.exec_module(module)
+    except Exception:  # pragma: no cover - failure is surfaced as existing validation errors
+        sys.modules.pop(spec.name, None)
+        return None
+    return module
+
+
+_LAUNCH_OPS_VALIDATOR = _load_launch_ops_validator()
+
+
+def _launch_statuses() -> tuple[str, ...]:
+    if _LAUNCH_OPS_VALIDATOR is None:
+        return ()
+    return tuple(_LAUNCH_OPS_VALIDATOR.LAUNCH_STATUSES)
+
+
+def _launch_transition_error(path: Sequence[str]) -> Optional[str]:
+    if _LAUNCH_OPS_VALIDATOR is None:
+        return "canonical launch-ops validator unavailable"
+    finding = _LAUNCH_OPS_VALIDATOR.validate_transition_path(list(path))
+    return None if finding.verdict == "PASS" else finding.detail
 
 
 @total_ordering
@@ -303,25 +300,6 @@ def validate_owner_locks(profile: Mapping[str, Any], current: bool = True) -> li
     return [rule_id for rule_id, _ in _lock_error_records(profile, current=current)]
 
 
-def _validate_transition_path(path: Sequence[str]) -> Optional[str]:
-    if not path:
-        return "empty transition path"
-    for source, target in zip(path, path[1:]):
-        if source not in LAUNCH_STATUSES:
-            return f"unknown source status {source!r}"
-        if target not in LAUNCH_STATUSES:
-            return f"unknown target status {target!r}"
-        if target not in LAUNCH_TRANSITIONS.get(source, ()):
-            return f"illegal transition {source} -> {target}"
-    return None
-
-
-def validate_transition_path(path: Sequence[str]) -> bool:
-    """Return whether a launch status history follows the canonical graph."""
-
-    return _validate_transition_path(path) is None
-
-
 def _profile_error_records(profile: Any, current: bool, current_version: str, legacy_versions: set[str]) -> list[tuple[str, str]]:
     records = _lock_error_records(profile, current=current)
     if not isinstance(profile, dict):
@@ -389,12 +367,12 @@ def _profile_error_records(profile: Any, current: bool, current_version: str, le
     launch_ops = profile.get("launch_ops")
     if isinstance(launch_ops, dict):
         status = launch_ops.get("status")
-        if status is not None and status not in LAUNCH_STATUSES:
+        if status is not None and status not in _launch_statuses():
             records.append(("LAUNCH_STATUS_ENUM", f"launch_ops.status {status!r} is not canonical"))
         history = launch_ops.get("status_history") or launch_ops.get("transition_history")
         if history:
             if isinstance(history, list) and all(isinstance(item, str) for item in history):
-                transition_error = _validate_transition_path(history)
+                transition_error = _launch_transition_error(history)
             else:
                 transition_error = "transition history must be an ordered list of statuses"
             if transition_error:
@@ -1688,20 +1666,20 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
         "FROZEN_PROJECT_COUNT_NONZERO",
         "compatibility",
         isinstance(entries, list) and len(entries) > 0,
-        "frozen-project registry contains a non-empty historical inventory",
+        "protected-project registry contains a non-empty active inventory",
         file=relative,
         location="/projects",
-        expected="at least one registered frozen project",
+        expected="at least one registered protected project",
         observed=ctx.metadata["frozen_project_count"],
     )
     protected_ok = isinstance(protected, list) and "projects/" in protected and isinstance(entries, list)
-    ctx.check("FROZEN_PROJECT_REGISTRY", "compatibility", protected_ok, "frozen-project inventory declares the protected projects root", file=relative, location="/protected_paths", expected="projects/ registered", observed=registry)
+    ctx.check("FROZEN_PROJECT_REGISTRY", "compatibility", protected_ok, "protected-project inventory declares the protected projects root", file=relative, location="/protected_paths", expected="projects/ registered", observed=registry)
     missing = [entry.get("path") for entry in entries if isinstance(entry, dict) and entry.get("path") and not ctx.path(str(entry["path"])).exists()]
     if missing:
         missing_is_warning = bool((registry.get("policy") or {}).get("missing_registered_project_is_warning")) if isinstance(registry, dict) else False
-        ctx.check("FROZEN_PROJECT_CORPUS_NOT_IN_CHECKOUT", "compatibility", False, "registered frozen projects are absent from this checkout; no migration is attempted", file=relative, location="/projects", expected="all registered projects are present", observed={"missing_count": len(missing), "sample": missing[:5]}, severity="WARNING" if missing_is_warning else "ERROR", owner="framework-owner")
+        ctx.check("FROZEN_PROJECT_CORPUS_NOT_IN_CHECKOUT", "compatibility", False, "registered protected projects are absent from this checkout; no migration is attempted", file=relative, location="/projects", expected="all registered projects are present", observed={"missing_count": len(missing), "sample": missing[:5]}, severity="WARNING" if missing_is_warning else "ERROR", owner="framework-owner")
     else:
-        ctx.check("FROZEN_PROJECT_CORPUS_PRESENT", "compatibility", True, "all registered frozen project paths are present", file=relative, location="/projects")
+        ctx.check("FROZEN_PROJECT_CORPUS_PRESENT", "compatibility", True, "all registered protected project paths are present", file=relative, location="/projects")
     guard_relative = str(ctx.manifest.get("frozen_guard_path"))
     guard_class = _load_guard(ctx.root, guard_relative)
     projects_present = ctx.path("projects").is_dir()
@@ -1719,7 +1697,7 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
             "PROTECTED_FILE_COUNT_NONZERO",
             "frozen_fixture_integrity",
             ctx.metadata["protected_file_count"] > 0,
-            "frozen-integrity guard captured a non-empty protected project corpus",
+            "frozen-integrity guard captured a non-empty active protected project set",
             file=guard_relative,
             location="snapshot",
             expected="at least one protected project file",
@@ -1995,7 +1973,7 @@ def _run_negative_controls(ctx: ValidationContext) -> None:
         )
 
     def invalid_transition() -> bool:
-        return not validate_transition_path(["NOT_EVALUATED", "STABILIZED"])
+        return _launch_transition_error(["NOT_EVALUATED", "STABILIZED"]) is not None
 
     def obsolete_state() -> bool:
         bad = json.loads(json.dumps(base_profile))

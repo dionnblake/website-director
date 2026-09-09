@@ -93,7 +93,7 @@ browser-qa/
 python browser-qa/runner.py --plan <project>/browser-qa-manifest.json --engine playwright --mode smoke
 ```
 
-Generated browser profiles, caches, `node_modules`, traces, and ephemeral screenshots are **never** committed by default (`.gitignore`). Project-specific historical QA scripts remain as historical evidence; new and materially reopened builds use this harness.
+Generated browser profiles, caches, `node_modules`, traces, and ephemeral screenshots are **never** committed by default (`.gitignore`). Historical certification QA artifacts are recoverable from Git history; new and materially reopened builds use this harness.
 
 ---
 
@@ -334,12 +334,12 @@ Browser QA run, not a second site-profile completion state.
 
 - use temporary directories for mutable fixtures and disposable copies;
 - use temporary browser profiles and isolated ports;
-- never modify canonical project artifacts or frozen certification projects;
+- never modify canonical project artifacts or active protected projects;
 - never touch real customer data or production;
 - clean up every child process and test server;
 - do not depend on previous test order.
 
-A passing test that mutates a frozen project is a **failed QA architecture**.
+A passing test that mutates an active protected project is a **failed QA architecture**.
 
 `browser-qa/guards/frozen_integrity_guard.py` snapshots and hash-checks protected paths (default: `projects/`) before and after every run. On any change:
 
@@ -589,7 +589,7 @@ Legitimate non-PASS statuses: browser engine unavailable · site cannot start ·
 
 ## 33. Backward compatibility
 
-Historical projects without `browser_qa{}` remain valid and are not retrofitted. Frozen certification pilots are never reopened by this tooling. Project-specific historical QA scripts remain historical evidence. New or materially reopened builds use this protocol.
+Historical projects without `browser_qa{}` remain valid and are not retrofitted. Archived certification pilots are never reopened by this tooling. Their behavior is represented by minimal compatibility fixtures. New or materially reopened builds use this protocol.
 
 ---
 
@@ -601,7 +601,7 @@ Historical projects without `browser_qa{}` remain valid and are not retrofitted.
 
 ## 35. Validation scenarios (negative controls)
 
-`tests/test_v2_8_browser_regression_qa.py` and `examples/BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md` prove each guard actually fails:
+`tests/test_browser_qa.py` and `examples/BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md` prove each guard actually fails:
 
 | # | Scenario | Expected |
 | :-- | :--- | :--- |
@@ -624,7 +624,7 @@ Historical projects without `browser_qa{}` remain valid and are not retrofitted.
 
 ## 36. Test the tests
 
-This subsystem contains negative controls proving its major guards fail on: frozen-fixture mutation, console error, network failure, visual diff, PII event, and obsolete/invalid state schema. A guard that has never demonstrated it can fail is insufficient evidence.
+This subsystem contains negative controls proving its major guards fail on: minimal protected-fixture mutation, console error, network failure, visual diff, PII event, and obsolete/invalid state schema. A guard that has never demonstrated it can fail is insufficient evidence.
 
 ---
 

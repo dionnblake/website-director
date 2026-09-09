@@ -3,7 +3,7 @@
 This example records the deterministic Capability #10 integration contract.
 It is a synthetic validation matrix, not a production architecture, provider
 certification, payment authorization, or live-user test. The corresponding
-direct test is `tests/test_v2_15_application_architecture.py` and the
+direct test is `tests/test_application_architecture.py` and the
 provider-neutral validator is `application/validator.py`.
 
 ## Boundary

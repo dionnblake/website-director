@@ -4,22 +4,38 @@
 
 Own the deterministic Website Director self-validation library and its
 `python -m framework_validation` CLI, including registry-driven execution of
-the additive V2.11.1 adapter suite, the V2.12 Capability 7 provenance suite,
-the V2.13 Capability #8 content-operations suite, the V2.14 Capability #9
-localization and internationalization suite, and the V2.15 conditional
-Capability #10 application architecture suite. It also owns the
+the design-inspiration adapter suite, the evidence and asset-provenance suite,
+the content-operations suite, the localization and internationalization
+suite, and the conditional application architecture suite. It also owns the
 provider-neutral cinematic/inspiration and rendered-visual evidence helpers
-used by the bounded V2.15 regression suite.
+used by the bounded V2.15 regression suite, plus the provider-neutral
+clean-room execution coordinator for the Visual Prototype operating mode and
+its test-only synthetic proof.
 
 ## Ownership
 
-`validator.py` owns validation rules, findings, reports, suite execution, and
-read-only mutation evidence. `cinematic_inspiration.py` owns pure registry,
+`validator.py` owns framework validation rules, findings, reports, suite
+execution, and read-only mutation evidence. Launch-state status and transition
+rules remain canonical in `launch-ops/validator.py`; this package consumes that
+validator when checking site profiles. `cinematic_inspiration.py` owns pure registry,
 owner-reference, provider-neutrality, and rendered-visual receipt checks.
 `owner_intent.py` owns the provider-neutral normalization, authority
 precedence, historical/reference boundary, brand-token, contradiction,
 motion-trace, and owner-compliance helpers. It does not own site state or a
 new owner lock.
+`design_first_flow.py` owns the bounded business-understanding, optional
+discovery/transcript, full-homepage review, explicit owner-approval,
+homepage-to-Design-System derivation, component-routing, asset-intent, and
+downstream-authority helpers. It does not create a phase, gate, state writer,
+provider dependency, browser runner, or owner lock.
+`clean_room.py` owns the clean-room input firewall, ordered concept/render/
+negative-baseline/critic handoffs, physical staged creative workspaces,
+browser-derived morphology evidence, and machine-readable execution receipts.
+Its canonical boundary is `prepare_clean_room_concept_run`; compatibility
+aliases delegate to it. Deterministic synthetic proof adapters belong to the
+test suite, not the production kernel. It does not call providers, generate
+ASN, write under `projects/`, or add a state, gate, or owner lock. Existing
+owner-selection authority is consumed only at the final unlock boundary.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -28,8 +44,26 @@ new owner lock.
 - Read repository artifacts and run only commands registered in
   `schemas/test-suites.json`.
 - Write only the designated runtime and certification report paths.
+- `.clean-room-runs/` is disposable clean-room execution evidence and is
+  ignored by source-mutation snapshots; it must never contain repository or
+  historical positive inputs.
 - Never publish, deploy, push, merge, use credentials, perform network
   mutation, or mutate `projects/`.
+- The protected `projects/` inventory is the five active Alpha Starts Now
+  surfaces. Historical certification behavior is consumed through minimal
+  synthetic fixtures and Git history is the recovery authority.
+- The clean-room operating mode must run through
+  `prepare_clean_room_concept_run`; historical output is available only
+  through the post-render negative-baseline adapter. The boundary stages only
+  manifest-declared inputs, emits the bounded generator package before the
+  builder callback, derives morphology from the existing browser engine, and
+  stops at `OWNER_CONCEPT_SELECTION_PENDING` unless the existing
+  `visual_prototypes.owner_selection_confirmed` event is valid.
+- Runtime isolation is framework-level staged context only:
+  `FRAMEWORK_CREATIVE_CONTEXT_ISOLATION = STAGED_WORKSPACE_ONLY`,
+  `OS_FILESYSTEM_SANDBOX = NONE`, and
+  `UNRESTRICTED_AGENT_PATH_ACCESS_RISK = PRESENT`. Do not describe the staged
+  workspace as an OS sandbox.
 - Framework validation state stays outside `templates/site-profile.json`.
 - Adapter suites remain deterministic and are run only through the commands
   registered in `schemas/test-suites.json`; framework validation itself makes
@@ -70,6 +104,10 @@ new owner lock.
   intent resolves to `MOTION_LEVEL_3` and cannot be silently downgraded. Level
   2/3 implementation requires a brief-to-location-to-real-browser runtime
   evidence trace and meaningful sequence diversity.
+- The design-first flow keeps the Business Understanding Pack canonical at
+  `templates/project-brief.md`, keeps transcript extraction optional, requires
+  real desktop/mobile homepage evidence and explicit owner approval before
+  full production, and derives rather than reinterprets the Design System.
 
 ## Work Guidance
 
@@ -79,10 +117,11 @@ special cases that turn invalid evidence into a pass.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
-`python -m unittest tests.test_cinematic_inspiration`, then run
-`python -m framework_validation --run-suites`. Inspect both generated reports
-and the final mutation evidence.
+Run `python -m framework_validation --run-suites`. This is the canonical
+full-verification path and includes the browser/accessibility and
+release/handoff composites, cinematic and design/motion unit suites, and the
+clean-room suite. Inspect both generated reports and the final mutation
+evidence.
 
 ## Child DOX Index
 
