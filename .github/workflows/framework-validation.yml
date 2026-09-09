@@ -40,7 +40,57 @@ jobs:
 
       - name: Install Chromium for synthetic clean-room proof (Linux)
         if: runner.os == 'Linux'
-        run: python -m playwright install --with-deps chromium
+        run: |
+          set -euo pipefail
+
+          echo "Configured APT source files before CI isolation:"
+          mapfile -t apt_source_files < <(
+            sudo find /etc/apt -maxdepth 2 -type f \
+              \( -path '/etc/apt/sources.list' -o \
+                 -path '/etc/apt/sources.list.d/*.list' -o \
+                 -path '/etc/apt/sources.list.d/*.sources' \) \
+              -print | sort
+          )
+          printf ' - %s\n' "${apt_source_files[@]}"
+          for source_file in "${apt_source_files[@]}"; do
+            echo "--- ${source_file} ---"
+            sudo sed -n '1,120p' "${source_file}"
+          done
+
+          mapfile -t google_source_files < <(
+            sudo grep -RIlF \
+              --include='sources.list' \
+              --include='*.list' \
+              --include='*.sources' \
+              'dl.google.com/linux/chrome-stable/deb' \
+              /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null || true
+          )
+          expected_google_source='/etc/apt/sources.list.d/google-chrome.list'
+          if (( ${#google_source_files[@]} != 1 )); then
+            printf 'Expected exactly one Google Chrome APT source, found %s:\n' "${#google_source_files[@]}"
+            printf ' - %s\n' "${google_source_files[@]}"
+            exit 1
+          fi
+          if [[ "${google_source_files[0]}" != "${expected_google_source}" ]]; then
+            echo "Unexpected Google Chrome APT source file: ${google_source_files[0]}"
+            exit 1
+          fi
+          if [[ -e "${expected_google_source}.disabled" ]]; then
+            echo "Refusing to overwrite existing disabled source: ${expected_google_source}.disabled"
+            exit 1
+          fi
+
+          echo "Disabling only Google Chrome APT source: ${expected_google_source}"
+          sudo mv "${expected_google_source}" "${expected_google_source}.disabled"
+          test ! -e "${expected_google_source}"
+          test -f "${expected_google_source}.disabled"
+
+          echo "Ubuntu and Microsoft APT source entries retained:"
+          sudo grep -RInE \
+            'azure\.archive\.ubuntu\.com|archive\.ubuntu\.com/ubuntu|security\.ubuntu\.com/ubuntu|packages\.microsoft\.com/ubuntu' \
+            /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null || true
+
+          python -m playwright install --with-deps chromium
 
       - name: Install Chromium for synthetic clean-room proof (Windows)
         if: runner.os == 'Windows'
