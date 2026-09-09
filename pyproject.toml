@@ -6,8 +6,8 @@ dependencies = []
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# The V2.5-V2.10 historical suites are script entrypoints with intentional
-# process-level exits; the registry runs them directly. Pytest collects the
-# standard-library unit suites only.
-python_files = ["test_v2_11_framework_validation.py", "test_v2_11_design_inspiration_mcp.py"]
+# Direct capability composites are intentional process-level entrypoints; the
+# registry runs them directly. Pytest collects the standard-library unit suites
+# only, while the framework registry remains the canonical full verification path.
+python_files = ["test_framework_validation.py", "test_design_inspiration.py"]
 addopts = "-q"

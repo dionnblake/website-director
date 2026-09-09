@@ -124,7 +124,7 @@ This integration completes the fifth quality capability review by incorporating 
 - **Status:** `SCHEMA_VALIDATED`.
 
 ### Case 14: Frozen Baseline Pilots Protection
-- **Input:** `projects/alpha-starts-now/`, `v1-1-architecture-pilot/`, `v1-1-automotive-restomod-pilot/`, `v1-1-luxury-hospitality-pilot/`.
+- **Input:** The five protected Alpha Starts Now project surfaces plus the synthetic historical-compatibility fixture under `tests/fixtures/`; archived certification directories are recovered from Git history only.
 - **Expected Result:** All 4 legacy baselines remain completely frozen and valid.
 - **Status:** `EXECUTABLY_TESTED`.
 

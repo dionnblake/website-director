@@ -3,11 +3,11 @@
 > Validates that the Phase 6.9 / Phase 10.5 accessibility subsystem
 > (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`) is wired into Website Director and
 > that **every accessibility safeguard actually fails** on a broken input.
-> Automated form: `tests/test_v2_9_accessibility.py` (exit 0 = pass), run with the
+> Automated form: `tests/test_browser_qa.py` (exit 0 = pass), run with the
 > deterministic `simulation` engine and only the Python standard library.
 
 ```bash
-python tests/test_v2_9_accessibility.py
+python tests/test_browser_qa.py
 ```
 
 ---

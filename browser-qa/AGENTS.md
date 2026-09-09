@@ -6,8 +6,8 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
 ## Scope
 
 - This directory is the **reusable, framework-level** harness. It is not coupled
-  to any one pilot. Project-specific historical QA scripts stay in their project
-  folders as historical evidence.
+  to any one pilot. Historical certification QA artifacts are Git-history-only;
+  current negative controls use minimal fixtures under the test boundary.
 - The **policy** (protocol, assertion catalogue, plan/manifest templates, state
   object, flake policy, evidence schema, baseline governance) is canonical.
 - The **engine** (`engine/*.py`) is replaceable via `BrowserQAEngine.observe()`.
@@ -15,8 +15,9 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
 ## Rules
 
 - **Never mutate anything under `projects/`.** Every run wraps itself in
-  `guards/frozen_integrity_guard.py`; a passing run that changed a frozen file is
-  a failed QA architecture. Mutable work happens in temp dirs / disposable copies.
+  `guards/frozen_integrity_guard.py`; a passing run that changed a protected
+  file is a failed QA architecture. Mutable work happens in temp dirs /
+  disposable copies.
 - **No persistent browser daemon** (`IMPECCABLE-ENGINE-PROTOCOL.md` §8). Launch
   per run, tear down every child process, server, and profile in `stop()`.
 - **Every assertion traces to one requirement source** (`assertions/__init__.py`
@@ -75,6 +76,13 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   claim never satisfies a required visual surface. Repair rounds require a
   newer capture set and fresh critic inputs before a visual PASS can be
   derived.
+- **Clean-Room morphology evidence:** `PlaywrightEngine.observe()` may emit
+  `rendered_morphology_evidence` when requested by the clean-room coordinator.
+  This evidence is measured from visible DOM rectangles, computed styles,
+  section geometry, media areas, borders, and CTA placement. It must not use
+  class names, builder labels, or caller-declared divergence flags as evidence.
+  The clean-room path remains an adapter of this existing engine, not a second
+  browser runner.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.
@@ -91,4 +99,4 @@ The V2.11 framework validator may invoke the canonical frozen-integrity guard
 as a read-only boundary around deterministic suites. The guard remains the
 single authority for protected `projects/` paths. Framework validation does not
 replace the Browser QA protocol, add a second browser runner, or permit writes
-to historical project artifacts.
+to active project artifacts.

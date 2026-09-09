@@ -8,9 +8,11 @@ deterministic synthetic controls without becoming production project state.
 
 ## Ownership
 
-`APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md` documents the V2.15
-Capability #10 A-AV control matrix. `test_runner.py` owns the cross-version
-protocol, template, pilot, and five-lock invariant harness.
+`APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md` documents the conditional
+application control matrix. Examples are reference documentation only; the
+historical capability compatibility checks live in
+`tests/test_framework_validation.py`, and the registered test composites own
+executable verification.
 
 ## Local Contracts
 
@@ -26,13 +28,14 @@ protocol, template, pilot, and five-lock invariant harness.
 
 Keep scenario IDs, expected verdicts, and framework markers aligned with the
 registered test suite and canonical protocol. Do not copy provider secrets or
-turn a synthetic example into a production claim.
+turn a synthetic example into a production claim. Do not add a second test
+runner here.
 
 ## Verification
 
-Run `python examples/test_runner.py` and
-`python tests/test_v2_15_application_architecture.py`, then run the complete
-registered suite through `python -m framework_validation --run-suites`.
+Run the complete registered suite through
+`python -m framework_validation --run-suites`. Examples themselves have no
+independent executable harness.
 
 ## Child DOX Index
 

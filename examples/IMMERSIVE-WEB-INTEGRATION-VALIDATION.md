@@ -3,7 +3,7 @@
 > **Version:** 2.1.0  
 > **Status:** Certified & Validated (Evidence-Class Segregated)  
 > **Target:** Immersive Web & Three.js Specialist Architecture (`IMMERSIVE-WEB-PROTOCOL.md`)  
-> **Execution Engine:** `examples/test_runner.py`  
+> **Execution Engine:** `python -m framework_validation --run-suites`
 > **Real-Browser Evidence:** Headless Chromium WebGL Render (Desktop, Tablet, Mobile, Fallback)
 
 ---
@@ -12,7 +12,7 @@
 
 Per DOX and Website Director governance standards, validation cases are segregated into honest evidence tiers:
 
-- **EXECUTABLY_TESTED:** 14 cases verified via automated deterministic assertions in `examples/test_runner.py`.
+- **EXECUTABLY_TESTED:** 14 cases verified via automated deterministic assertions in the registered framework suite.
 - **SCHEMA_VALIDATED:** 4 cases verified against JSON schema structural contracts and enum restrictions.
 - **SYNTHETICALLY_VALIDATED:** 6 cases verified via synthetic scenario simulation in the disposable AETHEL pilot.
 - **DOCUMENTED:** 4 cases governing subjective art direction, visual taste, and ethical boundaries.
@@ -32,24 +32,24 @@ Per DOX and Website Director governance standards, validation cases are segregat
 | **Case 07** | Vanilla site may choose plain Three.js (`THREE_JS_VANILLA`) | `SCHEMA_VALIDATED` | Verified engine enum in `site-profile.json` schema | **PASS** |
 | **Case 08** | React site may choose React Three Fiber (`REACT_THREE_FIBER`) | `SCHEMA_VALIDATED` | Verified engine enum in `site-profile.json` schema | **PASS** |
 | **Case 09** | Mobile may use simplified/static fallback (`MOBILE_3D_POLICY = SIMPLIFIED`) | `SCHEMA_VALIDATED` | Verified mobile policy enum in schema | **PASS** |
-| **Case 10** | Reduced-motion user receives usable alternative (`prefers-reduced-motion`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Reduced motion wiring) | **PASS** |
-| **Case 11** | WebGL failure receives usable 2D fallback | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Fallback DOM structure) | **PASS** |
-| **Case 12** | Primary CTA remains accessible semantic HTML (`<a>` / `<button>`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (DOM semantic check) | **PASS** |
-| **Case 13** | Primary headline remains accessible semantic HTML (`<h1>`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (DOM semantic check) | **PASS** |
-| **Case 14** | 3D mechanical information has semantic alternative in DOM | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Specs grid presence) | **PASS** |
-| **Case 15** | High DPR is bounded (`Math.min(devicePixelRatio, 2.0)`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (DPR clamp check) | **PASS** |
-| **Case 16** | Expensive rendering pauses when tab is hidden (`document.hidden`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Visibility check) | **PASS** |
-| **Case 17** | Three.js resources have explicit cleanup strategy (`disposeScene()`) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Disposal function check) | **PASS** |
+| **Case 10** | Reduced-motion user receives usable alternative (`prefers-reduced-motion`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (Reduced motion wiring) | **PASS** |
+| **Case 11** | WebGL failure receives usable 2D fallback | `EXECUTABLY_TESTED` | Asserted in the registered suite (Fallback DOM structure) | **PASS** |
+| **Case 12** | Primary CTA remains accessible semantic HTML (`<a>` / `<button>`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (DOM semantic check) | **PASS** |
+| **Case 13** | Primary headline remains accessible semantic HTML (`<h1>`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (DOM semantic check) | **PASS** |
+| **Case 14** | 3D mechanical information has semantic alternative in DOM | `EXECUTABLY_TESTED` | Asserted in the registered suite (Specs grid presence) | **PASS** |
+| **Case 15** | High DPR is bounded (`Math.min(devicePixelRatio, 2.0)`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (DPR clamp check) | **PASS** |
+| **Case 16** | Expensive rendering pauses when tab is hidden (`document.hidden`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (Visibility check) | **PASS** |
+| **Case 17** | Three.js resources have explicit cleanup strategy (`disposeScene()`) | `EXECUTABLY_TESTED` | Asserted in the registered suite (Disposal function check) | **PASS** |
 | **Case 18** | Prototype-only 3D assets cannot satisfy V2.0 production asset readiness | `SYNTHETICALLY_VALIDATED` | Verified against V2.0 Asset Readiness Gate logic | **PASS** |
-| **Case 19** | `[IMMERSIVE_IMPLEMENTATION_READY]` is a quality readiness gate, not a 6th owner lock | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Zero 6th lock in schema) | **PASS** |
-| **Case 20** | Exactly five current owner locks remain across all project profiles | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (All project profiles checked) | **PASS** |
-| **Case 21** | Historical projects (V1.0 - V2.0) remain 100% compatible and uncorrupted | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` (Git status zero mutation) | **PASS** |
+| **Case 19** | `[IMMERSIVE_IMPLEMENTATION_READY]` is a quality readiness gate, not a 6th owner lock | `EXECUTABLY_TESTED` | Asserted in the registered suite (Zero 6th lock in schema) | **PASS** |
+| **Case 20** | Exactly five current owner locks remain across all project profiles | `EXECUTABLY_TESTED` | Asserted in the registered suite (All project profiles checked) | **PASS** |
+| **Case 21** | Historical projects (V1.0 - V2.0) remain 100% compatible and uncorrupted | `EXECUTABLY_TESTED` | Asserted in the registered suite (Git status zero mutation) | **PASS** |
 | **Case 22** | Real certification pilot renders actual WebGL in browser | `SYNTHETICALLY_VALIDATED` | Verified via Chromium headless capture (173 KB PNG) | **PASS** |
 | **Case 23** | Desktop real-browser render passes (1440x900) | `SYNTHETICALLY_VALIDATED` | Verified screenshot `real-render-desktop.png` | **PASS** |
 | **Case 24** | Tablet real-browser render passes (768x1024) | `SYNTHETICALLY_VALIDATED` | Verified screenshot `real-render-tablet.png` | **PASS** |
 | **Case 25** | Mobile real-browser render passes (390x844) | `SYNTHETICALLY_VALIDATED` | Verified screenshot `real-render-mobile.png` | **PASS** |
 | **Case 26** | Forced no-WebGL fallback passes (`?forceWebGLFallback=1`) | `EXECUTABLY_TESTED` | Verified screenshot `real-render-fallback.png` | **PASS** |
-| **Case 27** | Reduced-motion path passes (frozen rotation / snap transitions) | `EXECUTABLY_TESTED` | Asserted in `test_runner.py` | **PASS** |
+| **Case 27** | Reduced-motion path passes (frozen rotation / snap transitions) | `EXECUTABLY_TESTED` | Asserted in the registered suite | **PASS** |
 | **Case 28** | No external deployment, publishing, or paid purchases occur | `SCHEMA_VALIDATED` | Verified zero deployment configs | **PASS** |
 
 ---

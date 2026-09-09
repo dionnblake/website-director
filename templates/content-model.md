@@ -193,7 +193,7 @@ authority.
 ## Readiness Evidence
 
 The readiness gate is `[CONTENT_OPERATIONS_READY]` and the only state flag is
-`content_ops.complete`. Run `python tests/test_v2_13_content_operations.py`
+`content_ops.complete`. Run `python tests/test_content_operations.py`
 and the registered framework suite. No new owner lock, provider installation,
 production publish, deployment, network request, or frozen-project mutation
 is permitted by this template.

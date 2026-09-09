@@ -1,596 +1,182 @@
 # WEBSITE DIRECTOR
 
 > **Version:** 2.15.0
-> **Status:** Production-Grade Skill & Specification System  
-> **Purpose:** Turn vague business requirements into production-grade website design and implementation specifications, informed by adaptive creative briefing (Creative Briefing Room V1.8), real search demand, competitive intelligence, bounded unified design-inspiration discovery, external visual research, Awwwards showcase benchmarking, design intelligence candidate synthesis (UI/UX Pro Max), subject-grounded distinctiveness discipline (Anthropic Frontend Design), pre-lock high-fidelity visual prototypes, owner visual direction selection, deterministic conversion measurement architecture (Conversion & Analytics Intelligence V2.6), official GSAP motion implementation engineering (gsap-skills), deterministic Impeccable quality scans, and adversarial Gauntlet quality-bar evaluations, without visual improvisation, generic AI slop, or an unresearched sitemap.
-
----
-
-## 1. What Is Website Director?
-
-**Website Director** is a deterministic design governance skill and operating methodology. It bridges the gap between commercial strategy and frontend engineering.
-
-### The Problem It Solves
-AI coding agents are proficient at generating code, but when left without rigorous art direction, they default to generic, uncurated aesthetic tropes ("AI slop")—indiscriminate card grids, purple SaaS gradients, floating fake UI elements, and identical section layouts.
-
-Website Director solves this by establishing a **strict separation of Design Authority from Implementation Execution**. It guides non-designers through adaptive creative briefing, extracts business truth, runs bounded external visual research before committing to a direction, builds an uncompromising design system with exact mathematical tokens, makes a deliberate motion-level decision, locks the specification across 5 mandatory gates, and provides a binding implementation contract that prevents coding agents from improvising visual language during the build.
-
-### What V1.8 Adds (Creative Briefing Room & Grilling System)
-V1.8 establishes the conversational **Creative Briefing Room** (Phase 1):
-- **Adaptive Grilling:** 2–5 targeted questions per turn with epistemic confidence tracking.
-- **The Four Anchor Questions:** Purpose, People, Feeling, and Action.
-- **Creative Intent Contract (`creative-intent-contract.md`):** Classifies `CREATIVE_AMBITION` (`STANDARD`, `PREMIUM`, `SHOWCASE`, `EXPERIMENTAL`), visual intensity, and experimentation tolerance.
-- **Read-Back & Confirmation Gate:** Requires explicit owner confirmation (`creative_intent.confirmed = true`) before research or strategy begins.
-
-### What V1.9 Adds (Visual Prototype Gate & Awwwards Showcase Intelligence)
-V1.9 solves the core problem: **The owner should never again have to select a major visual direction from prose alone.**
-- **High-Fidelity Visual Prototypes (Phase 4.5):** Bounded, browser-rendered slices (`projects/[project]/prototypes/direction-XX/`) containing header, hero (`HERO_THESIS`), representative content section, signature element, CTA, and mobile (390px) evidence.
-- **True Divergence Mandate:** SHOWCASE ambition requires 3 genuinely distinct creative points of view evaluated across 10 Divergence Vectors.
-- **Visual Prototype Comparison Package (`templates/visual-prototype-review.md`):** Owner compares rendered desktop/mobile prototypes and selects visually before Design Direction Lock (Lock 1) is synthesized.
-- **Awwwards Showcase Intelligence (Phase 3.75):** Formal external benchmarking from [Awwwards](https://www.awwwards.com/) across 10 dimensional reference bars (`AWWWARDS_HERO_BAR`, `AWWWARDS_TYPOGRAPHY_BAR`, `AWWWARDS_LAYOUT_BAR`, `AWWWARDS_INTERACTION_BAR`, `AWWWARDS_MOTION_BAR`, `AWWWARDS_MOBILE_BAR`), with anti-copying rules, trend contamination filters, and the 11-question **Portfolio Art Director Critic**.
-
-### What V2.6 Adds (Conversion & Analytics Intelligence)
-V2.6 closes the gap between commercial intent and measurable outcome. Website Director could already say *"this CTA should convert."* It can now also define and verify: **this conversion is measurable, this is the event representing it, this is how it is triggered, this is the KPI it contributes to, this is how attribution is preserved, and this is how implementation is verified.**
-
-- **Phase 6.5 (`CONVERSION-ANALYTICS-PROTOCOL.md`):** Runs after Lock 3 and before the design system, so measurement *informs* design instead of being retrofitted onto a frozen build.
-- **KPI Architecture:** Enforces `BUSINESS OUTCOME KPI ≠ FUNNEL KPI ≠ DIAGNOSTIC METRIC ≠ VANITY METRIC`. A site with 100,000 visits and zero conversions is not a success.
-- **Event Definition Contract:** Every event carries 13 mandatory fields — business purpose, trigger, parameters, deduplication rule, consent dependency, implementation method, and verification method. Events without a business or diagnostic purpose are prohibited.
-- **CTA Traceability:** Every primary and meaningful secondary CTA in locked copy is traced to an event, KPI relation, destination, and verification method.
-- **Attribution & UTM Governance:** Bounded naming conventions, preservation rules, landing-page attribution, cross-domain boundaries — and a hard prohibition on PII in campaign parameters.
-- **Affiliate Measurement Integrity:** Enforces `AFFILIATE CLICK ≠ AFFILIATE CONVERSION ≠ AFFILIATE COMMISSION`. An outbound click is never inferred to be a sale.
-- **Anti-Fabrication Governance:** `BASELINE = UNKNOWN` where no baseline exists. No invented industry benchmarks. Evidence taxonomy (`OBSERVED` → `EVIDENCE_SUPPORTED` → `HYPOTHESIS` → `EXPERIMENT_CANDIDATE` → `PROVEN`) prevents a hypothesis being presented as fact.
-- **Three Distinct Verification States:** `measurement.complete` (a plan exists) ≠ `measurement.implementation_verified` (instrumentation proven in the build) ≠ `measurement.production_verified` (observed in production). Planning is never reported as production success.
-- **Blocked & Exception Modes:** An unselected analytics provider is honestly `blocked`, not skipped and not faked. Bounded exceptions exist for non-commercial surfaces only.
-- **Supersedes V2.4:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` is absorbed and retained as a pointer. `site-profile.json` → `measurement{}` replaces `cro{}` as the single authoritative state; `cro{}` is grandfathered read-only.
-
-### What V2.7 Adds (Security, Privacy & Compliance Intelligence)
-V2.7 closes the **production risk governance** gap. Website Director could already design, measure, and refine. It can now also determine: **what security, privacy, consent, data-handling, and disclosure obligations does this website actually create — and what must the build do about them?**
-
-- **Phase 6.75 (`SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`):** Runs after the measurement plan and before the design system, so safeguards *inform* the build instead of being retrofitted onto a shipped site.
-- **Proportional Risk Classification:** 13 site classifications and a bounded `LOW | MODERATE | HIGH | SPECIALIST_REVIEW_REQUIRED` risk model derived from actual functionality. A static brochure site never inherits ecommerce or authentication obligations; an authenticated SaaS application is never treated as a brochure site.
-- **Deterministic Data Inventory:** Every data class records ten fields — source, purpose, collection point, destination, third party, retention, consent dependency, sensitivity, and whether production genuinely requires it.
-- **Data Minimization As Architecture:** Every field needs a documented purpose. Fields inherited from a form template, collected speculatively, or duplicated without purpose are removed — not footnoted.
-- **Secret Governance:** No secrets in client-side source, in Git, or in examples. `.env.example` holds names and placeholders only. Website Director identifies which secrets the architecture requires and **never asks for a real credential**.
-- **Safeguard Specification:** Form security, authentication/session security, payment boundary (`PAYMENT PROVIDER INTEGRATION ≠ STORING PAYMENT CARD DATA`), evidence-driven security headers, HTTPS/transport, and dependency/supply-chain governance — each specified only where the functionality actually exists.
-- **Third-Party Accountability:** Every production third-party runtime script must have a reason, a scope, and a consent dependency. **Unexplained third-party scripts are prohibited.**
-- **Consent Without Guessing:** `NOT_REQUIRED | REQUIRED | CONDITIONALLY_REQUIRED | UNASSESSED | OWNER_OR_COUNSEL_REVIEW_REQUIRED`. Applicable law is never inferred from an IP address. Where it cannot be reliably determined, escalation is the correct answer — not a confident guess.
-- **Truthful Disclosure:** `AFFILIATE DISCLOSURE ≠ PRIVACY POLICY ≠ TERMS ≠ ADVERTISING CONSENT`. Disclosure belongs near the recommendation, not buried exclusively in a remote footer page.
-- **Hard Legal Boundary:** Website Director **never** outputs `GDPR COMPLIANT`, `CCPA COMPLIANT`, `HIPAA COMPLIANT`, `PCI COMPLIANT`, `COPPA COMPLIANT`, or `LEGAL COMPLIANCE VERIFIED`. `security_privacy.compliance_certified` is permanently `false`. Health, biometric, government-identifier, and children's data escalate automatically.
-- **Privacy Beats Conversion:** Where they conflict, consent beats silent tracking, disclosure beats a cleaner layout, and data minimization beats speculative marketing fields. Approved locks still beat both and require an owner change request.
-- **Three Distinct Verification States:** `security_privacy.complete` (requirements specified) ≠ `implementation_verified` (controls proven in the build) ≠ `production_verified` (proven on the deployed surface). Planning is never reported as production safety.
-- **Reconciles, Does Not Duplicate:** `CONVERSION-ANALYTICS-PROTOCOL.md` §15 now delegates consent and privacy determination to this single authority. `measurement{}` stays canonical for measurement. No new Gauntlet critic and no second security state machine were created.
-
-### What V2.8 Adds (Browser & Regression QA)
-V2.8 closes the **verification** gap. Website Director could already design, measure, secure, and refine — but "the agent checked the browser" was still an assertion. V2.8 makes it evidence.
-
-- **Phase 10.5 (`BROWSER-REGRESSION-QA-PROTOCOL.md`):** Runs after the Phase 10 build and before the Phase 11 audit. `REQUIREMENT → MACHINE-EXECUTED BROWSER TEST → EVIDENCE ARTIFACT → PASS / FAIL / FLAKY / BLOCKED / NOT_APPLICABLE → REGRESSION BASELINE`.
-- **Replaceable engine, canonical policy:** the `browser-qa/` harness ships a `playwright` real-browser engine and a dependency-free deterministic `simulation` engine behind one `BrowserQAEngine.observe()` contract. Puppeteer/CDP or Selenium can be added without touching the policy.
-- **Canonical viewport matrix:** small mobile / standard mobile / tablet / laptop / desktop, with a required smoke matrix and an extended regression matrix.
-- **Requirement-traced assertions:** every check traces to `LOCKED_SPEC`, `PRODUCTION_CHECKLIST`, `MEASUREMENT_PLAN`, `SECURITY_PRIVACY_REVIEW`, `MOTION_SPEC`, `PAGE_EXPERIENCE_SPEC`, or `BROWSER_QA_PLAN`. Real overflow is detected, not masked by `overflow-x: hidden`. A server-rejected form renders no success state and fires no success conversion event.
-- **Frozen Project Integrity Guard:** every run snapshots `projects/`; `FROZEN_FIXTURE_MUTATION = FAIL`, and a later restore never launders it into a PASS.
-- **Bounded flake policy:** fail-then-pass on retry is `FLAKY`, never `PASS`. An unavailable engine is `BLOCKED` with a reason, never a PASS.
-- **Local vs. production:** `browser_qa.complete` ≠ `implementation_verified` (real browser, local build) ≠ `production_verified` (real production URL). Localhost never sets `production_verified`.
-- **Visual regression with governance:** explicit baselines, no silent overwrite, narrow masks, deterministic fixtures for dynamic content; a diff is evidence of change, not automatically a defect.
-- **Feeds the Gauntlet, doesn't merge with it:** the qualitative Website Gauntlet no longer spends cycles on a build with broken navigation, JS exceptions, missing assets, or failed forms. No new Gauntlet critic and no second state machine.
-- **Repairs two pre-existing validation defects:** `tests/test_v2_5_client_handoff.py` no longer mutates frozen pilots (all mutable work runs in a temp copy under the integrity guard); `examples/test_runner.py` asserts framework invariants and the canonical `measurement{}` architecture instead of a frozen `schema_version == "2.4.0"` / `cro{}` literal, while still verifying the grandfathered V2.4 pilot as-is.
-
-### What V2.9 Adds (Accessibility Intelligence & WCAG 2.2 AA Verification)
-V2.9 gives Website Director **one canonical accessibility authority**. Accessibility rules already lived in the production checklist, the QA rubric, the Gauntlet Accessibility Critic, Impeccable's contrast/target detectors, the browser-QA keyboard smoke, the security consent rules, and the design system — but scattered. V2.9 reconciles them.
-
-- **Phase 6.9 (`ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`):** Runs after Security/Privacy and **before the design system**, so accessibility informs tokens before Lock 4. Derives an applicable-component inventory and requirements for semantics, name/role/value, keyboard, focus (incl. WCAG 2.2 *focus not obscured*), contrast, colour independence, reflow at 320 CSS px, text spacing, target size, dragging, motion, images, media, forms, live regions, dialogs, tables, authentication, and consent-UI accessibility — only for what the project actually contains.
-- **`[ACCESSIBILITY_READY]`** is a readiness gate, **not** a sixth owner lock. `accessibility.complete` is the single readiness flag; it means the *specification* is implementable, never that the build passed testing.
-- **Four permanently distinct states:** `requirements_defined` ≠ `automated_verified` (engine, real browser) ≠ `manual_verified` (keyboard/zoom) ≠ `production_verified` (owner production evidence). `screen_reader_verified` is separate again.
-- **No false conformance claims.** Website Director never writes `ADA COMPLIANT`, `FULLY ACCESSIBLE`, `ACCESSIBILITY GUARANTEED`, or `WCAG COMPLIANT`. Permitted: `WCAG 2.2 AA TARGET TESTS PASSED`, `MANUAL REVIEW COMPLETED`, `KNOWN ACCESSIBILITY GAPS = NONE OBSERVED`, `BLOCKED_SCREEN_READER_ENVIRONMENT`.
-- **Extends V2.8 Browser QA — no separate runner.** An accessibility assertion group joins the `browser-qa/` catalogue (source `ACCESSIBILITY_REVIEW`), with a replaceable automated engine (axe-core recommended; `BLOCKED_ACCESSIBILITY_ENGINE_UNAVAILABLE` when absent, never a PASS). Same runner, same evidence system, same `FrozenIntegrityGuard`.
-- **`44×44` vs `24×24` kept distinct.** Website Director's ergonomic `44×44 px` preference is preserved where approved; the WCAG 2.2 AA `24×24 px` floor is a separate, weaker criterion — both are recorded.
-- **Consumes, doesn't duplicate:** Impeccable owns the contrast math; `MOTION-DIRECTION-PROTOCOL.md` owns the motion policy; Security/Privacy owns consent-requirement determination. The Gauntlet **Accessibility Critic is preserved and enriched** to focus on experiential quality — **no new critic, no second post-build state machine**.
-- **Screen-reader honesty.** A bounded manual smoke protocol (NVDA/VoiceOver/Orca); where no screen reader can run, `BLOCKED_SCREEN_READER_ENVIRONMENT` — never a claimed pass. An engine-clean run with a failing manual keyboard review is not a full PASS.
-
-### What V2.10 Adds (Launch & Post-Launch Operations Intelligence)
-V2.10 closes the **launch boundary** gap. Website Director could get a project to a strong production candidate — but it conflated *release candidate* with *deployed*, *deployed* with *production verified*, and *production verified* with *stable*. V2.10 makes each a separately recorded state.
-
-- **Phase 12.25 (`LAUNCH-OPERATIONS-PROTOCOL.md`):** Runs after Phase 12 pre-flight and before Phase 12.5 handoff. `LOCAL BUILD → RELEASE CANDIDATE → [RELEASE_READY] → DEPLOYMENT AUTHORIZATION → PRODUCTION DEPLOYMENT → PRODUCTION VERIFICATION → POST-LAUNCH STABILITY → OPERATIONS/HANDOFF`.
-- **`[RELEASE_READY]`** is a readiness gate, **not** a sixth owner lock. `launch_ops.complete` is the single readiness flag; it means the launch *plan* is complete and the candidate may request deployment authorization — never that the site is deployed, production verified, or stable.
-- **`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`.** Deployment is an external side effect. Website Director never deploys, pushes, merges, or touches DNS. Deployment authorization is an explicit per-release owner act — never inferred from passing QA, a completed build, an approved design, "looks good", a prior project, or a previous release.
-- **Verify a known release identity on the production surface.** `deployed_sha` must match `release_sha` or `DEPLOYED_IDENTITY = UNVERIFIED` / `BLOCKED`. A localhost or staging evidence manifest never sets any `production_*_verified` flag.
-- **16-state status model + a deterministic transition graph** (`launch-ops/validator.py`). Impossible jumps (`NOT_EVALUATED → STABILIZED`, `RELEASE_READY → PRODUCTION_VERIFIED`) are rejected.
-- **Rollback readiness, concrete rollback triggers, a site-class-sized post-launch observation window, and a `SEV0`–`SEV3` incident model.** A `SEV0`/`SEV1` incident meeting a defined trigger sets `ROLLBACK_REQUIRED`.
-- **Consumes, doesn't duplicate.** Production Browser QA is the V2.8 harness in `environment = "production"` mode — no second runner. Production verification writes the canonical `accessibility.production_verified` / `security_privacy.production_verified` / `measurement.production_verified` fields those specs already defined. V2.5 `CLIENT-CMS-HANDOFF-PROTOCOL.md` remains the long-term operations authority; Launch Operations hands its record into Phase 12.5 intake (§13).
-
-### What V2.11.1 Adds (Unified Design Inspiration MCP Adapter)
-V2.11.1 adds a bounded, replaceable discovery transport to the existing Visual Research phase. It is evidence acquisition, not a new design authority or a new lifecycle phase.
-
-- **Unified five-platform discovery:** The audited MCP can surface Dribbble, Behance, Awwwards, Mobbin, and Pinterest through three bounded search tools. Awwwards policy and interpretation remain owned by `AWWWARDS-SHOWCASE-INTELLIGENCE.md`.
-- **Pinned and audited:** The integration records the exact upstream commit, package/version discrepancy, license, audit date, network destinations, environment input, subprocess boundary, and output limits in `integrations/design-inspiration/`.
-- **Reference-only evidence:** Results are normalized with source URL, query, timestamp, upstream commit, heuristic grade, and `REFERENCE_ONLY` copyright boundary. Image URLs are never production assets, and no assets are downloaded.
-- **Fail-closed safety:** `SERPER_API_KEY` is environment-only. Generic or sensitive queries are rejected or safely rewritten. The upstream `design_extract_tokens` path is disabled by default and remains blocked unless every deliberate reference-deconstruction condition is met; the adapter never runs `dembrandt`.
-- **Originality guard:** The binding rule is **RESEARCH PATTERNS, DO NOT CLONE COMPOSITIONS.** No MCP result can set design direction, implementation tokens, locked copy, accessibility requirements, conversion decisions, security decisions, or production provenance.
-- **No new lock or gate:** The adapter feeds the existing research pipeline and does not add a site-profile lock. Capability 7 is a separate cross-cutting provenance protocol and readiness gate owned by EVIDENCE-PROVENANCE-PROTOCOL.md.
-
-### What V2.12.0 Adds (Evidence, Claim & Asset Provenance Intelligence)
-V2.12.0 implements Capability 7 as a bounded, offline, fail-closed evidence
-system. It records the identity and support of claims, source and license
-evidence, research-reference boundaries, testimonials, certifications,
-attribution, permitted use, AI-media metadata, and SHA-256 byte identity.
-
-- **Phase 6.95:** Evidence and Asset Provenance runs after Accessibility and
-  before the Design System.
-- **One readiness state:** provenance.complete is the only completion flag for
-  EVIDENCE_PROVENANCE_READY. It is separate from Asset Director's
-  assets.provenance_status and creates no owner lock.
-- **Production boundary:** Missing, stale, contradictory, ambiguous,
-  unverified, or mismatched evidence is BLOCKED or FAIL. Prototype exceptions
-  remain PROTOTYPE_ONLY.
-- **Reference boundary:** MCP, showcase, competitor, screenshot, and research
-  inputs remain REFERENCE_ONLY; the adapter is consumed rather than
-  reimplemented.
-- **Verification:** provenance/validator.py and the registered synthetic A-V
-  suite plus W-AK fail-closed regression edges run without network access,
-  credentials, deployment, or frozen-project mutation.
-- **Capability boundary:** Capability #8 is implemented in V2.13 and Capability
-  #9 Localization and Internationalization is implemented in V2.14. Capability
-  #10 Application, Commerce, and Authentication Architecture is conditional in
-  V2.15 and activates only from explicit behavior and user stories.
-
-### What V2.13.0 Adds (Content Operations & CMS Architecture)
-
-V2.13.0 implements Capability #8 as a bounded, provider-neutral content
-architecture subsystem. It runs at Phase 6.25 after the content-structure lock
-and before measurement, so the system models content and editorial risk before
-implementation.
-
-- **CMS need/no-need assessment:** `NO_CMS_REQUIRED`,
-  `STATIC_STRUCTURED_CONTENT`, `FILE_BASED_CMS`, `HEADLESS_CMS`,
-  `TRADITIONAL_CMS`, `DATABASE_BACKED_CONTENT`, `ECOMMERCE_CATALOG`,
-  `APPLICATION_DATA`, or `HYBRID`, based on recorded facts rather than vendor
-  habit.
-- **Semantic content model:** Stable types, fields, relationships, taxonomies,
-  SEO/media/provenance references, and validation remain separate from UI
-  components and presentation slots.
-- **Editorial safety:** Editable-surface classifications, explicit role
-  capabilities, draft/review/publish lifecycle, real-route preview,
-  scheduling architecture, safe rich text, and agent `DRAFT` boundaries are
-  machine-validated.
-- **Continuity and portability:** Slug uniqueness, required 301 redirects,
-  archive/delete separation, migration inventory, revision policy, and export
-  of media, relationships, slugs, and provenance are recorded explicitly.
-- **Authority boundaries:** SEO, Measurement, Security & Privacy,
-  Accessibility, Asset Director, Evidence Provenance, and V2.5 client handoff
-  remain their own authorities. V2.5 still owns long-term client operations,
-  backup/restore, training, maintenance, costs, and handoff acceptance.
-- **Readiness:** `[CONTENT_OPERATIONS_READY]` reads `content_ops.complete` and
-  adds no owner lock.
-
-### What V2.14.0 Adds (Localization and Internationalization Intelligence)
-
-V2.14.0 implements Capability #9 as a bounded, provider-neutral localization
-and internationalization subsystem. It runs at Phase 6.35 after Content
-Operations and CMS Architecture and before Conversion and Analytics. An
-English-only project may record `localization.required = false` without
-locale or translation bloat.
-
-- **Canonical architecture:** `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md`,
-  `templates/localization-plan.md`, `templates/localization-manifest.json`,
-  `templates/locale-registry.json`, and `localization/validator.py` own the
-  requirement model, locale registry, routing, fallback, translation review,
-  formatting, RTL, typography, assets, SEO, accessibility, analytics,
-  provenance, QA, launch, and handoff contracts.
-- **Single state and readiness:** `localization.complete` is the sole
-  localization readiness flag and `[LOCALIZATION_READY]` is a readiness gate,
-  not a sixth owner lock. Exactly five owner locks remain.
-- **Fail-closed controls:** BCP 47-style locale identity, one source and one
-  default locale, explicit `ROOT` or `PREFIX` URL policy, acyclic fallback,
-  semantic UI IDs, safe pluralization/interpolation, locale-aware formatting,
-  RTL direction, logical CSS, script font and license provenance, text
-  expansion, localized SEO/hreflang/canonicals, content-model integration,
-  human review, translation freshness, and pseudo-localization QA are
-  deterministic controls.
-- **Authority boundaries:** Content Operations owns what content fields exist;
-  Localization owns which fields vary and their review lifecycle. Existing
-  SEO, Accessibility, Security and Privacy, Measurement, Provenance, Browser
-  QA, Launch Ops, and V2.5 Handoff authorities remain intact. No provider,
-  production credential, live analytics property, deployment, or publishing
-  action is required.
-- **Compatibility:** Existing V1 through V2.14 profiles and frozen pilots may
-  omit `localization{}` and `application{}` and are not retrofitted. Capability
-  #10 is conditional and is assessed only from explicit application behavior.
-
-### What V2.15.0 Adds (Conditional Application, Commerce and Authentication Architecture)
-
-V2.15.0 implements Capability #10 as a bounded, provider-neutral architecture
-subsystem. It runs at Phase 6.99 after the planning authorities and before
-Design System and implementation. Static marketing and public content sites
-remain `NOT_REQUIRED` when their stories do not require stateful behavior.
-
-- **Behavior-based classification:** `application/validator.py` derives
-  application requirement, classifications, and minimal module activation from
-  explicit user stories, actors, data, routes, and side effects. It never uses
-  industry, company name, geography, IP address, browser language, or
-  stereotype as a requirement signal.
-- **Opt-in module registry:**
-  `templates/application-module-registry.json` records authentication,
-  authorization, database/API, catalog/cart/checkout/payment/order,
-  subscriptions, bookings, memberships, UGC, uploads, messaging, webhooks,
-  jobs, admin, audit, search, storage, entitlements, and integrations. A
-  project activates only the modules justified by behavior and their
-  dependencies.
-- **Security architecture:** Password hashing, sessions, server-side and
-  object-level authorization, canonical pricing, payment confirmation,
-  distinct payment/order states, hosted/tokenized payment collection,
-  signed/idempotent webhooks, entitlements, booking conflicts, private
-  uploads, UGC sanitization, transactional delivery, secret custody, and
-  high-risk verification are deterministic fail-closed controls.
-- **One state and one gate:** `application.complete` is the sole application
-  readiness flag and `[APPLICATION_ARCHITECTURE_READY]` is a readiness gate,
-  not a sixth owner lock. Exactly five owner locks remain.
-- **No external effects:** The subsystem never creates provider accounts,
-  users, payments, credentials, live analytics, deployments, or production
-  verification. Launch Operations and V2.5 Handoff remain their authorities.
-- **Verification:** `tests/test_v2_15_application_architecture.py` runs the
-  synthetic A-AV controls. Browser QA consumes application observations through
-  its existing runner; missing evidence and unavailable providers remain
-  `BLOCKED`.
-
-### V2.15 Additive Enhancement (Cinematic Production Intelligence and Inspiration)
-
-This additive enhancement keeps Website Director V2.15 intact while making
-cinematic production, inspiration selection, and visual proof operational.
-
-- **Owner-selectable inspiration registry:** `INSPIRATION-SOURCES.md` and
-  `templates/inspiration-source-registry.json` register 21st.dev, Godly,
-  Awwwards, MotionSites, and preserved research channels. Sources default to
-  `REFERENCE_ONLY`; Awwwards continues to use its existing authority.
-- **Reference interpretation:** `templates/inspiration-board.md` records the
-  owner's requested source, relevance, assigned dimension, transferable
-  pattern, adaptation, and non-copy boundary. Reuse additionally requires
-  verified licensing, provenance, stack adaptation, and design-system
-  adaptation.
-- **Provider-neutral production intelligence:**
-  `CINEMATIC-INTEGRATION-PROTOCOL.md` and `templates/cinematic-brief.md` cover
-  creative-director loops, design packages, shot laws, bounded render
-  strategies, cost preflight, cheap gates, segment approval, fallback, and
-  provenance without binding a model, asset provider, host, or deployment
-  service.
-- **Rendered visual hard stop:** required visual claims derive only from a
-  complete real-browser screenshot receipt set. Receipts persist a path,
-  SHA-256, engine identity, viewport, capture mode, route, and attempt; repair
-  rounds require recapture and a fresh independent critic. Source-only,
-  simulation-only, DOM/CSS-only, and stale receipts remain blocked.
-- **Verification:** `tests/test_cinematic_inspiration.py` proves registry
-  presence, owner selection, reference-only and licensing boundaries,
-  provider neutrality, rendered evidence, critic freshness, repair recapture,
-  five-lock preservation, and zero frozen-project mutations.
-
----
-
----
-
-## 2. The Core Architecture
-
-```
-BUSINESS INPUT
-      │
-      ▼
-PHASE 1: CREATIVE BRIEFING ROOM (Stages A-G)
-      ├─► [GATE BRIEF: CREATIVE_INTENT_CONFIRMED] (readiness gate)
-      │
-      ▼
-PHASE 2: POSITIONING & ANTI-BRAND BOUNDARIES
-      │
-      ▼
-PHASE 2.5: SEO INTELLIGENCE (SEO Intelligence Director)
-      ├─► [GATE SEO: SEO_COMPLETE] (readiness gate, not an approval lock)
-      │
-      ▼
-PHASE 3: VISUAL RESEARCH (Visual Research Director)
-      ├─► [GATE 0: RESEARCH_COMPLETE] (readiness gate, not an approval lock)
-      │
-      ▼
-PHASE 3.5: DESIGN INTELLIGENCE CANDIDATE SYNTHESIS (UI/UX Pro Max)
-      ├─► [GATE INTEL: DESIGN_INTELLIGENCE_COMPLETE] (readiness gate)
-      │
-      ▼
-PHASE 3.75: AWWWARDS SHOWCASE BENCHMARKING (SHOWCASE Tier Intelligence)
-      │
-      ▼
-PHASE 4: TWO-PASS DESIGN SYNTHESIS & DIRECTION FORMULATION (Pass 1 & Pass 2)
-      │
-      ▼
-PHASE 4.5: HIGH-FIDELITY VISUAL PROTOTYPES & OWNER COMPARISON GATE
-      ├─► [GATE PROTO: VISUAL_PROTOTYPES_OWNER_REVIEW_READY]
-      ├─► [OWNER VISUALLY SELECTS DIRECTION]
-      ├─► [LOCK 1: DESIGN_DIRECTION_LOCKED]
-      │
-      ▼
-PHASE 5: INFORMATION ARCHITECTURE & SECTION MORPHOLOGY
-      ├─► [LOCK 2: INFORMATION_ARCHITECTURE_LOCKED]
-      │
-      ▼
-PHASE 6: CONTENT STRATEGY, UX WRITING & COPYWRITING
-      ├─► [LOCK 3: CONTENT_STRUCTURE_LOCKED]
-      │
-      ▼
-PHASE 6.25: CONTENT OPERATIONS & CMS ARCHITECTURE
-      ├─► [GATE CONTENT: CONTENT_OPERATIONS_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.35: LOCALIZATION & INTERNATIONALIZATION INTELLIGENCE
-      ├─► [GATE LOCALIZATION: LOCALIZATION_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.5: CONVERSION & ANALYTICS INTELLIGENCE
-      ├─► [GATE MEASUREMENT: CONVERSION_MEASUREMENT_COMPLETE] (readiness gate)
-      │
-      ▼
-PHASE 6.75: SECURITY, PRIVACY & COMPLIANCE INTELLIGENCE
-      ├─► [GATE SECURITY: SECURITY_PRIVACY_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.9: ACCESSIBILITY INTELLIGENCE
-      ├─► [GATE ACCESSIBILITY: ACCESSIBILITY_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.95: EVIDENCE & ASSET PROVENANCE
-      ├─► [GATE PROVENANCE: EVIDENCE_PROVENANCE_READY] (readiness gate)
-      │
-      ▼
-PHASE 6.99: CONDITIONAL APPLICATION, COMMERCE & AUTHENTICATION ARCHITECTURE
-      ├─► [GATE APPLICATION: APPLICATION_ARCHITECTURE_READY] (readiness gate)
-      │
-      ▼
-PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE
-      ├─► [LOCK 4: DESIGN_SYSTEM_LOCKED]
-      │
-      ▼
-PHASE 8: MOTION DIRECTION & GSAP IMPLEMENTATION SPEC
-      ├─► [LOCK 5: MOTION_DIRECTION_LOCKED]
-      │
-      ▼
-PHASE 9: IMPLEMENTATION CONTRACT ISSUANCE
-      │
-      ▼
-PHASE 10: BUILD EXECUTION (Strict Token/Spec Consumption & Scoped Lifecycle)
-      │
-      ▼
-PHASE 11: 100-POINT DESIGN QA & IMPECCABLE PRE-SCAN
-      │
-      ▼
-PHASE 11.5: WEBSITE GAUNTLET ADVERSARIAL REFINEMENT LOOP (Builder != Critic)
-      ├─► [GATE GAUNTLET: GAUNTLET_PASS]
-      │
-      ▼
-PHASE 12: PRODUCTION PRE-FLIGHT CHECKLIST
-      │
-      ▼
-PRODUCTION-READY CODEBASE (Zero AI Slop, Subject-Grounded, Distinctive & Verified)
-```
-
-
----
-
-## 3. Reference Mode vs. Original Mode
-
-Website Director adapts to user context through two primary pathways:
-
-- **`ORIGINAL_MODE`:** Leverages Website Director's catalog of 14 curated design archetypes (e.g., *Editorial, Luxury, Cinematic, Industrial, Architectural, Modernist, Technical, Heritage, Organic, Boutique, Premium Corporate, Playful, Experimental, High Fashion*) and applies the **60/30/10 Blending Formula** to synthesize a custom aesthetic tailored to the business domain. As of V1.1, `research-synthesis.md`'s archetype recommendation is a weighted input to this choice, not a replacement for it.
-- **`REFERENCE_MODE`:** Deconstructs 1 to 3 external URL/screenshot references across 12 fundamental design vectors (composition, visual hierarchy, typography pairing, spacing cadence, density, imagery art direction, color architecture, geometry, navigation, section morphology, motion physics, and brand posture) to extract underlying principles without cloning proprietary assets.
-
----
-
-## 4. The Five Mandatory Locks (V1.1)
-
-Implementation is strictly blocked until all five gates in `locks{}` evaluate to `true` in `site-profile.json`. `RESEARCH_COMPLETE` (§5 below) is a precondition for Lock 1 but is not itself a member of `locks{}` — see `SKILL.md` §5.2 for why the two are categorically different.
-
-1. **`design_direction_locked`:** Art direction narrative, archetype blend, and emotional posture signed off.
-2. **`information_architecture_locked`:** Sitemaps, conversion funnels, and non-repetitive section morphology signed off.
-3. **`content_structure_locked`:** Copywriting, headline hierarchy, proof assets, and CTA labels signed off (zero `Lorem Ipsum`).
-4. **`design_system_locked`:** Mathematical type scale, 60/30/10 color tokens, 8-point spatial system, surface geometry, and component states signed off.
-5. **`motion_direction_locked`:** Motion level (0–3), hero/scroll/hover behavior, reduced-motion and mobile fallbacks signed off — even a static (Level 0) site locks this to prove the absence of motion was deliberate.
-
----
-
-## 5. Readiness & Refinement Gates
-
-- **`RESEARCH_COMPLETE` (Gate 0):** Certifies that industry landscape, Landbook, cross-industry, and deep-recon research have completed before Lock 1 engages.
-- **`SEO_COMPLETE` (Gate SEO):** Certifies that business context, keyword discovery, competitive SERP analysis, and keyword mapping have completed before Lock 2 and Lock 3 engage.
-- **`CONVERSION_MEASUREMENT_COMPLETE` (Gate Measurement):** Certifies that the business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution strategy, and verification plan are defined before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means production analytics were observed.
-- **`SECURITY_PRIVACY_READY` (Gate Security):** Certifies that risk classification, data inventory, data minimization, applicable technical safeguards, consent/privacy dependencies, required disclosures, escalations, and implementation requirements are specified before Lock 4 engages. A readiness gate, **not** a sixth owner lock. It never means legal compliance is certified, implementation is verified, or the site is vulnerability-free.
-- **`ACCESSIBILITY_READY` (Gate Accessibility):** Certifies that the accessibility specification — applicable-component inventory, semantic / name-role-value / keyboard / focus / contrast / colour-independence / reflow / text-spacing / target-size / motion / media / form / dialog requirements, and an automated + manual + screen-reader test plan — is complete against the WCAG 2.2 AA technical target before Lock 4 engages. A readiness gate, **not** a sixth owner lock. `accessibility.complete` never means the implementation passed accessibility testing, and Website Director never claims legal accessibility compliance.
-- **`BROWSER_QA_PASS` (Gate Browser):** Certifies that machine-executed browser tests ran against the built artifact and passed — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy, reduced motion, keyboard smoke, and visual regression — with frozen-project integrity intact. A verification gate, **not** a sixth owner lock. `browser_qa.complete` never means production (DNS, CDN, real TLS, production headers) was verified.
-- **`GAUNTLET_PASS` (Gate Gauntlet):** Certifies that the build has passed fresh-context adversarial evaluation against approved Reference Bars before Phase 12 pre-flight sign-off.
-- **`RELEASE_READY` (Gate Launch):** Certifies that the Phase 12.25 launch plan is complete — immutable release identity, deployment target, environment readiness, domain/DNS/HTTPS/redirect plan, monitoring determination, rollback plan and triggers — and the candidate may request deployment authorization. A readiness gate, **not** a sixth owner lock. `launch_ops.complete` never means the site is deployed (`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`), production verified, or stable. Deployment is an external owner act; Website Director never deploys.
-
----
-
-## 6. Repository Structure
-
-```
-website-director/
-├── SKILL.md                          # Primary operating manual for AI agents (12-phase + Phase 2.5 + Phase 11.5 flow)
-├── README.md                         # Project overview and architectural manual
-├── DESIGN-CONSTITUTION.md            # Anti-AI-slop rules & the 7 Pillars of Justification
-├── DISCOVERY-PROTOCOL.md             # 4-stage progressive discovery framework
-├── SEO-INTELLIGENCE-PROTOCOL.md      # SEO Intelligence Director role, pipeline, SEO_COMPLETE gate (V1.2)
-├── WEBSITE-GAUNTLET-PROTOCOL.md      # Website Gauntlet subsystem, critics, Reference Bars, lock protection (V1.3)
-├── CONVERSION-ANALYTICS-PROTOCOL.md  # Conversion measurement, KPI architecture, event contracts, attribution, affiliate integrity (V2.6)
-├── SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md # Risk classification, data inventory/minimization, secrets, form/auth/payment safeguards, headers, consent, disclosure, SECURITY_PRIVACY_READY gate (V2.7)
-├── BROWSER-REGRESSION-QA-PROTOCOL.md # Phase 10.5 machine-executed browser verification, viewport matrix, assertion catalogue, flake policy, frozen-project guard, BROWSER_QA_PASS gate (V2.8)
-├── ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md # Phase 6.9 WCAG 2.2 AA spec + Phase 10.5 verification, replaceable a11y engine, screen-reader smoke, no false conformance claims, ACCESSIBILITY_READY gate (V2.9)
-├── LAUNCH-OPERATIONS-PROTOCOL.md     # Phase 12.25 release identity, owner deployment authorization boundary, production verification against a known release, rollback readiness/triggers, post-launch observation, incident model, RELEASE_READY gate (V2.10)
-├── EVIDENCE-PROVENANCE-PROTOCOL.md   # Phase 6.95 evidence, claim, rights, attribution, asset identity, and reference-only provenance gate (V2.12)
-├── CONTENT-OPERATIONS-CMS-PROTOCOL.md # Phase 6.25 semantic content model, CMS decision, editorial/publishing, slug, portability, and migration gate (V2.13)
-├── LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md # Phase 6.35 locale, routing, fallback, translation, formatting, RTL, SEO, QA, and handoff governance (V2.14)
-├── APPLICATION-COMMERCE-AUTH-PROTOCOL.md # Phase 6.99 conditional application, auth, commerce, booking, UGC, integration, and verification governance (V2.15)
-├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
-├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
-├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
-├── VISUAL-RESEARCH-PROTOCOL.md       # Visual Research Director role, pipeline, RESEARCH_COMPLETE gate
-├── RESEARCH-SOURCES.md               # Industry / Landbook / cross-industry / JCodesMore channels + provenance
-├── REFERENCE-RECON-PROTOCOL.md       # Bounded RESEARCH_ONLY_MODE forensic reconnaissance
-├── MOTION-DIRECTION-PROTOCOL.md      # Motion Levels 0-3, justification rule, MOTION_DIRECTION_LOCKED
-├── CINEMATIC-INTEGRATION-PROTOCOL.md # Robonuggets cinematic-sites as a bounded optional specialist
-├── IMPLEMENTATION-CONTRACT.md        # Governance contract binding coding phase + Builder SEO + Gauntlet repair rules
-├── QA-RUBRIC.md                      # 100-point evaluation rubric + V1.1 supplemental dimensions + Gauntlet handoff
-├── PRODUCTION-CHECKLIST.md           # Pre-flight verification matrix + SEO fidelity + Gauntlet verification (V1.3)
-├── templates/
-│   ├── project-brief.md              # Stage 1: Business extraction template
-│   ├── positioning.md                # Stage 2: Brand posture & anti-brand template
-│   ├── seo-business-context.md       # SEO required business/audience/market context (V1.2)
-│   ├── keyword-research.md           # Keyword universe, intent classification, opportunity scoring (V1.2)
-│   ├── seo-competitive-landscape.md  # SEO competitor classification & page analysis (V1.2)
-│   ├── keyword-map.md                # Page-level keyword mapping, feeds IA & content locks (V1.2)
-│   ├── seo-content-briefs.md         # Per-page SEO content briefs for PRIMARY pages (V1.2)
-│   ├── measurement-plan.md           # 19-section conversion measurement plan (V2.6)
-│   ├── analytics-event-manifest.json # Machine-readable event contract manifest (V2.6)
-│   ├── security-privacy-review.md    # 25-section security, privacy & compliance review (V2.7)
-│   ├── security-privacy-register.json # Machine-readable data / third-party / storage register (V2.7)
-│   ├── browser-qa-plan.md            # Phase 10.5 browser & regression QA plan (V2.8)
-│   ├── browser-qa-manifest.json      # Machine-readable browser QA manifest consumed by browser-qa/runner.py (V2.8)
-│   ├── accessibility-review.md       # Phase 6.9 29-section WCAG 2.2 AA accessibility review (V2.9)
-│   ├── accessibility-test-manifest.json # Machine-readable accessibility test manifest (V2.9)
-│   ├── launch-plan.md                # Phase 12.25 26-section launch & post-launch operations plan (V2.10)
-│   ├── launch-evidence-manifest.json # Machine-readable launch evidence manifest, tied to a release identity (V2.10)
-│   ├── evidence-ledger.md             # Human-readable cross-cutting claim and asset evidence ledger (V2.12)
-│   ├── evidence-ledger.json           # Machine-readable cross-cutting provenance ledger (V2.12)
-│   ├── content-model.md               # Capability #8 semantic content model and editorial architecture (V2.13)
-│   ├── content-model.json             # Machine-readable content model contract (V2.13)
-│   ├── cms-decision.md                # Vendor-neutral CMS need/provider decision record (V2.13)
-│   ├── localization-plan.md            # Capability #9 localization and internationalization plan (V2.14)
-│   ├── localization-manifest.json      # Machine-readable localization contract (V2.14)
-│   ├── locale-registry.json            # Machine-readable locale registry (V2.14)
-│   ├── application-architecture-plan.md # Capability #10 conditional application architecture plan (V2.15)
-│   ├── application-architecture-manifest.json # Machine-readable application architecture contract (V2.15)
-│   ├── application-architecture-review.md # Capability #10 review and verification record (V2.15)
-│   ├── application-module-registry.json # Opt-in provider-neutral application module registry (V2.15)
-│   ├── research-brief.md             # Visual research scoping template
-│   ├── competitor-landscape.md       # Industry landscape (visual/design) research template
-│   ├── inspiration-board.md          # Landbook + cross-industry discovery template
-│   ├── reference-deconstruction.md   # Deep reconnaissance template (per target)
-│   ├── research-synthesis.md         # Research-to-decision synthesis template
-│   ├── reference-analysis.md         # Reference deconstruction matrix template
-│   ├── design-direction.md           # Visual direction & gate 1 locking template
-│   ├── information-architecture.md   # Commercial UX & section morphology template
-│   ├── design-system.md              # 14-subsystem token specification template
-│   ├── content-plan.md               # Copywriting & proof plan template
-│   ├── motion-direction.md           # Motion level & gate 5 locking template
-│   ├── cinematic-brief.md            # Binding brief for the cinematic specialist
-│   ├── implementation-contract.md    # Active implementation governance instance
-│   ├── design-review.md              # 100-point QA review & upgrade recommendations
-│   ├── website-gauntlet-report.md    # Phase 11.5 Gauntlet evaluation and targeted repair report (V1.3)
-│   ├── production-review.md          # Production pre-flight audit sign-off
-│   └── site-profile.json              # Machine-readable state & lock schema (v2.15.0; exact five-lock profile)
-├── provenance/                        # Capability 7 deterministic evidence and asset provenance validator
-│   ├── validator.py                   # Fail-closed ledger, manifest, risk, hash, and state validation
-│   └── AGENTS.md                      # Local provenance boundary and verification contract
-├── content-ops/                       # Capability #8 deterministic content/CMS architecture validator
-│   ├── validator.py                   # CMS necessity, model, lifecycle, publishing, slug, rich-text, portability, and reference checks
-│   └── AGENTS.md                      # Local content-operations boundary and verification contract
-├── localization/                      # Capability #9 deterministic localization and internationalization validator
-│   ├── validator.py                   # Locale, route, fallback, translation, formatting, RTL, typography, SEO, and integration checks
-│   └── AGENTS.md                      # Local localization boundary and verification contract
-├── application/                        # Capability #10 conditional application architecture validator
-│   ├── validator.py                   # Behavior-based requirement, module, auth, commerce, integration, and high-risk checks
-│   └── AGENTS.md                      # Local application boundary and verification contract
-├── integrations/                    # Bounded external evidence adapters (V2.11.1)
-│   └── design-inspiration/           # Audited, pinned, research-only MCP adapter contract
-├── launch-ops/                       # Deterministic Phase 12.25 validators (V2.10)
-│   └── validator.py                  # launch_ops{} state machine, release-readiness gate, deployment-authorization boundary, production-verification checks, rollback-trigger evaluator
-├── browser-qa/                       # Reusable Phase 10.5 harness (V2.8; V2.9 accessibility; V2.10 production; V2.15 application assertions)
-│   ├── runner.py                     # Manifest-driven orchestrator + evidence manifest emitter
-│   ├── engine/                       # Replaceable BROWSER_QA_ENGINE: playwright (real) + simulation (deterministic)
-│   ├── assertions/                   # Requirement-traced assertion catalogue
-│   ├── guards/                       # frozen_integrity_guard.py — protected-path snapshot/verify
-│   ├── config/                       # viewports.json · browser-policy.json · ignore-justifications.example.json
-│   └── fixtures/                     # Synthetic scenario pages for the negative-control validation
-├── tests/
-│   ├── test_v2_5_client_handoff.py   # V2.5 CMS/handoff (repaired: temp-copy isolation + integrity guard)
-│   ├── test_v2_5_1_signature_choreography.py
-│   ├── test_v2_7_security_privacy.py
-│   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
-│   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
-│   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
-│   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
-│   ├── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
-│   ├── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
-│   ├── test_v2_14_localization.py      # Capability #9 A-AF locale, translation, RTL, SEO, provenance, and frozen-integrity controls
-│   └── test_v2_15_application_architecture.py # Capability #10 A-AV application, auth, commerce, payment, and frozen-integrity controls
-└── examples/
-    ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.15 protocol/template/pilot invariant harness
-    ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
-    ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
-    ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
-    ├── ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md # Phase 6.9/10.5 scenario A-R validation suite (V2.9)
-    ├── LAUNCH-OPERATIONS-INTEGRATION-VALIDATION.md # Phase 12.25 state-machine + scenario A-R validation suite (V2.10)
-    ├── CONTENT-OPERATIONS-CMS-INTEGRATION-VALIDATION.md # Phase 6.25 scenario A-V content/CMS validation suite (V2.13)
-    ├── LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md # Phase 6.35 scenario A-AF localization validation suite (V2.14)
-    └── APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md # Phase 6.99 scenario A-AV conditional application validation suite (V2.15)
-```
-
----
-
-## 7. How to Invoke Website Director
-
-When pair programming or prompting an AI agent:
-
-```text
-Activate Website Director for [Company Name].
-```
-
-The agent will load [SKILL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SKILL.md), initialize [templates/site-profile.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/site-profile.json), and begin guided extraction.
-
----
-
-## Framework Self-Validation (V2.15.0)
+> **Status:** Active production governance framework
+> **Purpose:** Route website work from business understanding to an owner-controlled release while preserving the existing specialist authorities.
 
 <!-- FRAMEWORK_VERSION: 2.15.0 -->
 
-The V2.13 framework self-validation layer, V2.11.1 design-inspiration adapter,
-V2.12 Capability 7 evidence/provenance validator, V2.13 Capability #8
-content-operations validator, and V2.14 Capability #9 localization and
-internationalization validator are additive to the
-certified V2.10 Website Director system. The corrected lineage retains the
-complete historical `projects/` corpus.
+## What it is
 
-Run the deterministic framework gate locally with:
+Website Director is the repository's design-governance system. It gives an
+agent a short operating route, then sends each decision to the existing
+protocol, validator, template, registry, and project artifact that owns it.
+It is not a website generator, a replacement runtime, or a second approval
+system.
+
+The operator-facing route is deliberately seven stages:
+
+```text
+UNDERSTAND -> RESEARCH -> DESIGN -> ASSETS -> BUILD -> VERIFY -> RELEASE
+```
+
+## Seven-stage operating model
+
+| Stage | Core question | Existing authority family |
+| :--- | :--- | :--- |
+| UNDERSTAND | What are we building, for whom, why, and under what constraints? | Discovery, Creative Intent, and owner intent |
+| RESEARCH | What evidence, market context, and references inform the work? | SEO, Visual Research, bounded inspiration/reference research, and Design Intelligence |
+| DESIGN | What does the system look, feel, and behave like, and what did the owner select? | Visual Prototype, IA/content structure, Design System, Motion Direction, Measurement, Security/Privacy, and Accessibility |
+| ASSETS | Which assets are usable, authentic, and provenanced? | Asset Director and Evidence Provenance |
+| BUILD | How is the approved system implemented? | Implementation Contract, project build, and conditional specialists |
+| VERIFY | Does it work, preserve protected work, and survive independent critique? | Framework Validation, Browser & Regression QA, Impeccable, and Website Gauntlet |
+| RELEASE | Is the candidate ready for owner-controlled deployment and handoff? | Production preflight, Launch Operations, and Client Handoff |
+
+## Default path
+
+The default path has exactly seven top-level route bundles. A conditional
+specialist is dispatched only when actual behavior, content, route, asset, or
+ambition evidence requires it.
+
+| Route bundle | Required outcome |
+| :--- | :--- |
+| UNDERSTAND | Business purpose, audience, outcome, constraints, and owner interpretation recorded |
+| RESEARCH | Required evidence and reference-only boundaries recorded |
+| DESIGN | Selected direction and derived IA, content, tokens, motion, and planning requirements recorded |
+| ASSETS | Required production assets and rights/source evidence recorded |
+| BUILD | Local release candidate implements the approved contracts |
+| VERIFY | Deterministic behavior and fresh qualitative critique are resolved or honestly blocked |
+| RELEASE | Existing launch and handoff authorities record the release boundary |
+
+`DEFAULT_PATH_AUTHORITY_COUNT = 7`. This is a navigation count, not a count
+of specialist authorities or registries.
+
+## Conditional capability dispatch
+
+Content Operations and CMS, Localization, Application/Commerce/Authentication,
+Immersive Web, Rive, cinematic integration, Page Experience, and signature
+choreography remain conditional. `NOT_REQUIRED`, `blocked`, and exception
+results stay in their existing authority state. No conditional branch creates
+a new protocol, runtime, state object, readiness gate, registry, owner lock,
+provider account, or external side effect.
+
+Application behavior is assessed from explicit actors, stories, data, routes,
+state changes, and side effects. Industry, company name, geography, IP address,
+or stereotype is not a requirement signal.
+
+## Five owner locks
+
+These are the only owner locks, and they remain unchanged:
+
+1. `design_direction_locked`
+2. `information_architecture_locked`
+3. `content_structure_locked`
+4. `design_system_locked`
+5. `motion_direction_locked`
+
+Rendered Visual Prototype evidence precedes material direction selection.
+`APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM` remains an existing design-first
+invariant, and `visual_prototypes.homepage_visual_approved` remains approval
+evidence under the existing Visual Prototype authority, not a new lock or
+kernel state. A change to a locked decision requires an explicit owner change
+request.
+
+## Verification boundary
+
+Verification has one intentional boundary:
+
+1. Deterministic [Browser & Regression QA](BROWSER-REGRESSION-QA-PROTOCOL.md)
+   runs first. It owns machine-observable behavior, accessibility assertions,
+   keyboard smoke, responsive behavior, forms, console/network observations,
+   measurement observations, and frozen-project integrity.
+2. [Website Gauntlet](WEBSITE-GAUNTLET-PROTOCOL.md) runs second. It owns fresh
+   qualitative rendered critique against approved Reference Bars and bounded
+   refinement.
+
+`browser_qa.complete` and `[BROWSER_QA_PASS]` remain Browser QA's existing
+authority. `gauntlet.status` remains the qualitative authority. Browser QA does
+not become Gauntlet, and Gauntlet does not duplicate Browser QA. `BUILDER !=
+CRITIC` remains mandatory.
+
+## Release boundary
+
+[Launch Operations](LAUNCH-OPERATIONS-PROTOCOL.md) is the single launch
+authority. The existing sequence is:
+
+```text
+release candidate
+  -> [RELEASE_READY]
+  -> explicit owner deployment authorization
+  -> authorized external deployment
+  -> production verification against the known release identity
+  -> stabilization
+  -> client handoff
+```
+
+`launch_ops.complete` is readiness, not deployment. `RELEASE_READY !=
+DEPLOYMENT_AUTHORIZED` and `RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED` express the
+same boundary. Website Director does not infer authorization, deploy, publish,
+change DNS, merge production work, or claim production verification from local
+or staging evidence.
+
+## Existing authorities
+
+The seven-stage router points to the deep authorities; it does not absorb
+their contracts:
+
+| Concern | Canonical entry point |
+| :--- | :--- |
+| Core discovery and design | [SKILL.md](SKILL.md), [DISCOVERY-PROTOCOL.md](DISCOVERY-PROTOCOL.md), [VISUAL-PROTOTYPE-PROTOCOL.md](VISUAL-PROTOTYPE-PROTOCOL.md) |
+| Research and inspiration | [VISUAL-RESEARCH-PROTOCOL.md](VISUAL-RESEARCH-PROTOCOL.md), [REFERENCE-RECON-PROTOCOL.md](REFERENCE-RECON-PROTOCOL.md), [DESIGN-INTELLIGENCE-PROTOCOL.md](DESIGN-INTELLIGENCE-PROTOCOL.md), [integrations/design-inspiration/ADAPTER.md](integrations/design-inspiration/ADAPTER.md) |
+| Design constraints | [CONVERSION-ANALYTICS-PROTOCOL.md](CONVERSION-ANALYTICS-PROTOCOL.md), [SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md](SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md), and [ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md](ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md) |
+| Assets and provenance | [ASSET-DIRECTOR-PROTOCOL.md](ASSET-DIRECTOR-PROTOCOL.md), [EVIDENCE-PROVENANCE-PROTOCOL.md](EVIDENCE-PROVENANCE-PROTOCOL.md), [provenance/validator.py](provenance/validator.py) |
+| Conditional build architecture | [CONTENT-OPERATIONS-CMS-PROTOCOL.md](CONTENT-OPERATIONS-CMS-PROTOCOL.md), [LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md](LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md), [APPLICATION-COMMERCE-AUTH-PROTOCOL.md](APPLICATION-COMMERCE-AUTH-PROTOCOL.md), [IMMERSIVE-WEB-PROTOCOL.md](IMMERSIVE-WEB-PROTOCOL.md), [RIVE-INTERACTIVE-MOTION-PROTOCOL.md](RIVE-INTERACTIVE-MOTION-PROTOCOL.md), [PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md](PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md) |
+| Verification and critique | [FRAMEWORK-VALIDATION-PROTOCOL.md](FRAMEWORK-VALIDATION-PROTOCOL.md), [BROWSER-REGRESSION-QA-PROTOCOL.md](BROWSER-REGRESSION-QA-PROTOCOL.md), [QA-RUBRIC.md](QA-RUBRIC.md), [IMPECCABLE-ENGINE-PROTOCOL.md](IMPECCABLE-ENGINE-PROTOCOL.md), [WEBSITE-GAUNTLET-PROTOCOL.md](WEBSITE-GAUNTLET-PROTOCOL.md) |
+| Release and handoff | [PRODUCTION-CHECKLIST.md](PRODUCTION-CHECKLIST.md), [LAUNCH-OPERATIONS-PROTOCOL.md](LAUNCH-OPERATIONS-PROTOCOL.md), [CLIENT-CMS-HANDOFF-PROTOCOL.md](CLIENT-CMS-HANDOFF-PROTOCOL.md) |
+
+Security, Privacy & Compliance remains the canonical design-risk authority.
+Its existing `security-privacy-review.md` artifact and
+`[SECURITY_PRIVACY_READY]` gate remain intact; Accessibility Intelligence
+likewise retains `[ACCESSIBILITY_READY]`. These are specialist readiness
+contracts, not owner locks.
+
+## Compatibility and non-goals
+
+The seven stages are a conceptual router. Existing numeric phase metadata,
+protocol metadata, state ownership, readiness gates, registries, historical
+profiles, and frozen project contracts remain where validators or specialist
+authorities consume them. They are not a second top-level workflow.
+
+The current framework version remains 2.15.0. This wave adds no V2.16 or V3,
+no new capability, no sixth owner lock, no duplicate runner, and no fields
+under a kernel namespace. Version-era detail belongs in the specialist
+protocols and compatibility fixtures, not in the active operator route.
+
+## Repository map
+
+- `SKILL.md` is the canonical seven-stage operator router.
+- `AGENTS.md` is the repository and execution contract.
+- Specialist `*-PROTOCOL.md` files, `schemas/`, `templates/`, and validators
+  remain the source of truth for their own authorities.
+- `tests/` contains the existing 13-suite framework and governance registry;
+  this wave adds routing assertions to that existing framework suite and does
+  not increase the suite count.
+- `projects/` contains protected fixtures and project work. Framework tests
+  must not mutate them.
+
+## Verification
+
+Run from the repository root:
 
 ```text
 python -m framework_validation --run-suites
+node "C:\Users\ALPHA\.context\scripts\verify.js" "<project dir>"
 ```
 
-The validator checks the framework registries and schemas, current-version
-references, historical compatibility, frozen-project integrity, test isolation,
-negative controls, and the read-only GitHub Actions policy. Runtime reports are
-written under `framework-validation/reports/runtime/`; certification reports are
-explicit evidence artifacts and do not authorize deployment or publishing.
+Completion claims must distinguish `VERIFIED`, `FAILED`, `UNRUNNABLE`, and
+`UNVERIFIED`. A local browser result is not production verification.
 
-The V2.11.1 adapter is validated by a separate deterministic A–R suite. Its
-source audit, exact upstream pin, normalized reference schema, credential
-states, query policy, platform recognition, originality refusal, and blocked
-token-extraction path are checked without a live key or network access.
-
-The V2.14 localization subsystem is validated by a separate deterministic
-A-AF suite. It checks conditional requirement assessment, BCP 47-style locale
-identity, source/default uniqueness, routes, fallbacks, translation review and
-freshness, formatting, RTL, typography and font provenance, SEO, content-model
-integration, accessibility, analytics, assets, handoff, and pseudo-localization.
-It uses no provider account, network translation call, production credential,
-publishing action, or frozen-project mutation.
-
-The V2.15 conditional application architecture subsystem is validated by a
-separate deterministic A-AV suite. It covers requirement assessment,
-classifications, module dependencies, authentication, authorization, data,
-commerce, payments, webhooks, subscriptions, bookings, uploads, UGC,
-messaging, integrations, measurement, private-route SEO, high-risk controls,
-provider blocking, exact five-lock preservation, and frozen-integrity evidence.
-It uses no live user, payment, provider, credential, deployment, publishing, or
-production request.
-
-The framework contract deliberately remains outside the current site profile.
-Exactly five owner locks remain authoritative:
-`design_direction_locked`, `information_architecture_locked`,
-`content_structure_locked`, `design_system_locked`, and
-`motion_direction_locked`.
+## Framework governance marker
 
 <!-- FRAMEWORK_GOVERNANCE
 framework_version_source=framework-version.json
@@ -601,10 +187,10 @@ state_ownership=schemas/state-ownership.json
 browser_qa=browser-qa/guards/frozen_integrity_guard.py
 accessibility=owner-controlled historical protocol state
 security_privacy=owner-controlled historical protocol state
+provenance=provenance.complete
 framework_phase=0:Framework Self-Validation:ACTIVE
 framework_gate=FRAMEWORK_VALIDATION_PASS
 framework_validation_state=EXTERNAL_TO_SITE_PROFILE
-content_ops=content_ops.complete
 localization=localization.complete
 application=application.complete
 -->

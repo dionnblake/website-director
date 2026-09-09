@@ -40,7 +40,7 @@ stories and runtime behavior.
 
 ## Verification
 
-Run `python tests/test_v2_15_application_architecture.py` for the complete
+Run `python tests/test_application_architecture.py` for the complete
 synthetic A-AV suite. Run `python -m framework_validation` for the registered
 framework and compatibility checks.
 

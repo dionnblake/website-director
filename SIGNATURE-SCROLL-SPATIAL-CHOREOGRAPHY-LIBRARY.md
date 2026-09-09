@@ -45,7 +45,7 @@ This library is a **Creative Pattern Selection and Spatial Composition Intellige
 5. **V2.1 Immersive Web / Three.js (`IMMERSIVE-WEB-PROTOCOL.md`):** Authoritative for 3D WebGL scene graphs, cameras, shaders, fallbacks, and performance budgets.
 6. **V2.2 Rive Interactive Motion (`RIVE-INTERACTIVE-MOTION-PROTOCOL.md`):** Authoritative for runtime vector state machines and input bindings.
 7. **V2.3 Page Experience & View Transitions (`PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`):** Authoritative for cross-document transitions, shared-element expansion, and scroll restoration.
-8. **V2.4 CRO & Privacy-First Analytics (`CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md`):** Authoritative for milestone telemetry without high-frequency scroll position spying.
+8. **Conversion & Privacy-First Analytics (`CONVERSION-ANALYTICS-PROTOCOL.md`):** Authoritative for milestone telemetry without high-frequency scroll position spying.
 9. **V2.5 Client CMS & Operations (`CLIENT-CMS-HANDOFF-PROTOCOL.md`):** Guarantees content remains editable in CMS while delicate spatial choreography coordinates remain locked in design architecture.
 
 ---

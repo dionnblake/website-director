@@ -287,7 +287,7 @@ The required artifacts are:
 * [templates/locale-registry.json](templates/locale-registry.json)
 * [schemas/localization-manifest.schema.json](schemas/localization-manifest.schema.json)
 * [localization/validator.py](localization/validator.py)
-* [tests/test_v2_14_localization.py](tests/test_v2_14_localization.py)
+* [tests/test_localization.py](tests/test_localization.py)
 * [examples/LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md](examples/LOCALIZATION-INTERNATIONALIZATION-INTEGRATION-VALIDATION.md)
 
 The deterministic validator covers locale syntax and uniqueness, source/default identity, route collisions, fallback cycles, state authority, translation status and freshness, UI message safety, formatting, RTL, typography and license provenance, localized assets, Content Operations integration, accessibility, analytics, handoff, SEO reciprocity and canonical identity, and pseudo-localization overflow.

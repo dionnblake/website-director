@@ -113,7 +113,7 @@ This document records the validation of the **Official GreenSock GSAP Motion Imp
 - **Validation Status:** `DOCUMENTED` & `SCHEMA_VALIDATED`.
 
 ### Case 16: Frozen Pilot Baseline Protection
-- **Target Capability:** Ensure all existing pilots (`alpha-starts-now`, `v1-1-architecture-pilot`, `v1-1-automotive-restomod-pilot`, `v1-1-luxury-hospitality-pilot`) remain untouched.
+- **Target Capability:** Ensure the five active Alpha Starts Now project surfaces remain untouched; historical pilot compatibility is represented by synthetic fixtures.
 - **Verification:** Tested on disk; all legacy site-profiles retain original schema and lock baselines.
 - **Validation Status:** `EXECUTABLY_TESTED`.
 

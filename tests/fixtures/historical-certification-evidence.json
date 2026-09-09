@@ -1,0 +1,335 @@
+{
+  "purpose": "Minimal synthetic evidence for historical protocol compatibility after project archival. This is not a website or a production asset.",
+  "asset_director": {
+    "profile": {
+      "schema_version": "2.0.0",
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      },
+      "creative_intent": {
+        "creative_ambition": "SHOWCASE"
+      }
+    },
+    "manifest": {
+      "assets": [
+        {
+          "id": "hero-fixture",
+          "status": "PROTOTYPE_ONLY",
+          "source_type": "TEMPORARY_PROTOTYPE_PLACEHOLDER",
+          "provenance_ref": "synthetic-hero",
+          "master_path": "assets/source/hero.png",
+          "web_path": "assets/web/hero.png",
+          "dimensions": "1600x900",
+          "file_size_kb": 12.34,
+          "measured_file_size_kb": 12.34,
+          "master_exists": true,
+          "web_exists": true,
+          "crop_variants": {
+            "square": "assets/web/hero-square.png",
+            "portrait": "assets/web/hero-portrait.png"
+          },
+          "crop_variants_exist": true,
+          "license": "synthetic_fixture_not_for_production",
+          "optimization_status": "NOT_PRODUCTION_OPTIMIZED",
+          "role": "HERO_IMAGE"
+        },
+        {
+          "id": "signature-fixture",
+          "status": "PRODUCTION_READY",
+          "source_type": "CUSTOM_3D",
+          "provenance_ref": "synthetic-signature",
+          "master_path": "assets/source/signature.png",
+          "web_path": "assets/web/signature.png",
+          "dimensions": "1200x1200",
+          "file_size_kb": 24.5,
+          "measured_file_size_kb": 24.5,
+          "master_exists": true,
+          "web_exists": true,
+          "crop_variants": {},
+          "crop_variants_exist": true,
+          "license": "proprietary_client",
+          "optimization_status": "OPTIMIZED",
+          "role": "SIGNATURE_ASSET"
+        },
+        {
+          "id": "mark-fixture",
+          "status": "PRODUCTION_READY",
+          "source_type": "CUSTOM_SVG",
+          "provenance_ref": "synthetic-mark",
+          "master_path": "assets/source/mark.png",
+          "web_path": "assets/web/mark.png",
+          "dimensions": "800x800",
+          "file_size_kb": 4.25,
+          "measured_file_size_kb": 4.25,
+          "master_exists": true,
+          "web_exists": true,
+          "crop_variants": {},
+          "crop_variants_exist": true,
+          "license": "owner_supplied",
+          "optimization_status": "OPTIMIZED",
+          "role": "BRAND_MARK"
+        },
+        {
+          "id": "detail-fixture",
+          "status": "PROTOTYPE_ONLY",
+          "source_type": "GENERATED_IMAGE",
+          "provenance_ref": "synthetic-detail",
+          "master_path": "assets/source/detail.png",
+          "web_path": "assets/web/detail.png",
+          "dimensions": "1000x750",
+          "file_size_kb": 9.75,
+          "measured_file_size_kb": 9.75,
+          "master_exists": true,
+          "web_exists": true,
+          "crop_variants": {},
+          "crop_variants_exist": true,
+          "license": "synthetic_fixture_not_for_production",
+          "optimization_status": "NOT_PRODUCTION_OPTIMIZED",
+          "role": "SUPPORTING_IMAGE"
+        }
+      ],
+      "provenance_text": "NO_REAL_CLIENT\nSTRICTLY_PROHIBITED_FOR_PRODUCTION"
+    }
+  },
+  "immersive": {
+    "profile": {
+      "schema_version": "2.1.0",
+      "immersive": {
+        "level": 2,
+        "engine": "THREE_JS_VANILLA",
+        "status": "implementation_ready"
+      },
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      }
+    },
+    "html_markers": [
+      "<h1>AETHEL Calibre 01 Architecture</h1>",
+      "Inquire Acquisition",
+      "36,000 vph",
+      "<canvas id=\"three-canvas\"",
+      "id=\"fallback-2d\"",
+      "<script type=\"module\">",
+      "<script type=\"importmap\">",
+      "import * as THREE from 'three'",
+      "prefers-reduced-motion",
+      "data-reduced-motion",
+      "webglcontextlost",
+      "forceWebGLFallback",
+      "window.disposeAethelScene",
+      "Math.min(window.devicePixelRatio",
+      "document.hidden"
+    ],
+    "runtime": {
+      "three.module.js": { "exists": true, "size": 600001 },
+      "screenshots": [
+        { "name": "real-render-desktop.png", "exists": true, "size": 10001 },
+        { "name": "real-render-tablet.png", "exists": true, "size": 10001 },
+        { "name": "real-render-mobile.png", "exists": true, "size": 10001 },
+        { "name": "real-render-fallback.png", "exists": true, "size": 10001 },
+        { "name": "real-render-reduced-motion.png", "exists": true, "size": 10001 }
+      ]
+    }
+  },
+  "rive": {
+    "profile": {
+      "schema_version": "2.2.0",
+      "rive": {
+        "level": "2_COMPONENT",
+        "status": "implementation_ready"
+      },
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      }
+    },
+    "html_markers": [
+      "<h1>Neuromuscular Readiness Engine</h1>",
+      "Request Team Access",
+      "78 / 100",
+      "<canvas id=\"rive-canvas\"",
+      "stateMachines: 'bumpy'",
+      "inputs.find(i => i.name === 'bump')",
+      "id=\"fallback-rive\"",
+      "prefers-reduced-motion",
+      "data-reduced-motion",
+      "forceRiveFallback",
+      "window.disposeKinetixRive"
+    ],
+    "runtime": {
+      "vehicles.riv": {
+        "exists": true,
+        "size": 58792,
+        "sha256": "46bb250cde0b0223a15faddac33d08fa00d4b6acebc2e4e827391ae0113768a3"
+      },
+      "rive.js": {
+        "exists": true,
+        "size": 300001,
+        "sha256": "4ea4054aebd94ef0770540d101c6ac7f27a6a07ab5aba89a72838e55abc01d3f"
+      },
+      "rive.wasm": {
+        "exists": true,
+        "size": 1808114,
+        "sha256": "dc7353e9fba896985dc0265e3e50bb21a50995be687d61dfed7fc7f1306a8e92"
+      },
+      "screenshots": [
+        { "name": "desktop-1440x900.png", "exists": true, "size": 10001 },
+        { "name": "tablet-768x1024.png", "exists": true, "size": 10001 },
+        { "name": "mobile-375x812.png", "exists": true, "size": 10001 },
+        { "name": "fallback-1440x900.png", "exists": true, "size": 10001 },
+        { "name": "reduced-motion-1440x900.png", "exists": true, "size": 10001 }
+      ]
+    }
+  },
+  "page_experience": {
+    "profile": {
+      "schema_version": "2.3.0",
+      "page_experience": {
+        "transition_level": "2_SIGNATURE",
+        "engine": "NATIVE_VIEW_TRANSITIONS",
+        "status": "implementation_ready"
+      },
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      }
+    },
+    "routes": ["index.html", "projects.html", "project-detail.html", "style.css"],
+    "route_sizes": { "min": 101 },
+    "css_markers": [
+      "@view-transition",
+      "view-transition-name: kronos-hero-media",
+      "view-transition-name: brand-header-mark",
+      "data-transition-fallback",
+      "view-transition-name: none !important",
+      "prefers-reduced-motion"
+    ],
+    "detail_markers": ["Kronos Subterranean Pavilion", "id=\"materials\"", "forceTransitionFallback", "skipTransition"],
+    "screenshots": [
+      { "name": "desktop-1440x900.png", "exists": true, "size": 10001 },
+      { "name": "tablet-768x1024.png", "exists": true, "size": 10001 },
+      { "name": "mobile-375x812.png", "exists": true, "size": 10001 },
+      { "name": "fallback-1440x900.png", "exists": true, "size": 10001 },
+      { "name": "reduced-motion-1440x900.png", "exists": true, "size": 10001 }
+    ]
+  },
+  "analytics": {
+    "profile": {
+      "schema_version": "2.4.0",
+      "cro": {
+        "status": "instrumentation_ready",
+        "primary_conversion": "consultation_submit_success",
+        "pii_check": "PASS",
+        "dark_pattern_check": "PASS",
+        "session_replay": "DISABLED"
+      },
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      }
+    },
+    "manifest": {
+      "version": "2.4.0",
+      "event_naming_convention": "object_action",
+      "pii_governance": { "default_pii_allowed": false },
+      "events": [
+        { "event_name": "consultation_submit_success", "pii_allowed": false, "conversion_level": "MACRO", "funnel_stage": "conversion" },
+        { "event_name": "consultation_start", "pii_allowed": false, "conversion_level": "MICRO", "funnel_stage": "intent" },
+        { "event_name": "form_validation_error", "pii_allowed": false, "conversion_level": "DIAGNOSTIC", "funnel_stage": "intent" },
+        { "event_name": "pricing_view", "pii_allowed": false, "conversion_level": "MICRO", "funnel_stage": "consideration" },
+        { "event_name": "case_study_view", "pii_allowed": false, "conversion_level": "MICRO", "funnel_stage": "proof" },
+        { "event_name": "page_view", "pii_allowed": false, "conversion_level": "DIAGNOSTIC", "funnel_stage": "orientation" },
+        { "event_name": "navigation_select", "pii_allowed": false, "conversion_level": "DIAGNOSTIC", "funnel_stage": "orientation" },
+        { "event_name": "experiment_exposure", "pii_allowed": false, "conversion_level": "DIAGNOSTIC", "funnel_stage": "capability" }
+      ]
+    },
+    "routes": ["index.html", "services.html", "case-study.html", "consultation.html", "analytics.js", "style.css"],
+    "code_markers": ["FORBIDDEN_PII_FIELDS", "page_view", "consultation_submit_success", "disableAnalytics", "SYNTHETIC_ANALYTICS_BUS"],
+    "screenshots": [
+      { "name": "desktop-1440x900.png", "exists": true, "size": 5001 },
+      { "name": "tablet-768x1024.png", "exists": true, "size": 5001 },
+      { "name": "mobile-375x812.png", "exists": true, "size": 5001 },
+      { "name": "fallback-1440x900.png", "exists": true, "size": 5001 },
+      { "name": "consultation-1440x900.png", "exists": true, "size": 5001 }
+    ]
+  },
+  "signature_choreography": {
+    "profile": {
+      "schema_version": "2.5.1",
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      },
+      "signature_choreography": {
+        "primary_pattern": "PINNED_HORIZONTAL_SCROLLYTELLING",
+        "supporting_pattern": "SCROLL_DRIVEN_ASSEMBLY",
+        "interaction_level": "2_FEATURE",
+        "mobile_strategy": "REFLOWED"
+      }
+    },
+    "html_markers": ["id=\"atelier-scrollytelling\"", "id=\"chapter-01\"", "id=\"chapter-05\"", "id=\"assembly-container\"", "id=\"capabilities\""],
+    "css_markers": ["@media (max-width: 768px)", "width: 100%", "@media (prefers-reduced-motion: reduce)"],
+    "js_markers": ["ScrollTrigger", "gsap.to", "prefers-reduced-motion"],
+    "source_hashes_present": true,
+    "legacy_profiles": [
+      { "name": "pre-signature-compatibility-fixture", "schema_version": "2.4.0" },
+      { "name": "active-protected-project-fixture", "schema_version": "1.6.0" }
+    ]
+  },
+  "client_handoff": {
+    "profile": {
+      "schema_version": "2.5.0",
+      "locks": {
+        "design_direction_locked": false,
+        "information_architecture_locked": false,
+        "content_structure_locked": false,
+        "design_system_locked": false,
+        "motion_direction_locked": false
+      },
+      "handoff": {
+        "client_independence_test": "PASS_7_OF_7",
+        "bus_factor_test": "PASS",
+        "acceptance_status": "READY_FOR_REVIEW"
+      },
+      "owner_register_text": "CRITICAL_SYSTEMS_OWNED_BY_DEVELOPER_PERSONAL_ACCOUNT = 0",
+      "documentation": ["CLIENT-HANDOFF.md", "DIGITAL-OWNERSHIP-REGISTER.md", "CONTENT-MODEL.md"]
+    },
+    "cms_seed": {
+      "projects": [
+        { "id": "prj-01", "title": "Alpine Daylight", "slug": "lumina-pavilion", "summary": "A daylight study", "status": "PUBLISHED", "hero_image": {}, "industry": "Civic", "lead_architect": "team-01" },
+        { "id": "prj-02", "title": "Aethel Atelier", "slug": "aethel-atelier", "summary": "A workshop study", "status": "PUBLISHED", "hero_image": {}, "industry": "Civic", "lead_architect": "team-01" }
+      ],
+      "team": [
+        { "id": "team-01", "name": "Lead Designer", "slug": "a1-lead", "role": "Architect", "bio": "Synthetic fixture", "status": "PUBLISHED" }
+      ],
+      "journal": [
+        { "id": "journal-01", "title": "Field Note", "slug": "field-note", "summary": "Synthetic note", "status": "PUBLISHED", "published_date": "2026-01-01", "author_id": "team-01", "body": "Synthetic body" }
+      ],
+      "redirects": []
+    },
+    "legacy_profiles": [
+      { "name": "active-protected-project-fixture", "schema_version": "1.6.0" },
+      { "name": "pre-handoff-compatibility-fixture", "schema_version": "2.4.0" }
+    ]
+  }
+}

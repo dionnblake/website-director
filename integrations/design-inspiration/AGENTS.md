@@ -45,7 +45,7 @@ the adapter contract in `ADAPTER.md`.
 
 ## 5. Verification
 
-Run `python tests/test_v2_11_design_inspiration_mcp.py` for the deterministic
+Run `python tests/test_design_inspiration.py` for the deterministic
 A–R controls. Then run `python -m framework_validation --run-suites` and the
 registered historical suites. Tests may use disposable temporary fixtures but
 must not mutate `projects/`.

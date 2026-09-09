@@ -64,6 +64,14 @@
 - **Fresh Re-Evaluation Run / Context:** `[run and context]`
 - **Stale Screenshot Check:** `[PASS | BLOCKED]`
 
+### 1.4 Design-first homepage quality record
+
+- **`HOMEPAGE_LOWER_HALF_QUALITY`:** `[SPECIFIC_AND_AUTHENTIC | FLAG | FAIL]`
+- **Lower-half evidence:** [How services, proof, differentiation, process, objections, FAQ, final CTA, and footer retain subject-specific craft]
+- **`CLIENT_VOICE_FIDELITY`:** `[PASS | FLAG | FAIL]`
+- **Client-language evidence:** [Business Understanding Pack, transcript, notes, or owner review reference]
+- **Generic filler below hero:** `[NONE | FOUND — remediation required]`
+
 ---
 
 ## 2. Round-by-Round Execution Trace

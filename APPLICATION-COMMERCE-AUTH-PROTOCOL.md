@@ -361,7 +361,7 @@ owner review.
 - `templates/application-architecture-review.md`
 - `schemas/application-module-registry.schema.json`
 - `application/validator.py`
-- `tests/test_v2_15_application_architecture.py`
+- `tests/test_application_architecture.py`
 
 ## 34. Completion contract
 

@@ -107,7 +107,7 @@ This document records the validation of the **UI/UX Pro Max Design Intelligence 
 - **Validation Status:** `SCHEMA_VALIDATED`.
 
 ### Test Case 14: Backward Compatibility with Frozen Baseline Pilots
-- **Target Capability:** Ensure older pilots (`alpha-starts-now`, `v1-1-architecture-pilot`, `v1-1-automotive-restomod-pilot`, `v1-1-luxury-hospitality-pilot`) remain untouched and valid.
+- **Target Capability:** Ensure the protected Alpha Starts Now surfaces remain untouched and valid while older compatibility semantics are exercised through synthetic fixtures.
 - **Verification:** Verified on-disk files. Zero retroactive modifications or forced schema migrations performed on legacy directories.
 - **Validation Status:** `EXECUTABLY_TESTED` (Legacy pilot JSON inspection passed).
 

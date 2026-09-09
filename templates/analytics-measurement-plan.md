@@ -7,7 +7,7 @@
 > **Project Name:** [Project Name]  
 > **Schema Version:** 2.4.0  
 > **Status:** Draft / Ready  
-> **Governance (superseded):** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` → now `CONVERSION-ANALYTICS-PROTOCOL.md`
+> **Governance:** `CONVERSION-ANALYTICS-PROTOCOL.md` (historical V2.4 semantics)
 
 ---
 

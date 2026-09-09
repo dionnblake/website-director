@@ -154,7 +154,7 @@ Each scenario exercises one invariant of the subsystem against a synthetic proje
 
 ## Scenario E — Existing Pre-V1.8 Frozen Project
 
-**Profile:** `projects/v1-1-architecture-pilot/` — `schema_version = 1.1.0`, frozen certified baseline. No `measurement{}`, no `cro{}`, no `seo{}`.
+**Profile:** Synthetic V1.1 compatibility fixture — `schema_version = 1.1.0`, protected baseline semantics. No `measurement{}`, no `cro{}`, no `seo{}`.
 
 **Subsystem execution:**
 
@@ -268,8 +268,8 @@ User clicks "Request Consultation"
 Searched the framework for any second, independently-writable measurement completion flag.
 
 - `measurement.complete` — **the only** readiness flag for `[CONVERSION_MEASUREMENT_COMPLETE]`.
-- Legacy `cro.status` removed from `templates/site-profile.json`; retained only as grandfathered read-only state in existing projects, documented in `SKILL.md` §5.11 and the superseded protocol's migration map.
-- `[CRO_MEASUREMENT_READY]` (Phase 8.97) reads the same `measurement{}` object and writes no independent completion flag.
+- Legacy `cro.status` removed from `templates/site-profile.json`; retained only as grandfathered read-only state in existing projects, documented in `SKILL.md` §5.11 and the canonical protocol's migration map.
+- Historical V2.4 records may contain `[CRO_MEASUREMENT_READY]` and Phase 8.97. Current work uses the same `measurement{}` authority and creates no independent experimentation gate or completion flag.
 
 **Verdict:** ✅ No duplicate measurement completion flags.
 

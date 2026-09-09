@@ -1,11 +1,11 @@
 # V2.10 Launch & Post-Launch Operations — Integration Validation Suite
 
-> Companion to `tests/test_v2_10_launch_operations.py`. Every scenario below is a
+> Companion to `tests/test_release_and_handoff.py`. Every scenario below is a
 > **negative control** executed by that suite against synthetic in-memory fixtures
 > and the deterministic validators in `launch-ops/validator.py`. No project under
 > `projects/` is read or written; a `FrozenIntegrityGuard` wraps the run.
 >
-> **Run:** `python tests/test_v2_10_launch_operations.py` (exit 0 = pass)
+> **Run:** `python tests/test_release_and_handoff.py` (exit 0 = pass)
 
 ---
 
@@ -85,7 +85,7 @@
 - `BROWSER-REGRESSION-QA-PROTOCOL.md` §22 — V2.10 production-mode reuse note (no second runner).
 - `README.md`, `AGENTS.md` — V2.10 subsystem documented; AGENTS.md version ≥ 2.10.0.
 - `templates/site-profile.json` — `schema_version = 2.10.0`, `launch_ops{}` ships neutral.
-- `examples/test_runner.py` — `2.10.0` recognised; `launch`/`deploy`/`rollback`/`release` added to the forbidden-lock substrings; `launch_ops{}` neutrality asserted.
+- `tests/test_framework_validation.py` — historical `launch_ops{}` compatibility and current-state neutrality remain asserted.
 
 ---
 
