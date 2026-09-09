@@ -2,11 +2,11 @@
 
 > Validates that the Phase 10.5 subsystem (`BROWSER-REGRESSION-QA-PROTOCOL.md`) is wired
 > into Website Director and that **every major guard actually fails** on a broken input.
-> Automated form: `tests/test_v2_8_browser_regression_qa.py` (exit 0 = pass), run with the
+> Automated form: `tests/test_browser_qa.py` (exit 0 = pass), run with the
 > deterministic `simulation` engine and only the Python standard library.
 
 ```bash
-python tests/test_v2_8_browser_regression_qa.py
+python tests/test_browser_qa.py
 ```
 
 ---
@@ -60,7 +60,7 @@ Plus a harness self-check: `clean_reference` on a complete plan yields **zero FA
 
 The suite demonstrates each guard can fail: **frozen-fixture mutation** (I), **console error** (B),
 **network failure** (C), **visual diff** (G), **PII event** (L), and **obsolete/invalid state schema**
-(`examples/test_runner.py` §R — a sixth owner lock and an unknown `schema_version` are rejected).
+(`tests/test_framework_validation.py` — a sixth owner lock and an unknown `schema_version` are rejected).
 
 ---
 

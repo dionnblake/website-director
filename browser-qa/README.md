@@ -86,11 +86,11 @@ catalogue and runner only depend on `PageObservation`.
 ## Framework self-validation
 
 ```bash
-python tests/test_v2_8_browser_regression_qa.py
+python tests/test_browser_qa.py
 ```
 
 runs the repo-level invariants plus the scenario A–L negative controls on the
 `simulation` engine with only the standard library. Capability #9 localization
-controls live in `tests/test_v2_14_localization.py` and reuse this catalogue.
+controls live in `tests/test_localization.py` and reuse this catalogue.
 Capability #10 application controls live in
-`tests/test_v2_15_application_architecture.py` and reuse this catalogue.
+`tests/test_application_architecture.py` and reuse this catalogue.

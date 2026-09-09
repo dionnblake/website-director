@@ -601,7 +601,7 @@ Historical projects without `browser_qa{}` remain valid and are not retrofitted.
 
 ## 35. Validation scenarios (negative controls)
 
-`tests/test_v2_8_browser_regression_qa.py` and `examples/BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md` prove each guard actually fails:
+`tests/test_browser_qa.py` and `examples/BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md` prove each guard actually fails:
 
 | # | Scenario | Expected |
 | :-- | :--- | :--- |

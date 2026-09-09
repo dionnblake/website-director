@@ -16,7 +16,7 @@ deployment, or legal-certification record.
 - Gate: `[LOCALIZATION_READY]`
 - Phase: `6.35`, after Content Operations and before Measurement
 - Validator: `localization/validator.py`
-- Suite: `tests/test_v2_14_localization.py`
+- Suite: `tests/test_localization.py`
 - Frozen guard: `browser-qa/guards/frozen_integrity_guard.py`
 
 ## Scenario matrix
@@ -61,7 +61,7 @@ deployment, or legal-certification record.
 Run from the repository root:
 
 ```text
-python tests/test_v2_14_localization.py
+python tests/test_localization.py
 python -m framework_validation --run-suites
 ```
 

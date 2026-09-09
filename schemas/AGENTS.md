@@ -80,7 +80,7 @@ validator, tests, protocol, and affected DOX when a durable contract changes.
 
 ## Verification
 
-Run `python -m unittest tests.test_v2_11_framework_validation` and
+Run `python -m unittest tests.test_framework_validation` and
 `python -m framework_validation --run-suites`. Validate every JSON file under
 the manifest's canonical roots, including evidence-ledger.schema.json,
 localization-manifest.schema.json, application-module-registry.schema.json,

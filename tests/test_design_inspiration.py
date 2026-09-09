@@ -1,4 +1,4 @@
-"""Deterministic V2.11.1 Design Inspiration MCP adapter controls.
+"""Deterministic Design Inspiration adapter controls.
 
 The suite uses only synthetic structured results. It does not need a live
 Serper key, invoke the upstream Node server, access the network, download an
@@ -281,7 +281,7 @@ if __name__ == "__main__":
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(DesignInspirationMCPTests)
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     print(
-        "DESIGN_INSPIRATION_MCP_TESTS = %s (%d/%d)"
+        "DESIGN INSPIRATION TESTS = %s (%d/%d)"
         % ("PASS" if result.wasSuccessful() else "FAIL", result.testsRun - len(result.failures) - len(result.errors), result.testsRun)
     )
     raise SystemExit(0 if result.wasSuccessful() else 1)

@@ -1,5 +1,5 @@
 {
-  "$comment": "Self-validation plan for the browser-qa harness. Routes are fixture folders under browser-qa/fixtures/. Exercised by tests/test_v2_8_browser_regression_qa.py with the simulation engine. This plan lists only the PASS-expected fixtures; the negative-control fixtures are driven per-scenario by the test.",
+  "$comment": "Self-validation plan for the browser-qa harness. Routes are fixture folders under browser-qa/fixtures/. Exercised by tests/test_browser_qa.py with the simulation engine. This plan lists only the PASS-expected fixtures; the negative-control fixtures are driven per-scenario by the test.",
   "project": "browser-qa self-validation",
   "environment": "local",
   "protected_paths": ["projects/"],

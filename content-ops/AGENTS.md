@@ -50,7 +50,7 @@ projects.
 
 ## Verification
 
-Run `python tests/test_v2_13_content_operations.py` directly, then run the
+Run `python tests/test_content_operations.py` directly, then run the
 registered suite through `python -m framework_validation --run-suites`. The
 suite must prove A–V behavior, negative controls, and frozen-project
 read-only integrity without writing under `projects/`.

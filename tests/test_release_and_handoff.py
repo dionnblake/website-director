@@ -1,4 +1,4 @@
-# Website Director V2.10 Launch & Post-Launch Operations Test Harness
+# Website Director Release & Client Handoff Test Harness
 #
 # 1. Repository invariants -- one canonical launch protocol, one completion flag
 #    (launch_ops.complete), five owner locks (no launch/deploy/rollback lock),
@@ -8,13 +8,14 @@
 #    machine proven to reject impossible transitions, and production_verified
 #    proven unreachable from a localhost / staging manifest.
 #
-# Runs with only the standard library. Run: python tests/test_v2_10_launch_operations.py
+# Runs with only the standard library. Run: python tests/test_release_and_handoff.py
 
 import io
 import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 
@@ -80,7 +81,7 @@ def verdict(findings, cid):
     return None
 
 
-guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="v2_10_launch_operations")
+guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="release_and_handoff")
 guard.snapshot()
 
 # ===========================================================================
@@ -398,7 +399,7 @@ try:
         fh.write(original)
     fixture_guard = FrozenIntegrityGuard(
         guard_fixture_root, ["projects/"], ledger_path="guard-ledger.log",
-        run_id="v2_10_minimal_guard_fixture"
+        run_id="release_and_handoff_minimal_guard_fixture"
     )
     fixture_guard.snapshot()
     with io.open(victim, "ab") as fh:
@@ -411,7 +412,7 @@ try:
           "R. Guard names the mutated minimal fixture")
     ledger = os.path.join(guard_fixture_root, "guard-ledger.log")
     ledger_text = io.open(ledger, encoding="utf-8").read() if os.path.exists(ledger) else ""
-    check("v2_10_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
+    check("release_and_handoff_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
           "R. Restore-after-the-fact does not erase the recorded violation")
 finally:
     shutil.rmtree(guard_fixture_root, ignore_errors=True)
@@ -419,11 +420,20 @@ finally:
 # ===========================================================================
 # 4. Final frozen-corpus invariant
 # ===========================================================================
+handoff_script = os.path.join(WORKSPACE, "tests", "client_handoff_cases.py")
+handoff_result = subprocess.run(
+    [sys.executable, handoff_script],
+    cwd=WORKSPACE,
+    capture_output=True,
+)
+check(handoff_result.returncode == 0,
+      "Client CMS and handoff cases pass inside the release composite")
+
 final = guard.verify()
 check(final.ok, "FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (%s)" % final.summary())
 
 print("-" * 60)
-print("V2.10 LAUNCH & POST-LAUNCH OPERATIONS TEST SUITE RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
+print("RELEASE & HANDOFF TEST SUITE RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
 if failures:
     print("FAILURES:")
     for x in failures:

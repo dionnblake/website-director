@@ -209,22 +209,22 @@ class FrameworkValidationTests(unittest.TestCase):
                     [],
                 )
 
-    def test_v2_5_client_handoff_compatibility(self) -> None:
+    def test_historical_client_handoff_profile_compatibility(self) -> None:
         self._assert_historical_profile({"schema_version": "2.5.0", "handoff": {"status": "not_started"}})
 
-    def test_v2_5_1_signature_choreography_compatibility(self) -> None:
+    def test_historical_signature_choreography_profile_compatibility(self) -> None:
         self._assert_historical_profile({"schema_version": "2.5.1", "signature_choreography": {"complete": False}})
 
-    def test_v2_7_security_privacy_compatibility(self) -> None:
+    def test_historical_security_privacy_profile_compatibility(self) -> None:
         self._assert_historical_profile({"schema_version": "2.7.0", "security_privacy": {"complete": False}})
 
-    def test_v2_8_browser_regression_qa_compatibility(self) -> None:
+    def test_historical_browser_qa_profile_compatibility(self) -> None:
         self._assert_historical_profile({"schema_version": "2.8.0", "browser_qa": {"complete": False}})
 
-    def test_v2_9_accessibility_compatibility(self) -> None:
+    def test_historical_accessibility_profile_compatibility(self) -> None:
         self._assert_historical_profile({"schema_version": "2.9.0", "accessibility": {"complete": False}})
 
-    def test_v2_10_launch_operations_compatibility(self) -> None:
+    def test_historical_launch_profile_compatibility(self) -> None:
         self._assert_historical_profile(
             {
                 "schema_version": "2.10.0",
@@ -235,8 +235,37 @@ class FrameworkValidationTests(unittest.TestCase):
             }
         )
 
-    def test_examples_runner_compatibility(self) -> None:
+    def test_historical_baseline_profile_compatibility(self) -> None:
         self._assert_historical_profile({"project_name": "V1 baseline", "locks": {"design_direction_locked": False}})
+
+    def test_historical_capability_fixture_remains_structurally_compatible(self) -> None:
+        evidence = _load_json("tests/fixtures/historical-certification-evidence.json")
+        self.assertIsInstance(evidence, dict)
+        self.assertEqual(
+            set(evidence),
+            {
+                "purpose", "asset_director", "immersive", "rive", "page_experience",
+                "analytics", "signature_choreography", "client_handoff",
+            },
+        )
+        expected_versions = {"2.0.0", "2.1.0", "2.2.0", "2.3.0", "2.4.0", "2.5.0", "2.5.1"}
+        canonical_locks = {
+            "design_direction_locked", "information_architecture_locked",
+            "content_structure_locked", "design_system_locked", "motion_direction_locked",
+        }
+        for capability, record in evidence.items():
+            if capability == "purpose":
+                continue
+            with self.subTest(capability=capability):
+                profile = record["profile"]
+                self.assertIn(profile["schema_version"], expected_versions)
+                self.assertEqual(set(profile["locks"]), canonical_locks)
+                self.assertEqual(len(profile["locks"]), 5)
+                self.assertFalse(any("_locked" in key and key not in canonical_locks for key in profile["locks"]))
+
+        current = _load_json("templates/site-profile.json")
+        self.assertIn("measurement", current)
+        self.assertNotIn("cro", current)
 
     def _assert_historical_profile(self, profile: dict[str, object]) -> None:
         self.assertEqual(

@@ -540,6 +540,63 @@ class OwnerIntentEnforcementTests(unittest.TestCase):
             self.assertFalse([finding for finding in evaluate(observation, plan)
                               if finding.check_id.startswith("motion.")])
 
+    def test_historical_signature_choreography_fixture_remains_compatible(self) -> None:
+        """Keep the retired choreography contract under the current motion suite."""
+        registry = json.loads(
+            (ROOT / "templates" / "signature-interaction-registry.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(registry.get("schema_version"), "2.5.1")
+        patterns = registry.get("patterns", [])
+        self.assertGreaterEqual(len(patterns), 18)
+        pattern_ids = [pattern["pattern_id"] for pattern in patterns]
+        self.assertEqual(len(pattern_ids), len(set(pattern_ids)))
+        required_fields = {
+            "pattern_id", "pattern_name", "family", "description", "narrative_purpose",
+            "best_for", "avoid_when", "primary_technique", "mobile_strategy",
+            "reduced_motion_strategy", "accessibility_risk", "performance_risk",
+            "novelty_level", "complexity_level", "content_requirements", "signature_potential",
+        }
+        self.assertTrue(all(required_fields <= set(pattern) for pattern in patterns))
+
+        fixture = json.loads(
+            (ROOT / "tests" / "fixtures" / "historical-certification-evidence.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        signature = fixture["signature_choreography"]
+        profile = signature["profile"]
+        self.assertEqual(profile.get("schema_version"), "2.5.1")
+        self.assertEqual(len(profile.get("locks", {})), 5)
+        self.assertNotIn("signature_choreography_locked", profile["locks"])
+        self.assertEqual(
+            profile["signature_choreography"],
+            {
+                "primary_pattern": "PINNED_HORIZONTAL_SCROLLYTELLING",
+                "supporting_pattern": "SCROLL_DRIVEN_ASSEMBLY",
+                "interaction_level": "2_FEATURE",
+                "mobile_strategy": "REFLOWED",
+            },
+        )
+
+        html = "\n".join(signature["html_markers"])
+        self.assertIn('id="atelier-scrollytelling"', html)
+        self.assertIn('id="chapter-01"', html)
+        self.assertIn('id="chapter-05"', html)
+        self.assertIn('id="assembly-container"', html)
+        self.assertIn('id="capabilities"', html)
+        css = "\n".join(signature["css_markers"])
+        self.assertIn("@media (max-width: 768px)", css)
+        self.assertIn("width: 100%", css)
+        self.assertIn("@media (prefers-reduced-motion: reduce)", css)
+        js = "\n".join(signature["js_markers"])
+        self.assertIn("ScrollTrigger", js)
+        self.assertIn("gsap.to", js)
+        self.assertIn("prefers-reduced-motion", js)
+        self.assertTrue(signature["source_hashes_present"])
+        for legacy_profile in signature["legacy_profiles"]:
+            with self.subTest(profile=legacy_profile["name"]):
+                self.assertNotIn("signature_choreography", legacy_profile)
+
 
 if __name__ == "__main__":
     unittest.main()

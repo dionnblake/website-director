@@ -27,7 +27,7 @@ Keep the implementation standard-library only and provider-neutral. Accept synth
 
 ## Verification
 
-Run `python tests/test_v2_14_localization.py` for the A-AF suite. Run `python -m framework_validation --run-suites` for framework certification. The suite must use temporary fixtures and `browser-qa/guards/frozen_integrity_guard.py`; no test may write under `projects/`.
+Run `python tests/test_localization.py` for the localization suite. Run `python -m framework_validation --run-suites` for framework certification. The suite must use temporary fixtures and `browser-qa/guards/frozen_integrity_guard.py`; no test may write under `projects/`.
 
 ## Child DOX Index
 

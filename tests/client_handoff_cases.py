@@ -10,7 +10,8 @@
 #     guard catches it, that a later restore does not turn the mutating run into
 #     a PASS, and that the violation is recorded in an append-only ledger.
 #
-# Run: python tests/test_v2_5_client_handoff.py   (exit 0 = pass)
+# Executed by tests/test_release_and_handoff.py as the client handoff portion
+# of the canonical release composite.
 
 import importlib.util
 import io
@@ -54,7 +55,7 @@ def load_cms_class():
 # ---------------------------------------------------------------------------
 # 0. Snapshot the active protected project boundary BEFORE anything runs
 # ---------------------------------------------------------------------------
-guard = FrozenIntegrityGuard(WORKSPACE_DIR, protected_paths=["projects/"], run_id="v2_5_client_handoff")
+guard = FrozenIntegrityGuard(WORKSPACE_DIR, protected_paths=["projects/"], run_id="release_and_handoff_client_handoff")
 guard.snapshot()
 print("[INFO] Protected-project integrity baseline: %d files under projects/" % len(guard._baseline))
 
@@ -208,7 +209,7 @@ try:
         f.write(original_bytes)
     fixture_guard = FrozenIntegrityGuard(
         guard_fixture_root, protected_paths=["projects/"], ledger_path="guard-ledger.log",
-        run_id="v2_5_client_handoff_minimal_guard_fixture"
+        run_id="release_and_handoff_client_handoff_minimal_guard_fixture"
     )
     fixture_guard.snapshot()
     nc_result = None
@@ -232,7 +233,7 @@ try:
     check(os.path.exists(ledger), "NEGATIVE CONTROL: violation ledger was written")
     if os.path.exists(ledger):
         ledger_text = io.open(ledger, "r", encoding="utf-8").read()
-        check("v2_5_client_handoff_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
+        check("release_and_handoff_client_handoff_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
               "NEGATIVE CONTROL: restore-after-the-fact did not erase the recorded violation")
     check(fixture_guard.verify(record_violation=False).ok,
           "NEGATIVE CONTROL: final restored fixture is unchanged")
@@ -248,7 +249,7 @@ finally:
     shutil.rmtree(temp_root, ignore_errors=True)
 
 print("-" * 60)
-print("V2.5 CLIENT CMS & HANDOFF TEST SUITE COMPLETE: %d/%d ASSERTIONS PASSED"
+print("CLIENT HANDOFF CASES RESULT: %d/%d ASSERTIONS PASSED"
       % (assertions_passed, assertions_run))
 if failures:
     print("FAILURES:")

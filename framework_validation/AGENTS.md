@@ -4,10 +4,9 @@
 
 Own the deterministic Website Director self-validation library and its
 `python -m framework_validation` CLI, including registry-driven execution of
-the additive V2.11.1 adapter suite, the V2.12 Capability 7 provenance suite,
-the V2.13 Capability #8 content-operations suite, the V2.14 Capability #9
-localization and internationalization suite, and the V2.15 conditional
-Capability #10 application architecture suite. It also owns the
+the design-inspiration adapter suite, the evidence and asset-provenance suite,
+the content-operations suite, the localization and internationalization
+suite, and the conditional application architecture suite. It also owns the
 provider-neutral cinematic/inspiration and rendered-visual evidence helpers
 used by the bounded V2.15 regression suite, plus the provider-neutral
 clean-room execution coordinator for the Visual Prototype operating mode and
@@ -118,11 +117,11 @@ special cases that turn invalid evidence into a pass.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
-`python -m unittest tests.test_cinematic_inspiration`, then run
-`python -m unittest tests.test_clean_room_creative_mode`, then run
-`python -m framework_validation --run-suites`. Inspect both generated reports
-and the final mutation evidence.
+Run `python -m framework_validation --run-suites`. This is the canonical
+full-verification path and includes the browser/accessibility and
+release/handoff composites, cinematic and design/motion unit suites, and the
+clean-room suite. Inspect both generated reports and the final mutation
+evidence.
 
 ## Child DOX Index
 

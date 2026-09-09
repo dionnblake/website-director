@@ -1,4 +1,4 @@
-# Website Director V2.8 Browser & Regression QA Test Harness
+# Website Director Browser, Accessibility & Regression QA Test Harness
 #
 # Two halves:
 #   1. Repository-level invariants  -- canonical protocol, single completion flag,
@@ -8,13 +8,14 @@
 #      proven not to launder a first-run failure into a PASS.
 #
 # Runs with only the Python standard library via the deterministic simulation
-# BROWSER_QA_ENGINE. Run: python tests/test_v2_8_browser_regression_qa.py
+# BROWSER_QA_ENGINE. Run: python tests/test_browser_qa.py
 
 import io
 import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 
@@ -61,7 +62,7 @@ def verdict_of(findings, prefix):
 # ===========================================================================
 # 0. Frozen corpus baseline
 # ===========================================================================
-guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="v2_8_browser_qa")
+guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="browser_qa")
 guard.snapshot()
 
 engine = load_engine("simulation", FIXTURES)
@@ -160,23 +161,23 @@ def _ver_ge(text, lo=(2, 8, 0), prefix=r"> \*\*Version:\*\* "):
     return bool(m) and tuple(int(x) for x in m.groups()) >= lo
 
 
-check(_ver_ge(skill), "SKILL.md version is >= 2.8.0 (V2.8 is additive to later versions)")
-check("Exactly 5 owner locks remain" in skill, "SKILL.md restates the five-lock invariant for V2.8")
+check(_ver_ge(skill), "SKILL.md version marker is current or newer")
+check("Exactly 5 owner locks remain" in skill, "SKILL.md restates the five-lock invariant")
 
 contract = read("IMPLEMENTATION-CONTRACT.md")
-check("Builder Testability & Browser QA Requirements (V2.8)" in contract,
+check("Builder Testability & Browser QA Requirements" in contract,
       "IMPLEMENTATION-CONTRACT.md adds builder testability requirements")
 check("stable selector" in contract.lower(), "Implementation contract requires stable selectors")
 check("not disable" in contract.lower() or "must not disable" in contract.lower(),
       "Implementation contract forbids disabling QA to ship")
 
 checklist = read("PRODUCTION-CHECKLIST.md")
-check("Browser & Regression QA Evidence (V2.8)" in checklist,
-      "PRODUCTION-CHECKLIST.md adds the V2.8 browser-evidence section")
+check("Browser & Regression QA Evidence" in checklist,
+      "PRODUCTION-CHECKLIST.md adds the browser-evidence section")
 check("machine evidence" in checklist.lower(), "Production checklist requires machine evidence for auto-verifiable checks")
 
 gaunt = read("WEBSITE-GAUNTLET-PROTOCOL.md")
-check("Deterministic Browser QA Entry Precondition (V2.8" in gaunt,
+check("Deterministic Browser QA Entry Precondition" in gaunt,
       "Gauntlet documents the deterministic browser QA entry precondition")
 check("No second Gauntlet state machine" in gaunt or "no new critic" in gaunt.lower(),
       "Gauntlet adds no parallel state machine / critic for V2.8")
@@ -187,10 +188,10 @@ check("one owner for each rule" in impeccable.lower() or "single owner" in impec
       "Impeccable protocol keeps one owner per rule")
 
 readme = read("README.md")
-check("V2.8" in readme and "Browser" in readme, "README documents the V2.8 subsystem")
+check("Browser" in readme and "Regression QA" in readme, "README documents the browser QA subsystem")
 agents = read("AGENTS.md")
-check(_ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version is >= 2.8.0")
-check("Browser & Regression QA Governance (V2.8" in agents, "AGENTS.md adds V2.8 governance rules")
+check(_ver_ge(agents, prefix=r"\*\*Version:\*\* "), "AGENTS.md version marker is current or newer")
+check("Browser & Regression QA Governance" in agents, "AGENTS.md adds browser QA governance rules")
 
 # no secrets introduced
 SECRET = re.compile(r"AKIA[0-9A-Z]{16}|sk_live_[0-9a-zA-Z]{16,}|ghp_[0-9A-Za-z]{30,}|"
@@ -804,11 +805,20 @@ finally:
 # ===========================================================================
 # 4. Final frozen-corpus invariant
 # ===========================================================================
+a11y_script = os.path.join(WORKSPACE, "tests", "accessibility_cases.py")
+a11y_result = subprocess.run(
+    [sys.executable, a11y_script],
+    cwd=WORKSPACE,
+    capture_output=True,
+)
+check(a11y_result.returncode == 0,
+      "Accessibility negative controls pass inside the Browser QA composite")
+
 final = guard.verify()
 check(final.ok, "FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (%s)" % final.summary())
 
 print("-" * 60)
-print("V2.8 BROWSER & REGRESSION QA TEST SUITE RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
+print("BROWSER & ACCESSIBILITY QA TEST SUITE RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
 if failures:
     print("FAILURES:")
     for x in failures:

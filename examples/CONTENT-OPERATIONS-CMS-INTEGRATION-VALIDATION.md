@@ -69,7 +69,7 @@ The suite also exercises the concrete issue signals
 ## Execution contract
 
 ```text
-python tests/test_v2_13_content_operations.py
+python tests/test_content_operations.py
 python -m framework_validation --run-suites
 ```
 

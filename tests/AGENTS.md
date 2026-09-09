@@ -7,39 +7,45 @@ compatibility, negative controls, isolation, and release evidence.
 
 ## Ownership
 
-`test_v2_11_framework_validation.py` owns the Capability 6 regression and
-negative-control suite registered in `schemas/test-suites.json`.
-`test_v2_11_design_inspiration_mcp.py` owns the deterministic V2.11.1
-Capability 6.5 A–R adapter, credential, provenance, originality, token, and
-frozen-integrity controls.
-`test_v2_12_evidence_asset_provenance.py` owns Capability 7 synthetic A–V
-evidence, claim, rights, attribution, hash, research-reference, and
-frozen-integrity negative controls, plus W–AK fail-closed regression edges.
-`test_v2_13_content_operations.py` owns Capability #8 synthetic A–V content
+`test_framework_validation.py` owns the Capability 6 regression, historical
+compatibility fixture, and negative-control suite registered in
+`schemas/test-suites.json`.
+`test_design_inspiration.py` owns the deterministic Capability 6.5 adapter,
+credential, provenance, originality, token, and frozen-integrity controls.
+`test_asset_provenance.py` owns Capability 7 synthetic evidence, claim, rights,
+attribution, hash, research-reference, and frozen-integrity negative controls,
+plus fail-closed regression edges.
+`test_content_operations.py` owns Capability #8 synthetic content
 model, CMS decision, editorial lifecycle, publishing, slug, rich-text,
 portability, provenance-boundary, and frozen-integrity controls.
-`test_v2_14_localization.py` owns Capability #9 synthetic A-AF requirement,
+`test_localization.py` owns Capability #9 synthetic locale requirement,
 locale, route, fallback, translation, formatting, RTL, typography, SEO,
 content-model, accessibility, analytics, provenance, handoff, and
 frozen-integrity controls.
-`test_v2_15_application_architecture.py` owns conditional Capability #10
+`test_application_architecture.py` owns conditional Capability #10
 synthetic A-AV application, authentication, authorization, commerce, payment,
 booking, upload, UGC, integration, high-risk, provider-outage, and
 frozen-integrity controls.
-`test_client_intake.py` owns the dependency-free Client Website Intake route,
-contract, raw/derived artifact separation, server validation, and sample
-fixture checks. It uses an ephemeral local server and temporary submission
-directory only.
-`test_alpha_leverage_pilot.py` owns the dependency-free Alpha Leverage local
-candidate checks, including intake traceability, static content boundaries,
-loopback serving, security headers, and accessibility hooks.
+`test_security_privacy.py` owns the deterministic security, privacy,
+compliance, legal-claim, secret-boundary, and frozen-integrity controls.
+`test_browser_qa.py` is the canonical Browser QA composite. It owns browser
+repository invariants, runtime observations, accessibility integration, all
+Browser QA negative controls, and the shared frozen-integrity boundary.
+`accessibility_cases.py` is a child case module executed by that composite;
+it is not independently registered or pytest-discoverable.
+`test_release_and_handoff.py` is the canonical release composite. It owns
+release readiness, deployment authorization, production verification,
+rollback, and the client handoff boundary.
+`client_handoff_cases.py` is a child case module executed by that composite;
+it is not independently registered or pytest-discoverable.
 `test_cinematic_inspiration.py` owns the bounded V2.15 source-registry,
 owner-reference, model-neutrality, rendered-screenshot, fresh-critic,
 repair-recapture, five-lock, and frozen-integrity controls.
-`test_owner_intent_enforcement.py` owns the deterministic owner-authority,
+`test_design_and_motion.py` owns the deterministic owner-authority,
 current-versus-historical brand, reference-boundary, contradiction,
 motion-level, motion-trace, runtime-engine, generic-fade, neutral-color,
-frozen-integrity, and disposable static-fixture controls.
+signature choreography compatibility, frozen-integrity, and disposable
+static-fixture controls.
 `test_design_first_production_flow.py` owns the bounded Business Understanding
 Pack, optional discovery/transcript, ambition, full-homepage, lower-half,
 client-voice, owner-approval, derivation, component, inspiration, asset,
@@ -56,10 +62,11 @@ owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
   production credentials. The protected checkout boundary now contains the
   five active Alpha Starts Now projects; historical certification behavior is
   represented by small synthetic fixtures.
-- Historical V2.5-V2.10 suites are direct script entrypoints and are run by
-  the registry; pytest collection is limited to the registered V2.11-V2.15
-  unittest suites. These suites must not require complete historical project
-  directories.
+- The registry is the one canonical full-verification entrypoint. Composite
+  scripts may execute child case modules, but only the 13 registry entries are
+  active suites. Pytest collection remains limited to the two standard-library
+  unit modules named in `pyproject.toml`. These suites must not require
+  complete historical project directories.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
 - The Evidence and Asset Provenance suite uses synthetic records and temporary
@@ -115,10 +122,10 @@ distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 
-Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
-`python -m unittest tests.test_cinematic_inspiration`, then run all registered
-suites through `python -m framework_validation --run-suites` after the
-design-first and clean-room suites.
+Run targeted composite or child cases only while developing. The completion
+path is `python -m framework_validation --run-suites`, which discovers all 13
+registered suites, including the browser/accessibility and release/handoff
+composites, then inspect the generated report and frozen-integrity evidence.
 
 ## Child DOX Index
 

@@ -420,7 +420,8 @@ Projects without `accessibility{}` remain valid and are not retrofitted. Frozen 
 
 ## 41. Validation scenarios (negative controls)
 
-`tests/test_v2_9_accessibility.py` and `examples/ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md` prove each safeguard fails:
+`tests/test_browser_qa.py` (which executes `tests/accessibility_cases.py`) and
+`examples/ACCESSIBILITY-INTELLIGENCE-INTEGRATION-VALIDATION.md` prove each safeguard fails:
 
 | # | Scenario | Expected |
 | :-- | :--- | :--- |

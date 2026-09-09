@@ -1,4 +1,4 @@
-# Website Director V2.9 Accessibility Intelligence & WCAG 2.2 AA Verification Test Harness
+# Website Director Accessibility Intelligence & WCAG 2.2 AA Verification Cases
 #
 # 1. Repository invariants -- one canonical protocol, one completion flag, five
 #    owner locks, cross-document wiring, no false legal-conformance claims.
@@ -7,7 +7,8 @@
 #    engine-clean run with a failing manual keyboard review proven NOT a full PASS.
 #
 # Runs with only the standard library via the deterministic simulation engine.
-# Run: python tests/test_v2_9_accessibility.py
+# Executed by tests/test_browser_qa.py as the accessibility portion of the
+# canonical Browser QA composite.
 
 import io
 import json
@@ -55,7 +56,7 @@ def ver_ge(text, lo=(2, 9, 0), prefix=r"> \*\*Version:\*\* "):
     return bool(m) and tuple(int(x) for x in m.groups()) >= lo
 
 
-guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="v2_9_accessibility")
+guard = FrozenIntegrityGuard(WORKSPACE, ["projects/"], run_id="browser_qa_accessibility")
 guard.snapshot()
 engine = load_engine("simulation", FIXTURES)
 
@@ -245,7 +246,7 @@ f, _ = run_a11y("a11y_error_not_associated")
 check(v(f, "a11y.form-error-association") == FAIL, "F. Form error not programmatically associated -> FAIL")
 
 f, _ = run_a11y("a11y_reduced_motion_trap", reduced_motion=True)
-check(v(f, "a11y.reduced-motion-trap") == FAIL, "G. Reduced-motion content trap -> FAIL (via V2.8 §15 integration)")
+check(v(f, "a11y.reduced-motion-trap") == FAIL, "G. Reduced-motion content trap -> FAIL (via shared reduced-motion integration)")
 
 f, _ = run_a11y("a11y_reflow", viewport=320)
 check(v(f, "a11y.reflow") == FAIL, "H. 320px reflow makes the primary CTA unreachable -> FAIL")
@@ -294,7 +295,7 @@ try:
         fh.write(original)
     fixture_guard = FrozenIntegrityGuard(
         guard_fixture_root, ["projects/"], ledger_path="guard-ledger.log",
-        run_id="v2_9_minimal_guard_fixture"
+        run_id="browser_qa_accessibility_minimal_guard_fixture"
     )
     fixture_guard.snapshot()
     with io.open(victim, "ab") as fh:
@@ -307,7 +308,7 @@ try:
           "R. Guard names the mutated minimal fixture")
     ledger = os.path.join(guard_fixture_root, "guard-ledger.log")
     ledger_text = io.open(ledger, encoding="utf-8").read() if os.path.exists(ledger) else ""
-    check("v2_9_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
+    check("browser_qa_accessibility_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
           "R. Restore-after-the-fact does not erase the recorded violation")
 finally:
     shutil.rmtree(guard_fixture_root, ignore_errors=True)
@@ -319,7 +320,7 @@ final = guard.verify()
 check(final.ok, "FROZEN FIXTURE INTEGRITY: projects/ byte-for-byte unchanged (%s)" % final.summary())
 
 print("-" * 60)
-print("V2.9 ACCESSIBILITY INTELLIGENCE TEST SUITE RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
+print("ACCESSIBILITY CASES RESULT: %d/%d ASSERTIONS PASSED" % (passed, runs))
 if failures:
     print("FAILURES:")
     for x in failures:

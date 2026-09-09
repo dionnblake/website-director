@@ -1,10 +1,10 @@
-# Website Director V2.7 Security, Privacy & Compliance Intelligence Test Harness
+# Website Director Security, Privacy & Compliance Test Harness
 #
-# Deterministic repository-level assertions for the V2.7 subsystem.
+# Deterministic repository-level assertions for the security and privacy subsystem.
 # Verifies canonical authority, single completion flag, five-lock invariant,
 # legal-claim boundary, cross-document wiring, and frozen-pilot preservation.
 #
-# Run: python tests/test_v2_7_security_privacy.py
+# Run: python tests/test_security_privacy.py
 import io
 import json
 import os
@@ -382,7 +382,7 @@ check(not bad_json, 'All repository JSON parses (invalid: %s)' % (bad_json or 'n
 # Summary
 # ---------------------------------------------------------------------------
 print('-' * 60)
-print('V2.7 SECURITY, PRIVACY & COMPLIANCE TEST SUITE RESULT: %d/%d ASSERTIONS PASSED'
+print('SECURITY & PRIVACY TEST SUITE RESULT: %d/%d ASSERTIONS PASSED'
       % (assertions_passed, assertions_run))
 if failures:
     print('FAILURES:')

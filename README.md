@@ -72,7 +72,7 @@ V2.8 closes the **verification** gap. Website Director could already design, mea
 - **Local vs. production:** `browser_qa.complete` ≠ `implementation_verified` (real browser, local build) ≠ `production_verified` (real production URL). Localhost never sets `production_verified`.
 - **Visual regression with governance:** explicit baselines, no silent overwrite, narrow masks, deterministic fixtures for dynamic content; a diff is evidence of change, not automatically a defect.
 - **Feeds the Gauntlet, doesn't merge with it:** the qualitative Website Gauntlet no longer spends cycles on a build with broken navigation, JS exceptions, missing assets, or failed forms. No new Gauntlet critic and no second state machine.
-- **Repairs two pre-existing validation defects:** `tests/test_v2_5_client_handoff.py` no longer mutates frozen pilots (all mutable work runs in a temp copy under the integrity guard); `examples/test_runner.py` asserts framework invariants and the canonical `measurement{}` architecture instead of a frozen `schema_version == "2.4.0"` / `cro{}` literal, while still verifying the grandfathered V2.4 pilot as-is.
+- **Consolidated verification:** Browser QA owns the accessibility child cases, Release & Handoff owns the client handoff child cases, and historical capability compatibility is checked by the framework unit suite. The registry is the only canonical full-verification path.
 
 ### What V2.9 Adds (Accessibility Intelligence & WCAG 2.2 AA Verification)
 V2.9 gives Website Director **one canonical accessibility authority**. Accessibility rules already lived in the production checklist, the QA rubric, the Gauntlet Accessibility Critic, Impeccable's contrast/target detectors, the browser-QA keyboard smoke, the security consent rules, and the design system — but scattered. V2.9 reconciles them.
@@ -226,7 +226,7 @@ remain `NOT_REQUIRED` when their stories do not require stateful behavior.
 - **No external effects:** The subsystem never creates provider accounts,
   users, payments, credentials, live analytics, deployments, or production
   verification. Launch Operations and V2.5 Handoff remain their authorities.
-- **Verification:** `tests/test_v2_15_application_architecture.py` runs the
+- **Verification:** `tests/test_application_architecture.py` runs the
   synthetic A-AV controls. Browser QA consumes application observations through
   its existing runner; missing evidence and unavailable providers remain
   `BLOCKED`.
@@ -510,20 +510,23 @@ website-director/
 │   ├── config/                       # viewports.json · browser-policy.json · ignore-justifications.example.json
 │   └── fixtures/                     # Synthetic scenario pages for the negative-control validation
 ├── tests/
-│   ├── test_v2_5_client_handoff.py   # V2.5 CMS/handoff (repaired: temp-copy isolation + integrity guard)
-│   ├── test_v2_5_1_signature_choreography.py
-│   ├── test_v2_7_security_privacy.py
-│   ├── test_v2_8_browser_regression_qa.py # V2.8 repo invariants + scenario A-L negative controls
-│   ├── test_v2_9_accessibility.py     # V2.9 repo invariants + scenario A-R accessibility negative controls
-│   ├── test_v2_10_launch_operations.py # V2.10 repo invariants + state-machine + scenario A-R launch negative controls
-│   ├── test_v2_11_design_inspiration_mcp.py # V2.11.1 adapter A-R controls: pin, query, platforms, assets, tokens, originality
-│   ├── test_v2_12_evidence_asset_provenance.py # Capability 7 A-V evidence, rights, hash, reference, frozen-integrity controls plus W-AK fail-closed edges
-│   ├── test_v2_13_content_operations.py # Capability #8 A-V content/CMS, editorial, publishing, redirect, provenance, and frozen-integrity controls
-│   ├── test_v2_14_localization.py      # Capability #9 A-AF locale, translation, RTL, SEO, provenance, and frozen-integrity controls
-│   └── test_v2_15_application_architecture.py # Capability #10 A-AV application, auth, commerce, payment, and frozen-integrity controls
+│   ├── test_framework_validation.py   # Framework, compatibility, and negative-control unit suite
+│   ├── test_design_inspiration.py     # Bounded design-inspiration adapter controls
+│   ├── test_security_privacy.py       # Security, privacy, and compliance controls
+│   ├── test_browser_qa.py             # Browser QA composite, accessibility child, and runtime observation controls
+│   ├── accessibility_cases.py         # Non-discoverable accessibility child cases
+│   ├── test_release_and_handoff.py    # Release/rollback/deployment boundary composite
+│   ├── client_handoff_cases.py        # Non-discoverable CMS/handoff child cases
+│   ├── test_asset_provenance.py       # Evidence, claim, and asset provenance controls
+│   ├── test_content_operations.py     # Content/CMS architecture controls
+│   ├── test_localization.py           # Localization and internationalization controls
+│   ├── test_application_architecture.py # Conditional application/auth/commerce controls
+│   ├── test_cinematic_inspiration.py  # Rendered visual evidence and inspiration controls
+│   ├── test_design_and_motion.py      # Owner intent, signature choreography, and motion controls
+│   ├── test_design_first_production_flow.py
+│   └── test_clean_room_creative_mode.py
 └── examples/
     ├── README.md                     # End-to-end worked example (AetherDB)
-    ├── test_runner.py                # V2.0-V2.15 protocol/template/pilot invariant harness
     ├── V1.1-VALIDATION-SIMULATIONS.md # Planning-only Dental / Architecture / Plumbing diversity test
     ├── GAUNTLET-INTEGRATION-VALIDATION.md # Gauntlet adversarial evaluation & targeted repair validation suite (V1.3)
     ├── BROWSER-REGRESSION-QA-INTEGRATION-VALIDATION.md # Phase 10.5 scenario A-L validation suite (V2.8)
