@@ -10,8 +10,8 @@ localization and internationalization suite, and the V2.15 conditional
 Capability #10 application architecture suite. It also owns the
 provider-neutral cinematic/inspiration and rendered-visual evidence helpers
 used by the bounded V2.15 regression suite, plus the provider-neutral
-Clean-Room Creative Mode execution coordinator and its test-only synthetic
-proof.
+clean-room execution coordinator for the Visual Prototype operating mode and
+its test-only synthetic proof.
 
 ## Ownership
 
@@ -50,7 +50,7 @@ owner-selection authority is consumed only at the final unlock boundary.
   historical positive inputs.
 - Never publish, deploy, push, merge, use credentials, perform network
   mutation, or mutate `projects/`.
-- Clean-Room Creative Mode must run through
+- The clean-room operating mode must run through
   `prepare_clean_room_concept_run`; historical output is available only
   through the post-render negative-baseline adapter. The boundary stages only
   manifest-declared inputs, emits the bounded generator package before the

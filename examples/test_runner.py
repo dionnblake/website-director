@@ -452,18 +452,16 @@ def run():
     assert os.path.exists('templates/experiment-brief.md')
     assert os.path.exists('templates/analytics-event-manifest.json')
 
-    # The V2.4 protocol document is retained only as a link-stable supersession pointer.
-    assert os.path.exists('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md')
-    with open('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md', 'r', encoding='utf-8') as f:
-        cp = f.read()
-    assert 'SUPERSEDED' in cp and 'CONVERSION-ANALYTICS-PROTOCOL.md' in cp, \
-        'CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md must point to its successor'
-    assert 'Do not author new guidance here' in cp
+    # The pointer-only V2.4 protocol surface is intentionally deleted. Historical
+    # semantics remain readable through the canonical V2.6 measurement protocol.
+    assert not os.path.exists('CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md')
 
     # The historical V2.4 semantics themselves must survive in the canonical protocol.
     assert os.path.exists('CONVERSION-ANALYTICS-PROTOCOL.md')
     with open('CONVERSION-ANALYTICS-PROTOCOL.md', 'r', encoding='utf-8') as f:
         canon = f.read()
+    assert 'Historical V2.4 CRO and experimentation guidance' in canon
+    assert 'create no independent' in canon
     for token in ('CONVERSION_LEVEL', 'CRO_HYPOTHESIS', 'MACRO', 'MICRO', 'DIAGNOSTIC',
                   'dark pattern', 'PII'):
         assert token in canon or token.lower() in canon.lower(), \

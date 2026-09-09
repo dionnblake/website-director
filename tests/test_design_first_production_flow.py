@@ -561,21 +561,22 @@ class DesignFirstProductionFlowTests(unittest.TestCase):
         self.assertEqual(result.deletions, [])
 
     def test_contract_artifacts_are_documented_without_new_state_or_lock(self) -> None:
-        flow_doc = (ROOT / "DESIGN-FIRST-PRODUCTION-FLOW.md").read_text(encoding="utf-8")
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
         implementation_contract = (ROOT / "IMPLEMENTATION-CONTRACT.md").read_text(encoding="utf-8")
         visual_prototype_protocol = (ROOT / "VISUAL-PROTOTYPE-PROTOCOL.md").read_text(encoding="utf-8")
         visual_prototype_template = (ROOT / "templates" / "visual-prototype-review.md").read_text(encoding="utf-8")
         state_registry = (ROOT / "schemas" / "state-ownership.json").read_text(encoding="utf-8")
-        self.assertIn("UNDERSTANDING_PRECEDES_DESIGN", flow_doc)
+        self.assertIn("UNDERSTANDING_PRECEDES_DESIGN", visual_prototype_protocol)
         self.assertIn("APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM", skill)
-        self.assertIn("FIGMA_IN_DESIGN_FIRST_FLOW = NO", flow_doc)
-        for text in (implementation_contract, visual_prototype_protocol, visual_prototype_template):
+        self.assertIn("FIGMA_IN_DESIGN_FIRST_FLOW = NO", visual_prototype_protocol)
+        for text in (implementation_contract, visual_prototype_template):
             self.assertNotIn("figma", text.lower())
         self.assertIn("homepage_visual_approved", skill)
         self.assertNotIn('"homepage_visual_approved"', state_registry)
-        self.assertNotIn("V2.16", flow_doc + skill)
-        self.assertNotIn("Capability #11", flow_doc + skill)
+        self.assertNotIn("V2.16", visual_prototype_protocol + skill)
+        self.assertNotIn("Capability #11", visual_prototype_protocol + skill)
+        self.assertFalse((ROOT / "DESIGN-FIRST-PRODUCTION-FLOW.md").exists())
+        self.assertFalse((ROOT / "CLEAN-ROOM-CREATIVE-PROTOCOL.md").exists())
 
 
 if __name__ == "__main__":

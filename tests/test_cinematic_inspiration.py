@@ -254,7 +254,7 @@ class CinematicInspirationTests(unittest.TestCase):
     def _production_docs() -> list[Path]:
         return [
             ROOT / "CINEMATIC-INTEGRATION-PROTOCOL.md",
-            ROOT / "INSPIRATION-SOURCES.md",
+            ROOT / "VISUAL-RESEARCH-PROTOCOL.md",
             ROOT / "templates" / "inspiration-source-registry.json",
             ROOT / "templates" / "cinematic-brief.md",
         ]

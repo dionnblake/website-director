@@ -194,14 +194,6 @@
       "status": "HISTORICAL"
     },
     {
-      "phase": "8.97",
-      "name": "CRO Analytics Compatibility Layer",
-      "protocol": "CRO_ANALYTICS",
-      "gate": "CRO_MEASUREMENT_READY",
-      "preconditions": ["CONVERSION_MEASUREMENT_COMPLETE"],
-      "status": "HISTORICAL"
-    },
-    {
       "phase": "9",
       "name": "Implementation Contract",
       "protocol": "IMPLEMENTATION_CONTRACT",

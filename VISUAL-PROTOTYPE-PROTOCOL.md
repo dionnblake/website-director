@@ -261,3 +261,51 @@ Once the owner explicitly selects or confirms a visual direction:
 4. Present the formal Design Direction Lock confirmation package.
 5. Obtain explicit owner confirmation for the lock.
 6. Only then set site-profile.json → locks.design_direction_locked = true.
+
+---
+
+## 11. Bounded Creative Operating Modes
+
+Design-first and clean-room work are operating modes of this Visual Prototype
+authority. They do not create a second creative authority, lifecycle phase,
+readiness gate, state object, or owner lock.
+
+### 11.1 Design-first production mode
+
+Use this mode when the owner needs to see and approve the complete homepage
+direction before the remaining site is implemented. The required sequence is:
+
+`UNDERSTANDING_PRECEDES_DESIGN` → research and references → full browser-rendered
+homepage → desktop and mobile evidence → internal QA → owner review and
+approval → Design System derivation → full-site implementation.
+
+`FIGMA_IN_DESIGN_FIRST_FLOW = NO`. The review surface is the existing browser-
+rendered Visual Prototype. `visual_prototypes.homepage_visual_approved` is
+approval evidence under the existing `visual_prototypes{}` object; it is not a
+new phase, gate, state authority, or owner lock. The approved homepage defines
+the site system (`APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM`). Browser QA owns
+deterministic behavior evidence and the Website Gauntlet owns qualitative
+post-QA critique.
+
+### 11.2 Clean-room creative mode
+
+Use this mode when the owner requires a quarantined creative exploration. The
+mode keeps positive inputs and historical negative baselines separate:
+
+- Only the manifest-declared owner brief, current references, and explicitly
+  allowed assets enter the staged run. Historical projects and prior design
+  outputs are blocked as positive inputs.
+- Generate exactly three cheap concepts before expensive production. Each
+  concept proves a desktop hero and signature element; full-homepage work waits
+  for the existing owner selection authority.
+- Render candidates in a staged workspace, derive morphology from browser
+  geometry, and provide the blind critic rendered evidence without builder
+  source, secrets, or historical labels. Historical output may be used only as
+  a post-render negative baseline.
+- The provider-neutral execution boundary is
+  `framework_validation.clean_room.prepare_clean_room_concept_run`; it emits
+  receipts and stops at `OWNER_CONCEPT_SELECTION_PENDING` until
+  `visual_prototypes.owner_selection_confirmed` is valid.
+
+No clean-room run may call a provider, write under `projects/`, publish,
+deploy, or add a lock. The exact five owner locks remain unchanged.

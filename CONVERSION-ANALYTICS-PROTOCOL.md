@@ -2,8 +2,8 @@
 
 > **Version:** 2.6.1  
 > **Status:** Authoritative Conversion Measurement, Analytics Architecture, Attribution & Experimentation Standard  
-> **Supersedes:** `CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md` (V2.4.0) — retained as a superseded pointer for link stability. All of its normative content is absorbed here.  
-> **Governs:** `PHASE 6.5` (Conversion & Analytics Intelligence) and `PHASE 8.97` (Experimentation & Instrumentation Readiness)  
+> **Supersedes:** Historical V2.4 CRO and experimentation guidance. The former pointer-only document is removed; grandfathered `cro{}` project state remains readable and read-only. All normative content is absorbed here.
+> **Governs:** `PHASE 6.5` (Conversion & Analytics Intelligence), including authorized experimentation and instrumentation readiness against the same `measurement{}` state.
 > **Readiness Gate:** `GATE MEASUREMENT: [CONVERSION_MEASUREMENT_COMPLETE]`  
 > **Reconciled By:** V2.7 `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` — see §15 for the measurement/privacy authority split. No measurement content was moved or removed.  
 > **Core Principle:** Website Director does not merely assert that a CTA *should* convert. It defines what the conversion is, which event represents it, how that event is triggered, which KPI it serves, how attribution is preserved, and how the implementation is verified. Measure what matters. Never track everything merely because analytics exists. Never fabricate a number.
@@ -32,9 +32,12 @@ GATE MEASUREMENT: CONVERSION_MEASUREMENT_COMPLETE
 PHASE 7: DESIGN SYSTEM TOKEN ARCHITECTURE
 ```
 
-**Why after Lock 3.** Measurement is derived from the locked content structure. CTAs, funnel steps, and form surfaces must exist and be approved before they can be traced to events. Planning measurement earlier would invent funnel steps; planning it later (as V2.4 did exclusively at Phase 8.97) forces instrumentation to be retrofitted onto design decisions already frozen.
+**Why after Lock 3.** Measurement is derived from the locked content structure. CTAs, funnel steps, and form surfaces must exist and be approved before they can be traced to events. Planning measurement earlier would invent funnel steps; planning it later would force instrumentation to be retrofitted onto design decisions already frozen.
 
-**What remains at Phase 8.97.** Experimentation design, provider wiring specifics, and instrumentation readiness verification remain at Phase 8.97 under `[CRO_MEASUREMENT_READY]`, which is now a **downstream sub-gate reading the same `measurement{}` state**. It is not an independent flag.
+**Experimentation boundary.** Experimentation design, provider wiring specifics,
+and instrumentation readiness verification remain downstream sections of this
+protocol. They read the same `measurement{}` state and create no independent
+phase, gate, completion flag, or owner lock.
 
 ---
 
@@ -607,7 +610,8 @@ On engagement: set `measurement.complete = true` and `measurement.mode` to `stan
 
 For non-commercial surfaces with a recorded exception: `measurement.mode = "exception"` or `"not_required"`, `measurement.exception.applied = true`.
 
-`[CRO_MEASUREMENT_READY]` at Phase 8.97 is a downstream sub-gate that reads this same state plus experimentation fields. It writes no independent completion flag.
+Experimentation readiness reads this same state plus any authorized
+experimentation fields. It writes no independent completion flag.
 
 ---
 

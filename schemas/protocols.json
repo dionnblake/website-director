@@ -107,7 +107,7 @@
       "domain": "conversion-analytics",
       "phase": "6.5",
       "state_owner": "measurement.complete",
-      "supersedes": ["CRO_ANALYTICS"],
+      "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "V2.6 canonical state"
     },
@@ -198,17 +198,6 @@
       "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "V2.10 parent lineage"
-    },
-    {
-      "id": "CRO_ANALYTICS",
-      "path": "CRO-ANALYTICS-EXPERIMENTATION-PROTOCOL.md",
-      "status": "SUPERSEDED",
-      "domain": "conversion-analytics",
-      "phase": "8.97",
-      "state_owner": "cro.complete",
-      "supersedes": [],
-      "superseded_by": "CONVERSION_ANALYTICS",
-      "compatibility_pointer": "Grandfathered V2.4 and V2.5 history only"
     },
     {
       "id": "IMPLEMENTATION_CONTRACT",
@@ -341,17 +330,6 @@
       "supersedes": [],
       "superseded_by": null,
       "compatibility_pointer": "Additive V2.15 Capability 10; conditional, provider-neutral, and does not add an owner lock or authorize deployment."
-    },
-    {
-      "id": "CLEAN_ROOM_CREATIVE",
-      "path": "CLEAN-ROOM-CREATIVE-PROTOCOL.md",
-      "status": "ACTIVE",
-      "domain": "clean-room-creative",
-      "phase": "4",
-      "state_owner": "visual_prototypes.owner_selection_confirmed",
-      "supersedes": [],
-      "superseded_by": null,
-      "compatibility_pointer": "Additive clean-room creative mode enforcement layer preventing historical design contamination."
     }
   ]
 }

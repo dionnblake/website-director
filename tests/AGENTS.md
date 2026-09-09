@@ -44,7 +44,7 @@ frozen-integrity, and disposable static-fixture controls.
 Pack, optional discovery/transcript, ambition, full-homepage, lower-half,
 client-voice, owner-approval, derivation, component, inspiration, asset,
 Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
-`test_clean_room_creative_mode.py` owns the Clean-Room Creative Mode
+`test_clean_room_creative_mode.py` owns the clean-room operating mode
 quarantine, physical staged-workspace, provenance, pre-generation
 cheap-concept, ordered execution, browser-derived morphology, blind-critic,
 owner-selection unlock, and zero-side-effect synthetic end-to-end controls.

@@ -298,7 +298,6 @@
         "framework_validation/design_first_flow.py",
         "framework_validation/cinematic_inspiration.py",
         "framework_validation/validator.py",
-        "DESIGN-FIRST-PRODUCTION-FLOW.md",
         "SKILL.md",
         "DISCOVERY-PROTOCOL.md",
         "VISUAL-PROTOTYPE-PROTOCOL.md",
@@ -352,7 +351,7 @@
         "framework_validation/rendered_morphology.py",
         "browser-qa/engine/playwright_engine.py",
         "browser-qa/engine/base.py",
-        "CLEAN-ROOM-CREATIVE-PROTOCOL.md"
+        "VISUAL-PROTOTYPE-PROTOCOL.md"
       ],
       "required": true,
       "tier": "CORE_FRAMEWORK_CI",

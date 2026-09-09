@@ -29,7 +29,7 @@ The operator is never expected to separately ask for research, request a Landboo
 
 ## 2. The Operational Workflow
 
-An agent running Website Director must advance strictly through these phases. Do not skip phases or combine un-gated steps. V1.8 establishes the **Creative Briefing Room & Gate BRIEF (`[CREATIVE_INTENT_CONFIRMED]`)** prior to research; V1.2 added **Phase 2.5** (SEO Intelligence), V1.4 added **Phase 3.5** (Design Intelligence Synthesis), V1.9 added **Phase 3.75** (Awwwards Showcase Benchmarking) and **Phase 4.5** (Pre-Lock Visual Prototype Comparison Gate), V2.0 adds **Phase 8.5 (Asset Director Strategy & Production Gate `[ASSET_DIRECTION_READY]`)**, V2.1 adds **Phase 8.75 (Immersive Web Specialist & Readiness Gate `[IMMERSIVE_IMPLEMENTATION_READY]`)**, V2.2 adds **Phase 8.85 (Rive Interactive Motion Specialist & Readiness Gate `[RIVE_IMPLEMENTATION_READY]`)**, V2.3 adds **Phase 8.95 (Page Experience & Transition Specialist & Readiness Gate `[TRANSITION_READY]`)**, V2.4 adds **Phase 8.97 (CRO, Analytics Architecture & Experimentation Specialist & Readiness Gate `[CRO_MEASUREMENT_READY]`)**, V2.6 adds **Phase 6.5 (Conversion & Analytics Intelligence & Readiness Gate `[CONVERSION_MEASUREMENT_COMPLETE]`)**, V2.7 adds **Phase 6.75 (Security, Privacy & Compliance Intelligence & Readiness Gate `[SECURITY_PRIVACY_READY]`)**, V2.9 adds **Phase 6.9 (Accessibility Intelligence & Readiness Gate `[ACCESSIBILITY_READY]`)**, V2.10 adds **Phase 12.25 (Launch & Production Operations & Readiness Gate `[RELEASE_READY]`)**, and V1.3 added **Phase 11.5** (Website Gauntlet Subsystem):
+An agent running Website Director must advance strictly through these phases. Do not skip phases or combine un-gated steps. V1.8 establishes the **Creative Briefing Room & Gate BRIEF (`[CREATIVE_INTENT_CONFIRMED]`)** prior to research; V1.2 added **Phase 2.5** (SEO Intelligence), V1.4 added **Phase 3.5** (Design Intelligence Synthesis), V1.9 added **Phase 3.75** (Awwwards Showcase Benchmarking) and **Phase 4.5** (Pre-Lock Visual Prototype Comparison Gate), V2.0 adds **Phase 8.5 (Asset Director Strategy & Production Gate `[ASSET_DIRECTION_READY]`)**, V2.1 adds **Phase 8.75 (Immersive Web Specialist & Readiness Gate `[IMMERSIVE_IMPLEMENTATION_READY]`)**, V2.2 adds **Phase 8.85 (Rive Interactive Motion Specialist & Readiness Gate `[RIVE_IMPLEMENTATION_READY]`)**, V2.3 adds **Phase 8.95 (Page Experience & Transition Specialist & Readiness Gate `[TRANSITION_READY]`)**, V2.4 remains a historical CRO compatibility model absorbed by **Phase 6.5 (Conversion & Analytics Intelligence & Readiness Gate `[CONVERSION_MEASUREMENT_COMPLETE]`)**, V2.7 adds **Phase 6.75 (Security, Privacy & Compliance Intelligence & Readiness Gate `[SECURITY_PRIVACY_READY]`)**, V2.9 adds **Phase 6.9 (Accessibility Intelligence & Readiness Gate `[ACCESSIBILITY_READY]`)**, V2.10 adds **Phase 12.25 (Launch & Production Operations & Readiness Gate `[RELEASE_READY]`)**, and V1.3 added **Phase 11.5** (Website Gauntlet Subsystem):
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -77,8 +77,6 @@ An agent running Website Director must advance strictly through these phases. Do
 │          ──► GATE RIVE: [RIVE_READY | NOT_REQ]               │
 │ PHASE 8.95: PAGE EXPERIENCE & TRANSITION SPECIALIST          │
 │          ──► GATE TRANSITION: [TRANSITION_READY | NOT_REQ]   │
-│ PHASE 8.97: CRO, ANALYTICS & EXPERIMENTATION SPECIALIST      │
-│          ──► GATE CRO: [CRO_MEASUREMENT_READY | NOT_REQ]     │
 │ PHASE 9: IMPLEMENTATION CONTRACT ISSUANCE                    │
 │ PHASE 10: PIXEL-PERFECT IMPLEMENTATION BUILD                 │
 │ PHASE 10.5: AUTOMATED BROWSER & REGRESSION QA                │
@@ -96,7 +94,7 @@ An agent running Website Director must advance strictly through these phases. Do
 └──────────────────────────────────────────────────────────────┘
 ```
 
-`GATE BRIEF`, `GATE 0`, `GATE SEO`, `GATE INTEL`, `GATE PROTO`, `GATE MEASUREMENT`, `GATE SECURITY`, `GATE ACCESSIBILITY`, `GATE ASSET`, `GATE IMMERSIVE`, `GATE RIVE`, `GATE TRANSITION`, `GATE CRO`, `GATE BROWSER`, `GATE GAUNTLET`, and `GATE LAUNCH` are quality/readiness gates, not approval locks — see §6. `GATE LAUNCH` (`[RELEASE_READY]`, Phase 12.25) certifies the release/launch plan is complete and the candidate may request deployment authorization; it never means deployed or production verified, and owner deployment authorization is a separate explicit act performed outside Website Director — see `LAUNCH-OPERATIONS-PROTOCOL.md`. Gates 1–5 are the five mandatory design/motion locks. Phase 1 produces the authoritative `creative-intent-contract.md` and requires explicit owner confirmation before research begins. Phase 2.5, Phase 3, Phase 3.5, and Phase 3.75 provide empirical research, design intelligence, and Awwwards benchmark candidates. Phase 4.5 builds bounded, high-fidelity browser prototypes so the owner selects from what they SEE before Gate 1 (`DESIGN_DIRECTION_LOCKED`) engages. Phase 8.5 produces and validates the authoritative asset family via `ASSET-DIRECTOR-PROTOCOL.md`. Phase 8.75 governs Three.js/R3F scene graph architectures via `IMMERSIVE-WEB-PROTOCOL.md`. Phase 8.85 governs state-driven interactive vector animation and runtime data-binding via `RIVE-INTERACTIVE-MOTION-PROTOCOL.md`. Phase 8.95 governs route continuity, View Transitions, scroll restoration, and navigation lifecycle via `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`. Phase 6.5 converts locked commercial intent into a deterministic measurement architecture — business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, and attribution — via `CONVERSION-ANALYTICS-PROTOCOL.md`, so measurement informs the design system rather than being retrofitted. Phase 8.97 then governs experimentation design and instrumentation readiness against that same `measurement{}` state. Phase 6.75 converts the locked content structure and the approved measurement plan into production risk governance — site risk classification, data inventory, data minimization, secret custody, form/auth/payment safeguards, security headers, transport, dependency and third-party script accountability, consent classification, and required disclosures — via `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`, so safeguards inform the design system and implementation contract rather than being retrofitted onto a shipped site. Phase 6.9 converts the locked content structure, the approved measurement plan, and the security/privacy review into one canonical accessibility specification — an applicable-component inventory, semantic/name-role-value/keyboard/focus/contrast/reflow/text-spacing/target-size/motion/media/form/dialog requirements, and an automated + manual + screen-reader test plan — via `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, so accessibility informs the design system before Lock 4 rather than being retrofitted. Phase 10.5 then runs machine-executed browser verification against the built artifact via `BROWSER-REGRESSION-QA-PROTOCOL.md` (now including the accessibility assertion group) — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy behaviour, reduced motion, keyboard smoke, and visual regression — so deterministic defects are caught and evidenced before the qualitative Phase 11.5 Gauntlet spends cycles on the build. Phase 11.5 is the adversarial builder/critic refinement loop that evaluates against real dimensional reference bars before Phase 12 pre-flight sign-off. Phase 12.25 then governs the launch boundary Website Director used to conflate — it separates a *release candidate* from a *deployed* site, a *deployed* site from a *production-verified* site, and a *production-verified* site from a *stabilised* one via `LAUNCH-OPERATIONS-PROTOCOL.md` and the `launch_ops{}` state object; requires an explicit per-release owner deployment authorization (`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`); verifies a known release identity on the production surface using the V2.8 browser-QA harness in `environment = "production"` mode and the V2.6/V2.7/V2.9 production-verification fields; and defines rollback readiness, concrete rollback triggers, a site-class-sized post-launch observation window, and an incident model — all without ever deploying, pushing, or touching DNS.
+`GATE BRIEF`, `GATE 0`, `GATE SEO`, `GATE INTEL`, `GATE PROTO`, `GATE MEASUREMENT`, `GATE SECURITY`, `GATE ACCESSIBILITY`, `GATE ASSET`, `GATE IMMERSIVE`, `GATE RIVE`, `GATE TRANSITION`, `GATE BROWSER`, `GATE GAUNTLET`, and `GATE LAUNCH` are quality/readiness gates, not approval locks — see §6. `GATE LAUNCH` (`[RELEASE_READY]`, Phase 12.25) certifies the release/launch plan is complete and the candidate may request deployment authorization; it never means deployed or production verified, and owner deployment authorization is a separate explicit act performed outside Website Director — see `LAUNCH-OPERATIONS-PROTOCOL.md`. Gates 1–5 are the five mandatory design/motion locks. Phase 1 produces the authoritative `creative-intent-contract.md` and requires explicit owner confirmation before research begins. Phase 2.5, Phase 3, Phase 3.5, and Phase 3.75 provide empirical research, design intelligence, and Awwwards benchmark candidates. Phase 4.5 builds bounded, high-fidelity browser prototypes so the owner selects from what they SEE before Gate 1 (`DESIGN_DIRECTION_LOCKED`) engages. Phase 8.5 produces and validates the authoritative asset family via `ASSET-DIRECTOR-PROTOCOL.md`. Phase 8.75 governs Three.js/R3F scene graph architectures via `IMMERSIVE-WEB-PROTOCOL.md`. Phase 8.85 governs state-driven interactive vector animation and runtime data-binding via `RIVE-INTERACTIVE-MOTION-PROTOCOL.md`. Phase 8.95 governs route continuity, View Transitions, scroll restoration, and navigation lifecycle via `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md`. Phase 6.5 converts locked commercial intent into a deterministic measurement architecture — business objective, KPI hierarchy, observable funnel, event contracts, CTA traceability, attribution, and authorized experimentation — via `CONVERSION-ANALYTICS-PROTOCOL.md`, so measurement informs the design system rather than being retrofitted. Phase 6.75 converts the locked content structure and the approved measurement plan into production risk governance — site risk classification, data inventory, data minimization, secret custody, form/auth/payment safeguards, security headers, transport, dependency and third-party script accountability, consent classification, and required disclosures — via `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md`, so safeguards inform the design system and implementation contract rather than being retrofitted onto a shipped site. Phase 6.9 converts the locked content structure, the approved measurement plan, and the security/privacy review into one canonical accessibility specification — an applicable-component inventory, semantic/name-role-value/keyboard/focus/contrast/reflow/text-spacing/target-size/motion/media/form/dialog requirements, and an automated + manual + screen-reader test plan — via `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md`, so accessibility informs the design system before Lock 4 rather than being retrofitted. Phase 10.5 then runs machine-executed browser verification against the built artifact via `BROWSER-REGRESSION-QA-PROTOCOL.md` (now including the accessibility assertion group) — responsive invariants, navigation, forms, console/network cleanliness, measurement events, browser-observable security/privacy behaviour, reduced motion, keyboard smoke, and visual regression — so deterministic defects are caught and evidenced before the qualitative Phase 11.5 Gauntlet spends cycles on the build. Phase 11.5 is the adversarial builder/critic refinement loop that evaluates against real dimensional reference bars before Phase 12 pre-flight sign-off. Phase 12.25 then governs the launch boundary Website Director used to conflate — it separates a *release candidate* from a *deployed* site, a *deployed* site from a *production-verified* site, and a *production-verified* site from a *stabilised* one via `LAUNCH-OPERATIONS-PROTOCOL.md` and the `launch_ops{}` state object; requires an explicit per-release owner deployment authorization (`RELEASE_READY ≠ DEPLOYMENT_AUTHORIZED`); verifies a known release identity on the production surface using the V2.8 browser-QA harness in `environment = "production"` mode and the V2.6/V2.7/V2.9 production-verification fields; and defines rollback readiness, concrete rollback triggers, a site-class-sized post-launch observation window, and an incident model — all without ever deploying, pushing, or touching DNS.
 
 
 ---
@@ -134,7 +132,7 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ### PHASE 3: Visual Research (Visual Research Director)
 - Consult [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md) and [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md).
-- Consult [INSPIRATION-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/INSPIRATION-SOURCES.md) and `templates/inspiration-source-registry.json` when the owner requests a specific source or visual reference. Keep every discovery result `REFERENCE_ONLY` until the owner-selected interpretation, provenance, rights, and adaptation record is complete.
+- Consult `templates/inspiration-source-registry.json` when the owner requests a specific source or visual reference. Keep every discovery result `REFERENCE_ONLY` until the owner-selected interpretation, provenance, rights, and adaptation record is complete.
 - Optionally prepare the bounded unified Design Inspiration MCP request through `integrations/design-inspiration/` for Dribbble, Behance, Awwwards, Mobbin, and Pinterest discovery. A missing `SERPER_API_KEY` is `BLOCKED_CREDENTIAL_MISSING`, not a pass or a reason to invent evidence.
 - Run the existing research channels (Industry Landscape, Landbook, Cross-Industry, Awwwards, the unified Design Inspiration MCP, and JCodesMore Recon on the shortlisted 2–3 deep-recon targets only) through progressive filtering.
 - Deep reconnaissance on shortlisted targets uses [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md) in `RESEARCH_ONLY_MODE` exclusively — never the JCodesMore default cloning pipeline.
@@ -441,24 +439,6 @@ An agent running Website Director must advance strictly through these phases. Do
 
 ---
 
-### PHASE 8.97: CRO, Analytics Architecture & Experimentation System (CRO Readiness Gate)
-- Consult [CONVERSION-ANALYTICS-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/CONVERSION-ANALYTICS-PROTOCOL.md) §14 and §22. Historical CRO semantics are read-only compatibility material.
-- **Precondition:** `measurement.complete` must already be `true` (or a recorded exception) from Phase 6.5. This phase designs experimentation and verifies instrumentation readiness against that existing plan — it does not re-author the measurement architecture.
-- **Core Standard:** Measure what matters, learn from real behavior, and improve deliberately. Never track everything blindly. Never manipulate visitors with dark patterns.
-- **Evaluation & Specification Workflow:**
-  - Define outcomes first: `PRIMARY_BUSINESS_OUTCOME`, `SECONDARY_BUSINESS_OUTCOME`, `PRIMARY_VISITOR_OUTCOME`, `PRIMARY_CONVERSION`, `SECONDARY_CONVERSIONS`.
-  - Establish `CONVERSION_LEVEL` hierarchy (`MACRO`, `MICRO`, `DIAGNOSTIC`).
-  - Model user journey using appropriate `FUNNEL_MODEL` (`LINEAR`, `BRANCHED`, `CONTENT_LED`, `COMMERCE`, `LEAD_GENERATION`, `SELF_SERVICE`, `NONLINEAR`).
-  - Structure every optimization using `CRO_HYPOTHESIS` (Observation, Problem, Hypothesis, Change, Expected Behavior, Primary Metric, Guardrail Metrics, Decision Rule).
-  - Consume the event taxonomy already defined in Phase 6.5 via [templates/measurement-plan.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/measurement-plan.md) and [templates/analytics-event-manifest.json](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/analytics-event-manifest.json). Do not redefine or rename events here.
-  - Enforce **Data Minimization & PII Prohibition** (`PII_IN_ANALYTICS = 0`, zero form input capture, `SESSION_REPLAY = DISABLED` by default).
-  - Guarantee **Analytics Failure Resilience** (site 100% functional when analytics is blocked or disabled).
-  - Integrate with View Transitions (V2.3) for single-event page view deduplication.
-  - Compile [templates/experiment-brief.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/templates/experiment-brief.md) if, and only if, experimentation is authorized. Website Director does not automatically launch A/B tests.
-- **ENGAGE GATE CRO:** Update `site-profile.json` → `measurement.experiment_plan_ready` and, post-build, `measurement.implementation_verified`.
-  - *Invariant:* `[CRO_MEASUREMENT_READY]` is a **downstream sub-gate** reading the same `measurement{}` state established at Phase 6.5. It writes no independent completion flag — `measurement.complete` remains the single authoritative readiness flag.
-  - *Invariant:* `[CRO_MEASUREMENT_READY]` is an engineering and strategy readiness gate, NOT a sixth owner lock. Exactly 5 owner locks remain immutable.
-
 ---
 
 ### PHASE 9: Implementation Contract Issuance
@@ -565,7 +545,7 @@ An agent running Website Director must advance strictly through these phases. Do
 | **Creative Briefing** | [DISCOVERY-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DISCOVERY-PROTOCOL.md) | `creative-intent-contract.md`, `project-brief.md`, `positioning.md` |
 | **SEO Intelligence** | [SEO-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/SEO-INTELLIGENCE-PROTOCOL.md) | `seo-business-context.md`, `keyword-research.md`, `seo-competitive-landscape.md`, `keyword-map.md`, `seo-content-briefs.md` |
 | **Visual Research** | [VISUAL-RESEARCH-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/VISUAL-RESEARCH-PROTOCOL.md), [RESEARCH-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/RESEARCH-SOURCES.md), [REFERENCE-RECON-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-RECON-PROTOCOL.md), `integrations/design-inspiration/ADAPTER.md` | `research-brief.md`, `competitor-landscape.md`, `inspiration-board.md`, `reference-deconstruction.md`, `research-synthesis.md` |
-| **Inspiration Sources** | [INSPIRATION-SOURCES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/INSPIRATION-SOURCES.md), `schemas/inspiration-source-registry.schema.json` | `inspiration-source-registry.json`, owner-selected records in `inspiration-board.md` |
+| **Inspiration Sources** | `schemas/inspiration-source-registry.schema.json`, `templates/inspiration-source-registry.json` | Owner-selected records in `inspiration-board.md` |
 | **Design Intelligence** | [DESIGN-INTELLIGENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-INTELLIGENCE-PROTOCOL.md) | `design-intelligence.md` |
 | **Showcase Benchmarking** | [AWWWARDS-SHOWCASE-INTELLIGENCE.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/AWWWARDS-SHOWCASE-INTELLIGENCE.md) | `inspiration-board.md`, `visual-prototype-review.md` |
 | **Visual Direction** | [DESIGN-ARCHETYPES.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/DESIGN-ARCHETYPES.md), [REFERENCE-PROTOCOL.md](file:///c:/Users/ALPHA/Desktop/VIBE%20CODING%20PROJECTS/WEBSITE-DIRECTOR/REFERENCE-PROTOCOL.md) | `reference-analysis.md`, `design-direction.md` |
@@ -653,12 +633,12 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - **Strict Lock Separation:** `visual_prototypes{}` contains NO lock boolean. The sole authoritative Design Direction lock remains `locks.design_direction_locked`. Prototype selection is NOT an automatic lock.
 
 ### 5.9a Design-First Production Flow (V2.15 bounded overlay)
-`DESIGN-FIRST-PRODUCTION-FLOW.md` is the canonical operating overlay for work
-that requires business understanding before visual design, a complete rendered
-homepage before full production, explicit owner review, and Design System
-derivation from the approved homepage. `FIGMA_IN_DESIGN_FIRST_FLOW = NO`:
-the required prototype is browser-rendered and reviewable in the existing
-Visual Prototype authority.
+Design-first is an operating mode of the existing
+`VISUAL-PROTOTYPE-PROTOCOL.md`. Use it when work requires business
+understanding before visual design, a complete rendered homepage before full
+production, explicit owner review, and Design System derivation from the
+approved homepage. `FIGMA_IN_DESIGN_FIRST_FLOW = NO`: the required prototype
+is browser-rendered and reviewable in the existing Visual Prototype authority.
 
 `visual_prototypes.homepage_visual_approved` is approval evidence under the
 existing `visual_prototypes{}` object. It is not a new state authority,
@@ -666,6 +646,18 @@ readiness gate, phase, or owner lock. The approved homepage defines the site
 system (`APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM`), while Browser QA remains
 the behavior authority and the Website Gauntlet remains the post-QA qualitative
 authority. Exactly five owner locks remain.
+
+### 5.9b Clean-room creative mode (V2.15 bounded overlay)
+Clean-room is a quarantined operating mode of the existing Visual Prototype
+authority. Route execution through
+`framework_validation.clean_room.prepare_clean_room_concept_run`; keep
+manifest-declared current inputs separate from historical negative baselines,
+render exactly three cheap concepts before expensive production, derive
+morphology from browser evidence, and stop at
+`OWNER_CONCEPT_SELECTION_PENDING` until the existing owner-selection event is
+valid. The mode adds no protocol identity, phase, gate, state, or owner lock;
+its full boundary and evidence rules live in
+`VISUAL-PROTOTYPE-PROTOCOL.md`.
 
 ### 5.10 Single-Source-of-Truth Rule for `awwwards` Showcase Research (V1.9)
 `research.showcase_research_status` is authoritative inside `research{}` in `site-profile.json`. Valid values: `"NOT_REQUIRED"`, `"RECOMMENDED"`, `"REQUIRED"`, `"COMPLETE"`, `"PARTIAL"`, `"UNAVAILABLE"`.
@@ -679,7 +671,6 @@ authority. Exactly five owner locks remain.
 - `measurement{}` contains NO lock boolean. Exactly 5 owner locks remain.
 - PII check status is authoritative at `measurement.pii_check` (`"not_evaluated"`, `"PASS"`, `"FAIL"`).
 - Dark pattern status is authoritative at `measurement.dark_pattern_check` (`"not_evaluated"`, `"PASS"`, `"FAIL"`).
-- `[CRO_MEASUREMENT_READY]` (Phase 8.97) is a **downstream sub-gate** reading this same object. It does not own a completion flag.
 - **Legacy `cro{}` (V2.4–V2.5):** grandfathered and read-only. Projects carrying it remain valid. It is not migrated automatically and frozen pilots are not retrofitted. New projects use `measurement{}`.
 
 ### 5.12a Single-Source-of-Truth Rule for `content_ops` State (V2.13)
@@ -859,8 +850,8 @@ readiness gate. It does not add an owner lock or authorize providers,
 credentials, live users, payments, deployment, or production verification.
 
 The V2.15 cinematic/inspiration enhancement is additive to those authorities.
-`INSPIRATION-SOURCES.md` and `templates/inspiration-source-registry.json`
-provide owner-selectable, `REFERENCE_ONLY` sources; source reuse remains
+`templates/inspiration-source-registry.json` provides owner-selectable,
+`REFERENCE_ONLY` sources; source reuse remains
 blocked until license, provenance, stack, and design-system adaptation are
 recorded. `CINEMATIC-INTEGRATION-PROTOCOL.md` and
 `templates/cinematic-brief.md` provide model/provider-neutral production

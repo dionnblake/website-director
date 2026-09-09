@@ -236,8 +236,8 @@ remain `NOT_REQUIRED` when their stories do not require stateful behavior.
 This additive enhancement keeps Website Director V2.15 intact while making
 cinematic production, inspiration selection, and visual proof operational.
 
-- **Owner-selectable inspiration registry:** `INSPIRATION-SOURCES.md` and
-  `templates/inspiration-source-registry.json` register 21st.dev, Godly,
+- **Owner-selectable inspiration registry:**
+  `templates/inspiration-source-registry.json` registers 21st.dev, Godly,
   Awwwards, MotionSites, and preserved research channels. Sources default to
   `REFERENCE_ONLY`; Awwwards continues to use its existing authority.
 - **Reference interpretation:** `templates/inspiration-board.md` records the
@@ -260,6 +260,12 @@ cinematic production, inspiration selection, and visual proof operational.
   presence, owner selection, reference-only and licensing boundaries,
   provider neutrality, rendered evidence, critic freshness, repair recapture,
   five-lock preservation, and zero frozen-project mutations.
+- **Canonical creative authority:** `VISUAL-PROTOTYPE-PROTOCOL.md` owns
+  concepts, rendered homepage direction, owner selection, and progression.
+  Design-first and clean-room are bounded operating modes of that authority;
+  the existing `framework_validation/clean_room.py` coordinator remains an
+  execution helper. No new state, gate, protocol capability, or owner lock is
+  created.
 
 ---
 
@@ -424,6 +430,7 @@ website-director/
 ├── DESIGN-ARCHETYPES.md              # 14 complete archetypes & 60/30/10 blending rules
 ├── REFERENCE-PROTOCOL.md             # 12-vector deconstruction & anti-cloning protocol
 ├── DESIGN-SYSTEM-PROTOCOL.md         # 14-subsystem design token architecture
+├── VISUAL-PROTOTYPE-PROTOCOL.md      # Canonical rendered direction selection plus design-first/clean-room modes (V1.9)
 ├── VISUAL-RESEARCH-PROTOCOL.md       # Visual Research Director role, pipeline, RESEARCH_COMPLETE gate
 ├── RESEARCH-SOURCES.md               # Industry / Landbook / cross-industry / JCodesMore channels + provenance
 ├── REFERENCE-RECON-PROTOCOL.md       # Bounded RESEARCH_ONLY_MODE forensic reconnaissance
