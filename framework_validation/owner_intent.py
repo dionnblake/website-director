@@ -1018,6 +1018,276 @@ def audit_owner_requirement_compliance(
     }
 
 
+
+# ===========================================================================
+# Shared current-owner authority resolution
+# ===========================================================================
+# One normalization, consumed by the browser-QA assertions, the runner's
+# completion boundary, and the design-first production entry.  Downstream
+# consumers read this profile; they do not re-implement authority precedence.
+
+_AUTHORITY_REF_KEYS = ("owner_intent_ref", "owner_contract_ref", "contract_ref",
+                       "owner_intent_path", "owner_contract_path")
+_HISTORICAL_CURRENTNESS = frozenset({"HISTORICAL", "REFERENCE_ONLY", "SUPERSEDED"})
+_OWNER_ACTORS = frozenset({"OWNER", "PROJECT_OWNER", "CLIENT_OWNER"})
+_MOTION_DOMAINS = frozenset({"motion", "animation", "experience"})
+
+
+def _coverage_for(requirement_class: Any) -> str:
+    """Map a requirement class to a coverage obligation.
+
+    PREFERRED/OPTIONAL never becomes REQUIRED, and a silent contract never
+    manufactures an obligation.
+    """
+    if requirement_class == "REQUIRED":
+        return "REQUIRED"
+    if requirement_class in {"PREFERRED", "OPTIONAL"}:
+        return "OPTIONAL"
+    return "NOT_REQUIRED"
+
+
+def _load_owner_contract_file(reference: str, base_dir: Any) -> tuple[Any, str, str | None]:
+    """Resolve a contract reference to real bytes, or report why it failed."""
+    from pathlib import Path
+
+    raw = Path(str(reference))
+    candidates: list[Any] = []
+    if raw.is_absolute():
+        candidates.append(raw)
+    else:
+        for root in (base_dir, Path.cwd()):
+            if root:
+                candidates.append(Path(str(root)) / raw)
+        candidates.append(raw)
+    for candidate in candidates:
+        try:
+            if not candidate.is_file():
+                continue
+            return json.loads(candidate.read_text(encoding="utf-8")), str(candidate), None
+        except OSError as exc:
+            return None, str(candidate), "OWNER_CONTRACT_UNREADABLE: %s (%s)" % (candidate, exc)
+        except ValueError as exc:
+            return None, str(candidate), "OWNER_CONTRACT_MALFORMED: %s (%s)" % (candidate, exc)
+    searched = ", ".join(str(item) for item in candidates)
+    return None, str(reference), "OWNER_CONTRACT_NOT_FOUND: %s (searched: %s)" % (reference, searched)
+
+
+def _downgrade_record(plan: Mapping[str, Any], locked_decisions: Any) -> Any:
+    holders: list[Any] = [locked_decisions if isinstance(locked_decisions, Mapping) else {}]
+    for key in ("locked_decisions", "motion", "owner_authority", "runtime_observations"):
+        value = plan.get(key)
+        if isinstance(value, Mapping):
+            holders.append(value)
+            nested = value.get("motion")
+            if isinstance(nested, Mapping):
+                holders.append(nested)
+    for holder in holders:
+        value = _read(holder, "approved_motion_downgrade", "approved_downgrade")
+        if value is None:
+            continue
+        if isinstance(value, Mapping):
+            return value
+        if value is True:
+            keep = ("approved_by", "owner_event_ref", "approval_ref", "owner_action_ref", "scope")
+            return {"approved_downgrade": True,
+                    **{key: holder[key] for key in keep if key in holder}}
+        return False
+    return None
+
+
+def resolve_approved_motion_downgrade(
+    plan: Mapping[str, Any],
+    locked_decisions: Any = None,
+    contract_scope: Any = None,
+) -> dict[str, Any]:
+    """Accept a downgrade only from an authentic, scope-correct owner record."""
+
+    record = _downgrade_record(plan if isinstance(plan, Mapping) else {}, locked_decisions)
+    if record is None or record is False:
+        return {"approved": False, "claimed": record is False, "issues": [], "record": None}
+    issues: list[dict[str, Any]] = []
+    approved_by = str(_read(record, "approved_by", "owner_action_by", "actor", default="")).upper().replace(" ", "_")
+    if approved_by not in _OWNER_ACTORS:
+        _append_issue(issues, "OWNER_MOTION_DOWNGRADE_NOT_APPROVED",
+                      "an approved motion downgrade must name the project owner as the approving actor",
+                      blocking=True)
+    if not _nonempty(_read(record, "owner_event_ref", "approval_ref", "owner_action_ref", "owner_decision_ref")):
+        _append_issue(issues, "OWNER_MOTION_DOWNGRADE_NOT_APPROVED",
+                      "an approved motion downgrade must cite the owner approval record",
+                      blocking=True)
+    record_scope = _read(record, "scope", "requirement_scope")
+    if _nonempty(contract_scope) and _nonempty(record_scope) and \
+            str(record_scope).strip().upper() != str(contract_scope).strip().upper():
+        _append_issue(issues, "OWNER_MOTION_DOWNGRADE_SCOPE_MISMATCH",
+                      "downgrade scope %r does not match the owner requirement scope %r"
+                      % (record_scope, contract_scope), blocking=True)
+    return {"approved": not issues, "claimed": True, "issues": issues, "record": dict(record)}
+
+
+def resolve_owner_authority(
+    plan: Any,
+    *,
+    base_dir: Any = None,
+    locked_decisions: Any = None,
+) -> dict[str, Any]:
+    """Resolve the authoritative current owner contract for one candidate.
+
+    ``status`` is one of:
+
+    ``NOT_DECLARED``
+        The plan claims no current owner authority.  Nothing is inferred, so
+        historical and legacy manifests keep their documented behaviour.
+    ``HISTORICAL``
+        A contract resolved, but the plan declares historical/reference scope.
+        Its requirements are reported and enforce nothing.
+    ``BLOCKED``
+        The plan declares a current owner authority that could not be resolved,
+        or resolved to a malformed contract.  The missing path and reason are
+        reported; this is never silently downgraded to "no owner level".
+    ``PASS``
+        A current contract resolved; ``coverage`` carries the obligations.
+    """
+
+    plan = plan if isinstance(plan, Mapping) else {}
+    issues: list[dict[str, Any]] = []
+    declared = False
+    contract: Any = None
+    source = ""
+    reason: str | None = None
+
+    authority_block = plan.get("owner_authority")
+    authority_block = authority_block if isinstance(authority_block, Mapping) else {}
+    if authority_block:
+        declared = True
+    currentness = _canonical_currentness(
+        _read(plan, "project_currentness", "owner_scope_currentness", default=None)
+        or _read(authority_block, "project_currentness", "currentness", default=None))
+
+    for key in ("owner_intent", "owner_contract"):
+        value = plan.get(key)
+        if isinstance(value, Mapping):
+            contract, source, declared = value, "INLINE:%s" % key, True
+            break
+        if value is not None:
+            declared = True
+            reason = reason or "OWNER_CONTRACT_MALFORMED: plan[%r] must be an object" % key
+    if contract is None and reason is None:
+        inline = _read(authority_block, "contract", "owner_intent")
+        if isinstance(inline, Mapping):
+            contract, source = inline, "INLINE:owner_authority.contract"
+
+    if contract is None and reason is None:
+        reference = None
+        for holder in (plan, authority_block):
+            for key in _AUTHORITY_REF_KEYS:
+                value = holder.get(key)
+                if isinstance(value, str) and value.strip():
+                    reference = value.strip()
+                    break
+            if reference:
+                break
+        if reference:
+            declared = True
+            contract, source, reason = _load_owner_contract_file(reference, base_dir)
+
+    if currentness == "CURRENT" or _read(authority_block, "reopened", default=False) is True:
+        declared = True
+
+    empty_coverage = {"motion": "NOT_REQUIRED", "brand": "NOT_REQUIRED",
+                      "visual_evidence": "NOT_REQUIRED"}
+    if not declared:
+        return {"status": "NOT_DECLARED", "declared": False, "contract": None,
+                "contract_source": "", "currentness": currentness,
+                "coverage": dict(empty_coverage), "motion": {}, "brand": {},
+                "normalized_requirements": [], "issues": [], "blocked_reason": None}
+
+    def _blocked(detail: str, code: str) -> dict[str, Any]:
+        _append_issue(issues, code, detail, blocking=True)
+        return {"status": "BLOCKED", "declared": True,
+                "contract": contract if isinstance(contract, Mapping) else None,
+                "contract_source": source, "currentness": currentness,
+                "coverage": dict(empty_coverage), "motion": {}, "brand": {},
+                "normalized_requirements": [], "issues": issues, "blocked_reason": detail}
+
+    if contract is None:
+        detail = reason or ("OWNER_CONTRACT_NOT_RESOLVED: the plan declares a current owner "
+                            "authority but supplies no owner_intent object and no contract reference")
+        return _blocked(detail, detail.split(":", 1)[0])
+    if not isinstance(contract, Mapping):
+        detail = "OWNER_CONTRACT_MALFORMED: resolved owner contract is not an object (%s)" % (source or "inline")
+        return _blocked(detail, "OWNER_CONTRACT_MALFORMED")
+
+    try:
+        normalized = normalize_owner_requirements(contract)
+    except Exception as exc:  # noqa: BLE001 - a resolution error is an explicit block
+        detail = "OWNER_CONTRACT_RESOLUTION_FAILED: %s (%s)" % (source or "inline", exc)
+        return _blocked(detail, "OWNER_CONTRACT_RESOLUTION_FAILED")
+
+    requirements = normalized.get("requirements", [])
+    motion_requirements = [item for item in requirements if item.get("domain") in _MOTION_DOMAINS]
+    brand_requirements = [item for item in requirements if item.get("domain") == "brand"]
+
+    def _highest_class(items: list[Any]) -> Any:
+        for candidate in ("REQUIRED", "PREFERRED", "OPTIONAL"):
+            if any(item.get("class") == candidate for item in items):
+                return candidate
+        return None
+
+    motion_class = _highest_class(motion_requirements)
+    brand_class = _highest_class(brand_requirements)
+
+    contract_scope = next((item.get("scope") for item in motion_requirements
+                           if item.get("class") == "REQUIRED" and _nonempty(item.get("scope"))), None)
+    downgrade = resolve_approved_motion_downgrade(plan, locked_decisions, contract_scope)
+    issues.extend(downgrade["issues"])
+
+    heuristic = _read(locked_decisions if isinstance(locked_decisions, Mapping) else {},
+                      "heuristic_motion_level", default=None) or "MOTION_LEVEL_1"
+    motion_result = resolve_motion_requirement(normalized, heuristic_level=heuristic,
+                                               approved_downgrade=downgrade["approved"])
+    required_sequences = any(
+        _read(item, "required_sequences", default=None) is True
+        or (isinstance(item.get("values"), Mapping) and item["values"].get("required_sequences") is True)
+        for item in motion_requirements if item.get("class") == "REQUIRED")
+    named_sequences = _sequence_items(next(
+        (_read(item, "required_sequence_ids", "sequences", "sequence_inventory", default=None)
+         for item in motion_requirements
+         if _read(item, "required_sequence_ids", "sequences", "sequence_inventory", default=None)), []))
+
+    historical = currentness in _HISTORICAL_CURRENTNESS
+    coverage = dict(empty_coverage)
+    if not historical:
+        coverage["motion"] = _coverage_for(motion_class)
+        coverage["brand"] = _coverage_for(brand_class)
+        coverage["visual_evidence"] = ("REQUIRED" if "REQUIRED" in (coverage["motion"], coverage["brand"])
+                                       else _coverage_for(motion_class or brand_class))
+
+    blocking = any(item.get("blocking") for item in issues)
+    return {
+        "status": "HISTORICAL" if historical else ("BLOCKED" if blocking else "PASS"),
+        "declared": True,
+        "contract": contract,
+        "contract_source": source or "INLINE",
+        "currentness": currentness or "CURRENT",
+        "coverage": coverage,
+        "motion": {
+            "class": motion_class,
+            "required_level": motion_result.get("owner_required_level"),
+            "execution_level": motion_result.get("execution_level"),
+            "required_sequences": bool(required_sequences),
+            "named_sequences": named_sequences,
+            "approved_downgrade": downgrade["approved"],
+            "downgrade_claimed": downgrade["claimed"],
+            "requirement_ids": motion_result.get("owner_requirement_ids", []),
+            "scope": contract_scope,
+        },
+        "brand": {"class": brand_class,
+                  "requirement_ids": [item.get("id") for item in brand_requirements]},
+        "normalized_requirements": requirements,
+        "issues": issues,
+        "blocked_reason": next((item.get("detail") for item in issues if item.get("blocking")), None),
+    }
+
 def validate_owner_intent_contract(contract: Mapping[str, Any]) -> dict[str, Any]:
     """Validate the durable owner-intent artifact shape and current authority."""
 
@@ -1056,6 +1326,7 @@ __all__ = [
     "AUTHORITY_PRECEDENCE", "CURRENTNESS_VALUES", "MOTION_LEVELS", "REFERENCE_SIGNAL_CLASSES",
     "REQUIREMENT_CLASSES", "audit_owner_requirement_compliance", "classify_historical_brand_direction",
     "classify_reference_signal", "detect_contradictions", "motion_level_number", "normalize_owner_requirements",
-    "resolve_authority_conflicts", "resolve_motion_requirement", "validate_brand_tokens",
+    "resolve_approved_motion_downgrade", "resolve_authority_conflicts",
+    "resolve_motion_requirement", "resolve_owner_authority", "validate_brand_tokens",
     "validate_motion_implementation_trace", "validate_owner_intent_contract", "validate_reference_translation_trace",
 ]

@@ -75,6 +75,13 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   claim never satisfies a required visual surface. Repair rounds require a
   newer capture set and fresh critic inputs before a visual PASS can be
   derived.
+- **Clean-Room morphology evidence:** `PlaywrightEngine.observe()` may emit
+  `rendered_morphology_evidence` when requested by the clean-room coordinator.
+  This evidence is measured from visible DOM rectangles, computed styles,
+  section geometry, media areas, borders, and CTA placement. It must not use
+  class names, builder labels, or caller-declared divergence flags as evidence.
+  The clean-room path remains an adapter of this existing engine, not a second
+  browser runner.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.

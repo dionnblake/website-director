@@ -40,6 +40,14 @@ repair-recapture, five-lock, and frozen-integrity controls.
 current-versus-historical brand, reference-boundary, contradiction,
 motion-level, motion-trace, runtime-engine, generic-fade, neutral-color,
 frozen-integrity, and disposable static-fixture controls.
+`test_design_first_production_flow.py` owns the bounded Business Understanding
+Pack, optional discovery/transcript, ambition, full-homepage, lower-half,
+client-voice, owner-approval, derivation, component, inspiration, asset,
+Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
+`test_clean_room_creative_mode.py` owns the Clean-Room Creative Mode
+quarantine, physical staged-workspace, provenance, pre-generation
+cheap-concept, ordered execution, browser-derived morphology, blind-critic,
+owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
 
 ## Local Contracts
 
@@ -78,6 +86,18 @@ frozen-integrity, and disposable static-fixture controls.
   It never rebuilds Alpha Starts Now, mutates frozen pilots, calls reference
   providers, or treats a screenshot-only/static or simulation result as
   Level 2/3 runtime motion proof.
+- The design-first suite uses synthetic business/design records and the
+  existing inspiration registry only. It never requires a transcript, model,
+  provider, browser, deployment, production credential, or mutation under
+  `projects/`.
+- The clean-room suite uses provider-neutral synthetic adapters plus the
+  existing Playwright engine for the rendered proof. It proves that historical
+  input is blocked before adapter execution and absent from the staged pack,
+  the bounded generator package contains no historical sentinels,
+  negative-baseline loading happens after candidate rendering, the blind
+  critic receives no implementation source or builder secrets, morphology is
+  derived from browser layout rather than labels, and the existing owner
+  selection authority unlocks full-homepage progression without a new lock.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.
@@ -92,7 +112,8 @@ fixtures read-only and distinguish `FAIL` from `BLOCKED`.
 
 Run the V2.11, V2.12, V2.13, V2.14, and V2.15 suites directly, including
 `python -m unittest tests.test_cinematic_inspiration`, then run all registered
-suites through `python -m framework_validation --run-suites`.
+suites through `python -m framework_validation --run-suites` after the
+design-first and clean-room suites.
 
 ## Child DOX Index
 

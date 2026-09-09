@@ -580,6 +580,193 @@ try:
 finally:
     shutil.rmtree(tmp, ignore_errors=True)
 
+
+# ===========================================================================
+# 3B. Candidate repair controls: scrolling is not motion, per-sequence truth,
+#     reduced-motion pairing, and a loaded-harness gate.
+# ===========================================================================
+OWNER_CONTRACT_JSON = json.loads(read("templates", "alpha-starts-now-owner-intent.json"))
+
+
+def _motion_plan(sequences, *, level=None, owner=True, required=True):
+    plan = {"environment": "local", "routes": [{"path": "motion-control"}]}
+    if owner:
+        plan["owner_intent"] = OWNER_CONTRACT_JSON
+    motion = {"required": required, "sequences": sequences}
+    if level:
+        motion["minimum_motion_level"] = level
+    plan["runtime_observations"] = {"motion": motion}
+    return plan
+
+
+def _motion_row(sequence_id, **overrides):
+    row = {
+        "sequence_id": sequence_id, "engine_identity": "REAL_BROWSER", "runtime_observed": True,
+        "observation_supported": True, "target_count": 8, "trigger": "scroll_to",
+        "trigger_applied": True, "changed_properties": [], "max_geometry_delta": 0.0,
+        "max_opacity_delta": 0.0, "max_transform_delta": 0.0, "max_media_time_delta": 0.0,
+        "motion_state_changes": 0, "raw_viewport_geometry_delta": 6156.0,
+        "stimulus_scroll_delta": 6156.0, "scroll_delta": 6156.0,
+        "state_changed": False, "meaningful_state_change": False,
+        "observed_states": ["START"], "family": "MEASURED_NONE", "family_source": "MEASURED",
+        "runtime_evidence_ref": "REAL_BROWSER:" + sequence_id,
+    }
+    row.update(overrides)
+    return row
+
+
+def _motion_observation(rows, *, reduced=False, identity="REAL_BROWSER"):
+    return PageObservation(
+        route="motion-control", viewport=1440, engine="playwright", browser="chromium",
+        reduced_motion=reduced, motion_observations=list(rows),
+        raw={"motion_observations": list(rows), "engine_identity": identity})
+
+
+def _verdicts(rows, plan, *, reduced=False):
+    findings = evaluate(_motion_observation(rows, reduced=reduced), plan)
+    out = {}
+    for finding in findings:
+        out.setdefault(finding.check_id, []).append(finding.verdict)
+    return out
+
+
+# K. A real static tall page that merely scrolled stays non-cinematic even when
+#    every legacy shortcut is present and pointing the wrong way.
+liar = _motion_row(
+    "hero-intro",
+    changed_properties=["scroll"], state_changed=True, meaningful_state_change=True,
+    observed_state_change=True, family="SCROLL_DRIVEN")
+v = _verdicts([liar], _motion_plan([{"sequence_id": "hero-intro"}]))
+check(v.get("motion.runtime-state-change") == [FAIL]
+      and v.get("motion.sequence-behavior") == [FAIL]
+      and v.get("motion.generic-fade-diversity") == [FAIL],
+      "Scroll position, viewport rects, changed_properties=['scroll'] and true state flags "
+      "cannot prove motion on a static page")
+
+# L. An action-derived family label cannot manufacture cinematic diversity.
+check(_verdicts([_motion_row("hero-intro", family="SCROLL_DRIVEN", family_source="MEASURED",
+                             changed_properties=["opacity"], max_opacity_delta=0.9)],
+                _motion_plan([{"sequence_id": "hero-intro"}])
+                ).get("motion.generic-fade-diversity") == [FAIL],
+      "An adapter-derived family label cannot establish motion diversity")
+
+# M. Two promised sequences with only one working fails per sequence.
+mixed = [_motion_row("hero-intro", changed_properties=["transform", "clip"],
+                     max_transform_delta=1.0, max_geometry_delta=42.0,
+                     family="PARALLAX_MASK", family_source="DECLARED",
+                     observed_states=["START", "CHANGE", "SETTLE"]),
+         _motion_row("route-progression")]
+v = _verdicts(mixed, _motion_plan([{"sequence_id": "hero-intro"},
+                                   {"sequence_id": "route-progression"}]))
+check(sorted(v.get("motion.sequence-behavior", [])) == [FAIL, PASS]
+      and v.get("motion.runtime-state-change") == [FAIL],
+      "One functioning sequence cannot hide a second stationary sequence")
+
+# N. A promised sequence that was never observed is a per-sequence failure.
+v = _verdicts([mixed[0]], _motion_plan([{"sequence_id": "hero-intro"},
+                                        {"sequence_id": "route-progression"}]))
+check(sorted(v.get("motion.sequence-coverage", [])) == [FAIL, PASS],
+      "An unobserved promised sequence fails its own coverage check")
+
+# O. Positive control: two genuinely responding, distinctly named sequences.
+positive = [_motion_row("hero-intro", changed_properties=["transform", "clip"],
+                        max_transform_delta=1.0, max_geometry_delta=42.0,
+                        family="PARALLAX_MASK", family_source="DECLARED",
+                        observed_states=["START", "CHANGE", "SETTLE"]),
+            _motion_row("route-progression", changed_properties=["geometry"],
+                        max_geometry_delta=180.0, family="PINNED_SCRUB",
+                        family_source="DECLARED",
+                        observed_states=["START", "CHANGE", "SETTLE"])]
+plan_states = _motion_plan([
+    {"sequence_id": "hero-intro", "required_states": ["START", "CHANGE", "SETTLE"]},
+    {"sequence_id": "route-progression", "required_states": ["START", "CHANGE", "SETTLE"]}])
+v = _verdicts(positive, plan_states)
+check(set(v.get("motion.sequence-behavior", [])) == {PASS}
+      and set(v.get("motion.sequence-states", [])) == {PASS}
+      and v.get("motion.runtime-state-change") == [PASS]
+      and v.get("motion.generic-fade-diversity") == [PASS],
+      "Genuinely responding, distinctly named sequences pass as a positive control")
+
+# P. A missing required state is reported without touching the behaviour verdict.
+half = [dict(positive[0], observed_states=["START"]), positive[1]]
+v = _verdicts(half, plan_states)
+check(FAIL in v.get("motion.sequence-states", []),
+      "A sequence that never reaches its required states fails the state check")
+
+# Q. Normal-motion and reduced-motion counterparts produce distinct results and
+#    a correct static fallback is not a missing-animation failure.
+normal = _verdicts([_motion_row("hero-intro")], _motion_plan([{"sequence_id": "hero-intro"}]))
+reduced = _verdicts([_motion_row("hero-intro")], _motion_plan([{"sequence_id": "hero-intro"}]),
+                    reduced=True)
+check(normal.get("motion.runtime-state-change") == [FAIL]
+      and "motion.runtime-state-change" not in reduced
+      and reduced.get("motion.reduced-motion-counterpart") == [PASS],
+      "Reduced-motion counterpart verifies the usable equivalent, not choreography")
+
+# R. Unsupported observation is BLOCKED, never a fabricated pass or fail.
+v = _verdicts([_motion_row("canvas-scene", observation_supported=False,
+                           unsupported_reason="OBSERVATION_MECHANISM_UNSUPPORTED: canvas")],
+              _motion_plan([{"sequence_id": "canvas-scene"}]))
+check(v.get("motion.sequence-observation") == [BLOCKED]
+      and PASS not in v.get("motion.sequence-behavior", []),
+      "An unobservable canvas sequence is BLOCKED rather than judged")
+
+# S. Owner-required sequences with no declared inventory block; none is invented.
+v = _verdicts([_motion_row("runtime-motion")],
+              {"environment": "local", "routes": [{"path": "motion-control"}],
+               "owner_intent": OWNER_CONTRACT_JSON,
+               "runtime_observations": {"motion": {"required": True}}})
+check(v.get("motion.sequence-inventory") == [BLOCKED],
+      "Owner-required named sequences with no inventory block instead of inventing one")
+
+# T. A stale loaded harness blocks the run before any route is judged.
+tmp = tempfile.mkdtemp(prefix="wd-stale-harness-")
+try:
+    plan_path = os.path.join(tmp, "plan.json")
+    with io.open(plan_path, "w", encoding="utf-8") as fh:
+        json.dump({"environment": "local", "protected_paths": ["projects/"],
+                   "routes": [{"path": "a_responsive_overflow", "viewports": [1440]}]}, fh)
+    import assertions.catalog as _catalog
+    real_check_motion = _catalog.check_motion
+    try:
+        del _catalog.check_motion
+        rc = bqa_runner.run(plan_path, "simulation", os.path.join(tmp, "evidence"),
+                            "smoke", 0, FIXTURES)
+    finally:
+        _catalog.check_motion = real_check_motion
+    evidence_dir = os.path.join(tmp, "evidence")
+    latest = sorted(n for n in os.listdir(evidence_dir) if n.endswith(".evidence.json"))[-1]
+    stale_manifest = json.load(io.open(os.path.join(evidence_dir, latest), encoding="utf-8"))
+    check(rc != 0 and stale_manifest["overall"] == "BLOCKED"
+          and "BLOCKED_STALE_HARNESS" in str(stale_manifest["blocked_reason"])
+          and stale_manifest["loaded_harness"]["status"] == "BLOCKED"
+          and "check_motion" in stale_manifest["loaded_harness"]["missing_checks"],
+          "A stale/mixed loaded harness blocks before current-project verification")
+
+    # U. Omitting visual_evidence cannot make an owner-required review N/A, and
+    #    the run records the loaded module identities it actually imported.
+    owner_plan_path = os.path.join(tmp, "owner-plan.json")
+    with io.open(owner_plan_path, "w", encoding="utf-8") as fh:
+        json.dump({"environment": "local", "protected_paths": ["projects/"],
+                   "owner_intent": OWNER_CONTRACT_JSON,
+                   "routes": [{"path": "a_responsive_overflow", "viewports": [1440]}]}, fh)
+    owner_evidence = os.path.join(tmp, "owner-evidence")
+    rc = bqa_runner.run(owner_plan_path, "simulation", owner_evidence, "smoke", 0, FIXTURES)
+    latest = sorted(n for n in os.listdir(owner_evidence) if n.endswith(".evidence.json"))[-1]
+    owner_manifest = json.load(io.open(os.path.join(owner_evidence, latest), encoding="utf-8"))
+    ids = {f["check_id"] for f in owner_manifest["findings"]}
+    check(rc != 0
+          and "visual.evidence.owner_required_review_not_declared" in ids
+          and owner_manifest["owner_requirement_compliance"]["status"] == "FAIL"
+          and any(i.startswith("owner.requirement.") for i in ids)
+          and owner_manifest["loaded_harness"]["status"] == "PASS"
+          and all(m["sha256"] for m in owner_manifest["loaded_harness"]["modules"] if m["path"])
+          and owner_manifest["build_identity"]["build_id"],
+          "Owner requirements reach the completion result and the run records loaded module hashes")
+finally:
+    shutil.rmtree(tmp, ignore_errors=True)
+
+
 # ===========================================================================
 # 4. Final frozen-corpus invariant
 # ===========================================================================

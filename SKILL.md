@@ -652,6 +652,21 @@ V1.1 introduced two state objects; V1.2 added a third. Each has **exactly one** 
 - `visual_prototypes.owner_selected_direction`: String naming chosen direction (e.g., `"direction-01"`).
 - **Strict Lock Separation:** `visual_prototypes{}` contains NO lock boolean. The sole authoritative Design Direction lock remains `locks.design_direction_locked`. Prototype selection is NOT an automatic lock.
 
+### 5.9a Design-First Production Flow (V2.15 bounded overlay)
+`DESIGN-FIRST-PRODUCTION-FLOW.md` is the canonical operating overlay for work
+that requires business understanding before visual design, a complete rendered
+homepage before full production, explicit owner review, and Design System
+derivation from the approved homepage. `FIGMA_IN_DESIGN_FIRST_FLOW = NO`:
+the required prototype is browser-rendered and reviewable in the existing
+Visual Prototype authority.
+
+`visual_prototypes.homepage_visual_approved` is approval evidence under the
+existing `visual_prototypes{}` object. It is not a new state authority,
+readiness gate, phase, or owner lock. The approved homepage defines the site
+system (`APPROVED_HOMEPAGE_DEFINES_THE_SITE_SYSTEM`), while Browser QA remains
+the behavior authority and the Website Gauntlet remains the post-QA qualitative
+authority. Exactly five owner locks remain.
+
 ### 5.10 Single-Source-of-Truth Rule for `awwwards` Showcase Research (V1.9)
 `research.showcase_research_status` is authoritative inside `research{}` in `site-profile.json`. Valid values: `"NOT_REQUIRED"`, `"RECOMMENDED"`, `"REQUIRED"`, `"COMPLETE"`, `"PARTIAL"`, `"UNAVAILABLE"`.
 - Activated as `REQUIRED` by default for `CREATIVE_AMBITION = SHOWCASE`.
