@@ -65,7 +65,7 @@ jobs:
               'dl.google.com/linux/chrome-stable/deb' \
               /etc/apt/sources.list /etc/apt/sources.list.d 2>/dev/null || true
           )
-          expected_google_source='/etc/apt/sources.list.d/google-chrome.list'
+          expected_google_source='/etc/apt/sources.list.d/google-chrome.sources'
           if (( ${#google_source_files[@]} != 1 )); then
             printf 'Expected exactly one Google Chrome APT source, found %s:\n' "${#google_source_files[@]}"
             printf ' - %s\n' "${google_source_files[@]}"
