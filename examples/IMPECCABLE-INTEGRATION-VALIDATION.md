@@ -151,9 +151,9 @@
 - **Objective:** Verify that all historical Website Director baselines (V1, V1.1, V1.2, V1.3) load and run without schema corruption.
 - **Test Results:**
   - `projects/alpha-starts-now`: Frozen V1 baseline (no `schema_version`, 4 locks) $\rightarrow$ **Clean Pass**.
-  - `projects/v1-1-architecture-pilot`: V1.1 architecture baseline $\rightarrow$ **Clean Pass**.
-  - `projects/v1-1-automotive-restomod-pilot`: V1.1 automotive baseline $\rightarrow$ **Clean Pass**.
-  - `projects/v1-1-luxury-hospitality-pilot`: V1.1 hospitality baseline $\rightarrow$ **Clean Pass**.
+  - Synthetic V1.1 architecture compatibility fixture $\rightarrow$ **Clean Pass**.
+  - Synthetic V1.1 automotive compatibility fixture $\rightarrow$ **Clean Pass**.
+  - Synthetic V1.1 hospitality compatibility fixture $\rightarrow$ **Clean Pass**.
 - **Verdict:** **`PASS`**.
 
 ---

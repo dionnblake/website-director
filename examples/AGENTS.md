@@ -10,7 +10,9 @@ deterministic synthetic controls without becoming production project state.
 
 `APPLICATION-ARCHITECTURE-INTEGRATION-VALIDATION.md` documents the V2.15
 Capability #10 A-AV control matrix. `test_runner.py` owns the cross-version
-protocol, template, pilot, and five-lock invariant harness.
+protocol, template, synthetic historical-compatibility, and five-lock
+invariant harness. It does not require complete historical certification
+projects.
 
 ## Local Contracts
 

@@ -53,10 +53,13 @@ owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
 
 - Tests use temporary directories and fixtures for mutation probes.
 - Tests do not modify the protected `projects/` corpus, external systems, or
-  production credentials.
+  production credentials. The protected checkout boundary now contains the
+  five active Alpha Starts Now projects; historical certification behavior is
+  represented by small synthetic fixtures.
 - Historical V2.5-V2.10 suites are direct script entrypoints and are run by
   the registry; pytest collection is limited to the registered V2.11-V2.15
-  unittest suites.
+  unittest suites. These suites must not require complete historical project
+  directories.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
 - The Evidence and Asset Provenance suite uses synthetic records and temporary
@@ -105,8 +108,10 @@ owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
 ## Work Guidance
 
 Prefer pure validator helpers for malformed fixtures and use the registered
-FrozenIntegrityGuard for frozen-project mutation evidence. Keep historical
-fixtures read-only and distinguish `FAIL` from `BLOCKED`.
+FrozenIntegrityGuard for protected-project mutation evidence. Use disposable
+minimal fixtures for unchanged, modification, addition, deletion, and
+restore-after-observation controls. Keep compatibility fixtures read-only and
+distinguish `FAIL` from `BLOCKED`.
 
 ## Verification
 

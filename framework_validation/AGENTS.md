@@ -50,6 +50,9 @@ owner-selection authority is consumed only at the final unlock boundary.
   historical positive inputs.
 - Never publish, deploy, push, merge, use credentials, perform network
   mutation, or mutate `projects/`.
+- The protected `projects/` inventory is the five active Alpha Starts Now
+  surfaces. Historical certification behavior is consumed through minimal
+  synthetic fixtures and Git history is the recovery authority.
 - The clean-room operating mode must run through
   `prepare_clean_room_concept_run`; historical output is available only
   through the post-render negative-baseline adapter. The boundary stages only

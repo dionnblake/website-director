@@ -13,7 +13,9 @@ import io
 import json
 import os
 import re
+import shutil
 import sys
+import tempfile
 
 WORKSPACE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BQA = os.path.join(WORKSPACE, "browser-qa")
@@ -281,20 +283,34 @@ check(len(profile["locks"]) == 5 and set(profile["locks"]) == {
     "design_direction_locked", "information_architecture_locked", "content_structure_locked",
     "design_system_locked", "motion_direction_locked"}, "Q. Exactly the five canonical owner locks, no sixth")
 
-# R. Frozen pilot mutation -> V2.8 FrozenIntegrityGuard FAILs (restore does not launder it)
-victim = os.path.join(WORKSPACE, "projects", "v2-3-page-experience-certification-pilot", "site-profile.json")
-orig = io.open(victim, "rb").read()
-nc = None
+# R. Minimal protected fixture mutation -> guard FAIL (restore does not launder it)
+guard_fixture_root = tempfile.mkdtemp(prefix="wd-v2_9-guard-fixture-")
 try:
-    with io.open(victim, "ab") as fh:
-        fh.write(b"\n<deliberate mutation - v2.9 negative control>\n")
-    nc = guard.verify()
-finally:
+    fixture_dir = os.path.join(guard_fixture_root, "projects", "frozen-fixture")
+    os.makedirs(fixture_dir)
+    victim = os.path.join(fixture_dir, "state.json")
+    original = b'{"state":"baseline"}\n'
     with io.open(victim, "wb") as fh:
-        fh.write(orig)
-check(nc is not None and nc.ok is False, "R. Frozen pilot mutation -> integrity guard FAIL")
-check(nc is not None and any("v2-3-page-experience-certification-pilot/site-profile.json" in m
-                             for m in nc.mutations), "R. Guard names the mutated frozen file")
+        fh.write(original)
+    fixture_guard = FrozenIntegrityGuard(
+        guard_fixture_root, ["projects/"], ledger_path="guard-ledger.log",
+        run_id="v2_9_minimal_guard_fixture"
+    )
+    fixture_guard.snapshot()
+    with io.open(victim, "ab") as fh:
+        fh.write(b"\n<deliberate modification>\n")
+    nc = fixture_guard.verify()
+    with io.open(victim, "wb") as fh:
+        fh.write(original)
+    check(nc.ok is False, "R. Minimal fixture mutation -> integrity guard FAIL")
+    check(any("projects/frozen-fixture/state.json" in m for m in nc.mutations),
+          "R. Guard names the mutated minimal fixture")
+    ledger = os.path.join(guard_fixture_root, "guard-ledger.log")
+    ledger_text = io.open(ledger, encoding="utf-8").read() if os.path.exists(ledger) else ""
+    check("v2_9_minimal_guard_fixture" in ledger_text and "FROZEN_FIXTURE_MUTATION" in ledger_text,
+          "R. Restore-after-the-fact does not erase the recorded violation")
+finally:
+    shutil.rmtree(guard_fixture_root, ignore_errors=True)
 
 # ===========================================================================
 # 3. Final frozen-corpus invariant

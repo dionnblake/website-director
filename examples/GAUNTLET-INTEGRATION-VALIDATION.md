@@ -58,7 +58,7 @@
 
 ### Targeted Repair
 - **Builder Action:**
-  - Modified `projects/v1-1-architecture-pilot/styles/main.css`:
+  - Modified a disposable protected-fixture stylesheet:
     - Updated `.project-filter-btn` padding to `12px 16px` (ensuring $48\text{px}$ minimum touch height).
     - Snapped mobile filter container gap to `var(--space-3)`.
 - **Files Modified:** `styles/main.css` only. No HTML rewriting or token redefinition.

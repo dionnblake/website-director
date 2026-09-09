@@ -20,7 +20,9 @@ validation-manifest contracts for Website Director Capability 6, the additive
   information-architecture and content-structure lock identities remain owned
   by the phase and gate registries.
 - `compatibility.json` owns historical schema and deprecation policy.
-- `frozen-projects.json` owns the protected historical inventory.
+- `frozen-projects.json` owns the active protected-project inventory. Historical
+  certification project recovery is proved by the Wave 3 external manifest and
+  Git history, not by a second in-checkout registry.
 - `test-suites.json` owns discoverable isolated test commands.
 - `validation-manifest.json` owns source roots and report destinations.
   The bounded design-first operating-mode suite is registered there without
@@ -58,9 +60,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
   reference it but must not become competing version authorities.
 - The current owner-lock set is exactly five names and no registry may add a
   sixth lock.
-- Historical entries are explicit and non-authoritative. This corrected V2.11
-  checkout carries the complete certified V2.10 corpus; missing registered
-  artifacts are validation failures, not migration permission.
+- Historical compatibility entries are explicit and non-authoritative. The
+  protected registry contains only the five active Alpha Starts Now projects;
+  missing registered artifacts remain validation failures, not migration
+  permission.
 - Framework-validation state is external to the site profile.
 - The current framework version is 2.15.0. The content-operations,
   localization, application, and provenance readiness gates are not owner

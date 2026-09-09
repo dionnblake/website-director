@@ -1666,20 +1666,20 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
         "FROZEN_PROJECT_COUNT_NONZERO",
         "compatibility",
         isinstance(entries, list) and len(entries) > 0,
-        "frozen-project registry contains a non-empty historical inventory",
+        "protected-project registry contains a non-empty active inventory",
         file=relative,
         location="/projects",
-        expected="at least one registered frozen project",
+        expected="at least one registered protected project",
         observed=ctx.metadata["frozen_project_count"],
     )
     protected_ok = isinstance(protected, list) and "projects/" in protected and isinstance(entries, list)
-    ctx.check("FROZEN_PROJECT_REGISTRY", "compatibility", protected_ok, "frozen-project inventory declares the protected projects root", file=relative, location="/protected_paths", expected="projects/ registered", observed=registry)
+    ctx.check("FROZEN_PROJECT_REGISTRY", "compatibility", protected_ok, "protected-project inventory declares the protected projects root", file=relative, location="/protected_paths", expected="projects/ registered", observed=registry)
     missing = [entry.get("path") for entry in entries if isinstance(entry, dict) and entry.get("path") and not ctx.path(str(entry["path"])).exists()]
     if missing:
         missing_is_warning = bool((registry.get("policy") or {}).get("missing_registered_project_is_warning")) if isinstance(registry, dict) else False
-        ctx.check("FROZEN_PROJECT_CORPUS_NOT_IN_CHECKOUT", "compatibility", False, "registered frozen projects are absent from this checkout; no migration is attempted", file=relative, location="/projects", expected="all registered projects are present", observed={"missing_count": len(missing), "sample": missing[:5]}, severity="WARNING" if missing_is_warning else "ERROR", owner="framework-owner")
+        ctx.check("FROZEN_PROJECT_CORPUS_NOT_IN_CHECKOUT", "compatibility", False, "registered protected projects are absent from this checkout; no migration is attempted", file=relative, location="/projects", expected="all registered projects are present", observed={"missing_count": len(missing), "sample": missing[:5]}, severity="WARNING" if missing_is_warning else "ERROR", owner="framework-owner")
     else:
-        ctx.check("FROZEN_PROJECT_CORPUS_PRESENT", "compatibility", True, "all registered frozen project paths are present", file=relative, location="/projects")
+        ctx.check("FROZEN_PROJECT_CORPUS_PRESENT", "compatibility", True, "all registered protected project paths are present", file=relative, location="/projects")
     guard_relative = str(ctx.manifest.get("frozen_guard_path"))
     guard_class = _load_guard(ctx.root, guard_relative)
     projects_present = ctx.path("projects").is_dir()
@@ -1697,7 +1697,7 @@ def _check_frozen_registry(ctx: ValidationContext) -> None:
             "PROTECTED_FILE_COUNT_NONZERO",
             "frozen_fixture_integrity",
             ctx.metadata["protected_file_count"] > 0,
-            "frozen-integrity guard captured a non-empty protected project corpus",
+            "frozen-integrity guard captured a non-empty active protected project set",
             file=guard_relative,
             location="snapshot",
             expected="at least one protected project file",

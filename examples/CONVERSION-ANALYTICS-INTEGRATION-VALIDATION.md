@@ -154,7 +154,7 @@ Each scenario exercises one invariant of the subsystem against a synthetic proje
 
 ## Scenario E — Existing Pre-V1.8 Frozen Project
 
-**Profile:** `projects/v1-1-architecture-pilot/` — `schema_version = 1.1.0`, frozen certified baseline. No `measurement{}`, no `cro{}`, no `seo{}`.
+**Profile:** Synthetic V1.1 compatibility fixture — `schema_version = 1.1.0`, protected baseline semantics. No `measurement{}`, no `cro{}`, no `seo{}`.
 
 **Subsystem execution:**
 

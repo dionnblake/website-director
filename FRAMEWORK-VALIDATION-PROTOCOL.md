@@ -29,9 +29,11 @@ owner lock or authorize providers, live users, payments, deployment, or
 production verification.
 
 The corrected checkout is based directly on the certified V2.10 lineage and
-retains its operational documents, browser-QA harness, and complete frozen
-`projects/` corpus. Capability 6 adds framework self-validation without
-rewriting historical project material or introducing external side effects.
+retains its operational documents, browser-QA harness, and five active
+protected Alpha Starts Now project surfaces. Historical certification material
+is recoverable from Git history; compatibility behavior uses minimal synthetic
+fixtures. Capability 6 adds framework self-validation without introducing
+external side effects.
 
 ## Canonical authorities
 
@@ -53,7 +55,7 @@ rewriting historical project material or introducing external side effects.
 - [schemas/compatibility.json](schemas/compatibility.json) is the explicit
   historical-schema and deprecation policy.
 - [schemas/frozen-projects.json](schemas/frozen-projects.json) records the
-  protected historical corpus and
+  active protected-project inventory and
   [browser-qa/guards/frozen_integrity_guard.py](browser-qa/guards/frozen_integrity_guard.py)
   is the reusable integrity guard.
 - [schemas/test-suites.json](schemas/test-suites.json) is the versioned suite
@@ -203,13 +205,15 @@ explicit registry change, version decision, schema review, protocol update,
 test coverage, and owner approval. No new owner lock may be introduced by a
 specialist, validator, template, or CI change.
 
-## Frozen-project policy
+## Protected-project policy
 
-The `projects/` root is protected historical material. The validator snapshots
-it through the V2.8 guard before active suites run and verifies it afterward.
-Mutation, addition, deletion, or a failed restoration remains a failure. The
-registry is reconciled to the complete V2.10 corpus, so a missing registered
-project is a validation failure, not permission to regenerate or migrate it.
+The `projects/` root contains active protected Alpha Starts Now material. The
+validator snapshots it through the V2.8 guard before active suites run and
+verifies it afterward. Mutation, addition, deletion, or a failed restoration
+remains a failure. Historical certification project directories are archived
+from the active checkout and recovered from Git history; the registry contains
+only the five protected project surfaces, so a missing registered project is a
+validation failure, not permission to regenerate or migrate it.
 
 ## CI policy
 

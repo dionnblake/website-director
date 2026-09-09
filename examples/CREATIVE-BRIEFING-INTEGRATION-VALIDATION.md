@@ -21,7 +21,7 @@ This document provides the exhaustive validation suite and verification proof fo
 | **5. The Owner Read-Back Formula** | **ENFORCED** | High confidence triggers `creative-intent-contract.md` synthesis and the explicit confirmation read-back. |
 | **6. Epistemic Assumption Tracking** | **ENFORCED** | Strict separation: `OWNER_STATED`, `WEBSITE_DIRECTOR_INFERRED`, `RESEARCH_TO_VALIDATE`, `UNRESOLVED`. |
 | **7. Brand Critic Intent Fidelity** | **ENFORCED** | Gauntlet Brand Critic audits `INTENT_FIDELITY` against `creative-intent-contract.md`. |
-| **8. Backward Compatibility & Frozen Baselines** | **ENFORCED** | Pre-V1.8 pilot profiles (`alpha-starts-now`, `v1-1-architecture-pilot`, `v1-6-marine-chronometry-pilot`) parse cleanly with zero mutations. |
+| **8. Backward Compatibility & Frozen Baselines** | **ENFORCED** | Pre-V1.8 compatibility profiles in `tests/fixtures/historical-profiles.json` parse cleanly; protected project surfaces remain untouched. |
 | **9. Zero Duplicate Confirmation State** | **ENFORCED** | `creative_intent.confirmed` in `site-profile.json` is the sole confirmation boolean; exactly 5 design locks preserved. |
 | **10. Lock Change Governance Reused** | **ENFORCED** | Mid-project intent shifts against locked design route through existing `LOCKED_CHANGE_REQUIRED` flow. |
 
@@ -187,7 +187,7 @@ This document provides the exhaustive validation suite and verification proof fo
 ---
 
 ### SCENARIO 14: Historical-Project Backward Compatibility
-- **Context:** Parsing pre-V1.8 project profiles (`alpha-starts-now`, `v1-1-architecture-pilot`, `v1-6-marine-chronometry-pilot`).
+- **Context:** Parsing pre-V1.8 compatibility profiles from `tests/fixtures/historical-profiles.json`.
 - **Harness Execution:**
   - All 3 legacy `site-profile.json` files parse cleanly.
   - Absence of `creative_intent{}` does not throw validation errors (grandfathered).

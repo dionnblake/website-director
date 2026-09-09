@@ -54,7 +54,7 @@ class FrameworkValidationTests(unittest.TestCase):
         self.assertIsInstance(profile, dict)
         self.assertEqual(validator.validate_owner_locks(profile), [])
 
-    def test_frozen_inventory_matches_checked_out_corpus(self) -> None:
+    def test_protected_inventory_matches_checked_out_projects(self) -> None:
         registry = _load_json("schemas/frozen-projects.json")
         self.assertIsInstance(registry, dict)
         entries = registry["projects"]

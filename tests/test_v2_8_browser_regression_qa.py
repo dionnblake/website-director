@@ -265,23 +265,57 @@ f = run_scenario("h_dynamic_timestamp",
 vr = [x.verdict for x in f if x.check_id == "visual.regression"]
 check(vr == [PASS], "H. Deterministic timestamp fixture -> visual MATCH, no false regression (got %s)" % vr)
 
-# I. frozen project mutation -> integrity guard FAIL (restore does not launder it)
-victim = os.path.join(WORKSPACE, "projects", "v2-4-cro-analytics-certification-pilot", "site-profile.json")
-orig = io.open(victim, "rb").read()
-nc = None
+# I. minimal protected fixture: unchanged, modification, addition, deletion,
+# and restore-after-observation are all explicit guard behaviors. No historical
+# website path is needed to prove the reusable integrity contract.
+guard_fixture_root = tempfile.mkdtemp(prefix="wd-v2_8-guard-fixture-")
 try:
-    with io.open(victim, "ab") as fh:
-        fh.write(b"\n<deliberate mutation - v2.8 negative control>\n")
-    nc = guard.verify()
-finally:
+    fixture_dir = os.path.join(guard_fixture_root, "projects", "frozen-fixture")
+    os.makedirs(fixture_dir)
+    victim = os.path.join(fixture_dir, "state.json")
+    original = b'{"state":"baseline"}\n'
     with io.open(victim, "wb") as fh:
-        fh.write(orig)
-check(nc is not None and nc.ok is False, "I. Frozen fixture mutation -> integrity guard FAIL")
-check(nc is not None and any("v2-4-cro-analytics-certification-pilot/site-profile.json" in m
-                             for m in nc.mutations), "I. Guard names the mutated frozen file")
-ledger = os.path.join(BQA, "evidence", "frozen-integrity-violations.log")
-check(os.path.exists(ledger) and "v2_8_browser_qa" in io.open(ledger, encoding="utf-8").read(),
-      "I. Violation recorded in the append-only ledger despite the restore")
+        fh.write(original)
+    fixture_guard = FrozenIntegrityGuard(
+        guard_fixture_root, ["projects/"], ledger_path="guard-ledger.log",
+        run_id="v2_8_minimal_guard_fixture"
+    )
+    fixture_guard.snapshot()
+    unchanged = fixture_guard.verify(record_violation=False)
+    check(unchanged.ok, "I. Minimal protected fixture is unchanged -> PASS")
+
+    with io.open(victim, "ab") as fh:
+        fh.write(b"<deliberate modification>\n")
+    modified = fixture_guard.verify()
+    with io.open(victim, "wb") as fh:
+        fh.write(original)
+    check(modified.ok is False and "projects/frozen-fixture/state.json" in modified.mutations,
+          "I. Minimal fixture modification -> guard FAIL with exact path")
+    check(fixture_guard.verify(record_violation=False).ok,
+          "I. Restoring after the observed modification returns the bytes to baseline")
+
+    addition = os.path.join(fixture_dir, "added.json")
+    with io.open(addition, "w", encoding="utf-8") as fh:
+        fh.write("{}")
+    added = fixture_guard.verify()
+    os.remove(addition)
+    check(added.ok is False and "projects/frozen-fixture/added.json" in added.additions,
+          "I. Minimal fixture addition -> guard FAIL")
+
+    os.remove(victim)
+    deleted = fixture_guard.verify()
+    with io.open(victim, "wb") as fh:
+        fh.write(original)
+    check(deleted.ok is False and "projects/frozen-fixture/state.json" in deleted.deletions,
+          "I. Minimal fixture deletion -> guard FAIL")
+    ledger = os.path.join(guard_fixture_root, "guard-ledger.log")
+    check(os.path.exists(ledger) and "v2_8_minimal_guard_fixture" in io.open(ledger, encoding="utf-8").read()
+          and "FROZEN_FIXTURE_MUTATION" in io.open(ledger, encoding="utf-8").read(),
+          "I. Observed failures remain in the append-only ledger after restoration")
+    check(fixture_guard.verify(record_violation=False).ok,
+          "I. Final restored minimal fixture is unchanged -> PASS")
+finally:
+    shutil.rmtree(guard_fixture_root, ignore_errors=True)
 
 # J. flaky test -> FLAKY, never an unconditional PASS
 tmp = tempfile.mkdtemp(prefix="wd-v2_8-flaky-")
