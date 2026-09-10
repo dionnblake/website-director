@@ -238,46 +238,29 @@ authorities. The kernel never creates a release state machine.
 
 ## Default path
 
-The normal static marketing-site route is intentionally short:
+For a normal static marketing site, the top-level route is:
 
 ```text
 UNDERSTAND -> RESEARCH -> DESIGN -> ASSETS -> BUILD -> VERIFY -> RELEASE
 ```
 
-At a glance, the mandatory route bundles are:
-
-| Stage | Default mandatory route bundle |
-| :--- | :--- |
-| UNDERSTAND | Discovery and owner intent |
-| RESEARCH | SEO, visual research, and design intelligence |
-| DESIGN | Visual prototype, IA/content structure, design system, and motion direction |
-| ASSETS | Asset Director and Provenance |
-| BUILD | Implementation contract and site build |
-| VERIFY | Framework validation, Browser QA, deterministic quality checks, and Gauntlet |
-| RELEASE | Launch Operations, release preflight, and client handoff |
-
-`DEFAULT_PATH_AUTHORITY_COUNT = 7` when counted as top-level route bundles.
-This count is not a replacement count for the specialist authorities listed in
-the capability map. Conditional specialists are dispatched only when their
-activation evidence exists.
+`DEFAULT_PATH_AUTHORITY_COUNT = 7` counts route bundles, not specialists.
+Conditional specialists are dispatched only when their activation evidence exists.
 
 ## Conditional capability dispatch
 
-The default path stays visually and cognitively simple. Conditional work is
-evaluated from actual behavior, stories, assets, route requirements, or
-explicitly selected ambition. The existing authority records `NOT_REQUIRED`
-when appropriate; an agent does not invent a new skip state.
+Conditional work is assessed from actual behavior, stories, assets, route
+requirements, or selected ambition. Use the existing authority's
+`NOT_REQUIRED`, `blocked`, or exception result; never invent a shared skip state
+or install a provider merely because a capability exists.
 
-| Capability | Activation evidence | Primary stage | NOT_REQUIRED behavior | Routed authority |
-| :--- | :--- | :--- | :--- | :--- |
-| Content operations and CMS | Editable surfaces, editorial roles, scheduling, structured content, or migration need | BUILD | Record the existing content-operations result as not required or static; do not install a provider | [CONTENT-OPERATIONS-CMS-PROTOCOL.md](CONTENT-OPERATIONS-CMS-PROTOCOL.md) and `content-ops/validator.py` |
-| Localization | Explicit locales, translated content, localized routes, audience, or formatting requirement | BUILD | Keep the existing English-only `required = false` behavior | [LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md](LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md) and `localization/validator.py` |
-| Application, commerce, and authentication | Explicit actors, state changes, private routes, data, payments, bookings, uploads, UGC, or integrations | BUILD | Keep the existing `NOT_REQUIRED` result and activate no modules | [APPLICATION-COMMERCE-AUTH-PROTOCOL.md](APPLICATION-COMMERCE-AUTH-PROTOCOL.md) and `application/validator.py` |
-| Immersive Web | Evidence that 3D or spatial behavior communicates the subject better than a simpler implementation | BUILD | Record the existing immersive status as `not_required` | [IMMERSIVE-WEB-PROTOCOL.md](IMMERSIVE-WEB-PROTOCOL.md) |
-| Rive | Evidence that state-driven vector motion is materially better than CSS, GSAP, video, or WebGL | BUILD | Record the existing Rive status as `not_required` | [RIVE-INTERACTIVE-MOTION-PROTOCOL.md](RIVE-INTERACTIVE-MOTION-PROTOCOL.md) |
-| Cinematic integration | Deliberate cinematic requirement and a motion level that warrants the specialist | BUILD | Keep `motion.cinematic_specialist_required = false` and do not make a paid call | [CINEMATIC-INTEGRATION-PROTOCOL.md](CINEMATIC-INTEGRATION-PROTOCOL.md) |
-| Page experience | Multiple routes, route continuity, shared-element transitions, or scroll-restoration requirement | BUILD | Record the existing page-experience status as `not_required` | [PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md](PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md) |
-| Signature choreography | An explicit meaningful signature interaction that survives reduced motion and mobile reflow | BUILD | Keep the existing signature status as not required | [SIGNATURE-SCROLL-SPATIAL-CHOREOGRAPHY-LIBRARY.md](SIGNATURE-SCROLL-SPATIAL-CHOREOGRAPHY-LIBRARY.md) and the existing signature registry |
+Read the linked specialist only when its evidence activates it:
+
+- Content operations/CMS: `CONTENT-OPERATIONS-CMS-PROTOCOL.md` and `content-ops/`.
+- Localization: `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md` and `localization/`.
+- Application, commerce, or authentication: `APPLICATION-COMMERCE-AUTH-PROTOCOL.md` and `application/`.
+- Immersive Web, Rive, cinematic integration, page experience, or signature
+  choreography: the corresponding BUILD protocol and child authority.
 
 No conditional branch creates a protocol, registry, capability, state object,
 readiness gate, owner lock, or second runner.
@@ -291,45 +274,45 @@ state ownership.
 <!-- KERNEL_CAPABILITY_ROUTING_START -->
 | Capability | Current authority | Primary stage | Secondary dependencies | Required or conditional | Current state object | Current gate | Owner-lock interaction | Rationale |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| framework_validation | `framework_validation/` and `FRAMEWORK-VALIDATION-PROTOCOL.md` | VERIFY | All repository authorities and protected paths | Required for framework certification | `framework_validation.status` | `FRAMEWORK_VALIDATION_PASS` | None | It proves framework integrity rather than directing site work. |
-| website_director_core | `README.md` and the existing five-lock contract | DESIGN | UNDERSTAND; Visual Prototype; Design System; Motion Direction; RELEASE | Required | `locks.*` | Existing owner-lock gates | Owns all five existing owner locks and owner approval | It remains the cross-cutting lifecycle and lock authority while the kernel only supplies navigation. |
-| discovery_business_understanding | `DISCOVERY-PROTOCOL.md` | UNDERSTAND | Owner intent; later research | Required | `creative_intent.confirmed` | `CREATIVE_INTENT_CONFIRMED` | None | It defines the business problem and constraints before research. |
-| owner_intent | Existing owner-intent contract and Visual Prototype owner review | UNDERSTAND | DESIGN selection and all locks | Required owner action | Owner-intent artifact; no kernel state | None | Owner authority is preserved; no new lock | Owner constraints are the input boundary, not an agent inference. |
-| information_architecture | `IMPLEMENTATION-CONTRACT.md` and IA project artifact | DESIGN | UNDERSTAND; selected visual direction | Required | `locks.information_architecture_locked` | `INFORMATION_ARCHITECTURE_LOCKED` | Lock 2, owner approval | IA is derived after the direction and remains an existing design lock. |
-| content_structure | `IMPLEMENTATION-CONTRACT.md` and content project artifact | DESIGN | UNDERSTAND; IA; Provenance | Required | `locks.content_structure_locked` | `CONTENT_STRUCTURE_LOCKED` | Lock 3, owner approval | Content structure is part of the approved experience and its evidence chain. |
-| seo | `SEO-INTELLIGENCE-PROTOCOL.md` | RESEARCH | UNDERSTAND; DESIGN; RELEASE | Required for current production planning | `seo.complete` | `SEO_COMPLETE` | None | SEO is evidence and market intelligence that informs the experience. |
-| visual_research | `VISUAL-RESEARCH-PROTOCOL.md` | RESEARCH | UNDERSTAND; DESIGN; Provenance | Required | `research.complete` | `RESEARCH_COMPLETE` | None | It supplies external evidence without becoming design authority. |
-| external_inspiration_reference_research | `REFERENCE-PROTOCOL.md` and `REFERENCE-RECON-PROTOCOL.md` | RESEARCH | Provenance; DESIGN | Conditional to reference work | `research.complete` and reference artifacts | Existing research readiness | None | Reference analysis is research-only and cannot become copied composition or asset. |
-| design_inspiration_adapter | `integrations/design-inspiration/ADAPTER.md` | RESEARCH | Visual Research; Awwwards interpretation; Provenance | Conditional transport | `research.complete` | Existing research readiness | None | It acquires bounded evidence and owns no interpretation or design choice. |
-| awwwards_showcase_benchmarking | `AWWWARDS-SHOWCASE-INTELLIGENCE.md` | RESEARCH | Visual Research; Visual Prototype | Conditional to SHOWCASE ambition | `visual_prototypes.showcase_research` | None | None | Showcase material benchmarks craft and does not select the client's direction. |
-| design_intelligence | `DESIGN-INTELLIGENCE-PROTOCOL.md` and `intelligence/ui-ux-pro-max/` | RESEARCH | Visual Research; DESIGN | Required for current synthesis | `design_intelligence.complete` | `DESIGN_INTELLIGENCE_COMPLETE` | None | Candidate synthesis is research intelligence, not a sixth lock. |
-| archetype_synthesis | `DESIGN-ARCHETYPES.md` and `DESIGN-CONSTITUTION.md` | DESIGN | Research; owner intent | Required for a deliberate direction | No independent state object | None | Feeds Lock 1 | Archetypes are a design reasoning aid, not a lifecycle authority. |
-| visual_direction | `DESIGN-CONSTITUTION.md` and existing direction artifact | DESIGN | Research; owner intent; Visual Prototype | Required | `locks.design_direction_locked` | `DESIGN_DIRECTION_LOCKED` | Lock 1, owner approval | It records the chosen visual language without adding a kernel state. |
-| visual_prototype | `VISUAL-PROTOTYPE-PROTOCOL.md` | DESIGN | Research; owner intent; assets; design system | Required before material direction selection | `visual_prototypes.owner_selection_confirmed` | `VISUAL_PROTOTYPES_OWNER_READY` | Engages Lock 1 after owner selection | Rendered comparison is the authority for selecting what the owner sees. |
-| design_system | `DESIGN-SYSTEM-PROTOCOL.md` | DESIGN | IA; content; security; accessibility; provenance; motion | Required | `locks.design_system_locked` | `DESIGN_SYSTEM_LOCKED` | Lock 4, owner approval | Tokens are derived from the approved system and its constraints. |
-| motion_direction | `MOTION-DIRECTION-PROTOCOL.md` | DESIGN | Owner intent; design system; accessibility; Build | Required, including a static verdict | `locks.motion_direction_locked` | `MOTION_DIRECTION_LOCKED` | Lock 5, owner approval | Motion is intentional design direction, not an implementation convenience. |
-| measurement_analytics | `CONVERSION-ANALYTICS-PROTOCOL.md` | DESIGN | UNDERSTAND; Build; VERIFY; Release | Required when goals have observable conversion behavior | `measurement.complete` | `CONVERSION_MEASUREMENT_COMPLETE` | None | Measurement contracts inform the experience and are verified after build. |
-| security_privacy | `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` | DESIGN | UNDERSTAND; Build; VERIFY; Release | Required by actual site risk and data flows | `security_privacy.complete` | `SECURITY_PRIVACY_READY` | None | Risk and safeguards constrain design and implementation before deterministic checks. |
-| accessibility | `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` | DESIGN | Design System; Motion; Build; VERIFY | Required for applicable public functionality | `accessibility.complete` | `ACCESSIBILITY_READY` | None | Requirements shape the system before build; runtime assertions remain VERIFY-owned. |
-| asset_director | `ASSET-DIRECTOR-PROTOCOL.md` | ASSETS | DESIGN; Provenance; Build | Required when visual assets exist | `assets.status` | `ASSET_DIRECTION_READY` | None | It owns art-directed production assets and their usable forms. |
-| provenance | `EVIDENCE-PROVENANCE-PROTOCOL.md` and `provenance/validator.py` | ASSETS | Research; Asset Director; VERIFY; Release | Required for claims, assets, and references in scope | `provenance.complete` | `EVIDENCE_PROVENANCE_READY` | None | Rights, source, claim, and hash identity are cross-cutting but asset-led. |
-| implementation_contract | `IMPLEMENTATION-CONTRACT.md` | BUILD | DESIGN; Assets; conditional dispatch | Required | `implementation.contract` artifact | None | Consumes all engaged locks | It turns approved decisions into binding build constraints. |
-| build_execution | Project implementation surface | BUILD | Implementation Contract; Assets; conditional specialists | Required | Project build state | None | Cannot silently change an engaged lock | It implements the approved system and creates the candidate. |
-| gsap_motion_engineering | `GSAP-IMPLEMENTATION-PROTOCOL.md` and `intelligence/gsap-skills/` | BUILD | Motion Direction; Design System; Browser QA | Conditional when JavaScript motion is required | `motion.gsap_required` | None | Consumes Lock 5 | GSAP is an implementation engine under the motion authority. |
-| cinematic_integration | `CINEMATIC-INTEGRATION-PROTOCOL.md` | BUILD | Motion Direction; Assets; Provenance; VERIFY | Conditional | `motion.cinematic_brief_complete` | None | Consumes Locks 1, 4, and 5 | Cinematic production is a bounded builder specialist, not a lifecycle stage. |
-| signature_choreography | Existing signature choreography registry and motion authority | BUILD | Motion Direction; Build; VERIFY | Conditional | `signature_choreography.status` | None | Consumes Lock 5 | Spatial choreography earns its place only when it communicates the subject. |
-| content_cms_operations | `CONTENT-OPERATIONS-CMS-PROTOCOL.md` and `content-ops/validator.py` | BUILD | Content Structure; Provenance; Localization; Handoff | Conditional | `content_ops.complete` | `CONTENT_OPERATIONS_READY` | None | It defines provider-neutral editorial architecture before implementation. |
-| localization | `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md` and `localization/validator.py` | BUILD | Content Operations; SEO; Accessibility; Measurement; Provenance; Handoff | Conditional | `localization.complete` | `LOCALIZATION_READY` | None | Locale-aware behavior is dispatched only from explicit requirements. |
-| application_commerce_auth | `APPLICATION-COMMERCE-AUTH-PROTOCOL.md` and `application/validator.py` | BUILD | UNDERSTAND; Security; Measurement; Accessibility; Release | Conditional | `application.complete` | `APPLICATION_ARCHITECTURE_READY` | None | Stateful behavior is assessed before build without creating live authority. |
-| immersive_web | `IMMERSIVE-WEB-PROTOCOL.md` | BUILD | Assets; Motion; Accessibility; Browser QA; Provenance | Conditional | `immersive.status` | `IMMERSIVE_IMPLEMENTATION_READY` | None | WebGL is an implementation specialist selected only for spatial clarity. |
-| rive | `RIVE-INTERACTIVE-MOTION-PROTOCOL.md` | BUILD | Motion; Accessibility; Assets; Browser QA | Conditional | `rive.status` | `RIVE_IMPLEMENTATION_READY` | None | Rive is a state-machine implementation specialist, not a top-level route. |
-| page_experience | `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md` | BUILD | IA; Motion; Browser QA; Release | Conditional | `page_experience.status` | `TRANSITION_READY` | None | Route continuity is built only when the site needs it. |
-| browser_qa | `BROWSER-REGRESSION-QA-PROTOCOL.md` and `browser-qa/` | VERIFY | Measurement; Security; Accessibility; Assets; Build | Required for the built artifact | `browser_qa.complete` | `BROWSER_QA_PASS` | None | It owns deterministic browser evidence and frozen-integrity protection. |
-| design_qa_impeccable | `QA-RUBRIC.md` and `IMPECCABLE-ENGINE-PROTOCOL.md` | VERIFY | Design System; Motion; Browser QA; Gauntlet | Required quality review | `qa_status.design_qa_verdict` | None | Reviews, never adds a lock | It finds deterministic and experiential quality gaps without re-owning them. |
-| website_gauntlet | `WEBSITE-GAUNTLET-PROTOCOL.md` | VERIFY | Browser QA; owner intent; references; design system | Required for governed quality review | `gauntlet.status` | `GAUNTLET_PASS` | Respects all five locks | It owns fresh qualitative critique and targeted refinement after deterministic checks. |
-| production_preflight | `PRODUCTION-CHECKLIST.md` | RELEASE | Verify; Launch Operations; Provenance | Required for a release candidate | `qa_status.production_preflight_passed` | None | No deployment authority | It prepares the candidate for the release boundary. |
-| launch_operations | `LAUNCH-OPERATIONS-PROTOCOL.md` and `launch-ops/validator.py` | RELEASE | Verify; Security; Accessibility; Measurement; Browser QA; Handoff | Required for launch planning | `launch_ops.complete` and `launch_ops.status` | `RELEASE_READY` | None | It is the single owner of release and production-state semantics. |
-| client_handoff | `CLIENT-CMS-HANDOFF-PROTOCOL.md` | RELEASE | Content Operations; Localization; Launch Operations; owner acceptance | Conditional to durable client operations | `handoff.status` | `CLIENT_HANDOFF_READY` | None | Handoff transfers durable operating responsibility without deployment authority. |
+| framework_validation | `framework_validation/` and `FRAMEWORK-VALIDATION-PROTOCOL.md` | VERIFY | All repository authorities and protected paths | Required for framework certification | `framework_validation.status` | `FRAMEWORK_VALIDATION_PASS` | None | Proves framework integrity. |
+| website_director_core | `README.md` and the existing five-lock contract | DESIGN | UNDERSTAND; Visual Prototype; Design System; Motion Direction; RELEASE | Required | `locks.*` | Existing owner-lock gates | Owns all five existing owner locks and owner approval | Cross-cutting lifecycle and lock authority. |
+| discovery_business_understanding | `DISCOVERY-PROTOCOL.md` | UNDERSTAND | Owner intent; later research | Required | `creative_intent.confirmed` | `CREATIVE_INTENT_CONFIRMED` | None | Defines the business problem before research. |
+| owner_intent | Existing owner-intent contract and Visual Prototype owner review | UNDERSTAND | DESIGN selection and all locks | Required owner action | Owner-intent artifact; no kernel state | None | Owner authority is preserved; no new lock | Owner constraints are the input boundary. |
+| information_architecture | `IMPLEMENTATION-CONTRACT.md` and IA project artifact | DESIGN | UNDERSTAND; selected visual direction | Required | `locks.information_architecture_locked` | `INFORMATION_ARCHITECTURE_LOCKED` | Lock 2, owner approval | Derived design lock. |
+| content_structure | `IMPLEMENTATION-CONTRACT.md` and content project artifact | DESIGN | UNDERSTAND; IA; Provenance | Required | `locks.content_structure_locked` | `CONTENT_STRUCTURE_LOCKED` | Lock 3, owner approval | Approved experience and evidence chain. |
+| seo | `SEO-INTELLIGENCE-PROTOCOL.md` | RESEARCH | UNDERSTAND; DESIGN; RELEASE | Required for current production planning | `seo.complete` | `SEO_COMPLETE` | None | Search and market evidence informs the experience. |
+| visual_research | `VISUAL-RESEARCH-PROTOCOL.md` | RESEARCH | UNDERSTAND; DESIGN; Provenance | Required | `research.complete` | `RESEARCH_COMPLETE` | None | Research evidence, not design authority. |
+| external_inspiration_reference_research | `REFERENCE-PROTOCOL.md` and `REFERENCE-RECON-PROTOCOL.md` | RESEARCH | Provenance; DESIGN | Conditional to reference work | `research.complete` and reference artifacts | Existing research readiness | None | Research-only; no copied composition or asset. |
+| design_inspiration_adapter | `integrations/design-inspiration/ADAPTER.md` | RESEARCH | Visual Research; Awwwards interpretation; Provenance | Conditional transport | `research.complete` | Existing research readiness | None | Acquires bounded evidence; no design choice. |
+| awwwards_showcase_benchmarking | `AWWWARDS-SHOWCASE-INTELLIGENCE.md` | RESEARCH | Visual Research; Visual Prototype | Conditional to SHOWCASE ambition | `visual_prototypes.showcase_research` | None | None | Craft benchmark; not direction selection. |
+| design_intelligence | `DESIGN-INTELLIGENCE-PROTOCOL.md` and `intelligence/ui-ux-pro-max/` | RESEARCH | Visual Research; DESIGN | Required for current synthesis | `design_intelligence.complete` | `DESIGN_INTELLIGENCE_COMPLETE` | None | Research intelligence; not a sixth lock. |
+| archetype_synthesis | `DESIGN-ARCHETYPES.md` and `DESIGN-CONSTITUTION.md` | DESIGN | Research; owner intent | Required for a deliberate direction | No independent state object | None | Feeds Lock 1 | Design reasoning aid; not lifecycle authority. |
+| visual_direction | `DESIGN-CONSTITUTION.md` and existing direction artifact | DESIGN | Research; owner intent; Visual Prototype | Required | `locks.design_direction_locked` | `DESIGN_DIRECTION_LOCKED` | Lock 1, owner approval | Records the selected visual language. |
+| visual_prototype | `VISUAL-PROTOTYPE-PROTOCOL.md` | DESIGN | Research; owner intent; assets; design system | Required before material direction selection | `visual_prototypes.owner_selection_confirmed` | `VISUAL_PROTOTYPES_OWNER_READY` | Engages Lock 1 after owner selection | Owner selects from rendered evidence. |
+| design_system | `DESIGN-SYSTEM-PROTOCOL.md` | DESIGN | IA; content; security; accessibility; provenance; motion | Required | `locks.design_system_locked` | `DESIGN_SYSTEM_LOCKED` | Lock 4, owner approval | Tokens derive from approved constraints. |
+| motion_direction | `MOTION-DIRECTION-PROTOCOL.md` | DESIGN | Owner intent; design system; accessibility; Build | Required, including a static verdict | `locks.motion_direction_locked` | `MOTION_DIRECTION_LOCKED` | Lock 5, owner approval | Intentional design direction, not convenience. |
+| measurement_analytics | `CONVERSION-ANALYTICS-PROTOCOL.md` | DESIGN | UNDERSTAND; Build; VERIFY; Release | Required when goals have observable conversion behavior | `measurement.complete` | `CONVERSION_MEASUREMENT_COMPLETE` | None | Measurement informs experience and verification. |
+| security_privacy | `SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md` | DESIGN | UNDERSTAND; Build; VERIFY; Release | Required by actual site risk and data flows | `security_privacy.complete` | `SECURITY_PRIVACY_READY` | None | Risk and safeguards constrain design and build. |
+| accessibility | `ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md` | DESIGN | Design System; Motion; Build; VERIFY | Required for applicable public functionality | `accessibility.complete` | `ACCESSIBILITY_READY` | None | Requirements shape the system; runtime checks stay in VERIFY. |
+| asset_director | `ASSET-DIRECTOR-PROTOCOL.md` | ASSETS | DESIGN; Provenance; Build | Required when visual assets exist | `assets.status` | `ASSET_DIRECTION_READY` | None | Owns art-directed production assets. |
+| provenance | `EVIDENCE-PROVENANCE-PROTOCOL.md` and `provenance/validator.py` | ASSETS | Research; Asset Director; VERIFY; Release | Required for claims, assets, and references in scope | `provenance.complete` | `EVIDENCE_PROVENANCE_READY` | None | Owns rights, source, claim, and hash identity. |
+| implementation_contract | `IMPLEMENTATION-CONTRACT.md` | BUILD | DESIGN; Assets; conditional dispatch | Required | `implementation.contract` artifact | None | Consumes all engaged locks | Turns approvals into build constraints. |
+| build_execution | Project implementation surface | BUILD | Implementation Contract; Assets; conditional specialists | Required | Project build state | None | Cannot silently change an engaged lock | Implements the approved system and creates the candidate. |
+| gsap_motion_engineering | `GSAP-IMPLEMENTATION-PROTOCOL.md` and `intelligence/gsap-skills/` | BUILD | Motion Direction; Design System; Browser QA | Conditional when JavaScript motion is required | `motion.gsap_required` | None | Consumes Lock 5 | Implementation engine under motion authority. |
+| cinematic_integration | `CINEMATIC-INTEGRATION-PROTOCOL.md` | BUILD | Motion Direction; Assets; Provenance; VERIFY | Conditional | `motion.cinematic_brief_complete` | None | Consumes Locks 1, 4, and 5 | Bounded builder specialist. |
+| signature_choreography | Existing signature choreography registry and motion authority | BUILD | Motion Direction; Build; VERIFY | Conditional | `signature_choreography.status` | None | Consumes Lock 5 | Meaningful spatial choreography under motion authority. |
+| content_cms_operations | `CONTENT-OPERATIONS-CMS-PROTOCOL.md` and `content-ops/validator.py` | BUILD | Content Structure; Provenance; Localization; Handoff | Conditional | `content_ops.complete` | `CONTENT_OPERATIONS_READY` | None | Provider-neutral editorial architecture. |
+| localization | `LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md` and `localization/validator.py` | BUILD | Content Operations; SEO; Accessibility; Measurement; Provenance; Handoff | Conditional | `localization.complete` | `LOCALIZATION_READY` | None | Explicit requirements dispatch locale behavior. |
+| application_commerce_auth | `APPLICATION-COMMERCE-AUTH-PROTOCOL.md` and `application/validator.py` | BUILD | UNDERSTAND; Security; Measurement; Accessibility; Release | Conditional | `application.complete` | `APPLICATION_ARCHITECTURE_READY` | None | Assesses stateful behavior before build. |
+| immersive_web | `IMMERSIVE-WEB-PROTOCOL.md` | BUILD | Assets; Motion; Accessibility; Browser QA; Provenance | Conditional | `immersive.status` | `IMMERSIVE_IMPLEMENTATION_READY` | None | Spatial specialist only when justified. |
+| rive | `RIVE-INTERACTIVE-MOTION-PROTOCOL.md` | BUILD | Motion; Accessibility; Assets; Browser QA | Conditional | `rive.status` | `RIVE_IMPLEMENTATION_READY` | None | State-machine specialist, not a top-level route. |
+| page_experience | `PAGE-EXPERIENCE-TRANSITION-PROTOCOL.md` | BUILD | IA; Motion; Browser QA; Release | Conditional | `page_experience.status` | `TRANSITION_READY` | None | Route continuity only when needed. |
+| browser_qa | `BROWSER-REGRESSION-QA-PROTOCOL.md` and `browser-qa/` | VERIFY | Measurement; Security; Accessibility; Assets; Build | Required for the built artifact | `browser_qa.complete` | `BROWSER_QA_PASS` | None | Deterministic browser evidence and frozen integrity. |
+| design_qa_impeccable | `QA-RUBRIC.md` and `IMPECCABLE-ENGINE-PROTOCOL.md` | VERIFY | Design System; Motion; Browser QA; Gauntlet | Required quality review | `qa_status.design_qa_verdict` | None | Reviews, never adds a lock | Deterministic design scan, not runtime authority. |
+| website_gauntlet | `WEBSITE-GAUNTLET-PROTOCOL.md` | VERIFY | Browser QA; owner intent; references; design system | Required for governed quality review | `gauntlet.status` | `GAUNTLET_PASS` | Respects all five locks | Fresh qualitative critique after deterministic checks. |
+| production_preflight | `PRODUCTION-CHECKLIST.md` | RELEASE | Verify; Launch Operations; Provenance | Required for a release candidate | `qa_status.production_preflight_passed` | None | No deployment authority | Prepares the candidate for release. |
+| launch_operations | `LAUNCH-OPERATIONS-PROTOCOL.md` and `launch-ops/validator.py` | RELEASE | Verify; Security; Accessibility; Measurement; Browser QA; Handoff | Required for launch planning | `launch_ops.complete` and `launch_ops.status` | `RELEASE_READY` | None | Single release and production-state owner. |
+| client_handoff | `CLIENT-CMS-HANDOFF-PROTOCOL.md` | RELEASE | Content Operations; Localization; Launch Operations; owner acceptance | Conditional to durable client operations | `handoff.status` | `CLIENT_HANDOFF_READY` | None | Transfers durable operations without deployment authority. |
 <!-- KERNEL_CAPABILITY_ROUTING_END -->
 
 `PRIMARY_STAGE` is a routing label only. It does not rename a protocol, move a
@@ -352,39 +335,34 @@ only owner authority:
 
 ## State and authority boundaries
 
-- Existing protocols, validators, state objects, gates, registries, and
-  templates remain the authorities listed in the routing map.
-- There are no fields under a kernel namespace, and no kernel design, verify,
-  or release completion fields.
-- `browser_qa.complete` remains the single Browser QA readiness flag.
-- `gauntlet.status` remains the qualitative refinement authority.
-- `launch_ops.complete` and `launch_ops.status` remain the single launch
-  authority. `[RELEASE_READY]` never implies deployment authorization.
-- `provenance.complete` remains the evidence and asset provenance flag; it does
-  not become an Asset Director lock.
-- Conditional capabilities record their existing `NOT_REQUIRED`, `blocked`,
-  or exception behavior in their own state. The router never invents a common
-  conditional state.
+- The authorities in the routing map retain their existing protocols, validators,
+  state objects, gates, registries, and templates. The kernel has no namespace or
+  completion fields.
+- `browser_qa.complete` is the sole Browser QA readiness flag;
+  `gauntlet.status` owns qualitative refinement; `provenance.complete` owns
+  evidence and asset provenance; none becomes an owner lock.
+- `launch_ops.complete` and `launch_ops.status` are the sole launch authority;
+  `[RELEASE_READY]` never implies deployment authorization.
+- Conditional capabilities keep their local `NOT_REQUIRED`, `blocked`, and
+  exception behavior. The router creates no common conditional state.
 
 ### Single-Source-of-Truth Rule for `security_privacy` State
 
-`security_privacy.complete` and its existing implementation and production
-verification fields remain owned by the Security, Privacy & Compliance
-authority. Design, Browser QA, Launch Operations, and the kernel consume its
+`security_privacy.complete` and its implementation and production-verification
+fields remain owned by Security, Privacy & Compliance. Other stages consume its
 contract; none creates a parallel security state.
 
 ### Single-Source-of-Truth Rule for `accessibility` State
 
-`accessibility.complete` and its existing verification fields remain owned by
-Accessibility Intelligence. Browser QA consumes the applicable runtime
-assertions through its existing runner; the kernel creates no accessibility
-state or owner lock.
+`accessibility.complete` and its verification fields remain owned by
+Accessibility Intelligence. Browser QA consumes applicable runtime assertions;
+the kernel creates no accessibility state or owner lock.
 
 ### Single-Source-of-Truth Rule for `browser_qa` State
 
-`browser_qa.complete` is the only Browser QA readiness flag. The existing
-Browser QA runner and FrozenIntegrityGuard own its evidence and protected
-project integrity. Gauntlet and Launch Operations consume the result.
+`browser_qa.complete` is the only Browser QA readiness flag. The existing runner
+and FrozenIntegrityGuard own its evidence and protected-project integrity;
+Gauntlet and Launch Operations consume the result.
 
 ### Single-Source-of-Truth Rule for `launch_ops`
 
@@ -407,24 +385,11 @@ Use the deep protocol only after the stage router identifies the authority:
 | Verification and critique | [FRAMEWORK-VALIDATION-PROTOCOL.md](FRAMEWORK-VALIDATION-PROTOCOL.md), [BROWSER-REGRESSION-QA-PROTOCOL.md](BROWSER-REGRESSION-QA-PROTOCOL.md), [QA-RUBRIC.md](QA-RUBRIC.md), [IMPECCABLE-ENGINE-PROTOCOL.md](IMPECCABLE-ENGINE-PROTOCOL.md), [WEBSITE-GAUNTLET-PROTOCOL.md](WEBSITE-GAUNTLET-PROTOCOL.md) |
 | Release and operations | [PRODUCTION-CHECKLIST.md](PRODUCTION-CHECKLIST.md), [LAUNCH-OPERATIONS-PROTOCOL.md](LAUNCH-OPERATIONS-PROTOCOL.md), [CLIENT-CMS-HANDOFF-PROTOCOL.md](CLIENT-CMS-HANDOFF-PROTOCOL.md) |
 
-## Historical phase language
+## Compatibility
 
-The numeric phase registry and specialist protocol references are retained
-where validators, schemas, historical profiles, or specialist ordering consume
-them. They are compatibility and runtime-ordering metadata, not the operator's
-top-level route. Historical version narratives do not control current dispatch.
-
-Classification for this reduction:
-
-- `KEEP_FOR_RUNTIME_ORDERING`: existing phase, gate, and protocol references
-  consumed by validators or specialist contracts.
-- `KEEP_FOR_COMPATIBILITY`: historical profile, frozen-project, and registry
-  identifiers that must remain readable.
-- `MOVE_TO_HISTORICAL_CONTEXT`: version accumulation and old workflow diagrams
-  removed from the active route and summarized only where human orientation
-  needs it.
-- `DELETE`: duplicate top-level routing language that restates the old phase
-  sequence without adding a specialist rule.
+Numeric phases and historical identifiers remain in the canonical schemas,
+profiles, validators, and specialist contracts that consume them. They do not
+replace the seven-stage operator route or trigger automatic specialist loading.
 
 ## Verification contract
 

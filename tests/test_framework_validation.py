@@ -259,6 +259,26 @@ class FrameworkValidationTests(unittest.TestCase):
         self.assertEqual(changed_brand_direction["Primary stage"], "DESIGN")
         self.assertIn("owner change request", (ROOT / "SKILL.md").read_text(encoding="utf-8"))
 
+    def test_resident_dox_rail_is_portable_and_lazy(self) -> None:
+        root = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("`SKILL.md` is the canonical operator router.", root)
+        self.assertNotIn("file:///c:/", root.lower())
+        self.assertNotIn("### Validated Pilots", root)
+        self.assertNotRegex(root, r"(?im)^\s*-\s+.*\bStatus:")
+        stale_route_text = (root + skill).replace("→", "->")
+        self.assertNotIn("BRIEF -> DIRECTION -> IA", stale_route_text)
+        self.assertNotIn("FEATURE_FREEZE = ACTIVE", root + skill)
+        self.assertNotIn("ACTIVATION_TABLE", skill)
+
+        child_index = root.split("## Child DOX Index", 1)[1]
+        child_entries = [line for line in child_index.splitlines() if line.startswith("- [")]
+        self.assertGreaterEqual(len(child_entries), 10)
+        self.assertLessEqual(max(map(len, child_entries)), 180)
+        self.assertIn("KERNEL_CAPABILITY_ROUTING_START", skill)
+        self.assertIn("KERNEL_CAPABILITY_ROUTING_END", skill)
+
     def test_existing_registered_suite_count_remains_thirteen(self) -> None:
         registry = _load_json("schemas/test-suites.json")
         active = [entry for entry in registry["suites"] if entry.get("status") == "ACTIVE"]
