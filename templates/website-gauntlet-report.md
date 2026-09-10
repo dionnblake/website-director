@@ -137,10 +137,10 @@ BIGGEST_REMAINING_GAP = [Next priority gap or NONE]
 
 ## 3. Anti-AI-Slop & Quality Audit Log (Impeccable Quality Engine)
 
-| Finding ID | Source | Method | Rule / Anti-Pattern | Location | Severity | Evidence | Remediation Applied | Lock Impact |
+| FINDING_ID | SOURCE | METHOD | RULE | LOCATION | SEVERITY | EVIDENCE | REMEDIATION | LOCK_IMPACT |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- | :--- | :---: |
-| `DET-01` | `IMPECCABLE` | `DETERMINISTIC` | `skill-color-verify-contrast` | `[File / Section]` | `[CRIT / MAJ / MIN]` | `[Computed ratio / CSS]` | [Token Fix Description] | `[None / Lock Reopen]` |
-| `HEUR-02` | `GAUNTLET` | `HEURISTIC` | `skill-ban-3-card-loop` | `[File / Section]` | `[CRIT / MAJ / MIN]` | `[DOM Structure]` | [Morphology Refactor] | `[None / Lock Reopen]` |
+| `DET-001` | `IMPECCABLE_DETECTOR` | `DETERMINISTIC` | `low-contrast` | `[File:Line]` | `[CRITICAL / MAJOR / MINOR]` | `[Computed ratio / source]` | `[Bounded remediation]` | `[NONE / LOCKED_CHANGE_REQUIRED]` |
+| `HEUR-002` | `IMPECCABLE_DETECTOR` | `HEURISTIC` | `side-tab` | `[File:Line]` | `[CRITICAL / MAJOR / MINOR]` | `[Structural evidence]` | `[Bounded remediation]` | `[NONE / LOCKED_CHANGE_REQUIRED]` |
 
 ---
 

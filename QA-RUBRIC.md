@@ -32,13 +32,28 @@
 
 ## 1.1 Deterministic Pre-Scan Protocol (Impeccable Quality Engine)
 
-Before scoring the 100-point matrix or conducting qualitative critique, execute the deterministic scan suite from `IMPECCABLE-ENGINE-PROTOCOL.md` §3, and confirm Phase 10.5 Browser & Regression QA has passed. Record findings using the method taxonomy (`DETERMINISTIC`, `HEURISTIC`, `LLM_CRITIQUE`, `VISUAL_COMPARISON`, `BROWSER_EXECUTED`):
+Before scoring the 100-point matrix or conducting qualitative critique, run the
+Website Director-owned source scanner from
+`framework_validation/impeccable.py` through the existing
+`design_qa_impeccable` boundary, then confirm Phase 10.5 Browser & Regression
+QA has passed. The scanner is provider-neutral and read-only. Record its
+findings using the normalized schema and method taxonomy
+(`DETERMINISTIC`, `HEURISTIC`, `LLM_CRITIQUE`, `VISUAL_COMPARISON`,
+`BROWSER_EXECUTED`):
 
-- **Deterministic Contrast Audit:** Mathematically verify that all text tokens satisfy WCAG AA ($\ge 4.5:1$ body, $\ge 3:1$ large). Flag any `gray-on-color` muddy contrast failures.
-- **Transition Performance Audit:** Scan stylesheets for illegal layout-triggering properties (`transition: all`, `transition: width`, `transition: height`, `transition: margin`, `transition: top`).
-- **Physics Audit:** Verify that easing curves snap to locked physics tokens; flag any `bounce-easing` curves.
-- **Browser Surfaces Audit:** Verify that `::selection`, custom scrollbars, carets, and focus rings are explicitly themed from tokens.
-- **Data Typography Audit:** Verify `font-variant-numeric: tabular-nums` on all metrics, stats, and pricing figures.
+- **Deterministic and heuristic source audit:** Use `scan_sources` for an
+  explicit source map or `scan_path` for a caller-owned source directory.
+  This covers the 18 existing contract entries plus the selected v4.3.1
+  additions documented in the Impeccable protocol.
+- **Runtime ownership boundary:** Do not infer console errors, viewport
+  overflow, painted occlusion, or post-reveal visibility from source text.
+  Those observations remain Browser QA assertions.
+- **Accessibility boundary:** The scanner may supply static contrast evidence,
+  but computed contrast, accessible names, focus behavior, reflow, target
+  geometry, and manual criteria remain in the existing accessibility group.
+- **Finding honesty:** Every record must preserve FINDING_ID, SOURCE, METHOD,
+  RULE, LOCATION, SEVERITY, EVIDENCE, REMEDIATION, and LOCK_IMPACT. A
+  heuristic authorized by a locked direction is not silently deleted.
 
 ### 1.2 Rendered visual evidence gate
 

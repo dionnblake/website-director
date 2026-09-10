@@ -58,6 +58,13 @@ quarantine, physical staged-workspace, provenance, pre-generation
 cheap-concept, ordered execution, browser-derived morphology, blind-critic,
 owner-selection unlock, and zero-side-effect synthetic end-to-end controls.
 
+test_impeccable.py owns the synthetic proof for the bounded Impeccable
+source scanner: the existing 18-rule contract, the selected v4.3.1 additions,
+finding normalization, contextual authorization, lock protection, official
+engine fail-closed controls, owner separation, path handling, frozen
+integrity, and historical compatibility. It is a child module of the
+framework_validation suite, not a new registered suite.
+
 ## Local Contracts
 
 - Tests use temporary directories and fixtures for mutation probes.

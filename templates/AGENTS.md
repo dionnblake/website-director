@@ -83,6 +83,9 @@ Full-homepage approval evidence is recorded under the existing
   with fabricated proof. Discovery transcripts are optional; extracted voice
   records must remain traceable to supplied language. The Design System
   template must cite the approved rendered homepage as its source.
+- The Website Gauntlet report template records Impeccable's normalized finding
+  fields as review evidence; it does not run the scanner or create another
+  verification authority.
 
 ## Work Guidance
 
