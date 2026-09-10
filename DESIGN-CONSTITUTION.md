@@ -157,6 +157,13 @@ Interface copy is a functional design material, not decorative filler:
 - **Action-Descriptive Labels:** Buttons and CTAs must state the exact outcome ("Save changes", "Schedule Deep Dive"), avoiding vague labels ("Submit", "Click Here").
 - **Directional Errors & Empty States:** Errors must explain what happened and how to resolve it in the brand voice without vague apologies. Empty states must direct the user toward constructive action.
 - **Zero Fluff:** Eliminate marketing filler; every phrase must carry informative value.
+- A bounded Website Director-owned source-copy precheck may flag selected
+  phrase constructions and punctuation patterns as `MINOR` heuristics before
+  content lock. A finding is review evidence, not a copy verdict: it does not
+  score, rewrite, validate factual claims, or replace Provenance, the Content
+  Lock authority, Browser QA, or the qualitative Gauntlet. Known locale
+  evidence controls applicability, and a finding on locked copy follows the
+  existing Owner Change Request path.
 
 
 ### 7.7 Absolute Factual Integrity

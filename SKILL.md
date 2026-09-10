@@ -104,6 +104,12 @@ owner select?
   typography, geometry, and component rules.
 - [MOTION-DIRECTION-PROTOCOL.md](MOTION-DIRECTION-PROTOCOL.md) for deliberate
   motion direction, including a valid static outcome.
+- During content-structure and production-copy finalization, use
+  `framework_validation/copy_quality.py` for a bounded pre-lock review of
+  supplied known-locale English copy before `content_structure_locked`.
+  Provenance verifies applicable claims, then the owner reviews final
+  production copy. The scanner emits review evidence only; it does not score,
+  rewrite, observe rendered text, or add lifecycle authority.
 - [CONVERSION-ANALYTICS-PROTOCOL.md](CONVERSION-ANALYTICS-PROTOCOL.md),
   [SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md](SECURITY-PRIVACY-COMPLIANCE-PROTOCOL.md),
   and [ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md](ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md)
