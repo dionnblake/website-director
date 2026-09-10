@@ -179,7 +179,6 @@ class ImpeccableScannerTests(unittest.TestCase):
                 "h1 { letter-spacing: -0.1em; }",
             ),
             "broken-image": ("fixture.html", '<img alt="Missing" src="placeholder.png">'),
-            "skipped-heading": ("fixture.html", "<h1>Title</h1><h3>Skipped</h3>"),
             "justified-text": ("fixture.css", ".copy { text-align: justify; }"),
             "tiny-text": ("fixture.css", ".copy { font-size: 11px; }"),
             "undersized-ui-text": ("fixture.css", ".button { font-size: 10px; }"),
@@ -194,7 +193,6 @@ class ImpeccableScannerTests(unittest.TestCase):
             "buried-raster": ("fixture.css", ".hero { background: url(hero.jpg); }"),
             "extreme-negative-tracking": ("fixture.css", "h1 { letter-spacing: -0.04em; }"),
             "broken-image": ("fixture.html", '<img alt="Real" src="/assets/hero.webp">'),
-            "skipped-heading": ("fixture.html", "<h1>Title</h1><h2>Section</h2><h3>Detail</h3>"),
             "justified-text": ("fixture.css", ".copy { text-align: left; }"),
             "tiny-text": ("fixture.css", ".copy { font-size: 16px; }"),
             "undersized-ui-text": ("fixture.css", ".button { font-size: 14px; }"),
@@ -306,11 +304,12 @@ class ImpeccableScannerTests(unittest.TestCase):
     def test_browser_and_accessibility_runtime_ownership_is_not_duplicated(self) -> None:
         result = impeccable.scan_sources(
             {
-                "fixture.html": "<script>throw new Error('runtime');</script>",
+                "fixture.html": "<script>throw new Error('runtime');</script><h1>Title</h1><h3>Skipped</h3>",
                 "fixture.css": ".viewport { overflow: hidden; }",
             }
         )
         self.assertNotIn("script-error", rules(result))
+        self.assertNotIn("skipped-heading", rules(result))
         self.assertNotIn("text-occlusion", rules(result))
         self.assertNotIn("first-viewport-column-overflow", rules(result))
         self.assertNotIn("body-text-viewport-edge", rules(result))
@@ -318,6 +317,46 @@ class ImpeccableScannerTests(unittest.TestCase):
         protocol = (ROOT / "IMPECCABLE-ENGINE-PROTOCOL.md").read_text(encoding="utf-8")
         self.assertIn("Browser QA", protocol)
         self.assertIn("ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md", protocol)
+
+    def test_skipped_heading_is_owned_by_accessibility_and_not_emitted(self) -> None:
+        result = impeccable.scan_sources(
+            {"fixture.html": "<h1>Title</h1><h3>Skipped</h3>"}
+        )
+        self.assertNotIn("skipped-heading", rules(result))
+        protocol = (ROOT / "IMPECCABLE-ENGINE-PROTOCOL.md").read_text(encoding="utf-8")
+        self.assertIn(
+            "| skipped-heading | STATIC_HTML_DOM | E | accessibility |",
+            protocol,
+        )
+        self.assertIn("Browser QA executes the canonical heading-order assertion", protocol)
+        accessibility = (ROOT / "ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md").read_text(encoding="utf-8")
+        self.assertIn("logical heading hierarchy with no skipped levels", accessibility)
+        browser_catalog = (ROOT / "browser-qa" / "assertions" / "catalog.py").read_text(encoding="utf-8")
+        self.assertIn("heading-order", browser_catalog)
+
+    def test_broken_image_is_source_precheck_only_and_runtime_owned_by_browser_qa(self) -> None:
+        result = impeccable.scan_sources(
+            {"fixture.html": '<img alt="Missing" src="placeholder.png">'}
+        )
+        self.assertIn("broken-image", rules(result))
+        finding = next(item for item in result.findings if item.rule == "broken-image")
+        self.assertEqual(finding.method, impeccable.DETERMINISTIC)
+        self.assertIn("placeholder", finding.evidence)
+        self.assertNotIn("broken-image", impeccable.RUNTIME_DELEGATED_RULE_IDS)
+        protocol = (ROOT / "IMPECCABLE-ENGINE-PROTOCOL.md").read_text(encoding="utf-8")
+        self.assertIn(
+            "source-level precheck for an obvious missing, empty, or placeholder image",
+            protocol,
+        )
+        self.assertIn(
+            "Browser QA owns rendered/runtime asset loading and",
+            protocol,
+        )
+        self.assertIn("cannot substitute for Browser QA\nasset-integrity PASS", protocol)
+        browser_protocol = (ROOT / "BROWSER-REGRESSION-QA-PROTOCOL.md").read_text(encoding="utf-8")
+        self.assertIn("image response success", browser_protocol)
+        self.assertIn("non-zero rendered dimensions", browser_protocol)
+        self.assertIn("no accidental placeholder images", browser_protocol)
 
     def test_official_engine_unavailable_corrupt_and_network_free_paths_fail_closed(self) -> None:
         unavailable = impeccable.assess_official_engine_artifact(
@@ -362,6 +401,90 @@ class ImpeccableScannerTests(unittest.TestCase):
             after = (root / "src" / "page.css").read_bytes()
             self.assertIn("touch-target-undersized", rules(scanned))
             self.assertEqual(before, after)
+
+    def test_explicit_build_root_is_scanned_and_finds_a_defect(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            build_root = Path(directory) / "build"
+            build_root.mkdir()
+            (build_root / "index.html").write_text(
+                '<main><img alt="Hero" src=""></main>',
+                encoding="utf-8",
+            )
+            result = impeccable.scan_path(build_root)
+            self.assertEqual(result.files, ("index.html",))
+            self.assertIn("broken-image", rules(result))
+            self.assertFalse(result.passed)
+
+    def test_explicit_build_root_records_clean_html_and_css_and_may_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            build_root = Path(directory) / "build"
+            build_root.mkdir()
+            (build_root / "index.html").write_text(
+                "<main><h1>Useful work</h1></main>",
+                encoding="utf-8",
+            )
+            (build_root / "styles.css").write_text(
+                ".copy { color: #111; background: #fff; }",
+                encoding="utf-8",
+            )
+            result = impeccable.scan_path(build_root)
+            self.assertEqual(result.files, ("index.html", "styles.css"))
+            self.assertEqual(result.findings, ())
+            self.assertTrue(result.passed)
+
+    def test_nested_dependency_cache_and_generated_directories_remain_ignored(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "src").mkdir()
+            (root / "src" / "page.html").write_text(
+                "<main><h1>Useful work</h1></main>",
+                encoding="utf-8",
+            )
+            for ignored in (".git", "node_modules", ".pytest_cache", "dist", "build", "coverage"):
+                folder = root / ignored
+                folder.mkdir()
+                (folder / "ignored.html").write_text(
+                    '<img alt="Missing" src="">',
+                    encoding="utf-8",
+                )
+            result = impeccable.scan_path(root)
+            self.assertEqual(result.files, ("src/page.html",))
+            self.assertNotIn("broken-image", rules(result))
+
+    def test_empty_directory_cannot_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(ValueError, "no supported source files to scan"):
+                impeccable.scan_path(directory)
+
+    def test_directory_with_only_unsupported_or_binary_files_cannot_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, "bundle.bin").write_bytes(bytes((0, 1, 2)))
+            with self.assertRaisesRegex(ValueError, "no supported source files to scan"):
+                impeccable.scan_path(directory)
+
+    def test_empty_source_map_cannot_pass(self) -> None:
+        with self.assertRaisesRegex(ValueError, "no supported source files to scan"):
+            impeccable.scan_sources({})
+
+    def test_unsupported_only_source_map_cannot_pass(self) -> None:
+        with self.assertRaisesRegex(ValueError, "no supported source files to scan"):
+            impeccable.scan_sources({"bundle.bin": "binary placeholder"})
+
+    def test_windows_and_posix_scan_roots_are_equivalent(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "dist"
+            root.mkdir()
+            (root / "index.html").write_text(
+                '<main><img alt="Missing" src="placeholder.png"></main>',
+                encoding="utf-8",
+            )
+            windows_result = impeccable.scan_path(str(root))
+            posix_result = impeccable.scan_path(str(root).replace("\\", "/"))
+            self.assertEqual(windows_result.files, posix_result.files)
+            self.assertEqual(
+                [(item.rule, item.location, item.evidence) for item in windows_result.findings],
+                [(item.rule, item.location, item.evidence) for item in posix_result.findings],
+            )
 
     def test_protected_projects_remain_unchanged_during_scan(self) -> None:
         with tempfile.NamedTemporaryFile(delete=False) as ledger:
@@ -408,7 +531,7 @@ class ImpeccableScannerTests(unittest.TestCase):
         self.assertEqual(len({row[0] for row in rows}), 61)
         self.assertEqual(
             Counter(row[2] for row in rows),
-            Counter({"A": 18, "B": 6, "C": 4, "D": 8, "E": 0, "F": 7, "G": 14, "H": 0, "I": 0, "J": 4}),
+            Counter({"A": 18, "B": 5, "C": 4, "D": 8, "E": 1, "F": 7, "G": 14, "H": 0, "I": 0, "J": 4}),
         )
         disposition = {row[0]: row[2] for row in rows}
         self.assertEqual(

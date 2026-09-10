@@ -36,7 +36,7 @@ Website Director adapter, approved binary lifecycle, cross-platform execution
 proof, and non-duplicating context boundary were not all established.
 
 Option B is retained in framework_validation/impeccable.py. It preserves the
-18 existing contractual entries, supports both side-tab IDs, and adopts ten
+18 existing contractual entries, supports both side-tab IDs, and adopts nine
 new static or explainable heuristic rules. Runtime, accessibility, design
 system, and qualitative rules remain with their existing owners.
 
@@ -47,10 +47,10 @@ LEGACY_VALIDATION_DOCUMENT_ACCURATE = YES after this correction
 LEGACY_VALIDATION_DOCUMENT_ACCURATE_BEFORE_REFRESH = PARTIAL
 UPSTREAM_RULE_COUNT_DISCOVERED = 61
 EXISTING_RULES_ACCOUNTED_FOR = 18 contractual entries; 18 upstream IDs plus the Website Director touch-target extension
-NEW_RULES_ADOPTED = 10
-NEW_STATIC_RULES_ADOPTED = 6
+NEW_RULES_ADOPTED = 9
+NEW_STATIC_RULES_ADOPTED = 5
 NEW_HEURISTIC_RULES_ADOPTED = 4
-RULES_REJECTED_OR_DELEGATED = 33
+RULES_REJECTED_OR_DELEGATED = 34
 
 ## 3. Executable validation scenarios
 
@@ -58,7 +58,7 @@ RULES_REJECTED_OR_DELEGATED = 33
 | :--- | :--- | :--- |
 | 01 | Existing contract positives | All 18 entries detect their synthetic positive fixture |
 | 02 | Existing contract negatives | Clean controls do not produce those rule IDs |
-| 03 | v4.3.1 additions | Ten adopted IDs each have positive and negative controls |
+| 03 | v4.3.1 additions | Nine adopted IDs each have positive and negative controls |
 | 04 | Normalized findings | Exactly nine fields and the declared method taxonomy |
 | 05 | Contextual override | Only an explicitly locked design direction authorizes a heuristic |
 | 06 | Lock protection | Locked repair impact is reported without changing the lock registry |
@@ -66,6 +66,8 @@ RULES_REJECTED_OR_DELEGATED = 33
 | 08 | Engine failure modes | Missing or corrupt official artifacts return BLOCKED; no fallback pass |
 | 09 | Windows and POSIX paths | Backslashes normalize to stable slash-separated locations |
 | 10 | Frozen and historical integrity | The protected projects corpus and 2.15 profile remain unchanged |
+| 11 | Explicit output-directory root | A selected `build` or `dist` root is scanned; nested ignored directories remain excluded |
+| 12 | No scannable input | Empty, unsupported-only, and empty source-map inputs fail closed and cannot PASS |
 
 Run the targeted proof with:
 
@@ -99,10 +101,13 @@ locked design direction.
 
 The scanner owns only the rows marked A, B, or C in the complete matrix in
 IMPECCABLE-ENGINE-PROTOCOL.md. Browser QA owns live console errors, viewport
-geometry, clipping, occlusion, and post-reveal state. Accessibility owns
-computed rendered assertions and manual criteria. Design Constitution and
-Design System own token identity. Website Gauntlet owns qualitative visual and
-copy judgment.
+geometry, clipping, occlusion, post-reveal state, and rendered/runtime asset
+integrity. Accessibility owns logical heading hierarchy, computed rendered
+assertions, and manual criteria. `skipped-heading` is therefore not emitted
+by Impeccable. Impeccable's `broken-image` finding is only an obvious
+source-level missing/empty/placeholder precheck and cannot substitute for the
+Browser QA asset-integrity verdict. Design Constitution and Design System own
+token identity. Website Gauntlet owns qualitative visual and copy judgment.
 
 The previous example claimed a Node module named
 impeccable-scanner-test.js. That file was not present in the historical

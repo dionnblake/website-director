@@ -102,6 +102,15 @@ design-system token identity, or any lifecycle state.
   stale-after-repair, simulation-only, or critic-without-fresh-input evidence
   is blocked.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
+- The Impeccable scanner resolves ignore directories relative to the selected
+  `scan_path` root, so an explicitly selected `build` or `dist` root remains
+  scannable while nested ignored directories remain excluded. Empty or
+  unsupported-only `scan_path` roots and `scan_sources` maps fail closed with
+  `ValueError("no supported source files to scan")`.
+- Accessibility owns the logical heading hierarchy requirement and Browser QA
+  executes its canonical heading-order assertion; Impeccable does not emit
+  `skipped-heading`. Impeccable's `broken-image` is only an obvious
+  source-level precheck, never the Browser QA runtime asset-integrity verdict.
 - Owner requirements are normalized with explicit class, source, currentness,
   scope, and authority metadata. Current owner instructions supersede
   historical project material and reference inspiration; unresolved same-tier

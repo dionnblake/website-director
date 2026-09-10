@@ -161,7 +161,7 @@ executable IDs in the retained contract.
 
 ## 4. Selected v4.3.1 additions
 
-The following ten IDs are newly executable in the curated scanner:
+The following nine IDs are newly executable in the curated scanner:
 
 | Rule | Method | Bounded evidence |
 | :--- | :--- | :--- |
@@ -170,7 +170,6 @@ The following ten IDs are newly executable in the curated scanner:
 | buried-raster | HEURISTIC | A URL-backed raster is covered by a pre-raster gradient whose sampled stops are all at least 0.9 alpha |
 | extreme-negative-tracking | DETERMINISTIC | Heading tracking is at or below -0.08em |
 | broken-image | DETERMINISTIC | Image source is missing, empty, or a placeholder |
-| skipped-heading | DETERMINISTIC | The source heading sequence jumps by more than one level |
 | justified-text | DETERMINISTIC | text-align: justify has no declared safe hyphenation contract |
 | tiny-text | DETERMINISTIC | Body or content text is below 12px, excluding legal smallprint |
 | undersized-ui-text | DETERMINISTIC | Functional UI text is below 11px |
@@ -234,7 +233,7 @@ but it may not reimplement another owner's detector.
 | aphoristic-cadence | STATIC_TEXT | J | no automatic owner | Cadence is not a safe static defect |
 | oversized-h1 | STATIC_HTML_DOM | G | website_gauntlet | Viewport and copy length need render context |
 | extreme-negative-tracking | STATIC_HTML_CSS | B | design_qa_impeccable | New deterministic tracking floor |
-| broken-image | STATIC_HTML_DOM | B | design_qa_impeccable | New deterministic source check |
+| broken-image | STATIC_HTML_DOM | B | design_qa_impeccable | Source-level precheck only; Browser QA owns rendered/runtime asset integrity |
 | script-error | BROWSER_RUNTIME | D | browser_qa | Runtime console behavior |
 | content-hidden-at-rest | BROWSER_RUNTIME | D | browser_qa | Requires post-reveal rendered state |
 | edge-flush-cards | BROWSER_RUNTIME | D | browser_qa | Requires live viewport geometry |
@@ -247,7 +246,7 @@ but it may not reimplement another owner's detector.
 | cramped-padding | STATIC_HTML_DOM | G | website_gauntlet | Optical spacing needs visual context |
 | body-text-viewport-edge | BROWSER_RUNTIME | D | browser_qa | Requires actual viewport edge geometry |
 | tight-leading | STATIC_HTML_CSS | G | website_gauntlet | Type scale and copy role are contextual |
-| skipped-heading | STATIC_HTML_DOM | B | design_qa_impeccable | New deterministic source check |
+| skipped-heading | STATIC_HTML_DOM | E | accessibility | Canonical accessibility heading-order requirement; Browser QA executes the canonical heading-order assertion |
 | heading-rhythm | STATIC_PAGE_LAYOUT | G | website_gauntlet | Requires rendered vertical rhythm |
 | justified-text | STATIC_HTML_CSS | B | design_qa_impeccable | New deterministic source check |
 | tiny-text | STATIC_HTML_CSS | B | design_qa_impeccable | New deterministic readable-text floor |
@@ -267,12 +266,12 @@ but it may not reimplement another owner's detector.
 | theater-slop-phrase | STATIC_TEXT | J | no automatic owner | Phrase judgment has high false positives |
 | image-hover-transform | STATIC_HTML_CSS | G | website_gauntlet | Interaction intent and reduced motion need context |
 
-This catalog uses E, H, and I zero times: the existing contrast contract stays
-with Impeccable while rendered accessibility execution stays with Browser QA,
-no row is a duplicate, and no row conflicts with a Website Director authority.
-The adopted upstream set is A+B+C: 18 existing equivalents, 6 new static
-rules, and 4 new heuristics. The remaining 33 IDs are D/F/G/J delegated or
-rejected.
+This catalog uses E once, for `skipped-heading`, while H and I remain zero:
+the canonical accessibility heading requirement stays with Accessibility and
+its Browser QA execution, no row is a duplicate, and no row conflicts with a
+Website Director authority. The adopted upstream set is A+B+C: 18 existing
+equivalents, 5 new static rules, and 4 new heuristics. The remaining 34 IDs
+are D/E/F/G/J delegated or rejected.
 
 ### 5.1 Per-rule method, severity, override, and evidence
 
@@ -314,7 +313,7 @@ scanner override.
 | aphoristic-cadence | NOT_EMITTED | N/A | N/A | HUMAN_COPY_REVIEW |
 | oversized-h1 | LLM_CRITIQUE | OWNER_SET | OWNER_DEFINED | RENDERED_REVIEW |
 | extreme-negative-tracking | DETERMINISTIC | MAJOR | NO | SOURCE_CSS |
-| broken-image | DETERMINISTIC | MAJOR | NO | SOURCE_HTML |
+| broken-image | DETERMINISTIC | MAJOR | NO | SOURCE_HTML_PRECHECK_ONLY |
 | script-error | BROWSER_EXECUTED | CRITICAL | OWNER_DEFINED | BROWSER_RUNTIME |
 | content-hidden-at-rest | BROWSER_EXECUTED | CRITICAL | OWNER_DEFINED | BROWSER_RUNTIME |
 | edge-flush-cards | BROWSER_EXECUTED | MAJOR | OWNER_DEFINED | BROWSER_RUNTIME |
@@ -327,7 +326,7 @@ scanner override.
 | cramped-padding | LLM_CRITIQUE | OWNER_SET | OWNER_DEFINED | RENDERED_REVIEW |
 | body-text-viewport-edge | BROWSER_EXECUTED | MAJOR | OWNER_DEFINED | BROWSER_RUNTIME |
 | tight-leading | LLM_CRITIQUE | OWNER_SET | OWNER_DEFINED | RENDERED_REVIEW |
-| skipped-heading | DETERMINISTIC | MAJOR | NO | SOURCE_HTML |
+| skipped-heading | BROWSER_EXECUTED | MAJOR | OWNER_DEFINED | ACCESSIBILITY_REVIEW / BROWSER_RUNTIME |
 | heading-rhythm | LLM_CRITIQUE | OWNER_SET | OWNER_DEFINED | RENDERED_REVIEW |
 | justified-text | DETERMINISTIC | MINOR | NO | SOURCE_CSS |
 | tiny-text | DETERMINISTIC | MINOR | NO | SOURCE_CSS |
@@ -352,6 +351,16 @@ findings from rows owned by the Impeccable scanner, but it does not reimplement
 those checks. Accessibility may consume the scanner's static contrast result,
 but its computed rendered assertions remain in the existing Browser QA
 accessibility group governed by ACCESSIBILITY-INTELLIGENCE-PROTOCOL.md.
+`skipped-heading` is not emitted by Impeccable: Accessibility owns the logical
+heading requirement and Browser QA executes the canonical heading-order
+assertion.
+
+The `broken-image` boundary is deliberately narrower. Impeccable owns only
+the source-level precheck for an obvious missing, empty, or placeholder image
+source in source text. Browser QA owns rendered/runtime asset loading and
+dimensions, network results, placeholder rendering, and the production asset-
+integrity verdict. The static result cannot substitute for Browser QA
+asset-integrity PASS.
 
 ## 6. Executable boundary and usage
 
@@ -361,6 +370,12 @@ The executable surface is framework_validation/impeccable.py:
   to text.
 * scan_path(root, context) reads only supported text files below a caller-owned
   path and delegates to scan_sources.
+* An empty source map, empty directory, unsupported-only directory, or
+  unsupported-only explicit source map fails closed with
+  `ValueError("no supported source files to scan")`; none can produce PASS.
+* Ignore-directory checks are relative to the selected root, so a caller may
+  explicitly scan a root named `build`, `dist`, or another ignored directory
+  while nested ignored directories remain excluded.
 * Finding.as_dict() emits the nine normalized fields above.
 * ScanResult.passed excludes heuristic findings explicitly authorized by a
   locked design direction.

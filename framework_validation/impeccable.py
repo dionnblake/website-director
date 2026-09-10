@@ -92,7 +92,6 @@ ADOPTED_NEW_RULE_IDS = (
     "buried-raster",
     "extreme-negative-tracking",
     "broken-image",
-    "skipped-heading",
     "justified-text",
     "tiny-text",
     "undersized-ui-text",
@@ -101,7 +100,6 @@ ADOPTED_NEW_RULE_IDS = (
 ADOPTED_NEW_STATIC_RULE_IDS = (
     "extreme-negative-tracking",
     "broken-image",
-    "skipped-heading",
     "justified-text",
     "tiny-text",
     "undersized-ui-text",
@@ -248,7 +246,7 @@ class ScanResult:
 
     @property
     def passed(self) -> bool:
-        return not self.blocking_findings
+        return bool(self.files) and not self.blocking_findings
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -1007,24 +1005,6 @@ def _scan_source(path: str, text: str, context: _Context) -> list[_RawFinding]:
                     "Provide a real asset with provenance, generate the asset, or remove the image element.",
                 )
 
-        heading_levels = []
-        for heading in re.finditer(r"(?is)<h([1-6])\b[^>]*>", text):
-            heading_levels.append((int(heading.group(1)), heading.start()))
-        for (previous, _), (current, offset) in zip(heading_levels, heading_levels[1:]):
-            if current > previous + 1:
-                _emit(
-                    raw,
-                    "skipped-heading",
-                    DETERMINISTIC,
-                    path,
-                    text,
-                    offset,
-                    f"heading hierarchy jumps from h{previous} to h{current}",
-                    "MAJOR",
-                    "Restore sequential heading levels so assistive technology can navigate the outline.",
-                )
-                break
-
         eyebrow_pattern = re.compile(
             r"(?is)<(?:span|p|div|label)\b[^>]*(?:class|data-role)\s*=\s*[\"'][^\"']*"
             r"(?:eyebrow|chip|badge|kicker)[^\"']*[\"'][^>]*>.*?</(?:span|p|div|label)>"
@@ -1116,6 +1096,10 @@ def scan_sources(
         if normalized in normalized_sources:
             raise ValueError(f"duplicate source path after normalization: {normalized}")
         normalized_sources[normalized] = text
+    if not normalized_sources or not any(
+        Path(path).suffix.lower() in _TEXT_SUFFIXES for path in normalized_sources
+    ):
+        raise ValueError("no supported source files to scan")
 
     scan_context = _context(context)
     raw: list[_RawFinding] = []
@@ -1133,12 +1117,14 @@ def scan_sources(
 
 def _iter_source_files(root: Path) -> Iterable[Path]:
     if root.is_file():
-        yield root
+        if root.suffix.lower() in _TEXT_SUFFIXES:
+            yield root
         return
     for candidate in sorted(root.rglob("*")):
         if not candidate.is_file():
             continue
-        if any(part in _SKIP_DIRS for part in candidate.parts):
+        relative = candidate.relative_to(root)
+        if any(part.casefold() in _SKIP_DIRS for part in relative.parent.parts):
             continue
         if candidate.suffix.lower() in _TEXT_SUFFIXES:
             yield candidate
