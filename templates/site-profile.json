@@ -145,6 +145,44 @@
       "reason": null
     }
   },
+  "taste_contract": {
+    "project_id": "morrow-vale-architecture-and-industrial-design",
+    "ambition_tier": "PREMIUM",
+    "project_category": "ARCHITECTURE_AND_INDUSTRIAL_DESIGN",
+    "design_lane": "EDITORIAL_MODERNIST",
+    "desired_emotional_character": "RESTRAINED_MATERIAL_AUTHORITY",
+    "approved_references": [],
+    "rejected_references": [],
+    "approved_reference_traits": [
+      "spatial_restraint",
+      "material_clarity",
+      "editorial_pacing"
+    ],
+    "rejected_reference_traits": [
+      "generic_template_chrome",
+      "decorative_ui_noise"
+    ],
+    "anti_taste": [
+      "generic_bento_sections",
+      "unmotivated_gradients",
+      "stock_contractor_tropes"
+    ],
+    "typography_lane": "HIGH_CONTRAST_EDITORIAL_SERIF_WITH_RATIONAL_SANS",
+    "typography_personality": "RESTRAINED_AND_PERMANENT",
+    "material_language": "SUBTLE_TACTILE",
+    "visual_world_strategy": "NATURAL_DAYLIGHT_ARCHITECTURAL_MATERIALITY",
+    "motion_appetite": "BRIEF_DEPENDENT",
+    "visual_density": "MEDIUM_AIRY",
+    "design_variance": 6,
+    "composition_preferences": [
+      "editorial_multicolumn",
+      "full_bleed_media_field",
+      "edge_anchored_typography"
+    ],
+    "signature_requirement": "OPTIONAL",
+    "owner_selected_visual_direction": "direction-01",
+    "owner_visual_direction_confirmed": true
+  },
   "locks": {
     "design_direction_locked": false,
     "information_architecture_locked": false,

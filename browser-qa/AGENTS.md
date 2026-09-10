@@ -75,11 +75,25 @@ Authority for behaviour: `../BROWSER-REGRESSION-QA-PROTOCOL.md`.
   claim never satisfies a required visual surface. Repair rounds require a
   newer capture set and fresh critic inputs before a visual PASS can be
   derived.
+- **Baseline observation ordering:** responsive layout metrics and named
+  rendered surfaces describe the requested route and viewport before
+  side-effecting form or mobile-navigation probes run. Probes may open a menu,
+  follow a same-origin anchor, or change scroll state, but they must not
+  redefine baseline CTA visibility or baseline surface receipts.
 - **Do not commit** browser profiles, caches, `node_modules`, traces, or ephemeral
   screenshots. `evidence/` is git-ignored except its README and the
   frozen-integrity ledger path.
 - New scenario fixtures live under `fixtures/<scenario>/` as `index.html` +
   `qa-fixture.json`. Keep them minimal and deterministic.
+
+- **Offline outcome replay (V0.1):** `runner.py --mode artifact-replay`
+  delegates to `outcome_replay.py` only when an explicit case manifest and a
+  new empty output directory are supplied. It reads hash-bound local artifacts
+  and imported Browser QA, motion, and critique receipts; it never starts an
+  engine, opens a URL, calls a provider, or writes an input or baseline.
+  Missing evidence is `BLOCKED`, integrity/path violations are `INVALID`, and
+  synthetic fixtures are labeled as synthetic rather than real site results.
+  Replay is an adapter to this harness, not a second browser runner.
 
 ## Child DOX Index
 
@@ -92,3 +106,20 @@ as a read-only boundary around deterministic suites. The guard remains the
 single authority for protected `projects/` paths. Framework validation does not
 replace the Browser QA protocol, add a second browser runner, or permit writes
 to historical project artifacts.
+
+## Offline outcome replay
+
+See `OUTCOME-REPLAY.md` for the bounded V0.1 command and report contract.
+`outcome_replay.py` owns only local artifact binding, receipt integrity checks,
+requirement-level statuses, proposal-completeness evaluation, evidence-bound
+premium quality evaluation, historical-claim classification, and replay result
+reports. Rendered quality requires actual hash-bound `REAL_BROWSER` image
+evidence with named surfaces and viewports; source declarations, keywords,
+simulation, prose, or unresolved asset claims cannot pass it. The proposal
+completeness result is separate from rendered distinctiveness. The quality bar
+is per applicable required dimension at `8/10` with no averaging, and hard
+gates remain fail-closed. Score provenance includes rubric/case/specimen
+identity, evidence files, criterion breakdown/findings, critic context,
+reviewer, limitations, and timestamp. Owner calibration, production
+verification, generation, and deployment remain outside this directory's replay
+path.

@@ -9,13 +9,15 @@
     { "path": "templates/site-profile.json", "json_pointer": "/schema_version" },
     { "path": "schemas/site-profile.schema.json", "json_pointer": "/x-framework-version" },
     { "path": "LOCALIZATION-INTERNATIONALIZATION-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" },
-    { "path": "APPLICATION-COMMERCE-AUTH-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" }
+    { "path": "APPLICATION-COMMERCE-AUTH-PROTOCOL.md", "marker": "FRAMEWORK_VERSION" },
+    { "path": "VISUAL-FIRST-ARCHITECTURE.md", "marker": "FRAMEWORK_VERSION" }
   ],
   "canonical_markdown": [
     "README.md",
     "AGENTS.md",
     "SKILL.md",
     "DESIGN-FIRST-PRODUCTION-FLOW.md",
+    "VISUAL-FIRST-ARCHITECTURE.md",
     "INSPIRATION-SOURCES.md",
     "FRAMEWORK-VALIDATION-PROTOCOL.md",
     "EVIDENCE-PROVENANCE-PROTOCOL.md",
@@ -112,6 +114,8 @@
     "templates/signature-interaction-registry.json",
     "templates/site-profile.json",
     "templates/visual-prototype-review.md",
-    "templates/website-gauntlet-report.md"
+    "templates/website-gauntlet-report.md",
+    "templates/website-outcome-case-manifest.json",
+    "templates/website-outcome-critic.md"
   ]
 }

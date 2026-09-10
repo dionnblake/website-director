@@ -1,0 +1,173 @@
+{
+  "manifest_version": "0.1.0",
+  "mode": "artifact-replay",
+  "title": "Website Director offline outcome replay pilot",
+  "authorized_input_roots": [
+    "candidates",
+    "projects",
+    "templates"
+  ],
+  "cases": [
+    {
+      "id": "asn-cinematic-reference-regression",
+      "case_version": "0.1.0",
+      "brief": "Alpha Starts Now cinematic/reference case. This is the current local candidate receipt, not proof of the later rejected original.",
+      "specimen": {
+        "id": "asn-cinematic-test-01-current-candidate",
+        "kind": "REAL_ARTIFACT",
+        "source_revision": {
+          "git_sha": "d732a0ec657746ca8a738377cfe636c8318aae2f",
+          "dirty_state": "WORKTREE_DIRTY_UNTRACKED_CANDIDATE",
+          "historical_source_revision_available": false
+        },
+        "artifact_files": [
+          { "id": "brief", "path": "candidates/alpha-starts-now-cinematic-test-01/project-brief.md", "sha256": "7165ec18a95d605c4b8322c20dca7b28851892488dbc158ba32eea6dd02d4c1e" },
+          { "id": "reference-analysis", "path": "candidates/alpha-starts-now-cinematic-test-01/reference-analysis.md", "sha256": "49ee9284d2f767468e209f202b5ea32a0c7c444fec74a9c1c7eadacef859257a" },
+          { "id": "production-index", "path": "candidates/alpha-starts-now-cinematic-test-01/production/index.html", "sha256": "8a036286ea80ea1457001b5bc99d9e2adcabc3d6e282bd340f0e2c6495afa532" },
+          { "id": "production-styles", "path": "candidates/alpha-starts-now-cinematic-test-01/production/styles.css", "sha256": "52d14d1141068959298444dadde0dac9806313601274ef57a19838027da50f81" },
+          { "id": "production-script", "path": "candidates/alpha-starts-now-cinematic-test-01/production/app.js", "sha256": "e4c9b58fe6adf997b2fab4faa5d761d38eca17f0bf504a2b759ae991d0115a3c" }
+        ]
+      },
+      "evidence": [
+        { "id": "browser-qa", "kind": "browser_qa", "path": "candidates/alpha-starts-now-cinematic-test-01/evidence/browser-qa/rendered/bqa-20260902T193916Z.evidence.json", "sha256": "32477cf93a6f2bb5ce8a2b5dfbf8d2b16bc35b3bf0b6857552253cc2c8cf804a" },
+        { "id": "motion-receipt", "kind": "motion", "path": "candidates/alpha-starts-now-cinematic-test-01/evidence/motion/motion-receipt.json", "sha256": "be7c3713fcf9059c06cd394c855766efa6281a16d9f07a9d6fda757e5b10d1b5" },
+        { "id": "reference-primary", "kind": "reference", "source_url": "https://example.invalid/alpha-starts-now-reference" },
+        { "id": "reference-secondary", "kind": "reference", "source_label": "Second cinematic reference mentioned in the historical receipt" }
+      ],
+      "technical_evidence_ids": ["browser-qa", "motion-receipt"],
+      "requirements": [
+        { "id": "brand-truth", "class": "MANDATORY", "assertion": { "type": "artifact_text", "artifact_id": "production-index", "all_of": ["Alpha Starts Now"] } },
+        { "id": "business-purpose", "class": "MANDATORY", "assertion": { "type": "artifact_text", "artifact_id": "brief", "all_of": ["Alpha Starts Now"] } },
+        { "id": "cinematic-motion-evidence", "class": "MANDATORY", "assertion": { "type": "evidence_status", "evidence_id": "motion-receipt", "acceptable_statuses": ["PASS"] } },
+        { "id": "cinematic-rendered-evidence", "class": "MANDATORY", "assertion": { "type": "evidence_status", "evidence_id": "browser-qa", "acceptable_statuses": ["PASS"] } },
+        { "id": "reference-traceability", "class": "MANDATORY", "assertion": { "type": "reference_presence", "evidence_ids": ["reference-primary", "reference-secondary"] } }
+      ],
+      "qualitative": {
+        "required": true,
+        "requires_independent": true,
+        "criteria": [
+          { "id": "brief-fit", "class": "MANDATORY" },
+          { "id": "cinematic-reference-fit", "class": "MANDATORY" }
+        ]
+      },
+      "historical_reproduction": {
+        "status": "BLOCKED",
+        "reason": "The exact rejected original, its reference captures, and an independent fresh critique are not traceable in the current local evidence roots. The current candidate is not relabeled as that rejected specimen."
+      },
+      "baseline_comparison": {
+        "status": "NOT_RUN",
+        "comparable": false,
+        "reason": "No old/new baseline pair was replaced or inferred."
+      }
+    },
+    {
+      "id": "restrained-non-cinematic-control",
+      "case_version": "0.1.0",
+      "brief": "Restrained Northstar Performance Lab control. A cinematic requirement is explicitly not applicable.",
+      "specimen": {
+        "id": "northstar-v2-4-local-artifact",
+        "kind": "REAL_ARTIFACT",
+        "source_revision": { "git_sha": "d732a0ec657746ca8a738377cfe636c8318aae2f", "dirty_state": "WORKTREE_DIRTY" },
+        "artifact_files": [
+          { "id": "site-profile", "path": "projects/v2-4-cro-analytics-certification-pilot/site-profile.json", "sha256": "22d6deb852bb203eef3b29b6a82da360eda1571b9d971e59341226ed9c80d271" },
+          { "id": "homepage", "path": "projects/v2-4-cro-analytics-certification-pilot/index.html", "sha256": "b20b8631865b4c5975160d8165a781d5d36d99af4104bf13ebb63ee9fb03a083" }
+        ]
+      },
+      "evidence": [
+        { "id": "desktop-capture", "kind": "rendered_capture", "path": "projects/v2-4-cro-analytics-certification-pilot/evidence/desktop-1440x900.png", "sha256": "5dbf2acb5e5cce6cc509e047ec03407d915d87ee97e46e2b9b8ecad27c8b27fc" },
+        { "id": "mobile-capture", "kind": "rendered_capture", "path": "projects/v2-4-cro-analytics-certification-pilot/evidence/mobile-375x812.png", "sha256": "ff85c33af2d4d0673f1f542fc5b04dc019229617734353bfc0f743dc3cddea48" },
+        { "id": "tablet-capture", "kind": "rendered_capture", "path": "projects/v2-4-cro-analytics-certification-pilot/evidence/tablet-768x1024.png", "sha256": "08a4bb5ff23312aa969565706a92502624f74cc2fd05e509427d2fc50542ac8b" }
+      ],
+      "requirements": [
+        { "id": "brand-truth", "class": "MANDATORY", "assertion": { "type": "artifact_text", "artifact_id": "homepage", "all_of": ["Northstar"] } },
+        { "id": "cinematic-reference", "class": "MANDATORY", "applicability": "NOT_APPLICABLE", "reason": "The restrained brief does not require cinematic/reference matching." },
+        { "id": "captured-surfaces", "class": "OPTIONAL", "assertion": { "type": "evidence_presence", "evidence_ids": ["desktop-capture", "mobile-capture", "tablet-capture"] } }
+      ],
+      "qualitative": {
+        "required": true,
+        "requires_independent": true,
+        "criteria": [{ "id": "restrained-hierarchy", "class": "MANDATORY" }, { "id": "conversion-clarity", "class": "MANDATORY" }]
+      },
+      "historical_quality_claims": [
+        {
+          "field": "design_qa_score",
+          "value": 98,
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Historical score has no current evidence-bound premium-quality receipt."
+        },
+        {
+          "field": "design_qa_verdict",
+          "value": "PASS",
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Historical verdict is preserved but not treated as rendered-quality proof."
+        },
+        {
+          "field": "gauntlet_status",
+          "value": "PASS",
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Historical adversarial result is not a current premium visual receipt."
+        },
+        {
+          "field": "hero_asset_verified",
+          "value": true,
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Asset declaration is not a substitute for a resolvable rendered image and provenance record."
+        },
+        {
+          "field": "crops_and_provenance_verified",
+          "value": true,
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Historical declaration is retained without promoting it to a current quality baseline."
+        },
+        {
+          "field": "distinctiveness_complete",
+          "value": true,
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Distinctiveness must be judged from current rendered evidence under WD-QUALITY-V0.1."
+        },
+        {
+          "field": "signature_element_declared",
+          "value": true,
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "A declaration cannot prove the signature is visibly rendered."
+        },
+        {
+          "field": "certification_checks",
+          "value": "32/32 PASS",
+          "classification": "LEGACY_UNSUBSTANTIATED_QUALITY_CLAIM",
+          "reason": "Technical checks remain separate from premium rendered-quality evaluation."
+        }
+      ],
+      "baseline_comparison": { "status": "NOT_RUN", "comparable": false, "reason": "No owner-labeled restraint baseline was supplied." }
+    },
+    {
+      "id": "asn-constrained-redesign-control",
+      "case_version": "0.1.0",
+      "brief": "Historical Alpha Starts Now V1.1 constrained redesign control. It is assessed as its own approved local candidate.",
+      "specimen": {
+        "id": "asn-v1-1-production-redesign",
+        "kind": "REAL_ARTIFACT",
+        "source_revision": { "git_sha": "d732a0ec657746ca8a738377cfe636c8318aae2f", "dirty_state": "WORKTREE_DIRTY_PROTECTED_READ_ONLY" },
+        "artifact_files": [
+          { "id": "brief", "path": "projects/alpha-starts-now-v1-1/project-brief.md", "sha256": "a34034d5d8f4d9cd1a0e29cb5a63589f4c93cd35c44b413c55e2a13a184db753" },
+          { "id": "design-direction", "path": "projects/alpha-starts-now-v1-1/design-direction.md", "sha256": "9db73489653ef84ae3e533f2e01f3812ceee881cf4aff67a23420f206a9f7024" },
+          { "id": "motion-direction", "path": "projects/alpha-starts-now-v1-1/motion-direction.md", "sha256": "e2b46298adb18e8b17c655dae5391f93b68a9cd400e748faea4323519fbab328" },
+          { "id": "production-index", "path": "projects/alpha-starts-now-v1-1/build/index.html", "sha256": "5d2b12c389897989919f036cf0a2756b801bc14f91d83b8c6eeeff018f34fba2" }
+        ]
+      },
+      "evidence": [],
+      "requirements": [
+        { "id": "brand-truth", "class": "MANDATORY", "assertion": { "type": "artifact_text", "artifact_id": "production-index", "all_of": ["Alpha Starts Now"] } },
+        { "id": "constrained-workflow", "class": "MANDATORY", "assertion": { "type": "artifact_text", "artifact_id": "brief", "all_of": ["Alpha Starts Now"] } },
+        { "id": "cinematic-reference", "class": "MANDATORY", "applicability": "NOT_APPLICABLE", "reason": "This control does not claim to reproduce the later cinematic/reference rejection." }
+      ],
+      "qualitative": {
+        "required": true,
+        "requires_independent": true,
+        "criteria": [{ "id": "brief-fit", "class": "MANDATORY" }, { "id": "constraint-traceability", "class": "MANDATORY" }]
+      },
+      "historical_reproduction": { "status": "BLOCKED", "reason": "No exact old/new rejected pair is present in the authorized roots." },
+      "baseline_comparison": { "status": "NOT_RUN", "comparable": false, "reason": "No exact old/new baseline pair was supplied." }
+    }
+  ]
+}

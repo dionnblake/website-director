@@ -430,8 +430,48 @@ class PlaywrightEngine(BrowserQAEngine):
             page.on("response", record_response)
 
             resp = page.goto(target, wait_until="networkidle")
+
+            # Responsive invariants describe the page's baseline render at the
+            # requested viewport. Measure them before named-surface setup or
+            # runtime probes can intentionally change scroll or route state.
+            metrics = page.evaluate(
+                """() => {
+                    const de = document.documentElement, b = document.body;
+                    const cta = document.querySelector('[data-qa="primary-cta"], .primary-cta, a.cta');
+                    const r = cta && cta.getBoundingClientRect();
+                    return {
+                        sw: de.scrollWidth, cw: de.clientWidth, bw: b ? b.getBoundingClientRect().width : de.clientWidth,
+                        ctaVisible: !!(r && r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight * 3)
+                    };
+                }""")
+            obs.layout = LayoutMetrics(
+                viewport_width=viewport, document_scroll_width=int(metrics["sw"]),
+                client_width=int(metrics["cw"]), body_width=int(metrics["bw"]),
+                has_horizontal_overflow=int(metrics["sw"]) > int(metrics["cw"]) + 1,
+                primary_cta_visible=bool(metrics["ctaVisible"]))
+
+            # Named rendered surfaces may use explicit setup interactions (for
+            # example, the final-page scroll position). Capture the requested
+            # surface after that setup, while keeping baseline layout metrics
+            # independent from it.
             for step in (interactions or []):
                 _apply_interaction(page, step)
+            shot = page.screenshot(full_page=str(capture).upper() == "FULL_PAGE")
+            obs.render_signature = __import__("hashlib").sha256(shot).hexdigest()[:16]
+            obs.raw["screenshot_bytes"] = shot
+            obs.raw["render_capture"] = str(capture).upper()
+            if (self.config or {}).get("capture_render_artifacts"):
+                obs.raw["rendered_dom"] = page.content()
+                obs.raw["rendered_css"] = page.evaluate(
+                    """() => [...document.styleSheets].map(sheet => {
+                        try {
+                            return [...sheet.cssRules].map(rule => rule.cssText)
+                                .join(String.fromCharCode(10));
+                        } catch (error) {
+                            return '/* stylesheet inaccessible: ' + (sheet.href || 'inline') + ' */';
+                        }
+                    }).join(String.fromCharCode(10))"""
+                )
 
             # Motion is measured from browser state samples, never inferred
             # from a GSAP import, CSS keyframe, or screenshot claim.
@@ -486,22 +526,6 @@ class PlaywrightEngine(BrowserQAEngine):
             obs.broken_assets = [n.url for n in net if not n.ok and n.resource_type in
                                  ("image", "font", "script", "stylesheet") and not n.blocked_allowed]
 
-            metrics = page.evaluate(
-                """() => {
-                    const de = document.documentElement, b = document.body;
-                    const cta = document.querySelector('[data-qa="primary-cta"], .primary-cta, a.cta');
-                    const r = cta && cta.getBoundingClientRect();
-                    return {
-                        sw: de.scrollWidth, cw: de.clientWidth, bw: b ? b.getBoundingClientRect().width : de.clientWidth,
-                        ctaVisible: !!(r && r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight * 3)
-                    };
-                }""")
-            obs.layout = LayoutMetrics(
-                viewport_width=viewport, document_scroll_width=int(metrics["sw"]),
-                client_width=int(metrics["cw"]), body_width=int(metrics["bw"]),
-                has_horizontal_overflow=int(metrics["sw"]) > int(metrics["cw"]) + 1,
-                primary_cta_visible=bool(metrics["ctaVisible"]))
-
             obs.images_zero_dimension = page.evaluate(
                 """() => [...document.images].filter(i => i.complete && i.naturalWidth === 0)
                         .map(i => i.currentSrc || i.src)""")
@@ -536,23 +560,6 @@ class PlaywrightEngine(BrowserQAEngine):
                 }""")
             obs.perf = PerfSample(lcp_ms=perf.get("lcp"), cls=perf.get("cls"),
                                   measurement_kind="SYNTHETIC")
-
-            shot = page.screenshot(full_page=str(capture).upper() == "FULL_PAGE")
-            obs.render_signature = __import__("hashlib").sha256(shot).hexdigest()[:16]
-            obs.raw["screenshot_bytes"] = shot
-            obs.raw["render_capture"] = str(capture).upper()
-            if (self.config or {}).get("capture_render_artifacts"):
-                obs.raw["rendered_dom"] = page.content()
-                obs.raw["rendered_css"] = page.evaluate(
-                    """() => [...document.styleSheets].map(sheet => {
-                        try {
-                            return [...sheet.cssRules].map(rule => rule.cssText)
-                                .join(String.fromCharCode(10));
-                        } catch (error) {
-                            return '/* stylesheet inaccessible: ' + (sheet.href || 'inline') + ' */';
-                        }
-                    }).join(String.fromCharCode(10))"""
-                )
 
             obs.keyboard = _keyboard_trace(page)
 

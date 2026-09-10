@@ -3,6 +3,10 @@
     python browser-qa/runner.py --plan <project>/browser-qa-manifest.json \
         --engine simulation --evidence <project>/evidence/browser-qa
 
+    python browser-qa/runner.py --mode artifact-replay \
+        --case-manifest templates/website-outcome-case-manifest.json \
+        --evidence <disposable-output-directory>
+
 Reads a browser-qa manifest, drives the selected BROWSER_QA_ENGINE across the
 route x viewport x browser matrix, runs the requirement-traced assertion
 catalogue, applies the bounded flake policy, snapshots frozen-project integrity
@@ -610,13 +614,27 @@ def _git_sha(repo_root):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Website Director Browser & Regression QA runner")
-    ap.add_argument("--plan", required=True, help="path to browser-qa-manifest.json")
+    ap.add_argument("--plan", default=None, help="path to browser-qa-manifest.json")
     ap.add_argument("--engine", default="simulation", choices=["simulation", "playwright"])
-    ap.add_argument("--mode", default="smoke", choices=["smoke", "regression"])
+    ap.add_argument("--mode", default="smoke", choices=["smoke", "regression", "artifact-replay"])
+    ap.add_argument("--case-manifest", default=None,
+                    help="offline outcome replay case manifest (artifact-replay only)")
     ap.add_argument("--evidence", default=None, help="evidence output directory")
     ap.add_argument("--retries", type=int, default=2, help="bounded flake retry budget")
     ap.add_argument("--project-root", default=None)
     args = ap.parse_args(argv)
+    if args.mode == "artifact-replay":
+        if args.plan:
+            ap.error("--plan cannot be combined with --mode artifact-replay")
+        if not args.case_manifest:
+            ap.error("--case-manifest is required with --mode artifact-replay")
+        if not args.evidence:
+            ap.error("--evidence is required with --mode artifact-replay")
+        from outcome_replay import run_replay
+        return run_replay(args.case_manifest, args.evidence,
+                          repo_root=args.project_root or _REPO_ROOT)
+    if not args.plan:
+        ap.error("--plan is required unless --mode artifact-replay is selected")
     evidence = args.evidence or os.path.join(os.path.dirname(os.path.abspath(args.plan)),
                                              "evidence", "browser-qa")
     return run(args.plan, args.engine, evidence, args.mode, args.retries, args.project_root)

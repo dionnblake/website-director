@@ -44,6 +44,25 @@ frozen-integrity, and disposable static-fixture controls.
 Pack, optional discovery/transcript, ambition, full-homepage, lower-half,
 client-voice, owner-approval, derivation, component, inspiration, asset,
 Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
+`test_website_outcome_replay.py` owns the dependency-free offline artifact
+replay pilot checks: requirement-versus-quality separation, cinematic and
+reference BLOCKED/FAIL behavior, explicit NOT_APPLICABLE handling, receipt
+integrity/provenance, synthetic labeling, no-side-effect boundaries, and
+case-id independence. It also owns the V0.1 rendered-quality negative
+controls for keyword-only proposals, undeclared signatures, unresolved
+assets, generic basic pages, and missing visual evidence, plus the positive
+evidence-bound synthetic fixture. It does not run a browser, provider, model,
+generator, or live evaluator.
+`test_browser_qa_mobile_layout_observation.py` owns the focused real-browser
+regression proving that baseline responsive layout and named render evidence
+are captured before route-changing mobile-navigation probes. It uses a
+temporary local fixture only and never modifies candidate production files or
+`projects/`.
+`test_visual_first_architecture.py` owns the synthetic visual-first taste
+ contract, project-isolation, tier-routing, concept-feasibility,
+ owner-selection, hot-path, pairwise-quality, structural-risk, specialist,
+ and source-provenance controls. It uses only local pure helpers and never
+ calls providers, generators, browsers, credentials, or `projects/`.
 
 ## Local Contracts
 
@@ -86,6 +105,12 @@ Browser QA/Gauntlet, five-lock, and frozen-integrity controls.
   existing inspiration registry only. It never requires a transcript, model,
   provider, browser, deployment, production credential, or mutation under
   `projects/`.
+- The mobile layout observation regression requires the locally available
+  Playwright/Chromium runtime and a disposable temporary fixture; an unavailable
+  browser runtime is an environment failure, not a product pass.
+- The visual-first architecture suite is dependency-free and must remain
+  synthetic. It proves pairwise comparison and owner authority without making
+  a rendered capture or selecting a live image/model provider.
 - Each required failure mode must prove a real validator signal, not merely a
   missing-file assumption.
 - Tests are order-independent and runnable with the standard library.

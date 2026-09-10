@@ -25,6 +25,12 @@ discovery/transcript, full-homepage review, explicit owner-approval,
 homepage-to-Design-System derivation, component-routing, asset-intent, and
 downstream-authority helpers. It does not create a phase, gate, state writer,
 provider dependency, browser runner, or owner lock.
+`visual_first.py` owns the bounded project-local taste contract, visual
+direction routing, concept-feasibility and one-regeneration controls, reuse of
+the existing owner visual-selection authority, hot-path context compilation,
+pairwise quality authority, and structural design-risk helpers. It does not
+create a sixth owner lock, provider call, image-generation dependency, or
+project mutation path.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -79,6 +85,10 @@ provider dependency, browser runner, or owner lock.
   `templates/project-brief.md`, keeps transcript extraction optional, requires
   real desktop/mobile homepage evidence and explicit owner approval before
   full production, and derives rather than reinterprets the Design System.
+- The visual-first flow keeps `taste_contract` project-local and isolated,
+  treats numeric quality scores as telemetry only, and requires pairwise
+  rendered comparison plus the existing owner visual-selection authority for
+  premium/showcase/experimental direction. It never calls a provider.
 
 ## Work Guidance
 

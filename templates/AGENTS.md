@@ -32,11 +32,23 @@ business truth, owner language, conversion intent, references, asset intent,
 non-negotiables, and unknown or unverified facts before visual direction work.
 The full-homepage approval evidence is recorded under the existing
 `visual_prototypes` authority and is not a new template-owned lock.
+The optional `taste_contract` in `site-profile.json` is project-local visual
+direction input. It must not become a shared default, inherited taste state,
+or sixth owner lock.
+`website-outcome-case-manifest.json` defines the bounded V0.1 offline replay
+cases and hash-bound local input roots; `website-outcome-critic.md` defines the
+imported critique receipt shape, including the WD-QUALITY-V0.1 premium rubric,
+rendered-evidence requirement, and score provenance fields. They do not create
+an evaluator state, owner lock, baseline authority, or production-quality
+claim.
 
 ## Local Contracts
 
 - The current profile must match `schemas/site-profile.schema.json` and the
   canonical framework version.
+- A `taste_contract`, when present, must identify the active project and keep
+  concept, material, typography, motion, density, variance, and signature
+  decisions explicit without authorizing provider calls or image generation.
 - It must contain exactly the five approved owner locks.
 - Framework-validation status, reports, and release certification do not belong
   inside the site profile.

@@ -11,8 +11,9 @@ validation-manifest contracts for Website Director Capability 6, the additive
 
 ## Ownership
 
-- `site-profile.schema.json` owns the current profile shape and exact five-lock
-  definition.
+- `site-profile.schema.json` owns the current profile shape, the optional
+  project-local `taste_contract`, and exact five-lock definition. The taste
+  contract is not a lifecycle state, readiness gate, or owner lock.
 - `protocols.json`, `gates.json`, `phases.json`, and `state-ownership.json` own
   lifecycle identity, gate classification, phase order, and state authority.
 - `compatibility.json` owns historical schema and deprecation policy.
@@ -26,6 +27,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
   `templates/inspiration-source-registry.json`; it remains reference-only and
   does not duplicate the Awwwards authority.
 - framework-validation-report.schema.json owns report shape.
+- website-outcome-report.schema.json owns the additive offline artifact replay
+  report shape, including the separated proposal-completeness and
+  evidence-bound premium-quality receipt fields. It does not create a
+  lifecycle phase, readiness gate, state owner, or sixth owner lock.
 - evidence-ledger.schema.json owns the cross-cutting claims, sources,
   testimonials, certifications, research-reference, and asset evidence shape.
 - provenance state, the EVIDENCE_PROVENANCE protocol, Phase 6.95, and the
@@ -65,11 +70,18 @@ validation-manifest contracts for Website Director Capability 6, the additive
   replacement policy.
 - Inspiration sources must record a stable source identity, canonical URL,
   bounded role, reference-only default, and reuse/provenance conditions.
+- Taste contracts must resolve to the active project, must not inherit from a
+  shared or foreign project, and must preserve the existing five-lock set.
 
 ## Work Guidance
 
 Prefer additive, versioned fields and preserve old records. Update the
 validator, tests, protocol, and affected DOX when a durable contract changes.
+The outcome replay schema describes imported local evidence only. Its quality
+receipt fields require rendered-evidence provenance for current quality
+claims, while historical claims remain explicitly non-authoritative. It never
+authorizes a provider call, browser run, owner approval, baseline replacement,
+or production claim.
 
 ## Verification
 
