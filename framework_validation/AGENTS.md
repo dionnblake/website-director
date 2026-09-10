@@ -11,6 +11,9 @@ provider-neutral cinematic/inspiration and rendered-visual evidence helpers
 used by the bounded V2.15 regression suite, plus the provider-neutral
 clean-room execution coordinator for the Visual Prototype operating mode and
 its test-only synthetic proof.
+It also owns the bounded Impeccable source scanner in impeccable.py, including
+its normalized finding contract, curated v4.3.1 rule subset, contextual
+override handling, and fail-closed official-engine artifact audit helper.
 
 ## Ownership
 
@@ -36,6 +39,10 @@ aliases delegate to it. Deterministic synthetic proof adapters belong to the
 test suite, not the production kernel. It does not call providers, generate
 ASN, write under `projects/`, or add a state, gate, or owner lock. Existing
 owner-selection authority is consumed only at the final unlock boundary.
+impeccable.py owns read-only source-text design-quality detection for the
+existing design_qa_impeccable capability. It does not own browser runtime
+observations, accessibility runtime assertions, qualitative Gauntlet critique,
+design-system token identity, or any lifecycle state.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -65,6 +72,10 @@ owner-selection authority is consumed only at the final unlock boundary.
   `UNRESTRICTED_AGENT_PATH_ACCESS_RISK = PRESENT`. Do not describe the staged
   workspace as an OS sandbox.
 - Framework validation state stays outside `templates/site-profile.json`.
+- The Impeccable scanner is standard-library-only and has no provider, network,
+  subprocess, browser, daemon, install, hook, repair, or project-write path.
+- The scanner preserves the exact five owner locks and reports a locked repair
+  impact without changing the lock registry.
 - Adapter suites remain deterministic and are run only through the commands
   registered in `schemas/test-suites.json`; framework validation itself makes
   no live MCP or provider request.
@@ -91,6 +102,15 @@ owner-selection authority is consumed only at the final unlock boundary.
   stale-after-repair, simulation-only, or critic-without-fresh-input evidence
   is blocked.
 - Keep the exact five owner-lock invariant and fail closed on missing evidence.
+- The Impeccable scanner resolves ignore directories relative to the selected
+  `scan_path` root, so an explicitly selected `build` or `dist` root remains
+  scannable while nested ignored directories remain excluded. Empty or
+  unsupported-only `scan_path` roots and `scan_sources` maps fail closed with
+  `ValueError("no supported source files to scan")`.
+- Accessibility owns the logical heading hierarchy requirement and Browser QA
+  executes its canonical heading-order assertion; Impeccable does not emit
+  `skipped-heading`. Impeccable's `broken-image` is only an obvious
+  source-level precheck, never the Browser QA runtime asset-integrity verdict.
 - Owner requirements are normalized with explicit class, source, currentness,
   scope, and authority metadata. Current owner instructions supersede
   historical project material and reference inspiration; unresolved same-tier
@@ -120,8 +140,9 @@ special cases that turn invalid evidence into a pass.
 Run `python -m framework_validation --run-suites`. This is the canonical
 full-verification path and includes the browser/accessibility and
 release/handoff composites, cinematic and design/motion unit suites, and the
-clean-room suite. Inspect both generated reports and the final mutation
-evidence.
+clean-room suite. The framework_validation registry also runs the targeted
+Impeccable synthetic proof. Inspect both generated reports and the final
+mutation evidence.
 
 ## Child DOX Index
 

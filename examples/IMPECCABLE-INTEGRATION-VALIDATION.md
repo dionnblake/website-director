@@ -1,180 +1,114 @@
-# WEBSITE DIRECTOR: IMPECCABLE QUALITY ENGINE INTEGRATION VALIDATION SUITE
+# WEBSITE DIRECTOR: IMPECCABLE V4.3.1 SURGICAL REFRESH VALIDATION
 
-> **Integration Version:** 1.3.1  
-> **Protocol Governed:** `IMPECCABLE-ENGINE-PROTOCOL.md`  
-> **Status:** **`WEBSITE_DIRECTOR_IMPECCABLE_QUALITY_ENGINE_INTEGRATION_VALIDATED`**  
-> **Test Date:** 2026-08-26  
-> **Evaluation Mode:** Multi-Scenario Deterministic & Governance Validation
+> Integration version: 1.1.0
+> Framework version: 2.15.0
+> Status: CURATED_IMPLEMENTATION_RETAINED
+> Scope: local, provider-neutral, read-only design-quality scanning
 
----
+This file is a reference validation example. The executable assertions live
+in tests/test_impeccable.py and are registered inside the existing
+framework_validation suite. This example does not create a new phase, gate,
+state, orchestrator, owner lock, provider, hook, browser daemon, or deployment.
 
-## 1. Executive Summary & Provenance Verification
+## 1. Upstream identity
 
-| Attribute | Upstream Source Record |
+| Attribute | Evidence |
 | :--- | :--- |
-| **Upstream Repository** | `https://github.com/pbakaus/impeccable` |
-| **Commit SHA** | `63b04e2530f5c7b41ea83c133daab24f34912456` |
-| **Upstream Version** | `skill v4.1.2 (CLI v3.6.1)` |
-| **License** | Apache License 2.0 (Copyright 2026 Paul Bakaus and Impeccable Contributors) |
-| **Architectural Role** | Quality Engine & Craft Intelligence Provider (Embedded into Phase 11 QA and Phase 11.5 Gauntlet) |
-| **Subsystem Status** | `WEBSITE_DIRECTOR_IMPECCABLE_QUALITY_ENGINE_INTEGRATION_VALIDATED` |
+| Repository | https://github.com/pbakaus/impeccable |
+| Previous tag and commit | skill-v4.1.2 / 63b04e2530f5c7b41ea83c133daab24f34912456 |
+| Target tag and commit | skill-v4.3.1 / cd12f8660e2dde57b9615c8a6b8ea674101f9cfc |
+| Previous registry | 59 rule IDs |
+| Target registry | 61 built-in rule IDs |
+| Registry delta | organic-clip-path, buried-raster |
+| License | Apache License 2.0 |
+| universal.zip | 15,625,571 bytes |
+| universal.zip SHA-256 | 1deea4cdfb1608df6d9e08ef359629e7cc866a22ab7c2195a835627b887f190b |
+| Target verification | YES for tag, commit, release metadata, license, and digest |
 
----
+The release sidecar matched the artifact metadata and digest. The upstream
+binary was not executed and no upstream provider package was installed.
 
-## 2. The 10 Integration Validation Scenarios
+## 2. Integration decision
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                       VALIDATION TEST MATRIX (10/10 PASS)                   │
-├────┬──────────────────────────────────────────┬──────────────┬──────────────┤
-│ ID │ Test Scenario Name                       │ Target Gate  │ Status       │
-├────┼──────────────────────────────────────────┼──────────────┼──────────────┤
-│ 01 │ 18-Rule Deterministic Detection Suite    │ Pre-Scan QA  │ PASSED (18/18)│
-│ 02 │ Method & Epistemic Taxonomy Distinction  │ Finding Log  │ PASSED       │
-│ 03 │ Enhanced Gauntlet Critic Enrichment      │ Gauntlet 11.5│ PASSED       │
-│ 04 │ Lock Protection Invariant on Repair      │ Lock Guard   │ PASSED       │
-│ 05 │ Craft Floor & Surface Polish Protocol    │ Craft QA     │ PASSED       │
-│ 06 │ UI Hardening & Edge-Case Resilience      │ Pre-Flight   │ PASSED       │
-│ 07 │ Creative Escalation Playbook Governance  │ Lock Guard   │ PASSED       │
-│ 08 │ Multi-Version Backward Compatibility     │ Schema Engine│ PASSED       │
-│ 09 │ Context Mapping & Redundancy Prevention  │ Artifact Hub │ PASSED       │
-│ 10 │ Executable Deterministic Scan Engine     │ Node.js Test │ PASSED       │
-└────┴──────────────────────────────────────────┴──────────────┴──────────────┘
-```
+Option A, the official upstream engine adapter, is rejected for this refresh.
+The official source and release identity were audited, but a compatible
+Website Director adapter, approved binary lifecycle, cross-platform execution
+proof, and non-duplicating context boundary were not all established.
 
----
+Option B is retained in framework_validation/impeccable.py. It preserves the
+18 existing contractual entries, supports both side-tab IDs, and adopts nine
+new static or explainable heuristic rules. Runtime, accessibility, design
+system, and qualitative rules remain with their existing owners.
 
-### SCENARIO 01: 18-Rule Deterministic Detection Suite
-- **Objective:** Verify that all 18 rules from Impeccable are accurately cataloged and tested with explicit pass/fail logic.
-- **Rule Verification Results:**
-  1. `low-contrast` $\rightarrow$ Contrast ratio math ($< 4.5:1$) correctly flags.
-  2. `gray-on-color` $\rightarrow$ Un-tinted neutral gray on colored surfaces correctly flags.
-  3. `layout-transition` $\rightarrow$ `transition: all` / `width` / `margin` correctly flags.
-  4. `bounce-easing` $\rightarrow$ Overshooting spring beziers correctly flag.
-  5. `dark-glow` $\rightarrow$ 0-offset neon dark mode shadows correctly flag.
-  6. `touch-target-undersized` $\rightarrow$ Interactive elements $< 44\text{px}$ on mobile correctly flag.
-  7. `ai-color-palette` $\rightarrow$ Uncurated indigo/violet/cyan gradient stacks correctly flag.
-  8. `hero-eyebrow-chip` $\rightarrow$ Cliché hero pill chips correctly flag.
-  9. `icon-tile-stack` $\rightarrow$ Repeating 3-card icon feature loops correctly flag.
-  10. `radial-halo` $\rightarrow$ Unmotivated giant radial background blobs correctly flag.
-  11. `side-tab` / `border-accent-on-rounded` $\rightarrow$ Colored side stripes on rounded cards without status context correctly flag.
-  12. `pulsing-dot` $\rightarrow$ Arbitrary ping animations on non-live badges correctly flag.
-  13. `marquee` $\rightarrow$ Unrestrained infinite logo tickers correctly flag.
-  14. `shape-assembled-illustration` $\rightarrow$ Floating decorator CSS shapes correctly flag.
-  15. `monotonous-spacing` $\rightarrow$ Flat section padding without rhythm correctly flags.
-  16. `gradient-text` $\rightarrow$ Illegible clipped text gradients correctly flag.
-  17. `kicker-above-heading` $\rightarrow$ Uniform mechanical section kickers correctly flag.
-  18. `italic-serif-display` $\rightarrow$ Gratuitous single italic words in headings correctly flag.
-- **Verdict:** **`PASS`** (18/18 verified).
+ENGINE_DECISION = CURATED_IMPLEMENTATION_RETAINED
+ENGINE_ADOPTION = REJECTED
+LEGACY_EXECUTABLE_SCANNER_PRESENT = NO
+LEGACY_VALIDATION_DOCUMENT_ACCURATE = YES after this correction
+LEGACY_VALIDATION_DOCUMENT_ACCURATE_BEFORE_REFRESH = PARTIAL
+UPSTREAM_RULE_COUNT_DISCOVERED = 61
+EXISTING_RULES_ACCOUNTED_FOR = 18 contractual entries; 18 upstream IDs plus the Website Director touch-target extension
+NEW_RULES_ADOPTED = 9
+NEW_STATIC_RULES_ADOPTED = 5
+NEW_HEURISTIC_RULES_ADOPTED = 4
+RULES_REJECTED_OR_DELEGATED = 34
 
----
+## 3. Executable validation scenarios
 
-### SCENARIO 02: Method & Epistemic Taxonomy Distinction
-- **Objective:** Verify that Website Director prevents analytical dishonesty by strictly distinguishing discovery methods in finding reports.
-- **Test Case:** Compare a computed contrast failure against a subjective brand resonance critique.
-- **Evidence Log:**
-  ```text
-  [FINDING 1]
-  FINDING_ID:  DET-001
-  SOURCE:      IMPECCABLE_DETECTOR
-  METHOD:      DETERMINISTIC
-  RULE:        skill-color-verify-contrast
-  EVIDENCE:    Computed contrast #888888 on #0F172A is 2.8:1 (Fails WCAG AA 4.5:1)
-  
-  [FINDING 2]
-  FINDING_ID:  CRIT-004
-  SOURCE:      GAUNTLET_BRAND_CRITIC
-  METHOD:      LLM_CRITIQUE
-  RULE:        brand-emotional-posture
-  EVIDENCE:    Hero headline tone is overly casual for institutional asset management
-  ```
-- **Verdict:** **`PASS`** (Methods clearly segregated; zero epistemic conflation).
+| ID | Scenario | Expected evidence |
+| :--- | :--- | :--- |
+| 01 | Existing contract positives | All 18 entries detect their synthetic positive fixture |
+| 02 | Existing contract negatives | Clean controls do not produce those rule IDs |
+| 03 | v4.3.1 additions | Nine adopted IDs each have positive and negative controls |
+| 04 | Normalized findings | Exactly nine fields and the declared method taxonomy |
+| 05 | Contextual override | Only an explicitly locked design direction authorizes a heuristic |
+| 06 | Lock protection | Locked repair impact is reported without changing the lock registry |
+| 07 | Browser and Accessibility ownership | Runtime-only IDs are not emitted by the source scanner |
+| 08 | Engine failure modes | Missing or corrupt official artifacts return BLOCKED; no fallback pass |
+| 09 | Windows and POSIX paths | Backslashes normalize to stable slash-separated locations |
+| 10 | Frozen and historical integrity | The protected projects corpus and 2.15 profile remain unchanged |
+| 11 | Explicit output-directory root | A selected `build` or `dist` root is scanned; nested ignored directories remain excluded |
+| 12 | No scannable input | Empty, unsupported-only, and empty source-map inputs fail closed and cannot PASS |
 
----
+Run the targeted proof with:
 
-### SCENARIO 03: Enhanced Gauntlet Critic Enrichment
-- **Objective:** Verify that Impeccable detectors empower existing Gauntlet Critics without creating duplicate critics.
-- **Test Case:** AI-Slop Critic in Gauntlet Round 1 consumes Impeccable detector findings alongside structural morphology analysis.
-- **Verification:**
-  - `AI-Slop Critic` owns slop detection; consumes `ai-color-palette`, `radial-halo`, `icon-tile-stack`.
-  - `Craft Critic` owns typography and micro-spacing; consumes `tabular-nums`, `::selection` theming.
-  - `Accessibility Critic` consumes computed contrast and touch-target bounding boxes.
-  - `Motion Critic` consumes layout transition bans and `prefers-reduced-motion` fallbacks.
-  - No duplicate critic spawned.
-- **Verdict:** **`PASS`**.
+    python -m unittest tests.test_impeccable
 
----
+Run the canonical full proof with:
 
-### SCENARIO 04: Lock Protection Invariant on Repair
-- **Objective:** Verify that an Impeccable finding requiring a design token or brand change cannot bypass Website Director locks.
-- **Test Case:** Detector identifies `ai-color-palette` in primary button gradient. Remediating requires changing `--color-primary` (locked under Lock 4: Design System).
-- **Execution Trace:**
-  1. Refinement Engine identifies that changing `--color-primary` impacts Lock 4.
-  2. Targeted repair is HALTED.
-  3. System issues `LOCKED_CHANGE_REQUIRED` Change Request to Owner.
-  4. Lock is NOT mutated silently.
-- **Verdict:** **`PASS`**.
+    python -m framework_validation --run-suites
 
----
+The suite runs only local synthetic inputs. It does not make a network
+request, call a provider, execute an upstream binary, open a browser, or write
+under projects/.
 
-### SCENARIO 05: Craft Floor & Surface Polish Protocol
-- **Objective:** Verify enforcement of browser surface theming and typographic craft floors.
-- **Test Verification:**
-  - `::selection` styled with `--color-primary-highlight` and contrasting text.
-  - Custom scrollbar styled with subtle track and brand thumb.
-  - Pricing and stat numbers declare `font-variant-numeric: tabular-nums`.
-  - Body text measure clamped at `max-width: 70ch`.
-- **Verdict:** **`PASS`**.
+## 4. Finding example
 
----
+    FINDING_ID: DET-001
+    SOURCE: IMPECCABLE_DETECTOR
+    METHOD: DETERMINISTIC
+    RULE: low-contrast
+    LOCATION: src/page.css:12
+    SEVERITY: MAJOR
+    EVIDENCE: computed contrast 2.80:1 is below the 4.50:1 body threshold
+    REMEDIATION: increase contrast or use the approved design-system token
+    LOCK_IMPACT: NONE
 
-### SCENARIO 06: UI Hardening & Edge-Case Resilience
-- **Objective:** Verify that interfaces withstand extreme content and network edge cases per `harden.md`.
-- **Test Verification:**
-  - 120-character heading test: Text clamps cleanly with `-webkit-line-clamp: 2` and tooltip fallback without horizontal viewport blowout.
-  - Empty state test: Empty collection displays bespoke illustration and clear recovery action.
-  - Mobile touch target test: All clickable navigation links verify bounding box $\ge 44\text{px} \times 44\text{px}$.
-- **Verdict:** **`PASS`**.
+An authorized heuristic remains in the result with remediation text beginning
+AUTHORIZED_BY_LOCK. It is not deleted and the scanner does not mutate the
+locked design direction.
 
----
+## 5. Ownership boundary
 
-### SCENARIO 07: Creative Escalation Playbook Governance
-- **Objective:** Verify that creative escalation playbooks (`bolder`, `delight`, `overdrive`) cannot be applied arbitrarily.
-- **Test Verification:**
-  - Attempting to apply `bolder` high-contrast display scale to an unapproved brand is blocked.
-  - `overdrive` 3D WebGL timeline is rejected unless `motion.level == "MOTION_LEVEL_3"` and `cinematic_brief_complete == true`.
-- **Verdict:** **`PASS`**.
+The scanner owns only the rows marked A, B, or C in the complete matrix in
+IMPECCABLE-ENGINE-PROTOCOL.md. Browser QA owns live console errors, viewport
+geometry, clipping, occlusion, post-reveal state, and rendered/runtime asset
+integrity. Accessibility owns logical heading hierarchy, computed rendered
+assertions, and manual criteria. `skipped-heading` is therefore not emitted
+by Impeccable. Impeccable's `broken-image` finding is only an obvious
+source-level missing/empty/placeholder precheck and cannot substitute for the
+Browser QA asset-integrity verdict. Design Constitution and Design System own
+token identity. Website Gauntlet owns qualitative visual and copy judgment.
 
----
-
-### SCENARIO 08: Multi-Version Backward Compatibility
-- **Objective:** Verify that all historical Website Director baselines (V1, V1.1, V1.2, V1.3) load and run without schema corruption.
-- **Test Results:**
-  - `projects/alpha-starts-now`: Frozen V1 baseline (no `schema_version`, 4 locks) $\rightarrow$ **Clean Pass**.
-  - Synthetic V1.1 architecture compatibility fixture $\rightarrow$ **Clean Pass**.
-  - Synthetic V1.1 automotive compatibility fixture $\rightarrow$ **Clean Pass**.
-  - Synthetic V1.1 hospitality compatibility fixture $\rightarrow$ **Clean Pass**.
-- **Verdict:** **`PASS`**.
-
----
-
-### SCENARIO 09: Context Mapping & Redundancy Prevention
-- **Objective:** Verify that Impeccable context needs are mapped directly to Website Director artifacts without creating duplicate files.
-- **Mapping Verification:**
-  - Impeccable `PRODUCT.md` $\rightarrow$ Website Director `project-brief.md` + `positioning.md`.
-  - Impeccable `DESIGN.md` $\rightarrow$ Website Director `design-direction.md` + `design-system.md`.
-  - Zero duplicate config or markdown files created.
-- **Verdict:** **`PASS`**.
-
----
-
-### SCENARIO 10: Executable Deterministic Scan Engine
-- **Objective:** Run an automated Node.js test script verifying that HTML/CSS code samples with anti-patterns are deterministically detected and reported with correct metadata.
-
-```javascript
-// Test Execution Script (Run via Node.js)
-const { runDeterministicScan } = require('./impeccable-scanner-test.js');
-// Result: 100% accurate identification of low-contrast, layout-transition,
-// and hero-eyebrow-chip across test fixture.
-```
-- **Verdict:** **`PASS`**.
+The previous example claimed a Node module named
+impeccable-scanner-test.js. That file was not present in the historical
+checkout. The claim is removed rather than retroactively fabricated.

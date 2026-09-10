@@ -23,7 +23,10 @@ validation-manifest contracts for Website Director Capability 6, the additive
 - `frozen-projects.json` owns the active protected-project inventory. Historical
   certification project recovery is proved by the Wave 3 external manifest and
   Git history, not by a second in-checkout registry.
-- `test-suites.json` owns discoverable isolated test commands.
+- `test-suites.json` owns discoverable isolated test commands. The existing
+  `framework_validation` entry may run bounded child proof modules such as
+  `tests/test_impeccable.py` without creating another registered suite or
+  verification authority.
 - `validation-manifest.json` owns source roots and report destinations.
   The bounded design-first operating-mode suite is registered there without
   creating a new lifecycle phase, gate, state authority, or owner lock.

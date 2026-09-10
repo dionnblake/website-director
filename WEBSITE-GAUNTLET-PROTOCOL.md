@@ -160,7 +160,7 @@ The Website Gauntlet deploys up to eight specialized, domain-specific adversaria
 ### 4.6 AI-Slop Critic (Enhanced by Impeccable)
 - **Focus:** Detection of recurring machine-generated design clichés and uncurated web templates.
 - **Key Checks & Deterministic Rules:**
-  - Scans for all 18 detector rules from `IMPECCABLE-ENGINE-PROTOCOL.md` §3 (AI color palettes, radial halos, 3-card loops, dark glow halos, hero eyebrow chips, side-tab borders, pulsing dots).
+  - Consumes the adopted Impeccable findings from `IMPECCABLE-ENGINE-PROTOCOL.md` §3-4 (including AI color palettes, radial halos, 3-card loops, dark glow halos, hero eyebrow chips, side-tab borders, pulsing dots, and the selected v4.3.1 additions). It does not reimplement the source scanner or claim ownership of the delegated rows in §5.
   - Enforces morphological diversity across sequential sections (preventing template fatigue).
   - Eliminates unmotivated decorative containers, pill tags, and floating fake UI cards.
 - **Defects:** Purple/indigo gradient fills, floating fake dashboard widgets, pill button monoculture, uniform card grids.
