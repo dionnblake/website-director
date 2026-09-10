@@ -14,6 +14,9 @@ its test-only synthetic proof.
 It also owns the bounded Impeccable source scanner in impeccable.py, including
 its normalized finding contract, curated v4.3.1 rule subset, contextual
 override handling, and fail-closed official-engine artifact audit helper.
+It also owns `copy_quality.py`, the bounded, advisory, source-copy pattern
+precheck for supplied English copy. It emits deterministic review findings
+without scoring, rewriting, claim validation, or lifecycle authority.
 
 ## Ownership
 
@@ -43,6 +46,9 @@ impeccable.py owns read-only source-text design-quality detection for the
 existing design_qa_impeccable capability. It does not own browser runtime
 observations, accessibility runtime assertions, qualitative Gauntlet critique,
 design-system token identity, or any lifecycle state.
+`copy_quality.py` owns only the selected source-copy pattern heuristics. It does
+not own factual proof, provenance, localized-copy validation, rendered-copy
+observation, Browser QA, Gauntlet critique, or content-lock authority.
 `__main__.py` owns the module entrypoint.
 
 ## Local Contracts
@@ -76,6 +82,17 @@ design-system token identity, or any lifecycle state.
   subprocess, browser, daemon, install, hook, repair, or project-write path.
 - The scanner preserves the exact five owner locks and reports a locked repair
   impact without changing the lock registry.
+- The copy-quality precheck scans only supplied English source copy when a
+  known locale is present. Known non-English input is `NOT_APPLICABLE` and an
+  unknown locale is `BLOCKED`; neither is a clean-copy verdict.
+- Copy findings use the existing evidence-oriented review path with
+  `COPY_PATTERN_SCANNER` and `HEURISTIC` metadata. The precheck has no score,
+  automatic rewrite, provider/model path, proof verdict, new state, new gate,
+  new phase, or new owner lock. Locked-copy findings point to the existing
+  Owner Change Request path.
+- Numeric or social proof remains owned by Capability 7 Provenance, broad
+  qualitative critique remains owned by the Gauntlet, and post-build rendered
+  copy is deferred unless an existing rendered-text observation is present.
 - Adapter suites remain deterministic and are run only through the commands
   registered in `schemas/test-suites.json`; framework validation itself makes
   no live MCP or provider request.

@@ -186,6 +186,10 @@ protected corpus, and survive independent rendered critique?
 5. [WEBSITE-GAUNTLET-PROTOCOL.md](WEBSITE-GAUNTLET-PROTOCOL.md) owns fresh,
    qualitative rendered critique against approved Reference Bars and targeted
    refinement. `BUILDER != CRITIC` remains mandatory.
+6. `framework_validation/copy_quality.py` may provide bounded, advisory
+   source-copy findings for known-locale English copy before Content Lock. It
+   emits review evidence only and does not score, rewrite, validate proof,
+   observe rendered text, or add lifecycle authority.
 
 **Boundary:** Browser QA proves machine-observable behavior first. Gauntlet
   critiques rendered quality second. Browser QA must not become Gauntlet, and

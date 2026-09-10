@@ -66,6 +66,12 @@ lock protection, official engine fail-closed controls, single-owner boundaries
 for heading and image checks, owner separation, path handling, frozen
 integrity, and historical compatibility. It is a child module of the
 framework_validation suite, not a new registered suite.
+`test_copy_quality.py` owns the synthetic proof for the bounded source-copy
+pattern precheck: positive and negative controls for each adopted rule,
+locale applicability, Markdown extraction, Unicode normalization, finding and
+lock metadata, proof ownership, determinism, provider/process absence, and
+protected-corpus read-only behavior. It is a child module of the existing
+framework_validation suite, not a new registered suite.
 
 ## Local Contracts
 
@@ -81,6 +87,9 @@ framework_validation suite, not a new registered suite.
   complete historical project directories.
 - The Design Inspiration MCP suite uses synthetic structured results only and
   never requires a live Serper key or upstream package execution.
+- The copy-quality tests use supplied text and read-only repository fixtures
+  only. They never rewrite copy, call a provider or model, add a gate or lock,
+  or modify the protected projects corpus.
 - The Evidence and Asset Provenance suite uses synthetic records and temporary
   hash fixtures only. It never retrofits historical projects or makes a live
   provider, browser, network, credential, or production request.

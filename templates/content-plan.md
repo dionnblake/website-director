@@ -35,6 +35,7 @@
 - **Action-Descriptive Buttons:** Buttons must describe the resulting action ("Save changes", "Schedule Deep Dive", not "Submit" or "Click Here").
 - **Directional Errors & Empty States:** Errors explain what happened and direct recovery; empty states provide an invitation to act.
 - **Single-Job Elements:** Labels label, examples demonstrate, supporting text clarifies. Zero marketing fluff.
+- **Bounded Source-Copy Precheck:** When applicable, the existing framework-validation package may flag a small set of deterministic phrase and punctuation heuristics in supplied English source copy. Findings are advisory review evidence only; this precheck does not score, rewrite, validate claims, or replace Provenance, the Content Lock, Browser QA, or the Gauntlet.
 
 ---
 
@@ -57,4 +58,5 @@ templates/evidence-ledger.json:
 ## 6. Content Lock Gate
 - [ ] All headlines, body copy, and CTA text written in final production form.
 - [ ] No `Lorem Ipsum` or generic placeholder text remains.
+- [ ] Applicable bounded source-copy findings have been reviewed in context and resolved or explicitly accepted before locking.
 - [ ] Ready to lock `CONTENT_STRUCTURE_LOCKED` in `site-profile.json`.
