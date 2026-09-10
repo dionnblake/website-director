@@ -6,6 +6,29 @@ f261dbf11c2a206ecd8780c070a46dae64edd8be. SlopMonster is MIT licensed,
 Copyright (c) 2026 Jack Roberts. The selected concepts are independently
 bounded here for advisory Website Director copy review.
 
+The complete upstream permission notice is preserved here because this module
+directly adapts selected upstream pattern expressions and concepts:
+
+MIT License
+
+Copyright (c) 2026 Jack Roberts
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
 The scanner emits review findings only. It does not score copy, rewrite text,
 validate factual claims, call a provider, or create a readiness state or gate.
 """
@@ -360,7 +383,7 @@ def scan_copy(
     text: str,
     *,
     source_locale: str | None,
-    content_locked: bool = False,
+    content_locked: bool,
     input_format: str = "plain",
 ) -> CopyScanResult:
     """Scan supplied source copy for a curated set of advisory heuristics.
@@ -368,12 +391,17 @@ def scan_copy(
     ``source_locale`` is required evidence for applicability. English is the
     only scanned language. Known non-English input is explicitly skipped, and
     unknown locale evidence is blocked rather than treated as clean.
+    ``content_locked`` is an explicit boolean supplied by the caller from the
+    existing canonical lock condition; this scanner never resolves or writes
+    lock state.
     """
 
     if input_format not in {"plain", "markdown"}:
         raise ValueError("input_format must be 'plain' or 'markdown'")
     if not isinstance(text, str):
         raise TypeError("text must be a string")
+    if not isinstance(content_locked, bool):
+        raise TypeError("content_locked must be a boolean")
 
     prose = _markdown_prose(text) if input_format == "markdown" else _normalise(text)
     if not prose:

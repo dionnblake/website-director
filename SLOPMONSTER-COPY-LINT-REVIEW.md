@@ -14,6 +14,18 @@ SLOPMONSTER_UPSTREAM_VERIFIED = YES
 SLOPMONSTER_LICENSE = MIT, Copyright (c) 2026 Jack Roberts
 ATTRIBUTION_REQUIRED = YES
 ATTRIBUTION_IMPLEMENTED = YES
+MIT_FULL_NOTICE_PRESENT = YES
+MIT_ATTRIBUTION_VERIFIED = YES
+KERNEL_ROUTING_FIXED = YES
+COPY_PRECHECK_STAGE = DESIGN_BEFORE_CONTENT_LOCK
+VERIFY_STAGE_DUPLICATE_PRESENT = NO
+CONTENT_LOCK_ARGUMENT_REQUIRED = YES
+CONTENT_LOCK_FALSE_DEFAULT_PRESENT = NO
+UNLOCKED_LOCK_IMPACT_TEST = PASS
+LOCKED_LOCK_IMPACT_TEST = PASS
+OMITTED_LOCK_CONTEXT_TEST = PASS
+AUDIT_TEST_COUNT_CONSISTENT = YES
+ACTUAL_TARGETED_TEST_COUNT = 17
 UPSTREAM_PATTERN_COUNT = 83
 PATTERNS_ADOPTED = 13
 PATTERNS_NARROWED = 3
@@ -43,9 +55,9 @@ PROTECTED_CORPUS_INTEGRITY = VERIFIED
 CORPUS_TRUE_POSITIVES = 0
 CORPUS_FALSE_POSITIVES = 0
 CORPUS_NOTES = The scanner is a pre-lock source-copy aid. The five protected homepage artifacts contained no adopted matches. Rejected/delegated upstream signals included legitimate leverage, elevate, unlock, transformation, curated, whether, and list constructions.
-TARGETED_TESTS = python -m unittest tests.test_copy_quality -v: 14/14 PASS
-FULL_TEST_SUITE = python -m framework_validation --run-suites: 269 checks PASS, 0 failed, 0 blocked, 0 warnings
-GLOBAL_VERIFIER = node C:\Users\ALPHA\.context\scripts\verify.js <project dir>: VERIFIED; pytest all passed
+TARGETED_TESTS = python -m unittest tests.test_copy_quality -v: 17/17 PASS
+FULL_TEST_SUITE = python -m framework_validation --run-suites: 268 checks PASS, 0 failed, 0 blocked, 1 warning (REMOTE_MAIN_BEHIND_DEVELOPMENT)
+GLOBAL_VERIFIER = node C:\Users\ALPHA\.context\scripts\verify.js <project dir>: VERIFIED; pytest 59 passed
 WINDOWS_CI = NOT_RUN
 UBUNTU_CI = NOT_RUN
 MAIN_MUTATED = NO
@@ -90,7 +102,9 @@ upstream `main` ref. The audited upstream source is [SlopMonster on
 GitHub](https://github.com/ItsssssJack/SlopMonster), specifically [commit
 f261dbf11c2a206ecd8780c070a46dae64edd8be](https://github.com/ItsssssJack/SlopMonster/commit/f261dbf11c2a206ecd8780c070a46dae64edd8be).
 Its `LICENSE` is MIT, Copyright (c) 2026 Jack Roberts. The Website Director
-implementation carries that attribution in the module docstring and here.
+implementation preserves the complete upstream MIT notice in the
+`framework_validation/copy_quality.py` module docstring and records that
+attribution here.
 
 Inspected upstream materials:
 
@@ -220,11 +234,16 @@ is `NOT_APPLICABLE`. The scanner does not infer language from text and does not
 claim that non-English copy is clean.
 
 The content workflow integration is one checklist item in the existing
-`templates/content-plan.md` Content Lock section. A finding on unlocked copy
-has `LOCK_IMPACT = REVIEW_BEFORE_CONTENT_LOCK`; a finding on locked copy has
-`LOCK_IMPACT = LOCKED_CHANGE_REQUIRED`. Existing `content_structure_locked`
-ownership and the Owner Change Request path remain authoritative. No schema
-state, gate, phase, lock, orchestrator, or approval route was added.
+`templates/content-plan.md` Content Lock section. `SKILL.md` routes the
+precheck in DESIGN while production copy is finalized, before
+`content_structure_locked`; it is not an independent VERIFY operation. A
+finding on explicitly unlocked copy has `LOCK_IMPACT =
+REVIEW_BEFORE_CONTENT_LOCK`; a finding on explicitly locked copy has
+`LOCK_IMPACT = LOCKED_CHANGE_REQUIRED`. Callers must provide the existing
+canonical lock condition as a boolean; missing or invalid lock context fails
+closed. Existing `content_structure_locked` ownership and the Owner Change
+Request path remain authoritative. No schema state, gate, phase, lock,
+orchestrator, or approval route was added.
 
 ## Delegated and rejected concerns
 
@@ -296,7 +315,7 @@ Targeted development verification passed:
 
 ```text
 python -m unittest tests.test_copy_quality -v
-Ran 13 tests
+Ran 17 tests
 OK
 ```
 
@@ -305,7 +324,14 @@ literal-sense controls, UTF-8 typography, Markdown extraction, empty input,
 English and non-English applicability, unknown-language blocking, proof-owner
 separation, lock impact, deterministic output, process/provider absence,
 protected-corpus read-only scanning, and the no-new-suite/no-new-gate/five-lock
-invariants.
+invariants. The corrective controls additionally prove DESIGN-before-Content-
+Lock routing, required boolean lock context, both explicit lock impacts, the
+complete upstream MIT notice, prohibited execution/rewrite/model absence, and
+unchanged rule/disposition counts.
+
+The registered framework runner completed with 268 checks passed, zero failed,
+zero blocked, and one non-blocking `REMOTE_MAIN_BEHIND_DEVELOPMENT` warning.
+The global verifier returned `VERIFIED`; its pytest run passed 59 tests.
 
 Upstream tests passed in the detached pinned checkout:
 

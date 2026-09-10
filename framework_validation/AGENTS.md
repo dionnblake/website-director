@@ -85,6 +85,9 @@ observation, Browser QA, Gauntlet critique, or content-lock authority.
 - The copy-quality precheck scans only supplied English source copy when a
   known locale is present. Known non-English input is `NOT_APPLICABLE` and an
   unknown locale is `BLOCKED`; neither is a clean-copy verdict.
+- Callers must provide the existing canonical content-lock condition as the
+  explicit boolean `content_locked` argument. Missing or non-boolean context
+  fails closed; `copy_quality.py` never resolves or writes lock state.
 - Copy findings use the existing evidence-oriented review path with
   `COPY_PATTERN_SCANNER` and `HEURISTIC` metadata. The precheck has no score,
   automatic rewrite, provider/model path, proof verdict, new state, new gate,

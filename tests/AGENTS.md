@@ -89,7 +89,9 @@ framework_validation suite, not a new registered suite.
   never requires a live Serper key or upstream package execution.
 - The copy-quality tests use supplied text and read-only repository fixtures
   only. They never rewrite copy, call a provider or model, add a gate or lock,
-  or modify the protected projects corpus.
+  or modify the protected projects corpus. Every scan supplies the existing
+  canonical `content_locked` boolean explicitly and covers missing and
+  non-boolean lock context as fail-closed inputs.
 - The Evidence and Asset Provenance suite uses synthetic records and temporary
   hash fixtures only. It never retrofits historical projects or makes a live
   provider, browser, network, credential, or production request.

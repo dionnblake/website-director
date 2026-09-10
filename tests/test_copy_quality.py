@@ -84,19 +84,24 @@ class CopyQualityPatternTests(unittest.TestCase):
         self.assertEqual(tuple(ADOPTED_RULES), tuple(cases))
         for rule, (positive, control) in cases.items():
             with self.subTest(rule=rule, kind="positive"):
-                result = scan_copy(positive, source_locale="en-US")
+                result = scan_copy(positive, source_locale="en-US", content_locked=False)
                 self.assertEqual(result.status, STATUS_SCANNED)
                 self.assertIn(rule, {finding.rule for finding in result.findings})
             with self.subTest(rule=rule, kind="control"):
-                result = scan_copy(control, source_locale="en-US")
+                result = scan_copy(control, source_locale="en-US", content_locked=False)
                 self.assertEqual(result.status, STATUS_SCANNED)
                 self.assertNotIn(rule, {finding.rule for finding in result.findings})
 
     def test_narrowed_punctuation_rules_are_bounded_to_sentence_windows(self) -> None:
-        em_dash = scan_copy("One record — one owner — one review.", source_locale="en-US")
+        em_dash = scan_copy(
+            "One record — one owner — one review.",
+            source_locale="en-US",
+            content_locked=False,
+        )
         compounds = scan_copy(
             "Our industry-leading, context-aware, best-in-class, AI-powered record ships.",
             source_locale="en-US",
+            content_locked=False,
         )
         self.assertIn("EM_DASH_DENSITY", {finding.rule for finding in em_dash.findings})
         self.assertIn("HYPHENATED_COMPOUND_STACK", {finding.rule for finding in compounds.findings})
@@ -104,26 +109,43 @@ class CopyQualityPatternTests(unittest.TestCase):
             tuple(NARROWED_RULES),
             ("THROAT_CLEARING", "EM_DASH_DENSITY", "HYPHENATED_COMPOUND_STACK"),
         )
-        throat = scan_copy("Here's the thing: evidence matters.", source_locale="en-US")
+        throat = scan_copy(
+            "Here's the thing: evidence matters.",
+            source_locale="en-US",
+            content_locked=False,
+        )
         self.assertIn("THROAT_CLEARING", {finding.rule for finding in throat.findings})
         self.assertEqual(
-            scan_copy("The best part of the record is the hash.", source_locale="en-US").findings,
+            scan_copy(
+                "The best part of the record is the hash.",
+                source_locale="en-US",
+                content_locked=False,
+            ).findings,
             (),
         )
         self.assertEqual(
-            scan_copy("One record — one owner.", source_locale="en-US").findings,
+            scan_copy(
+                "One record — one owner.",
+                source_locale="en-US",
+                content_locked=False,
+            ).findings,
             (),
         )
         self.assertEqual(
             scan_copy(
                 "An industry-leading tool supports a well-known standard.",
                 source_locale="en-US",
+                content_locked=False,
             ).findings,
             (),
         )
 
     def test_findings_have_the_declared_evidence_contract(self) -> None:
-        result = scan_copy("Say goodbye to brittle handoffs.", source_locale="en-US")
+        result = scan_copy(
+            "Say goodbye to brittle handoffs.",
+            source_locale="en-US",
+            content_locked=False,
+        )
         self.assertEqual(len(result.findings), 1)
         finding = result.findings[0]
         self.assertIsInstance(finding, CopyFinding)
@@ -152,8 +174,8 @@ class CopyQualityPatternTests(unittest.TestCase):
             "Imagine a clear handoff. Say goodbye to brittle handoffs. "
             "One record — one owner — one review."
         )
-        first = scan_copy(text, source_locale="en-US")
-        second = scan_copy(text, source_locale="en-US")
+        first = scan_copy(text, source_locale="en-US", content_locked=False)
+        second = scan_copy(text, source_locale="en-US", content_locked=False)
         self.assertEqual(first.as_dict(), second.as_dict())
         self.assertEqual(
             [finding.finding_id for finding in first.findings],
@@ -168,12 +190,37 @@ class CopyQualityPatternTests(unittest.TestCase):
         )
         self.assertEqual(result.findings[0].lock_impact, "LOCKED_CHANGE_REQUIRED")
 
+    def test_content_lock_context_is_required_and_boolean(self) -> None:
+        with self.assertRaises(TypeError):
+            scan_copy("Say goodbye to brittle handoffs.", source_locale="en-US")
+
+        for invalid_context in (None, 0, 1, "false"):
+            with self.subTest(invalid_context=invalid_context):
+                with self.assertRaises(TypeError):
+                    scan_copy(
+                        "Say goodbye to brittle handoffs.",
+                        source_locale="en-US",
+                        content_locked=invalid_context,
+                    )
+
 
 class CopyQualityBoundaryTests(unittest.TestCase):
     def test_locale_boundary_never_treats_unknown_or_non_english_as_clean(self) -> None:
-        unknown = scan_copy("Say goodbye to brittle handoffs.", source_locale=None)
-        undetermined = scan_copy("Say goodbye to brittle handoffs.", source_locale="und")
-        non_english = scan_copy("Say goodbye to brittle handoffs.", source_locale="es-MX")
+        unknown = scan_copy(
+            "Say goodbye to brittle handoffs.",
+            source_locale=None,
+            content_locked=False,
+        )
+        undetermined = scan_copy(
+            "Say goodbye to brittle handoffs.",
+            source_locale="und",
+            content_locked=False,
+        )
+        non_english = scan_copy(
+            "Say goodbye to brittle handoffs.",
+            source_locale="es-MX",
+            content_locked=False,
+        )
         self.assertEqual(unknown.status, STATUS_BLOCKED)
         self.assertEqual(unknown.reason, "SOURCE_LOCALE_UNKNOWN")
         self.assertEqual(undetermined.status, STATUS_BLOCKED)
@@ -183,7 +230,7 @@ class CopyQualityBoundaryTests(unittest.TestCase):
         self.assertNotIn("COPY_PATTERN_PASS", str(non_english.as_dict()))
 
     def test_empty_input_is_fail_closed(self) -> None:
-        result = scan_copy(" \n\t", source_locale="en-US")
+        result = scan_copy(" \n\t", source_locale="en-US", content_locked=False)
         self.assertEqual(result.status, STATUS_BLOCKED)
         self.assertEqual(result.reason, "EMPTY_INPUT")
         self.assertEqual(result.findings[0].rule, "EMPTY_INPUT")
@@ -193,6 +240,7 @@ class CopyQualityBoundaryTests(unittest.TestCase):
         result = scan_copy(
             "It’s not just a tool, it’s a platform.\nSay\u00a0goodbye\u00a0to brittle handoffs.",
             source_locale="en-US",
+            content_locked=False,
         )
         rules = {finding.rule for finding in result.findings}
         self.assertIn("NEGATED_JUST_COPULA_CONTRAST", rules)
@@ -201,6 +249,7 @@ class CopyQualityBoundaryTests(unittest.TestCase):
         compounds = scan_copy(
             "industry\u2011leading, context\u2011aware, best\u2011in\u2011class, AI\u2011powered record.",
             source_locale="en-US",
+            content_locked=False,
         )
         self.assertIn("HYPHENATED_COMPOUND_STACK", {finding.rule for finding in compounds.findings})
 
@@ -219,14 +268,23 @@ Say goodbye to hidden implementation details.
 
 [Say goodbye to linked prose](https://example.test)
 """
-        result = scan_copy(markdown, source_locale="en-US", input_format="markdown")
+        result = scan_copy(
+            markdown,
+            source_locale="en-US",
+            content_locked=False,
+            input_format="markdown",
+        )
         self.assertEqual(
             [finding.evidence for finding in result.findings],
             ["Say goodbye to"],
         )
 
     def test_proof_pattern_is_not_a_copy_finding(self) -> None:
-        result = scan_copy("Trusted by 10,000+ customers.", source_locale="en-US")
+        result = scan_copy(
+            "Trusted by 10,000+ customers.",
+            source_locale="en-US",
+            content_locked=False,
+        )
         self.assertEqual(result.findings, ())
         self.assertEqual(len(DELEGATED_RULES), 7)
         self.assertIn("NUMERIC_PEOPLE_PROOF", DELEGATED_RULES)
@@ -240,7 +298,7 @@ Say goodbye to hidden implementation details.
             "Trusted, reliable and built to last. "
             "Inspection; repair; replacement; maintenance; review."
         )
-        result = scan_copy(text, source_locale="en-US")
+        result = scan_copy(text, source_locale="en-US", content_locked=False)
         self.assertEqual(result.findings, ())
 
 
@@ -264,6 +322,30 @@ class CopyQualityRepositoryContractTests(unittest.TestCase):
         self.assertNotIn("rewrite", function_names)
         self.assertNotIn("cleanse", function_names)
         self.assertNotIn("score", function_names)
+        prohibited_imports = {"subprocess", "os", "requests", "httpx", "openai", "anthropic"}
+        self.assertFalse(imported_modules & prohibited_imports)
+        call_names = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                if isinstance(node.func, ast.Name):
+                    call_names.add(node.func.id.lower())
+                elif isinstance(node.func, ast.Attribute):
+                    call_names.add(node.func.attr.lower())
+        prohibited_calls = {
+            "eval",
+            "exec",
+            "system",
+            "popen",
+            "run",
+            "rewrite",
+            "cleanse",
+            "score",
+            "generate",
+            "invoke",
+            "completion",
+            "chat",
+        }
+        self.assertFalse(call_names & prohibited_calls)
 
     def test_protected_projects_remain_unchanged_during_read_only_corpus_scan(self) -> None:
         sample = ROOT / "projects" / "alpha-starts-now" / "build" / "index.html"
@@ -272,9 +354,11 @@ class CopyQualityRepositoryContractTests(unittest.TestCase):
             ledger = str(Path(temp_dir) / "integrity.log")
             guard = FrozenIntegrityGuard(str(ROOT), ["projects/"], ledger).snapshot()
             source_copy = sample.read_text(encoding="utf-8")
-            result = scan_copy(source_copy, source_locale="en-US")
+            unlocked = scan_copy(source_copy, source_locale="en-US", content_locked=False)
+            locked = scan_copy(source_copy, source_locale="en-US", content_locked=True)
             integrity = guard.verify(record_violation=False)
-        self.assertEqual(result.status, STATUS_SCANNED)
+        self.assertEqual(unlocked.status, STATUS_SCANNED)
+        self.assertEqual(locked.status, STATUS_SCANNED)
         self.assertTrue(integrity.ok, integrity.summary())
         self.assertGreater(integrity.checked_files, 0)
 
@@ -291,6 +375,50 @@ class CopyQualityRepositoryContractTests(unittest.TestCase):
         self.assertEqual(len(owner_locks), 5)
         self.assertFalse(any("COPY" in gate["name"] for gate in gates))
         self.assertFalse(any("SLOP" in gate["name"] for gate in gates))
+        self.assertEqual(len(ADOPTED_RULES), 13)
+        self.assertEqual(len(NARROWED_RULES), 3)
+        self.assertEqual(len(DELEGATED_RULES), 7)
+        self.assertEqual(83 - len(ADOPTED_RULES) - len(NARROWED_RULES) - len(DELEGATED_RULES), 60)
+
+    def test_copy_precheck_is_design_time_not_verify_stage(self) -> None:
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        design = skill.split("## 3. DESIGN", 1)[1].split("## 4. ASSETS", 1)[0]
+        verify = skill.split("## 6. VERIFY", 1)[1].split("## 7. RELEASE", 1)[0]
+
+        self.assertIn("framework_validation/copy_quality.py", design)
+        self.assertIn("content_structure_locked", design)
+        self.assertLess(
+            design.index("framework_validation/copy_quality.py"),
+            design.index("content_structure_locked"),
+        )
+        self.assertNotIn("framework_validation/copy_quality.py", verify)
+
+    def test_complete_upstream_mit_notice_is_preserved(self) -> None:
+        source = (ROOT / "framework_validation" / "copy_quality.py").read_text(encoding="utf-8")
+        notice = "\n".join(
+            (
+                "MIT License",
+                "",
+                "Copyright (c) 2026 Jack Roberts",
+                "",
+                "Permission is hereby granted, free of charge, to any person obtaining a copy",
+                'of this software and associated documentation files (the "Software"), to deal',
+                "in the Software without restriction, including without limitation the rights",
+                "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+                "copies of the Software, and to permit persons to whom the Software is",
+                "furnished to do so, subject to the following conditions:",
+                "The above copyright notice and this permission notice shall be included in all",
+                "copies or substantial portions of the Software.",
+                'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR',
+                "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+                "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
+                "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+                "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
+                "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE",
+                "SOFTWARE.",
+            )
+        )
+        self.assertIn(notice, source)
 
 
 if __name__ == "__main__":
